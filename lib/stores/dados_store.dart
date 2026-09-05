@@ -145,7 +145,7 @@ class RendimentosStore extends ChangeNotifier {
 
   double? doMes(int ano, int mes) {
     final l = _itens.where((r) => r.mes.year == ano && r.mes.month == mes);
-    return l.isEmpty ? null : l.fold(0.0, (s, r) => s + r.valorBruto);
+    return l.isEmpty ? null : l.fold<double>(0.0, (s, r) => s + r.valorBruto);
   }
 
   /// Média mensal dos últimos [meses] meses com registo (para "quanto guardar").
