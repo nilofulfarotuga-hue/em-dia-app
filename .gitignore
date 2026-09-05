@@ -1,0 +1,61 @@
+# ── Segredos (NUNCA no repo) ─────────────────────────────────────────────────
+.dart_defines
+.env
+*.env
+!*.env.example
+android/key.properties
+android/app/*.jks
+android/app/*.keystore
+android/app/google-services.json
+android/app/google-services*.json
+*.p12
+*.pem
+service-account*.json
+
+# ── Vigia da noite (estado efémero) ──────────────────────────────────────────
+docs/.sessao-viva
+docs/.vigia-pid
+docs/vigia-retoma-*
+docs/vigia.log
+docs/batimento.log
+docs/telegram.log
+
+# ── Flutter / Dart / Pub ──────────────────────────────────────────────────────
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+**/doc/api/
+pubspec.lock
+
+# ── Android build outputs ─────────────────────────────────────────────────────
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+*.apk
+*.aab
+
+# ── IDE / SO ──────────────────────────────────────────────────────────────────
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+.DS_Store
+*.log
+*.swp
+.history
+*.hprof
+hs_err_pid*.log
+
+# ── Golden tests: as fotos geradas são artefactos, não fonte ─────────────────
+test/golden/_fotos/*.png
+!test/golden/_fotos/.gitkeep
+
+# ── Rascunhos ─────────────────────────────────────────────────────────────────
+temp_*
+_preview/
