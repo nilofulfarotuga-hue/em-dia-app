@@ -1,4 +1,4 @@
-package pt.emdia.em_dia
+package pt.emdia.app
 
 import io.flutter.embedding.android.FlutterActivity
 

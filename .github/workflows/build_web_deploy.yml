@@ -1,0 +1,108 @@
+name: Build & Deploy Web (app + admin → Cloudflare Pages)
+
+# Paridade Android ↔ Web (regra do Bora): o que vai para a Play vai também para a web.
+# Dois destinos, um só build de código:
+#   lib/main.dart       → app-em-dia.pages.dev   (a app no iPhone/computador, mesmo login)
+#   lib/main_admin.dart → em-dia-admin.pages.dev (painel admin, PT-BR)
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+      - ".claude/**"
+      - "docs/**"
+      - "tool/vigia/**"
+      - "site/**"
+      - "supabase/**"
+  workflow_dispatch:
+
+concurrency:
+  group: web-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-deploy:
+    name: Build web (app + admin) + deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.2
+          channel: stable
+          cache: true
+
+      - name: Decode .dart_defines
+        env:
+          DART_DEFINES_FILE_B64: ${{ secrets.DART_DEFINES_FILE_B64 }}
+        run: |
+          echo "$DART_DEFINES_FILE_B64" | base64 --decode > .dart_defines
+          if [ ! -s .dart_defines ]; then
+            echo "ERRO: .dart_defines vazio apos decode"; exit 1
+          fi
+          echo "OK: .dart_defines criado ($(wc -l < .dart_defines) linhas)"
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Build web — app
+        run: flutter build web --release -t lib/main.dart -o build/web_app --dart-define-from-file=.dart_defines
+
+      - name: Build web — admin
+        run: flutter build web --release -t lib/main_admin.dart -o build/web_admin --dart-define-from-file=.dart_defines
+
+      # /versao.json prova, por fetch, que a web no ar corresponde a este commit.
+      - name: Carimbar versão
+        run: |
+          for d in build/web_app build/web_admin; do
+            printf '{"commit":"%s","branch":"%s","data":"%s","run":"%s"}\n' \
+              "$GITHUB_SHA" "$GITHUB_REF_NAME" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$GITHUB_RUN_NUMBER" > "$d/versao.json"
+            cat "$d/versao.json"
+          done
+
+      - name: Upload builds como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: em-dia-web-builds
+          path: |
+            build/web_app
+            build/web_admin
+          retention-days: 7
+
+      # O contexto `secrets` não pode ir num `if:` de step — passa por output.
+      - name: Verificar token Cloudflare
+        id: cf
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -n "$TOKEN" ]; then echo "tem=sim" >> "$GITHUB_OUTPUT"; else echo "tem=nao" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Deploy app → app-em-dia.pages.dev
+        if: steps.cf.outputs.tem == 'sim'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 2cd0212b0f5e5c8284aa227f629c050a
+          command: pages deploy build/web_app --project-name=app-em-dia --branch=main --commit-dirty=true
+
+      - name: Deploy admin → em-dia-admin.pages.dev
+        if: steps.cf.outputs.tem == 'sim'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 2cd0212b0f5e5c8284aa227f629c050a
+          command: pages deploy build/web_admin --project-name=em-dia-admin --branch=main --commit-dirty=true
+
+      - name: Aviso se o token faltar
+        if: steps.cf.outputs.tem == 'nao'
+        run: echo "::warning::CLOUDFLARE_API_TOKEN não definido — builds ficaram como artifact, sem deploy."
