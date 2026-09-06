@@ -19,6 +19,7 @@ class Perfil {
   final String plano; // free | pro | familia (servidor)
   final DateTime trialAte; // servidor
   final bool onboardingConcluido;
+  final bool viuGuiaInicio;
   final bool imigrante;
   final DateTime? residenciaRenovaEm;
   final bool banido;
@@ -41,6 +42,7 @@ class Perfil {
     this.plano = 'free',
     required this.trialAte,
     this.onboardingConcluido = false,
+    this.viuGuiaInicio = false,
     this.imigrante = false,
     this.residenciaRenovaEm,
     this.banido = false,
@@ -66,6 +68,8 @@ class Perfil {
         'tvde' => TipoAtividade.tvde,
         'estafeta' => TipoAtividade.estafeta,
         'servicos' => TipoAtividade.servicos,
+        'obras' => TipoAtividade.obras,
+        'outro' => TipoAtividade.outro,
         'freelancer' => TipoAtividade.freelancer,
         'so_carro' => TipoAtividade.soCarro,
         _ => TipoAtividade.semAtividade,
@@ -75,6 +79,8 @@ class Perfil {
         TipoAtividade.tvde => 'tvde',
         TipoAtividade.estafeta => 'estafeta',
         TipoAtividade.servicos => 'servicos',
+        TipoAtividade.obras => 'obras',
+        TipoAtividade.outro => 'outro',
         TipoAtividade.freelancer => 'freelancer',
         TipoAtividade.soCarro => 'so_carro',
         TipoAtividade.semAtividade => 'sem_atividade',
@@ -97,6 +103,7 @@ class Perfil {
         plano: (m['plano'] as String?) ?? 'free',
         trialAte: DateTime.parse(m['trial_ate'] as String).toLocal(),
         onboardingConcluido: (m['onboarding_concluido'] as bool?) ?? false,
+        viuGuiaInicio: (m['viu_guia_inicio'] as bool?) ?? false,
         imigrante: (m['imigrante'] as bool?) ?? false,
         residenciaRenovaEm: _data(m['residencia_renova_em']),
         banido: (m['banido'] as bool?) ?? false,
@@ -117,6 +124,7 @@ class Perfil {
         'ajuste_ss_pct': ajusteSsPct,
         'variante_pt': variantePt,
         'onboarding_concluido': onboardingConcluido,
+        'viu_guia_inicio': viuGuiaInicio,
         'imigrante': imigrante,
         'residencia_renova_em': residenciaRenovaEm == null ? null : dataPtIso(residenciaRenovaEm!),
       };
@@ -135,6 +143,7 @@ class Perfil {
     int? ajusteSsPct,
     String? variantePt,
     bool? onboardingConcluido,
+    bool? viuGuiaInicio,
     bool? imigrante,
     DateTime? residenciaRenovaEm,
   }) =>
@@ -155,6 +164,7 @@ class Perfil {
         plano: plano,
         trialAte: trialAte,
         onboardingConcluido: onboardingConcluido ?? this.onboardingConcluido,
+        viuGuiaInicio: viuGuiaInicio ?? this.viuGuiaInicio,
         imigrante: imigrante ?? this.imigrante,
         residenciaRenovaEm: residenciaRenovaEm ?? this.residenciaRenovaEm,
         banido: banido,

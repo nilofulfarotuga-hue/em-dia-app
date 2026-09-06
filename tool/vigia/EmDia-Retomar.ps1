@@ -29,6 +29,8 @@ function L([string]$m) {
 }
 
 New-Item -ItemType Directory -Force $Docs | Out-Null
+# preciso disto já no passo 2 (procura do transcript), não só no passo 4
+$env:CLAUDE_CONFIG_DIR = 'C:\Users\danil\.claude'
 L ("arranque (origem: {0})" -f $(if ($args.Count -gt 0) { $args -join ' ' } else { 'agendador' }))
 
 # 1. missão concluída → desligar-se
@@ -39,16 +41,49 @@ if ((Test-Path $Marcos) -and (Select-String -Path $Marcos -Pattern '^MISSAO-CONC
 }
 
 # 2. sessão viva?
+#
+# CICATRIZ (2026-09-06): a tranca só é renovada quando a sessão se LEMBRA de o
+# fazer, e entre respostas passam-se facilmente 20 minutos. Bastou isso para o
+# vigia achar que a sessão tinha morrido e lançar outra POR CIMA de uma viva —
+# duas sessões a escrever no mesmo repositório e na mesma base de dados de
+# produção ao mesmo tempo. Nesse dia todos os dados de utilizador desapareceram
+# (docs/provas/apagao-dados-2026-09-06.md).
+#
+# Por isso agora há DUAS provas de vida, e basta uma:
+#   a) a tranca docs/.sessao-viva;
+#   b) o transcript da sessão, que CRESCE sempre que a sessão trabalha, seja ela
+#      interactiva ou lançada por este vigia — essa não depende de ninguém se
+#      lembrar de nada.
+$vivo = $false
 if (Test-Path $Tranca) {
   $idade = (Get-Date) - (Get-Item $Tranca).LastWriteTime
   if ($idade.TotalMinutes -lt $TrancaMin) {
     L ("sessão viva, saio (tranca renovada há {0:N1} min)" -f $idade.TotalMinutes)
-    exit 0
+    $vivo = $true
+  } else {
+    L ("tranca velha ({0:N0} min)" -f $idade.TotalMinutes)
   }
-  L ("tranca velha ({0:N0} min): a sessão parou" -f $idade.TotalMinutes)
 } else {
-  L 'sem tranca: a sessão parou (ou nunca a criou)'
+  L 'sem tranca'
 }
+
+if (-not $vivo) {
+  $padrao = Join-Path $env:CLAUDE_CONFIG_DIR ('projects\*\' + $SessaoId + '.jsonl')
+  $transcript = Get-ChildItem $padrao -ErrorAction SilentlyContinue |
+                Sort-Object LastWriteTime -Descending | Select-Object -First 1
+  if ($transcript) {
+    $idadeT = (Get-Date) - $transcript.LastWriteTime
+    if ($idadeT.TotalMinutes -lt $TrancaMin) {
+      L ("sessão viva pelo transcript, saio (escreveu há {0:N1} min)" -f $idadeT.TotalMinutes)
+      $vivo = $true
+    } else {
+      L ("transcript parado há {0:N0} min: a sessão parou mesmo" -f $idadeT.TotalMinutes)
+    }
+  } else {
+    L 'sem transcript: a sessão parou (ou nunca existiu)'
+  }
+}
+if ($vivo) { exit 0 }
 
 # 3. retoma anterior ainda a correr?
 if (Test-Path $PidFile) {

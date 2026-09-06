@@ -9,7 +9,10 @@ import 'seguranca_social.dart';
 /// que a Edge Function `calcular-obrigacoes` faz no servidor; os dois são
 /// testados com os mesmos casos de `docs/casos-teste.md`).
 
-enum TipoAtividade { tvde, estafeta, servicos, freelancer, semAtividade, soCarro }
+/// O ofício de quem usa a app. Decide os exemplos, os textos e a descrição
+/// do serviço no recibo. `obras` e `outro` entraram a 2026-09-06, com a tela
+/// de recibos a deixar de ser só de motorista.
+enum TipoAtividade { tvde, estafeta, servicos, obras, freelancer, outro, semAtividade, soCarro }
 
 enum RegimeIva { isento53, normal }
 

@@ -129,3 +129,8 @@
 - **O quê:** cada pessoa recebe um endereço `<nome>-<8 letras ao acaso>@contas.<domínio>`; uma **única** regra catch-all entrega tudo a um Worker, que separa o PDF, mete-o no Storage e chama a Edge Function que o lê.
 - **Porquê:** o Email Routing da Cloudflare recebe **sem limite de volume no plano grátis**, e a regra catch-all pode ligar directamente a código nosso. Criar um endereço por pessoa batia no tecto de 200 regras por domínio; com catch-all, o endereço passa a existir no momento em que o gravamos na nossa base de dados. As 8 letras ao acaso são a fechadura: sem elas, um estranho adivinhava o endereço de outro.
 - **Como se desfaz:** apagar a regra catch-all. O endereço deixa de receber e nada mais parte.
+
+## D16 — O vigia tem duas provas de vida, não uma
+- **O quê:** antes de lançar uma retoma, o `EmDia-Retomar.ps1` aceita a sessão como viva por **qualquer** uma de duas: a tranca `docs/.sessao-viva` renovada há menos de 20 min, **ou** o transcript da sessão (`~/.claude/projects/*/<id>.jsonl`) escrito há menos de 20 min.
+- **Porquê:** a tranca só é renovada quando a sessão se lembra, e entre respostas passam-se facilmente 20 minutos. Bastou isso para o vigia lançar uma retoma por cima de uma sessão viva — duas a escrever no mesmo repositório e na mesma base de dados de produção. Nesse dia todos os dados de utilizador desapareceram. O transcript cresce sempre que a sessão trabalha, seja ela interactiva ou lançada pelo vigia: é a prova que não depende de ninguém se lembrar de nada.
+- **Como se desfaz:** tirar o bloco do transcript do passo 2 do script. Não se recomenda.
