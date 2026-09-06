@@ -46,6 +46,31 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
-  <script src="flutter_bootstrap.js" async></script>
+  <!--
+    Porta para robôs (2026-09-06, noite). O robots.txt e o noindex pedem; isto
+    manda. A 6 de setembro, com o Turnstile já ligado, um renderizador da
+    Google (74.125.209.x) abriu a app, escreveu um e-mail inventado e pediu
+    código — a Cloudflare dá token a um Chrome a sério, seja de quem for. Um
+    rastreador que se apresente como tal não chega a carregar a app: fica com
+    uma frase e um link para o site. Uma pessoa num Chrome normal nunca cai
+    aqui. Quem não se apresenta (headless disfarçado) leva com o Turnstile.
+  -->
+  <script>
+    (function () {
+      var ua = navigator.userAgent || '';
+      var robo = /bot|crawl|spider|slurp|Google-InspectionTool|Google-Read-Aloud|Storebot|AdsBot|Mediapartners|FeedFetcher|HeadlessChrome|Lighthouse|PTST|Bytespider|facebookexternalhit|Applebot/i.test(ua)
+        || (navigator.webdriver === true);
+      if (robo) {
+        document.addEventListener('DOMContentLoaded', function () {
+          document.body.innerHTML = '<main style="font-family:Inter,system-ui,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1.5rem;color:#0F172A"><h1 style="color:#16A34A">Em Dia</h1><p>Esta é a aplicação, só para pessoas. Para saber o que é o Em Dia, vê o site: <a href="https://em-dia-site.pages.dev/">em-dia-site.pages.dev</a>.</p></main>';
+        });
+        return;
+      }
+      var s = document.createElement('script');
+      s.src = 'flutter_bootstrap.js';
+      s.async = true;
+      document.head.appendChild(s);
+    })();
+  </script>
 </body>
 </html>
