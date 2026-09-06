@@ -648,6 +648,36 @@ abstract class AppLocalizations {
   /// **'Não vês o e-mail? Procura na pasta do lixo. Às vezes é para lá que ele vai.'**
   String get loginOndeEsta;
 
+  /// No description provided for @loginAntiRobo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui confirmar que não és um robô. Tenta outra vez.'**
+  String get loginAntiRobo;
+
+  /// No description provided for @loginAjudaPalavraPasse.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta conta entra com palavra-passe.'**
+  String get loginAjudaPalavraPasse;
+
+  /// No description provided for @loginPalavraPasse.
+  ///
+  /// In pt, this message translates to:
+  /// **'Palavra-passe'**
+  String get loginPalavraPasse;
+
+  /// No description provided for @loginEntrar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrar'**
+  String get loginEntrar;
+
+  /// No description provided for @loginPalavraPasseErrada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Palavra-passe errada.'**
+  String get loginPalavraPasseErrada;
+
   /// No description provided for @sair.
   ///
   /// In pt, this message translates to:

@@ -168,6 +168,60 @@ void main() {
     }
   });
 
+  testWidgets('L12 o e-mail do revisor da Google troca o código por palavra-passe', (tester) async {
+    // O revisor da Play não tem caixa de e-mail; sem entrar, a Google rejeita
+    // a app. Só ESTE e-mail vê um campo de palavra-passe e um botão "Entrar".
+    final s = await abre(tester);
+    s.revisor = 'revisor@emdia.pt';
+    await tester.enterText(find.byType(TextField), ' Revisor@EmDia.pt ');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Entrar'), findsOneWidget, reason: 'o botão passa a "Entrar"');
+    expect(find.text('Enviar código'), findsNothing);
+    expect(find.byType(TextField), findsNWidgets(2), reason: 'e-mail + palavra-passe');
+
+    await tester.enterText(find.byType(TextField).at(1), 'segredo');
+    await tester.tap(find.text('Entrar'));
+    await tester.pumpAndSettle();
+
+    expect(s.entradaComPalavraPasse, ['revisor@emdia.pt', 'segredo']);
+    expect(s.emailEnviado, isNull, reason: 'o revisor nunca pede código');
+  });
+
+  testWidgets('L13 quem não é o revisor nunca vê a palavra-passe', (tester) async {
+    final s = await abre(tester);
+    s.revisor = 'revisor@emdia.pt';
+    await tester.enterText(find.byType(TextField), 'outro@emdia.pt');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Enviar código'), findsOneWidget);
+    expect(find.byType(TextField), findsOneWidget);
+  });
+
+  testWidgets('L14 o anti-robô e a palavra-passe errada têm frase própria', (tester) async {
+    final s = await abre(tester);
+    s.poeErro(ErroLogin.antiRobo);
+    await tester.pumpAndSettle();
+    expect(find.textContaining('não és um robô'), findsOneWidget);
+
+    // O mesmo ErroLogin.codigoErrado tem duas caras: no ecrã do revisor
+    // (sem código pendente) é a palavra-passe que está errada.
+    s.revisor = 'revisor@emdia.pt';
+    await tester.enterText(find.byType(TextField), 'revisor@emdia.pt');
+    s.poeErro(ErroLogin.codigoErrado);
+    await tester.pumpAndSettle();
+    expect(find.text('Palavra-passe errada.'), findsOneWidget);
+  });
+
+  test('L15 ehRevisor ignora maiúsculas e espaços; sem e-mail na build nunca é', () {
+    final semRevisor = SessaoStore.semServidor();
+    expect(semRevisor.ehRevisor('revisor@emdia.pt'), isFalse,
+        reason: 'os testes correm sem EMAIL_REVISOR');
+    final s = SessaoFalsa()..revisor = 'Revisor@EmDia.pt';
+    expect(s.ehRevisor('  revisor@emdia.pt '), isTrue);
+    expect(s.ehRevisor('outro@emdia.pt'), isFalse);
+  });
+
   test('L08 o tamanho do código da app cobre o do servidor', () {
     // O servidor manda 6 (mailer_otp_length). A margem existe para o dia em
     // que alguém lá mexer sem avisar.
@@ -210,8 +264,16 @@ class SessaoFalsa extends SessaoStore {
   @override
   bool get googleDisponivel => false;
 
+  /// O e-mail do revisor da Google, fingido (na build vem do EMAIL_REVISOR).
+  String revisor = '';
   @override
-  Future<bool> enviarCodigo(String email) async {
+  String get emailDoRevisor => revisor;
+
+  /// [e-mail, palavra-passe] da última entrada por palavra-passe.
+  List<String>? entradaComPalavraPasse;
+
+  @override
+  Future<bool> enviarCodigo(String email, {String? captchaToken}) async {
     emailEnviado = email.trim().toLowerCase();
     _erro = ErroLogin.nenhum;
     notifyListeners();
@@ -219,8 +281,20 @@ class SessaoFalsa extends SessaoStore {
   }
 
   @override
-  Future<bool> reenviarCodigo() async {
+  Future<bool> reenviarCodigo({String? captchaToken}) async {
     reenvios++;
+    notifyListeners();
+    return true;
+  }
+
+  @override
+  Future<bool> entrarComPalavraPasse(
+    String email,
+    String palavraPasse, {
+    String? captchaToken,
+  }) async {
+    entradaComPalavraPasse = [email.trim().toLowerCase(), palavraPasse];
+    _erro = ErroLogin.nenhum;
     notifyListeners();
     return true;
   }

@@ -214,3 +214,23 @@
 - **Porquê:** à primeira tentativa o teste deu "PASSOU!" nas duas linhas e pareceu um buraco de segurança grave. Não era: a conta usada era administradora, e a trava deixa passar os admins — que é o que ela deve fazer. O defeito estava no teste. E deixou estrago (`trial_ate` em 2036, plano `familia`), que foi reposto.
 - **Como se aplica:** existe uma conta normal (`083cfbfc…`) criada só para isto. Usa-se essa, sempre.
 
+
+## D40 — Preços de combustível: na app ficam GRÁTIS e para toda a gente, porque é a condição da DGEG
+- **O quê:** quando a DGEG deferir a "Partilha de Informação", os preços dos postos ficam fora de qualquer cadeado — visíveis no plano grátis, sem registo pago, com a DGEG como fonte e a data da última atualização.
+- **Porquê:** a minuta oficial (docs/loja/dgeg/) obriga a "disponibilizar gratuitamente aos Clientes" e o portal pede que a divulgação seja "gratuita e universal". Sem isto o pedido é recusado, e com isto a app fica melhor: é a única coisa do carro que toda a gente vê sem pagar. O pedido está preenchido (minuta-partilha-informacao-em-dia.docx, só falta o NIF e a assinatura) e o e-mail está em rascunho no Gmail do boraappbora.
+- **Como se desfaz:** não se desfaz enquanto o Documento estiver em vigor (renova-se de ano a ano); se um dia se quiser cobrar por isto, denuncia-se por escrito à DGEG e desliga-se `feature_flags.precos_combustivel`.
+
+## D41 — Turnstile no pedido de código: widget na conta Cloudflare do boraappbora, e as Pages ficam onde estão
+- **O quê:** o widget `em-dia-login` (modo *managed*, domínios app-em-dia.pages.dev, em-dia.app e localhost) vive na conta Cloudflare `boraappbora@gmail.com` (6864b594…). As Pages (app-em-dia, em-dia-admin, em-dia-site) e a zona boraguarda.com vivem na conta `nilofulfarotuga@gmail.com` (2cd0212b…), cujo token não tem Turnstile nem DNS.
+- **Porquê:** o Turnstile não precisa de estar na mesma conta que o alojamento — só as chaves contam. A sessão do Chrome é a do boraappbora, e foi por ela que o widget nasceu (POST pela API do painel, 200). A alternativa era pedir um token novo ao Danilo. Na app: chave vazia = sem captcha (testes e fotos intactos); com chave, modo invisível primeiro e desafio visível só quando o invisível falha ou o servidor recusa (`captcha_failed`).
+- **Como se desfaz:** apagar `TURNSTILE_SITE_KEY` do `.dart_defines` e desligar `security_captcha_enabled` no Auth; o widget pode ficar.
+
+## D42 — O revisor da Google entra com palavra-passe, e é o único
+- **O quê:** a conta `revisor.google@boraguarda.com` existe no servidor com palavra-passe (criada por SQL, e-mail já confirmado, sem caixa de correio). Só esse e-mail (`EMAIL_REVISOR` na build) vê o campo da palavra-passe; toda a gente continua a entrar por código.
+- **Porquê:** o revisor não recebe e-mail no emulador dele. Uma palavra-passe para toda a gente era abrir a porta que o código de 6 números fecha. O Turnstile fica ligado também para ele (modo invisível — ele é uma pessoa e passa); se falhar, vê o desafio.
+- **Como se desfaz:** apagar o utilizador em `auth.users` e a linha em `emails_convidados`, e tirar `EMAIL_REVISOR` do `.dart_defines`.
+
+## D43 — Apagar a conta também por e-mail, escrito na página de privacidade
+- **O quê:** `em-dia-site.pages.dev/privacidade#apagar-conta` explica o caminho dentro da app e o e-mail para quem já não consegue entrar (5 dias úteis). É o URL declarado na Segurança dos Dados da Play.
+- **Porquê:** a Google exige um endereço web para pedir a eliminação da conta; "só dentro da app" não chega para quem perdeu o telemóvel.
+- **Como se desfaz:** não se desfaz — é obrigação legal (RGPD) e da loja.

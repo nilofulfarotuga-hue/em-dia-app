@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloudflare_turnstile/cloudflare_turnstile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -21,11 +22,21 @@ enum ErroLogin {
   codigoCurto,
   codigoErrado,
   codigoExpirado,
+  /// O anti-robô (Turnstile) não deu token, ou o servidor recusou-o
+  /// (`captcha_failed`). O ecrã mostra o desafio visível a seguir.
+  antiRobo,
   generico,
 }
 
 /// Sessão: quem está a usar a app. Login por e-mail com código de 6 números
 /// (Supabase OTP) ou Google. Sem palavra-passe (decisão D4 em docs/DECISOES.md).
+///
+/// Duas coisas escondidas por baixo:
+/// - Com [turnstileSiteKey] na build, cada pedido de código passa primeiro
+///   pelo anti-robô da Cloudflare (a 6 de setembro de 2026 o Googlebot
+///   submeteu o formulário de entrada com e-mails inventados e tentou códigos).
+/// - Só o e-mail do revisor da Google Play ([emailRevisor]) entra com
+///   palavra-passe — o revisor não tem caixa de e-mail para receber o código.
 ///
 /// O código tem de ter o mesmo tamanho aqui e no servidor
 /// (`mailer_otp_length`). Se um dia mudar lá, muda [tamanhoCodigo] aqui.
@@ -44,6 +55,12 @@ class SessaoStore extends ChangeNotifier {
   /// O servidor só deixa pedir outro código passado 1 minuto. A app conta o
   /// tempo para não levar um 429 na cara de quem carrega duas vezes.
   static const int segundosEntrePedidos = 60;
+
+  /// Quanto tempo se espera pelo Turnstile invisível. O pacote só avisa
+  /// (`onTimeout`) e nunca fecha o Future quando o script não carrega — sem
+  /// isto o botão ficava a rodar para sempre. Lido no código do pacote
+  /// (cloudflare_turnstile 3.8.1, `_TurnstileInvisible.getToken`).
+  static const Duration esperaAntiRobo = Duration(seconds: 20);
 
   static final RegExp _emailOk = RegExp(r'^[^@\s]+@[^@\s.]+\.[^@\s]{2,}$');
   static final RegExp _naoNumero = RegExp(r'\D');
@@ -97,6 +114,7 @@ class SessaoStore extends ChangeNotifier {
   bool _aTrabalhar = false;
   String? _emailPendente;
   int _reenviarEm = 0;
+  bool _precisaDesafio = false;
 
   SessaoStore() {
     _user = sb.auth.currentUser;
@@ -128,6 +146,25 @@ class SessaoStore extends ChangeNotifier {
   bool get podeReenviar => _reenviarEm == 0 && !_aTrabalhar;
   bool get googleDisponivel => googleWebClientId.isNotEmpty;
 
+  /// Há chave do Turnstile nesta build. Sem ela não há captcha nenhum: os
+  /// testes, as fotos e as builds antigas continuam a funcionar.
+  bool get antiRoboLigado => turnstileSiteKey.isNotEmpty;
+
+  /// O modo invisível falhou (ou o servidor recusou o token): o próximo pedido
+  /// tem de passar pelo desafio visível, que o ecrã desenha.
+  bool get precisaDesafio => _precisaDesafio;
+
+  /// O e-mail do revisor da Google Play. Getter (e não a constante) para os
+  /// testes poderem fingir um.
+  String get emailDoRevisor => emailRevisor;
+
+  /// `true` quando este e-mail é o do revisor da Google Play (sem maiúsculas
+  /// nem espaços a contar). Sem [emailRevisor] na build, nunca.
+  bool ehRevisor(String email) {
+    final r = emailDoRevisor.trim().toLowerCase();
+    return r.isNotEmpty && email.trim().toLowerCase() == r;
+  }
+
   void _comecar() {
     _aTrabalhar = true;
     _erro = ErroLogin.nenhum;
@@ -141,6 +178,14 @@ class SessaoStore extends ChangeNotifier {
     _erroTecnico = tecnico;
     if (tecnico != null) debugPrint('SessaoStore: $erro — $tecnico');
     notifyListeners();
+  }
+
+  /// Fecha o pedido com o erro classificado. Se o servidor recusou o token
+  /// anti-robô, o próximo pedido passa a pedir o desafio visível.
+  void _falhou(Object e) {
+    final erro = _classificar(e);
+    if (erro == ErroLogin.antiRobo) _precisaDesafio = true;
+    _acabar(erro, e.toString());
   }
 
   /// Limpa o aviso vermelho (ao voltar atrás ou ao escrever de novo).
@@ -159,6 +204,9 @@ class SessaoStore extends ChangeNotifier {
     if (e is AuthException) {
       final codigo = e.code ?? '';
       final msg = e.message.toLowerCase();
+      // Protecção anti-robô ligada no servidor e o token não foi, expirou
+      // (300 s) ou já tinha sido gasto: 400 "captcha_failed".
+      if (codigo == 'captcha_failed') return ErroLogin.antiRobo;
       if (codigo.contains('rate_limit') || e.statusCode == '429') {
         return ErroLogin.muitosPedidos;
       }
@@ -203,8 +251,54 @@ class SessaoStore extends ChangeNotifier {
     });
   }
 
+  /// Pede um token NOVO ao Turnstile em modo invisível (sem nada no ecrã).
+  /// Devolve `null` quando não conseguiu — o desafio escalou para interactivo,
+  /// o script não carregou, a rede falhou — e o ecrã passa ao desafio visível.
+  ///
+  /// O `baseUrl` é o domínio a que o widget está preso na Cloudflare: no
+  /// Android é obrigatório (o WebView finge estar nessa página), na web é
+  /// ignorado. O `dispose` no `finally` é exigido pelo pacote: cada instância
+  /// abre um WebView escondido.
+  Future<String?> _pedirTokenAntiRobo() async {
+    final turnstile = CloudflareTurnstile.invisible(
+      siteKey: turnstileSiteKey,
+      baseUrl: turnstileBaseUrl,
+    );
+    try {
+      final token = await turnstile.getToken().timeout(esperaAntiRobo);
+      if (token == null || token.isEmpty) {
+        debugPrint('SessaoStore: Turnstile invisível não devolveu token');
+        return null;
+      }
+      return token;
+    } on TurnstileException catch (e) {
+      debugPrint('SessaoStore: Turnstile ${e.code} — ${e.message}');
+      return null;
+    } on TimeoutException {
+      debugPrint('SessaoStore: Turnstile invisível não respondeu em '
+          '${esperaAntiRobo.inSeconds} s');
+      return null;
+    } catch (e) {
+      // No Android o WebView devolve o erro em bruto (WebResourceError).
+      debugPrint('SessaoStore: Turnstile falhou — $e');
+      return null;
+    } finally {
+      try {
+        await turnstile.dispose();
+      } catch (e) {
+        debugPrint('SessaoStore: Turnstile dispose — $e');
+      }
+    }
+  }
+
   /// Passo 1: manda o código de 6 números para o e-mail.
-  Future<bool> enviarCodigo(String email) async {
+  ///
+  /// Com o anti-robô ligado, pede um token NOVO ao Turnstile imediatamente
+  /// antes de cada pedido (cada token vale uma vez e morre aos 300 s):
+  /// primeiro em modo invisível; se esse falhar, [precisaDesafio] fica `true`,
+  /// o ecrã mostra o desafio visível e volta a chamar isto com o
+  /// [captchaToken] que a pessoa resolveu.
+  Future<bool> enviarCodigo(String email, {String? captchaToken}) async {
     final limpo = email.trim().toLowerCase();
     if (!_emailOk.hasMatch(limpo)) {
       _acabar(ErroLogin.emailInvalido, 'e-mail fora do formato: "$limpo"');
@@ -215,23 +309,38 @@ class SessaoStore extends ChangeNotifier {
       return false;
     }
     _comecar();
+    var token = captchaToken;
+    if (antiRoboLigado && token == null) {
+      token = await _pedirTokenAntiRobo();
+      if (token == null) {
+        _precisaDesafio = true;
+        _acabar(ErroLogin.antiRobo, 'o Turnstile invisível não deu token');
+        return false;
+      }
+    }
     try {
-      await sb.auth.signInWithOtp(email: limpo, shouldCreateUser: true);
+      await sb.auth.signInWithOtp(
+        email: limpo,
+        shouldCreateUser: true,
+        captchaToken: token,
+      );
       _emailPendente = limpo;
+      _precisaDesafio = false;
       _acabar();
       _contarParaReenviar();
       return true;
     } catch (e) {
-      _acabar(_classificar(e), e.toString());
+      _falhou(e);
       return false;
     }
   }
 
   /// Pede outro código para o mesmo e-mail. Só funciona depois do minuto.
-  Future<bool> reenviarCodigo() async {
+  /// Passa por [enviarCodigo], logo pede token anti-robô novo.
+  Future<bool> reenviarCodigo({String? captchaToken}) async {
     final email = _emailPendente;
     if (email == null || !podeReenviar) return false;
-    return enviarCodigo(email);
+    return enviarCodigo(email, captchaToken: captchaToken);
   }
 
   /// Passo 2: confirma o código. Aceita espaços e traços colados do e-mail.
@@ -263,7 +372,63 @@ class SessaoStore extends ChangeNotifier {
       _acabar();
       return true;
     } catch (e) {
-      _acabar(_classificar(e), e.toString());
+      _falhou(e);
+      return false;
+    }
+  }
+
+  /// Só para o revisor da Google Play (ver [emailRevisor]): entra com
+  /// palavra-passe, sem código e sem passar pelo Turnstile — o revisor não o
+  /// consegue resolver num emulador. A conta é criada no servidor pelo
+  /// orquestrador; a app nunca tem a palavra-passe.
+  ///
+  /// Se o servidor mesmo assim exigir captcha (a protecção do Supabase
+  /// também cobre `/token?grant_type=password`), [precisaDesafio] fica
+  /// `true`, o ecrã mostra o desafio visível e volta cá com o [captchaToken].
+  Future<bool> entrarComPalavraPasse(
+    String email,
+    String palavraPasse, {
+    String? captchaToken,
+  }) async {
+    final limpo = email.trim().toLowerCase();
+    if (!ehRevisor(limpo)) {
+      _acabar(ErroLogin.generico, 'entrada por palavra-passe só para o revisor');
+      return false;
+    }
+    if (palavraPasse.isEmpty) {
+      _acabar(ErroLogin.codigoErrado, 'palavra-passe vazia');
+      return false;
+    }
+    // O servidor protege também este caminho quando o captcha está ligado
+    // (GoTrue verifica o token em /token?grant_type=password). Pede-se o
+    // invisível primeiro, como no pedido de código: o revisor é uma pessoa e
+    // passa sem ver nada; só se o invisível falhar é que aparece o desafio.
+    var token = captchaToken;
+    if (antiRoboLigado && token == null) {
+      token = await _pedirTokenAntiRobo();
+      if (token == null) {
+        _precisaDesafio = true;
+        _acabar(ErroLogin.antiRobo, 'o Turnstile invisível não deu token (revisor)');
+        return false;
+      }
+    }
+    _comecar();
+    try {
+      final res = await sb.auth.signInWithPassword(
+        email: limpo,
+        password: palavraPasse,
+        captchaToken: token,
+      );
+      _user = res.user;
+      if (_user == null) {
+        _acabar(ErroLogin.codigoErrado, 'signInWithPassword devolveu sessão sem user');
+        return false;
+      }
+      _precisaDesafio = false;
+      _acabar();
+      return true;
+    } catch (e) {
+      _falhou(e);
       return false;
     }
   }
@@ -292,7 +457,7 @@ class SessaoStore extends ChangeNotifier {
       _acabar();
       return _user != null;
     } catch (e) {
-      _acabar(_classificar(e), e.toString());
+      _falhou(e);
       return false;
     }
   }
@@ -316,6 +481,7 @@ class SessaoStore extends ChangeNotifier {
     _reenviarEm = 0;
     _erro = ErroLogin.nenhum;
     _erroTecnico = null;
+    _precisaDesafio = false;
     notifyListeners();
   }
 

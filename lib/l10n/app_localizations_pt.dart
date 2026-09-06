@@ -339,6 +339,22 @@ class AppLocalizationsPt extends AppLocalizations {
       'Não vês o e-mail? Procura na pasta do lixo. Às vezes é para lá que ele vai.';
 
   @override
+  String get loginAntiRobo =>
+      'Não consegui confirmar que não és um robô. Tenta outra vez.';
+
+  @override
+  String get loginAjudaPalavraPasse => 'Esta conta entra com palavra-passe.';
+
+  @override
+  String get loginPalavraPasse => 'Palavra-passe';
+
+  @override
+  String get loginEntrar => 'Entrar';
+
+  @override
+  String get loginPalavraPasseErrada => 'Palavra-passe errada.';
+
+  @override
   String get sair => 'Sair';
 
   @override
@@ -5311,6 +5327,22 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get loginOndeEsta =>
       'Não achou o e-mail? Procure na pasta de lixo. Às vezes é para lá que ele vai.';
+
+  @override
+  String get loginAntiRobo =>
+      'Não consegui confirmar que você não é um robô. Tente de novo.';
+
+  @override
+  String get loginAjudaPalavraPasse => 'Esta conta entra com senha.';
+
+  @override
+  String get loginPalavraPasse => 'Senha';
+
+  @override
+  String get loginEntrar => 'Entrar';
+
+  @override
+  String get loginPalavraPasseErrada => 'Senha errada.';
 
   @override
   String get sair => 'Sair';
