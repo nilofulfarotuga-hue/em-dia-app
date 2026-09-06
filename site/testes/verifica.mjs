@@ -60,7 +60,9 @@ ok(poster.status === 200 && poster.tipo.includes('image'), 'poster no ar', `${(p
 // 4. Calculadora presente e função pura correta (C01–C04 de docs/casos-teste.md)
 ok(/id="calculadora"/.test(html) && /id="form-recibo"/.test(html) && /id="form-guardar"/.test(html), 'secção da calculadora com os 2 formulários');
 ok(/id="r-conta"/.test(html) && /id="r-teu"/.test(html), 'resultados «o que recebes na conta» e «o que é teu»');
-ok(/rest\/v1\/regras_legais\?select=chave,valor_num,valor_txt,valor_json/.test(html) && /irs_escaloes\?select=\*&ano=eq\.2026/.test(html), 'lê regras_legais e irs_escaloes em runtime');
+// O ano dos escalões é montado em runtime (ano corrente), não cravado — por isso
+// a asserção aceita `ano=eq.` seguido do ano ou da interpolação, mas exige o filtro.
+ok(/rest\/v1\/regras_legais\?select=chave,valor_num,valor_txt,valor_json/.test(html) && /irs_escaloes\?select=\*&ano=eq\./.test(html), 'lê regras_legais e irs_escaloes em runtime');
 const js = await get('/assets/js/calc.js');
 ok(js.status === 200, 'calc.js no ar');
 let C = null;
@@ -104,8 +106,13 @@ const rb = await get('/robots.txt');
 ok(rb.status === 200 && /Sitemap:/.test(rb.texto), '/robots.txt 200 com Sitemap', `status ${rb.status}`);
 const nf = await get('/pagina-que-nao-existe-' + Date.now());
 ok(nf.status === 404 && /Esta página não existe/.test(nf.texto), 'página inexistente → 404 com a nossa 404.html', `status ${nf.status}`);
-const pv = await get('/privacidade.html');
-ok(pv.status === 200 && /Política de privacidade/.test(pv.texto), '/privacidade.html 200', `status ${pv.status}`);
+// O Cloudflare Pages serve o URL canónico sem .html e redireciona o .html com 308.
+// Exigimos as DUAS coisas: o redirect existe e o canónico responde com a página.
+// (É o URL canónico que vai na ficha da Play Console.)
+const pvh = await get('/privacidade.html');
+ok(pvh.status === 308, '/privacidade.html redireciona 308 para o canónico', `status ${pvh.status}`);
+const pv = await get('/privacidade');
+ok(pv.status === 200 && /Política de privacidade/.test(pv.texto), '/privacidade 200 com a política', `status ${pv.status}`);
 const og = await get('/assets/img/og.jpg');
 ok(og.status === 200 && og.tipo.includes('image'), 'og.jpg no ar');
 const fonte = await get('/assets/fonts/Inter.woff2');
