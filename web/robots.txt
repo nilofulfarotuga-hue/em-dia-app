@@ -1,0 +1,11 @@
+# A app do Em Dia nao e para ser indexada nem rastreada.
+#
+# Porque: a 6 de setembro de 2026 o Googlebot (66.249.88.x) e outros IPs da
+# Google (74.125.x, 66.102.x) rastrearam app-em-dia.pages.dev, SUBMETERAM o
+# formulario de entrada com enderecos inventados (joao.silva@gmail.com,
+# explorador.emdia@gmail.com, testuser1234@gmail.com) e tentaram codigos no
+# /verify. Cada envio devolvido gasta a reputacao do dominio por onde sai o
+# codigo de entrar na app. Isto e a primeira de tres travas: robots.txt,
+# noindex na pagina, e o Turnstile no pedido de codigo.
+User-agent: *
+Disallow: /

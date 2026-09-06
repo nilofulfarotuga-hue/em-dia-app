@@ -1,0 +1,6 @@
+# Cabecalhos servidos pela Cloudflare Pages para app-em-dia.pages.dev.
+# noindex tambem por cabecalho: os robos que ignoram o robots.txt leem isto.
+/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

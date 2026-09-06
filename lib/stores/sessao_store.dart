@@ -14,6 +14,8 @@ enum ErroLogin {
   nenhum,
   emailInvalido,
   emailDeMentira,
+  /// O servidor só deixa entrar quem foi convidado (até ao lançamento).
+  registoFechado,
   rede,
   muitosPedidos,
   codigoCurto,
@@ -160,6 +162,11 @@ class SessaoStore extends ChangeNotifier {
       if (codigo.contains('rate_limit') || e.statusCode == '429') {
         return ErroLogin.muitosPedidos;
       }
+      // As duas travas do servidor (migrações 0021 e 0027) chegam aqui como
+      // 500 "unexpected_failure" com a razão no texto. Sem isto a pessoa via
+      // "Não consegui entrar", que é feio e não diz o que fazer.
+      if (msg.contains('registo_fechado')) return ErroLogin.registoFechado;
+      if (msg.contains('email_que_nao_recebe')) return ErroLogin.emailDeMentira;
       if (codigo == 'otp_expired' || msg.contains('expired')) {
         return ErroLogin.codigoExpirado;
       }
