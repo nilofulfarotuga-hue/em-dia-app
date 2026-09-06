@@ -77,3 +77,8 @@
 - **O quê:** `SessaoStore.tamanhoCodigo = 6` (o que o servidor manda hoje), mas `tamanhoMinimo = 4` e `tamanhoMaximo = 8`. O campo não trava aos 6, e as casinhas nascem a mais se o código vier maior.
 - **Porquê:** a 6 de setembro de 2026 o servidor mandava 8 e a app só deixava escrever 6. Ninguém entrava e o ecrã ficava preso. Um número fixo dos dois lados é um ponto de rutura silencioso: quem mexer na consola do Supabase não faz ideia de que parte a app.
 - **Como se desfaz:** apertar de novo para exactamente 6 em `lib/stores/sessao_store.dart`. Não recomendado — o teste L03 em `test/unit/login_fluxo_test.dart` passa a falhar de propósito.
+
+## D15 — Todas as chamadas `.order()` dizem a direção à mão
+- **O quê:** em `lib/`, nenhuma chamada `.order('coluna')` fica sem `ascending: true` ou `ascending: false`. Um teste (`test/unit/ordem_test.dart`) reprova quem se esquecer.
+- **Porquê:** em postgrest-dart o valor por omissão é `ascending = false`. Quem lê `.order('data_limite')` percebe "por ordem" e recebe a lista ao contrário. Custou o cartão do painel a anunciar um prazo a 348 dias em vez do que vencia dali a 14.
+- **Como se desfaz:** apagar o teste e voltar a confiar no valor por omissão. Não se recomenda — a leitura errada é demasiado natural.
