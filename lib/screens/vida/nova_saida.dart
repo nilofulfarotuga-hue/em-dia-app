@@ -16,11 +16,18 @@ import 'saidas_screen.dart' show iconeCategoria, iconeMeio, rotuloCategoria, rot
 /// Abre a folha de registo de uma conta. Devolve `true` se ficou guardada.
 ///
 /// Com [saida] preenchida é uma conta que já existe e se está a mudar.
+///
+/// Com [lido] preenchida, a folha abre-se JÁ com o que a leitura percebeu — é
+/// por aqui que entra uma fatura que chegou por e-mail. [aoGuardar] devolve a
+/// conta gravada a quem abriu a folha (a caixa de correio precisa do id dela
+/// para ligar a fatura à conta).
 Future<bool?> mostrarNovaSaida(
   BuildContext context, {
   required String userId,
   required DateTime hoje,
   Saida? saida,
+  DocumentoLido? lido,
+  ValueChanged<Saida>? aoGuardar,
 }) {
   final store = context.read<SaidasStore>();
   // O botão de ouvir precisa da voz e do perfil, e nesta folha eles não vêm
@@ -37,7 +44,7 @@ Future<bool?> mostrarNovaSaida(
         ChangeNotifierProvider<PerfilStore>.value(value: perfil),
         ChangeNotifierProvider<Fala>.value(value: Fala.instancia),
       ],
-      child: NovaSaida(userId: userId, hoje: hoje, saida: saida),
+      child: NovaSaida(userId: userId, hoje: hoje, saida: saida, lido: lido, aoGuardar: aoGuardar),
     ),
   );
 }
@@ -52,7 +59,21 @@ class NovaSaida extends StatefulWidget {
   final String userId;
   final DateTime hoje;
   final Saida? saida;
-  const NovaSaida({super.key, required this.userId, required this.hoje, this.saida});
+
+  /// O que já foi lido noutro sítio (a fatura que chegou por e-mail).
+  final DocumentoLido? lido;
+
+  /// Chamado com a conta gravada, antes de a folha fechar.
+  final ValueChanged<Saida>? aoGuardar;
+
+  const NovaSaida({
+    super.key,
+    required this.userId,
+    required this.hoje,
+    this.saida,
+    this.lido,
+    this.aoGuardar,
+  });
 
   @override
   State<NovaSaida> createState() => _NovaSaidaState();
@@ -100,6 +121,14 @@ class _NovaSaidaState extends State<NovaSaida> {
     } else {
       _dia = widget.hoje.day.clamp(1, 31);
     }
+    // A leitura que veio de fora só se aplica depois do primeiro desenho: o
+    // _aoLerDocumento precisa do contexto para ir buscar os textos.
+    final d = widget.lido;
+    if (d != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _aoLerDocumento(d);
+      });
+    }
   }
 
   @override
@@ -130,7 +159,12 @@ class _NovaSaidaState extends State<NovaSaida> {
         _entidade.text = soNumeros(d.entidadePagamento!);
         _referencia.text = soNumeros(d.referenciaPagamento!);
       }
-      if (d.valorTotal != null) _mesmoValor = true;
+      // O valor: a câmara do CampoValor já o escreve sozinha, mas uma leitura
+      // que venha de fora (fatura do e-mail) não passa por lá.
+      if (d.valorTotal != null) {
+        _valor.text = d.valorTotal!.toStringAsFixed(2).replaceAll('.', ',');
+        _mesmoValor = true;
+      }
       _leituraOcrId = d.leituraId;
       _lida = d.temReferenciaMultibanco ? l.saidasLidaComReferencia : l.saidasLidaFatura;
     });
@@ -196,6 +230,7 @@ class _NovaSaidaState extends State<NovaSaida> {
     // A conta deste mês tem de aparecer já. Sem isto a pessoa guardava a luz
     // hoje e só a via na lista no dia 1 do mês seguinte.
     await store.gerarDoMes(widget.userId, mes: widget.hoje);
+    widget.aoGuardar?.call(guardada);
     if (!mounted) return;
     Navigator.of(context).pop(true);
   }

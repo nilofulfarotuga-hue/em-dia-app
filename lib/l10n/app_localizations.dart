@@ -5316,6 +5316,186 @@ abstract class AppLocalizations {
   /// **'Depois'**
   String get admAuColDepois;
 
+  /// No description provided for @caixaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'As faturas que me chegam'**
+  String get caixaTitulo;
+
+  /// No description provided for @caixaAtalho.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faturas por e-mail'**
+  String get caixaAtalho;
+
+  /// No description provided for @caixaAtalhoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Manda as faturas para o teu endereço e elas aparecem aqui.'**
+  String get caixaAtalhoAjuda;
+
+  /// No description provided for @caixaComoFunciona.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cada pessoa tem aqui um endereço só dela. Quando te chegar uma fatura ao teu e-mail — a luz, a água, o telemóvel — reencaminha-a para este endereço. Ela aparece nesta lista, e daqui fazes a conta com um toque.'**
+  String get caixaComoFunciona;
+
+  /// No description provided for @caixaOTeuEndereco.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu endereço'**
+  String get caixaOTeuEndereco;
+
+  /// No description provided for @caixaCopiar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Copiar o endereço'**
+  String get caixaCopiar;
+
+  /// No description provided for @caixaCopiado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Endereço copiado. Cola-o no teu e-mail.'**
+  String get caixaCopiado;
+
+  /// No description provided for @caixaOuvirEndereco.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ouvir o endereço'**
+  String get caixaOuvirEndereco;
+
+  /// No description provided for @caixaDesligadaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não está pronta'**
+  String get caixaDesligadaTitulo;
+
+  /// No description provided for @caixaDesligadaTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta caixa fica a funcionar assim que o endereço da app estiver comprado. Não precisas de fazer nada: quando estiver, o teu endereço aparece aqui.'**
+  String get caixaDesligadaTexto;
+
+  /// No description provided for @caixaVazia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não chegou nada. Reencaminha uma fatura para o teu endereço e ela aparece aqui.'**
+  String get caixaVazia;
+
+  /// No description provided for @caixaPorVer.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =0{Nada por ver} =1{1 por ver} other{{n} por ver}}'**
+  String caixaPorVer(int n);
+
+  /// No description provided for @caixaDe.
+  ///
+  /// In pt, this message translates to:
+  /// **'De {quem}'**
+  String caixaDe(String quem);
+
+  /// No description provided for @caixaSemAssunto.
+  ///
+  /// In pt, this message translates to:
+  /// **'(sem assunto)'**
+  String get caixaSemAssunto;
+
+  /// No description provided for @caixaEstadoNova.
+  ///
+  /// In pt, this message translates to:
+  /// **'Por ver'**
+  String get caixaEstadoNova;
+
+  /// No description provided for @caixaEstadoLigada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já é conta'**
+  String get caixaEstadoLigada;
+
+  /// No description provided for @caixaEstadoIgnorada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Posta de lado'**
+  String get caixaEstadoIgnorada;
+
+  /// No description provided for @caixaEstadoFalhou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não deu'**
+  String get caixaEstadoFalhou;
+
+  /// No description provided for @caixaAbrir.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver o documento'**
+  String get caixaAbrir;
+
+  /// No description provided for @caixaAbrirFalhou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui abrir este documento.'**
+  String get caixaAbrirFalhou;
+
+  /// No description provided for @caixaFazerConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fazer conta com esta'**
+  String get caixaFazerConta;
+
+  /// No description provided for @caixaALer.
+  ///
+  /// In pt, this message translates to:
+  /// **'A ler a fatura…'**
+  String get caixaALer;
+
+  /// No description provided for @caixaLida.
+  ///
+  /// In pt, this message translates to:
+  /// **'Li a fatura. Confere o que está aqui antes de guardar.'**
+  String get caixaLida;
+
+  /// No description provided for @caixaPorDeLado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já não preciso'**
+  String get caixaPorDeLado;
+
+  /// No description provided for @caixaPostaDeLado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Posta de lado.'**
+  String get caixaPostaDeLado;
+
+  /// No description provided for @caixaApagar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar de vez'**
+  String get caixaApagar;
+
+  /// No description provided for @caixaApagarPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar esta fatura e o ficheiro? Não dá para voltar atrás.'**
+  String get caixaApagarPergunta;
+
+  /// No description provided for @caixaApagada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagada.'**
+  String get caixaApagada;
+
+  /// No description provided for @caixaSemAnexo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este e-mail veio sem fatura agarrada.'**
+  String get caixaSemAnexo;
+
+  /// No description provided for @caixaErroCarregar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui ir buscar as faturas. Tenta outra vez daqui a pouco.'**
+  String get caixaErroCarregar;
+
   /// No description provided for @carroFormBasicoAjuda.
   ///
   /// In pt, this message translates to:

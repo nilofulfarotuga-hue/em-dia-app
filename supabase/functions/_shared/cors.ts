@@ -1,7 +1,7 @@
 // Cabeçalhos CORS comuns a todas as Edge Functions do Em Dia.
 export const CORS = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-cron-secret',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-cron-secret, x-correio-secret',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 }
 

@@ -3098,6 +3098,114 @@ class AppLocalizationsPt extends AppLocalizations {
   String get admAuColDepois => 'Depois';
 
   @override
+  String get caixaTitulo => 'As faturas que me chegam';
+
+  @override
+  String get caixaAtalho => 'Faturas por e-mail';
+
+  @override
+  String get caixaAtalhoAjuda =>
+      'Manda as faturas para o teu endereço e elas aparecem aqui.';
+
+  @override
+  String get caixaComoFunciona =>
+      'Cada pessoa tem aqui um endereço só dela. Quando te chegar uma fatura ao teu e-mail — a luz, a água, o telemóvel — reencaminha-a para este endereço. Ela aparece nesta lista, e daqui fazes a conta com um toque.';
+
+  @override
+  String get caixaOTeuEndereco => 'O teu endereço';
+
+  @override
+  String get caixaCopiar => 'Copiar o endereço';
+
+  @override
+  String get caixaCopiado => 'Endereço copiado. Cola-o no teu e-mail.';
+
+  @override
+  String get caixaOuvirEndereco => 'Ouvir o endereço';
+
+  @override
+  String get caixaDesligadaTitulo => 'Ainda não está pronta';
+
+  @override
+  String get caixaDesligadaTexto =>
+      'Esta caixa fica a funcionar assim que o endereço da app estiver comprado. Não precisas de fazer nada: quando estiver, o teu endereço aparece aqui.';
+
+  @override
+  String get caixaVazia =>
+      'Ainda não chegou nada. Reencaminha uma fatura para o teu endereço e ela aparece aqui.';
+
+  @override
+  String caixaPorVer(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n por ver',
+      one: '1 por ver',
+      zero: 'Nada por ver',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String caixaDe(String quem) {
+    return 'De $quem';
+  }
+
+  @override
+  String get caixaSemAssunto => '(sem assunto)';
+
+  @override
+  String get caixaEstadoNova => 'Por ver';
+
+  @override
+  String get caixaEstadoLigada => 'Já é conta';
+
+  @override
+  String get caixaEstadoIgnorada => 'Posta de lado';
+
+  @override
+  String get caixaEstadoFalhou => 'Não deu';
+
+  @override
+  String get caixaAbrir => 'Ver o documento';
+
+  @override
+  String get caixaAbrirFalhou => 'Não consegui abrir este documento.';
+
+  @override
+  String get caixaFazerConta => 'Fazer conta com esta';
+
+  @override
+  String get caixaALer => 'A ler a fatura…';
+
+  @override
+  String get caixaLida =>
+      'Li a fatura. Confere o que está aqui antes de guardar.';
+
+  @override
+  String get caixaPorDeLado => 'Já não preciso';
+
+  @override
+  String get caixaPostaDeLado => 'Posta de lado.';
+
+  @override
+  String get caixaApagar => 'Apagar de vez';
+
+  @override
+  String get caixaApagarPergunta =>
+      'Apagar esta fatura e o ficheiro? Não dá para voltar atrás.';
+
+  @override
+  String get caixaApagada => 'Apagada.';
+
+  @override
+  String get caixaSemAnexo => 'Este e-mail veio sem fatura agarrada.';
+
+  @override
+  String get caixaErroCarregar =>
+      'Não consegui ir buscar as faturas. Tenta outra vez daqui a pouco.';
+
+  @override
   String get carroFormBasicoAjuda =>
       'Só preciso destas três coisas. Pelo mês fico a saber quando pagas o imposto do carro; pelo ano, quando toca a inspeção.';
 
@@ -7263,6 +7371,114 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get admAuColDepois => 'Depois';
+
+  @override
+  String get caixaTitulo => 'As faturas que me chegam';
+
+  @override
+  String get caixaAtalho => 'Faturas por e-mail';
+
+  @override
+  String get caixaAtalhoAjuda =>
+      'Mande as faturas para o seu endereço e elas aparecem aqui.';
+
+  @override
+  String get caixaComoFunciona =>
+      'Cada pessoa tem aqui um endereço só dela. Quando chegar uma fatura no seu e-mail — a luz, a água, o telefone — reencaminhe para este endereço. Ela aparece nesta lista, e daqui você faz a conta com um toque.';
+
+  @override
+  String get caixaOTeuEndereco => 'O seu endereço';
+
+  @override
+  String get caixaCopiar => 'Copiar o endereço';
+
+  @override
+  String get caixaCopiado => 'Endereço copiado. Cole no seu e-mail.';
+
+  @override
+  String get caixaOuvirEndereco => 'Ouvir o endereço';
+
+  @override
+  String get caixaDesligadaTitulo => 'Ainda não está pronta';
+
+  @override
+  String get caixaDesligadaTexto =>
+      'Esta caixa começa a funcionar assim que o endereço do app estiver comprado. Você não precisa fazer nada: quando estiver, o seu endereço aparece aqui.';
+
+  @override
+  String get caixaVazia =>
+      'Ainda não chegou nada. Reencaminhe uma fatura para o seu endereço e ela aparece aqui.';
+
+  @override
+  String caixaPorVer(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n para ver',
+      one: '1 para ver',
+      zero: 'Nada para ver',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String caixaDe(String quem) {
+    return 'De $quem';
+  }
+
+  @override
+  String get caixaSemAssunto => '(sem assunto)';
+
+  @override
+  String get caixaEstadoNova => 'Para ver';
+
+  @override
+  String get caixaEstadoLigada => 'Já virou conta';
+
+  @override
+  String get caixaEstadoIgnorada => 'Deixada de lado';
+
+  @override
+  String get caixaEstadoFalhou => 'Não deu';
+
+  @override
+  String get caixaAbrir => 'Ver o documento';
+
+  @override
+  String get caixaAbrirFalhou => 'Não consegui abrir este documento.';
+
+  @override
+  String get caixaFazerConta => 'Fazer conta com esta';
+
+  @override
+  String get caixaALer => 'Lendo a fatura…';
+
+  @override
+  String get caixaLida =>
+      'Li a fatura. Confira o que está aqui antes de salvar.';
+
+  @override
+  String get caixaPorDeLado => 'Já não preciso';
+
+  @override
+  String get caixaPostaDeLado => 'Deixada de lado.';
+
+  @override
+  String get caixaApagar => 'Apagar de vez';
+
+  @override
+  String get caixaApagarPergunta =>
+      'Apagar esta fatura e o arquivo? Não dá para voltar atrás.';
+
+  @override
+  String get caixaApagada => 'Apagada.';
+
+  @override
+  String get caixaSemAnexo => 'Este e-mail veio sem fatura anexada.';
+
+  @override
+  String get caixaErroCarregar =>
+      'Não consegui buscar as faturas. Tente de novo daqui a pouco.';
 
   @override
   String get carroFormBasicoAjuda =>

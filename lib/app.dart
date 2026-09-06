@@ -14,6 +14,7 @@ import 'screens/onboarding/onboarding_screen.dart';
 import 'screens/shell/shell_screen.dart';
 import 'stores/dados_store.dart';
 import 'stores/entradas_store.dart';
+import 'stores/caixa_store.dart';
 import 'stores/perfil_store.dart';
 import 'stores/resumo_store.dart';
 import 'stores/saidas_store.dart';
@@ -44,6 +45,7 @@ class EmDiaApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => EntradasStore()),
         ChangeNotifierProvider(create: (_) => SaidasStore()),
         ChangeNotifierProvider(create: (_) => ResumoStore()),
+        ChangeNotifierProvider(create: (_) => CaixaStore()),
         ChangeNotifierProvider(create: (_) => CarrosStore()),
       ],
       child: Consumer<PerfilStore>(

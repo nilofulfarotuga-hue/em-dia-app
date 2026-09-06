@@ -130,15 +130,43 @@ class LeitorDocumento {
     }
     if (foto == null) return const ResultadoLeitura.falhou(ErroLeitura.semFoto);
 
+    final bytes = await foto.readAsBytes();
+    return _mandarLer(bytes, _mime(foto), tipoEsperado);
+  }
+
+  /// Lê um ficheiro que já está no nosso Storage — é por aqui que passam as
+  /// faturas que chegaram por e-mail (balde privado `faturas`).
+  ///
+  /// Gasta uma das leituras do mês, tal como a foto: quem decide é a pessoa,
+  /// carregando no botão, e nunca o servidor a ler tudo o que entra sozinho.
+  static Future<ResultadoLeitura> lerDoBalde({
+    required String balde,
+    required String caminho,
+    String? tipoEsperado,
+  }) async {
+    final Uint8List bytes;
     try {
-      final bytes = await foto.readAsBytes();
-      // ~6 MB de imagem viram ~8 MB em base64, que é o tecto do servidor.
-      if (bytes.length > 5_800_000) {
-        return const ResultadoLeitura.falhou(ErroLeitura.fotoGrande);
-      }
+      bytes = await sb.storage.from(balde).download(caminho);
+    } catch (e) {
+      debugPrint('LeitorDocumento.lerDoBalde: $e');
+      return const ResultadoLeitura.falhou(ErroLeitura.rede);
+    }
+    return _mandarLer(bytes, _mimeDoCaminho(caminho), tipoEsperado);
+  }
+
+  static Future<ResultadoLeitura> _mandarLer(
+    Uint8List bytes,
+    String mime,
+    String? tipoEsperado,
+  ) async {
+    // ~6 MB de imagem viram ~8 MB em base64, que é o tecto do servidor.
+    if (bytes.length > 5_800_000) {
+      return const ResultadoLeitura.falhou(ErroLeitura.fotoGrande);
+    }
+    try {
       final res = await sb.functions.invoke('ler-documento', body: {
         'imagem_base64': base64Encode(bytes),
-        'mime': _mime(foto),
+        'mime': mime,
         if (tipoEsperado != null) 'tipo_esperado': tipoEsperado,
       });
       return ResultadoLeitura.ok(
@@ -157,8 +185,10 @@ class LeitorDocumento {
     }
   }
 
-  static String _mime(XFile f) {
-    final nome = f.name.toLowerCase();
+  static String _mime(XFile f) => _mimeDoCaminho(f.name);
+
+  static String _mimeDoCaminho(String caminho) {
+    final nome = caminho.toLowerCase();
     if (nome.endsWith('.png')) return 'image/png';
     if (nome.endsWith('.webp')) return 'image/webp';
     if (nome.endsWith('.heic')) return 'image/heic';

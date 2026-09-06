@@ -8,6 +8,7 @@ import '../../regras/regras.dart';
 import '../../stores/saidas_store.dart';
 import '../../stores/sessao_store.dart';
 import '../../widgets/widgets.dart';
+import 'caixa_faturas.dart';
 import 'detalhe_conta.dart';
 import 'nova_saida.dart';
 
@@ -184,6 +185,36 @@ class _SaidasScreenState extends State<SaidasScreen> {
               _LinhaConta(saida: s, hoje: _hoje, aoTocar: () => _mudarConta(s)),
               const SizedBox(height: 8),
             ],
+
+          // A porta da caixa de correio fica NO FIM, e não em cima: escrever
+          // uma conta à mão é o caminho de toda a gente; reencaminhar faturas
+          // é o atalho de quem já percebeu a app.
+          const SizedBox(height: 16),
+          Cartao(
+            key: const Key('saidas_atalho_caixa'),
+            aoTocar: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => CaixaFaturasScreen(hoje: widget.hoje),
+            )),
+            child: Row(
+              children: [
+                const Icon(Icons.forward_to_inbox_rounded, color: AppColors.info),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(l.caixaAtalho, style: Theme.of(context).textTheme.titleSmall),
+                      const SizedBox(height: 2),
+                      Text(l.caixaAtalhoAjuda,
+                          style: Theme.of(context).textTheme.bodySmall!
+                              .copyWith(color: AppColors.textSecondary)),
+                    ],
+                  ),
+                ),
+                const Icon(Icons.chevron_right_rounded, color: AppColors.textSubtle),
+              ],
+            ),
+          ),
         ],
       ),
     );

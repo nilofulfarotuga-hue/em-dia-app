@@ -1457,6 +1457,50 @@
   "admAuColAlvo": "Alvo",
   "admAuColAntes": "Antes",
   "admAuColDepois": "Depois",
+  "caixaTitulo": "As faturas que me chegam",
+  "caixaAtalho": "Faturas por e-mail",
+  "caixaAtalhoAjuda": "Mande as faturas para o seu endereço e elas aparecem aqui.",
+  "caixaComoFunciona": "Cada pessoa tem aqui um endereço só dela. Quando chegar uma fatura no seu e-mail — a luz, a água, o telefone — reencaminhe para este endereço. Ela aparece nesta lista, e daqui você faz a conta com um toque.",
+  "caixaOTeuEndereco": "O seu endereço",
+  "caixaCopiar": "Copiar o endereço",
+  "caixaCopiado": "Endereço copiado. Cole no seu e-mail.",
+  "caixaOuvirEndereco": "Ouvir o endereço",
+  "caixaDesligadaTitulo": "Ainda não está pronta",
+  "caixaDesligadaTexto": "Esta caixa começa a funcionar assim que o endereço do app estiver comprado. Você não precisa fazer nada: quando estiver, o seu endereço aparece aqui.",
+  "caixaVazia": "Ainda não chegou nada. Reencaminhe uma fatura para o seu endereço e ela aparece aqui.",
+  "caixaPorVer": "{n, plural, =0{Nada para ver} =1{1 para ver} other{{n} para ver}}",
+  "@caixaPorVer": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "caixaDe": "De {quem}",
+  "@caixaDe": {
+    "placeholders": {
+      "quem": {
+        "type": "String"
+      }
+    }
+  },
+  "caixaSemAssunto": "(sem assunto)",
+  "caixaEstadoNova": "Para ver",
+  "caixaEstadoLigada": "Já virou conta",
+  "caixaEstadoIgnorada": "Deixada de lado",
+  "caixaEstadoFalhou": "Não deu",
+  "caixaAbrir": "Ver o documento",
+  "caixaAbrirFalhou": "Não consegui abrir este documento.",
+  "caixaFazerConta": "Fazer conta com esta",
+  "caixaALer": "Lendo a fatura…",
+  "caixaLida": "Li a fatura. Confira o que está aqui antes de salvar.",
+  "caixaPorDeLado": "Já não preciso",
+  "caixaPostaDeLado": "Deixada de lado.",
+  "caixaApagar": "Apagar de vez",
+  "caixaApagarPergunta": "Apagar esta fatura e o arquivo? Não dá para voltar atrás.",
+  "caixaApagada": "Apagada.",
+  "caixaSemAnexo": "Este e-mail veio sem fatura anexada.",
+  "caixaErroCarregar": "Não consegui buscar as faturas. Tente de novo daqui a pouco.",
   "carroFormBasicoAjuda": "Só preciso destas três coisas. Pelo mês eu fico sabendo quando você paga o imposto do carro; pelo ano, quando é a inspeção.",
   "carroFormMatriculaInvalida": "Essa placa não me parece certa. Escreva as letras e os números, assim: AA-00-AA.",
   "carroFormOpcionalTitulo": "Quer ajustar as contas? (opcional)",

@@ -1,0 +1,10 @@
+name = "em-dia-correio-faturas"
+main = "src/index.js"
+compatibility_date = "2026-09-06"
+compatibility_flags = ["nodejs_compat"]
+
+# SUPABASE_URL é público (está na app). O CORREIO_SECRET não: põe-se com
+#   npx wrangler secret put CORREIO_SECRET
+# e o valor é o mesmo que está no Vault do Supabase (`correio_secret`).
+[vars]
+SUPABASE_URL = "https://tgdmgtmknbwhcqoxtjbs.supabase.co"

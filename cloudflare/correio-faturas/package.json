@@ -1,0 +1,16 @@
+{
+  "name": "em-dia-correio-faturas",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "postal-mime": "^2.4.4"
+  },
+  "devDependencies": {
+    "wrangler": "^4.42.0"
+  },
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "test": "node teste.mjs"
+  }
+}
