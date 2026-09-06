@@ -4,7 +4,7 @@ publish_to: 'none'
 
 # O número depois do "+" (versionCode) é incrementado SÓ pelo CI (build_android.yml).
 # NUNCA mexer à mão — regra herdada do Bora.
-version: 1.0.0+7
+version: 1.0.0+8
 
 environment:
   sdk: ^3.13.0
