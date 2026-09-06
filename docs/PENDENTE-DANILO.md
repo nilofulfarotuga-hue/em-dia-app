@@ -11,6 +11,9 @@
 - Firebase: depois do teu clique nos Termos, app Android + `google-services.json` → secret; conta de serviço FCM → Vault `fcm_service_account`.
 - Domínio (emdia.pt / em-dia.pt / emdia.app) na Cloudflare; ronda de imagens no ChatGPT; TestSprite no site.
 
+## Do teu lado, no BORA (afeta o login do Em Dia)
+- [ ] **Os testes E2E do Bora estão a queimar o domínio que o Em Dia usa para o login.** Prova, do registo da Resend: **11 devoluções** para `e2e_client_a@boraapp.test` (um domínio que não existe), todas de `"Bora" <nao-responder@boraguarda.com>`, assunto «Definir uma palavra-passe nova — Bora», desde 1 de setembro e a repetir quase todos os dias. No total do domínio vão **18 em 49 por entregar (37%)**. Os fornecedores travam domínios com muitas devoluções — e é por este domínio que sai o código de entrar no Em Dia. Não lhe toquei: o Bora é zona que não mexo sem ordem tua. O arranjo é o teste E2E usar um endereço a sério (ou não pedir e-mail nenhum). Vê o estado quando quiseres com `python tool/vigia/emails.py`.
+
 ## Uma pergunta só para ti (não trava nada)
 - **A app deve perguntar o teu nome?** O painel está preparado para dizer "Olá, João!" (a chave `painelOla` existe, a coluna `profiles.nome` existe e o painel de administração já mostra a coluna), mas **nenhum ecrã pergunta o nome** — por isso diz sempre "Olá!". O mesmo com o telefone. Não o acrescentei sozinho porque muda o que se declara à Google na segurança dos dados (passaria a haver "Nome" recolhido) e porque o início da app são cinco perguntas de propósito. Diz-me e faço num instante: ou uma linha em Definições, ou uma sexta pergunta no início. Se preferires deixar como está, tiro as colunas mortas.
 
