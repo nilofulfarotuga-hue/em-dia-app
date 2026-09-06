@@ -30,6 +30,11 @@ class ObrigacoesStore extends ChangeNotifier {
     _erro = erro;
   }
 
+  /// Para testes: a lista fica EXATAMENTE como veio, sem ordenar. Serve para
+  /// provar que as leituras do painel não dependem da ordem — foi por
+  /// dependerem que o painel anunciou um prazo a 348 dias (2026-09-06).
+  ObrigacoesStore.comoVeioDoServidor(List<ObrigacaoItem> itens) : _itens = List.of(itens);
+
   // CICATRIZ (2026-09-06): no cliente do Supabase, `.order('coluna')` sem mais
   // nada devolve por ordem DECRESCENTE (`ascending` vale false por omissão em
   // postgrest-dart). O painel mostrava «próximo prazo: em 348 dias, 20 de
@@ -129,14 +134,27 @@ class ObrigacoesStore extends ChangeNotifier {
   }
 
   // ---- leituras para o painel ----
-  List<ObrigacaoItem> pendentes(DateTime hoje) => _itens.where((o) => o.pendente).toList();
-  List<ObrigacaoItem> passadas(DateTime hoje) => _itens.where((o) => o.passou(hoje)).toList();
-  List<ObrigacaoItem> aVencer(DateTime hoje, {int dias = 5}) => _itens
-      .where((o) => o.pendente && !o.passou(hoje) && o.diasParaPrazo(hoje) <= dias)
-      .toList();
-  List<ObrigacaoItem> doMes(DateTime hoje) => _itens
-      .where((o) => o.dataLimite.year == hoje.year && o.dataLimite.month == hoje.month)
-      .toList();
+  //
+  // Todas devolvem a lista pela data, da mais perto para a mais longe, seja
+  // qual for a ordem por que os itens chegaram. O painel lê `passadas.first`
+  // e `proxima()` e não pode depender de quem os pôs na lista.
+  static List<ObrigacaoItem> _porData(Iterable<ObrigacaoItem> l) =>
+      List.of(l)..sort((a, b) => a.dataLimite.compareTo(b.dataLimite));
+
+  List<ObrigacaoItem> pendentes(DateTime hoje) => _porData(_itens.where((o) => o.pendente));
+
+  /// Prazos que já passaram e continuam por pagar. O primeiro é o mais antigo,
+  /// que é o mais urgente.
+  List<ObrigacaoItem> passadas(DateTime hoje) => _porData(_itens.where((o) => o.passou(hoje)));
+
+  /// Ainda não passaram mas vencem dentro de [dias] (5 por omissão).
+  List<ObrigacaoItem> aVencer(DateTime hoje, {int dias = 5}) => _porData(
+        _itens.where((o) => o.pendente && !o.passou(hoje) && o.diasParaPrazo(hoje) <= dias),
+      );
+  List<ObrigacaoItem> doMes(DateTime hoje) => _porData(
+        _itens.where((o) => o.dataLimite.year == hoje.year && o.dataLimite.month == hoje.month),
+      );
+
   /// A que vence primeiro. Escolhe pela data, não pela posição na lista —
   /// assim continua certa mesmo que a lista venha do servidor ao contrário
   /// (ver a cicatriz do `.order` no topo deste ficheiro).
