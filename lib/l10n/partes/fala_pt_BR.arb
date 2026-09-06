@@ -1,0 +1,33 @@
+{
+  "@@locale": "pt_BR",
+
+  "falaTitulo": "Fala comigo",
+  "falaSubtitulo": "Você não precisa escrever nada. Aperte o botão, fale como fala com uma pessoa, e eu respondo por escrito e em voz alta.",
+
+  "falaCarregaEFala": "Aperte o botão e fale. Solte quando terminar.",
+  "falaTambemPorToque": "Se você não conseguir segurar o dedo em cima, toque uma vez para começar e outra vez para terminar.",
+  "falaAOuvir": "Estou ouvindo você. Solte o dedo, ou toque de novo, quando terminar.",
+  "falaDizLa": "Pode falar. Estou esperando.",
+  "falaAPensar": "Já ouvi. Estou pensando na resposta…",
+  "falaBotaoFalar": "Falar",
+  "falaBotaoParar": "Já terminei de falar",
+
+  "falaPerguntaste": "Você me perguntou isto:",
+  "falaNaoPercebi": "Não consegui ouvir você. Tente de novo, com o celular mais perto da boca.",
+
+  "falaExemplosTitulo": "Não sabe o que perguntar? Experimente uma destas.",
+  "falaExemplo1": "Quanto eu tenho que pagar este mês?",
+  "falaExemplo2": "O que é o IVA?",
+  "falaExemplo3": "Quando é a inspeção do carro?",
+
+  "falaSemMicrofone": "Sem o microfone eu não consigo ouvir você. Pode escrever a pergunta — respondo do mesmo jeito.",
+  "falaSemMicrofoneComo": "Se mudar de ideia, libere o microfone para o Em Dia nas configurações do celular.",
+  "falaSemServico": "Este celular não tem reconhecimento de voz (o que transforma a fala em letras). Não foi nada que você fez. Escreva a pergunta e eu respondo do mesmo jeito.",
+  "falaPreferoEscrever": "Prefiro escrever",
+  "falaVoltarAFalar": "Voltar a falar",
+
+  "falaLinguaAproximada": "Seu celular não tem português para ouvir. Estou usando a língua que ele tem, então posso errar uma palavra ou outra.",
+
+  "falaCadeado": "Ative o Pro para falar com o app.",
+  "falaLimite": "Acabaram as perguntas deste mês."
+}

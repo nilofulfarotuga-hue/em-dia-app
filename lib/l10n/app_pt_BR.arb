@@ -1513,6 +1513,157 @@
   "carroFormCilindrada": "Cilindrada (o tamanho do motor, em cc)",
   "carroFormCo2": "CO2 (o gás que o carro solta, em g/km)",
   "carroFormOndeEstao": "Estes dois números estão no documento do carro (o certificado de matrícula).",
+  "cofreTitulo": "O cofre do imposto",
+  "cofreSemSessao": "Entre no app para ver o seu cofre.",
+  "cofreNaoMexe": "Isto não mexe no seu dinheiro. Não tem banco, não tem transferência, não sai nem entra nada da sua conta. É só um caderno: você escreve aqui o que já separou, e eu digo quanto você devia ter.",
+  "cofreTens": "Você tem no cofre",
+  "cofreDeviasTerNome": "Devia ter aqui",
+  "cofreChega": "Dá certo. Sobra {valor} para você.",
+  "@cofreChega": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreChegaAjuda": "Você já separou o que o Estado vai pedir. Deixe esse dinheiro quieto até a hora de pagar.",
+  "cofreFaltaPouco": "Falta {valor}. Você está quase lá.",
+  "@cofreFaltaPouco": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreFaltaPoucoAjuda": "Falta pouco. Da próxima vez que receber, separe esse pedacinho e você fica em dia.",
+  "cofreFaltaMuito": "Faltam {valor}.",
+  "@cofreFaltaMuito": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreFaltaMuitoAjuda": "Você ainda não separou o que o Estado vai pedir. Não é o fim do mundo: comece a guardar um pouco cada vez que receber.",
+  "cofreSemContas": "Ainda não sei quanto você ganhou este ano.",
+  "cofreSemContasAjuda": "Escreva o que já recebeu e eu digo quanto você devia ter separado para o Estado.",
+  "cofreEscreverGanhei": "Escrever o que ganhei",
+  "cofreComoContei": "Como cheguei nesse número",
+  "cofreDoAno": "Você ganhou este ano",
+  "cofreParteSs": "Segurança Social (dá aposentadoria e auxílio)",
+  "cofreParteIrs": "IRS (o imposto sobre o que você ganha)",
+  "cofreParteTotal": "A parte do Estado",
+  "cofreIsentoSs": "Você está isento da Segurança Social até {data}. Só conto os meses depois disso.",
+  "@cofreIsentoSs": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreMinimoSs": "A Segurança Social tem um mínimo de {valor} por mês, mesmo que você ganhe pouco.",
+  "@cofreMinimoSs": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreAproximado": "Os números do IRS de {ano} ainda não estão confirmados. Esta conta é aproximada — serve para você não ser pego de surpresa.",
+  "@cofreAproximado": {
+    "placeholders": {
+      "ano": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreEstimativa": "Isto é uma estimativa (uma conta aproximada, feita com o que você escreveu). Não é a conta oficial das Finanças.",
+  "cofreOuvir": "Você tem {saldo} no cofre do imposto. Devia ter {devia}. {fecho}",
+  "@cofreOuvir": {
+    "placeholders": {
+      "saldo": {
+        "type": "String"
+      },
+      "devia": {
+        "type": "String"
+      },
+      "fecho": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreBotaoPor": "Separei",
+  "cofreBotaoTirar": "Tirei de lá",
+  "cofreListaTitulo": "O que você já anotou",
+  "cofreVazio": "Você ainda não anotou nada. Quando separar dinheiro, escreva aqui quanto foi.",
+  "cofreApagarPergunta": "Apagar {valor} de {data}?",
+  "@cofreApagarPergunta": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      },
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreApagado": "Apaguei.",
+  "cofreMotivoGuardei": "Guardei",
+  "cofreMotivoGuardeiAjuda": "Separei dinheiro para o Estado.",
+  "cofreMotivoPagueiSs": "Paguei a Segurança Social",
+  "cofreMotivoPagueiSsAjuda": "Tirei do cofre para pagar o desconto do mês.",
+  "cofreMotivoPagueiIrs": "Paguei o IRS",
+  "cofreMotivoPagueiIrsAjuda": "Tirei do cofre para pagar o imposto.",
+  "cofreMotivoPrecisei": "Precisei",
+  "cofreMotivoPreciseiAjuda": "Tirei do cofre para outra coisa.",
+  "cofreMotivoAcerto": "Acerto de contas",
+  "cofreFolhaPor": "Separei",
+  "cofreFolhaTirar": "Tirei de lá",
+  "cofreQuanto": "Quanto foi",
+  "cofrePorque": "Por quê?",
+  "cofreVaiApontarPor": "Vou anotar que você separou {valor}.",
+  "@cofreVaiApontarPor": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreVaiApontarTirar": "Vou anotar que você tirou {valor} do cofre.",
+  "@cofreVaiApontarTirar": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreTirasMaisDoQueTens": "Você está tirando mais do que anotou. Não tem problema — só confira o número.",
+  "cofreFaltaValor": "Escreva quanto foi.",
+  "cofreErroGuardar": "Não consegui anotar. Tente outra vez.",
+  "cofreGuardado": "Anotado.",
+  "falaTitulo": "Fala comigo",
+  "falaSubtitulo": "Você não precisa escrever nada. Aperte o botão, fale como fala com uma pessoa, e eu respondo por escrito e em voz alta.",
+  "falaCarregaEFala": "Aperte o botão e fale. Solte quando terminar.",
+  "falaTambemPorToque": "Se você não conseguir segurar o dedo em cima, toque uma vez para começar e outra vez para terminar.",
+  "falaAOuvir": "Estou ouvindo você. Solte o dedo, ou toque de novo, quando terminar.",
+  "falaDizLa": "Pode falar. Estou esperando.",
+  "falaAPensar": "Já ouvi. Estou pensando na resposta…",
+  "falaBotaoFalar": "Falar",
+  "falaBotaoParar": "Já terminei de falar",
+  "falaPerguntaste": "Você me perguntou isto:",
+  "falaNaoPercebi": "Não consegui ouvir você. Tente de novo, com o celular mais perto da boca.",
+  "falaExemplosTitulo": "Não sabe o que perguntar? Experimente uma destas.",
+  "falaExemplo1": "Quanto eu tenho que pagar este mês?",
+  "falaExemplo2": "O que é o IVA?",
+  "falaExemplo3": "Quando é a inspeção do carro?",
+  "falaSemMicrofone": "Sem o microfone eu não consigo ouvir você. Pode escrever a pergunta — respondo do mesmo jeito.",
+  "falaSemMicrofoneComo": "Se mudar de ideia, libere o microfone para o Em Dia nas configurações do celular.",
+  "falaSemServico": "Este celular não tem reconhecimento de voz (o que transforma a fala em letras). Não foi nada que você fez. Escreva a pergunta e eu respondo do mesmo jeito.",
+  "falaPreferoEscrever": "Prefiro escrever",
+  "falaVoltarAFalar": "Voltar a falar",
+  "falaLinguaAproximada": "Seu celular não tem português para ouvir. Estou usando a língua que ele tem, então posso errar uma palavra ou outra.",
+  "falaCadeado": "Ative o Pro para falar com o app.",
+  "falaLimite": "Acabaram as perguntas deste mês.",
   "guiaIniSaltar": "Pular",
   "guiaIniSeguinte": "Próximo",
   "guiaIniComecar": "Começar",
@@ -1605,6 +1756,157 @@
   "painelAcaoTudoAjuda": "Está tudo resolvido. Quando aparecer um prazo, eu coloco aqui e aviso você antes.",
   "painelAcaoTudoSugestao": "Já que dá: escreva quanto você ganhou neste mês. Com esse número eu faço as contas certas para você.",
   "painelAcaoTudoBotao": "Escrever o que ganhei",
+  "provaNav": "Comprovante de renda",
+  "provaTitulo": "Comprovante de renda",
+  "provaSubtitulo": "A folha que você mostra para o senhorio, para o banco ou para quem pedir prova de quanto você ganha.",
+  "provaEscolhePeriodo": "De quantos meses você quer a folha?",
+  "provaMeses": "meses",
+  "@provaMeses": {
+    "description": "Palavra embaixo do numero nos tres botoes do periodo (3, 6, 12). Sao todos plurais, por isso nao leva plural ICU."
+  },
+  "provaMediaRotulo": "O que entra por mês",
+  "provaMediaAjuda": "Somei tudo e dividi por {n} meses.",
+  "@provaMediaAjuda": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "provaTotalRotulo": "Tudo junto",
+  "provaDeAte": "De {de} a {a}",
+  "@provaDeAte": {
+    "placeholders": {
+      "de": {
+        "type": "String"
+      },
+      "a": {
+        "type": "String"
+      }
+    }
+  },
+  "provaNomeCampo": "O seu nome completo",
+  "provaNifCampo": "NIF (o seu número de contribuinte português, como o CPF)",
+  "provaNifAjuda": "Pode deixar em branco. Com ele, a folha vale mais no banco.",
+  "provaBotaoFazer": "Fazer a folha",
+  "provaFeita": "Folha pronta. Escolha onde guardar ou para quem enviar.",
+  "provaErro": "Não consegui fazer a folha. Tente de novo.",
+  "provaFaltaNome": "Escreva o seu nome para eu colocar na folha.",
+  "provaFicheiro": "comprovante-de-renda",
+  "@provaFicheiro": {
+    "description": "Nome do arquivo PDF. Só letras minúsculas e traços: acentos e espaços viajam mal no WhatsApp e no e-mail."
+  },
+  "provaFaltam": "{n, plural, =1{Falta 1 mês de contas para essa folha ficar de pé. Continue escrevendo o que você ganha e logo ela fica pronta.} other{Faltam {n} meses de contas para essa folha ficar de pé. Continue escrevendo o que você ganha e logo ela fica pronta.}}",
+  "@provaFaltam": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "provaVazio": "Você ainda não escreveu nada do que ganhou. Vá em Minha vida, escreva uma vez, e eu começo a contar.",
+  "provaCadeadoLinha": "Isso é do plano Pro · Ative o Pro para fazer o seu comprovante de renda.",
+  "provaPdfTitulo": "Comprovante de renda",
+  "provaPdfNome": "Nome",
+  "provaPdfNif": "NIF (número de contribuinte)",
+  "provaPdfPeriodo": "Período",
+  "provaPdfMedia": "Média por mês",
+  "provaPdfMediaAjuda": "Soma dos {n} meses, dividida pelos meses.",
+  "@provaPdfMediaAjuda": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "provaPdfColunaMes": "Mês",
+  "provaPdfColunaValor": "O que entrou",
+  "provaPdfTotal": "Total do período",
+  "provaPdfOrigem": "De onde vem esse dinheiro",
+  "provaPdfFeitaEm": "Folha feita em {data}.",
+  "@provaPdfFeitaEm": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "provaPdfHonesto": "Este documento foi feito pelo app Em Dia a partir do que a pessoa registrou. Não substitui a declaração de IRS nem uma certidão das Finanças.",
+  "@provaPdfHonesto": {
+    "description": "Rodape do PDF e nota na tela. E essa frase que impede a folha de se passar por documento oficial — nao se corta nem se abrevia."
+  },
+  "radarTitulo": "Fim da fidelidade",
+  "radarAtalho": "Fim da fidelidade",
+  "radarAtalhoAjuda": "Veja quando cada contrato solta você e ligue a tempo.",
+  "radarExplicacao": "Fidelidade é o tempo em que você fica preso a um contrato (não dá para sair sem pagar multa). O celular, a internet e a academia costumam prender por 24 meses. Quando esse tempo acaba, a empresa renova sozinha e sobe o preço, sem avisar ninguém.",
+  "radarOQueFazer": "O que fazer: umas duas semanas antes da data, ligue para a empresa e peça um preço melhor. Se não derem, mude para outra — a partir da data você sai quando quiser e não paga multa nenhuma.",
+  "radarJanela": "Aqui embaixo estão os contratos que acabam nos próximos {dias} dias e os que acabaram faz pouco tempo. Os que acabaram ainda dá para negociar.",
+  "@radarJanela": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
+  "radarJanelaSemNumero": "Aqui embaixo estão os contratos que estão quase acabando e os que acabaram faz pouco tempo. Os que acabaram ainda dá para negociar.",
+  "radarQuantos": "{n, plural, =1{1 contrato} other{{n} contratos}}",
+  "@radarQuantos": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "radarFaltamDias": "{dias, plural, =1{Falta 1 dia} other{Faltam {dias} dias}}",
+  "@radarFaltamDias": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
+  "radarAcabaHoje": "Acaba hoje",
+  "radarAcabaAmanha": "Acaba amanhã",
+  "radarAcabouOntem": "Acabou ontem",
+  "radarAcabouHaDias": "{dias, plural, =1{Acabou faz 1 dia} other{Acabou faz {dias} dias}}",
+  "@radarAcabouHaDias": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
+  "radarAcabaEm": "Acaba em {data}",
+  "@radarAcabaEm": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "radarAcabouEm": "Acabou em {data}",
+  "@radarAcabouEm": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "radarPorMes": "{valor} por mês",
+  "@radarPorMes": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "radarSemValor": "Você não escreveu o valor",
+  "radarSemFornecedor": "Você não escreveu a empresa",
+  "radarLigarAgora": "Ligue para esta e peça um preço melhor.",
+  "radarVazio": "Você ainda não me disse quando acaba nenhum contrato. Vá nas suas contas, abra uma (o celular, a internet, a academia) e escreva a data em que a fidelidade acaba — está na fatura ou no papel do contrato. A partir daí eu aviso você a tempo de negociar.",
+  "radarErro": "Não consegui buscar os seus contratos. Tente de novo daqui a pouco.",
+  "radarCadeado": "Isso é do plano Pro — toque para ver",
+  "radarCadeadoOQueGanhas": "Com o Pro aparece aqui a lista dos seus contratos presos, com a data em que cada um solta você e quantos dias faltam. Eu aviso a tempo de você ligar e pedir um preço melhor.",
   "oficioServicos": "Serviços (cabelo, unhas, limpeza…)",
   "oficioObras": "Obras e construção",
   "oficioOutro": "Outra coisa",
@@ -1644,6 +1946,124 @@
   "sufixoKm": "km",
   "@sufixoKm": {
     "description": "Sufixo do campo dos quilômetros no formulário do abastecimento. Estava escrito à mão no Dart."
+  },
+  "vpTitulo": "Vale a pena esta corrida?",
+  "vpSubtitulo": "Escreva quanto pagam a você e quantos quilômetros são. Eu digo o que sobra mesmo para você.",
+  "vpACorrida": "A corrida",
+  "vpQuantoPagam": "Quanto pagam a você",
+  "vpQuantoPagamAjuda": "O valor que o aplicativo mostra, antes de tirarem qualquer coisa.",
+  "vpQuantosKm": "Quantos quilômetros",
+  "vpKmSufixo": "km",
+  "vpQuantosMinutos": "Quantos minutos demora",
+  "vpMinutosAjuda": "Só se você souber. Serve para eu dizer quanto é por hora.",
+  "vpMinutosSufixo": "min",
+  "vpEscreveParaVer": "Escreva quanto pagam e os quilômetros. A conta aparece aqui.",
+  "vpFicaParaTi": "Fica para você",
+  "vpPorHora": "São {valor} por hora",
+  "@vpPorHora": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "vpPorHoraFalta": "Diga os minutos e eu digo quanto é por hora.",
+  "vpNivelBem": "Esta corrida vale a pena.",
+  "vpNivelPouco": "Dá para ir, mas sobra pouco.",
+  "vpNivelPerde": "Esta corrida tira dinheiro do seu bolso.",
+  "vpParaOndeFoi": "Para onde foi o dinheiro",
+  "vpPagamTe": "Pagam a você",
+  "vpCombustivel": "Combustível",
+  "vpEnergia": "Energia",
+  "vpDesgaste": "Desgaste do carro",
+  "vpSs": "Segurança Social",
+  "vpIrs": "IRS (o imposto sobre o que você ganha)",
+  "vpSsIsentoNota": "Você ainda está no primeiro ano de atividade: não paga Segurança Social.",
+  "vpIrsRetidoNota": "O IRS já é tirado na hora. Se no fim do ano você pagou a mais, as Finanças devolvem.",
+  "vpIrsEstimadoNota": "Ninguém tira o IRS na hora. Eu guardo ele aqui, para não pegar você de surpresa.",
+  "vpIrsNoMinimoNota": "Não sei quanto você vai faturar este ano, por isso contei o IRS mais baixo que pode ser. Se ganhar mais, ele sobe.",
+  "vpSemIrsNota": "Com o que você ganha por ano, ainda não paga IRS.",
+  "vpDesgasteNota": "O desgaste é um palpite seu, não uma conta certa.",
+  "vpEstimativa": "Isto é uma estimativa. O IRS certo só se sabe no fim do ano, quando você entrega a declaração.",
+  "vpImposto": "O que tiram de você na hora",
+  "vpImpostoAjuda": "Retenção é o que quem paga a você guarda para as Finanças. Nos aplicativos de viagens e de entregas, quase sempre não tiram nada.",
+  "vpRetencaoTiram": "Tiram {taxa}",
+  "@vpRetencaoTiram": {
+    "placeholders": {
+      "taxa": {
+        "type": "String"
+      }
+    }
+  },
+  "vpSemRetencao": "Não tiram nada",
+  "vpOTeuCarro": "O seu carro",
+  "vpConsumo": "Quanto gasta a cada 100 quilômetros",
+  "vpConsumoSufixoLitros": "L/100 km",
+  "vpConsumoSufixoKwh": "kWh/100 km",
+  "vpConsumoAjuda": "Vem no documento do carro ou no computador de bordo. Se não souber, coloque o que costuma gastar.",
+  "vpPrecoLitro": "Preço do litro",
+  "vpPrecoKwh": "Preço do kWh",
+  "vpPrecoDoAbastecimento": "Veio do seu último abastecimento, em {data}.",
+  "@vpPrecoDoAbastecimento": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "vpPrecoEscreveTu": "Escreva quanto você pagou da última vez.",
+  "vpPrecoPorque": "Eu não busco preços nos postos: os dados oficiais não podem ser usados num app como este. Por isso a conta é feita com o preço que você pagou.",
+  "vpDesgastePorKm": "Desgaste por quilômetro",
+  "vpDesgasteSufixo": "€/km",
+  "vpDesgasteAjuda": "Pneus, revisões e óleo. Num carro normal ficam perto de 5 cêntimos por quilômetro — é um palpite, mude para o seu.",
+  "vpDesgasteSugerido": "0,05",
+  "@vpDesgasteSugerido": {
+    "description": "Não é uma frase: é o valor que já nasce escrito no campo do desgaste (€/km). Este número NÃO é legal e não existe em regras_legais — é só um ponto de partida para a pessoa mudar."
+  },
+  "vpCadaKmCusta": "No total, cada quilômetro custa {valor}.",
+  "@vpCadaKmCusta": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "vpFaltaPreco": "Falta o preço do combustível. Escreva aqui embaixo e eu faço a conta.",
+  "vpFaltaConsumo": "Falta dizer quanto o seu carro gasta a cada 100 quilômetros. Escreva aqui embaixo.",
+  "vpFaltaOsDois": "Faltam duas coisas do seu carro: quanto gasta a cada 100 quilômetros e o preço do combustível. Escreva aqui embaixo.",
+  "vpFraseConta": "Esta corrida paga {pagam}. O que você gasta andando leva {combustivel}. O desgaste do carro leva {desgaste}. A Segurança Social leva {ss}. O IRS leva {irs}. Fica para você {sobra}.",
+  "@vpFraseConta": {
+    "placeholders": {
+      "pagam": {
+        "type": "String"
+      },
+      "combustivel": {
+        "type": "String"
+      },
+      "desgaste": {
+        "type": "String"
+      },
+      "ss": {
+        "type": "String"
+      },
+      "irs": {
+        "type": "String"
+      },
+      "sobra": {
+        "type": "String"
+      }
+    }
+  },
+  "vpFrasePorHora": "Se demorar {minutos} minutos, são {porHora} por hora.",
+  "@vpFrasePorHora": {
+    "placeholders": {
+      "minutos": {
+        "type": "int"
+      },
+      "porHora": {
+        "type": "String"
+      }
+    }
   },
   "valorFotoAjuda": "Fotografe a fatura ou o cupom e eu preencho",
   "valorFotoTirar": "Tirar foto agora",

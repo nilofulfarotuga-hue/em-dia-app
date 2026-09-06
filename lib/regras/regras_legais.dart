@@ -201,6 +201,15 @@ class RegrasLegais {
       t('ipo_tvde', 'anual', 'IPO TVDE anual', confianca: 'por_confirmar'),
       j('ipo_avisos_dias', [30, 7], 'Avisos IPO'),
       r('seguro_aviso_dias', 45, 'Aviso seguro', unidade: 'dias'),
+      // Espelho da migracao 0016. Faltava aqui, e por isso o radar da
+      // fidelizacao ficava sem numero nas fotos e sem rede.
+      r('aviso_fidelizacao_dias', 30, 'Aviso fim da fidelizacao',
+          unidade: 'dias', confianca: 'aproximado'),
+      // Aviso das contas de casa, por meio de pagamento (migracao 0016).
+      r('aviso_debito_direto_dias', 1, 'Aviso debito direto',
+          unidade: 'dias', confianca: 'aproximado'),
+      r('aviso_referencia_dias', 3, 'Aviso referencia Multibanco',
+          unidade: 'dias', confianca: 'aproximado'),
       j('carta_validade', {'ate_60': 15, '60_a_70': 5, 'mais_70': 2}, 'Validade da carta'),
       r('multa_pagamento_voluntario_dias_uteis', 15, 'Multas: pagamento voluntário',
           unidade: 'dias_uteis'),

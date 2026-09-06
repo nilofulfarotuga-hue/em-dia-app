@@ -3,16 +3,25 @@ import 'package:flutter/material.dart';
 import '../../config/app_colors.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/widgets.dart';
+import '../cofre/cofre_screen.dart';
+import '../fala/fala_screen.dart';
 import '../guias/guias_screen.dart';
 import '../ia/ia_screen.dart';
 import '../plano/plano_screen.dart';
+import '../prova/prova_rendimento_screen.dart';
+import '../radar/radar_screen.dart';
 import '../reforma/reforma_screen.dart';
 import '../suporte/suporte_screen.dart';
+import '../vale_a_pena/vale_a_pena_screen.dart';
 import 'definicoes_screen.dart';
 
-/// Mais — a grelha 2×N de acessos rápidos (estrutura do MaisMei): Reforma e
-/// direitos · Guias · Pergunta ao Em Dia · Ajuda · O teu plano · Definições.
-/// Sair e apagar a conta vivem nas Definições.
+/// Mais — a grelha 2×N de acessos rápidos (estrutura do MaisMei).
+///
+/// A ordem não é por ordem alfabética nem por data: é pelo que a pessoa usa
+/// mais. Primeiro as duas que se usam ANTES de trabalhar — "vale a pena esta
+/// corrida?" e "fala comigo" —, depois as do dinheiro (cofre, prova de
+/// rendimento, fim da fidelização), e só no fim as de consulta e as contas da
+/// casa. Sair e apagar a conta vivem nas Definições.
 class MaisScreen extends StatelessWidget {
   const MaisScreen({super.key});
 
@@ -20,7 +29,17 @@ class MaisScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
     final t = Theme.of(context).textTheme;
+    // Abre o ecrã do plano a partir de dentro de outro ecrã (o cadeado).
+    void abrirPlano(BuildContext ctx) => Navigator.of(ctx)
+        .push(MaterialPageRoute<void>(builder: (_) => const PlanoScreen()));
+
     final acessos = <_Acesso>[
+      _Acesso('vale_a_pena', Icons.calculate_rounded, l.vpTitulo, (_) => const ValeAPenaScreen()),
+      _Acesso('fala', Icons.mic_rounded, l.falaTitulo,
+          (ctx) => FalaScreen(aoAbrirPlano: () => abrirPlano(ctx))),
+      _Acesso('cofre', Icons.savings_outlined, l.cofreTitulo, (_) => const CofreScreen()),
+      _Acesso('prova', Icons.description_rounded, l.provaTitulo, (_) => const ProvaRendimentoScreen()),
+      _Acesso('radar', Icons.link_off_rounded, l.radarAtalho, (_) => const RadarScreen()),
       _Acesso('reforma', Icons.savings_rounded, l.maisReforma, (_) => const ReformaScreen()),
       _Acesso('guias', Icons.menu_book_rounded, l.maisGuias, (_) => const GuiasScreen()),
       _Acesso(
@@ -28,10 +47,7 @@ class MaisScreen extends StatelessWidget {
         Icons.chat_bubble_rounded,
         l.maisPergunta,
         // O assistente pede o plano quando bate no limite do grátis.
-        (ctx) => IaScreen(
-          aoAbrirPlano: () =>
-              Navigator.of(ctx).push(MaterialPageRoute<void>(builder: (_) => const PlanoScreen())),
-        ),
+        (ctx) => IaScreen(aoAbrirPlano: () => abrirPlano(ctx)),
       ),
       _Acesso('ajuda', Icons.support_agent_rounded, l.maisAjuda, (_) => const SuporteScreen()),
       _Acesso('plano', Icons.workspace_premium_rounded, l.maisPlano, (_) => const PlanoScreen()),

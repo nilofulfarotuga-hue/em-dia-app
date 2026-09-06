@@ -12,3 +12,4 @@ export 'obrigacoes.dart';
 export 'recibo.dart';
 export 'regras_legais.dart';
 export 'seguranca_social.dart';
+export 'vale_a_pena.dart';

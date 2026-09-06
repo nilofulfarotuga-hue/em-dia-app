@@ -1,0 +1,76 @@
+{
+  "@@locale": "pt",
+
+  "cofreTitulo": "O cofre do imposto",
+  "cofreSemSessao": "Entra na app para veres o teu cofre.",
+
+  "cofreNaoMexe": "Isto não mexe no teu dinheiro. Não há banco, não há transferência, não sai nem entra nada da tua conta. É só um caderno: tu escreves aqui o que já puseste de lado, e eu digo-te quanto devias ter.",
+
+  "cofreTens": "Tens no cofre",
+  "cofreDeviasTerNome": "Devias ter aqui",
+
+  "cofreChega": "Chega. Sobram-te {valor}.",
+  "@cofreChega": {"placeholders": {"valor": {"type": "String"}}},
+  "cofreChegaAjuda": "Já tens de lado o que o Estado te vai pedir. Deixa esse dinheiro quieto até à altura de pagar.",
+
+  "cofreFaltaPouco": "Falta {valor}. Estás quase lá.",
+  "@cofreFaltaPouco": {"placeholders": {"valor": {"type": "String"}}},
+  "cofreFaltaPoucoAjuda": "Falta pouco. Da próxima vez que receberes, põe esse bocadinho de lado e ficas em dia.",
+
+  "cofreFaltaMuito": "Faltam {valor}.",
+  "@cofreFaltaMuito": {"placeholders": {"valor": {"type": "String"}}},
+  "cofreFaltaMuitoAjuda": "Ainda não tens de lado o que o Estado vai pedir. Não é o fim do mundo: começa a guardar um bocado de cada vez que receberes.",
+
+  "cofreSemContas": "Ainda não sei quanto ganhaste este ano.",
+  "cofreSemContasAjuda": "Escreve o que já recebeste e eu digo-te quanto devias ter de lado para o Estado.",
+  "cofreEscreverGanhei": "Escrever o que ganhei",
+
+  "cofreComoContei": "Como cheguei a este número",
+  "cofreDoAno": "Ganhaste este ano",
+  "cofreParteSs": "Segurança Social (dá-te reforma e baixa)",
+  "cofreParteIrs": "IRS (o imposto sobre o que ganhas)",
+  "cofreParteTotal": "A parte do Estado",
+
+  "cofreIsentoSs": "Estás isento da Segurança Social até {data}. Só conto os meses depois disso.",
+  "@cofreIsentoSs": {"placeholders": {"data": {"type": "String"}}},
+  "cofreMinimoSs": "A Segurança Social tem um mínimo de {valor} por mês, mesmo que ganhes pouco.",
+  "@cofreMinimoSs": {"placeholders": {"valor": {"type": "String"}}},
+  "cofreAproximado": "Os números do IRS de {ano} ainda não estão confirmados. Esta conta é aproximada — serve para não seres apanhado de surpresa.",
+  "@cofreAproximado": {"placeholders": {"ano": {"type": "String"}}},
+  "cofreEstimativa": "Isto é uma estimativa (uma conta aproximada, feita com o que escreveste). Não é a conta oficial das Finanças.",
+
+  "cofreOuvir": "Tens {saldo} no cofre do imposto. Devias ter {devia}. {fecho}",
+  "@cofreOuvir": {"placeholders": {"saldo": {"type": "String"}, "devia": {"type": "String"}, "fecho": {"type": "String"}}},
+
+  "cofreBotaoPor": "Pus de lado",
+  "cofreBotaoTirar": "Tirei de lá",
+
+  "cofreListaTitulo": "O que já apontaste",
+  "cofreVazio": "Ainda não apontaste nada. Quando puseres dinheiro de lado, escreve aqui quanto foi.",
+  "cofreApagarPergunta": "Apagar {valor} de {data}?",
+  "@cofreApagarPergunta": {"placeholders": {"valor": {"type": "String"}, "data": {"type": "String"}}},
+  "cofreApagado": "Apaguei.",
+
+  "cofreMotivoGuardei": "Guardei",
+  "cofreMotivoGuardeiAjuda": "Pus dinheiro de lado para o Estado.",
+  "cofreMotivoPagueiSs": "Paguei a Segurança Social",
+  "cofreMotivoPagueiSsAjuda": "Tirei do cofre para pagar o desconto do mês.",
+  "cofreMotivoPagueiIrs": "Paguei o IRS",
+  "cofreMotivoPagueiIrsAjuda": "Tirei do cofre para pagar o imposto.",
+  "cofreMotivoPrecisei": "Precisei",
+  "cofreMotivoPreciseiAjuda": "Tirei do cofre para outra coisa qualquer.",
+  "cofreMotivoAcerto": "Acerto de contas",
+
+  "cofreFolhaPor": "Pus de lado",
+  "cofreFolhaTirar": "Tirei de lá",
+  "cofreQuanto": "Quanto foi",
+  "cofrePorque": "Porquê?",
+  "cofreVaiApontarPor": "Vou apontar que puseste {valor} de lado.",
+  "@cofreVaiApontarPor": {"placeholders": {"valor": {"type": "String"}}},
+  "cofreVaiApontarTirar": "Vou apontar que tiraste {valor} do cofre.",
+  "@cofreVaiApontarTirar": {"placeholders": {"valor": {"type": "String"}}},
+  "cofreTirasMaisDoQueTens": "Estás a tirar mais do que tens apontado. Não faz mal — só confere o número.",
+  "cofreFaltaValor": "Escreve quanto foi.",
+  "cofreErroGuardar": "Não consegui apontar. Tenta outra vez.",
+  "cofreGuardado": "Apontado."
+}

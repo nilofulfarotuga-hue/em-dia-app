@@ -1,0 +1,33 @@
+{
+  "@@locale": "pt",
+
+  "falaTitulo": "Fala comigo",
+  "falaSubtitulo": "Não precisas de escrever nada. Carrega no botão, fala como falas com uma pessoa, e eu respondo por escrito e em voz alta.",
+
+  "falaCarregaEFala": "Carrega no botão e fala. Larga quando acabares.",
+  "falaTambemPorToque": "Se não conseguires manter o dedo em cima, toca uma vez para começar e outra vez para acabar.",
+  "falaAOuvir": "Estou a ouvir-te. Larga o dedo, ou toca outra vez, quando acabares.",
+  "falaDizLa": "Diz lá. Estou à espera.",
+  "falaAPensar": "Já ouvi. Estou a pensar na resposta…",
+  "falaBotaoFalar": "Falar",
+  "falaBotaoParar": "Já acabei de falar",
+
+  "falaPerguntaste": "Perguntaste-me isto:",
+  "falaNaoPercebi": "Não te consegui ouvir. Tenta outra vez, com o telemóvel mais perto da boca.",
+
+  "falaExemplosTitulo": "Não sabes o que perguntar? Experimenta uma destas.",
+  "falaExemplo1": "Quanto tenho de pagar este mês?",
+  "falaExemplo2": "O que é o IVA?",
+  "falaExemplo3": "Quando é a inspeção do carro?",
+
+  "falaSemMicrofone": "Sem o microfone não te consigo ouvir. Podes escrever a pergunta — respondo na mesma.",
+  "falaSemMicrofoneComo": "Se mudares de ideias, dá o microfone ao Em Dia nas definições do telemóvel.",
+  "falaSemServico": "Este telemóvel não traz reconhecimento de voz (o que transforma a fala em letras). Não é nada que tenhas feito. Escreve a pergunta e eu respondo na mesma.",
+  "falaPreferoEscrever": "Prefiro escrever",
+  "falaVoltarAFalar": "Voltar a falar",
+
+  "falaLinguaAproximada": "O teu telemóvel não tem português para ouvir. Estou a usar a língua que ele tem, por isso posso enganar-me numa palavra ou noutra.",
+
+  "falaCadeado": "Ativa o Pro para falares com a app.",
+  "falaLimite": "Acabaram as perguntas deste mês."
+}

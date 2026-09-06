@@ -1,0 +1,43 @@
+{
+  "@@locale": "pt_BR",
+
+  "radarTitulo": "Fim da fidelidade",
+  "radarAtalho": "Fim da fidelidade",
+  "radarAtalhoAjuda": "Veja quando cada contrato solta você e ligue a tempo.",
+
+  "radarExplicacao": "Fidelidade é o tempo em que você fica preso a um contrato (não dá para sair sem pagar multa). O celular, a internet e a academia costumam prender por 24 meses. Quando esse tempo acaba, a empresa renova sozinha e sobe o preço, sem avisar ninguém.",
+  "radarOQueFazer": "O que fazer: umas duas semanas antes da data, ligue para a empresa e peça um preço melhor. Se não derem, mude para outra — a partir da data você sai quando quiser e não paga multa nenhuma.",
+  "radarJanela": "Aqui embaixo estão os contratos que acabam nos próximos {dias} dias e os que acabaram faz pouco tempo. Os que acabaram ainda dá para negociar.",
+  "@radarJanela": { "placeholders": { "dias": { "type": "int" } } },
+  "radarJanelaSemNumero": "Aqui embaixo estão os contratos que estão quase acabando e os que acabaram faz pouco tempo. Os que acabaram ainda dá para negociar.",
+
+  "radarQuantos": "{n, plural, =1{1 contrato} other{{n} contratos}}",
+  "@radarQuantos": { "placeholders": { "n": { "type": "int" } } },
+
+  "radarFaltamDias": "{dias, plural, =1{Falta 1 dia} other{Faltam {dias} dias}}",
+  "@radarFaltamDias": { "placeholders": { "dias": { "type": "int" } } },
+  "radarAcabaHoje": "Acaba hoje",
+  "radarAcabaAmanha": "Acaba amanhã",
+  "radarAcabouOntem": "Acabou ontem",
+  "radarAcabouHaDias": "{dias, plural, =1{Acabou faz 1 dia} other{Acabou faz {dias} dias}}",
+  "@radarAcabouHaDias": { "placeholders": { "dias": { "type": "int" } } },
+
+  "radarAcabaEm": "Acaba em {data}",
+  "@radarAcabaEm": { "placeholders": { "data": { "type": "String" } } },
+  "radarAcabouEm": "Acabou em {data}",
+  "@radarAcabouEm": { "placeholders": { "data": { "type": "String" } } },
+
+  "radarPorMes": "{valor} por mês",
+  "@radarPorMes": { "placeholders": { "valor": { "type": "String" } } },
+  "radarSemValor": "Você não escreveu o valor",
+  "radarSemFornecedor": "Você não escreveu a empresa",
+
+  "radarLigarAgora": "Ligue para esta e peça um preço melhor.",
+
+  "radarVazio": "Você ainda não me disse quando acaba nenhum contrato. Vá nas suas contas, abra uma (o celular, a internet, a academia) e escreva a data em que a fidelidade acaba — está na fatura ou no papel do contrato. A partir daí eu aviso você a tempo de negociar.",
+
+  "radarErro": "Não consegui buscar os seus contratos. Tente de novo daqui a pouco.",
+
+  "radarCadeado": "Isso é do plano Pro — toque para ver",
+  "radarCadeadoOQueGanhas": "Com o Pro aparece aqui a lista dos seus contratos presos, com a data em que cada um solta você e quantos dias faltam. Eu aviso a tempo de você ligar e pedir um preço melhor."
+}

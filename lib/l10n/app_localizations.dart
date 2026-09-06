@@ -5568,6 +5568,438 @@ abstract class AppLocalizations {
   /// **'Estes dois números estão no papel do carro (o certificado de matrícula, o antigo livrete).'**
   String get carroFormOndeEstao;
 
+  /// No description provided for @cofreTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O cofre do imposto'**
+  String get cofreTitulo;
+
+  /// No description provided for @cofreSemSessao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra na app para veres o teu cofre.'**
+  String get cofreSemSessao;
+
+  /// No description provided for @cofreNaoMexe.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto não mexe no teu dinheiro. Não há banco, não há transferência, não sai nem entra nada da tua conta. É só um caderno: tu escreves aqui o que já puseste de lado, e eu digo-te quanto devias ter.'**
+  String get cofreNaoMexe;
+
+  /// No description provided for @cofreTens.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens no cofre'**
+  String get cofreTens;
+
+  /// No description provided for @cofreDeviasTerNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Devias ter aqui'**
+  String get cofreDeviasTerNome;
+
+  /// No description provided for @cofreChega.
+  ///
+  /// In pt, this message translates to:
+  /// **'Chega. Sobram-te {valor}.'**
+  String cofreChega(String valor);
+
+  /// No description provided for @cofreChegaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já tens de lado o que o Estado te vai pedir. Deixa esse dinheiro quieto até à altura de pagar.'**
+  String get cofreChegaAjuda;
+
+  /// No description provided for @cofreFaltaPouco.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falta {valor}. Estás quase lá.'**
+  String cofreFaltaPouco(String valor);
+
+  /// No description provided for @cofreFaltaPoucoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falta pouco. Da próxima vez que receberes, põe esse bocadinho de lado e ficas em dia.'**
+  String get cofreFaltaPoucoAjuda;
+
+  /// No description provided for @cofreFaltaMuito.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faltam {valor}.'**
+  String cofreFaltaMuito(String valor);
+
+  /// No description provided for @cofreFaltaMuitoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não tens de lado o que o Estado vai pedir. Não é o fim do mundo: começa a guardar um bocado de cada vez que receberes.'**
+  String get cofreFaltaMuitoAjuda;
+
+  /// No description provided for @cofreSemContas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não sei quanto ganhaste este ano.'**
+  String get cofreSemContas;
+
+  /// No description provided for @cofreSemContasAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o que já recebeste e eu digo-te quanto devias ter de lado para o Estado.'**
+  String get cofreSemContasAjuda;
+
+  /// No description provided for @cofreEscreverGanhei.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escrever o que ganhei'**
+  String get cofreEscreverGanhei;
+
+  /// No description provided for @cofreComoContei.
+  ///
+  /// In pt, this message translates to:
+  /// **'Como cheguei a este número'**
+  String get cofreComoContei;
+
+  /// No description provided for @cofreDoAno.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ganhaste este ano'**
+  String get cofreDoAno;
+
+  /// No description provided for @cofreParteSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segurança Social (dá-te reforma e baixa)'**
+  String get cofreParteSs;
+
+  /// No description provided for @cofreParteIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'IRS (o imposto sobre o que ganhas)'**
+  String get cofreParteIrs;
+
+  /// No description provided for @cofreParteTotal.
+  ///
+  /// In pt, this message translates to:
+  /// **'A parte do Estado'**
+  String get cofreParteTotal;
+
+  /// No description provided for @cofreIsentoSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estás isento da Segurança Social até {data}. Só conto os meses depois disso.'**
+  String cofreIsentoSs(String data);
+
+  /// No description provided for @cofreMinimoSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'A Segurança Social tem um mínimo de {valor} por mês, mesmo que ganhes pouco.'**
+  String cofreMinimoSs(String valor);
+
+  /// No description provided for @cofreAproximado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Os números do IRS de {ano} ainda não estão confirmados. Esta conta é aproximada — serve para não seres apanhado de surpresa.'**
+  String cofreAproximado(String ano);
+
+  /// No description provided for @cofreEstimativa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto é uma estimativa (uma conta aproximada, feita com o que escreveste). Não é a conta oficial das Finanças.'**
+  String get cofreEstimativa;
+
+  /// No description provided for @cofreOuvir.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens {saldo} no cofre do imposto. Devias ter {devia}. {fecho}'**
+  String cofreOuvir(String saldo, String devia, String fecho);
+
+  /// No description provided for @cofreBotaoPor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pus de lado'**
+  String get cofreBotaoPor;
+
+  /// No description provided for @cofreBotaoTirar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tirei de lá'**
+  String get cofreBotaoTirar;
+
+  /// No description provided for @cofreListaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que já apontaste'**
+  String get cofreListaTitulo;
+
+  /// No description provided for @cofreVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não apontaste nada. Quando puseres dinheiro de lado, escreve aqui quanto foi.'**
+  String get cofreVazio;
+
+  /// No description provided for @cofreApagarPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar {valor} de {data}?'**
+  String cofreApagarPergunta(String valor, String data);
+
+  /// No description provided for @cofreApagado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apaguei.'**
+  String get cofreApagado;
+
+  /// No description provided for @cofreMotivoGuardei.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardei'**
+  String get cofreMotivoGuardei;
+
+  /// No description provided for @cofreMotivoGuardeiAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pus dinheiro de lado para o Estado.'**
+  String get cofreMotivoGuardeiAjuda;
+
+  /// No description provided for @cofreMotivoPagueiSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paguei a Segurança Social'**
+  String get cofreMotivoPagueiSs;
+
+  /// No description provided for @cofreMotivoPagueiSsAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tirei do cofre para pagar o desconto do mês.'**
+  String get cofreMotivoPagueiSsAjuda;
+
+  /// No description provided for @cofreMotivoPagueiIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paguei o IRS'**
+  String get cofreMotivoPagueiIrs;
+
+  /// No description provided for @cofreMotivoPagueiIrsAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tirei do cofre para pagar o imposto.'**
+  String get cofreMotivoPagueiIrsAjuda;
+
+  /// No description provided for @cofreMotivoPrecisei.
+  ///
+  /// In pt, this message translates to:
+  /// **'Precisei'**
+  String get cofreMotivoPrecisei;
+
+  /// No description provided for @cofreMotivoPreciseiAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tirei do cofre para outra coisa qualquer.'**
+  String get cofreMotivoPreciseiAjuda;
+
+  /// No description provided for @cofreMotivoAcerto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Acerto de contas'**
+  String get cofreMotivoAcerto;
+
+  /// No description provided for @cofreFolhaPor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pus de lado'**
+  String get cofreFolhaPor;
+
+  /// No description provided for @cofreFolhaTirar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tirei de lá'**
+  String get cofreFolhaTirar;
+
+  /// No description provided for @cofreQuanto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto foi'**
+  String get cofreQuanto;
+
+  /// No description provided for @cofrePorque.
+  ///
+  /// In pt, this message translates to:
+  /// **'Porquê?'**
+  String get cofrePorque;
+
+  /// No description provided for @cofreVaiApontarPor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vou apontar que puseste {valor} de lado.'**
+  String cofreVaiApontarPor(String valor);
+
+  /// No description provided for @cofreVaiApontarTirar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vou apontar que tiraste {valor} do cofre.'**
+  String cofreVaiApontarTirar(String valor);
+
+  /// No description provided for @cofreTirasMaisDoQueTens.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estás a tirar mais do que tens apontado. Não faz mal — só confere o número.'**
+  String get cofreTirasMaisDoQueTens;
+
+  /// No description provided for @cofreFaltaValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve quanto foi.'**
+  String get cofreFaltaValor;
+
+  /// No description provided for @cofreErroGuardar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui apontar. Tenta outra vez.'**
+  String get cofreErroGuardar;
+
+  /// No description provided for @cofreGuardado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apontado.'**
+  String get cofreGuardado;
+
+  /// No description provided for @falaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fala comigo'**
+  String get falaTitulo;
+
+  /// No description provided for @falaSubtitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não precisas de escrever nada. Carrega no botão, fala como falas com uma pessoa, e eu respondo por escrito e em voz alta.'**
+  String get falaSubtitulo;
+
+  /// No description provided for @falaCarregaEFala.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carrega no botão e fala. Larga quando acabares.'**
+  String get falaCarregaEFala;
+
+  /// No description provided for @falaTambemPorToque.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se não conseguires manter o dedo em cima, toca uma vez para começar e outra vez para acabar.'**
+  String get falaTambemPorToque;
+
+  /// No description provided for @falaAOuvir.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estou a ouvir-te. Larga o dedo, ou toca outra vez, quando acabares.'**
+  String get falaAOuvir;
+
+  /// No description provided for @falaDizLa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Diz lá. Estou à espera.'**
+  String get falaDizLa;
+
+  /// No description provided for @falaAPensar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já ouvi. Estou a pensar na resposta…'**
+  String get falaAPensar;
+
+  /// No description provided for @falaBotaoFalar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falar'**
+  String get falaBotaoFalar;
+
+  /// No description provided for @falaBotaoParar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já acabei de falar'**
+  String get falaBotaoParar;
+
+  /// No description provided for @falaPerguntaste.
+  ///
+  /// In pt, this message translates to:
+  /// **'Perguntaste-me isto:'**
+  String get falaPerguntaste;
+
+  /// No description provided for @falaNaoPercebi.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não te consegui ouvir. Tenta outra vez, com o telemóvel mais perto da boca.'**
+  String get falaNaoPercebi;
+
+  /// No description provided for @falaExemplosTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não sabes o que perguntar? Experimenta uma destas.'**
+  String get falaExemplosTitulo;
+
+  /// No description provided for @falaExemplo1.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto tenho de pagar este mês?'**
+  String get falaExemplo1;
+
+  /// No description provided for @falaExemplo2.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que é o IVA?'**
+  String get falaExemplo2;
+
+  /// No description provided for @falaExemplo3.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando é a inspeção do carro?'**
+  String get falaExemplo3;
+
+  /// No description provided for @falaSemMicrofone.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sem o microfone não te consigo ouvir. Podes escrever a pergunta — respondo na mesma.'**
+  String get falaSemMicrofone;
+
+  /// No description provided for @falaSemMicrofoneComo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se mudares de ideias, dá o microfone ao Em Dia nas definições do telemóvel.'**
+  String get falaSemMicrofoneComo;
+
+  /// No description provided for @falaSemServico.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este telemóvel não traz reconhecimento de voz (o que transforma a fala em letras). Não é nada que tenhas feito. Escreve a pergunta e eu respondo na mesma.'**
+  String get falaSemServico;
+
+  /// No description provided for @falaPreferoEscrever.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prefiro escrever'**
+  String get falaPreferoEscrever;
+
+  /// No description provided for @falaVoltarAFalar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Voltar a falar'**
+  String get falaVoltarAFalar;
+
+  /// No description provided for @falaLinguaAproximada.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu telemóvel não tem português para ouvir. Estou a usar a língua que ele tem, por isso posso enganar-me numa palavra ou noutra.'**
+  String get falaLinguaAproximada;
+
+  /// No description provided for @falaCadeado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ativa o Pro para falares com a app.'**
+  String get falaCadeado;
+
+  /// No description provided for @falaLimite.
+  ///
+  /// In pt, this message translates to:
+  /// **'Acabaram as perguntas deste mês.'**
+  String get falaLimite;
+
   /// No description provided for @guiaIniSaltar.
   ///
   /// In pt, this message translates to:
@@ -5874,6 +6306,336 @@ abstract class AppLocalizations {
   /// **'Escrever o que ganhei'**
   String get painelAcaoTudoBotao;
 
+  /// No description provided for @provaNav.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prova de rendimento'**
+  String get provaNav;
+
+  /// No description provided for @provaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prova de rendimento'**
+  String get provaTitulo;
+
+  /// No description provided for @provaSubtitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'A folha que mostras ao senhorio, ao banco ou a quem te pedir prova de quanto ganhas.'**
+  String get provaSubtitulo;
+
+  /// No description provided for @provaEscolhePeriodo.
+  ///
+  /// In pt, this message translates to:
+  /// **'De quantos meses queres a folha?'**
+  String get provaEscolhePeriodo;
+
+  /// Palavra por baixo do numero nos tres botoes do periodo (3, 6, 12). Sao todos plurais, por isso nao leva plural ICU.
+  ///
+  /// In pt, this message translates to:
+  /// **'meses'**
+  String get provaMeses;
+
+  /// No description provided for @provaMediaRotulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que entra por mês'**
+  String get provaMediaRotulo;
+
+  /// No description provided for @provaMediaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Somei tudo e dividi por {n} meses.'**
+  String provaMediaAjuda(int n);
+
+  /// No description provided for @provaTotalRotulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tudo junto'**
+  String get provaTotalRotulo;
+
+  /// No description provided for @provaDeAte.
+  ///
+  /// In pt, this message translates to:
+  /// **'De {de} a {a}'**
+  String provaDeAte(String de, String a);
+
+  /// No description provided for @provaNomeCampo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu nome completo'**
+  String get provaNomeCampo;
+
+  /// No description provided for @provaNifCampo.
+  ///
+  /// In pt, this message translates to:
+  /// **'NIF (o teu número de contribuinte)'**
+  String get provaNifCampo;
+
+  /// No description provided for @provaNifAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Podes deixar em branco. Com ele, a folha vale mais no banco.'**
+  String get provaNifAjuda;
+
+  /// No description provided for @provaBotaoFazer.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fazer a folha'**
+  String get provaBotaoFazer;
+
+  /// No description provided for @provaFeita.
+  ///
+  /// In pt, this message translates to:
+  /// **'Folha pronta. Escolhe onde a queres guardar ou a quem a queres enviar.'**
+  String get provaFeita;
+
+  /// No description provided for @provaErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui fazer a folha. Tenta outra vez.'**
+  String get provaErro;
+
+  /// No description provided for @provaFaltaNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o teu nome para eu o pôr na folha.'**
+  String get provaFaltaNome;
+
+  /// Nome do ficheiro PDF. Só letras minúsculas e traços: acentos e espaços viajam mal por WhatsApp e por e-mail.
+  ///
+  /// In pt, this message translates to:
+  /// **'prova-de-rendimento'**
+  String get provaFicheiro;
+
+  /// No description provided for @provaFaltam.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =1{Falta 1 mês de contas para esta folha ficar de pé. Continua a escrever o que ganhas e daqui a pouco está pronta.} other{Faltam {n} meses de contas para esta folha ficar de pé. Continua a escrever o que ganhas e daqui a pouco está pronta.}}'**
+  String provaFaltam(int n);
+
+  /// No description provided for @provaVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não escreveste nada do que ganhaste. Vai a A minha vida, escreve uma vez, e eu começo a contar.'**
+  String get provaVazio;
+
+  /// No description provided for @provaCadeadoLinha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto é do plano Pro · Ativa o Pro para fazeres a tua prova de rendimento.'**
+  String get provaCadeadoLinha;
+
+  /// No description provided for @provaPdfTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prova de rendimento'**
+  String get provaPdfTitulo;
+
+  /// No description provided for @provaPdfNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nome'**
+  String get provaPdfNome;
+
+  /// No description provided for @provaPdfNif.
+  ///
+  /// In pt, this message translates to:
+  /// **'NIF (número de contribuinte)'**
+  String get provaPdfNif;
+
+  /// No description provided for @provaPdfPeriodo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Período'**
+  String get provaPdfPeriodo;
+
+  /// No description provided for @provaPdfMedia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Média por mês'**
+  String get provaPdfMedia;
+
+  /// No description provided for @provaPdfMediaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Soma dos {n} meses, dividida pelos meses.'**
+  String provaPdfMediaAjuda(int n);
+
+  /// No description provided for @provaPdfColunaMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mês'**
+  String get provaPdfColunaMes;
+
+  /// No description provided for @provaPdfColunaValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que entrou'**
+  String get provaPdfColunaValor;
+
+  /// No description provided for @provaPdfTotal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Total do período'**
+  String get provaPdfTotal;
+
+  /// No description provided for @provaPdfOrigem.
+  ///
+  /// In pt, this message translates to:
+  /// **'De onde vem este dinheiro'**
+  String get provaPdfOrigem;
+
+  /// No description provided for @provaPdfFeitaEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Folha feita a {data}.'**
+  String provaPdfFeitaEm(String data);
+
+  /// Rodape do PDF e nota no ecra. E esta frase que impede a folha de se fazer passar por documento oficial — nao se corta nem se abrevia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este documento foi feito pela app Em Dia a partir do que a pessoa registou. Não substitui a declaração de IRS nem uma certidão das Finanças.'**
+  String get provaPdfHonesto;
+
+  /// No description provided for @radarTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fim da fidelização'**
+  String get radarTitulo;
+
+  /// No description provided for @radarAtalho.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fim da fidelização'**
+  String get radarAtalho;
+
+  /// No description provided for @radarAtalhoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vê quando cada contrato te larga e liga a tempo.'**
+  String get radarAtalhoAjuda;
+
+  /// No description provided for @radarExplicacao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fidelização é o tempo em que ficas preso a um contrato (não podes sair sem pagar uma multa). O telemóvel, a internet e o ginásio costumam prender-te 24 meses. Quando esse tempo acaba, a empresa renova sozinha e sobe o preço, sem te dizer nada.'**
+  String get radarExplicacao;
+
+  /// No description provided for @radarOQueFazer.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que fazer: umas duas semanas antes da data, liga à empresa e pede um preço melhor. Se não derem, muda para outra — a partir da data sais quando quiseres e não pagas multa nenhuma.'**
+  String get radarOQueFazer;
+
+  /// No description provided for @radarJanela.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aqui em baixo estão os contratos que acabam nos próximos {dias} dias e os que acabaram há pouco. Os que acabaram ainda dão para negociar.'**
+  String radarJanela(int dias);
+
+  /// No description provided for @radarJanelaSemNumero.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aqui em baixo estão os contratos que estão quase a acabar e os que acabaram há pouco. Os que acabaram ainda dão para negociar.'**
+  String get radarJanelaSemNumero;
+
+  /// No description provided for @radarQuantos.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =1{1 contrato} other{{n} contratos}}'**
+  String radarQuantos(int n);
+
+  /// No description provided for @radarFaltamDias.
+  ///
+  /// In pt, this message translates to:
+  /// **'{dias, plural, =1{Falta 1 dia} other{Faltam {dias} dias}}'**
+  String radarFaltamDias(int dias);
+
+  /// No description provided for @radarAcabaHoje.
+  ///
+  /// In pt, this message translates to:
+  /// **'Acaba hoje'**
+  String get radarAcabaHoje;
+
+  /// No description provided for @radarAcabaAmanha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Acaba amanhã'**
+  String get radarAcabaAmanha;
+
+  /// No description provided for @radarAcabouOntem.
+  ///
+  /// In pt, this message translates to:
+  /// **'Acabou ontem'**
+  String get radarAcabouOntem;
+
+  /// No description provided for @radarAcabouHaDias.
+  ///
+  /// In pt, this message translates to:
+  /// **'{dias, plural, =1{Acabou há 1 dia} other{Acabou há {dias} dias}}'**
+  String radarAcabouHaDias(int dias);
+
+  /// No description provided for @radarAcabaEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Acaba a {data}'**
+  String radarAcabaEm(String data);
+
+  /// No description provided for @radarAcabouEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Acabou a {data}'**
+  String radarAcabouEm(String data);
+
+  /// No description provided for @radarPorMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'{valor} por mês'**
+  String radarPorMes(String valor);
+
+  /// No description provided for @radarSemValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não escreveste o valor'**
+  String get radarSemValor;
+
+  /// No description provided for @radarSemFornecedor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não escreveste a empresa'**
+  String get radarSemFornecedor;
+
+  /// No description provided for @radarLigarAgora.
+  ///
+  /// In pt, this message translates to:
+  /// **'Liga a esta e pede um preço melhor.'**
+  String get radarLigarAgora;
+
+  /// No description provided for @radarVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não me disseste quando acaba nenhum contrato. Vai às tuas contas, abre uma (o telemóvel, a internet, o ginásio) e escreve a data em que a fidelização acaba — está na fatura ou no papel do contrato. A partir daí aviso-te a tempo de negociares.'**
+  String get radarVazio;
+
+  /// No description provided for @radarErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui ir buscar os teus contratos. Tenta outra vez daqui a bocado.'**
+  String get radarErro;
+
+  /// No description provided for @radarCadeado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto é do plano Pro — toca para ver'**
+  String get radarCadeado;
+
+  /// No description provided for @radarCadeadoOQueGanhas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Com o Pro aparece aqui a lista dos teus contratos presos, com a data em que cada um te larga e quantos dias faltam. Aviso-te a tempo de ligares e pedires um preço melhor.'**
+  String get radarCadeadoOQueGanhas;
+
   /// No description provided for @oficioServicos.
   ///
   /// In pt, this message translates to:
@@ -6077,6 +6839,343 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'km'**
   String get sufixoKm;
+
+  /// No description provided for @vpTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vale a pena esta corrida?'**
+  String get vpTitulo;
+
+  /// No description provided for @vpSubtitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve quanto te pagam e quantos quilómetros são. Eu digo-te o que fica mesmo para ti.'**
+  String get vpSubtitulo;
+
+  /// No description provided for @vpACorrida.
+  ///
+  /// In pt, this message translates to:
+  /// **'A corrida'**
+  String get vpACorrida;
+
+  /// No description provided for @vpQuantoPagam.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto te pagam'**
+  String get vpQuantoPagam;
+
+  /// No description provided for @vpQuantoPagamAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'O valor que a aplicação te mostra, antes de te tirarem seja o que for.'**
+  String get vpQuantoPagamAjuda;
+
+  /// No description provided for @vpQuantosKm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quantos quilómetros'**
+  String get vpQuantosKm;
+
+  /// No description provided for @vpKmSufixo.
+  ///
+  /// In pt, this message translates to:
+  /// **'km'**
+  String get vpKmSufixo;
+
+  /// No description provided for @vpQuantosMinutos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quantos minutos demora'**
+  String get vpQuantosMinutos;
+
+  /// No description provided for @vpMinutosAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Só se souberes. Serve para eu te dizer quanto é por hora.'**
+  String get vpMinutosAjuda;
+
+  /// No description provided for @vpMinutosSufixo.
+  ///
+  /// In pt, this message translates to:
+  /// **'min'**
+  String get vpMinutosSufixo;
+
+  /// No description provided for @vpEscreveParaVer.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve quanto te pagam e os quilómetros. A conta aparece aqui.'**
+  String get vpEscreveParaVer;
+
+  /// No description provided for @vpFicaParaTi.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fica para ti'**
+  String get vpFicaParaTi;
+
+  /// No description provided for @vpPorHora.
+  ///
+  /// In pt, this message translates to:
+  /// **'São {valor} por hora'**
+  String vpPorHora(String valor);
+
+  /// No description provided for @vpPorHoraFalta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Diz-me os minutos e eu digo-te quanto é por hora.'**
+  String get vpPorHoraFalta;
+
+  /// No description provided for @vpNivelBem.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta corrida vale a pena.'**
+  String get vpNivelBem;
+
+  /// No description provided for @vpNivelPouco.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dá para ir, mas sobra pouco.'**
+  String get vpNivelPouco;
+
+  /// No description provided for @vpNivelPerde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta corrida tira-te dinheiro do bolso.'**
+  String get vpNivelPerde;
+
+  /// No description provided for @vpParaOndeFoi.
+  ///
+  /// In pt, this message translates to:
+  /// **'Para onde foi o dinheiro'**
+  String get vpParaOndeFoi;
+
+  /// No description provided for @vpPagamTe.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagam-te'**
+  String get vpPagamTe;
+
+  /// No description provided for @vpCombustivel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Combustível'**
+  String get vpCombustivel;
+
+  /// No description provided for @vpEnergia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Energia'**
+  String get vpEnergia;
+
+  /// No description provided for @vpDesgaste.
+  ///
+  /// In pt, this message translates to:
+  /// **'Desgaste do carro'**
+  String get vpDesgaste;
+
+  /// No description provided for @vpSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segurança Social'**
+  String get vpSs;
+
+  /// No description provided for @vpIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'IRS (o imposto sobre o que ganhas)'**
+  String get vpIrs;
+
+  /// No description provided for @vpSsIsentoNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda estás no primeiro ano de atividade: não pagas Segurança Social.'**
+  String get vpSsIsentoNota;
+
+  /// No description provided for @vpIrsRetidoNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'O IRS já te é tirado na hora. Se no fim do ano pagaste a mais, as Finanças devolvem.'**
+  String get vpIrsRetidoNota;
+
+  /// No description provided for @vpIrsEstimadoNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ninguém te tira o IRS na hora. Eu guardo-o aqui, para não te apanhar de surpresa.'**
+  String get vpIrsEstimadoNota;
+
+  /// No description provided for @vpIrsNoMinimoNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não sei quanto vais faturar este ano, por isso contei o IRS mais baixo que pode ser. Se ganhares mais, ele sobe.'**
+  String get vpIrsNoMinimoNota;
+
+  /// No description provided for @vpSemIrsNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Com o que ganhas por ano, ainda não pagas IRS.'**
+  String get vpSemIrsNota;
+
+  /// No description provided for @vpDesgasteNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'O desgaste é um palpite teu, não uma conta certa.'**
+  String get vpDesgasteNota;
+
+  /// No description provided for @vpEstimativa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto é uma estimativa. O IRS certo só se sabe no fim do ano, quando entregas a declaração.'**
+  String get vpEstimativa;
+
+  /// No description provided for @vpImposto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que te tiram na hora'**
+  String get vpImposto;
+
+  /// No description provided for @vpImpostoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Retenção é o que quem te paga guarda para as Finanças. Nas aplicações de viagens e de entregas, quase sempre não te tiram nada.'**
+  String get vpImpostoAjuda;
+
+  /// No description provided for @vpRetencaoTiram.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tiram-me {taxa}'**
+  String vpRetencaoTiram(String taxa);
+
+  /// No description provided for @vpSemRetencao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não me tiram nada'**
+  String get vpSemRetencao;
+
+  /// No description provided for @vpOTeuCarro.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu carro'**
+  String get vpOTeuCarro;
+
+  /// No description provided for @vpConsumo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto gasta aos 100 quilómetros'**
+  String get vpConsumo;
+
+  /// No description provided for @vpConsumoSufixoLitros.
+  ///
+  /// In pt, this message translates to:
+  /// **'L/100 km'**
+  String get vpConsumoSufixoLitros;
+
+  /// No description provided for @vpConsumoSufixoKwh.
+  ///
+  /// In pt, this message translates to:
+  /// **'kWh/100 km'**
+  String get vpConsumoSufixoKwh;
+
+  /// No description provided for @vpConsumoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vem no livrete ou no computador de bordo. Se não souberes, mete o que costumas gastar.'**
+  String get vpConsumoAjuda;
+
+  /// No description provided for @vpPrecoLitro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Preço do litro'**
+  String get vpPrecoLitro;
+
+  /// No description provided for @vpPrecoKwh.
+  ///
+  /// In pt, this message translates to:
+  /// **'Preço do kWh'**
+  String get vpPrecoKwh;
+
+  /// No description provided for @vpPrecoDoAbastecimento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Veio do teu último abastecimento, a {data}.'**
+  String vpPrecoDoAbastecimento(String data);
+
+  /// No description provided for @vpPrecoEscreveTu.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve quanto pagaste da última vez.'**
+  String get vpPrecoEscreveTu;
+
+  /// No description provided for @vpPrecoPorque.
+  ///
+  /// In pt, this message translates to:
+  /// **'Eu não vou buscar preços aos postos: os dados oficiais não podem ser usados numa app como esta. Por isso a conta é feita com o preço que tu pagaste.'**
+  String get vpPrecoPorque;
+
+  /// No description provided for @vpDesgastePorKm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Desgaste por quilómetro'**
+  String get vpDesgastePorKm;
+
+  /// No description provided for @vpDesgasteSufixo.
+  ///
+  /// In pt, this message translates to:
+  /// **'€/km'**
+  String get vpDesgasteSufixo;
+
+  /// No description provided for @vpDesgasteAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pneus, revisões e óleo. Num carro normal andam à volta de 5 cêntimos por quilómetro — é um palpite, muda para o teu.'**
+  String get vpDesgasteAjuda;
+
+  /// Não é uma frase: é o valor que já nasce escrito no campo do desgaste (€/km). Este número NÃO é legal e não existe em regras_legais — é só um ponto de partida para a pessoa mudar.
+  ///
+  /// In pt, this message translates to:
+  /// **'0,05'**
+  String get vpDesgasteSugerido;
+
+  /// No description provided for @vpCadaKmCusta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ao todo, cada quilómetro custa-te {valor}.'**
+  String vpCadaKmCusta(String valor);
+
+  /// No description provided for @vpFaltaPreco.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falta o preço do combustível. Escreve-o aqui em baixo e eu faço a conta.'**
+  String get vpFaltaPreco;
+
+  /// No description provided for @vpFaltaConsumo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falta dizer quanto gasta o teu carro aos 100 quilómetros. Escreve aqui em baixo.'**
+  String get vpFaltaConsumo;
+
+  /// No description provided for @vpFaltaOsDois.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faltam duas coisas do teu carro: quanto gasta aos 100 quilómetros e o preço do combustível. Escreve-as aqui em baixo.'**
+  String get vpFaltaOsDois;
+
+  /// No description provided for @vpFraseConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta corrida paga {pagam}. O que gastas a andar leva {combustivel}. O desgaste do carro leva {desgaste}. A Segurança Social leva {ss}. O IRS leva {irs}. Fica para ti {sobra}.'**
+  String vpFraseConta(
+    String pagam,
+    String combustivel,
+    String desgaste,
+    String ss,
+    String irs,
+    String sobra,
+  );
+
+  /// No description provided for @vpFrasePorHora.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se demorar {minutos} minutos, são {porHora} por hora.'**
+  String vpFrasePorHora(int minutos, String porHora);
 
   /// No description provided for @valorFotoAjuda.
   ///

@@ -3247,6 +3247,263 @@ class AppLocalizationsPt extends AppLocalizations {
       'Estes dois números estão no papel do carro (o certificado de matrícula, o antigo livrete).';
 
   @override
+  String get cofreTitulo => 'O cofre do imposto';
+
+  @override
+  String get cofreSemSessao => 'Entra na app para veres o teu cofre.';
+
+  @override
+  String get cofreNaoMexe =>
+      'Isto não mexe no teu dinheiro. Não há banco, não há transferência, não sai nem entra nada da tua conta. É só um caderno: tu escreves aqui o que já puseste de lado, e eu digo-te quanto devias ter.';
+
+  @override
+  String get cofreTens => 'Tens no cofre';
+
+  @override
+  String get cofreDeviasTerNome => 'Devias ter aqui';
+
+  @override
+  String cofreChega(String valor) {
+    return 'Chega. Sobram-te $valor.';
+  }
+
+  @override
+  String get cofreChegaAjuda =>
+      'Já tens de lado o que o Estado te vai pedir. Deixa esse dinheiro quieto até à altura de pagar.';
+
+  @override
+  String cofreFaltaPouco(String valor) {
+    return 'Falta $valor. Estás quase lá.';
+  }
+
+  @override
+  String get cofreFaltaPoucoAjuda =>
+      'Falta pouco. Da próxima vez que receberes, põe esse bocadinho de lado e ficas em dia.';
+
+  @override
+  String cofreFaltaMuito(String valor) {
+    return 'Faltam $valor.';
+  }
+
+  @override
+  String get cofreFaltaMuitoAjuda =>
+      'Ainda não tens de lado o que o Estado vai pedir. Não é o fim do mundo: começa a guardar um bocado de cada vez que receberes.';
+
+  @override
+  String get cofreSemContas => 'Ainda não sei quanto ganhaste este ano.';
+
+  @override
+  String get cofreSemContasAjuda =>
+      'Escreve o que já recebeste e eu digo-te quanto devias ter de lado para o Estado.';
+
+  @override
+  String get cofreEscreverGanhei => 'Escrever o que ganhei';
+
+  @override
+  String get cofreComoContei => 'Como cheguei a este número';
+
+  @override
+  String get cofreDoAno => 'Ganhaste este ano';
+
+  @override
+  String get cofreParteSs => 'Segurança Social (dá-te reforma e baixa)';
+
+  @override
+  String get cofreParteIrs => 'IRS (o imposto sobre o que ganhas)';
+
+  @override
+  String get cofreParteTotal => 'A parte do Estado';
+
+  @override
+  String cofreIsentoSs(String data) {
+    return 'Estás isento da Segurança Social até $data. Só conto os meses depois disso.';
+  }
+
+  @override
+  String cofreMinimoSs(String valor) {
+    return 'A Segurança Social tem um mínimo de $valor por mês, mesmo que ganhes pouco.';
+  }
+
+  @override
+  String cofreAproximado(String ano) {
+    return 'Os números do IRS de $ano ainda não estão confirmados. Esta conta é aproximada — serve para não seres apanhado de surpresa.';
+  }
+
+  @override
+  String get cofreEstimativa =>
+      'Isto é uma estimativa (uma conta aproximada, feita com o que escreveste). Não é a conta oficial das Finanças.';
+
+  @override
+  String cofreOuvir(String saldo, String devia, String fecho) {
+    return 'Tens $saldo no cofre do imposto. Devias ter $devia. $fecho';
+  }
+
+  @override
+  String get cofreBotaoPor => 'Pus de lado';
+
+  @override
+  String get cofreBotaoTirar => 'Tirei de lá';
+
+  @override
+  String get cofreListaTitulo => 'O que já apontaste';
+
+  @override
+  String get cofreVazio =>
+      'Ainda não apontaste nada. Quando puseres dinheiro de lado, escreve aqui quanto foi.';
+
+  @override
+  String cofreApagarPergunta(String valor, String data) {
+    return 'Apagar $valor de $data?';
+  }
+
+  @override
+  String get cofreApagado => 'Apaguei.';
+
+  @override
+  String get cofreMotivoGuardei => 'Guardei';
+
+  @override
+  String get cofreMotivoGuardeiAjuda => 'Pus dinheiro de lado para o Estado.';
+
+  @override
+  String get cofreMotivoPagueiSs => 'Paguei a Segurança Social';
+
+  @override
+  String get cofreMotivoPagueiSsAjuda =>
+      'Tirei do cofre para pagar o desconto do mês.';
+
+  @override
+  String get cofreMotivoPagueiIrs => 'Paguei o IRS';
+
+  @override
+  String get cofreMotivoPagueiIrsAjuda =>
+      'Tirei do cofre para pagar o imposto.';
+
+  @override
+  String get cofreMotivoPrecisei => 'Precisei';
+
+  @override
+  String get cofreMotivoPreciseiAjuda =>
+      'Tirei do cofre para outra coisa qualquer.';
+
+  @override
+  String get cofreMotivoAcerto => 'Acerto de contas';
+
+  @override
+  String get cofreFolhaPor => 'Pus de lado';
+
+  @override
+  String get cofreFolhaTirar => 'Tirei de lá';
+
+  @override
+  String get cofreQuanto => 'Quanto foi';
+
+  @override
+  String get cofrePorque => 'Porquê?';
+
+  @override
+  String cofreVaiApontarPor(String valor) {
+    return 'Vou apontar que puseste $valor de lado.';
+  }
+
+  @override
+  String cofreVaiApontarTirar(String valor) {
+    return 'Vou apontar que tiraste $valor do cofre.';
+  }
+
+  @override
+  String get cofreTirasMaisDoQueTens =>
+      'Estás a tirar mais do que tens apontado. Não faz mal — só confere o número.';
+
+  @override
+  String get cofreFaltaValor => 'Escreve quanto foi.';
+
+  @override
+  String get cofreErroGuardar => 'Não consegui apontar. Tenta outra vez.';
+
+  @override
+  String get cofreGuardado => 'Apontado.';
+
+  @override
+  String get falaTitulo => 'Fala comigo';
+
+  @override
+  String get falaSubtitulo =>
+      'Não precisas de escrever nada. Carrega no botão, fala como falas com uma pessoa, e eu respondo por escrito e em voz alta.';
+
+  @override
+  String get falaCarregaEFala =>
+      'Carrega no botão e fala. Larga quando acabares.';
+
+  @override
+  String get falaTambemPorToque =>
+      'Se não conseguires manter o dedo em cima, toca uma vez para começar e outra vez para acabar.';
+
+  @override
+  String get falaAOuvir =>
+      'Estou a ouvir-te. Larga o dedo, ou toca outra vez, quando acabares.';
+
+  @override
+  String get falaDizLa => 'Diz lá. Estou à espera.';
+
+  @override
+  String get falaAPensar => 'Já ouvi. Estou a pensar na resposta…';
+
+  @override
+  String get falaBotaoFalar => 'Falar';
+
+  @override
+  String get falaBotaoParar => 'Já acabei de falar';
+
+  @override
+  String get falaPerguntaste => 'Perguntaste-me isto:';
+
+  @override
+  String get falaNaoPercebi =>
+      'Não te consegui ouvir. Tenta outra vez, com o telemóvel mais perto da boca.';
+
+  @override
+  String get falaExemplosTitulo =>
+      'Não sabes o que perguntar? Experimenta uma destas.';
+
+  @override
+  String get falaExemplo1 => 'Quanto tenho de pagar este mês?';
+
+  @override
+  String get falaExemplo2 => 'O que é o IVA?';
+
+  @override
+  String get falaExemplo3 => 'Quando é a inspeção do carro?';
+
+  @override
+  String get falaSemMicrofone =>
+      'Sem o microfone não te consigo ouvir. Podes escrever a pergunta — respondo na mesma.';
+
+  @override
+  String get falaSemMicrofoneComo =>
+      'Se mudares de ideias, dá o microfone ao Em Dia nas definições do telemóvel.';
+
+  @override
+  String get falaSemServico =>
+      'Este telemóvel não traz reconhecimento de voz (o que transforma a fala em letras). Não é nada que tenhas feito. Escreve a pergunta e eu respondo na mesma.';
+
+  @override
+  String get falaPreferoEscrever => 'Prefiro escrever';
+
+  @override
+  String get falaVoltarAFalar => 'Voltar a falar';
+
+  @override
+  String get falaLinguaAproximada =>
+      'O teu telemóvel não tem português para ouvir. Estou a usar a língua que ele tem, por isso posso enganar-me numa palavra ou noutra.';
+
+  @override
+  String get falaCadeado => 'Ativa o Pro para falares com a app.';
+
+  @override
+  String get falaLimite => 'Acabaram as perguntas deste mês.';
+
+  @override
   String get guiaIniSaltar => 'Saltar';
 
   @override
@@ -3423,6 +3680,233 @@ class AppLocalizationsPt extends AppLocalizations {
   String get painelAcaoTudoBotao => 'Escrever o que ganhei';
 
   @override
+  String get provaNav => 'Prova de rendimento';
+
+  @override
+  String get provaTitulo => 'Prova de rendimento';
+
+  @override
+  String get provaSubtitulo =>
+      'A folha que mostras ao senhorio, ao banco ou a quem te pedir prova de quanto ganhas.';
+
+  @override
+  String get provaEscolhePeriodo => 'De quantos meses queres a folha?';
+
+  @override
+  String get provaMeses => 'meses';
+
+  @override
+  String get provaMediaRotulo => 'O que entra por mês';
+
+  @override
+  String provaMediaAjuda(int n) {
+    return 'Somei tudo e dividi por $n meses.';
+  }
+
+  @override
+  String get provaTotalRotulo => 'Tudo junto';
+
+  @override
+  String provaDeAte(String de, String a) {
+    return 'De $de a $a';
+  }
+
+  @override
+  String get provaNomeCampo => 'O teu nome completo';
+
+  @override
+  String get provaNifCampo => 'NIF (o teu número de contribuinte)';
+
+  @override
+  String get provaNifAjuda =>
+      'Podes deixar em branco. Com ele, a folha vale mais no banco.';
+
+  @override
+  String get provaBotaoFazer => 'Fazer a folha';
+
+  @override
+  String get provaFeita =>
+      'Folha pronta. Escolhe onde a queres guardar ou a quem a queres enviar.';
+
+  @override
+  String get provaErro => 'Não consegui fazer a folha. Tenta outra vez.';
+
+  @override
+  String get provaFaltaNome => 'Escreve o teu nome para eu o pôr na folha.';
+
+  @override
+  String get provaFicheiro => 'prova-de-rendimento';
+
+  @override
+  String provaFaltam(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other:
+          'Faltam $n meses de contas para esta folha ficar de pé. Continua a escrever o que ganhas e daqui a pouco está pronta.',
+      one: 'Falta 1 mês de contas para esta folha ficar de pé. Continua a escrever o que ganhas e daqui a pouco está pronta.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get provaVazio =>
+      'Ainda não escreveste nada do que ganhaste. Vai a A minha vida, escreve uma vez, e eu começo a contar.';
+
+  @override
+  String get provaCadeadoLinha =>
+      'Isto é do plano Pro · Ativa o Pro para fazeres a tua prova de rendimento.';
+
+  @override
+  String get provaPdfTitulo => 'Prova de rendimento';
+
+  @override
+  String get provaPdfNome => 'Nome';
+
+  @override
+  String get provaPdfNif => 'NIF (número de contribuinte)';
+
+  @override
+  String get provaPdfPeriodo => 'Período';
+
+  @override
+  String get provaPdfMedia => 'Média por mês';
+
+  @override
+  String provaPdfMediaAjuda(int n) {
+    return 'Soma dos $n meses, dividida pelos meses.';
+  }
+
+  @override
+  String get provaPdfColunaMes => 'Mês';
+
+  @override
+  String get provaPdfColunaValor => 'O que entrou';
+
+  @override
+  String get provaPdfTotal => 'Total do período';
+
+  @override
+  String get provaPdfOrigem => 'De onde vem este dinheiro';
+
+  @override
+  String provaPdfFeitaEm(String data) {
+    return 'Folha feita a $data.';
+  }
+
+  @override
+  String get provaPdfHonesto =>
+      'Este documento foi feito pela app Em Dia a partir do que a pessoa registou. Não substitui a declaração de IRS nem uma certidão das Finanças.';
+
+  @override
+  String get radarTitulo => 'Fim da fidelização';
+
+  @override
+  String get radarAtalho => 'Fim da fidelização';
+
+  @override
+  String get radarAtalhoAjuda =>
+      'Vê quando cada contrato te larga e liga a tempo.';
+
+  @override
+  String get radarExplicacao =>
+      'Fidelização é o tempo em que ficas preso a um contrato (não podes sair sem pagar uma multa). O telemóvel, a internet e o ginásio costumam prender-te 24 meses. Quando esse tempo acaba, a empresa renova sozinha e sobe o preço, sem te dizer nada.';
+
+  @override
+  String get radarOQueFazer =>
+      'O que fazer: umas duas semanas antes da data, liga à empresa e pede um preço melhor. Se não derem, muda para outra — a partir da data sais quando quiseres e não pagas multa nenhuma.';
+
+  @override
+  String radarJanela(int dias) {
+    return 'Aqui em baixo estão os contratos que acabam nos próximos $dias dias e os que acabaram há pouco. Os que acabaram ainda dão para negociar.';
+  }
+
+  @override
+  String get radarJanelaSemNumero =>
+      'Aqui em baixo estão os contratos que estão quase a acabar e os que acabaram há pouco. Os que acabaram ainda dão para negociar.';
+
+  @override
+  String radarQuantos(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n contratos',
+      one: '1 contrato',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String radarFaltamDias(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Faltam $dias dias',
+      one: 'Falta 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get radarAcabaHoje => 'Acaba hoje';
+
+  @override
+  String get radarAcabaAmanha => 'Acaba amanhã';
+
+  @override
+  String get radarAcabouOntem => 'Acabou ontem';
+
+  @override
+  String radarAcabouHaDias(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Acabou há $dias dias',
+      one: 'Acabou há 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String radarAcabaEm(String data) {
+    return 'Acaba a $data';
+  }
+
+  @override
+  String radarAcabouEm(String data) {
+    return 'Acabou a $data';
+  }
+
+  @override
+  String radarPorMes(String valor) {
+    return '$valor por mês';
+  }
+
+  @override
+  String get radarSemValor => 'Não escreveste o valor';
+
+  @override
+  String get radarSemFornecedor => 'Não escreveste a empresa';
+
+  @override
+  String get radarLigarAgora => 'Liga a esta e pede um preço melhor.';
+
+  @override
+  String get radarVazio =>
+      'Ainda não me disseste quando acaba nenhum contrato. Vai às tuas contas, abre uma (o telemóvel, a internet, o ginásio) e escreve a data em que a fidelização acaba — está na fatura ou no papel do contrato. A partir daí aviso-te a tempo de negociares.';
+
+  @override
+  String get radarErro =>
+      'Não consegui ir buscar os teus contratos. Tenta outra vez daqui a bocado.';
+
+  @override
+  String get radarCadeado => 'Isto é do plano Pro — toca para ver';
+
+  @override
+  String get radarCadeadoOQueGanhas =>
+      'Com o Pro aparece aqui a lista dos teus contratos presos, com a data em que cada um te larga e quantos dias faltam. Aviso-te a tempo de ligares e pedires um preço melhor.';
+
+  @override
   String get oficioServicos => 'Serviços (cabelo, unhas, limpeza…)';
 
   @override
@@ -3546,6 +4030,208 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get sufixoKm => 'km';
+
+  @override
+  String get vpTitulo => 'Vale a pena esta corrida?';
+
+  @override
+  String get vpSubtitulo =>
+      'Escreve quanto te pagam e quantos quilómetros são. Eu digo-te o que fica mesmo para ti.';
+
+  @override
+  String get vpACorrida => 'A corrida';
+
+  @override
+  String get vpQuantoPagam => 'Quanto te pagam';
+
+  @override
+  String get vpQuantoPagamAjuda =>
+      'O valor que a aplicação te mostra, antes de te tirarem seja o que for.';
+
+  @override
+  String get vpQuantosKm => 'Quantos quilómetros';
+
+  @override
+  String get vpKmSufixo => 'km';
+
+  @override
+  String get vpQuantosMinutos => 'Quantos minutos demora';
+
+  @override
+  String get vpMinutosAjuda =>
+      'Só se souberes. Serve para eu te dizer quanto é por hora.';
+
+  @override
+  String get vpMinutosSufixo => 'min';
+
+  @override
+  String get vpEscreveParaVer =>
+      'Escreve quanto te pagam e os quilómetros. A conta aparece aqui.';
+
+  @override
+  String get vpFicaParaTi => 'Fica para ti';
+
+  @override
+  String vpPorHora(String valor) {
+    return 'São $valor por hora';
+  }
+
+  @override
+  String get vpPorHoraFalta =>
+      'Diz-me os minutos e eu digo-te quanto é por hora.';
+
+  @override
+  String get vpNivelBem => 'Esta corrida vale a pena.';
+
+  @override
+  String get vpNivelPouco => 'Dá para ir, mas sobra pouco.';
+
+  @override
+  String get vpNivelPerde => 'Esta corrida tira-te dinheiro do bolso.';
+
+  @override
+  String get vpParaOndeFoi => 'Para onde foi o dinheiro';
+
+  @override
+  String get vpPagamTe => 'Pagam-te';
+
+  @override
+  String get vpCombustivel => 'Combustível';
+
+  @override
+  String get vpEnergia => 'Energia';
+
+  @override
+  String get vpDesgaste => 'Desgaste do carro';
+
+  @override
+  String get vpSs => 'Segurança Social';
+
+  @override
+  String get vpIrs => 'IRS (o imposto sobre o que ganhas)';
+
+  @override
+  String get vpSsIsentoNota =>
+      'Ainda estás no primeiro ano de atividade: não pagas Segurança Social.';
+
+  @override
+  String get vpIrsRetidoNota =>
+      'O IRS já te é tirado na hora. Se no fim do ano pagaste a mais, as Finanças devolvem.';
+
+  @override
+  String get vpIrsEstimadoNota =>
+      'Ninguém te tira o IRS na hora. Eu guardo-o aqui, para não te apanhar de surpresa.';
+
+  @override
+  String get vpIrsNoMinimoNota =>
+      'Não sei quanto vais faturar este ano, por isso contei o IRS mais baixo que pode ser. Se ganhares mais, ele sobe.';
+
+  @override
+  String get vpSemIrsNota => 'Com o que ganhas por ano, ainda não pagas IRS.';
+
+  @override
+  String get vpDesgasteNota =>
+      'O desgaste é um palpite teu, não uma conta certa.';
+
+  @override
+  String get vpEstimativa =>
+      'Isto é uma estimativa. O IRS certo só se sabe no fim do ano, quando entregas a declaração.';
+
+  @override
+  String get vpImposto => 'O que te tiram na hora';
+
+  @override
+  String get vpImpostoAjuda =>
+      'Retenção é o que quem te paga guarda para as Finanças. Nas aplicações de viagens e de entregas, quase sempre não te tiram nada.';
+
+  @override
+  String vpRetencaoTiram(String taxa) {
+    return 'Tiram-me $taxa';
+  }
+
+  @override
+  String get vpSemRetencao => 'Não me tiram nada';
+
+  @override
+  String get vpOTeuCarro => 'O teu carro';
+
+  @override
+  String get vpConsumo => 'Quanto gasta aos 100 quilómetros';
+
+  @override
+  String get vpConsumoSufixoLitros => 'L/100 km';
+
+  @override
+  String get vpConsumoSufixoKwh => 'kWh/100 km';
+
+  @override
+  String get vpConsumoAjuda =>
+      'Vem no livrete ou no computador de bordo. Se não souberes, mete o que costumas gastar.';
+
+  @override
+  String get vpPrecoLitro => 'Preço do litro';
+
+  @override
+  String get vpPrecoKwh => 'Preço do kWh';
+
+  @override
+  String vpPrecoDoAbastecimento(String data) {
+    return 'Veio do teu último abastecimento, a $data.';
+  }
+
+  @override
+  String get vpPrecoEscreveTu => 'Escreve quanto pagaste da última vez.';
+
+  @override
+  String get vpPrecoPorque =>
+      'Eu não vou buscar preços aos postos: os dados oficiais não podem ser usados numa app como esta. Por isso a conta é feita com o preço que tu pagaste.';
+
+  @override
+  String get vpDesgastePorKm => 'Desgaste por quilómetro';
+
+  @override
+  String get vpDesgasteSufixo => '€/km';
+
+  @override
+  String get vpDesgasteAjuda =>
+      'Pneus, revisões e óleo. Num carro normal andam à volta de 5 cêntimos por quilómetro — é um palpite, muda para o teu.';
+
+  @override
+  String get vpDesgasteSugerido => '0,05';
+
+  @override
+  String vpCadaKmCusta(String valor) {
+    return 'Ao todo, cada quilómetro custa-te $valor.';
+  }
+
+  @override
+  String get vpFaltaPreco =>
+      'Falta o preço do combustível. Escreve-o aqui em baixo e eu faço a conta.';
+
+  @override
+  String get vpFaltaConsumo =>
+      'Falta dizer quanto gasta o teu carro aos 100 quilómetros. Escreve aqui em baixo.';
+
+  @override
+  String get vpFaltaOsDois =>
+      'Faltam duas coisas do teu carro: quanto gasta aos 100 quilómetros e o preço do combustível. Escreve-as aqui em baixo.';
+
+  @override
+  String vpFraseConta(
+    String pagam,
+    String combustivel,
+    String desgaste,
+    String ss,
+    String irs,
+    String sobra,
+  ) {
+    return 'Esta corrida paga $pagam. O que gastas a andar leva $combustivel. O desgaste do carro leva $desgaste. A Segurança Social leva $ss. O IRS leva $irs. Fica para ti $sobra.';
+  }
+
+  @override
+  String vpFrasePorHora(int minutos, String porHora) {
+    return 'Se demorar $minutos minutos, são $porHora por hora.';
+  }
 
   @override
   String get valorFotoAjuda => 'Fotografa a fatura ou o talão e eu preencho';
@@ -7522,6 +8208,262 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
       'Estes dois números estão no documento do carro (o certificado de matrícula).';
 
   @override
+  String get cofreTitulo => 'O cofre do imposto';
+
+  @override
+  String get cofreSemSessao => 'Entre no app para ver o seu cofre.';
+
+  @override
+  String get cofreNaoMexe =>
+      'Isto não mexe no seu dinheiro. Não tem banco, não tem transferência, não sai nem entra nada da sua conta. É só um caderno: você escreve aqui o que já separou, e eu digo quanto você devia ter.';
+
+  @override
+  String get cofreTens => 'Você tem no cofre';
+
+  @override
+  String get cofreDeviasTerNome => 'Devia ter aqui';
+
+  @override
+  String cofreChega(String valor) {
+    return 'Dá certo. Sobra $valor para você.';
+  }
+
+  @override
+  String get cofreChegaAjuda =>
+      'Você já separou o que o Estado vai pedir. Deixe esse dinheiro quieto até a hora de pagar.';
+
+  @override
+  String cofreFaltaPouco(String valor) {
+    return 'Falta $valor. Você está quase lá.';
+  }
+
+  @override
+  String get cofreFaltaPoucoAjuda =>
+      'Falta pouco. Da próxima vez que receber, separe esse pedacinho e você fica em dia.';
+
+  @override
+  String cofreFaltaMuito(String valor) {
+    return 'Faltam $valor.';
+  }
+
+  @override
+  String get cofreFaltaMuitoAjuda =>
+      'Você ainda não separou o que o Estado vai pedir. Não é o fim do mundo: comece a guardar um pouco cada vez que receber.';
+
+  @override
+  String get cofreSemContas => 'Ainda não sei quanto você ganhou este ano.';
+
+  @override
+  String get cofreSemContasAjuda =>
+      'Escreva o que já recebeu e eu digo quanto você devia ter separado para o Estado.';
+
+  @override
+  String get cofreEscreverGanhei => 'Escrever o que ganhei';
+
+  @override
+  String get cofreComoContei => 'Como cheguei nesse número';
+
+  @override
+  String get cofreDoAno => 'Você ganhou este ano';
+
+  @override
+  String get cofreParteSs => 'Segurança Social (dá aposentadoria e auxílio)';
+
+  @override
+  String get cofreParteIrs => 'IRS (o imposto sobre o que você ganha)';
+
+  @override
+  String get cofreParteTotal => 'A parte do Estado';
+
+  @override
+  String cofreIsentoSs(String data) {
+    return 'Você está isento da Segurança Social até $data. Só conto os meses depois disso.';
+  }
+
+  @override
+  String cofreMinimoSs(String valor) {
+    return 'A Segurança Social tem um mínimo de $valor por mês, mesmo que você ganhe pouco.';
+  }
+
+  @override
+  String cofreAproximado(String ano) {
+    return 'Os números do IRS de $ano ainda não estão confirmados. Esta conta é aproximada — serve para você não ser pego de surpresa.';
+  }
+
+  @override
+  String get cofreEstimativa =>
+      'Isto é uma estimativa (uma conta aproximada, feita com o que você escreveu). Não é a conta oficial das Finanças.';
+
+  @override
+  String cofreOuvir(String saldo, String devia, String fecho) {
+    return 'Você tem $saldo no cofre do imposto. Devia ter $devia. $fecho';
+  }
+
+  @override
+  String get cofreBotaoPor => 'Separei';
+
+  @override
+  String get cofreBotaoTirar => 'Tirei de lá';
+
+  @override
+  String get cofreListaTitulo => 'O que você já anotou';
+
+  @override
+  String get cofreVazio =>
+      'Você ainda não anotou nada. Quando separar dinheiro, escreva aqui quanto foi.';
+
+  @override
+  String cofreApagarPergunta(String valor, String data) {
+    return 'Apagar $valor de $data?';
+  }
+
+  @override
+  String get cofreApagado => 'Apaguei.';
+
+  @override
+  String get cofreMotivoGuardei => 'Guardei';
+
+  @override
+  String get cofreMotivoGuardeiAjuda => 'Separei dinheiro para o Estado.';
+
+  @override
+  String get cofreMotivoPagueiSs => 'Paguei a Segurança Social';
+
+  @override
+  String get cofreMotivoPagueiSsAjuda =>
+      'Tirei do cofre para pagar o desconto do mês.';
+
+  @override
+  String get cofreMotivoPagueiIrs => 'Paguei o IRS';
+
+  @override
+  String get cofreMotivoPagueiIrsAjuda =>
+      'Tirei do cofre para pagar o imposto.';
+
+  @override
+  String get cofreMotivoPrecisei => 'Precisei';
+
+  @override
+  String get cofreMotivoPreciseiAjuda => 'Tirei do cofre para outra coisa.';
+
+  @override
+  String get cofreMotivoAcerto => 'Acerto de contas';
+
+  @override
+  String get cofreFolhaPor => 'Separei';
+
+  @override
+  String get cofreFolhaTirar => 'Tirei de lá';
+
+  @override
+  String get cofreQuanto => 'Quanto foi';
+
+  @override
+  String get cofrePorque => 'Por quê?';
+
+  @override
+  String cofreVaiApontarPor(String valor) {
+    return 'Vou anotar que você separou $valor.';
+  }
+
+  @override
+  String cofreVaiApontarTirar(String valor) {
+    return 'Vou anotar que você tirou $valor do cofre.';
+  }
+
+  @override
+  String get cofreTirasMaisDoQueTens =>
+      'Você está tirando mais do que anotou. Não tem problema — só confira o número.';
+
+  @override
+  String get cofreFaltaValor => 'Escreva quanto foi.';
+
+  @override
+  String get cofreErroGuardar => 'Não consegui anotar. Tente outra vez.';
+
+  @override
+  String get cofreGuardado => 'Anotado.';
+
+  @override
+  String get falaTitulo => 'Fala comigo';
+
+  @override
+  String get falaSubtitulo =>
+      'Você não precisa escrever nada. Aperte o botão, fale como fala com uma pessoa, e eu respondo por escrito e em voz alta.';
+
+  @override
+  String get falaCarregaEFala =>
+      'Aperte o botão e fale. Solte quando terminar.';
+
+  @override
+  String get falaTambemPorToque =>
+      'Se você não conseguir segurar o dedo em cima, toque uma vez para começar e outra vez para terminar.';
+
+  @override
+  String get falaAOuvir =>
+      'Estou ouvindo você. Solte o dedo, ou toque de novo, quando terminar.';
+
+  @override
+  String get falaDizLa => 'Pode falar. Estou esperando.';
+
+  @override
+  String get falaAPensar => 'Já ouvi. Estou pensando na resposta…';
+
+  @override
+  String get falaBotaoFalar => 'Falar';
+
+  @override
+  String get falaBotaoParar => 'Já terminei de falar';
+
+  @override
+  String get falaPerguntaste => 'Você me perguntou isto:';
+
+  @override
+  String get falaNaoPercebi =>
+      'Não consegui ouvir você. Tente de novo, com o celular mais perto da boca.';
+
+  @override
+  String get falaExemplosTitulo =>
+      'Não sabe o que perguntar? Experimente uma destas.';
+
+  @override
+  String get falaExemplo1 => 'Quanto eu tenho que pagar este mês?';
+
+  @override
+  String get falaExemplo2 => 'O que é o IVA?';
+
+  @override
+  String get falaExemplo3 => 'Quando é a inspeção do carro?';
+
+  @override
+  String get falaSemMicrofone =>
+      'Sem o microfone eu não consigo ouvir você. Pode escrever a pergunta — respondo do mesmo jeito.';
+
+  @override
+  String get falaSemMicrofoneComo =>
+      'Se mudar de ideia, libere o microfone para o Em Dia nas configurações do celular.';
+
+  @override
+  String get falaSemServico =>
+      'Este celular não tem reconhecimento de voz (o que transforma a fala em letras). Não foi nada que você fez. Escreva a pergunta e eu respondo do mesmo jeito.';
+
+  @override
+  String get falaPreferoEscrever => 'Prefiro escrever';
+
+  @override
+  String get falaVoltarAFalar => 'Voltar a falar';
+
+  @override
+  String get falaLinguaAproximada =>
+      'Seu celular não tem português para ouvir. Estou usando a língua que ele tem, então posso errar uma palavra ou outra.';
+
+  @override
+  String get falaCadeado => 'Ative o Pro para falar com o app.';
+
+  @override
+  String get falaLimite => 'Acabaram as perguntas deste mês.';
+
+  @override
   String get guiaIniSaltar => 'Pular';
 
   @override
@@ -7698,6 +8640,234 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get painelAcaoTudoBotao => 'Escrever o que ganhei';
 
   @override
+  String get provaNav => 'Comprovante de renda';
+
+  @override
+  String get provaTitulo => 'Comprovante de renda';
+
+  @override
+  String get provaSubtitulo =>
+      'A folha que você mostra para o senhorio, para o banco ou para quem pedir prova de quanto você ganha.';
+
+  @override
+  String get provaEscolhePeriodo => 'De quantos meses você quer a folha?';
+
+  @override
+  String get provaMeses => 'meses';
+
+  @override
+  String get provaMediaRotulo => 'O que entra por mês';
+
+  @override
+  String provaMediaAjuda(int n) {
+    return 'Somei tudo e dividi por $n meses.';
+  }
+
+  @override
+  String get provaTotalRotulo => 'Tudo junto';
+
+  @override
+  String provaDeAte(String de, String a) {
+    return 'De $de a $a';
+  }
+
+  @override
+  String get provaNomeCampo => 'O seu nome completo';
+
+  @override
+  String get provaNifCampo =>
+      'NIF (o seu número de contribuinte português, como o CPF)';
+
+  @override
+  String get provaNifAjuda =>
+      'Pode deixar em branco. Com ele, a folha vale mais no banco.';
+
+  @override
+  String get provaBotaoFazer => 'Fazer a folha';
+
+  @override
+  String get provaFeita =>
+      'Folha pronta. Escolha onde guardar ou para quem enviar.';
+
+  @override
+  String get provaErro => 'Não consegui fazer a folha. Tente de novo.';
+
+  @override
+  String get provaFaltaNome => 'Escreva o seu nome para eu colocar na folha.';
+
+  @override
+  String get provaFicheiro => 'comprovante-de-renda';
+
+  @override
+  String provaFaltam(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other:
+          'Faltam $n meses de contas para essa folha ficar de pé. Continue escrevendo o que você ganha e logo ela fica pronta.',
+      one: 'Falta 1 mês de contas para essa folha ficar de pé. Continue escrevendo o que você ganha e logo ela fica pronta.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get provaVazio =>
+      'Você ainda não escreveu nada do que ganhou. Vá em Minha vida, escreva uma vez, e eu começo a contar.';
+
+  @override
+  String get provaCadeadoLinha =>
+      'Isso é do plano Pro · Ative o Pro para fazer o seu comprovante de renda.';
+
+  @override
+  String get provaPdfTitulo => 'Comprovante de renda';
+
+  @override
+  String get provaPdfNome => 'Nome';
+
+  @override
+  String get provaPdfNif => 'NIF (número de contribuinte)';
+
+  @override
+  String get provaPdfPeriodo => 'Período';
+
+  @override
+  String get provaPdfMedia => 'Média por mês';
+
+  @override
+  String provaPdfMediaAjuda(int n) {
+    return 'Soma dos $n meses, dividida pelos meses.';
+  }
+
+  @override
+  String get provaPdfColunaMes => 'Mês';
+
+  @override
+  String get provaPdfColunaValor => 'O que entrou';
+
+  @override
+  String get provaPdfTotal => 'Total do período';
+
+  @override
+  String get provaPdfOrigem => 'De onde vem esse dinheiro';
+
+  @override
+  String provaPdfFeitaEm(String data) {
+    return 'Folha feita em $data.';
+  }
+
+  @override
+  String get provaPdfHonesto =>
+      'Este documento foi feito pelo app Em Dia a partir do que a pessoa registrou. Não substitui a declaração de IRS nem uma certidão das Finanças.';
+
+  @override
+  String get radarTitulo => 'Fim da fidelidade';
+
+  @override
+  String get radarAtalho => 'Fim da fidelidade';
+
+  @override
+  String get radarAtalhoAjuda =>
+      'Veja quando cada contrato solta você e ligue a tempo.';
+
+  @override
+  String get radarExplicacao =>
+      'Fidelidade é o tempo em que você fica preso a um contrato (não dá para sair sem pagar multa). O celular, a internet e a academia costumam prender por 24 meses. Quando esse tempo acaba, a empresa renova sozinha e sobe o preço, sem avisar ninguém.';
+
+  @override
+  String get radarOQueFazer =>
+      'O que fazer: umas duas semanas antes da data, ligue para a empresa e peça um preço melhor. Se não derem, mude para outra — a partir da data você sai quando quiser e não paga multa nenhuma.';
+
+  @override
+  String radarJanela(int dias) {
+    return 'Aqui embaixo estão os contratos que acabam nos próximos $dias dias e os que acabaram faz pouco tempo. Os que acabaram ainda dá para negociar.';
+  }
+
+  @override
+  String get radarJanelaSemNumero =>
+      'Aqui embaixo estão os contratos que estão quase acabando e os que acabaram faz pouco tempo. Os que acabaram ainda dá para negociar.';
+
+  @override
+  String radarQuantos(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n contratos',
+      one: '1 contrato',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String radarFaltamDias(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Faltam $dias dias',
+      one: 'Falta 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get radarAcabaHoje => 'Acaba hoje';
+
+  @override
+  String get radarAcabaAmanha => 'Acaba amanhã';
+
+  @override
+  String get radarAcabouOntem => 'Acabou ontem';
+
+  @override
+  String radarAcabouHaDias(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Acabou faz $dias dias',
+      one: 'Acabou faz 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String radarAcabaEm(String data) {
+    return 'Acaba em $data';
+  }
+
+  @override
+  String radarAcabouEm(String data) {
+    return 'Acabou em $data';
+  }
+
+  @override
+  String radarPorMes(String valor) {
+    return '$valor por mês';
+  }
+
+  @override
+  String get radarSemValor => 'Você não escreveu o valor';
+
+  @override
+  String get radarSemFornecedor => 'Você não escreveu a empresa';
+
+  @override
+  String get radarLigarAgora => 'Ligue para esta e peça um preço melhor.';
+
+  @override
+  String get radarVazio =>
+      'Você ainda não me disse quando acaba nenhum contrato. Vá nas suas contas, abra uma (o celular, a internet, a academia) e escreva a data em que a fidelidade acaba — está na fatura ou no papel do contrato. A partir daí eu aviso você a tempo de negociar.';
+
+  @override
+  String get radarErro =>
+      'Não consegui buscar os seus contratos. Tente de novo daqui a pouco.';
+
+  @override
+  String get radarCadeado => 'Isso é do plano Pro — toque para ver';
+
+  @override
+  String get radarCadeadoOQueGanhas =>
+      'Com o Pro aparece aqui a lista dos seus contratos presos, com a data em que cada um solta você e quantos dias faltam. Eu aviso a tempo de você ligar e pedir um preço melhor.';
+
+  @override
   String get oficioServicos => 'Serviços (cabelo, unhas, limpeza…)';
 
   @override
@@ -7821,6 +8991,208 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get sufixoKm => 'km';
+
+  @override
+  String get vpTitulo => 'Vale a pena esta corrida?';
+
+  @override
+  String get vpSubtitulo =>
+      'Escreva quanto pagam a você e quantos quilômetros são. Eu digo o que sobra mesmo para você.';
+
+  @override
+  String get vpACorrida => 'A corrida';
+
+  @override
+  String get vpQuantoPagam => 'Quanto pagam a você';
+
+  @override
+  String get vpQuantoPagamAjuda =>
+      'O valor que o aplicativo mostra, antes de tirarem qualquer coisa.';
+
+  @override
+  String get vpQuantosKm => 'Quantos quilômetros';
+
+  @override
+  String get vpKmSufixo => 'km';
+
+  @override
+  String get vpQuantosMinutos => 'Quantos minutos demora';
+
+  @override
+  String get vpMinutosAjuda =>
+      'Só se você souber. Serve para eu dizer quanto é por hora.';
+
+  @override
+  String get vpMinutosSufixo => 'min';
+
+  @override
+  String get vpEscreveParaVer =>
+      'Escreva quanto pagam e os quilômetros. A conta aparece aqui.';
+
+  @override
+  String get vpFicaParaTi => 'Fica para você';
+
+  @override
+  String vpPorHora(String valor) {
+    return 'São $valor por hora';
+  }
+
+  @override
+  String get vpPorHoraFalta => 'Diga os minutos e eu digo quanto é por hora.';
+
+  @override
+  String get vpNivelBem => 'Esta corrida vale a pena.';
+
+  @override
+  String get vpNivelPouco => 'Dá para ir, mas sobra pouco.';
+
+  @override
+  String get vpNivelPerde => 'Esta corrida tira dinheiro do seu bolso.';
+
+  @override
+  String get vpParaOndeFoi => 'Para onde foi o dinheiro';
+
+  @override
+  String get vpPagamTe => 'Pagam a você';
+
+  @override
+  String get vpCombustivel => 'Combustível';
+
+  @override
+  String get vpEnergia => 'Energia';
+
+  @override
+  String get vpDesgaste => 'Desgaste do carro';
+
+  @override
+  String get vpSs => 'Segurança Social';
+
+  @override
+  String get vpIrs => 'IRS (o imposto sobre o que você ganha)';
+
+  @override
+  String get vpSsIsentoNota =>
+      'Você ainda está no primeiro ano de atividade: não paga Segurança Social.';
+
+  @override
+  String get vpIrsRetidoNota =>
+      'O IRS já é tirado na hora. Se no fim do ano você pagou a mais, as Finanças devolvem.';
+
+  @override
+  String get vpIrsEstimadoNota =>
+      'Ninguém tira o IRS na hora. Eu guardo ele aqui, para não pegar você de surpresa.';
+
+  @override
+  String get vpIrsNoMinimoNota =>
+      'Não sei quanto você vai faturar este ano, por isso contei o IRS mais baixo que pode ser. Se ganhar mais, ele sobe.';
+
+  @override
+  String get vpSemIrsNota =>
+      'Com o que você ganha por ano, ainda não paga IRS.';
+
+  @override
+  String get vpDesgasteNota =>
+      'O desgaste é um palpite seu, não uma conta certa.';
+
+  @override
+  String get vpEstimativa =>
+      'Isto é uma estimativa. O IRS certo só se sabe no fim do ano, quando você entrega a declaração.';
+
+  @override
+  String get vpImposto => 'O que tiram de você na hora';
+
+  @override
+  String get vpImpostoAjuda =>
+      'Retenção é o que quem paga a você guarda para as Finanças. Nos aplicativos de viagens e de entregas, quase sempre não tiram nada.';
+
+  @override
+  String vpRetencaoTiram(String taxa) {
+    return 'Tiram $taxa';
+  }
+
+  @override
+  String get vpSemRetencao => 'Não tiram nada';
+
+  @override
+  String get vpOTeuCarro => 'O seu carro';
+
+  @override
+  String get vpConsumo => 'Quanto gasta a cada 100 quilômetros';
+
+  @override
+  String get vpConsumoSufixoLitros => 'L/100 km';
+
+  @override
+  String get vpConsumoSufixoKwh => 'kWh/100 km';
+
+  @override
+  String get vpConsumoAjuda =>
+      'Vem no documento do carro ou no computador de bordo. Se não souber, coloque o que costuma gastar.';
+
+  @override
+  String get vpPrecoLitro => 'Preço do litro';
+
+  @override
+  String get vpPrecoKwh => 'Preço do kWh';
+
+  @override
+  String vpPrecoDoAbastecimento(String data) {
+    return 'Veio do seu último abastecimento, em $data.';
+  }
+
+  @override
+  String get vpPrecoEscreveTu => 'Escreva quanto você pagou da última vez.';
+
+  @override
+  String get vpPrecoPorque =>
+      'Eu não busco preços nos postos: os dados oficiais não podem ser usados num app como este. Por isso a conta é feita com o preço que você pagou.';
+
+  @override
+  String get vpDesgastePorKm => 'Desgaste por quilômetro';
+
+  @override
+  String get vpDesgasteSufixo => '€/km';
+
+  @override
+  String get vpDesgasteAjuda =>
+      'Pneus, revisões e óleo. Num carro normal ficam perto de 5 cêntimos por quilômetro — é um palpite, mude para o seu.';
+
+  @override
+  String get vpDesgasteSugerido => '0,05';
+
+  @override
+  String vpCadaKmCusta(String valor) {
+    return 'No total, cada quilômetro custa $valor.';
+  }
+
+  @override
+  String get vpFaltaPreco =>
+      'Falta o preço do combustível. Escreva aqui embaixo e eu faço a conta.';
+
+  @override
+  String get vpFaltaConsumo =>
+      'Falta dizer quanto o seu carro gasta a cada 100 quilômetros. Escreva aqui embaixo.';
+
+  @override
+  String get vpFaltaOsDois =>
+      'Faltam duas coisas do seu carro: quanto gasta a cada 100 quilômetros e o preço do combustível. Escreva aqui embaixo.';
+
+  @override
+  String vpFraseConta(
+    String pagam,
+    String combustivel,
+    String desgaste,
+    String ss,
+    String irs,
+    String sobra,
+  ) {
+    return 'Esta corrida paga $pagam. O que você gasta andando leva $combustivel. O desgaste do carro leva $desgaste. A Segurança Social leva $ss. O IRS leva $irs. Fica para você $sobra.';
+  }
+
+  @override
+  String vpFrasePorHora(int minutos, String porHora) {
+    return 'Se demorar $minutos minutos, são $porHora por hora.';
+  }
 
   @override
   String get valorFotoAjuda => 'Fotografe a fatura ou o cupom e eu preencho';
