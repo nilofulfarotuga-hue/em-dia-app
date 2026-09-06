@@ -93,3 +93,16 @@ pessoa num Chrome. Por isso:
    `test.emdia`, `usuario2026` → apanhados; `joao.silva`, `maria.ferreira`,
    `testa.silva`, `testemunha.silva`, `carlos.teste`, `revisor.google` → passam.
 3. A conta `testuser12345@gmail.com` (7b5af669…, nunca confirmada) foi apagada.
+
+### A porta dos robôs, provada na app publicada (21h58)
+
+WebKit do Playwright contra `app-em-dia.pages.dev` (build `e65cbeb`):
+
+| Quem se apresenta | O que carrega |
+|---|---|
+| `Googlebot/2.1` | **Só a frase** "Esta é a aplicação, só para pessoas…" com o link do site — sem `flutter_bootstrap.js`, sem Flutter |
+| Chrome/Android normal (sem `navigator.webdriver`) | A app (`flutter-view` presente, `flutter_bootstrap.js` carregado) |
+
+Um browser automático com `navigator.webdriver` também fica na frase; por isso o
+gravador `tool/provas/gravar_entrada.py` passou a apresentar-se como pessoa
+(só para gravar o percurso de uma).

@@ -105,6 +105,10 @@ def main():
         ctx = browser.new_context(viewport={"width": 412, "height": 915}, device_scale_factor=1,
                                   record_video_dir=a.video, record_video_size={"width": 412, "height": 915},
                                   locale="pt-PT")
+        # A porta dos robôs em web/index.html não carrega a app quando
+        # `navigator.webdriver` é verdadeiro — e no Playwright é. Este script
+        # grava o percurso de uma pessoa, por isso apresenta-se como uma.
+        ctx.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => false})")
         page = ctx.new_page()
         page.on("console", lambda m: print("  consola:", m.text[:160]) if m.type in ("error", "warning") else None)
         page.goto(URL, wait_until="load", timeout=90000)
