@@ -1,0 +1,17 @@
+{
+  "@@locale": "pt_BR",
+  "valorFotoAjuda": "Fotografe a fatura ou o cupom e eu preencho",
+  "valorFotoTirar": "Tirar foto agora",
+  "valorFotoGaleria": "Escolher uma foto que já tenho",
+  "valorFotoConfere": "Li o que deu, mas confira os números antes de salvar.",
+  "valorFotoCadeado": "Você já usou as leituras por foto deste mês. Escreva o valor à mão.",
+  "valorFotoIndisponivel": "A leitura por foto está fora do ar. Escreva o valor à mão.",
+  "valorFotoGrande": "A foto é grande demais. Tire outra um pouco mais longe.",
+  "valorFotoNaoLi": "Não consegui ler. Escreva o valor à mão — é mais rápido do que outra foto.",
+  "refTitulo": "PAGAR NO MULTIBANCO",
+  "refEntidade": "Entidade",
+  "refReferencia": "Referência",
+  "refValor": "Valor",
+  "refCopiar": "Copiar",
+  "refCopiado": "Copiado. Cole no multibanco ou no app do banco."
+}

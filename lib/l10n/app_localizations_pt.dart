@@ -3438,6 +3438,53 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get sufixoKm => 'km';
+
+  @override
+  String get valorFotoAjuda => 'Fotografa a fatura ou o talão e eu preencho';
+
+  @override
+  String get valorFotoTirar => 'Tirar foto agora';
+
+  @override
+  String get valorFotoGaleria => 'Escolher uma foto que já tenho';
+
+  @override
+  String get valorFotoConfere =>
+      'Li o que consegui, mas confere os números antes de guardar.';
+
+  @override
+  String get valorFotoCadeado =>
+      'Já usaste as leituras por foto deste mês. Escreve o valor à mão.';
+
+  @override
+  String get valorFotoIndisponivel =>
+      'A leitura por foto está em baixo. Escreve o valor à mão.';
+
+  @override
+  String get valorFotoGrande =>
+      'A foto é grande demais. Tira outra um pouco mais longe.';
+
+  @override
+  String get valorFotoNaoLi =>
+      'Não consegui ler. Escreve o valor à mão — é mais rápido do que outra foto.';
+
+  @override
+  String get refTitulo => 'PAGAR NO MULTIBANCO';
+
+  @override
+  String get refEntidade => 'Entidade';
+
+  @override
+  String get refReferencia => 'Referência';
+
+  @override
+  String get refValor => 'Valor';
+
+  @override
+  String get refCopiar => 'Copiar';
+
+  @override
+  String get refCopiado => 'Copiado. Cola no multibanco ou na app do banco.';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -6876,4 +6923,51 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get sufixoKm => 'km';
+
+  @override
+  String get valorFotoAjuda => 'Fotografe a fatura ou o cupom e eu preencho';
+
+  @override
+  String get valorFotoTirar => 'Tirar foto agora';
+
+  @override
+  String get valorFotoGaleria => 'Escolher uma foto que já tenho';
+
+  @override
+  String get valorFotoConfere =>
+      'Li o que deu, mas confira os números antes de salvar.';
+
+  @override
+  String get valorFotoCadeado =>
+      'Você já usou as leituras por foto deste mês. Escreva o valor à mão.';
+
+  @override
+  String get valorFotoIndisponivel =>
+      'A leitura por foto está fora do ar. Escreva o valor à mão.';
+
+  @override
+  String get valorFotoGrande =>
+      'A foto é grande demais. Tire outra um pouco mais longe.';
+
+  @override
+  String get valorFotoNaoLi =>
+      'Não consegui ler. Escreva o valor à mão — é mais rápido do que outra foto.';
+
+  @override
+  String get refTitulo => 'PAGAR NO MULTIBANCO';
+
+  @override
+  String get refEntidade => 'Entidade';
+
+  @override
+  String get refReferencia => 'Referência';
+
+  @override
+  String get refValor => 'Valor';
+
+  @override
+  String get refCopiar => 'Copiar';
+
+  @override
+  String get refCopiado => 'Copiado. Cole no multibanco ou no app do banco.';
 }

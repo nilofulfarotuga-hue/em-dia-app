@@ -2060,5 +2060,19 @@
   "sufixoKm": "km",
   "@sufixoKm": {
     "description": "Sufixo do campo dos quilómetros no formulário do abastecimento. Estava escrito à mão no Dart."
-  }
+  },
+  "valorFotoAjuda": "Fotografa a fatura ou o talão e eu preencho",
+  "valorFotoTirar": "Tirar foto agora",
+  "valorFotoGaleria": "Escolher uma foto que já tenho",
+  "valorFotoConfere": "Li o que consegui, mas confere os números antes de guardar.",
+  "valorFotoCadeado": "Já usaste as leituras por foto deste mês. Escreve o valor à mão.",
+  "valorFotoIndisponivel": "A leitura por foto está em baixo. Escreve o valor à mão.",
+  "valorFotoGrande": "A foto é grande demais. Tira outra um pouco mais longe.",
+  "valorFotoNaoLi": "Não consegui ler. Escreve o valor à mão — é mais rápido do que outra foto.",
+  "refTitulo": "PAGAR NO MULTIBANCO",
+  "refEntidade": "Entidade",
+  "refReferencia": "Referência",
+  "refValor": "Valor",
+  "refCopiar": "Copiar",
+  "refCopiado": "Copiado. Cola no multibanco ou na app do banco."
 }

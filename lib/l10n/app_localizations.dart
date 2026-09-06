@@ -5897,6 +5897,90 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'km'**
   String get sufixoKm;
+
+  /// No description provided for @valorFotoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fotografa a fatura ou o talão e eu preencho'**
+  String get valorFotoAjuda;
+
+  /// No description provided for @valorFotoTirar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tirar foto agora'**
+  String get valorFotoTirar;
+
+  /// No description provided for @valorFotoGaleria.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolher uma foto que já tenho'**
+  String get valorFotoGaleria;
+
+  /// No description provided for @valorFotoConfere.
+  ///
+  /// In pt, this message translates to:
+  /// **'Li o que consegui, mas confere os números antes de guardar.'**
+  String get valorFotoConfere;
+
+  /// No description provided for @valorFotoCadeado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já usaste as leituras por foto deste mês. Escreve o valor à mão.'**
+  String get valorFotoCadeado;
+
+  /// No description provided for @valorFotoIndisponivel.
+  ///
+  /// In pt, this message translates to:
+  /// **'A leitura por foto está em baixo. Escreve o valor à mão.'**
+  String get valorFotoIndisponivel;
+
+  /// No description provided for @valorFotoGrande.
+  ///
+  /// In pt, this message translates to:
+  /// **'A foto é grande demais. Tira outra um pouco mais longe.'**
+  String get valorFotoGrande;
+
+  /// No description provided for @valorFotoNaoLi.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui ler. Escreve o valor à mão — é mais rápido do que outra foto.'**
+  String get valorFotoNaoLi;
+
+  /// No description provided for @refTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'PAGAR NO MULTIBANCO'**
+  String get refTitulo;
+
+  /// No description provided for @refEntidade.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entidade'**
+  String get refEntidade;
+
+  /// No description provided for @refReferencia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Referência'**
+  String get refReferencia;
+
+  /// No description provided for @refValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor'**
+  String get refValor;
+
+  /// No description provided for @refCopiar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Copiar'**
+  String get refCopiar;
+
+  /// No description provided for @refCopiado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Copiado. Cola no multibanco ou na app do banco.'**
+  String get refCopiado;
 }
 
 class _AppLocalizationsDelegate

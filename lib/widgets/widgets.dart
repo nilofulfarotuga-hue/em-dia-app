@@ -3,6 +3,7 @@
 library;
 
 export 'botao_ouvir.dart';
+export 'campo_valor.dart';
 
 import 'package:flutter/material.dart';
 
