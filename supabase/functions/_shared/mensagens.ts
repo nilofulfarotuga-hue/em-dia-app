@@ -7,6 +7,8 @@ export type VariantePt = 'pt' | 'br'
 export type TipoAviso =
   | '5_dias' | 'dia' | 'passado' | 'vigia_iva' | 'fim_isencao'
   | 'carro' | 'trial_25' | 'trial_31' | 'reativacao'
+  // contas de casa (2026-09-06): a app deixou de ser só do Estado
+  | 'conta_debito_amanha' | 'conta_referencia_3_dias' | 'conta_referencia_hoje' | 'conta_passou'
 
 type Textos = {
   // corpos (do .arb)
@@ -19,6 +21,11 @@ type Textos = {
   pushTrial25: string
   pushTrial31: string
   pushReativacao: string
+  // contas de casa
+  pushContaDebitoAmanha: (nome: string, valor: string) => string
+  pushContaReferencia3Dias: (nome: string, valor: string, dia: string) => string
+  pushContaReferenciaHoje: (nome: string, valor: string) => string
+  pushContaPassou: (nome: string, dia: string) => string
   // títulos curtos por tipo (não existem no .arb — só servem de cabeçalho da notificação)
   titulos: Record<TipoAviso, string>
   // título do push agrupado: "Tens N coisas hoje"
@@ -40,6 +47,10 @@ export const MENSAGENS: Record<VariantePt, Textos> = {
     pushTrial25: 'Faltam 5 dias para o teu mês grátis acabar. Depois disso o Em Dia continua a avisar-te, mas com limites. Por 3,49 €/mês (ou 29,90 €/ano) fica tudo como está.',
     pushTrial31: 'Hoje evitaste multas durante um mês. Para continuar assim é 3,49 € por mês — menos que uma multa. Toca para ativar.',
     pushReativacao: 'Está tudo em dia do teu lado. Não precisas de fazer nada. Eu avisarei.',
+    pushContaDebitoAmanha: (n, v) => `Amanhã sai ${v} da tua conta: ${n}. Não tens de fazer nada, só de ter o dinheiro lá.`,
+    pushContaReferenciaHoje: (n, v) => `É hoje: ${n}, ${v}. Toca aqui e copia a referência para pagares no multibanco.`,
+    pushContaReferencia3Dias: (n, v, d) => `Faltam 3 dias para pagares ${n} (${v}), até ${d}. A referência está aqui dentro.`,
+    pushContaPassou: (n, d) => `Passou o dia ${d} e ${n} continua por pagar. Vê se já pagaste — se sim, marca aqui.`,
     titulos: {
       '5_dias': 'Faltam 5 dias',
       'dia': 'É hoje',
@@ -47,6 +58,10 @@ export const MENSAGENS: Record<VariantePt, Textos> = {
       'vigia_iva': 'Vigia do IVA',
       'fim_isencao': 'Fim da isenção',
       'carro': 'Inspeção do carro',
+      'conta_debito_amanha': 'Amanhã sai da conta',
+      'conta_referencia_3_dias': 'Faltam 3 dias',
+      'conta_referencia_hoje': 'É hoje',
+      'conta_passou': 'Conta por pagar',
       'trial_25': 'Mês grátis a acabar',
       'trial_31': 'Mês grátis acabou',
       'reativacao': 'Estás em dia',
@@ -65,6 +80,10 @@ export const MENSAGENS: Record<VariantePt, Textos> = {
     pushTrial25: 'Faltam 5 dias para o seu mês grátis acabar. Depois disso o Em Dia continua te avisando, mas com limites. Por 3,49 €/mês (ou 29,90 €/ano) fica tudo como está.',
     pushTrial31: 'Hoje você evitou multas durante um mês. Para continuar assim é 3,49 € por mês — menos que uma multa. Toque para ativar.',
     pushReativacao: 'Está tudo em dia do seu lado. Não precisa fazer nada. Eu aviso.',
+    pushContaDebitoAmanha: (n, v) => `Amanhã sai ${v} da sua conta: ${n}. Você não precisa fazer nada, só ter o dinheiro lá.`,
+    pushContaReferenciaHoje: (n, v) => `É hoje: ${n}, ${v}. Toque aqui e copie a referência para pagar no multibanco.`,
+    pushContaReferencia3Dias: (n, v, d) => `Faltam 3 dias para pagar ${n} (${v}), até ${d}. A referência está aqui dentro.`,
+    pushContaPassou: (n, d) => `Passou o dia ${d} e ${n} continua sem pagar. Veja se você já pagou — se sim, marque aqui.`,
     titulos: {
       '5_dias': 'Faltam 5 dias',
       'dia': 'É hoje',
@@ -72,6 +91,10 @@ export const MENSAGENS: Record<VariantePt, Textos> = {
       'vigia_iva': 'Vigia do IVA',
       'fim_isencao': 'Fim da isenção',
       'carro': 'Inspeção do carro',
+      'conta_debito_amanha': 'Amanhã sai da conta',
+      'conta_referencia_3_dias': 'Faltam 3 dias',
+      'conta_referencia_hoje': 'É hoje',
+      'conta_passou': 'Conta sem pagar',
       'trial_25': 'Mês grátis acabando',
       'trial_31': 'Mês grátis acabou',
       'reativacao': 'Você está em dia',

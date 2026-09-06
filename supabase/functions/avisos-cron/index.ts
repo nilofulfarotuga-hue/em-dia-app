@@ -21,6 +21,8 @@ const TZ = 'Europe/Lisbon'
 interface Aviso {
   tipo: TipoAviso
   obrigacao_id: string | null
+  /// A conta de casa a que o aviso diz respeito (nula nos avisos do Estado).
+  pagamento_id?: string | null
   titulo: string
   corpo: string
 }
@@ -78,11 +80,16 @@ Deno.serve(async (req: Request) => {
   // ---------- regras legais (a única fonte de números) ----------
   const { data: regras, error: erroRegras } = await admin
     .from('regras_legais').select('chave, valor_num, valor_json')
-    .in('chave', ['push_hora_lisboa', 'iva_isencao_aviso', 'ipo_avisos_dias'])
+    .in('chave', ['push_hora_lisboa', 'iva_isencao_aviso', 'ipo_avisos_dias',
+                  'aviso_debito_direto_dias', 'aviso_referencia_dias'])
   if (erroRegras) return json({ erro: 'regras_legais', detalhe: erroRegras.message }, 500)
   const regra = (chave: string) => regras?.find((r) => r.chave === chave)
   const pushHora = Number(regra('push_hora_lisboa')?.valor_num)
   const ivaAviso = Number(regra('iva_isencao_aviso')?.valor_num)
+  // Quantos dias antes se avisa, por meio de pagamento. Vem da tabela das
+  // regras, não do código — o Danilo pode mudar isto no painel sem publicar app.
+  const diasDebito = Number(regra('aviso_debito_direto_dias')?.valor_num ?? 1)
+  const diasReferencia = Number(regra('aviso_referencia_dias')?.valor_num ?? 3)
   const ipoDias: number[] = Array.isArray(regra('ipo_avisos_dias')?.valor_json)
     ? (regra('ipo_avisos_dias')!.valor_json as number[]).map(Number) : []
   if (!Number.isFinite(pushHora)) return json({ erro: 'sem_regra_push_hora_lisboa' }, 500)
@@ -108,7 +115,7 @@ Deno.serve(async (req: Request) => {
   // reativacao enviado a 31 ficava invisível no dia 1-6 e repetia-se (bug encontrado na verificação).
   const inicioEventos = ha7Dias < inicioMes ? ha7Dias : inicioMes
 
-  const [perfis, obrigs, rendimentos, eventosMes, eventosTrial31, tokensTodos] = await Promise.all([
+  const [perfis, obrigs, rendimentos, eventosMes, eventosTrial31, tokensTodos, contas] = await Promise.all([
     admin.from('profiles')
       .select('user_id, variante_pt, regime_iva, trial_ate, ultimo_acesso, plano')
       .eq('banido', false),
@@ -125,8 +132,14 @@ Deno.serve(async (req: Request) => {
     admin.from('eventos_push').select('user_id, tipo, dia, resultado').gte('dia', inicioEventos),
     admin.from('eventos_push').select('user_id').eq('tipo', 'trial_31'),
     admin.from('push_tokens').select('user_id, token'),
+    // Contas de casa a pagar: as que vencem nos dias em que se avisa, e as que
+    // já passaram e continuam por pagar.
+    admin.from('saidas_pagamentos')
+      .select('id, user_id, data_limite, valor, estado, saidas(nome, meio, entidade, referencia)')
+      .eq('estado', 'pendente')
+      .lte('data_limite', somarDias(hoje, Math.max(diasDebito, diasReferencia))),
   ])
-  for (const r of [perfis, obrigs, rendimentos, eventosMes, eventosTrial31, tokensTodos]) {
+  for (const r of [perfis, obrigs, rendimentos, eventosMes, eventosTrial31, tokensTodos, contas]) {
     if (r.error) return json({ erro: 'leitura', detalhe: r.error.message }, 500)
   }
 
@@ -185,6 +198,46 @@ Deno.serve(async (req: Request) => {
       }
     }
 
+    // ---- contas de casa (a app deixou de ser só do Estado, 2026-09-06) ----
+    //
+    // Os prazos são diferentes de propósito e vêm da tabela das regras:
+    //   débito direto  → 1 dia antes. Não é preciso fazer nada, só ter dinheiro
+    //                    na conta; avisar 5 dias antes só assustava sem servir.
+    //   referência     → 3 dias antes E no próprio dia. Aqui é preciso ir pagar,
+    //                    e um aviso só no dia apanha quem já não tem tempo.
+    for (const c of (contas.data ?? []).filter((x) => x.user_id === uid)) {
+      // deno-lint-ignore no-explicit-any
+      const s = (Array.isArray((c as any).saidas) ? (c as any).saidas[0] : (c as any).saidas) ?? {}
+      const nome = String(s.nome ?? '—')
+      const valor = formatarMoeda(c.valor) ?? T.valorPorConfirmar
+      const meio = String(s.meio ?? 'referencia_mb')
+      const dias = Math.round(
+        (Date.parse(c.data_limite + 'T00:00:00Z') - Date.parse(hoje + 'T00:00:00Z')) / 86400000,
+      )
+      if (dias < 0) {
+        avisos.push({ tipo: 'conta_passou', obrigacao_id: null, pagamento_id: c.id,
+          titulo: T.titulos.conta_passou, corpo: T.pushContaPassou(nome, formatarData(c.data_limite)) })
+        continue
+      }
+      if (meio === 'debito_direto') {
+        if (dias === diasDebito) {
+          avisos.push({ tipo: 'conta_debito_amanha', obrigacao_id: null, pagamento_id: c.id,
+            titulo: T.titulos.conta_debito_amanha, corpo: T.pushContaDebitoAmanha(nome, valor) })
+        }
+        continue
+      }
+      // tudo o resto paga-se à mão: referência, MB WAY, transferência, dinheiro
+      if (dias === diasReferencia) {
+        avisos.push({ tipo: 'conta_referencia_3_dias', obrigacao_id: null, pagamento_id: c.id,
+          titulo: T.titulos.conta_referencia_3_dias,
+          corpo: T.pushContaReferencia3Dias(nome, valor, formatarData(c.data_limite)) })
+      }
+      if (dias === 0) {
+        avisos.push({ tipo: 'conta_referencia_hoje', obrigacao_id: null, pagamento_id: c.id,
+          titulo: T.titulos.conta_referencia_hoje, corpo: T.pushContaReferenciaHoje(nome, valor) })
+      }
+    }
+
     // vigia do IVA (só faz sentido para quem está isento pelo art. 53.º): 1 vez por mês
     const soma = somaAno.get(uid) ?? 0
     if (p.regime_iva === 'isento_53' && Number.isFinite(ivaAviso) && soma >= ivaAviso
@@ -215,17 +268,21 @@ Deno.serve(async (req: Request) => {
 
     if (avisos.length === 0) continue
 
-    // ---------- registar eventos (a unique (user_id,tipo,dia,obrigacao_id) impede repetir) ----------
+    // ---------- registar eventos (a unique (user_id,tipo,dia,obrigacao_id,pagamento_id) impede repetir) ----------
     // Desde a migração 0005 a unique é NULLS NOT DISTINCT: também trava os tipos sem obrigação
-    // (obrigacao_id NULL). Os filtros acima (jaHoje, vigia_iva do mês, reativacao 7 dias) continuam
-    // a evitar a tentativa; a base de dados é a rede de segurança.
+    // (obrigacao_id NULL). Desde a 0022 entra o pagamento_id, para as contas de casa. Os filtros
+    // acima (jaHoje, vigia_iva do mês, reativacao 7 dias) continuam a evitar a tentativa; a base
+    // de dados é a rede de segurança.
     const { data: inseridos, error: erroIns } = await admin
       .from('eventos_push')
       .upsert(
-        avisos.map((a) => ({ user_id: uid, obrigacao_id: a.obrigacao_id, tipo: a.tipo, dia: hoje, titulo: a.titulo, corpo: a.corpo })),
-        { onConflict: 'user_id,tipo,dia,obrigacao_id', ignoreDuplicates: true },
+        avisos.map((a) => ({
+          user_id: uid, obrigacao_id: a.obrigacao_id, pagamento_id: a.pagamento_id ?? null,
+          tipo: a.tipo, dia: hoje, titulo: a.titulo, corpo: a.corpo,
+        })),
+        { onConflict: 'user_id,tipo,dia,obrigacao_id,pagamento_id', ignoreDuplicates: true },
       )
-      .select('id, tipo, obrigacao_id, titulo, corpo')
+      .select('id, tipo, obrigacao_id, pagamento_id, titulo, corpo')
     if (erroIns) {
       console.error('eventos_push insert:', erroIns.message)
       totais.erros++
@@ -252,6 +309,7 @@ Deno.serve(async (req: Request) => {
     const dataPush: Record<string, string> = {
       tipo: inseridos.length === 1 ? inseridos[0].tipo : 'varios',
       obrigacao_id: inseridos.find((e) => e.obrigacao_id)?.obrigacao_id ?? '',
+      pagamento_id: inseridos.find((e) => e.pagamento_id)?.pagamento_id ?? '',
       n: String(inseridos.length),
     }
 
