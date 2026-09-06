@@ -1,0 +1,172 @@
+{
+  "data": "20260906-135642",
+  "modelo": "gemini-flash-latest",
+  "fotos": 13,
+  "contagem": {
+    "verde": 12,
+    "amarelo": 1,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "A interface da página de auditoria apresenta uma excelente organização e legibilidade, sem defeitos visuais.",
+      "jargao": [],
+      "modelo": "gemini-3.6-flash",
+      "foto": "admin_auditoria_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A coluna de erro na tabela está cortada no lado direito.",
+      "jargao": [
+        "push",
+        "e2e_log",
+        "token"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_avisos_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O estado de erro de permissão está claramente indicado com um alerta explicativo e botão para tentar de novo.",
+      "jargao": [
+        "RPC",
+        "admin_resumo",
+        "PostgresException"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_erro_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel administrativo apresenta uma interface limpa, com tabelas bem alinhadas e sem problemas visuais evidentes.",
+      "jargao": [
+        "conversas_ia",
+        "RPC",
+        "v_custo_ia_diario",
+        "nif",
+        "irs",
+        "ss"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_ia_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface apresenta um painel administrativo limpo e totalmente funcional, sem defeitos visuais criticos.",
+      "jargao": [
+        "IAS",
+        "IVA",
+        "IRS",
+        "IUC",
+        "IPO"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_regras_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface apresenta um painel administrativo limpo e totalmente funcional sem defeitos visuais críticos.",
+      "jargao": [
+        "ias",
+        "iva",
+        "ss",
+        "irs",
+        "iuc",
+        "ipo",
+        "valor_num",
+        "valor_txt",
+        "valor_json",
+        "eur"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_regras_editar_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface apresenta um design limpo e organizado, sem sobreposições ou erros visuais aparentes.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_regras_flags_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface apresenta todos os elementos organizados e funcionais sem defeitos visuais aparentes.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_tickets_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface apresenta os dados de forma correta e legível, sem falhas de layout aparentes.",
+      "jargao": [
+        "profiles",
+        "v_admin_usuarios",
+        "auth",
+        "service role",
+        "user_id",
+        "tipo_atividade",
+        "data_abertura",
+        "regime_iva",
+        "retencao_opcao",
+        "rendimento_mensal_estimado",
+        "variante_pt",
+        "plano",
+        "trial_ate",
+        "onboarding_concluido",
+        "imigrante"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_usuario_detalhe_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface administrativa apresenta um layout limpo, legível e sem defeitos visuais críticos.",
+      "jargao": [
+        "v_admin_usuarios",
+        "profiles",
+        "CSV",
+        "trial",
+        "pro",
+        "free",
+        "familia"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_usuarios_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um estado vazio perfeitamente estruturado, com indicações claras e opções de ação disponíveis.",
+      "jargao": [
+        "tickets_suporte",
+        "regras_legais",
+        "contacto_parceiro_contabilista"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_vazio_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel administrativo apresenta-se perfeitamente estruturado, sem sobreposições ou falhas visuais relevantes.",
+      "jargao": [
+        "RPC admin_resumo",
+        "ia_custo_alarme_dia_eur",
+        "sem_token"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_visao_geral_alarme_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface administrativa apresenta todos os componentes perfeitamente alinhados e legíveis.",
+      "jargao": [
+        "RPC",
+        "admin_resumo",
+        "sem_token"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_visao_geral_desktop_br.png"
+    }
+  ]
+}

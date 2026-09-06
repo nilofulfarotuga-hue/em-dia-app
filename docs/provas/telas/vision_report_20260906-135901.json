@@ -1,0 +1,27 @@
+{
+  "data": "20260906-135901",
+  "modelo": "gemini-flash-latest",
+  "fotos": 2,
+  "contagem": {
+    "verde": 2,
+    "amarelo": 0,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "A tela está limpa, organizada e os estados do carro e lembretes estão bem explicados com caminhos claros.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_cadeado_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está muito claro e explica bem os direitos de reforma e subsídios.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "reforma_cadeado_medio_pt.png"
+    }
+  ]
+}

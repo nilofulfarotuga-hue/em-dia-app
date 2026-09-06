@@ -1,0 +1,38 @@
+{
+  "data": "20260906-135830",
+  "modelo": "gemini-flash-latest",
+  "fotos": 3,
+  "contagem": {
+    "verde": 3,
+    "amarelo": 0,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã de estado vazio está muito claro, bem estruturado e apresenta um caminho óbvio através do botão para adicionar um carro.",
+      "jargao": [
+        "DGEG"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "carro_vazio_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã inicial do assistente está muito claro, bem estruturado e oferece sugestões diretas para guiar o utilizador.",
+      "jargao": [
+        "IVA"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "ia_vazio_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã de ajuda está muito limpo, claro e com caminhos fáceis de seguir.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "suporte_vazio_medio_pt.png"
+    }
+  ]
+}

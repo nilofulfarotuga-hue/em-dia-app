@@ -57,6 +57,46 @@ PROMPT = (
     "Ignora a barra de estado e dados de exemplo. Sê conservador: na dúvida, verde."
 )
 
+# ---------------------------------------------------------------------------
+# O juiz tem de saber PARA QUEM é o ecrã e SE o estado é de propósito, senão
+# grita por tudo. Provado a 2026-09-06: das 13 fotos do painel de administração,
+# 11 vieram amarelas por "palavras difíceis" — mas o painel é PT-BR e é só para
+# o Danilo, não tem de falar como para uma criança. E a única VERMELHA foi a
+# `admin_erro`, que é uma foto DE PROPÓSITO do ecrã de erro (o teste chama-se
+# «leitura falhada mostra Aviso vermelho»): o ecrã estava a fazer o que devia.
+PROMPT_ADMIN = (
+    "És o juiz de visão do PAINEL DE ADMINISTRAÇÃO do Em Dia. Atenção: este ecrã NÃO é "
+    "para o público — é uma consola interna, em português do Brasil, usada por UMA pessoa "
+    "técnica (o dono). Termos técnicos, nomes de tabelas, chaves e palavras em inglês são "
+    "NORMAIS aqui e NÃO são defeito. Julga só o que é mesmo defeito: texto por cima de "
+    "texto, colunas cortadas, tabela ilegível, botão pela metade, contraste mau, tela "
+    "estourada. Responde SÓ com JSON: "
+    '{"severity":"verde|amarelo|vermelho","finding":"<1 frase PT-PT>","jargao":[]}. '
+    "Sê conservador: na dúvida, verde."
+)
+
+# Estados que a app mostra DE PROPÓSITO. Aqui a pergunta não é «porque está
+# vazio/em erro?» — é «este estado está bem apresentado e tem saída?».
+ESTADOS_DE_PROPOSITO = ("_erro", "_vazio", "_skeleton", "_cadeado", "_limite",
+                        "_breve", "conta-nao-abriu")
+
+NOTA_ESTADO = (
+    " ATENÇÃO: esta captura é de um ESTADO PROPOSITADO da app (erro, vazio, à espera, "
+    "cadeado do plano ou limite atingido). Não é defeito mostrar um erro nem estar vazio "
+    "— isso é o que se quer. A pergunta é só: está bem explicado e há um caminho para "
+    "seguir (um botão, uma frase que diga o que fazer)? Se sim, verde."
+)
+
+
+def prompt_para(nome: str) -> str:
+    if nome.startswith("admin_"):
+        base = PROMPT_ADMIN
+    else:
+        base = PROMPT
+    if any(m in nome for m in ESTADOS_DE_PROPOSITO):
+        base += NOTA_ESTADO
+    return base
+
 
 def _chave() -> str | None:
     k = os.environ.get("GEMINI_API_KEY")
@@ -73,7 +113,7 @@ def _chave() -> str | None:
 def julgar(png: Path, chave: str) -> dict:
     corpo = {
         "contents": [{"parts": [
-            {"text": PROMPT},
+            {"text": prompt_para(png.name)},
             {"inline_data": {"mime_type": "image/png", "data": base64.b64encode(png.read_bytes()).decode()}},
         ]}],
         "generationConfig": {"temperature": 0.1, "responseMimeType": "application/json"},

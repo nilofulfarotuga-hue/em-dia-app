@@ -1,0 +1,393 @@
+{
+  "data": "20260906-135206",
+  "modelo": "gemini-flash-latest",
+  "fotos": 41,
+  "contagem": {
+    "verde": 19,
+    "amarelo": 22,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta os detalhes do pagamento de forma clara, bem estruturada e legível.",
+      "jargao": [],
+      "modelo": "gemini-flash-latest",
+      "foto": "calendario_detalhe_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está claro, bem organizado e fácil de entender.",
+      "jargao": [],
+      "modelo": "gemini-3.6-flash",
+      "foto": "calendario_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma excelente organização visual, com bom contraste, tipografia clara e elementos bem alinhados.",
+      "jargao": [
+        "TVDE",
+        "NIF"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "carro_abastecimentos_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está arrumado e percebe-se tudo muito bem.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_cadeado_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã tem termos técnicos difíceis e falta explicar o significado de IRS.",
+      "jargao": [
+        "IRS",
+        "NIF"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_despesas_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto do lembrete de seguro está cortado e a data está colada na margem.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está bonitinho e diz logo o que falta fazer.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_vazio_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Aviso de falha de ligação à internet claro e amigável.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "conta-nao-abriu_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis e o ecrã está muito vazio.",
+      "jargao": [
+        "CAE",
+        "TVDE"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "guias_breve_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis sem explicação para quem não percebe muito de tecnologia.",
+      "jargao": [
+        "NISS",
+        "Conta-corrente",
+        "referência Multibanco"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "guias_detalhe_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem palavras difíceis sem explicação simples para quem não percebe de contas.",
+      "jargao": [
+        "CAE",
+        "IVA",
+        "Retenção na fonte",
+        "Segurança Social Direta",
+        "IRS",
+        "anexo B"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "guias_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto no topo está cortado e há avisos repetidos sobre o limite de perguntas grátis.",
+      "jargao": [
+        "atividade",
+        "Segurança Social",
+        "IVA",
+        "recibos",
+        "IRS",
+        "Pro"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_limite_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra IVA aparece sem explicar o que quer dizer para quem não sabe.",
+      "jargao": [
+        "IVA"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Uso de termos técnicos sem explicação simples para quem não percebe do assunto.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "atividade",
+        "isenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_pensar_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis e está muito perto dos cantos da folha.",
+      "jargao": [
+        "atividade",
+        "IVA",
+        "Segurança Social"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_vazio_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo certinho para meteres o código do e-mail.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "login-codigo_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e pronto para entrar.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "login_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã de definições está limpo e organizado.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash-lite",
+      "foto": "mais_definicoes_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está organizada e fácil de ler.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "mais_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto usa termos técnicos sem explicar o que significam para quem não percebe de impostos.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p0_boasvindas_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo técnico TVDE não está explicado para quem não conhece a área.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p1_atividade_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo 'isento' é usado sem uma explicação simples para quem não percebe de impostos.",
+      "jargao": [
+        "isento"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p2_abertura_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está bem organizado e fácil de entender para quem não percebe muito de tecnologia.",
+      "jargao": [
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p4_carro_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está clara e fácil de entender para o utilizador.",
+      "jargao": [
+        "Segurança Social",
+        "IRS",
+        "simulação"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p5_rendimento_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A aplicação mostra um aviso de falta de internet de forma clara e simples.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_erro_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O cartão laranja de aviso está a repetir informação que já aparece logo abaixo no cartão verde.",
+      "jargao": [
+        "Segurança Social",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_laranja_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A página está vazia e não explica ao utilizador o que deve fazer para começar.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_skeleton_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada, clara e fácil de entender.",
+      "jargao": [
+        "IRS",
+        "IVA"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_verde_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O cartão de aviso está a usar a cor vermelha para um estado que já está detalhado no cartão principal, criando confusão visual.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_vermelho_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo 'folha de cálculo' pode ser difícil de entender para quem não domina tecnologia.",
+      "jargao": [
+        "folha de cálculo"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "plano_gratis_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto sobre o plano Pro contém termos técnicos que podem ser difíceis de entender para quem não é da área.",
+      "jargao": [
+        "extratos",
+        "contabilista",
+        "folha de cálculo",
+        "Reforma"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "plano_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto usa palavras difíceis que podem confundir quem não percebe de impostos.",
+      "jargao": [
+        "NIF",
+        "TVDE"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_emitir_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto usa termos técnicos que podem ser difíceis de entender para quem não é da área.",
+      "jargao": [
+        "IRS",
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_irs_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A explicação sobre o IVA está um pouco confusa e técnica para quem não percebe nada de impostos.",
+      "jargao": [
+        "IVA",
+        "Retenção"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A informação está clara e bem organizada para o utilizador.",
+      "jargao": [
+        "IRS",
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_ss_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo 'subsídio' é usado sem uma explicação simples para quem não percebe de finanças.",
+      "jargao": [
+        "subsídio"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "reforma_cadeado_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo 'subsídio' é usado sem explicar que é o dinheiro que recebes do Estado.",
+      "jargao": [
+        "subsídio"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "reforma_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página de suporte está clara e fácil de usar.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "suporte_bug_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está organizada e fácil de entender.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "suporte_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está clara e explica bem como cancelar a assinatura.",
+      "jargao": [
+        "assinatura",
+        "reembolso",
+        "subscrições"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "suporte_reembolso_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está organizada e fácil de entender.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "suporte_vazio_medio_pt.png"
+    }
+  ]
+}

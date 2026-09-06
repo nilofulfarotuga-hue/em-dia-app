@@ -1,0 +1,170 @@
+{
+  "data": "20260906-135509",
+  "modelo": "gemini-flash-latest",
+  "fotos": 13,
+  "contagem": {
+    "verde": 1,
+    "amarelo": 11,
+    "vermelho": 1,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "Ecrã de auditoria interno com layout limpo, legível e organizado.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "admin_auditoria_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tem palavras difíceis e termos técnicos sem explicação para ti.",
+      "jargao": [
+        "eventos_push",
+        "avisos_massa",
+        "e2e_log",
+        "sem_token",
+        "trial_25"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_avisos_desktop_br.png"
+    },
+    {
+      "severity": "vermelho",
+      "finding": "A página mostra um erro de sistema e os números não aparecem.",
+      "jargao": [
+        "PostgreSException",
+        "permission denied",
+        "admin_resumo",
+        "RPC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_erro_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tem palavras difíceis sem explicação e o texto está muito miudinho.",
+      "jargao": [
+        "Em PT-BR",
+        "RPC",
+        "admin",
+        "top",
+        "v_custo_ia_diario",
+        "Variante"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_ia_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A tabela mostra termos técnicos difíceis e palavras cortadas sem explicação para quem não percebe nada disso.",
+      "jargao": [
+        "IAS",
+        "art. 53.º",
+        "pct",
+        "mes_matricula"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_regras_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O formulário tem termos difíceis para quem não percebe de computadores.",
+      "jargao": [
+        "valor_num",
+        "valor_txt",
+        "valor_json"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_regras_editar_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem termos técnicos difíceis e palavras em inglês.",
+      "jargao": [
+        "Free",
+        "Pro",
+        "IAS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_regras_flags_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens palavras complicadas como 'IVA' e 'IRS' sem explicar o que são.",
+      "jargao": [
+        "IVA",
+        "IRS",
+        "SS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_tickets_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tem palavras difíceis e técnicas no ecrã que o Zé não vai perceber.",
+      "jargao": [
+        "user_id",
+        "tipo_atividade",
+        "regime_iva",
+        "retencao_opcao",
+        "service role"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_usuario_detalhe_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras estranhas e em inglês que os amigos não entendem.",
+      "jargao": [
+        "Usuários",
+        "profiles",
+        "view",
+        "v_admin_usuarios",
+        "CSV",
+        "trial",
+        "pro",
+        "free",
+        "familia"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_usuarios_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tem palavras difíceis e instruções de programador misturadas no ecrã que o papá e a mamã não percebem.",
+      "jargao": [
+        "logs",
+        "IA",
+        "escalados",
+        "chave",
+        "contacto_parceiro_contabilista"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_vazio_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis e há mais do que uma caixa a lutar pela atenção com cor de laranja.",
+      "jargao": [
+        "RPC admin_resumo",
+        "ia_custo_alarme_dia_eur",
+        "regras_legais",
+        "sem_token"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_visao_geral_alarme_desktop_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis e termos técnicos sem explicação para ti.",
+      "jargao": [
+        "RPC admin_resumo",
+        "regras_legais",
+        "sem_token"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_visao_geral_desktop_br.png"
+    }
+  ]
+}

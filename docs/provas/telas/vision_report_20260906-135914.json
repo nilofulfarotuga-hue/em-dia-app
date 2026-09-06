@@ -1,0 +1,22 @@
+{
+  "data": "20260906-135914",
+  "modelo": "gemini-flash-latest",
+  "fotos": 1,
+  "contagem": {
+    "verde": 0,
+    "amarelo": 1,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "O termo CAE aparece sem explicação para quem está a começar.",
+      "jargao": [
+        "CAE"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "guias_breve_medio_pt.png"
+    }
+  ]
+}

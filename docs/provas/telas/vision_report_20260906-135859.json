@@ -1,0 +1,20 @@
+{
+  "data": "20260906-135859",
+  "modelo": "gemini-flash-latest",
+  "fotos": 1,
+  "contagem": {
+    "verde": 0,
+    "amarelo": 1,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã está completamente vazio sem explicar o que fazer a seguir.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_skeleton_medio_pt.png"
+    }
+  ]
+}

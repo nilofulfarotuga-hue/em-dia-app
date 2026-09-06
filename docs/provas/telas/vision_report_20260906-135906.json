@@ -1,0 +1,23 @@
+{
+  "data": "20260906-135906",
+  "modelo": "gemini-flash-latest",
+  "fotos": 1,
+  "contagem": {
+    "verde": 0,
+    "amarelo": 0,
+    "vermelho": 1,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "vermelho",
+      "finding": "O texto com o número de perguntas usadas está tapado e cortado pela primeira caixa de mensagem.",
+      "jargao": [
+        "SS",
+        "IVA"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "ia_limite_medio_pt.png"
+    }
+  ]
+}

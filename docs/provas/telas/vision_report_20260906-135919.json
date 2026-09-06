@@ -1,0 +1,20 @@
+{
+  "data": "20260906-135919",
+  "modelo": "gemini-flash-latest",
+  "fotos": 1,
+  "contagem": {
+    "verde": 1,
+    "amarelo": 0,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã explica bem que não há internet e dá logo um botão claro para tentar novamente.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_erro_medio_pt.png"
+    }
+  ]
+}

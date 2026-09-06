@@ -1,0 +1,20 @@
+{
+  "data": "20260906-135917",
+  "modelo": "gemini-flash-latest",
+  "fotos": 1,
+  "contagem": {
+    "verde": 1,
+    "amarelo": 0,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã explica claramente o problema de ligação e dá opções fáceis para tentar novamente ou sair.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "conta-nao-abriu_medio_pt.png"
+    }
+  ]
+}
