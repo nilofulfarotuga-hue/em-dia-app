@@ -82,3 +82,18 @@
 - **O quê:** em `lib/`, nenhuma chamada `.order('coluna')` fica sem `ascending: true` ou `ascending: false`. Um teste (`test/unit/ordem_test.dart`) reprova quem se esquecer.
 - **Porquê:** em postgrest-dart o valor por omissão é `ascending = false`. Quem lê `.order('data_limite')` percebe "por ordem" e recebe a lista ao contrário. Custou o cartão do painel a anunciar um prazo a 348 dias em vez do que vencia dali a 14.
 - **Como se desfaz:** apagar o teste e voltar a confiar no valor por omissão. Não se recomenda — a leitura errada é demasiado natural.
+
+## D16 — Duplicados de obrigações: duas regras, não uma
+- **O quê:** dois índices únicos parciais em vez do único (utilizador+tipo+data) que a ordem pedia. As obrigações calculadas pelo servidor (com `origem_regra`) são únicas por utilizador+tipo+dia; as escritas à mão são únicas por utilizador+tipo+dia+descrição.
+- **Porquê:** com a regra única e crua, uma pessoa não podia escrever duas coisas do tipo "outro" no mesmo dia — a renda e o ginásio, por exemplo. O objetivo era travar as repetições que o gerador cria, e é isso que o primeiro índice faz.
+- **Como se desfaz:** trocar os dois índices por um `unique (user_id, tipo, data_limite)`. Custa a possibilidade de dois lembretes manuais no mesmo dia.
+
+## D17 — `is_admin()` fecha-se mudando as políticas, não a função
+- **O quê:** as 31 políticas de RLS que chamam `is_admin()` passaram a `to authenticated`, a leitura pública das guias deixou de chamar a função, e só depois se tirou a permissão a quem não tem sessão.
+- **Porquê:** a migração 0009 tinha recusado fechar isto porque o site lê cinco tabelas sem sessão e as políticas permissivas somam-se — tirar a permissão partia a calculadora. A causa não era a função, era o alcance das políticas.
+- **Como se desfaz:** `grant execute on function public.is_admin() to anon;` e voltar a pôr as políticas em `to public`. Não se recomenda: o site foi testado sem sessão depois da mudança e lê tudo (cinco 200).
+
+## D18 — As duas contas do Danilo ficam, mas a zeros
+- **O quê:** `nilofulfarotuga@gmail.com` e `boraappbora@gmail.com` não foram apagadas na limpeza; os perfis é que foram recriados de raiz.
+- **Porquê:** são as duas contas que a migração 0004 torna administrador automático. Apagá-las tirava o acesso ao painel de administração e não havia como voltar a entrar.
+- **Como se desfaz:** apagá-las e voltar a criar; o administrador automático volta a agarrá-las pelo e-mail.
