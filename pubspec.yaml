@@ -42,6 +42,9 @@ dependencies:
 
   # Guias com "ouvir"
   flutter_tts: ^4.2.0
+  # Ouvir a pessoa a falar (a outra metade do "fala comigo"). Usa o
+  # reconhecimento de voz do próprio telemóvel — nada sai daqui para gravar.
+  speech_to_text: ^7.0.0
 
   # Exportar para o contabilista (PDF/CSV)
   pdf: ^3.11.0

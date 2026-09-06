@@ -1,0 +1,2239 @@
+{
+ "fonte_url": "https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf",
+ "fonte_sha256": "169ea94d457b823cba2a30f338e44b3e18b136c466f21b304b08de7b85175dcc",
+ "fonte_last_modified": "Wed, 04 Feb 2026 09:28:54 GMT",
+ "total": 223,
+ "com_coordenadas": 219,
+ "centros": [
+  {
+   "codigo_citv": "013",
+   "distrito": "Aveiro",
+   "codigo_postal": "3850-184",
+   "localidade": "ALBERGARIA-A-VELHA",
+   "lat": 40.705106,
+   "lng": -8.496119,
+   "nome": "CONTROLAUTO - ALBERGARIA - A - VELHA",
+   "morada": "ZONA INDUSTRIAL - ARRUAMENTO E"
+  },
+  {
+   "codigo_citv": "023",
+   "distrito": "Aveiro",
+   "codigo_postal": "3800-055",
+   "localidade": "AVEIRO",
+   "lat": 40.649722,
+   "lng": -8.602917,
+   "nome": "INSPECENTRO - AVEIRO (ESGUEIRA)",
+   "morada": "ZONA INDUSTRIAL DA TABOEIRA, LOTE 42-A"
+  },
+  {
+   "codigo_citv": "024",
+   "distrito": "Aveiro",
+   "codigo_postal": "3770-059",
+   "localidade": "OIÃ",
+   "lat": 40.553694,
+   "lng": -8.552028,
+   "nome": "INSPECENTRO - OLIV. DO BAIRRO",
+   "morada": "RUA DO VALE GRANDE-ZONA IND. DE OIÃ, LOTES A14, A15, A30"
+  },
+  {
+   "codigo_citv": "051",
+   "distrito": "Aveiro",
+   "codigo_postal": "4520-275",
+   "localidade": "SANTA MARIA DA FEIRA",
+   "lat": 40.962944,
+   "lng": -8.593,
+   "nome": "INSPECENTRO - STA MARIA DA FEIRA (RIO MEÃO)",
+   "morada": "ZONA INDUSTRIAL DE RIO MEÃO - RUA 10, Nº 351"
+  },
+  {
+   "codigo_citv": "083",
+   "distrito": "Aveiro",
+   "codigo_postal": "4550-161",
+   "localidade": "CASTELO DE PAIVA",
+   "lat": 41.034444,
+   "lng": -8.259444,
+   "nome": "CIMA - CASTELO DE PAIVA (SOBRADO)",
+   "morada": "ZONA INDUSTRIAL DE FELGUEIRAS - SOBRADO"
+  },
+  {
+   "codigo_citv": "090",
+   "distrito": "Aveiro",
+   "codigo_postal": "4525-323",
+   "localidade": "GUISANDE VFR",
+   "lat": 40.978844,
+   "lng": -8.481939,
+   "nome": "CONTROLAUTO - STA MARIA DA FEIRA (GUISANDE)",
+   "morada": "RUA DE FORNOS"
+  },
+  {
+   "codigo_citv": "092",
+   "distrito": "Aveiro",
+   "codigo_postal": "3800-317",
+   "localidade": "AVEIRO",
+   "lat": 40.6563,
+   "lng": -8.618292,
+   "nome": "CONTROLAUTO - AVEIRO (ESGUEIRA)",
+   "morada": "RUA NOSSA SENHORA DAS NECESSIDADES, 56-A - OLHO D' ÁGUA"
+  },
+  {
+   "codigo_citv": "108",
+   "distrito": "Aveiro",
+   "codigo_postal": "3700-053",
+   "localidade": "SÃO JOÃO DA MADEIRA",
+   "lat": 40.886039,
+   "lng": -8.480236,
+   "nome": "INSPAUTO - S. JOÃO DA MADEIRA",
+   "morada": "RUA MESTRE DE AVIS, 111-PARQUE IND. DA DEVESA VELHA"
+  },
+  {
+   "codigo_citv": "134",
+   "distrito": "Aveiro",
+   "codigo_postal": "3720-510",
+   "localidade": "SANTIAGO DE RIBA-UL",
+   "lat": 40.951158,
+   "lng": -8.484439,
+   "nome": "CONTROLAUTO - OLIVEIRA DE AZEMÉIS",
+   "morada": "RUA DA BOAVISTA, 367-APART. 80-ZONA IND. OLIV. AZEMEÍS"
+  },
+  {
+   "codigo_citv": "170",
+   "distrito": "Aveiro",
+   "codigo_postal": "3750-064",
+   "localidade": "AGUADA DE CIMA",
+   "lat": 40.539444,
+   "lng": -8.448611,
+   "nome": "INSPEÁGUEDA - ÁGUEDA (VALE DO GROU)",
+   "morada": "ESTRADA NACIONAL Nº 1, VALE DO GROU"
+  },
+  {
+   "codigo_citv": "178",
+   "distrito": "Aveiro",
+   "codigo_postal": "4520-504",
+   "localidade": "SANFINS VFR",
+   "lat": 40.930558,
+   "lng": -8.523114,
+   "nome": "CONTROLAUTO - STA MARIA DA FEIRA (SANFINS)",
+   "morada": "ESTRADA NACIONAL Nº 223, KM 18"
+  },
+  {
+   "codigo_citv": "179",
+   "distrito": "Aveiro",
+   "codigo_postal": "3860-210",
+   "localidade": "ESTARREJA",
+   "lat": 40.7695,
+   "lng": -8.56937,
+   "nome": "DEKRA - ESTARREJA",
+   "morada": "ESTRADA NACIONAL 109 -ARROTINHA"
+  },
+  {
+   "codigo_citv": "189",
+   "distrito": "Aveiro",
+   "codigo_postal": "3810-520",
+   "localidade": "AVEIRO",
+   "lat": 40.634389,
+   "lng": -8.683353,
+   "nome": "CONTROLAUTO - AVEIRO (GLÓRIA) TERMINAL DO PORTO COMERCIAL - TERMINAL SUL",
+   "morada": null
+  },
+  {
+   "codigo_citv": "301",
+   "distrito": "Aveiro",
+   "codigo_postal": "4500-069",
+   "localidade": "ESPINHO",
+   "lat": 41.015047,
+   "lng": -8.638594,
+   "nome": "NASA - ESPINHO",
+   "morada": "RUA DOS LIMITES, LUGAR DO MOCHO"
+  },
+  {
+   "codigo_citv": "332",
+   "distrito": "Aveiro",
+   "codigo_postal": "4520-704",
+   "localidade": "SOUTO VFR",
+   "lat": 40.877306,
+   "lng": -8.572608,
+   "nome": "MTR - SANTA MARIA FEIRA",
+   "morada": "RUA DA EN 327, N.º 3515 a 3519"
+  },
+  {
+   "codigo_citv": "350",
+   "distrito": "Aveiro",
+   "codigo_postal": "3830-265",
+   "localidade": "ÍLHAVO",
+   "lat": 40.575994,
+   "lng": -8.638019,
+   "nome": "MTR - ILHAVO",
+   "morada": "RUA LAGOA DO JUNCO"
+  },
+  {
+   "codigo_citv": "363",
+   "distrito": "Aveiro",
+   "codigo_postal": "3880-338",
+   "localidade": "OVAR",
+   "lat": 40.87975,
+   "lng": -8.624653,
+   "nome": "INSPAUTO - OVAR",
+   "morada": "RUA DE MACAU - LUGAR DA ESTRUMADA"
+  },
+  {
+   "codigo_citv": "068",
+   "distrito": "Beja",
+   "codigo_postal": "7800-009",
+   "localidade": "BEJA",
+   "lat": 38.022064,
+   "lng": -7.8588,
+   "nome": "DEKRA - BEJA",
+   "morada": "RUA DAS NOVAS TECNOLOGIAS, Nº 2 - PARQUE INDUSTRIAL"
+  },
+  {
+   "codigo_citv": "130",
+   "distrito": "Beja",
+   "codigo_postal": "7780-000",
+   "localidade": "CASTRO VERDE",
+   "lat": 37.7064,
+   "lng": -8.08384,
+   "nome": "DEKRA - CASTRO VERDE",
+   "morada": "RUA DE ALBERNOA, S/N"
+  },
+  {
+   "codigo_citv": "314",
+   "distrito": "Beja",
+   "codigo_postal": "7860-304",
+   "localidade": "MOURA",
+   "lat": 38.142764,
+   "lng": -7.457008,
+   "nome": "CIV - MOURA",
+   "morada": "ZONA IND. MOURA, LOTE 54 - QUINTA DE ST.º ANTÓNIO DA PIPA"
+  },
+  {
+   "codigo_citv": "354",
+   "distrito": "Beja",
+   "codigo_postal": "7920-029",
+   "localidade": "ALVITO",
+   "lat": 38.25475,
+   "lng": -7.988239,
+   "nome": "CIV - ALVITO",
+   "morada": "SITIO DO CURRAL, LOTE 6"
+  },
+  {
+   "codigo_citv": "004",
+   "distrito": "Braga",
+   "codigo_postal": "4710-571",
+   "localidade": "ADAÚFE",
+   "lat": 41.596344,
+   "lng": -8.411633,
+   "nome": "CONTROLAUTO - BRAGA (ADAÚFE)",
+   "morada": "PARQUE INDUSTRIAL DE ADAÚFE, LOTE G 4 B"
+  },
+  {
+   "codigo_citv": "026",
+   "distrito": "Braga",
+   "codigo_postal": "4820-588",
+   "localidade": "QUINCHÃES",
+   "lat": 41.446047,
+   "lng": -8.163856,
+   "nome": "CINOR - FAFE (QUINCHÃES) CAVADAS",
+   "morada": null
+  },
+  {
+   "codigo_citv": "057",
+   "distrito": "Braga",
+   "codigo_postal": "4755-001",
+   "localidade": "ADÃES",
+   "lat": 41.52075,
+   "lng": -8.569917,
+   "nome": "CONTROLAUTO – BARCELOS (ADÃES)",
+   "morada": "TRAVESSA DAS REGADAS, PAVILHÃO Nº 3"
+  },
+  {
+   "codigo_citv": "062",
+   "distrito": "Braga",
+   "codigo_postal": "4830-314",
+   "localidade": "GERAZ DO MINHO",
+   "lat": 41.595242,
+   "lng": -8.281386,
+   "nome": "TOP - POVOA DO LANHOSO (GERAZ DO MINHO)",
+   "morada": "RUA CASTELO DE LANHOSO, Nº 901"
+  },
+  {
+   "codigo_citv": "063",
+   "distrito": "Braga",
+   "codigo_postal": "4705-414",
+   "localidade": "CELEIRÓS BRG",
+   "lat": 41.508883,
+   "lng": -8.455042,
+   "nome": "SCV - BRAGA",
+   "morada": "PARQUE INDUSTRIAL DE CELEIRÓS, LOTE 1."
+  },
+  {
+   "codigo_citv": "113",
+   "distrito": "Braga",
+   "codigo_postal": "4835-400",
+   "localidade": "GUIMARÃES",
+   "lat": 41.442697,
+   "lng": -8.334425,
+   "nome": "CINOR - GUIMARÃES (SILVARES)",
+   "morada": "RUA 25 DE ABRIL, Nº 45"
+  },
+  {
+   "codigo_citv": "149",
+   "distrito": "Braga",
+   "codigo_postal": "4810-482",
+   "localidade": "GUIMARÃES",
+   "lat": 41.424183,
+   "lng": -8.304297,
+   "nome": "ZUIR - GUIMARÃES - URGEZES",
+   "morada": "ESTRADA NACIONAL 105 - RODOVIA DE COVAS"
+  },
+  {
+   "codigo_citv": "166",
+   "distrito": "Braga",
+   "codigo_postal": "4710-596",
+   "localidade": "ADAÚFE",
+   "lat": 41.595944,
+   "lng": -8.412556,
+   "nome": "CTIB - BRAGA (ADAÚFE)",
+   "morada": "RUA SANTO ANDRÉ, Nº 201 - PARQUE INDUSTRIAL DE ADAÚFE"
+  },
+  {
+   "codigo_citv": "174",
+   "distrito": "Braga",
+   "codigo_postal": "4710-152",
+   "localidade": "BRAGA",
+   "lat": 41.563306,
+   "lng": -8.450336,
+   "nome": "TOP - BRAGA (FROSSOS)",
+   "morada": "LOTEAMENTO DO FEITAL, LT 33"
+  },
+  {
+   "codigo_citv": "186",
+   "distrito": "Braga",
+   "codigo_postal": "4750-704",
+   "localidade": "TAMEL (STA LEOCÁDIA)",
+   "lat": 41.563861,
+   "lng": -8.661389,
+   "nome": "CONTROLAUTO - BARCELOS (TAMEL)",
+   "morada": "RUA DO SOBREIRO, 508"
+  },
+  {
+   "codigo_citv": "187",
+   "distrito": "Braga",
+   "codigo_postal": "4770-456",
+   "localidade": "REQUIÃO",
+   "lat": 41.401528,
+   "lng": -8.496306,
+   "nome": "CONTROLAUTO - OLIVEIRA DE AZEMEIS",
+   "morada": "RUA DE RIBERAIS N º 260"
+  },
+  {
+   "codigo_citv": "188",
+   "distrito": "Braga",
+   "codigo_postal": "4770-079",
+   "localidade": "CABEÇUDOS",
+   "lat": 41.380806,
+   "lng": -8.504844,
+   "nome": "CONTROLAUTO - FAMALICÃO (CABEÇUDOS)",
+   "morada": "LUGAR DA DEVESA ALTA"
+  },
+  {
+   "codigo_citv": "203",
+   "distrito": "Braga",
+   "codigo_postal": "4710-349",
+   "localidade": "BRAGA",
+   "lat": 41.724167,
+   "lng": -8.463333,
+   "nome": "INSPAREDES - BRAGA (ADAÚFE)",
+   "morada": "RUA DA BELAVISTA, 28"
+  },
+  {
+   "codigo_citv": "204",
+   "distrito": "Braga",
+   "codigo_postal": "4760-001",
+   "localidade": "V. N. DE FAMALICÃO",
+   "lat": 41.416708,
+   "lng": -8.501681,
+   "nome": "SCV - VILA NOVA DE FAMALICÃO",
+   "morada": "AV. BRASIL Nº 576"
+  },
+  {
+   "codigo_citv": "259",
+   "distrito": "Braga",
+   "codigo_postal": "4805-337",
+   "localidade": "PONTE GMR",
+   "lat": 41.469972,
+   "lng": -8.329533,
+   "nome": "ZUIR - GUIMARÃES (PONTE)",
+   "morada": "RUA DE SAO JOAO BATISTA, Nº 3728"
+  },
+  {
+   "codigo_citv": "302",
+   "distrito": "Braga",
+   "codigo_postal": "4800-211",
+   "localidade": "AROSA",
+   "lat": 41.54575,
+   "lng": -8.220806,
+   "nome": "TOP - GUIMARÃES - AROSA",
+   "morada": "RUA DOM AFONSO HENRIQUES _ AROSA _ GUIMARÃES"
+  },
+  {
+   "codigo_citv": "339",
+   "distrito": "Braga",
+   "codigo_postal": "4840-130",
+   "localidade": "SOUTO TBR",
+   "lat": 41.695325,
+   "lng": -8.349653,
+   "nome": "NASA - TERRAS DE BOURO",
+   "morada": "RUA DO OUTEIRO _ SOUTO _ TERRAS DE BOURO"
+  },
+  {
+   "codigo_citv": "355",
+   "distrito": "Braga",
+   "codigo_postal": "4765-156",
+   "localidade": "PEDOME",
+   "lat": 41.419814,
+   "lng": -8.378586,
+   "nome": "NASA - VILA NOVA FAMALICÃO",
+   "morada": "RUA DO AVE Nº 63"
+  },
+  {
+   "codigo_citv": "364",
+   "distrito": "Braga",
+   "codigo_postal": "7300-250",
+   "localidade": "ARCOZELO, VILA VERDE",
+   "lat": 41.666381,
+   "lng": -8.534061,
+   "nome": "NASA - VILA VERDE",
+   "morada": "RUA DO HOSPITAL, ARCOZELO"
+  },
+  {
+   "codigo_citv": "041",
+   "distrito": "Bragança",
+   "codigo_postal": "5370-565",
+   "localidade": "MIRANDELA",
+   "lat": 41.501044,
+   "lng": -7.168392,
+   "nome": "IPOV- MIRANDELA",
+   "morada": "ZONA INDUSTRIAL- RUA F, Nº 44"
+  },
+  {
+   "codigo_citv": "043",
+   "distrito": "Bragança",
+   "codigo_postal": "5300-678",
+   "localidade": "BRAGANÇA",
+   "lat": 41.788389,
+   "lng": -6.776192,
+   "nome": "CENTAL - BRAGANÇA",
+   "morada": "RUA ARQUITECTO VIANA DE LIMA - LOTES 128/129"
+  },
+  {
+   "codigo_citv": "120",
+   "distrito": "Bragança",
+   "codigo_postal": "5340-481",
+   "localidade": "VALE DE PRADOS",
+   "lat": 41.574361,
+   "lng": -6.991417,
+   "nome": "CITVM - MACEDO DE CAVALEIROS",
+   "morada": "ZONA INDUSTRIAL AMENDOEIRA"
+  },
+  {
+   "codigo_citv": "151",
+   "distrito": "Bragança",
+   "codigo_postal": "5160-113",
+   "localidade": "LARINHO",
+   "lat": 41.193239,
+   "lng": -7.014758,
+   "nome": "CIL NEVES - TORRE DE MONCORVO (LARINHO)",
+   "morada": "ZONA INDUSTRIAL, LOTE 52"
+  },
+  {
+   "codigo_citv": "027",
+   "distrito": "Castelo Branco",
+   "codigo_postal": "6000-459",
+   "localidade": "CASTELO BRANCO",
+   "lat": 39.810814,
+   "lng": -7.519119,
+   "nome": "CONTROLAUTO - CASTELO BRANCO",
+   "morada": "ZONA INDUSTRIAL - RUA F"
+  },
+  {
+   "codigo_citv": "096",
+   "distrito": "Castelo Branco",
+   "codigo_postal": "6200-027",
+   "localidade": "COVILHÃ",
+   "lat": 40.289444,
+   "lng": -7.474167,
+   "nome": "CIMA - COVILHÃ",
+   "morada": "ZONA INDUSTRIAL DO CANHOSO, LOTE 16"
+  },
+  {
+   "codigo_citv": "104",
+   "distrito": "Castelo Branco",
+   "codigo_postal": "6100-711",
+   "localidade": "SERTÃ",
+   "lat": 39.816628,
+   "lng": -8.108233,
+   "nome": "CIPO - CIPVA CASTANHEIRENSE - SERTÃ",
+   "morada": "ZONA INDUSTRIAL, LOTE 9."
+  },
+  {
+   "codigo_citv": "129",
+   "distrito": "Castelo Branco",
+   "codigo_postal": "6230-483",
+   "localidade": "FUNDÃO",
+   "lat": 40.176078,
+   "lng": -7.491206,
+   "nome": "MOTORBEIRA - FUNDÃO",
+   "morada": "ZONA INDUSTRIAL DO FUNDÃO, LOTES 115 / 109"
+  },
+  {
+   "codigo_citv": "015",
+   "distrito": "Coimbra",
+   "codigo_postal": "3020-886",
+   "localidade": "SOUSELAS",
+   "lat": 40.295047,
+   "lng": -8.419761,
+   "nome": "CONTROLAUTO - COIMBRA (SOUSELAS)",
+   "morada": "ZONA INDUSTRIAL"
+  },
+  {
+   "codigo_citv": "028",
+   "distrito": "Coimbra",
+   "codigo_postal": "3080-738",
+   "localidade": "FIGUEIRA DA FOZ",
+   "lat": 40.122144,
+   "lng": -8.850356,
+   "nome": "CONTROLAUTO - FIGUEIRA DA FOZ (S.PEDRO)",
+   "morada": "AV. 12 DE JULHO Nº19 A - GALA."
+  },
+  {
+   "codigo_citv": "050",
+   "distrito": "Coimbra",
+   "codigo_postal": "3080-380",
+   "localidade": "FIGUEIRA DA FOZ",
+   "lat": 40.12,
+   "lng": -8.851111,
+   "nome": "CIMA - FIGUEIRA DA FOZ (S. PEDRO)",
+   "morada": "ZONA INDUSTRIAL DA GALA, LOTE 7 D."
+  },
+  {
+   "codigo_citv": "059",
+   "distrito": "Coimbra",
+   "codigo_postal": "3200-133",
+   "localidade": "LOUSÃ",
+   "lat": 40.114928,
+   "lng": -8.294025,
+   "nome": "CDL - LOUSÃ",
+   "morada": "ZONA INDUSTRIAL DO ALTO DO PADRÃO"
+  },
+  {
+   "codigo_citv": "112",
+   "distrito": "Coimbra",
+   "codigo_postal": "3080-437",
+   "localidade": "FIGUEIRA DA FOZ",
+   "lat": 40.189186,
+   "lng": -8.830668,
+   "nome": "CIPEF - FIGUEIRA DA FOZ (ALTO DE BRENHA)",
+   "morada": "LUGAR DE ARAÚJOS"
+  },
+  {
+   "codigo_citv": "152",
+   "distrito": "Coimbra",
+   "codigo_postal": "3150-227",
+   "localidade": "CONDEIXA-A-NOVA",
+   "lat": 40.086006,
+   "lng": -8.525894,
+   "nome": "CAMPINCARCENTRO - CONDEIXA-A-NOVA",
+   "morada": "ESTRADA NACIONAL Nº 1 - VERMUM - SANGARDÃO"
+  },
+  {
+   "codigo_citv": "156",
+   "distrito": "Coimbra",
+   "codigo_postal": "3400-060",
+   "localidade": "OLIVEIRA DO HOSPITAL",
+   "lat": 40.360833,
+   "lng": -7.836111,
+   "nome": "CIAP - OLIVEIRA DO HOSPITAL",
+   "morada": "ZONA INDUSTRIAL, LOTE 22"
+  },
+  {
+   "codigo_citv": "172",
+   "distrito": "Coimbra",
+   "codigo_postal": "3350-214",
+   "localidade": "S. MIGUEL DE POIARES",
+   "lat": 40.211288,
+   "lng": -8.236694,
+   "nome": "CIPABE - VILA NOVA DE POIARES (S.MIGUEL DE POIARES)",
+   "morada": "ZONA INDUSTRIAL DE SÃO MIGUEL"
+  },
+  {
+   "codigo_citv": "190",
+   "distrito": "Coimbra",
+   "codigo_postal": "3040-030",
+   "localidade": "COIMBRA",
+   "lat": 40.180686,
+   "lng": -8.443328,
+   "nome": "CONTROLAUTO - COIMBRA (SANTA CLARA)",
+   "morada": "RUA DOS LEITÕES - CRUZAMENTO DOS CARVALHAIS"
+  },
+  {
+   "codigo_citv": "198",
+   "distrito": "Coimbra",
+   "codigo_postal": "3420-316",
+   "localidade": "TÁBUA",
+   "lat": 40.364722,
+   "lng": -8.014167,
+   "nome": "CIMA - TÁBUA",
+   "morada": "ZONA INDUSTRIAL, LOTE Nº 1"
+  },
+  {
+   "codigo_citv": "210",
+   "distrito": "Coimbra",
+   "codigo_postal": "3045-912",
+   "localidade": "TAVEIRO",
+   "lat": 40.199444,
+   "lng": -8.506389,
+   "nome": "CIMA - COIMBRA (TAVEIRO)",
+   "morada": "RUA PADRE MANUEL MARCELINO"
+  },
+  {
+   "codigo_citv": "375",
+   "distrito": "Coimbra",
+   "codigo_postal": "3060-732",
+   "localidade": "SÃO CAETANO CNT",
+   "lat": 40.369806,
+   "lng": -8.685831,
+   "nome": "EASYTEST - CANTANHEDE",
+   "morada": "RUA PRINCIPAL 12 DE JULHO"
+  },
+  {
+   "codigo_citv": "036",
+   "distrito": "Faro",
+   "codigo_postal": "8100-272",
+   "localidade": "LOULÉ",
+   "lat": 37.129956,
+   "lng": -8.032769,
+   "nome": "CONTROLAUTO - LOULÉ (S. CLEMENTE)",
+   "morada": "PARQUE INDUSTRIAL DE LOULÉ"
+  },
+  {
+   "codigo_citv": "072",
+   "distrito": "Faro",
+   "codigo_postal": "8500-469",
+   "localidade": "PORTIMÃO",
+   "lat": 37.157222,
+   "lng": -8.560278,
+   "nome": "CIMA - PORTIMÃO (CHÃO DAS DONAS)",
+   "morada": "RUA POETA ANTÓNIO ALEIXO - CHÃO DAS DONAS"
+  },
+  {
+   "codigo_citv": "099",
+   "distrito": "Faro",
+   "codigo_postal": "8200-417",
+   "localidade": "GUIA ABF",
+   "lat": 37.127958,
+   "lng": -8.311547,
+   "nome": "CONTROLAUTO - ALBUFEIRA (GUIA)",
+   "morada": "ESTRADA NACIONAL, 125"
+  },
+  {
+   "codigo_citv": "115",
+   "distrito": "Faro",
+   "codigo_postal": "8700-281",
+   "localidade": "OLHÃO",
+   "lat": 37.029678,
+   "lng": -7.828142,
+   "nome": "LUISAUTO - OLHÃO",
+   "morada": "PARQUE INDUSTRIAL, LT 204/209"
+  },
+  {
+   "codigo_citv": "180",
+   "distrito": "Faro",
+   "codigo_postal": "8005-429",
+   "localidade": "FARO",
+   "lat": null,
+   "lng": null,
+   "nome": "CIMA - FARO (SÉ)",
+   "morada": "SITIO DA PERNA DE PAU - EN 2."
+  },
+  {
+   "codigo_citv": "195",
+   "distrito": "Faro",
+   "codigo_postal": "8000-750",
+   "localidade": "FARO",
+   "lat": 37.021681,
+   "lng": -7.976686,
+   "nome": "CONTROLAUTO - FARO (MONTENEGRO)",
+   "morada": "ESTRADA DA PRAIA DE FARO (AO AEROPORTO)"
+  },
+  {
+   "codigo_citv": "213",
+   "distrito": "Faro",
+   "codigo_postal": "8150-044",
+   "localidade": "S. BRÁS DE ALPORTEL",
+   "lat": 37.131872,
+   "lng": -7.893803,
+   "nome": "CONTROLAUTO - S. BRÁS DE ALPORTEL (MACHADOS) S. BRÁS DE ALPORTEL",
+   "morada": null
+  },
+  {
+   "codigo_citv": "215",
+   "distrito": "Faro",
+   "codigo_postal": "8800-359",
+   "localidade": "TAVIRA",
+   "lat": 37.118611,
+   "lng": -7.663611,
+   "nome": "CIMA - TAVIRA",
+   "morada": "SITIO DE S. PEDRO - EN 125"
+  },
+  {
+   "codigo_citv": "216",
+   "distrito": "Faro",
+   "codigo_postal": "8400-489",
+   "localidade": "PORCHES",
+   "lat": 37.129611,
+   "lng": -8.397672,
+   "nome": "EUROINSPECÇÕES - LAGOA (PORCHES)",
+   "morada": "ESTRADA NACIONAL 125."
+  },
+  {
+   "codigo_citv": "218",
+   "distrito": "Faro",
+   "codigo_postal": "8600-102",
+   "localidade": "LUZ LGS",
+   "lat": 37.094244,
+   "lng": -8.770767,
+   "nome": "CONTROLAUTO - LAGOS (ALMADENA) EIRAS VELHAS",
+   "morada": null
+  },
+  {
+   "codigo_citv": "340",
+   "distrito": "Faro",
+   "codigo_postal": "8100-012",
+   "localidade": "ALTE",
+   "lat": 37.234083,
+   "lng": -8.175731,
+   "nome": "CIAP - LOULÉ",
+   "morada": "ESTRADA DA PONTE - N 124"
+  },
+  {
+   "codigo_citv": "065",
+   "distrito": "Guarda",
+   "codigo_postal": "6270-502",
+   "localidade": "SEIA",
+   "lat": 40.427222,
+   "lng": -7.712778,
+   "nome": "CIMA - SEIA",
+   "morada": "RUA DE SANTA ANTONINHA - ZONA INDUSTRIAL"
+  },
+  {
+   "codigo_citv": "093",
+   "distrito": "Guarda",
+   "codigo_postal": "6300-625",
+   "localidade": "GUARDA",
+   "lat": 40.536667,
+   "lng": -7.243889,
+   "nome": "CIMA - GUARDA (GUARDA)",
+   "morada": "PARQUE INDUSTRIAL, LOTE 19"
+  },
+  {
+   "codigo_citv": "250",
+   "distrito": "Guarda",
+   "codigo_postal": "6420-076",
+   "localidade": "TRANCOSO",
+   "lat": 40.766889,
+   "lng": -7.357111,
+   "nome": "TORRES & FILHO - TRANCOSO (SANTA MARIA)",
+   "morada": "AV. DAS INDÚSTRIAS - ZONA INDUSTRIAL"
+  },
+  {
+   "codigo_citv": "258",
+   "distrito": "Guarda",
+   "codigo_postal": "6300-864",
+   "localidade": "GUARDA",
+   "lat": 40.5525,
+   "lng": -7.247258,
+   "nome": "BETOREL - GUARDA (SÃO MIGUEL DA GUARDA)",
+   "morada": "AV. S.MIGUEL, Nº 13"
+  },
+  {
+   "codigo_citv": "016",
+   "distrito": "Leiria",
+   "codigo_postal": "2440-040",
+   "localidade": "BATALHA",
+   "lat": 39.669708,
+   "lng": -8.843489,
+   "nome": "CONTROLAUTO - BATALHA",
+   "morada": "ESTRADA NACIONAL, 356"
+  },
+  {
+   "codigo_citv": "029",
+   "distrito": "Leiria",
+   "codigo_postal": "2400-447",
+   "localidade": "LEIRIA",
+   "lat": 39.746881,
+   "lng": -8.820461,
+   "nome": "CONTROLAUTO - LEIRIA (PONTE DE MESTRAS)",
+   "morada": "RUA DR. VIRGÍLIO VIEIRA DA CUNHA S/N"
+  },
+  {
+   "codigo_citv": "038",
+   "distrito": "Leiria",
+   "codigo_postal": "3105-305",
+   "localidade": "REDINHA",
+   "lat": 40.023253,
+   "lng": -8.576675,
+   "nome": "CIMA - POMBAL (REDINHA) BARREIRAS - REDINHA",
+   "morada": null
+  },
+  {
+   "codigo_citv": "054",
+   "distrito": "Leiria",
+   "codigo_postal": "2500-303",
+   "localidade": "CALDAS DA RAINHA",
+   "lat": null,
+   "lng": null,
+   "nome": "CIMA - CALDAS DA RAINHA (TORNADA)",
+   "morada": "RUA PEDRO NUNES, LOTE 34"
+  },
+  {
+   "codigo_citv": "127",
+   "distrito": "Leiria",
+   "codigo_postal": "3105-253",
+   "localidade": "MEIRINHAS",
+   "lat": 39.835,
+   "lng": -8.715,
+   "nome": "CIMA - POMBAL (MEIRINHAS)",
+   "morada": "ZONA INDUSTRIAL ADELINO DUARTE DA MOTA"
+  },
+  {
+   "codigo_citv": "135",
+   "distrito": "Leiria",
+   "codigo_postal": "3105-246",
+   "localidade": "MEIRINHAS",
+   "lat": 39.854056,
+   "lng": -8.704389,
+   "nome": "CIVAM - POMBAL (MEIRINHAS)",
+   "morada": "RUA DAS ACHADAS LARGAS"
+  },
+  {
+   "codigo_citv": "136",
+   "distrito": "Leiria",
+   "codigo_postal": "3250-293",
+   "localidade": "MAÇÃS DE DONA MARIA",
+   "lat": 39.873353,
+   "lng": -8.351469,
+   "nome": "H F ALVES - ALVAIÁZERE (MAÇAS DE D. MARIA) VENDAS DE MARIA",
+   "morada": null
+  },
+  {
+   "codigo_citv": "137",
+   "distrito": "Leiria",
+   "codigo_postal": "2440-053",
+   "localidade": "BATALHA",
+   "lat": 39.678611,
+   "lng": -8.835722,
+   "nome": "ITVM - BATALHA (SANTO ANTÃO)",
+   "morada": "ESTRADA NACIONAL 1, Nº 67"
+  },
+  {
+   "codigo_citv": "138",
+   "distrito": "Leiria",
+   "codigo_postal": "2500-914",
+   "localidade": "CALDAS DA RAINHA",
+   "lat": 39.4175,
+   "lng": -9.16846,
+   "nome": "DEKRA - CALDAS DA RAINHA (STº ONOFRE)",
+   "morada": "SÍTIO DA MINA (ESTRADA DA FOZ DO ARELHO) APART. 507"
+  },
+  {
+   "codigo_citv": "157",
+   "distrito": "Leiria",
+   "codigo_postal": "2495-183",
+   "localidade": "SANTA CATARINA DA SERRA",
+   "lat": 39.67545,
+   "lng": -8.671361,
+   "nome": "CONTROLAUTO - FATIMA (STA CATARINA DA SERRA",
+   "morada": "RUA DA INDUSTRIA PEDROME"
+  },
+  {
+   "codigo_citv": "158",
+   "distrito": "Leiria",
+   "codigo_postal": "2415-527",
+   "localidade": "LEIRIA",
+   "lat": 39.761822,
+   "lng": -8.815531,
+   "nome": "CETIAL - LEIRIA (MARRAZES)",
+   "morada": "RUA DO OLIVAL"
+  },
+  {
+   "codigo_citv": "171",
+   "distrito": "Leiria",
+   "codigo_postal": "2500-161",
+   "localidade": "CALDAS DA RAINHA",
+   "lat": 39.420844,
+   "lng": -9.171411,
+   "nome": "IAC - CALDAS DA RAINHA (NADADOURO)",
+   "morada": "PARQUE INDUSTRIAL - RUA DA INDUSTRIA, Nº 5 - CUMEIRA"
+  },
+  {
+   "codigo_citv": "183",
+   "distrito": "Leiria",
+   "codigo_postal": "2460-392",
+   "localidade": "COZ",
+   "lat": 39.604444,
+   "lng": -8.986111,
+   "nome": "CIMA - ALCOBAÇA",
+   "morada": "ZONA INDUSTRIAL CASAL DA AREIA, LOTE 60"
+  },
+  {
+   "codigo_citv": "184",
+   "distrito": "Leiria",
+   "codigo_postal": "2430-011",
+   "localidade": "MARINHA GRANDE",
+   "lat": 39.742694,
+   "lng": -8.902722,
+   "nome": "INSPECENTRO - MARINHA GRANDE (CUMEIRAS)",
+   "morada": "ZONA INDUSTRIAL DE EMBRA"
+  },
+  {
+   "codigo_citv": "217",
+   "distrito": "Leiria",
+   "codigo_postal": "2510-425",
+   "localidade": "AMOREIRA OBD",
+   "lat": 39.344833,
+   "lng": -9.204689,
+   "nome": "DEKRA - ÓBIDOS (AMOREIRA)",
+   "morada": "ESTRADA NACIONAL 114, Nº 4"
+  },
+  {
+   "codigo_citv": "371",
+   "distrito": "Leiria",
+   "codigo_postal": "2425-617",
+   "localidade": "MONTE REDONDO LEIRIA",
+   "lat": 39.891611,
+   "lng": -8.8355,
+   "nome": "CARLOS CORREIA & CORREIA DE CARVALHO – LEIRIA",
+   "morada": "RUA VIRGÍLIO GOMES NORTE"
+  },
+  {
+   "codigo_citv": "018",
+   "distrito": "Lisboa",
+   "codigo_postal": "2560-629",
+   "localidade": "TORRES VEDRAS",
+   "lat": 39.070642,
+   "lng": -9.243514,
+   "nome": "CONTROLAUTO - TORRES VEDRAS",
+   "morada": "ESTRADA NACIONAL 8, KM 43,9"
+  },
+  {
+   "codigo_citv": "019",
+   "distrito": "Lisboa",
+   "codigo_postal": "2560-393",
+   "localidade": "SILVEIRA",
+   "lat": 39.093722,
+   "lng": -9.340675,
+   "nome": "CONTROLAUTO - T VEDRAS (SILVEIRA) VALVERDE, CASALINHOS DE ALFAIATA",
+   "morada": null
+  },
+  {
+   "codigo_citv": "020",
+   "distrito": "Lisboa",
+   "codigo_postal": "2665-571",
+   "localidade": "VENDA DO PINHEIRO",
+   "lat": 38.913883,
+   "lng": -9.201617,
+   "nome": "CONTROLAUTO - MAFRA (VENDA DO PINHEIRO)",
+   "morada": "ESTRADA NACIONAL, 116"
+  },
+  {
+   "codigo_citv": "021",
+   "distrito": "Lisboa",
+   "codigo_postal": "2615-142",
+   "localidade": "ALVERCA DO RIBATEJO",
+   "lat": 38.905047,
+   "lng": -9.025117,
+   "nome": "CONTROLAUTO - V F DE XIRA (ALVERCA)",
+   "morada": "ESTRADA NACIONAL, Nº 10 - KM 127,2 - ESTRADA DO ADARSE"
+  },
+  {
+   "codigo_citv": "022",
+   "distrito": "Lisboa",
+   "codigo_postal": "2795-024",
+   "localidade": "LINDA A VELHA",
+   "lat": 38.717364,
+   "lng": -9.235719,
+   "nome": "CONTROLAUTO - OEIRAS (LINDA-A-VELHA)",
+   "morada": "ALAMEDA ANTÓNIO SERGIO, Nº 27."
+  },
+  {
+   "codigo_citv": "042",
+   "distrito": "Lisboa",
+   "codigo_postal": "2745-190",
+   "localidade": "QUELUZ",
+   "lat": 38.756256,
+   "lng": -9.249269,
+   "nome": "CONTROLAUTO - SINTRA (QUELUZ)",
+   "morada": "AV. PAIVA COUCEIRO (JUNTO AO QUARTEL DOS BOMBEIROS)"
+  },
+  {
+   "codigo_citv": "067",
+   "distrito": "Lisboa",
+   "codigo_postal": "2670-430",
+   "localidade": "LOURES",
+   "lat": 38.82795,
+   "lng": -9.165856,
+   "nome": "CONTROLAUTO - LOURES",
+   "morada": "RUA DE OLIVENÇA (JUNTO AO QUARTEL DOS BOMBEIROS)."
+  },
+  {
+   "codigo_citv": "084",
+   "distrito": "Lisboa",
+   "codigo_postal": "2785-543",
+   "localidade": "SÃO DOMINGOS DE RANA",
+   "lat": 38.724586,
+   "lng": -9.331022,
+   "nome": "CONTROLAUTO - CASCAIS (ABÓBADA)",
+   "morada": "ESTRADA DA POLIMA, Nº 945"
+  },
+  {
+   "codigo_citv": "086",
+   "distrito": "Lisboa",
+   "codigo_postal": "2705-906",
+   "localidade": "TERRUGEM SNT",
+   "lat": 38.834067,
+   "lng": -9.354453,
+   "nome": "CONTROLAUTO - SINTRA (FERVENÇA)",
+   "morada": "ESTRADA NACIONAL Nº 9, KM 18"
+  },
+  {
+   "codigo_citv": "098",
+   "distrito": "Lisboa",
+   "codigo_postal": "2750-663",
+   "localidade": "CASCAIS",
+   "lat": 38.709317,
+   "lng": -9.432433,
+   "nome": "CONTROLAUTO - CASCAIS (PAMPILHEIRA)",
+   "morada": "RUA FERNÃO LOPES"
+  },
+  {
+   "codigo_citv": "105",
+   "distrito": "Lisboa",
+   "codigo_postal": "2790-172",
+   "localidade": "CARNAXIDE",
+   "lat": 38.72725,
+   "lng": -9.223472,
+   "nome": "INSPEAUTO - OEIRAS (PORTELA DE CARNAXIDE)",
+   "morada": "PRACETA DOS CAVALEIROS, Nº 3"
+  },
+  {
+   "codigo_citv": "117",
+   "distrito": "Lisboa",
+   "codigo_postal": "2690-361",
+   "localidade": "SANTA IRIA DA AZÓIA",
+   "lat": 38.837,
+   "lng": -9.082972,
+   "nome": "TBOM - LOURES (ANAIA)",
+   "morada": "ESTRADA NACIONAL, 10 - ANAIA"
+  },
+  {
+   "codigo_citv": "142",
+   "distrito": "Lisboa",
+   "codigo_postal": "2050-003",
+   "localidade": "AZAMBUJA",
+   "lat": 39.056028,
+   "lng": -8.903833,
+   "nome": "NUMIL - AZAMBUJA CENTRO EMPRESARIAL DA RAINHA, LOTE 7",
+   "morada": null
+  },
+  {
+   "codigo_citv": "193",
+   "distrito": "Lisboa",
+   "codigo_postal": "2645-544",
+   "localidade": "ALCABIDECHE",
+   "lat": 38.749958,
+   "lng": -9.391575,
+   "nome": "CONTROLAUTO - CASCAIS (ESTORIL)",
+   "morada": "ESTRADA NACIONAL 9-KM 6.(JUNTO AO AUTÓDROMO ESTORIL)"
+  },
+  {
+   "codigo_citv": "194",
+   "distrito": "Lisboa",
+   "codigo_postal": "2685-332",
+   "localidade": "PRIOR VELHO",
+   "lat": 38.786667,
+   "lng": -9.127908,
+   "nome": "CONTROLAUTO - LOURES (PRIOR VELHO)",
+   "morada": "RUA FRANCISCO SALGADO ZENHA, LOTE 3/4 (AO AEROPORTO)"
+  },
+  {
+   "codigo_citv": "221",
+   "distrito": "Lisboa",
+   "codigo_postal": "2650-399",
+   "localidade": "AMADORA",
+   "lat": 38.789167,
+   "lng": -9.2275,
+   "nome": "ADABEJA - AMADORA",
+   "morada": "ESTRADA DE SANTO ELOY - A-DA-BEJA"
+  },
+  {
+   "codigo_citv": "223",
+   "distrito": "Lisboa",
+   "codigo_postal": "2685-380",
+   "localidade": "PRIOR VELHO",
+   "lat": 38.788917,
+   "lng": -9.124806,
+   "nome": "INSPECENTRO - LOURES (PRIOR VELHO)",
+   "morada": "AVENIDA SEVERIANO FALCÃO, ARMAZÉM 14"
+  },
+  {
+   "codigo_citv": "224",
+   "distrito": "Lisboa",
+   "codigo_postal": "2675-416",
+   "localidade": "ODIVELAS",
+   "lat": 38.796306,
+   "lng": -9.168861,
+   "nome": "INSPECENTRO - ODIVELAS (PÓVOA STº ADRIÃO)",
+   "morada": "RUA NORBERTO OLIVEIRA, Nº 16"
+  },
+  {
+   "codigo_citv": "225",
+   "distrito": "Lisboa",
+   "codigo_postal": "2740-013",
+   "localidade": "PORTO SALVO",
+   "lat": 38.721389,
+   "lng": -9.302222,
+   "nome": "CIMA - OEIRAS",
+   "morada": "RUA ANTONIO FELICIANO DE CASTILHO, Nº 35"
+  },
+  {
+   "codigo_citv": "226",
+   "distrito": "Lisboa",
+   "codigo_postal": "1950-321",
+   "localidade": "LISBOA",
+   "lat": 38.742222,
+   "lng": -9.098889,
+   "nome": "CIMA - LISBOA (POÇO DO BISPO)",
+   "morada": "RUA CINTURA DO PORTO DE LISBOA - POÇO DO BISPO"
+  },
+  {
+   "codigo_citv": "227",
+   "distrito": "Lisboa",
+   "codigo_postal": "2530-077",
+   "localidade": "LOURINHÃ",
+   "lat": 39.289444,
+   "lng": -9.318889,
+   "nome": "CIL - LOURINHÃ (CASAL BARATA)",
+   "morada": "ESTRADA NACIONAL 247 Km 6,8 - CASAL BARATA - PAIMOGO"
+  },
+  {
+   "codigo_citv": "228",
+   "distrito": "Lisboa",
+   "codigo_postal": "2680-037",
+   "localidade": "CAMARATE",
+   "lat": 38.791111,
+   "lng": -9.14,
+   "nome": "INSPEZALVES - LOURES (CAMARATE)",
+   "morada": "RUA CIDADE DE LISBOA, QUINTA DA VÁRZEA"
+  },
+  {
+   "codigo_citv": "229",
+   "distrito": "Lisboa",
+   "codigo_postal": "2735-503",
+   "localidade": "AGUALVA-CACÉM",
+   "lat": 38.752942,
+   "lng": -9.302958,
+   "nome": "INTE-LUSA - SINTRA (CACÉM)",
+   "morada": "RUA DAS FÁBRICAS DE SÃO MARCOS, Nº 14/16 - SÃO MARCOS"
+  },
+  {
+   "codigo_citv": "254",
+   "distrito": "Lisboa",
+   "codigo_postal": "2580-347",
+   "localidade": "ALENQUER",
+   "lat": 39.044478,
+   "lng": -8.984244,
+   "nome": "STV - ALENQUER (SANTO ESTEVÃO)",
+   "morada": "RUA DO NOBRE S/N - QUINTA DA ALMADIA- CASAIS NOVOS"
+  },
+  {
+   "codigo_citv": "303",
+   "distrito": "Lisboa",
+   "codigo_postal": "2700-391",
+   "localidade": "AMADORA",
+   "lat": 38.750539,
+   "lng": -9.220072,
+   "nome": "ITVP - AMADORA",
+   "morada": "RUA DAS FONTAINHAS S/N"
+  },
+  {
+   "codigo_citv": "304",
+   "distrito": "Lisboa",
+   "codigo_postal": "2720-413",
+   "localidade": "AMADORA",
+   "lat": 38.739389,
+   "lng": -9.234142,
+   "nome": "DEKRA - AMADORA URBANIZAÇÃO MARCONI, LOTE 3 - SERRA DE CARNAXIDE",
+   "morada": null
+  },
+  {
+   "codigo_citv": "308",
+   "distrito": "Lisboa",
+   "codigo_postal": "2725-220",
+   "localidade": "MEM MARTINS",
+   "lat": 38.787319,
+   "lng": -9.340339,
+   "nome": "DEKRA - SINTRA - MEM MARTINS II",
+   "morada": "RUA ANTÓNIO FEIJO"
+  },
+  {
+   "codigo_citv": "309",
+   "distrito": "Lisboa",
+   "codigo_postal": "2600-619",
+   "localidade": "CASTANHEIRA DO RIBATEJO",
+   "lat": 38.984758,
+   "lng": -8.969294,
+   "nome": "CIC - CENTRO DE INSPEÇÕES DA CASTANHEIRA ANTIGA SONOL",
+   "morada": "ESTRADA DO APEADEIRO CASTANHEIRA DO RIBATEJO"
+  },
+  {
+   "codigo_citv": "317",
+   "distrito": "Lisboa",
+   "codigo_postal": "2610-153",
+   "localidade": "AMADORA",
+   "lat": 38.740717,
+   "lng": -9.228608,
+   "nome": "INSPAMA - ALFRAGIDE",
+   "morada": "RUA ENTREPOSTO INDUSTRIAL"
+  },
+  {
+   "codigo_citv": "318",
+   "distrito": "Lisboa",
+   "codigo_postal": "2730-097",
+   "localidade": "BARCARENA",
+   "lat": 38.737403,
+   "lng": -9.270381,
+   "nome": "INSPAMA - OEIRAS",
+   "morada": "RUA HUMBERTO MADEIRA"
+  },
+  {
+   "codigo_citv": "321",
+   "distrito": "Lisboa",
+   "codigo_postal": "2710-297",
+   "localidade": "SINTRA",
+   "lat": 38.787856,
+   "lng": -9.340431,
+   "nome": "INSPAMA - MEM MARTINS - SINTRA",
+   "morada": "RUA ANTONIO ALEIXO"
+  },
+  {
+   "codigo_citv": "328",
+   "distrito": "Lisboa",
+   "codigo_postal": "1800-023",
+   "localidade": "LISBOA",
+   "lat": 38.767342,
+   "lng": -9.10575,
+   "nome": "ITVP - LISBOA",
+   "morada": "RUA AMÉRICO DE JESUS FERNANDES, LOTE F"
+  },
+  {
+   "codigo_citv": "329",
+   "distrito": "Lisboa",
+   "codigo_postal": "1500-462",
+   "localidade": "LISBOA",
+   "lat": 38.738661,
+   "lng": -9.203869,
+   "nome": "APROVAWAY - LISBOA",
+   "morada": "ESTRADA MILITAR AO BAIRRO DA BOAVISTA"
+  },
+  {
+   "codigo_citv": "330",
+   "distrito": "Lisboa",
+   "codigo_postal": "1750-000",
+   "localidade": "LISBOA",
+   "lat": 38.783211,
+   "lng": -9.155717,
+   "nome": "CIA - AMEIXOEIRA - LISBOA QUINTA DE S. BENTO",
+   "morada": "LARGO DO TERREIRO 1-4, AMEIXOEIRA"
+  },
+  {
+   "codigo_citv": "374",
+   "distrito": "Lisboa",
+   "codigo_postal": "1685-654",
+   "localidade": "FAMÕES",
+   "lat": 38.79515,
+   "lng": -9.197703,
+   "nome": "NASA - ODIVELAS",
+   "morada": "AVENIDA DAS ACÁCIAS, ARROJA"
+  },
+  {
+   "codigo_citv": "091",
+   "distrito": "Portalegre",
+   "codigo_postal": "7300-053",
+   "localidade": "PORTALEGRE",
+   "lat": 39.266825,
+   "lng": -7.4325,
+   "nome": "J PINTÃO - PORTALEGRE (SÉ)",
+   "morada": "AV. FRANCISCO FINO, Nº 19"
+  },
+  {
+   "codigo_citv": "121",
+   "distrito": "Portalegre",
+   "codigo_postal": "7350-229",
+   "localidade": "ELVAS",
+   "lat": 38.880278,
+   "lng": -7.143333,
+   "nome": "ITV - ELVAS ( CAIA E S. PEDRO)",
+   "morada": "AV. DO DIA DE PORTUGAL, 10 DE JUNHO DE 2013, N.º 54"
+  },
+  {
+   "codigo_citv": "162",
+   "distrito": "Portalegre",
+   "codigo_postal": "7400-213",
+   "localidade": "PONTE DE SOR",
+   "lat": 39.2565,
+   "lng": -8.018194,
+   "nome": "CIP - GOMES & SOLEDADE - PONTE DE SOR",
+   "morada": "RUA DE ANGOLA, LOTE 25 A - ZONA INDUSTRIAL"
+  },
+  {
+   "codigo_citv": "005",
+   "distrito": "Porto",
+   "codigo_postal": "4480-091",
+   "localidade": "ÁRVORE",
+   "lat": 41.327581,
+   "lng": -8.713933,
+   "nome": "IPOV - VILA DO CONDE (FAJOZES)",
+   "morada": "ZONA INDUSTRIAL DA VARZIELA - RUA 5, LOTE 19"
+  },
+  {
+   "codigo_citv": "006",
+   "distrito": "Porto",
+   "codigo_postal": "4455-489",
+   "localidade": "PERAFITA",
+   "lat": 41.210728,
+   "lng": -8.691264,
+   "nome": "ZUIR - MATOSINHOS (LEÇA DA PALMEIRA)",
+   "morada": "RUA JOAQUIM MADUREIRA S/N"
+  },
+  {
+   "codigo_citv": "007",
+   "distrito": "Porto",
+   "codigo_postal": "4100-214",
+   "localidade": "PORTO",
+   "lat": 41.179364,
+   "lng": -8.649764,
+   "nome": "ZUIR - PORTO (RAMALDE)",
+   "morada": "RUA DIREITA PEREIRÓ, Nº 2068 / 2078"
+  },
+  {
+   "codigo_citv": "008",
+   "distrito": "Porto",
+   "codigo_postal": "4440-696",
+   "localidade": "VALONGO",
+   "lat": 41.185917,
+   "lng": -8.486444,
+   "nome": "INSPECENTRO - VALONGO",
+   "morada": "RUA RODRIGUES ALVES, Nº 160"
+  },
+  {
+   "codigo_citv": "009",
+   "distrito": "Porto",
+   "codigo_postal": "4100-313",
+   "localidade": "PORTO",
+   "lat": 41.171119,
+   "lng": -8.640475,
+   "nome": "CONTROLAUTO - PORTO (RAMALDE) ESTAÇÃO DE FRANCOS DOS STCP",
+   "morada": "R. ENGº LUIS D. SANTOS"
+  },
+  {
+   "codigo_citv": "010",
+   "distrito": "Porto",
+   "codigo_postal": "4415-538",
+   "localidade": "GRIJÓ VNG",
+   "lat": 41.042769,
+   "lng": -8.566442,
+   "nome": "CONTROLAUTO - VILA N DE GAIA (GRIJÓ)",
+   "morada": "ZONA INDUSTRIAL DA FEITEIRA - RUA DA SAIBREIRA, 308/318"
+  },
+  {
+   "codigo_citv": "047",
+   "distrito": "Porto",
+   "codigo_postal": "4560-709",
+   "localidade": "PENAFIEL",
+   "lat": 41.215758,
+   "lng": -8.283486,
+   "nome": "IPOV - PENAFIEL",
+   "morada": "ZONA INDUSTRIAL II - RUA DA ZONA INDUSTRIAL, Nº 2 S/N"
+  },
+  {
+   "codigo_citv": "128",
+   "distrito": "Porto",
+   "codigo_postal": "4570-209",
+   "localidade": "ESTELA",
+   "lat": 41.458947,
+   "lng": -8.748294,
+   "nome": "DOURASIL - PÓVOA DE VARZIM (ESTELA)",
+   "morada": "RUA DA ESTELA, 2530"
+  },
+  {
+   "codigo_citv": "141",
+   "distrito": "Porto",
+   "codigo_postal": "4795-160",
+   "localidade": "REBORDÕES",
+   "lat": 41.358736,
+   "lng": -8.43905,
+   "nome": "CITAST - STO TIRSO - REBORDÕES",
+   "morada": "AV. AMÉRICO TEIXEIRA, Nº 960"
+  },
+  {
+   "codigo_citv": "147",
+   "distrito": "Porto",
+   "codigo_postal": "4400-300",
+   "localidade": "VILA NOVA DE GAIA",
+   "lat": 41.121028,
+   "lng": -8.628056,
+   "nome": "CONTROLAUTO - VILA NOVA DE GAIA (SANTA MARINHA)",
+   "morada": "RUA SENHOR DE MATOSINHOS, Nº 754."
+  },
+  {
+   "codigo_citv": "163",
+   "distrito": "Porto",
+   "codigo_postal": "4590-504",
+   "localidade": "PAÇOS DE FERREIRA",
+   "lat": 41.274056,
+   "lng": -8.369106,
+   "nome": "CITAST - PAÇOS DE FERREIRA",
+   "morada": "ALAMEDA DO MOSTEIRO"
+  },
+  {
+   "codigo_citv": "164",
+   "distrito": "Porto",
+   "codigo_postal": "4580-597",
+   "localidade": "MOURIZ",
+   "lat": 41.254444,
+   "lng": -8.480556,
+   "nome": "INSPAREDES - PAREDES (MOURIZ)",
+   "morada": "PRACETA ZÉ DO TELHADO, Nº 50"
+  },
+  {
+   "codigo_citv": "175",
+   "distrito": "Porto",
+   "codigo_postal": "4470-516",
+   "localidade": "MAIA",
+   "lat": 41.2446,
+   "lng": -8.62879,
+   "nome": "DEKRA - MAIA (BARCA)",
+   "morada": "ZONA INDUSTRIAL MAIA, SECTOR X, LOTE 384"
+  },
+  {
+   "codigo_citv": "176",
+   "distrito": "Porto",
+   "codigo_postal": "4350-314",
+   "localidade": "PORTO",
+   "lat": 41.157886,
+   "lng": -8.584239,
+   "nome": "CONTROLAUTO - PORTO - (CAMPANHÃ)",
+   "morada": "RUA DE S. ROQUE DA LAMEIRA, Nº 1857"
+  },
+  {
+   "codigo_citv": "177",
+   "distrito": "Porto",
+   "codigo_postal": "4485-255",
+   "localidade": "GUILHABREU",
+   "lat": 41.302775,
+   "lng": -8.627258,
+   "nome": "CITOVE - VILA DO CONDE (GUILHABREU)",
+   "morada": "RUA DO MONTE GRANDE, Nº 861 - ARMAZÉM 2"
+  },
+  {
+   "codigo_citv": "197",
+   "distrito": "Porto",
+   "codigo_postal": "4600-216",
+   "localidade": "AMARANTE",
+   "lat": 41.254792,
+   "lng": -8.073792,
+   "nome": "CINOR - AMARANTE (LOMBA)",
+   "morada": "RUA DAS FONTAINHAS, 790"
+  },
+  {
+   "codigo_citv": "199",
+   "distrito": "Porto",
+   "codigo_postal": "4630-334",
+   "localidade": "MARCO DE CANAVEZES",
+   "lat": 41.1865,
+   "lng": -8.157056,
+   "nome": "IVM - MARCO DE CANAVESES (TUÍAS)",
+   "morada": "AV. DOS BOMBEIROS VOLUNTARIOS DO MARCO DE CANAVESES"
+  },
+  {
+   "codigo_citv": "231",
+   "distrito": "Porto",
+   "codigo_postal": "4250-427",
+   "localidade": "PORTO",
+   "lat": 41.167556,
+   "lng": -8.619306,
+   "nome": "CENTRAL DE S. DINIS - PORTO (PARANHOS)",
+   "morada": "RUA DE S. DINIS, Nº 314"
+  },
+  {
+   "codigo_citv": "232",
+   "distrito": "Porto",
+   "codigo_postal": "4610-733",
+   "localidade": "SENDIM FLG",
+   "lat": 41.38375,
+   "lng": -8.164528,
+   "nome": "INSPECENTRO - FELGUEIRAS (SENDIM) CABEÇA DA PORCA",
+   "morada": null
+  },
+  {
+   "codigo_citv": "233",
+   "distrito": "Porto",
+   "codigo_postal": "4455-562",
+   "localidade": "PERAFITA",
+   "lat": 41.226147,
+   "lng": -8.677511,
+   "nome": "INSPENORDESTE - MATOSINHOS",
+   "morada": "RUA DA TELHEIRA, Nº(S) 117 E 127"
+  },
+  {
+   "codigo_citv": "235",
+   "distrito": "Porto",
+   "codigo_postal": "4445-245",
+   "localidade": "ALFENA",
+   "lat": 41.2385,
+   "lng": -8.53112,
+   "nome": "DEKRA - VALONGO (ALFENA)",
+   "morada": "RUA 1º DE MAIO, 1230/1290"
+  },
+  {
+   "codigo_citv": "251",
+   "distrito": "Porto",
+   "codigo_postal": "4450-801",
+   "localidade": "MATOSINHOS",
+   "lat": 41.20355,
+   "lng": -8.686025,
+   "nome": "INSPAUTO - MATOSINHOS (LEÇA DA PALMEIRA)",
+   "morada": "RUA VELOSO SALGADO, Nº(S) 1074 E 1088"
+  },
+  {
+   "codigo_citv": "252",
+   "distrito": "Porto",
+   "codigo_postal": "4425-116",
+   "localidade": "MAIA",
+   "lat": 41.206711,
+   "lng": -8.561133,
+   "nome": "INSPAUTO - MAIA (ÁGUAS SANTAS)",
+   "morada": "AV. LIDADOR DA MAIA, Nº 459, ARMAZÉM 7"
+  },
+  {
+   "codigo_citv": "253",
+   "distrito": "Porto",
+   "codigo_postal": "4350-273",
+   "localidade": "PORTO",
+   "lat": 41.175786,
+   "lng": -8.567306,
+   "nome": "INSPAUTO - PORTO (CAMPANHÃ)",
+   "morada": "RUA DA RANHA, Nº(S) 342 E 356"
+  },
+  {
+   "codigo_citv": "256",
+   "distrito": "Porto",
+   "codigo_postal": "4410-312",
+   "localidade": "CANELAS VNG",
+   "lat": 41.093048,
+   "lng": -8.60429,
+   "nome": "PAULICAR - VILA NOVA DE GAIA (CANELAS)",
+   "morada": "RUA INDUSTRIAL DAS LAGES, Nº 145"
+  },
+  {
+   "codigo_citv": "257",
+   "distrito": "Porto",
+   "codigo_postal": "4425-022",
+   "localidade": "MAIA",
+   "lat": 41.229083,
+   "lng": -8.56925,
+   "nome": "ACM - MAIA (ÁGUAS SANTAS)",
+   "morada": "RUA DE ARDEGÃES, Nº 585"
+  },
+  {
+   "codigo_citv": "322",
+   "distrito": "Porto",
+   "codigo_postal": "4825-045",
+   "localidade": "AGRELA STS",
+   "lat": 41.258014,
+   "lng": -8.464461,
+   "nome": "INSPOSENDE - SANTO TIRSO",
+   "morada": "RUA DE SÃO PEDRO _ AGRELA _ SANTO TIRSO"
+  },
+  {
+   "codigo_citv": "331",
+   "distrito": "Porto",
+   "codigo_postal": "4570-044",
+   "localidade": "BALAZAR PVZ",
+   "lat": 41.409772,
+   "lng": -8.633011,
+   "nome": "TEAM CARLOS MATOS - POVOA DE VARZIM",
+   "morada": "RUA DONA BENTA"
+  },
+  {
+   "codigo_citv": "333",
+   "distrito": "Porto",
+   "codigo_postal": "4515-463",
+   "localidade": "MELRES",
+   "lat": 41.083344,
+   "lng": -8.426472,
+   "nome": "MTR - GONDOMAR",
+   "morada": "AVENIDA SANTA BÁRBARA"
+  },
+  {
+   "codigo_citv": "334",
+   "distrito": "Porto",
+   "codigo_postal": "4455-047",
+   "localidade": "LAVRA",
+   "lat": 41.256689,
+   "lng": -8.710475,
+   "nome": "NASA - MATOSINHOS",
+   "morada": "RUA DA ANTELA"
+  },
+  {
+   "codigo_citv": "335",
+   "distrito": "Porto",
+   "codigo_postal": "4410-504",
+   "localidade": "ARCOZELO VNG",
+   "lat": 41.048022,
+   "lng": -8.646308,
+   "nome": "MTR - VILA NOVA GAIA - ARCOZELO",
+   "morada": "AVENIDA PEDRO HISPANO - ARCOZELO"
+  },
+  {
+   "codigo_citv": "336",
+   "distrito": "Porto",
+   "codigo_postal": "4430-629",
+   "localidade": "VILA NOVA DE GAIA",
+   "lat": 41.091456,
+   "lng": -8.531725,
+   "nome": "MTR - VILA NOVA GAIA - AVINTES",
+   "morada": "RUA SAO JULIAO - ZONA INDUSTRIAL DE AVINTES"
+  },
+  {
+   "codigo_citv": "341",
+   "distrito": "Porto",
+   "codigo_postal": "4515-462",
+   "localidade": "MELRES",
+   "lat": 41.057447,
+   "lng": -8.397367,
+   "nome": "IVM - GONDOMAR",
+   "morada": "AVENIDA JOSÉ JOAQUIM FERREIRA"
+  },
+  {
+   "codigo_citv": "342",
+   "distrito": "Porto",
+   "codigo_postal": "4420-114",
+   "localidade": "GONDOMAR",
+   "lat": 41.152361,
+   "lng": -8.517803,
+   "nome": "INSPENORDESTE - GONDOMAR",
+   "morada": "ESTRADA D. MIGUEL"
+  },
+  {
+   "codigo_citv": "343",
+   "distrito": "Porto",
+   "codigo_postal": "4510-119",
+   "localidade": "JOVIM",
+   "lat": 41.125803,
+   "lng": -8.515356,
+   "nome": "INSPAUTO - GONDOMAR (JOVIM I)",
+   "morada": "RUA PROFESSOR EGAS MONIZ"
+  },
+  {
+   "codigo_citv": "344",
+   "distrito": "Porto",
+   "codigo_postal": "4510-036",
+   "localidade": "JOVIM",
+   "lat": 41.109331,
+   "lng": -8.533317,
+   "nome": "INSPAUTO - GONDOMAR (JOVIM II)",
+   "morada": "AVENIDA CLUBE DE CAÇADORES - EN 108"
+  },
+  {
+   "codigo_citv": "345",
+   "distrito": "Porto",
+   "codigo_postal": "4410-178",
+   "localidade": "SÃO FELIX DA MARINHA",
+   "lat": 41.034825,
+   "lng": -8.645447,
+   "nome": "INSPAUTO - VILA N GAIA - SÃO FELIX DA MARINHA",
+   "morada": "RUA DA ESTAÇÃO"
+  },
+  {
+   "codigo_citv": "352",
+   "distrito": "Porto",
+   "codigo_postal": "4585-007",
+   "localidade": "AGUIAR DE SOUSA",
+   "lat": 41.098142,
+   "lng": -8.428806,
+   "nome": "JOSÉ ALBERTO VAZ RODRIGUES - PAREDES",
+   "morada": "AVENIDA DE SANTA ISABEL"
+  },
+  {
+   "codigo_citv": "359",
+   "distrito": "Porto",
+   "codigo_postal": "4575-351",
+   "localidade": "PINHEIRO PNF",
+   "lat": 41.116144,
+   "lng": -8.293869,
+   "nome": "IVM - PENAFIEL",
+   "morada": "LUGAR DE VARZEA"
+  },
+  {
+   "codigo_citv": "365",
+   "distrito": "Porto",
+   "codigo_postal": "4465-645",
+   "localidade": "LEÇA DO BALIO",
+   "lat": 41.2025,
+   "lng": -8.6143,
+   "nome": "INSPAUTO - MATOSINHOS - LEÇA BALIO",
+   "morada": "RUA GODINHO DE FARIA, NºS 1343 E 1425"
+  },
+  {
+   "codigo_citv": "367",
+   "distrito": "Porto",
+   "codigo_postal": "4415-874",
+   "localidade": "SANDIM",
+   "lat": 41.019853,
+   "lng": -8.502106,
+   "nome": "MTR - VILA NOVA DE GAIA - SANDIM",
+   "morada": "RUA DE SÁ DE CIMA - SANDIM"
+  },
+  {
+   "codigo_citv": "368",
+   "distrito": "Porto",
+   "codigo_postal": "4415-957",
+   "localidade": "PEDROSO",
+   "lat": 41.086394,
+   "lng": -8.532744,
+   "nome": "IVM - VILA NOVA GAIA - PEDROSO VEREDA DA COCHEIRA",
+   "morada": null
+  },
+  {
+   "codigo_citv": "378",
+   "distrito": "Porto",
+   "codigo_postal": "4785-096",
+   "localidade": "TROFA",
+   "lat": 41.325083,
+   "lng": -8.560889,
+   "nome": "INSTROFA - TROFA",
+   "morada": "TRAVESSA DA TROFA VELHA, N.º 335"
+  },
+  {
+   "codigo_citv": "025",
+   "distrito": "Santarém",
+   "codigo_postal": "2080-221",
+   "localidade": "ALMEIRIM",
+   "lat": 39.19375,
+   "lng": -8.620389,
+   "nome": "INSPECENTRO - ALMEIRIM",
+   "morada": "RUA B - ZONA INDUSTRIAL, LOTE 41 F"
+  },
+  {
+   "codigo_citv": "030",
+   "distrito": "Santarém",
+   "codigo_postal": "2350-483",
+   "localidade": "TORRES NOVAS",
+   "lat": 39.465878,
+   "lng": -8.548061,
+   "nome": "CONTROLAUTO - TORRES NOVAS (STª MARIA)",
+   "morada": "ZONA INDUSTRIAL - CERRADA GRANDE"
+  },
+  {
+   "codigo_citv": "039",
+   "distrito": "Santarém",
+   "codigo_postal": "2090-242",
+   "localidade": "ALPIARÇA",
+   "lat": 39.273247,
+   "lng": -8.555025,
+   "nome": "CONTROLAUTO - ALPIARÇA",
+   "morada": "ZONA INDUSTRIAL"
+  },
+  {
+   "codigo_citv": "046",
+   "distrito": "Santarém",
+   "codigo_postal": "2380-184",
+   "localidade": "ALCANENA",
+   "lat": 39.455833,
+   "lng": -8.6825,
+   "nome": "CIMA - ALCANENA (S. PEDRO)",
+   "morada": "ESTRADA DO ALVIELA - POÇO FRADE - S. PEDRO"
+  },
+  {
+   "codigo_citv": "055",
+   "distrito": "Santarém",
+   "codigo_postal": "2305-425",
+   "localidade": "MADALENA",
+   "lat": null,
+   "lng": null,
+   "nome": "CIMA - TOMAR",
+   "morada": "ZONA INDUSTRIAL, LOTE 6 - F"
+  },
+  {
+   "codigo_citv": "058",
+   "distrito": "Santarém",
+   "codigo_postal": "2490-782",
+   "localidade": "OURÉM",
+   "lat": null,
+   "lng": null,
+   "nome": "SPYCAR, S.A.",
+   "morada": "ESTRADA DA OLIVEIRINHA, N.º 236 - CASAL DOS CRESPOS"
+  },
+  {
+   "codigo_citv": "131",
+   "distrito": "Santarém",
+   "codigo_postal": "2435-476",
+   "localidade": "OLIVAL VNO",
+   "lat": 39.705028,
+   "lng": -8.604389,
+   "nome": "CIP - OURÉM (OLIVAL) OLIVAL",
+   "morada": null
+  },
+  {
+   "codigo_citv": "182",
+   "distrito": "Santarém",
+   "codigo_postal": "2040-998",
+   "localidade": "RIO MAIOR",
+   "lat": 39.316736,
+   "lng": -8.91832,
+   "nome": "DEKRA - RIO MAIOR",
+   "morada": "ZONA INDUSTRIAL DE RIO MAIOR, LT 62 APARTADO 210"
+  },
+  {
+   "codigo_citv": "238",
+   "distrito": "Santarém",
+   "codigo_postal": "2005-050",
+   "localidade": "VALE DE SANTARÉM",
+   "lat": 39.187667,
+   "lng": -8.749333,
+   "nome": "CIDMA - SANTARÉM (ALTO DO VALE DE SANTARÉM)",
+   "morada": "ESTRADA NACIONAL 3, KM 28,7 - ALTO DO VALE"
+  },
+  {
+   "codigo_citv": "239",
+   "distrito": "Santarém",
+   "codigo_postal": "6120-786",
+   "localidade": "MAÇÃO",
+   "lat": 39.548031,
+   "lng": -8.005444,
+   "nome": "CONTROLAUTO - MAÇÃO",
+   "morada": "ZONA INDUSTRIAL DAS LAMAS"
+  },
+  {
+   "codigo_citv": "240",
+   "distrito": "Santarém",
+   "codigo_postal": "2200-480",
+   "localidade": "ABRANTES",
+   "lat": 39.488444,
+   "lng": -8.182944,
+   "nome": "INSPECENTRO - ABRANTES",
+   "morada": "PARQUE INDUSTRIAL ZONA NORTE, LOTE CS 113"
+  },
+  {
+   "codigo_citv": "241",
+   "distrito": "Santarém",
+   "codigo_postal": "2135-402",
+   "localidade": "SAMORA CORREIA",
+   "lat": 38.91665,
+   "lng": -8.856108,
+   "nome": "CONTROLAUTO - BENAVENTE (SAMORA CORREIA) SESMARIA LIMPA - PORTO ALTO",
+   "morada": null
+  },
+  {
+   "codigo_citv": "031",
+   "distrito": "Setúbal",
+   "codigo_postal": "2810-083",
+   "localidade": "ALMADA",
+   "lat": 38.654256,
+   "lng": -9.168222,
+   "nome": "CONTROLAUTO - ALMADA (FEIJÓ)",
+   "morada": "RUA JOAQUIM PIRES JORGE, Nº 12 - QUINTA DA ALGAZARRA"
+  },
+  {
+   "codigo_citv": "032",
+   "distrito": "Setúbal",
+   "codigo_postal": "2830-222",
+   "localidade": "BARREIRO",
+   "lat": 38.635033,
+   "lng": -9.050503,
+   "nome": "CONTROLAUTO - BARREIRO (PALHAIS) QUINTA DAS REBELAS, LOTE 17",
+   "morada": null
+  },
+  {
+   "codigo_citv": "033",
+   "distrito": "Setúbal",
+   "codigo_postal": "2950-007",
+   "localidade": "PALMELA",
+   "lat": 38.605075,
+   "lng": -8.912364,
+   "nome": "CONTROLAUTO - PALMELA (PINHAL NOVO)",
+   "morada": "RUA DO CHUMBO - PARQUE INDUSTRIAL VALE DO ALECRIM"
+  },
+  {
+   "codigo_citv": "034",
+   "distrito": "Setúbal",
+   "codigo_postal": "2925-115",
+   "localidade": "AZEITÃO",
+   "lat": 38.528308,
+   "lng": -9.003908,
+   "nome": "CONTROLAUTO - SETÚBAL (S. SIMÃO DE AZEITÃO) AZINHAGA DOS PASMADOS S/N - AZEITÃO",
+   "morada": null
+  },
+  {
+   "codigo_citv": "060",
+   "distrito": "Setúbal",
+   "codigo_postal": "2910-737",
+   "localidade": "SETÚBAL",
+   "lat": 38.546933,
+   "lng": -8.880114,
+   "nome": "CONTROLAUTO - SETÚBAL (S. SEBASTIÃO)",
+   "morada": "ESTRADA VALE DAS MULATAS, LOTE 15"
+  },
+  {
+   "codigo_citv": "192",
+   "distrito": "Setúbal",
+   "codigo_postal": "2855-577",
+   "localidade": "CORROIOS",
+   "lat": 38.624683,
+   "lng": -9.153003,
+   "nome": "CONTROLAUTO - SEIXAL (CORROIOS)",
+   "morada": "RUA ÁLVARO FERREIRA ALVES, Nº 38 - STª MARTA DO PINHAL"
+  },
+  {
+   "codigo_citv": "196",
+   "distrito": "Setúbal",
+   "codigo_postal": "2890-161",
+   "localidade": "ALCOCHETE",
+   "lat": 38.7407,
+   "lng": -8.94108,
+   "nome": "DEKRA - ALCOCHETE",
+   "morada": "RUA DAS MADRESSILVAS, 270 - PARQUE INDUST. DO BATEL"
+  },
+  {
+   "codigo_citv": "200",
+   "distrito": "Setúbal",
+   "codigo_postal": "2845-547",
+   "localidade": "AMORA",
+   "lat": 38.632572,
+   "lng": -9.141042,
+   "nome": "IVS - SEIXAL (CORROIOS)",
+   "morada": "ESTRADA NACIONAL 10 - SANTA MARTA"
+  },
+  {
+   "codigo_citv": "244",
+   "distrito": "Setúbal",
+   "codigo_postal": "2870-100",
+   "localidade": "MONTIJO",
+   "lat": 38.694444,
+   "lng": -8.945278,
+   "nome": "CIMA - MONTIJO (AFONSOEIRO)",
+   "morada": "ZONA INDUSTRIAL DO PAU QUEIMADO, LOTE 4 - AFONSOEIRO"
+  },
+  {
+   "codigo_citv": "245",
+   "distrito": "Setúbal",
+   "codigo_postal": "7520-309",
+   "localidade": "SINES",
+   "lat": 37.956944,
+   "lng": -8.844444,
+   "nome": "CIMA - SINES",
+   "morada": "ZONA INDUSTRIAL LIGEIRA Nº 2, LOTE 101"
+  },
+  {
+   "codigo_citv": "310",
+   "distrito": "Setúbal",
+   "codigo_postal": "2865-000",
+   "localidade": "SEIXAL",
+   "lat": 38.556472,
+   "lng": -9.072158,
+   "nome": "DEKRA - SEIXAL CASAL DO SAPO, VILA ALEGRE, LOTE 577",
+   "morada": null
+  },
+  {
+   "codigo_citv": "311",
+   "distrito": "Setúbal",
+   "codigo_postal": "2865-313",
+   "localidade": "FERNÃO FERRO",
+   "lat": 38.567053,
+   "lng": -9.057214,
+   "nome": "MTR - SEIXAL",
+   "morada": "RUA LUIS DOURDIL - FERNAO FERRO"
+  },
+  {
+   "codigo_citv": "325",
+   "distrito": "Setúbal",
+   "codigo_postal": "7570-281",
+   "localidade": "GRÂNDOLA",
+   "lat": 38.17765,
+   "lng": -8.549906,
+   "nome": "CIV - GRANDOLA",
+   "morada": "ZONA INDUSTRIAL LIGEIRA (ZIL), 2.ª FASE, LOTE 7"
+  },
+  {
+   "codigo_citv": "360",
+   "distrito": "Setúbal",
+   "codigo_postal": "2910-828",
+   "localidade": "SETÚBAL",
+   "lat": 38.574972,
+   "lng": -8.746583,
+   "nome": "IVM - SETUBAL",
+   "morada": "ESTRADA NACIONAL 10"
+  },
+  {
+   "codigo_citv": "370",
+   "distrito": "Setúbal",
+   "codigo_postal": "2860-308",
+   "localidade": "MOITA",
+   "lat": 38.635631,
+   "lng": -8.975475,
+   "nome": "BRITO CHAVES - MOITA BREJOEIRA- MOITA-SETÚBAL",
+   "morada": null
+  },
+  {
+   "codigo_citv": "376",
+   "distrito": "Setúbal",
+   "codigo_postal": "2830-410",
+   "localidade": "COINA",
+   "lat": 38.584042,
+   "lng": -9.042008,
+   "nome": "DEKRA - BARREIRO",
+   "morada": "E.N. 10"
+  },
+  {
+   "codigo_citv": "377",
+   "distrito": "Setúbal",
+   "codigo_postal": "2860-308",
+   "localidade": "MOITA",
+   "lat": 38.646672,
+   "lng": -8.981039,
+   "nome": "DEKRA - MOITA",
+   "morada": "ESTRADA DOS ESPANHÓIS"
+  },
+  {
+   "codigo_citv": "002",
+   "distrito": "Viana do Castelo",
+   "codigo_postal": "4990-231",
+   "localidade": "PONTE DE LIMA",
+   "lat": 41.772778,
+   "lng": -8.593333,
+   "nome": "CIMA - PONTE DE LIMA (ARCOZELO) ANTEPAÇO - ARCOZELO",
+   "morada": null
+  },
+  {
+   "codigo_citv": "044",
+   "distrito": "Viana do Castelo",
+   "codigo_postal": "4920-012",
+   "localidade": "CAMPOS VNC",
+   "lat": 41.981111,
+   "lng": -8.693889,
+   "nome": "J LARA - VILA NOVA DE CERVEIRA (CAMPOS)",
+   "morada": "ZONA INDUSTRIAL 1"
+  },
+  {
+   "codigo_citv": "069",
+   "distrito": "Viana do Castelo",
+   "codigo_postal": "4930-279",
+   "localidade": "VALENÇA",
+   "lat": 42.040692,
+   "lng": -8.562081,
+   "nome": "CTIV - VALENÇA GÂNDARA – FRIESTAS",
+   "morada": null
+  },
+  {
+   "codigo_citv": "118",
+   "distrito": "Viana do Castelo",
+   "codigo_postal": "4935-232",
+   "localidade": "NEIVA",
+   "lat": 41.642333,
+   "lng": -8.773194,
+   "nome": "INSPECENTRO - VIANA DO CASTELO",
+   "morada": "ZONA INDUSTRIAL, 1ª FASE - CHAFÉ"
+  },
+  {
+   "codigo_citv": "246",
+   "distrito": "Viana do Castelo",
+   "codigo_postal": "4935-208",
+   "localidade": "VIANA DO CASTELO",
+   "lat": 41.68275,
+   "lng": -8.777306,
+   "nome": "INSPECENTRO - VIANA DO CASTELO - MEADELA",
+   "morada": "RUA ARRISCADO QUEIRÓS, Nº 263 - PARQUE INDUSTRIAL"
+  },
+  {
+   "codigo_citv": "255",
+   "distrito": "Viana do Castelo",
+   "codigo_postal": "4970-249",
+   "localidade": "ARCOS DE VALDEVEZ",
+   "lat": 41.815083,
+   "lng": -8.413778,
+   "nome": "AUTO CHECK POINT - ARCOS VALDEVEZ (PAÇÔ)",
+   "morada": "ZONA INDUSTRIAL DE PAÇÔ, LOTE 1"
+  },
+  {
+   "codigo_citv": "001",
+   "distrito": "Vila Real",
+   "codigo_postal": "5000-082",
+   "localidade": "CONSTANTIM VRL",
+   "lat": 41.274444,
+   "lng": -7.706111,
+   "nome": "CABANELAS - VILA REAL (CONSTANTIM)",
+   "morada": "ZONA INDUSTRIAL DE CONSTANTIM RUA H LOTE 176."
+  },
+  {
+   "codigo_citv": "037",
+   "distrito": "Vila Real",
+   "codigo_postal": "5400-570",
+   "localidade": "SANTA CRUZ-TRINDADE",
+   "lat": 41.768333,
+   "lng": -7.470833,
+   "nome": "CIT- CHAVES (OUTEIRO SÊCO)",
+   "morada": "ZONA INDUSTRIAL DA COCANHA, LOTE 10."
+  },
+  {
+   "codigo_citv": "053",
+   "distrito": "Vila Real",
+   "codigo_postal": "5450-264",
+   "localidade": "SOUTELO DE AGUIAR",
+   "lat": 41.493408,
+   "lng": -7.671492,
+   "nome": "TOP - VILA POUCA DE AGUIAR (SOUTELO DE AGUIAR) LAMA DA FONTE, SOUTELO DE AGUIAR",
+   "morada": null
+  },
+  {
+   "codigo_citv": "012",
+   "distrito": "Viseu",
+   "codigo_postal": "3500-886",
+   "localidade": "VISEU",
+   "lat": 40.629683,
+   "lng": -7.875981,
+   "nome": "CONTROLAUTO - VISEU (S. JOÃO DE LOUROSA)",
+   "morada": "PARQUE INDUSTRIAL DE COIMBRÕES, LOTE 59"
+  },
+  {
+   "codigo_citv": "185",
+   "distrito": "Viseu",
+   "codigo_postal": "3530-259",
+   "localidade": "MANGUALDE",
+   "lat": 40.604425,
+   "lng": -7.79155,
+   "nome": "INSPEBEIRAS - MANGUALDE",
+   "morada": "ZONA INDUSTRIAL DO SALGUEIRO, LT 24"
+  },
+  {
+   "codigo_citv": "247",
+   "distrito": "Viseu",
+   "codigo_postal": "5100-105",
+   "localidade": "LAMEGO",
+   "lat": 41.112222,
+   "lng": -7.803611,
+   "nome": "CIMA - LAMEGO RELÓGIO DO SOL",
+   "morada": null
+  },
+  {
+   "codigo_citv": "248",
+   "distrito": "Viseu",
+   "codigo_postal": null,
+   "localidade": null,
+   "lat": 40.6325,
+   "lng": -7.904444,
+   "nome": "CITV 248",
+   "morada": null
+  },
+  {
+   "codigo_citv": "249",
+   "distrito": "Viseu",
+   "codigo_postal": "3460-602",
+   "localidade": "TONDELA",
+   "lat": 40.529444,
+   "lng": -8.084722,
+   "nome": "DEKRA - TONDELA (FOJO)",
+   "morada": "RUA JERÓNIMO VIEIRA DA SILVA, 160"
+  },
+  {
+   "codigo_citv": "312",
+   "distrito": "Viseu",
+   "codigo_postal": "3620-301",
+   "localidade": "MOIMENTA DA BEIRA",
+   "lat": 40.995358,
+   "lng": -7.614669,
+   "nome": "MOIMENTAINSP - MOIMENTA DA BEIRA",
+   "morada": "ZONA INDUSTRIAL, LOTE 41"
+  },
+  {
+   "codigo_citv": "337",
+   "distrito": "Viseu",
+   "codigo_postal": "3515-754",
+   "localidade": "CALDE",
+   "lat": 40.765642,
+   "lng": -7.919772,
+   "nome": "BRITO CHAVES II - VISEU",
+   "morada": "ESTRADA NACIONAL, 2, S/N, PÓVOA DE CALDE"
+  },
+  {
+   "codigo_citv": "349",
+   "distrito": "Viseu",
+   "codigo_postal": "5130-301",
+   "localidade": "SÃO JOÃO DA PESQUEIRA",
+   "lat": 41.148756,
+   "lng": -7.425936,
+   "nome": "SOINVE - SÃO JOÃO DA PESQUEIRA",
+   "morada": "ZONA INDUSTRIAL DO LAMEIRÃO"
+  },
+  {
+   "codigo_citv": "035",
+   "distrito": "Évora",
+   "codigo_postal": "7005-362",
+   "localidade": "ÉVORA",
+   "lat": 38.546467,
+   "lng": -7.913572,
+   "nome": "CONTROLAUTO - ÉVORA (HORTA DAS FIGUEIRAS)",
+   "morada": "RUA CIRCULAR NASCENTE,LOTES 25 E 28-PARQUE IND. E TECNOLÓGICO"
+  },
+  {
+   "codigo_citv": "052",
+   "distrito": "Évora",
+   "codigo_postal": "7100-147",
+   "localidade": "ESTREMOZ",
+   "lat": 38.848333,
+   "lng": -7.583056,
+   "nome": "ITV - ESTREMOZ (SANTA MARIA)",
+   "morada": "ZONA INDUSTRIAL DE ESTREMOZ, LOTE 55/ 56"
+  },
+  {
+   "codigo_citv": "061",
+   "distrito": "Évora",
+   "codigo_postal": "7005-212",
+   "localidade": "ÉVORA",
+   "lat": 38.5563,
+   "lng": -7.91399,
+   "nome": "DEKRA - ÉVORA (HORTA DAS FIGUEIRAS)",
+   "morada": "RUA GERALDO FERNANDO PINTO Nº 7"
+  },
+  {
+   "codigo_citv": "211",
+   "distrito": "Évora",
+   "codigo_postal": "7050-001",
+   "localidade": "MONTEMOR-O-NOVO",
+   "lat": 38.657,
+   "lng": -8.185639,
+   "nome": "INSPECENTRO - MONTEMOR-O-NOVO (NOSSA SENHORA DA VILA)",
+   "morada": "ZONA INDUSTRIAL DA ADUA, LOTE 15"
+  },
+  {
+   "codigo_citv": "362",
+   "distrito": "Évora",
+   "codigo_postal": "7240-233",
+   "localidade": "MOURÃO",
+   "lat": 38.381667,
+   "lng": -7.335453,
+   "nome": "CIV - MOURÃO",
+   "morada": "LOTEAMENTO INDUSTRIAL (JUNTO AO CEMITÉRIO) LOTE 7"
+  }
+ ]
+}

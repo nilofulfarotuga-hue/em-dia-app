@@ -7,6 +7,18 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- Google Play Billing (assinaturas Pro / Família) -->
     <uses-permission android:name="com.android.vending.BILLING"/>
+    <!-- Microfone: só para o "Fala comigo", e só enquanto o botão está premido.
+         Quem transcreve é o próprio telemóvel (speech_to_text); nenhuma gravação
+         sai daqui nem fica guardada. Vai declarado assim na Segurança dos Dados. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <!-- Android 11+: sem esta declaração o telemóvel não deixa a app ver o
+         serviço de reconhecimento de voz, e o "Fala comigo" fica mudo. -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService"/>
+        </intent>
+    </queries>
 
     <application
         android:label="Em Dia"
