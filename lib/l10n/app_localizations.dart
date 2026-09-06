@@ -582,6 +582,60 @@ abstract class AppLocalizations {
   /// **'Esse código não bate certo. Tenta outra vez ou pede um novo.'**
   String get loginCodigoErrado;
 
+  /// No description provided for @loginEmailInvalido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esse e-mail não parece certo. Confere as letras e escreve outra vez.'**
+  String get loginEmailInvalido;
+
+  /// No description provided for @loginCodigoCurto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faltam números. O código tem 6.'**
+  String get loginCodigoCurto;
+
+  /// No description provided for @loginCodigoExpirado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esse código já passou da validade. Pede um novo.'**
+  String get loginCodigoExpirado;
+
+  /// No description provided for @loginMuitosPedidos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pediste códigos a mais. Espera um bocado e tenta outra vez.'**
+  String get loginMuitosPedidos;
+
+  /// No description provided for @loginReenviar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não chegou? Enviar outro código'**
+  String get loginReenviar;
+
+  /// No description provided for @loginReenviarEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Podes pedir outro código daqui a {segundos} segundos'**
+  String loginReenviarEm(int segundos);
+
+  /// No description provided for @loginCodigoNovo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Enviei um código novo. Vê o e-mail.'**
+  String get loginCodigoNovo;
+
+  /// No description provided for @loginTrocarEmail.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escrevi o e-mail errado'**
+  String get loginTrocarEmail;
+
+  /// No description provided for @loginOndeEsta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se não vires o e-mail, procura no lixo (spam) e nas promoções.'**
+  String get loginOndeEsta;
+
   /// No description provided for @sair.
   ///
   /// In pt, this message translates to:

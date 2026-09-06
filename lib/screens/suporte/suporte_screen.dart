@@ -284,7 +284,7 @@ class _SuporteBugScreenState extends State<SuporteBugScreen> {
       if (e != null && e.trim().isNotEmpty) erros[nome] = e.length > 300 ? e.substring(0, 300) : e;
     }
 
-    junta('sessao', sessao.erro);
+    junta('sessao', sessao.temErro ? '${sessao.erro.name}: ${sessao.erroTecnico}' : null);
     junta('perfil', context.read<PerfilStore>().erro);
     junta('obrigacoes', context.read<ObrigacoesStore>().erro);
     junta('rendimentos', context.read<RendimentosStore>().erro);

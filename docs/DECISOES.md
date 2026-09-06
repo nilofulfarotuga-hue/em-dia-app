@@ -72,3 +72,8 @@
 - **O quê:** `build_android.yml` envia só para `internal` com `status: completed`.
 - **Porquê:** a Play devolveu `Only releases with status draft may be created on draft app` com `internal,alpha`. O teste fechado (alpha) numa app nunca publicada só aceita rascunho; o interno aceita `completed` (provado: versionCode 7 entrou).
 - **Como se desfaz:** quando a app sair de rascunho (1.ª revisão aprovada), acrescentar `,alpha` na linha `tracks:`.
+
+## D14 — O código do e-mail tem margem: a app aceita de 4 a 8 números
+- **O quê:** `SessaoStore.tamanhoCodigo = 6` (o que o servidor manda hoje), mas `tamanhoMinimo = 4` e `tamanhoMaximo = 8`. O campo não trava aos 6, e as casinhas nascem a mais se o código vier maior.
+- **Porquê:** a 6 de setembro de 2026 o servidor mandava 8 e a app só deixava escrever 6. Ninguém entrava e o ecrã ficava preso. Um número fixo dos dois lados é um ponto de rutura silencioso: quem mexer na consola do Supabase não faz ideia de que parte a app.
+- **Como se desfaz:** apertar de novo para exactamente 6 em `lib/stores/sessao_store.dart`. Não recomendado — o teste L03 em `test/unit/login_fluxo_test.dart` passa a falhar de propósito.

@@ -298,6 +298,39 @@ class AppLocalizationsPt extends AppLocalizations {
       'Esse código não bate certo. Tenta outra vez ou pede um novo.';
 
   @override
+  String get loginEmailInvalido =>
+      'Esse e-mail não parece certo. Confere as letras e escreve outra vez.';
+
+  @override
+  String get loginCodigoCurto => 'Faltam números. O código tem 6.';
+
+  @override
+  String get loginCodigoExpirado =>
+      'Esse código já passou da validade. Pede um novo.';
+
+  @override
+  String get loginMuitosPedidos =>
+      'Pediste códigos a mais. Espera um bocado e tenta outra vez.';
+
+  @override
+  String get loginReenviar => 'Não chegou? Enviar outro código';
+
+  @override
+  String loginReenviarEm(int segundos) {
+    return 'Podes pedir outro código daqui a $segundos segundos';
+  }
+
+  @override
+  String get loginCodigoNovo => 'Enviei um código novo. Vê o e-mail.';
+
+  @override
+  String get loginTrocarEmail => 'Escrevi o e-mail errado';
+
+  @override
+  String get loginOndeEsta =>
+      'Se não vires o e-mail, procura no lixo (spam) e nas promoções.';
+
+  @override
   String get sair => 'Sair';
 
   @override
@@ -3343,6 +3376,38 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get loginCodigoErrado =>
       'Esse código não bate. Tente de novo ou peça um novo.';
+
+  @override
+  String get loginEmailInvalido =>
+      'Esse e-mail não parece certo. Confira as letras e escreva de novo.';
+
+  @override
+  String get loginCodigoCurto => 'Faltam números. O código tem 6.';
+
+  @override
+  String get loginCodigoExpirado => 'Esse código já venceu. Peça um novo.';
+
+  @override
+  String get loginMuitosPedidos =>
+      'Você pediu códigos demais. Espere um pouco e tente de novo.';
+
+  @override
+  String get loginReenviar => 'Não chegou? Enviar outro código';
+
+  @override
+  String loginReenviarEm(int segundos) {
+    return 'Você pode pedir outro código daqui a $segundos segundos';
+  }
+
+  @override
+  String get loginCodigoNovo => 'Mandei um código novo. Veja o e-mail.';
+
+  @override
+  String get loginTrocarEmail => 'Escrevi o e-mail errado';
+
+  @override
+  String get loginOndeEsta =>
+      'Se não achar o e-mail, procure no lixo eletrônico (spam) e em promoções.';
 
   @override
   String get sair => 'Sair';

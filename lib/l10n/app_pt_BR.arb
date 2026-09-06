@@ -80,6 +80,22 @@
   "loginOu": "ou",
   "loginErro": "Não consegui entrar. Veja se o e-mail está certo e tente de novo.",
   "loginCodigoErrado": "Esse código não bate. Tente de novo ou peça um novo.",
+  "loginEmailInvalido": "Esse e-mail não parece certo. Confira as letras e escreva de novo.",
+  "loginCodigoCurto": "Faltam números. O código tem 6.",
+  "loginCodigoExpirado": "Esse código já venceu. Peça um novo.",
+  "loginMuitosPedidos": "Você pediu códigos demais. Espere um pouco e tente de novo.",
+  "loginReenviar": "Não chegou? Enviar outro código",
+  "loginReenviarEm": "Você pode pedir outro código daqui a {segundos} segundos",
+  "@loginReenviarEm": {
+    "placeholders": {
+      "segundos": {
+        "type": "int"
+      }
+    }
+  },
+  "loginCodigoNovo": "Mandei um código novo. Veja o e-mail.",
+  "loginTrocarEmail": "Escrevi o e-mail errado",
+  "loginOndeEsta": "Se não achar o e-mail, procure no lixo eletrônico (spam) e em promoções.",
   "sair": "Sair",
   "calcTitulo": "Calculadora de recibo",
   "calcValorRecibo": "Valor do recibo (sem IVA)",
