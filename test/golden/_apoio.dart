@@ -4,14 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:em_dia/models/carro.dart';
+import 'package:em_dia/models/cofre_movimento.dart';
+import 'package:em_dia/models/entrada.dart';
+import 'package:em_dia/models/fatura_recebida.dart';
+import 'package:em_dia/models/fidelizacao.dart';
 import 'package:em_dia/models/obrigacao.dart';
 import 'package:em_dia/models/perfil.dart';
 import 'package:em_dia/models/rendimento.dart';
+import 'package:em_dia/models/saida.dart';
 import 'package:em_dia/regras/regras.dart';
+import 'package:em_dia/stores/caixa_store.dart';
+import 'package:em_dia/stores/cofre_store.dart';
 import 'package:em_dia/stores/dados_store.dart';
+import 'package:em_dia/stores/entradas_store.dart';
 import 'package:em_dia/services/fala.dart';
 import 'package:em_dia/stores/perfil_store.dart';
+import 'package:em_dia/stores/radar_store.dart';
 import 'package:em_dia/stores/regras_store.dart';
+import 'package:em_dia/stores/resumo_store.dart';
+import 'package:em_dia/stores/saidas_store.dart';
 import 'package:em_dia/stores/sessao_store.dart';
 
 const String userIdTeste = '00000000-0000-4000-8000-000000000001';
@@ -127,6 +138,20 @@ Widget embrulhaStores({
   List<Abastecimento> abastecimentos = const [],
   List<DespesaCarro> despesas = const [],
   Map<String, int> limites = const {},
+  // A Minha Vida (Bloco 3) e as invenções (Bloco 4). Todas com valor por
+  // omissão vazio: quem fotografa a tela do carro não tem de saber que o
+  // cofre existe.
+  List<Entrada> entradas = const [],
+  List<Saida> saidas = const [],
+  List<SaidaPagamento> pagamentos = const [],
+  ResumoMes? resumoMes,
+  ResumoAno? resumoAno,
+  List<CofreMovimento> cofre = const [],
+  double cofreEntrouParaIrs = 0,
+  List<Fidelizacao> fidelizacoes = const [],
+  List<FaturaRecebida> faturas = const [],
+  String? caixaEndereco,
+  bool caixaLigada = false,
 }) =>
     MultiProvider(
       providers: [
@@ -141,6 +166,21 @@ Widget embrulhaStores({
         ),
         ChangeNotifierProvider<RendimentosStore>(create: (_) => RendimentosStore.paraTeste(rendimentos)),
         ChangeNotifierProvider<CarrosStore>(create: (_) => CarrosStore.paraTeste(carros, abastecimentos, despesas)),
+        ChangeNotifierProvider<EntradasStore>(create: (_) => EntradasStore.paraTeste(entradas)),
+        ChangeNotifierProvider<SaidasStore>(create: (_) => SaidasStore.paraTeste(saidas, pagamentos)),
+        ChangeNotifierProvider<ResumoStore>(
+          create: (_) => ResumoStore.paraTeste(mes: resumoMes, ano: resumoAno),
+        ),
+        ChangeNotifierProvider<CofreStore>(
+          create: (_) => CofreStore.paraTeste(cofre, entrouParaIrs: cofreEntrouParaIrs),
+        ),
+        ChangeNotifierProvider<RadarStore>(
+          create: (_) => RadarStore.paraTeste(contratos: fidelizacoes),
+        ),
+        ChangeNotifierProvider<CaixaStore>(
+          create: (_) => CaixaStore.paraTeste(
+            endereco: caixaEndereco, ligada: caixaLigada, faturas: faturas),
+        ),
       ],
       child: tela,
     );
