@@ -594,6 +594,12 @@ abstract class AppLocalizations {
   /// **'Esse e-mail não recebe correio. Escreve o teu a sério, senão o código não chega a lado nenhum.'**
   String get loginEmailDeMentira;
 
+  /// No description provided for @loginRegistoFechado.
+  ///
+  /// In pt, this message translates to:
+  /// **'A app ainda está fechada a convites. Se te convidaram, pede para meterem este e-mail na lista.'**
+  String get loginRegistoFechado;
+
   /// No description provided for @loginCodigoCurto.
   ///
   /// In pt, this message translates to:

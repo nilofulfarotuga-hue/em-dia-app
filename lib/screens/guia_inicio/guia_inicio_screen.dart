@@ -98,6 +98,15 @@ class _GuiaInicioScreenState extends State<GuiaInicioScreen> {
       ];
 
   void _avancar() {
+    // TECTO, e a razão está numa foto cinzenta de 2026-09-06: o botão do
+    // último ecrã ainda dizia "Seguinte" quando o toque chegou (o `ultimo` é
+    // calculado no build, e o build vem depois do toque anterior). Sem isto,
+    // `_passo` ia a 3, `passos[3]` não existe, e a app inteira ficava num
+    // ecrã cinzento — logo a seguir ao onboarding, para um utilizador novo.
+    if (_passo >= _total - 1) {
+      if (!_aTrabalhar) _terminar();
+      return;
+    }
     // Trocar de ecrã cala o que estava a ser lido: senão a voz do ecrã
     // anterior continua por cima do novo.
     Fala.instancia.parar();
@@ -137,7 +146,9 @@ class _GuiaInicioScreenState extends State<GuiaInicioScreen> {
     final l = AppLocalizations.of(context);
     final t = Theme.of(context).textTheme;
     final passos = _passos(l);
-    final p = passos[_passo];
+    // Segunda rede: mesmo que alguém volte a mexer no `_passo`, nunca se lê
+    // fora da lista.
+    final p = passos[_passo.clamp(0, _total - 1)];
     final ultimo = _passo == _total - 1;
 
     return Scaffold(

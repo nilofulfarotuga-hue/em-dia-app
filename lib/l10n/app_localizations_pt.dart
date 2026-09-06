@@ -306,6 +306,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'Esse e-mail não recebe correio. Escreve o teu a sério, senão o código não chega a lado nenhum.';
 
   @override
+  String get loginRegistoFechado =>
+      'A app ainda está fechada a convites. Se te convidaram, pede para meterem este e-mail na lista.';
+
+  @override
   String get loginCodigoCurto => 'Faltam números. O código tem 6.';
 
   @override
@@ -5275,6 +5279,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get loginEmailDeMentira =>
       'Esse e-mail não recebe correio. Escreva o seu de verdade, senão o código não chega em lugar nenhum.';
+
+  @override
+  String get loginRegistoFechado =>
+      'O app ainda está fechado a convites. Se você foi convidado, peça para colocarem este e-mail na lista.';
 
   @override
   String get loginCodigoCurto => 'Faltam números. O código tem 6.';

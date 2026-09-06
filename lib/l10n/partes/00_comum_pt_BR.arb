@@ -86,6 +86,7 @@
   "loginCodigoErrado": "Esse código não bate. Tente de novo ou peça um novo.",
   "loginEmailInvalido": "Esse e-mail não parece certo. Confira as letras e escreva de novo.",
   "loginEmailDeMentira": "Esse e-mail não recebe correio. Escreva o seu de verdade, senão o código não chega em lugar nenhum.",
+  "loginRegistoFechado": "O app ainda está fechado a convites. Se você foi convidado, peça para colocarem este e-mail na lista.",
   "loginCodigoCurto": "Faltam números. O código tem 6.",
   "loginCodigoExpirado": "Esse código já venceu. Peça um novo.",
   "loginMuitosPedidos": "Você pediu códigos demais. Espere um pouco e tente de novo.",
