@@ -50,7 +50,10 @@ class _DefinicoesScreenState extends State<DefinicoesScreen> {
       body: ListView(
         padding: paddingEcra,
         children: [
-          TituloSeccao(l.defsIdioma),
+          TituloSeccao(
+            l.defsIdioma,
+            acao: BotaoOuvir(etiqueta: 'definicoes-idioma', texto: l.defsIdiomaAjuda, soIcone: true),
+          ),
           Text(l.defsIdiomaAjuda, style: t.bodySmall),
           const SizedBox(height: 10),
           if (perfil == null) ...[
@@ -79,7 +82,16 @@ class _DefinicoesScreenState extends State<DefinicoesScreen> {
             Aviso(l.erroRede, tom: Semaforo.vermelho),
           ],
           const SizedBox(height: 20),
-          TituloSeccao(l.defsConta),
+          // Apagar a conta não tem volta: quem não lê tem de poder ouvir o
+          // aviso ANTES de tocar no botão, não só dentro da janela que abre.
+          TituloSeccao(
+            l.defsConta,
+            acao: BotaoOuvir(
+              etiqueta: 'definicoes-conta',
+              texto: '${l.defsSairAjuda} ${l.defsApagarConta}: ${l.defsApagarTexto}',
+              soIcone: true,
+            ),
+          ),
           Cartao(
             child: Row(
               children: [

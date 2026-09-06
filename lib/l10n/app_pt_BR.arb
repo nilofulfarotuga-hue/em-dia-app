@@ -1455,5 +1455,149 @@
   "admAuColAcao": "Ação",
   "admAuColAlvo": "Alvo",
   "admAuColAntes": "Antes",
-  "admAuColDepois": "Depois"
+  "admAuColDepois": "Depois",
+  "carroFormBasicoAjuda": "Só preciso destas três coisas. Pelo mês eu fico sabendo quando você paga o imposto do carro; pelo ano, quando é a inspeção.",
+  "carroFormMatriculaInvalida": "Essa placa não me parece certa. Escreva as letras e os números, assim: AA-00-AA.",
+  "carroFormOpcionalTitulo": "Quer ajustar as contas? (opcional)",
+  "carroFormOpcionalAjuda": "Você pode fechar isto e salvar agora. Só com a placa e a data eu já aviso a tempo do imposto do carro, da inspeção e do seguro. Estes extras servem para eu acertar melhor o valor do imposto do carro — sem eles o app avisa do mesmo jeito, só não diz um valor certo.",
+  "carroFormAbrir": "Abrir",
+  "carroFormFechar": "Fechar",
+  "carroFormIucPorConfirmar": "imposto por confirmar",
+  "carroFormIucContaFeita": "já consigo calcular o imposto",
+  "carroFormIucPorConfirmarLinha": "Sem a cilindrada eu não invento nenhum valor: aviso na data certa e escrevo «por confirmar» no lugar de um número errado.",
+  "carroFormCilindrada": "Cilindrada (o tamanho do motor, em cc)",
+  "carroFormCo2": "CO2 (o gás que o carro solta, em g/km)",
+  "carroFormOndeEstao": "Estes dois números estão no documento do carro (o certificado de matrícula).",
+  "guiaIniSaltar": "Pular",
+  "guiaIniSeguinte": "Próximo",
+  "guiaIniComecar": "Começar",
+  "guiaIniPasso": "Tela {n} de {total}",
+  "@guiaIniPasso": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "guiaIniAvisoTitulo": "Eu te aviso",
+  "guiaIniAvisoTexto": "Cada coisa que você tem que pagar tem um dia certo. Eu te aviso antes desse dia, com tempo para você resolver. Assim você nunca paga multa só por ter esquecido.",
+  "guiaIniGanhosTitulo": "Anote o que você ganha",
+  "guiaIniGanhosTexto": "Toda vez que você receber dinheiro, anote aqui. Leva poucos segundos. Quanto mais você anotar, mais certas ficam as minhas contas e os meus avisos.",
+  "guiaIniPerguntaTitulo": "Me pergunte o que quiser",
+  "guiaIniPerguntaTexto": "Ficou com dúvida? Escreva como se estivesse falando com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite.",
+  "painelAcaoEtiqueta": "O que fazer agora",
+  "painelAcaoPagaSs": "Pague a Segurança Social",
+  "painelAcaoEntregaSs": "Entregue a declaração da Segurança Social",
+  "painelAcaoPagaIva": "Pague o IVA (o imposto da nota fiscal)",
+  "painelAcaoEntregaIva": "Entregue a declaração do IVA",
+  "painelAcaoEntregaIrs": "Entregue o IRS",
+  "painelAcaoPagaIrsConta": "Pague o adiantamento do IRS",
+  "painelAcaoValidaFaturas": "Valide suas faturas no e-fatura",
+  "painelAcaoComunicaFaturas": "Informe as faturas que você emitiu",
+  "painelAcaoPagaIuc": "Pague o IUC (o imposto do carro)",
+  "painelAcaoInspecao": "Leve o carro na inspeção",
+  "painelAcaoRevisao": "Faça a revisão do carro",
+  "painelAcaoSeguro": "Pague o seguro do carro",
+  "painelAcaoCarta": "Renove a carta de condução",
+  "painelAcaoTrocaCarta": "Troque a carta de condução",
+  "painelAcaoResidencia": "Renove a autorização de residência",
+  "painelAcaoCertificadoTvde": "Renove o certificado de motorista TVDE",
+  "painelAcaoLicencaTvde": "Renove a licença TVDE do carro",
+  "painelAcaoMulta": "Pague a multa",
+  "painelAcaoPortagem": "Pague o pedágio",
+  "painelAcaoFimIsencao": "Se prepare: sua isenção da Segurança Social está acabando",
+  "painelAcaoGenerica": "Cuide disto: {nome}",
+  "@painelAcaoGenerica": {
+    "placeholders": {
+      "nome": {
+        "type": "String"
+      }
+    }
+  },
+  "painelAcaoValorPorSaber": "Ainda não sei o valor",
+  "painelAcaoPrazoPassou": "{dias, plural, =1{Já passou faz 1 dia} other{Já passou faz {dias} dias}}",
+  "@painelAcaoPrazoPassou": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
+  "painelAcaoPrazoHoje": "É hoje mesmo",
+  "painelAcaoPrazoAmanha": "É amanhã",
+  "painelAcaoPrazoDiaSemana": "Até {diaSemana}, dia {dia}",
+  "@painelAcaoPrazoDiaSemana": {
+    "placeholders": {
+      "diaSemana": {
+        "type": "String"
+      },
+      "dia": {
+        "type": "int"
+      }
+    }
+  },
+  "painelAcaoPrazoData": "Até {data}",
+  "@painelAcaoPrazoData": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "painelAcaoDia1": "segunda",
+  "painelAcaoDia2": "terça",
+  "painelAcaoDia3": "quarta",
+  "painelAcaoDia4": "quinta",
+  "painelAcaoDia5": "sexta",
+  "painelAcaoDia6": "sábado",
+  "painelAcaoDia7": "domingo",
+  "painelAcaoBotaoComoPagar": "Ver como pagar",
+  "painelAcaoBotaoOQueFazer": "Ver o que eu tenho de fazer",
+  "painelAcaoTudoTitulo": "Você não tem nada para pagar agora",
+  "painelAcaoTudoAjuda": "Está tudo resolvido. Quando aparecer um prazo, eu coloco aqui e aviso você antes.",
+  "painelAcaoTudoSugestao": "Já que dá: escreva quanto você ganhou neste mês. Com esse número eu faço as contas certas para você.",
+  "painelAcaoTudoBotao": "Escrever o que ganhei",
+  "oficioServicos": "Serviços (cabelo, unhas, limpeza…)",
+  "oficioObras": "Obras e construção",
+  "oficioOutro": "Outra coisa",
+  "oficioComoFunciona": "Como isso funciona",
+  "oficioExplicacaoTvde": "Aqui você cuida dos seus recibos das viagens. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.",
+  "oficioExplicacaoEstafeta": "Aqui você cuida dos seus recibos das entregas. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.",
+  "oficioExplicacaoServicos": "Aqui você cuida dos recibos dos seus clientes. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.",
+  "oficioExplicacaoObras": "Aqui você cuida dos recibos dos seus trabalhos na obra. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.",
+  "oficioExplicacaoFreelancer": "Aqui você cuida dos recibos dos trabalhos que você entrega. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.",
+  "oficioExplicacaoOutro": "Aqui você cuida dos seus recibos. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.",
+  "oficioExplicacaoGeral": "Aqui você cuida dos recibos verdes. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.",
+  "oficioAjudaTvde": "No fim do mês abra o extrato da Uber ou da Bolt, pegue o total que pagaram a você e escreva aqui.",
+  "oficioAjudaEstafeta": "No fim do mês abra o extrato da Glovo, da Bolt Food ou da Uber Eats, pegue o total que pagaram a você e escreva aqui.",
+  "oficioAjudaServicos": "Faça um recibo para cada cliente que paga a você. No fim do mês some tudo e escreva aqui o total.",
+  "oficioAjudaObras": "Faça um recibo para cada trabalho que pagam a você, seja ao dono da casa seja à empresa. No fim do mês some tudo e escreva aqui o total.",
+  "oficioAjudaFreelancer": "Faça um recibo para cada trabalho que você entrega. No fim do mês some tudo e escreva aqui o total.",
+  "oficioAjudaOutro": "Faça um recibo sempre que alguém paga o seu trabalho. No fim do mês some tudo e escreva aqui o total.",
+  "oficioAjudaGeral": "Faça um recibo sempre que alguém paga o seu trabalho. No fim do mês some tudo e escreva aqui o total.",
+  "oficioExemploTvde": "No seu caso o cliente é a plataforma: a Uber ou a Bolt. O número de contribuinte delas está no extrato.",
+  "oficioExemploEstafeta": "No seu caso o cliente é a plataforma: a Glovo, a Bolt Food ou a Uber Eats. O número de contribuinte delas está no extrato.",
+  "oficioExemploServicos": "No seu caso o cliente é quem pagou: a pessoa que você atendeu ou o salão. Peça a ela o número de contribuinte.",
+  "oficioExemploObras": "No seu caso o cliente é quem pagou a obra: o dono da casa ou a empresa de construção. Peça a ele o número de contribuinte.",
+  "oficioExemploFreelancer": "No seu caso o cliente é a empresa ou a pessoa para quem você fez o trabalho. Peça a ela o número de contribuinte.",
+  "oficioExemploOutro": "No seu caso o cliente é a pessoa ou a empresa que pagou a você. Peça a ela o número de contribuinte.",
+  "oficioExemploGeral": "O cliente é a pessoa ou a empresa que paga a você. Peça a ela o número de contribuinte.",
+  "oficioDescricaoTvde": "Serviços de transporte em veículo descaracterizado (TVDE)",
+  "oficioDescricaoEstafeta": "Serviços de entrega ao domicílio",
+  "oficioDescricaoServicos": "Prestação de serviços de cabeleireiro e estética",
+  "oficioDescricaoObras": "Serviços de construção civil",
+  "oficioDescricaoFreelancer": "Prestação de serviços",
+  "oficioDescricaoOutro": "Prestação de serviços",
+  "oficioDescricaoGeral": "Prestação de serviços",
+  "sufixoLitros": "L",
+  "@sufixoLitros": {
+    "description": "Sufixo do campo dos litros no formulário do abastecimento. Estava escrito à mão no Dart."
+  },
+  "sufixoKm": "km",
+  "@sufixoKm": {
+    "description": "Sufixo do campo dos quilômetros no formulário do abastecimento. Estava escrito à mão no Dart."
+  }
 }

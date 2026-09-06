@@ -10,15 +10,19 @@ import '../../stores/dados_store.dart';
 import '../../stores/perfil_store.dart';
 import '../../stores/regras_store.dart';
 import '../../widgets/widgets.dart';
+import '../calendario/detalhe_obrigacao.dart';
+import '../recibos/recibos_screen.dart';
+import 'cartao_acao.dart';
 import 'cartao_heroi.dart';
 import 'cartoes_painel.dart';
 import 'comprovativo.dart';
 
 /// Tela 1 — Painel "Estás em dia?" (a tela de todos os dias).
 ///
-/// Saudação + etiqueta do plano · semáforo grande · cartão-herói "Próximo
-/// prazo" (MEI Fácil) · "Este mês pagas" · "Guardar para o IRS" · Vigia do
-/// IVA compacta · frase humana. Só o semáforo pode ser laranja.
+/// Saudação + etiqueta do plano · **cartão de ação** (o que fazer agora) ·
+/// semáforo grande · cartão-herói "Próximo prazo" (MEI Fácil) · "Este mês
+/// pagas" · "Guardar para o IRS" · Vigia do IVA compacta · frase humana.
+/// Só o semáforo pode ser laranja cheio.
 class PainelScreen extends StatefulWidget {
   /// Dia de referência (testes/fotos). Na app é sempre `hojeLisboa()`.
   final DateTime? hoje;
@@ -64,6 +68,20 @@ class _PainelScreenState extends State<PainelScreen> {
     await perguntarComprovativo(context, obrigacao: o);
   }
 
+  /// O botão do cartão de ação: abre o detalhe da obrigação, que é onde
+  /// estão todas as coisas que se podem fazer com ela (como pagar, já
+  /// paguei, juntar comprovativo).
+  Future<void> _abrirDetalhe(ObrigacaoItem o, DateTime hoje) =>
+      mostrarDetalheObrigacao(context, obrigacao: o, hoje: hoje);
+
+  /// Quando não há nada a pagar, a única coisa útil que sobra é dizer quanto
+  /// se ganhou este mês — é desse número que saem as contas todas.
+  void _abrirRecibos() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => RecibosScreen(hoje: widget.hoje)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
@@ -100,18 +118,42 @@ class _PainelScreenState extends State<PainelScreen> {
                   Aviso(l.erroRede, tom: Semaforo.vermelho, icone: Icons.wifi_off_rounded),
                   const SizedBox(height: 12),
                 ],
+                // Em cima de tudo: UMA ação clara. O resto do painel explica
+                // o estado; este cartão diz o que fazer a seguir.
+                CartaoAcao(
+                  item: estado.heroi,
+                  hoje: hoje,
+                  aoAgir: estado.heroi == null ? null : () => _abrirDetalhe(estado.heroi!, hoje),
+                  // O "já paguei" vem com a ação: era o único botão que o
+                  // cartão de baixo tinha e este não, e é o que se carrega
+                  // mais vezes.
+                  aoJaPaguei: estado.heroi == null ? null : () => _jaPaguei(estado.heroi!),
+                  aoRegistarRendimento:
+                      estado.heroi == null && _temAtividade(perfil) && rend.doMes(hoje.year, hoje.month) == null
+                          ? _abrirRecibos
+                          : null,
+                ),
+                const SizedBox(height: 12),
                 SemaforoGrande(
                   estado: estado.semaforo,
                   titulo: estado.titulo(l),
                   subtitulo: estado.subtitulo(l),
                 ),
-                const SizedBox(height: 12),
-                CartaoHeroi(
-                  item: estado.heroi,
-                  hoje: hoje,
-                  aoJaPaguei: estado.heroi == null ? null : () => _jaPaguei(estado.heroi!),
-                  aoComoPagar: estado.heroi == null ? null : () => mostrarComoPagar(context, estado.heroi!),
-                ),
+                // O cartão do próximo prazo só aparece quando NÃO é a mesma
+                // coisa que o cartão de ação lá em cima. Com um prazo passado,
+                // o de cima mostra a dívida antiga e este mostra o que vem a
+                // seguir — são duas coisas diferentes e valem as duas. Quando
+                // coincidem, repetir o mesmo nome, o mesmo valor e a mesma data
+                // três vezes no mesmo ecrã só cansa a vista.
+                if (estado.proximoDepoisDaAcao != null) ...[
+                  const SizedBox(height: 12),
+                  CartaoHeroi(
+                    item: estado.proximoDepoisDaAcao,
+                    hoje: hoje,
+                    aoJaPaguei: () => _jaPaguei(estado.proximoDepoisDaAcao!),
+                    aoComoPagar: () => mostrarComoPagar(context, estado.proximoDepoisDaAcao!),
+                  ),
+                ],
                 const SizedBox(height: 12),
                 CartaoEsteMes(itens: estado.pagamentosDoMes, hoje: hoje),
                 const SizedBox(height: 12),
@@ -212,6 +254,11 @@ class _EstadoPainel {
   final List<ObrigacaoItem> passadas;
   final List<ObrigacaoItem> aVencer;
   final ObrigacaoItem? heroi;
+
+  /// A próxima a vencer, seja ela qual for. Guardada à parte do herói porque
+  /// com um prazo passado as duas são coisas diferentes: o herói é a dívida
+  /// antiga, esta é a que vem a seguir.
+  final ObrigacaoItem? proxima;
   final List<ObrigacaoItem> pagamentosDoMes;
   final DateTime hoje;
 
@@ -220,6 +267,7 @@ class _EstadoPainel {
     required this.passadas,
     required this.aVencer,
     required this.heroi,
+    required this.proxima,
     required this.pagamentosDoMes,
     required this.hoje,
   });
@@ -233,17 +281,44 @@ class _EstadoPainel {
             ? Semaforo.amarelo
             : Semaforo.verde;
     // O herói é o mais urgente: uma passada, senão a próxima a vencer.
-    final heroi = passadas.isNotEmpty ? passadas.first : obrig.proxima(hoje);
+    final proxima = obrig.proxima(hoje);
+    final heroi = passadas.isNotEmpty ? passadas.first : proxima;
     final doMes = obrig.doMes(hoje).where((o) => o.ehPagamento).toList();
     return _EstadoPainel(
       semaforo: semaforo,
       passadas: passadas,
       aVencer: aVencer,
       heroi: heroi,
+      proxima: proxima,
       pagamentosDoMes: doMes,
       hoje: hoje,
     );
   }
+
+  /// O prazo A SEGUIR ao que está no cartão de ação.
+  ///
+  /// O cartão de ação já mostra o mais urgente, com o valor grande e o botão.
+  /// Repetir a mesma obrigação logo por baixo, com o mesmo nome, o mesmo valor
+  /// e a mesma data, não acrescentava nada — só empurrava o resto do painel
+  /// para fora do ecrã. Este cartão passa a responder a outra pergunta:
+  /// **e depois desta, o que vem?**
+  ///
+  /// `null` quando não há mais nada — e aí não se desenha cartão nenhum, em vez
+  /// de um cartão vazio a dizer que está vazio.
+  ObrigacaoItem? get proximoDepoisDaAcao {
+    final id = heroi?.id;
+    for (final o in _pendentesPorData) {
+      if (o.id != id) return o;
+    }
+    return null;
+  }
+
+  List<ObrigacaoItem> get _pendentesPorData =>
+      [...passadas, ...aVencer, if (proxima != null) proxima!]
+          .fold<Map<String, ObrigacaoItem>>({}, (m, o) => m..putIfAbsent(o.id, () => o))
+          .values
+          .toList()
+        ..sort((a, b) => a.dataLimite.compareTo(b.dataLimite));
 
   int get _diasMinimos => aVencer.map((o) => o.diasParaPrazo(hoje)).fold(999, (m, d) => d < m ? d : m);
 
@@ -263,13 +338,12 @@ class _EstadoPainel {
     }
   }
 
-  String? subtitulo(AppLocalizations l) {
-    if (semaforo == Semaforo.verde) return l.painelSemaforoVerdeSub;
-    final o = heroi;
-    if (o == null) return null;
-    final nome = nomeHumano(l, o);
-    return o.valorEstimado == null ? nome : '$nome · ${moeda(o.valorEstimado!)}';
-  }
+  /// O nome e o valor da coisa mais urgente passaram para o cartão de ação,
+  /// que está agora em cima. Repeti-los aqui era dizer a mesma coisa duas
+  /// vezes no mesmo ecrã, por isso o semáforo fica só com o título — e com a
+  /// frase de descanso quando está tudo verde.
+  String? subtitulo(AppLocalizations l) =>
+      semaforo == Semaforo.verde ? l.painelSemaforoVerdeSub : null;
 
   String fraseHumana(AppLocalizations l) => switch (semaforo) {
         Semaforo.verde => l.fraseHumanaVerde,

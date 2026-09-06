@@ -1,0 +1,41 @@
+{
+  "@@locale": "pt",
+
+  "oficioServicos": "Serviços (cabelo, unhas, limpeza…)",
+  "oficioObras": "Obras e construção",
+  "oficioOutro": "Outra coisa",
+
+  "oficioComoFunciona": "Como isto funciona",
+
+  "oficioExplicacaoTvde": "Aqui tratas dos teus recibos das viagens. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.",
+  "oficioExplicacaoEstafeta": "Aqui tratas dos teus recibos das entregas. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.",
+  "oficioExplicacaoServicos": "Aqui tratas dos recibos dos teus clientes. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.",
+  "oficioExplicacaoObras": "Aqui tratas dos recibos dos teus trabalhos na obra. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.",
+  "oficioExplicacaoFreelancer": "Aqui tratas dos recibos dos trabalhos que entregas. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.",
+  "oficioExplicacaoOutro": "Aqui tratas dos teus recibos. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.",
+  "oficioExplicacaoGeral": "Aqui tratas dos recibos verdes. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.",
+
+  "oficioAjudaTvde": "Ao fim do mês vai ao extrato da Uber ou da Bolt, tira o total que te pagaram e escreve-o aqui.",
+  "oficioAjudaEstafeta": "Ao fim do mês vai ao extrato da Glovo, da Bolt Food ou da Uber Eats, tira o total que te pagaram e escreve-o aqui.",
+  "oficioAjudaServicos": "Faz um recibo a cada cliente que te paga. Ao fim do mês soma tudo e escreve aqui o total.",
+  "oficioAjudaObras": "Faz um recibo por cada trabalho que te pagam, seja ao dono da casa seja à empresa. Ao fim do mês soma tudo e escreve aqui o total.",
+  "oficioAjudaFreelancer": "Faz um recibo por cada trabalho que entregas. Ao fim do mês soma tudo e escreve aqui o total.",
+  "oficioAjudaOutro": "Faz um recibo sempre que alguém te paga o teu trabalho. Ao fim do mês soma tudo e escreve aqui o total.",
+  "oficioAjudaGeral": "Faz um recibo sempre que alguém te paga o teu trabalho. Ao fim do mês soma tudo e escreve aqui o total.",
+
+  "oficioExemploTvde": "No teu caso o cliente é a plataforma: a Uber ou a Bolt. O número de contribuinte delas está no extrato.",
+  "oficioExemploEstafeta": "No teu caso o cliente é a plataforma: a Glovo, a Bolt Food ou a Uber Eats. O número de contribuinte delas está no extrato.",
+  "oficioExemploServicos": "No teu caso o cliente é quem te pagou: a pessoa que atendeste ou o salão. Pede-lhe o número de contribuinte.",
+  "oficioExemploObras": "No teu caso o cliente é quem te pagou a obra: o dono da casa ou a empresa de construção. Pede-lhe o número de contribuinte.",
+  "oficioExemploFreelancer": "No teu caso o cliente é a empresa ou a pessoa para quem fizeste o trabalho. Pede-lhe o número de contribuinte.",
+  "oficioExemploOutro": "No teu caso o cliente é a pessoa ou a empresa que te pagou. Pede-lhe o número de contribuinte.",
+  "oficioExemploGeral": "O cliente é a pessoa ou a empresa que te paga. Pede-lhe o número de contribuinte.",
+
+  "oficioDescricaoTvde": "Serviços de transporte em veículo descaracterizado (TVDE)",
+  "oficioDescricaoEstafeta": "Serviços de entrega ao domicílio",
+  "oficioDescricaoServicos": "Prestação de serviços de cabeleireiro e estética",
+  "oficioDescricaoObras": "Serviços de construção civil",
+  "oficioDescricaoFreelancer": "Prestação de serviços",
+  "oficioDescricaoOutro": "Prestação de serviços",
+  "oficioDescricaoGeral": "Prestação de serviços"
+}

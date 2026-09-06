@@ -5,6 +5,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_theme.dart';
@@ -12,6 +13,8 @@ import '../../l10n/app_localizations.dart';
 import '../../models/carro.dart';
 import '../../models/obrigacao.dart';
 import '../../regras/regras.dart';
+import '../../services/fala.dart';
+import '../../stores/perfil_store.dart';
 import '../../widgets/widgets.dart';
 import '../calendario/tipos_obrigacao.dart';
 import 'widgets_carro.dart';
@@ -282,6 +285,9 @@ class CartaoLembrete extends StatelessWidget {
 /// Folha simples com a informação do lembrete (quando ainda não há obrigação
 /// no calendário para abrir o detalhe completo).
 Future<void> mostrarInfoLembrete(BuildContext context, {required Lembrete lembrete, required DateTime hoje}) {
+  // A folha abre no Navigator de raiz, acima das stores: a voz e o perfil
+  // (é ele que diz se se lê em PT-PT ou PT-BR) têm de viajar com ela.
+  final perfilStore = context.read<PerfilStore>();
   return showModalBottomSheet<void>(
     context: context,
     useSafeArea: true,
@@ -290,27 +296,41 @@ Future<void> mostrarInfoLembrete(BuildContext context, {required Lembrete lembre
       final l = AppLocalizations.of(ctx);
       final t = Theme.of(ctx).textTheme;
       final x = lembrete;
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(x.titulo, style: t.headlineSmall),
-            const SizedBox(height: 8),
-            Text(textoLembrete(l, x, hoje),
-                style: t.titleMedium!.copyWith(color: x.cor(hoje), fontWeight: FontWeight.w700)),
-            if (x.valor != null) ...[
+      final falado = [
+        x.titulo,
+        textoLembrete(l, x, hoje),
+        if (x.detalhe != null) x.detalhe!,
+        l.carroSoInformacao,
+      ].join('. ');
+      return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<PerfilStore>.value(value: perfilStore),
+          ChangeNotifierProvider<Fala>.value(value: Fala.instancia),
+        ],
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(x.titulo, style: t.headlineSmall),
               const SizedBox(height: 8),
-              LinhaValor(l.calValorEstimado, moeda(x.valor!), destaque: true),
-            ],
-            if (x.detalhe != null) ...[
+              Text(textoLembrete(l, x, hoje),
+                  style: t.titleMedium!.copyWith(color: x.cor(hoje), fontWeight: FontWeight.w700)),
+              if (x.valor != null) ...[
+                const SizedBox(height: 8),
+                LinhaValor(l.calValorEstimado, moeda(x.valor!), destaque: true),
+              ],
+              if (x.detalhe != null) ...[
+                const SizedBox(height: 8),
+                Text(x.detalhe!, style: t.bodyMedium),
+              ],
+              const SizedBox(height: 4),
+              BotaoOuvir(etiqueta: 'carro-lembrete-${x.tipo}', texto: falado),
               const SizedBox(height: 8),
-              Text(x.detalhe!, style: t.bodyMedium),
+              Aviso(l.carroSoInformacao, tom: Semaforo.verde, icone: Icons.info_outline_rounded),
             ],
-            const SizedBox(height: 12),
-            Aviso(l.carroSoInformacao, tom: Semaforo.verde, icone: Icons.info_outline_rounded),
-          ],
+          ),
         ),
       );
     },

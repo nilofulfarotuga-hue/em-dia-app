@@ -16,11 +16,16 @@ class ComoEmitirScreen extends StatelessWidget {
   final bool isentoIva;
   final String descricaoSugerida;
   final String mencaoIsencao;
+
+  /// Quem é o cliente do recibo, no ofício dele (plataforma, dono da casa,
+  /// empresa…). Opcional: sem ofício conhecido o passo fica como estava.
+  final String? exemploCliente;
   const ComoEmitirScreen({
     super.key,
     required this.isentoIva,
     required this.descricaoSugerida,
     required this.mencaoIsencao,
+    this.exemploCliente,
   });
 
   @override
@@ -31,18 +36,28 @@ class ComoEmitirScreen extends StatelessWidget {
       _Passo(l.emitirPasso1),
       _Passo(l.emitirPasso2, captura: true),
       _Passo(l.emitirPasso3),
-      _Passo(l.emitirPasso4),
+      _Passo(l.emitirPasso4, nota: exemploCliente),
       _Passo(l.emitirPasso5, copiar: descricaoSugerida),
       _Passo(l.emitirPasso6),
       if (isentoIva) _Passo(l.emitirPasso7Isento, copiar: mencaoIsencao, captura: true) else _Passo(l.emitirPasso7Normal),
       _Passo(l.emitirPasso8),
     ];
+    // O passo a passo inteiro numa só voz: quem está a fazer o recibo no
+    // computador ouve os passos sem tirar os olhos do Portal das Finanças.
+    final falado = [
+      l.emitirTitulo,
+      l.emitirSubtitulo,
+      for (final passo in passos)
+        passo.nota == null ? passo.texto : '${passo.texto} ${passo.nota}',
+    ].join(' ');
+
     return Scaffold(
       appBar: AppBar(title: Text(l.emitirTitulo)),
       body: ListView(
         padding: paddingEcra,
         children: [
           Text(l.emitirSubtitulo, style: t.bodyLarge),
+          BotaoOuvir(etiqueta: 'recibos-como-emitir', texto: falado),
           const SizedBox(height: 16),
           for (var i = 0; i < passos.length; i++) ...[
             _CartaoPasso(numero: i + 1, passo: passos[i]),
@@ -73,7 +88,10 @@ class _Passo {
   final String texto;
   final String? copiar;
   final bool captura;
-  const _Passo(this.texto, {this.copiar, this.captura = false});
+
+  /// Frase extra que muda com o ofício (ex.: quem é o cliente).
+  final String? nota;
+  const _Passo(this.texto, {this.copiar, this.captura = false, this.nota});
 }
 
 class _CartaoPasso extends StatelessWidget {
@@ -105,6 +123,10 @@ class _CartaoPasso extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 4),
                   child: Text(passo.texto, style: t.bodyMedium),
                 ),
+                if (passo.nota != null) ...[
+                  const SizedBox(height: 10),
+                  NotaInfo(passo.nota!),
+                ],
                 if (passo.copiar != null) ...[
                   const SizedBox(height: 10),
                   CaixaCopiar(texto: passo.copiar!),

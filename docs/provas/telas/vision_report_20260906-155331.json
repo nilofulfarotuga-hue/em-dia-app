@@ -1,0 +1,38 @@
+{
+  "data": "20260906-155331",
+  "modelo": "gemini-flash-latest",
+  "fotos": 3,
+  "contagem": {
+    "verde": 0,
+    "amarelo": 3,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "A página apresenta múltiplos elementos destacados a laranja ao mesmo tempo, o que pode confundir o utilizador sobre qual é a prioridade real.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash",
+      "foto": "painel_laranja_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais de um elemento laranja no ecrã.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais do que um cartão cor de laranja a chamar a tua atenção ao mesmo tempo.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_medio_br.png"
+    }
+  ]
+}

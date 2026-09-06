@@ -348,7 +348,17 @@ class _CartaoAbastecimentos extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 8),
-                Text(custo == null ? l.carroSemCustoKm : l.carroCompensa, style: t.bodySmall),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: Text(custo == null ? l.carroSemCustoKm : l.carroCompensa, style: t.bodySmall)),
+                    BotaoOuvir(
+                      etiqueta: 'carro-custo-km',
+                      texto: custo == null ? l.carroSemCustoKm : l.carroCompensa,
+                      soIcone: true,
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -404,7 +414,13 @@ class _CartaoDespesas extends StatelessWidget {
           const SizedBox(height: 2),
           Text(moeda(comNifAno), style: t.headlineMedium!.copyWith(color: AppColors.primaryDark)),
           const SizedBox(height: 4),
-          Text(l.carroDespesasIrs, style: t.bodySmall),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Text(l.carroDespesasIrs, style: t.bodySmall)),
+              BotaoOuvir(etiqueta: 'carro-despesas-nif', texto: l.carroDespesasIrs, soIcone: true),
+            ],
+          ),
           const SizedBox(height: 16),
           if (ultimas.isEmpty)
             Text(l.carroSemDespesas, style: t.bodyMedium)
@@ -447,7 +463,17 @@ class _CartaoMultas extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(l.carroMultasNota(diasUteis), style: t.bodySmall),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Text(l.carroMultasNota(diasUteis), style: t.bodySmall)),
+              BotaoOuvir(
+                etiqueta: 'carro-multas-prazo',
+                texto: l.carroMultasNota(diasUteis),
+                soIcone: true,
+              ),
+            ],
+          ),
           const SizedBox(height: 12),
           if (porPagar.isEmpty)
             Row(

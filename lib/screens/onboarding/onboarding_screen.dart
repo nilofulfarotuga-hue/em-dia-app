@@ -444,11 +444,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   // ---- 1. o que fazes ----
   List<Widget> _atividade(AppLocalizations l, TextTheme t) {
+    // A app deixou de ser só de motorista: cada ofício tem os seus textos nos
+    // recibos. "Serviços" usa a etiqueta nova (sem falar de obras) porque as
+    // obras passaram a ser uma opção à parte.
     final opcoes = <(TipoAtividade, String, IconData)>[
       (TipoAtividade.tvde, l.onbTvde, Icons.local_taxi_rounded),
       (TipoAtividade.estafeta, l.onbEstafeta, Icons.delivery_dining_rounded),
-      (TipoAtividade.servicos, l.onbServicos, Icons.handyman_rounded),
+      (TipoAtividade.servicos, l.oficioServicos, Icons.handyman_rounded),
+      (TipoAtividade.obras, l.oficioObras, Icons.construction_rounded),
       (TipoAtividade.freelancer, l.onbFreelancer, Icons.laptop_mac_rounded),
+      (TipoAtividade.outro, l.oficioOutro, Icons.more_horiz_rounded),
       (TipoAtividade.semAtividade, l.onbSemAtividade, Icons.hourglass_empty_rounded),
       (TipoAtividade.soCarro, l.onbSoCarro, Icons.directions_car_rounded),
     ];

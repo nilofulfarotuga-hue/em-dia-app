@@ -144,6 +144,12 @@ class CartaoIrs extends StatelessWidget {
     final l = AppLocalizations.of(context);
     final t = Theme.of(context).textTheme;
     final p = provisao;
+    // O que a voz lê: o mesmo que está escrito no cartão, do título à frase
+    // do fim. Quem não lê ouve exactamente a mesma explicação.
+    final falado = p == null
+        ? '${l.cartaoGuardarIrs}. ${l.painelIrsSemRendimento}'
+        : '${l.cartaoGuardarIrs}. ${moeda(p.guardarPorMes)} ${l.painelIrsPorMes}. '
+            '${p.guardarPorMes <= 0 ? l.painelIrsZero(moeda(minimoExistencia, casas: 0)) : l.painelIrsLinha}';
 
     return Cartao(
       child: Column(
@@ -154,6 +160,7 @@ class CartaoIrs extends StatelessWidget {
               Expanded(child: Text(l.cartaoGuardarIrs, style: t.titleMedium)),
               if (p != null && !p.escaloesConfirmados)
                 Etiqueta(l.painelIrsAproximado, cor: AppColors.surface2, corTexto: AppColors.textSecondary),
+              BotaoOuvir(etiqueta: 'painel-irs', texto: falado, soIcone: true),
             ],
           ),
           const SizedBox(height: 4),
@@ -204,11 +211,20 @@ class CartaoVigiaIva extends StatelessWidget {
       NivelIva.critico => l.vigiaIvaCritico,
     };
 
+    // A regra do IVA é a que mais assusta quem começa: fica toda na voz.
+    final falado = '${l.vigiaIvaTitulo}. '
+        '${l.vigiaIvaBarra(moeda(vigia.acumuladoAno, casas: 0), moeda(vigia.limite, casas: 0))}. $texto';
+
     return Cartao(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(l.vigiaIvaTitulo, style: t.titleMedium),
+          Row(
+            children: [
+              Expanded(child: Text(l.vigiaIvaTitulo, style: t.titleMedium)),
+              BotaoOuvir(etiqueta: 'painel-vigia-iva', texto: falado, soIcone: true),
+            ],
+          ),
           const SizedBox(height: 10),
           ClipRRect(
             borderRadius: BorderRadius.circular(6),

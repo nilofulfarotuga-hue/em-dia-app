@@ -30,7 +30,15 @@ class IrsCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CabecalhoCartao(icone: Icons.savings_rounded, titulo: l.irsTitulo),
+            CabecalhoCartao(
+              icone: Icons.savings_rounded,
+              titulo: l.irsTitulo,
+              direita: BotaoOuvir(
+                etiqueta: 'recibos-irs',
+                texto: '${l.irsTitulo}. ${l.irsSemDados}',
+                soIcone: true,
+              ),
+            ),
             const SizedBox(height: 12),
             NotaInfo(l.irsSemDados),
           ],
@@ -40,12 +48,27 @@ class IrsCard extends StatelessWidget {
 
     final p = calcularIrs(rendimentoBrutoAnual: media * 12, tipo: perfil.tipoRendimento, ano: hoje.year, r: r);
     final datas = datasPagamentosPorConta(hoje.year, r);
+    // O cartão inteiro numa frase, para quem prefere ouvir a ler.
+    final falado = [
+      l.irsTitulo,
+      l.irsGuardarEsteMes(moeda(p.guardarPorMes)),
+      l.irsBase(moeda(media)),
+      l.irsEstimativaAno(moeda(p.impostoEstimado)),
+      if (p.abaixoMinimoExistencia) l.irsMinimoExistencia(moeda(r.n('irs_minimo_existencia'), casas: 0)),
+      if (p.justificarDespesas) l.irsAvisoDespesas(moeda(r.n('irs_despesas_justificar_limite'), casas: 0)),
+      if (p.impostoEstimado > 0) l.irsPagamentosContaAjuda,
+      l.irsEstimativaNota,
+    ].join('. ');
 
     return Cartao(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CabecalhoCartao(icone: Icons.savings_rounded, titulo: l.irsTitulo),
+          CabecalhoCartao(
+            icone: Icons.savings_rounded,
+            titulo: l.irsTitulo,
+            direita: BotaoOuvir(etiqueta: 'recibos-irs', texto: falado, soIcone: true),
+          ),
           if (!p.escaloesConfirmados) ...[
             const SizedBox(height: 8),
             Etiqueta(l.irsEscaloesPorConfirmar(p.anoEscaloes), cor: AppColors.surface2, corTexto: AppColors.textSecondary),

@@ -5309,6 +5309,588 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Depois'**
   String get admAuColDepois;
+
+  /// No description provided for @carroFormBasicoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Só preciso destas três coisas. Pelo mês fico a saber quando pagas o imposto do carro; pelo ano, quando toca a inspeção.'**
+  String get carroFormBasicoAjuda;
+
+  /// No description provided for @carroFormMatriculaInvalida.
+  ///
+  /// In pt, this message translates to:
+  /// **'Essa matrícula não me parece certa. Escreve as letras e os números, assim: AA-00-AA.'**
+  String get carroFormMatriculaInvalida;
+
+  /// No description provided for @carroFormOpcionalTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Queres afinar as contas? (opcional)'**
+  String get carroFormOpcionalTitulo;
+
+  /// No description provided for @carroFormOpcionalAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Podes fechar isto e guardar já. Só com a matrícula e a data eu aviso-te a tempo do imposto do carro, da inspeção e do seguro. Estes extras servem para eu acertar melhor o valor do imposto do carro — sem eles a app avisa na mesma, só não te diz um valor certo.'**
+  String get carroFormOpcionalAjuda;
+
+  /// No description provided for @carroFormAbrir.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir'**
+  String get carroFormAbrir;
+
+  /// No description provided for @carroFormFechar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fechar'**
+  String get carroFormFechar;
+
+  /// No description provided for @carroFormIucPorConfirmar.
+  ///
+  /// In pt, this message translates to:
+  /// **'imposto por confirmar'**
+  String get carroFormIucPorConfirmar;
+
+  /// No description provided for @carroFormIucContaFeita.
+  ///
+  /// In pt, this message translates to:
+  /// **'já consigo contar o imposto'**
+  String get carroFormIucContaFeita;
+
+  /// No description provided for @carroFormIucPorConfirmarLinha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sem a cilindrada não invento nenhum valor: aviso-te na data certa e escrevo «por confirmar» em vez de um número errado.'**
+  String get carroFormIucPorConfirmarLinha;
+
+  /// No description provided for @carroFormCilindrada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cilindrada (o tamanho do motor, em cc)'**
+  String get carroFormCilindrada;
+
+  /// No description provided for @carroFormCo2.
+  ///
+  /// In pt, this message translates to:
+  /// **'CO2 (o gás que o carro deita, em g/km)'**
+  String get carroFormCo2;
+
+  /// No description provided for @carroFormOndeEstao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estes dois números estão no papel do carro (o certificado de matrícula, o antigo livrete).'**
+  String get carroFormOndeEstao;
+
+  /// No description provided for @guiaIniSaltar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Saltar'**
+  String get guiaIniSaltar;
+
+  /// No description provided for @guiaIniSeguinte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Seguinte'**
+  String get guiaIniSeguinte;
+
+  /// No description provided for @guiaIniComecar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Começar'**
+  String get guiaIniComecar;
+
+  /// No description provided for @guiaIniPasso.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ecrã {n} de {total}'**
+  String guiaIniPasso(int n, int total);
+
+  /// No description provided for @guiaIniAvisoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Eu aviso-te'**
+  String get guiaIniAvisoTitulo;
+
+  /// No description provided for @guiaIniAvisoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cada coisa que tens de pagar tem um dia certo. Eu aviso-te antes desse dia, com tempo para tratares disso. Assim nunca pagas uma multa só por te teres esquecido.'**
+  String get guiaIniAvisoTexto;
+
+  /// No description provided for @guiaIniGanhosTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o que ganhas'**
+  String get guiaIniGanhosTitulo;
+
+  /// No description provided for @guiaIniGanhosTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sempre que receberes dinheiro, escreve aqui. Leva poucos segundos. Quanto mais escreveres, mais certas ficam as minhas contas e os meus avisos.'**
+  String get guiaIniGanhosTexto;
+
+  /// No description provided for @guiaIniPerguntaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pergunta-me o que quiseres'**
+  String get guiaIniPerguntaTitulo;
+
+  /// No description provided for @guiaIniPerguntaTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens uma dúvida? Escreve-a como se falasses com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite.'**
+  String get guiaIniPerguntaTexto;
+
+  /// No description provided for @painelAcaoEtiqueta.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que fazer agora'**
+  String get painelAcaoEtiqueta;
+
+  /// No description provided for @painelAcaoPagaSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paga a Segurança Social'**
+  String get painelAcaoPagaSs;
+
+  /// No description provided for @painelAcaoEntregaSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrega a declaração da Segurança Social'**
+  String get painelAcaoEntregaSs;
+
+  /// No description provided for @painelAcaoPagaIva.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paga o IVA (o imposto da fatura)'**
+  String get painelAcaoPagaIva;
+
+  /// No description provided for @painelAcaoEntregaIva.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrega a declaração do IVA'**
+  String get painelAcaoEntregaIva;
+
+  /// No description provided for @painelAcaoEntregaIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrega o IRS'**
+  String get painelAcaoEntregaIrs;
+
+  /// No description provided for @painelAcaoPagaIrsConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paga o adiantamento do IRS'**
+  String get painelAcaoPagaIrsConta;
+
+  /// No description provided for @painelAcaoValidaFaturas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valida as tuas faturas no e-fatura'**
+  String get painelAcaoValidaFaturas;
+
+  /// No description provided for @painelAcaoComunicaFaturas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Comunica as faturas que passaste'**
+  String get painelAcaoComunicaFaturas;
+
+  /// No description provided for @painelAcaoPagaIuc.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paga o IUC (o imposto do carro)'**
+  String get painelAcaoPagaIuc;
+
+  /// No description provided for @painelAcaoInspecao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Leva o carro à inspeção'**
+  String get painelAcaoInspecao;
+
+  /// No description provided for @painelAcaoRevisao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faz a revisão do carro'**
+  String get painelAcaoRevisao;
+
+  /// No description provided for @painelAcaoSeguro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paga o seguro do carro'**
+  String get painelAcaoSeguro;
+
+  /// No description provided for @painelAcaoCarta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Renova a carta de condução'**
+  String get painelAcaoCarta;
+
+  /// No description provided for @painelAcaoTrocaCarta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Troca a carta de condução'**
+  String get painelAcaoTrocaCarta;
+
+  /// No description provided for @painelAcaoResidencia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Renova a autorização de residência'**
+  String get painelAcaoResidencia;
+
+  /// No description provided for @painelAcaoCertificadoTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Renova o certificado de motorista TVDE'**
+  String get painelAcaoCertificadoTvde;
+
+  /// No description provided for @painelAcaoLicencaTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Renova a licença TVDE do carro'**
+  String get painelAcaoLicencaTvde;
+
+  /// No description provided for @painelAcaoMulta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paga a multa'**
+  String get painelAcaoMulta;
+
+  /// No description provided for @painelAcaoPortagem.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paga a portagem'**
+  String get painelAcaoPortagem;
+
+  /// No description provided for @painelAcaoFimIsencao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prepara-te: acaba a tua isenção da Segurança Social'**
+  String get painelAcaoFimIsencao;
+
+  /// No description provided for @painelAcaoGenerica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Trata disto: {nome}'**
+  String painelAcaoGenerica(String nome);
+
+  /// No description provided for @painelAcaoValorPorSaber.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não sei o valor'**
+  String get painelAcaoValorPorSaber;
+
+  /// No description provided for @painelAcaoPrazoPassou.
+  ///
+  /// In pt, this message translates to:
+  /// **'{dias, plural, =1{Já passou há 1 dia} other{Já passou há {dias} dias}}'**
+  String painelAcaoPrazoPassou(int dias);
+
+  /// No description provided for @painelAcaoPrazoHoje.
+  ///
+  /// In pt, this message translates to:
+  /// **'É mesmo hoje'**
+  String get painelAcaoPrazoHoje;
+
+  /// No description provided for @painelAcaoPrazoAmanha.
+  ///
+  /// In pt, this message translates to:
+  /// **'É amanhã'**
+  String get painelAcaoPrazoAmanha;
+
+  /// No description provided for @painelAcaoPrazoDiaSemana.
+  ///
+  /// In pt, this message translates to:
+  /// **'Até {diaSemana}, dia {dia}'**
+  String painelAcaoPrazoDiaSemana(String diaSemana, int dia);
+
+  /// No description provided for @painelAcaoPrazoData.
+  ///
+  /// In pt, this message translates to:
+  /// **'Até {data}'**
+  String painelAcaoPrazoData(String data);
+
+  /// No description provided for @painelAcaoDia1.
+  ///
+  /// In pt, this message translates to:
+  /// **'segunda'**
+  String get painelAcaoDia1;
+
+  /// No description provided for @painelAcaoDia2.
+  ///
+  /// In pt, this message translates to:
+  /// **'terça'**
+  String get painelAcaoDia2;
+
+  /// No description provided for @painelAcaoDia3.
+  ///
+  /// In pt, this message translates to:
+  /// **'quarta'**
+  String get painelAcaoDia3;
+
+  /// No description provided for @painelAcaoDia4.
+  ///
+  /// In pt, this message translates to:
+  /// **'quinta'**
+  String get painelAcaoDia4;
+
+  /// No description provided for @painelAcaoDia5.
+  ///
+  /// In pt, this message translates to:
+  /// **'sexta'**
+  String get painelAcaoDia5;
+
+  /// No description provided for @painelAcaoDia6.
+  ///
+  /// In pt, this message translates to:
+  /// **'sábado'**
+  String get painelAcaoDia6;
+
+  /// No description provided for @painelAcaoDia7.
+  ///
+  /// In pt, this message translates to:
+  /// **'domingo'**
+  String get painelAcaoDia7;
+
+  /// No description provided for @painelAcaoBotaoComoPagar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver como pagar'**
+  String get painelAcaoBotaoComoPagar;
+
+  /// No description provided for @painelAcaoBotaoOQueFazer.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver o que tenho de fazer'**
+  String get painelAcaoBotaoOQueFazer;
+
+  /// No description provided for @painelAcaoTudoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não tens nada a pagar agora'**
+  String get painelAcaoTudoTitulo;
+
+  /// No description provided for @painelAcaoTudoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Está tudo tratado. Quando houver um prazo, ponho-o aqui e aviso-te antes.'**
+  String get painelAcaoTudoAjuda;
+
+  /// No description provided for @painelAcaoTudoSugestao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já agora: escreve quanto ganhaste este mês. Com esse número faço as contas certas por ti.'**
+  String get painelAcaoTudoSugestao;
+
+  /// No description provided for @painelAcaoTudoBotao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escrever o que ganhei'**
+  String get painelAcaoTudoBotao;
+
+  /// No description provided for @oficioServicos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Serviços (cabelo, unhas, limpeza…)'**
+  String get oficioServicos;
+
+  /// No description provided for @oficioObras.
+  ///
+  /// In pt, this message translates to:
+  /// **'Obras e construção'**
+  String get oficioObras;
+
+  /// No description provided for @oficioOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outra coisa'**
+  String get oficioOutro;
+
+  /// No description provided for @oficioComoFunciona.
+  ///
+  /// In pt, this message translates to:
+  /// **'Como isto funciona'**
+  String get oficioComoFunciona;
+
+  /// No description provided for @oficioExplicacaoTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aqui tratas dos teus recibos das viagens. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.'**
+  String get oficioExplicacaoTvde;
+
+  /// No description provided for @oficioExplicacaoEstafeta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aqui tratas dos teus recibos das entregas. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.'**
+  String get oficioExplicacaoEstafeta;
+
+  /// No description provided for @oficioExplicacaoServicos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aqui tratas dos recibos dos teus clientes. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.'**
+  String get oficioExplicacaoServicos;
+
+  /// No description provided for @oficioExplicacaoObras.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aqui tratas dos recibos dos teus trabalhos na obra. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.'**
+  String get oficioExplicacaoObras;
+
+  /// No description provided for @oficioExplicacaoFreelancer.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aqui tratas dos recibos dos trabalhos que entregas. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.'**
+  String get oficioExplicacaoFreelancer;
+
+  /// No description provided for @oficioExplicacaoOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aqui tratas dos teus recibos. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.'**
+  String get oficioExplicacaoOutro;
+
+  /// No description provided for @oficioExplicacaoGeral.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aqui tratas dos recibos verdes. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.'**
+  String get oficioExplicacaoGeral;
+
+  /// No description provided for @oficioAjudaTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ao fim do mês vai ao extrato da Uber ou da Bolt, tira o total que te pagaram e escreve-o aqui.'**
+  String get oficioAjudaTvde;
+
+  /// No description provided for @oficioAjudaEstafeta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ao fim do mês vai ao extrato da Glovo, da Bolt Food ou da Uber Eats, tira o total que te pagaram e escreve-o aqui.'**
+  String get oficioAjudaEstafeta;
+
+  /// No description provided for @oficioAjudaServicos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faz um recibo a cada cliente que te paga. Ao fim do mês soma tudo e escreve aqui o total.'**
+  String get oficioAjudaServicos;
+
+  /// No description provided for @oficioAjudaObras.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faz um recibo por cada trabalho que te pagam, seja ao dono da casa seja à empresa. Ao fim do mês soma tudo e escreve aqui o total.'**
+  String get oficioAjudaObras;
+
+  /// No description provided for @oficioAjudaFreelancer.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faz um recibo por cada trabalho que entregas. Ao fim do mês soma tudo e escreve aqui o total.'**
+  String get oficioAjudaFreelancer;
+
+  /// No description provided for @oficioAjudaOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faz um recibo sempre que alguém te paga o teu trabalho. Ao fim do mês soma tudo e escreve aqui o total.'**
+  String get oficioAjudaOutro;
+
+  /// No description provided for @oficioAjudaGeral.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faz um recibo sempre que alguém te paga o teu trabalho. Ao fim do mês soma tudo e escreve aqui o total.'**
+  String get oficioAjudaGeral;
+
+  /// No description provided for @oficioExemploTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'No teu caso o cliente é a plataforma: a Uber ou a Bolt. O número de contribuinte delas está no extrato.'**
+  String get oficioExemploTvde;
+
+  /// No description provided for @oficioExemploEstafeta.
+  ///
+  /// In pt, this message translates to:
+  /// **'No teu caso o cliente é a plataforma: a Glovo, a Bolt Food ou a Uber Eats. O número de contribuinte delas está no extrato.'**
+  String get oficioExemploEstafeta;
+
+  /// No description provided for @oficioExemploServicos.
+  ///
+  /// In pt, this message translates to:
+  /// **'No teu caso o cliente é quem te pagou: a pessoa que atendeste ou o salão. Pede-lhe o número de contribuinte.'**
+  String get oficioExemploServicos;
+
+  /// No description provided for @oficioExemploObras.
+  ///
+  /// In pt, this message translates to:
+  /// **'No teu caso o cliente é quem te pagou a obra: o dono da casa ou a empresa de construção. Pede-lhe o número de contribuinte.'**
+  String get oficioExemploObras;
+
+  /// No description provided for @oficioExemploFreelancer.
+  ///
+  /// In pt, this message translates to:
+  /// **'No teu caso o cliente é a empresa ou a pessoa para quem fizeste o trabalho. Pede-lhe o número de contribuinte.'**
+  String get oficioExemploFreelancer;
+
+  /// No description provided for @oficioExemploOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'No teu caso o cliente é a pessoa ou a empresa que te pagou. Pede-lhe o número de contribuinte.'**
+  String get oficioExemploOutro;
+
+  /// No description provided for @oficioExemploGeral.
+  ///
+  /// In pt, this message translates to:
+  /// **'O cliente é a pessoa ou a empresa que te paga. Pede-lhe o número de contribuinte.'**
+  String get oficioExemploGeral;
+
+  /// No description provided for @oficioDescricaoTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Serviços de transporte em veículo descaracterizado (TVDE)'**
+  String get oficioDescricaoTvde;
+
+  /// No description provided for @oficioDescricaoEstafeta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Serviços de entrega ao domicílio'**
+  String get oficioDescricaoEstafeta;
+
+  /// No description provided for @oficioDescricaoServicos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prestação de serviços de cabeleireiro e estética'**
+  String get oficioDescricaoServicos;
+
+  /// No description provided for @oficioDescricaoObras.
+  ///
+  /// In pt, this message translates to:
+  /// **'Serviços de construção civil'**
+  String get oficioDescricaoObras;
+
+  /// No description provided for @oficioDescricaoFreelancer.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prestação de serviços'**
+  String get oficioDescricaoFreelancer;
+
+  /// No description provided for @oficioDescricaoOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prestação de serviços'**
+  String get oficioDescricaoOutro;
+
+  /// No description provided for @oficioDescricaoGeral.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prestação de serviços'**
+  String get oficioDescricaoGeral;
+
+  /// Sufixo do campo dos litros no formulário do abastecimento. Estava escrito à mão no Dart.
+  ///
+  /// In pt, this message translates to:
+  /// **'L'**
+  String get sufixoLitros;
+
+  /// Sufixo do campo dos quilómetros no formulário do abastecimento. Estava escrito à mão no Dart.
+  ///
+  /// In pt, this message translates to:
+  /// **'km'**
+  String get sufixoKm;
 }
 
 class _AppLocalizationsDelegate

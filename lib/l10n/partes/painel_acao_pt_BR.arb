@@ -1,0 +1,55 @@
+{
+  "@@locale": "pt_BR",
+
+  "painelAcaoEtiqueta": "O que fazer agora",
+
+  "painelAcaoPagaSs": "Pague a Segurança Social",
+  "painelAcaoEntregaSs": "Entregue a declaração da Segurança Social",
+  "painelAcaoPagaIva": "Pague o IVA (o imposto da nota fiscal)",
+  "painelAcaoEntregaIva": "Entregue a declaração do IVA",
+  "painelAcaoEntregaIrs": "Entregue o IRS",
+  "painelAcaoPagaIrsConta": "Pague o adiantamento do IRS",
+  "painelAcaoValidaFaturas": "Valide suas faturas no e-fatura",
+  "painelAcaoComunicaFaturas": "Informe as faturas que você emitiu",
+  "painelAcaoPagaIuc": "Pague o IUC (o imposto do carro)",
+  "painelAcaoInspecao": "Leve o carro na inspeção",
+  "painelAcaoRevisao": "Faça a revisão do carro",
+  "painelAcaoSeguro": "Pague o seguro do carro",
+  "painelAcaoCarta": "Renove a carta de condução",
+  "painelAcaoTrocaCarta": "Troque a carta de condução",
+  "painelAcaoResidencia": "Renove a autorização de residência",
+  "painelAcaoCertificadoTvde": "Renove o certificado de motorista TVDE",
+  "painelAcaoLicencaTvde": "Renove a licença TVDE do carro",
+  "painelAcaoMulta": "Pague a multa",
+  "painelAcaoPortagem": "Pague o pedágio",
+  "painelAcaoFimIsencao": "Se prepare: sua isenção da Segurança Social está acabando",
+  "painelAcaoGenerica": "Cuide disto: {nome}",
+  "@painelAcaoGenerica": {"placeholders": {"nome": {"type": "String"}}},
+
+  "painelAcaoValorPorSaber": "Ainda não sei o valor",
+
+  "painelAcaoPrazoPassou": "{dias, plural, =1{Já passou faz 1 dia} other{Já passou faz {dias} dias}}",
+  "@painelAcaoPrazoPassou": {"placeholders": {"dias": {"type": "int"}}},
+  "painelAcaoPrazoHoje": "É hoje mesmo",
+  "painelAcaoPrazoAmanha": "É amanhã",
+  "painelAcaoPrazoDiaSemana": "Até {diaSemana}, dia {dia}",
+  "@painelAcaoPrazoDiaSemana": {"placeholders": {"diaSemana": {"type": "String"}, "dia": {"type": "int"}}},
+  "painelAcaoPrazoData": "Até {data}",
+  "@painelAcaoPrazoData": {"placeholders": {"data": {"type": "String"}}},
+
+  "painelAcaoDia1": "segunda",
+  "painelAcaoDia2": "terça",
+  "painelAcaoDia3": "quarta",
+  "painelAcaoDia4": "quinta",
+  "painelAcaoDia5": "sexta",
+  "painelAcaoDia6": "sábado",
+  "painelAcaoDia7": "domingo",
+
+  "painelAcaoBotaoComoPagar": "Ver como pagar",
+  "painelAcaoBotaoOQueFazer": "Ver o que eu tenho de fazer",
+
+  "painelAcaoTudoTitulo": "Você não tem nada para pagar agora",
+  "painelAcaoTudoAjuda": "Está tudo resolvido. Quando aparecer um prazo, eu coloco aqui e aviso você antes.",
+  "painelAcaoTudoSugestao": "Já que dá: escreva quanto você ganhou neste mês. Com esse número eu faço as contas certas para você.",
+  "painelAcaoTudoBotao": "Escrever o que ganhei"
+}

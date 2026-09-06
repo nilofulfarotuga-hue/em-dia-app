@@ -88,7 +88,11 @@ Você precisa do seu **NISS** (o número da Segurança Social) e da senha da Seg
       tela: () => comStores(GuiaScreen(guia: emBreve), perfil: perfilTeste()),
     );
     expect(find.byKey(const Key('guia_fonte')), findsNothing);
-    expect(find.byType(ElevatedButton), findsOneWidget);
+    // O botão de ouvir está lá, mas apagado: não há corpo para ler.
+    final ouvir = tester.widget<TextButton>(
+      find.descendant(of: find.byKey(const Key('guia_ouvir')), matching: find.byType(TextButton)),
+    );
+    expect(ouvir.onPressed, isNull);
   });
 
   test('textoParaVoz tira as marcas e junta as frases', () {

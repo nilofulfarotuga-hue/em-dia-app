@@ -9,6 +9,7 @@ import 'package:em_dia/models/perfil.dart';
 import 'package:em_dia/models/rendimento.dart';
 import 'package:em_dia/regras/regras.dart';
 import 'package:em_dia/stores/dados_store.dart';
+import 'package:em_dia/services/fala.dart';
 import 'package:em_dia/stores/perfil_store.dart';
 import 'package:em_dia/stores/regras_store.dart';
 import 'package:em_dia/stores/sessao_store.dart';
@@ -130,6 +131,8 @@ Widget embrulhaStores({
     MultiProvider(
       providers: [
         ChangeNotifierProvider<SessaoStore>(create: (_) => SessaoStoreFalso()),
+        // A voz: os botões de ouvir precisam dela para saber quem está a falar.
+        ChangeNotifierProvider<Fala>.value(value: Fala.instancia),
         ChangeNotifierProvider<RegrasStore>(create: (_) => RegrasStore()),
         ChangeNotifierProvider<PlanoStore>(create: (_) => PlanoStoreFalso(plano, limites: limites)),
         ChangeNotifierProvider<PerfilStore>(create: (_) => PerfilStoreFalso(perfil)),

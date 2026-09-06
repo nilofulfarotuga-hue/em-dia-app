@@ -67,7 +67,16 @@ class _CalculadoraReciboState extends State<CalculadoraRecibo> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CabecalhoCartao(icone: Icons.calculate_rounded, titulo: l.calcTitulo),
+          CabecalhoCartao(
+            icone: Icons.calculate_rounded,
+            titulo: l.calcTitulo,
+            // A lição desta calculadora é uma só: nem tudo o que entra é teu.
+            direita: BotaoOuvir(
+              etiqueta: 'recibos-nao-e-tudo-teu',
+              texto: '${l.calcTitulo}. ${l.calcNaoETudoTeu}',
+              soIcone: true,
+            ),
+          ),
           const SizedBox(height: 14),
           TextField(
             key: const Key('calc_valor'),

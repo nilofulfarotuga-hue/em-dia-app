@@ -1,0 +1,48 @@
+{
+  "data": "20260906-160402",
+  "modelo": "gemini-flash-latest",
+  "fotos": 4,
+  "contagem": {
+    "verde": 1,
+    "amarelo": 3,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "A página está limpa e muito fácil de entender para toda a gente.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais de uma coisa a laranja ao mesmo tempo.",
+      "jargao": [
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem dois avisos laranjas na mesma tela.",
+      "jargao": [
+        "Segurança Social",
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais de um elemento laranja no ecrã.",
+      "jargao": [
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_medio_pt.png"
+    }
+  ]
+}

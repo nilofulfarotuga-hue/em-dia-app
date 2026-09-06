@@ -26,6 +26,37 @@ String kmTxt(int km) {
 /// "38,5" — uma casa decimal, vírgula.
 String litrosTxt(double l) => l.toStringAsFixed(1).replaceAll('.', ',');
 
+final RegExp _naoMatricula = RegExp(r'[^A-Z0-9]');
+final RegExp _duasLetras = RegExp(r'^[A-Z]{2}$');
+final RegExp _doisNumeros = RegExp(r'^[0-9]{2}$');
+
+/// "aa 00-aa" → "AA00AA". Tira traços, espaços e pontos, e põe em maiúsculas.
+String soLetrasENumeros(String s) => s.toUpperCase().replaceAll(_naoMatricula, '');
+
+/// Uma matrícula portuguesa são três pares, cada um só letras ou só números:
+/// AA-00-AA (desde 2020), 00-AA-00, 00-00-AA, AA-00-00 (as mais antigas).
+///
+/// Aceita-se qualquer mistura de pares desde que haja pelo menos um par de
+/// letras e um de números — mais vale aceitar uma matrícula estranha a mais do
+/// que recusar a de alguém que a tem mesmo assim no papel do carro.
+bool matriculaPortuguesaValida(String texto) {
+  final cru = soLetrasENumeros(texto);
+  if (cru.length != 6) return false;
+  var temLetras = false;
+  var temNumeros = false;
+  for (var i = 0; i < 6; i += 2) {
+    final par = cru.substring(i, i + 2);
+    if (_duasLetras.hasMatch(par)) {
+      temLetras = true;
+    } else if (_doisNumeros.hasMatch(par)) {
+      temNumeros = true;
+    } else {
+      return false; // par misturado (ex.: "A1") não existe em matrículas
+    }
+  }
+  return temLetras && temNumeros;
+}
+
 /// Tipos de despesa (a ordem é a das chips do formulário). Mesmos valores da
 /// tabela `despesas_carro.tipo`.
 const List<String> tiposDespesa = [
@@ -263,6 +294,88 @@ class Interruptor extends StatelessWidget {
         contentPadding: EdgeInsets.zero,
         title: Text(rotulo, style: Theme.of(context).textTheme.titleSmall),
       );
+}
+
+/// Secção que se dobra: só o título aparece, o resto abre ao toque.
+///
+/// Serve para tirar do caminho tudo o que não é obrigatório — um formulário
+/// que mostra dez campos de uma vez assusta quem só quer guardar o carro.
+/// A [etiqueta] fica ao lado do título para dizer, sem abrir, o que se perde
+/// por deixar isto fechado.
+class SeccaoDobravel extends StatefulWidget {
+  final String titulo;
+  final Widget? etiqueta;
+  final bool abertaDeInicio;
+  final String rotuloAbrir;
+  final String rotuloFechar;
+  final Widget child;
+  const SeccaoDobravel({
+    super.key,
+    required this.titulo,
+    required this.rotuloAbrir,
+    required this.rotuloFechar,
+    required this.child,
+    this.etiqueta,
+    this.abertaDeInicio = false,
+  });
+
+  @override
+  State<SeccaoDobravel> createState() => _SeccaoDobravelState();
+}
+
+class _SeccaoDobravelState extends State<SeccaoDobravel> {
+  late bool _aberta = widget.abertaDeInicio;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context).textTheme;
+    return Cartao(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+      bordo: AppColors.divider,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Semantics(
+            button: true,
+            expanded: _aberta,
+            label: _aberta ? widget.rotuloFechar : widget.rotuloAbrir,
+            child: InkWell(
+              onTap: () => setState(() => _aberta = !_aberta),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(widget.titulo, style: t.titleMedium),
+                          if (widget.etiqueta != null) ...[
+                            const SizedBox(height: 6),
+                            widget.etiqueta!,
+                          ],
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    AnimatedRotation(
+                      turns: _aberta ? 0.5 : 0,
+                      duration: const Duration(milliseconds: 150),
+                      child: const Icon(Icons.expand_more_rounded, color: AppColors.textSecondary),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          if (_aberta) ...[
+            const Divider(height: 1),
+            Padding(padding: const EdgeInsets.only(top: 12, bottom: 12), child: widget.child),
+          ],
+        ],
+      ),
+    );
+  }
 }
 
 /// Título de secção com o "+" à direita (o FAB do Drivvo, por secção).

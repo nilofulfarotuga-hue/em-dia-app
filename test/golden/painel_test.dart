@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:em_dia/regras/regras.dart';
+import 'package:em_dia/screens/painel/cartao_acao.dart';
 import 'package:em_dia/screens/painel/cartao_heroi.dart';
 import 'package:em_dia/screens/painel/cartoes_painel.dart';
 import 'package:em_dia/screens/painel/painel_screen.dart';
@@ -11,6 +13,18 @@ import 'fabrica_de_fotos.dart';
 
 /// Tela 1 — Painel "Estás em dia?": verde (sem nada), laranja (2 a vencer em
 /// 3 dias), vermelho (1 passada). "Hoje" fixo para as fotos serem iguais.
+
+/// Rola o painel ate ao que se quer ver.
+///
+/// Numa ListView o que esta abaixo da dobra nem chega a ser construido, por
+/// isso `find` nao o encontra. Desde que o cartao de acao entrou no topo
+/// (2026-09-06), metade do painel ficou abaixo da dobra nos tamanhos pequenos.
+Future<void> rolarAte(WidgetTester tester, Finder alvo) => tester.dragUntilVisible(
+      alvo,
+      find.byType(ListView).first,
+      const Offset(0, -300),
+    );
+
 void main() {
   setUpAll(() async {
     await carregaFonteInter();
@@ -37,9 +51,18 @@ void main() {
       ),
     );
     expect(find.byType(SemaforoGrande), findsOneWidget);
-    expect(find.byType(CartaoHeroi), findsOneWidget);
-    expect(find.byType(CartaoVigiaIva), findsOneWidget);
     expect(find.text('Está tudo em dia'), findsOneWidget);
+    // Sem obrigações nenhumas não há "próximo prazo" para mostrar, e um cartão
+    // vazio a dizer que está vazio só ocupa ecrã. O cartão de ação em cima já
+    // diz que está tudo tratado.
+    expect(find.byType(CartaoHeroi), findsNothing);
+    expect(find.byType(CartaoAcao), findsOneWidget);
+    // A vigia do IVA vive no fundo da lista e, desde que o cartão de ação
+    // entrou no topo (2026-09-06), fica abaixo da dobra. Numa ListView o que
+    // está abaixo da dobra nem chega a ser construído — daí ter de se rolar
+    // até lá antes de perguntar por ele.
+    await rolarAte(tester, find.byType(CartaoVigiaIva));
+    expect(find.byType(CartaoVigiaIva), findsOneWidget);
   });
 
   testWidgets('painel laranja — 2 pendentes a 3 dias', (tester) async {
@@ -62,7 +85,16 @@ void main() {
         ],
       ),
     );
+    // Duas obrigações no mesmo dia: a Segurança Social (149,80 €) vai para o
+    // cartão de ação, e o cartão de baixo mostra a SEGUINTE — o imposto do
+    // carro (64,92 €) — em vez de repetir a mesma três vezes.
+    expect(find.byType(CartaoAcao), findsOneWidget);
+    // A última foto da suíte é a de PT-BR, por isso o texto que fica no ecrã
+    // no fim é o do Brasil ("Pague", não "Paga").
+    expect(find.text('Pague a Segurança Social'), findsOneWidget);
+    expect(find.byType(CartaoHeroi), findsOneWidget);
     expect(find.text('Em 3 dias'), findsOneWidget);
+    await rolarAte(tester, find.byType(CartaoEsteMes));
     expect(find.byType(CartaoEsteMes), findsOneWidget);
     expect(find.text('214,72 €'), findsOneWidget); // total do mês
   });
@@ -81,8 +113,13 @@ void main() {
         ],
       ),
     );
-    // Aparece no herói e na linha de "Este mês pagas".
-    expect(find.text('Passou há 2 dias'), findsNWidgets(2));
+    // A obrigação passada foi para o cartão de ação ("Já passou há 2 dias") e
+    // o cartão de baixo mostra o que vem a seguir, o seguro. A linha de
+    // "Este mês pagas" continua a marcar a passada a vermelho.
+    expect(find.text('Já passou faz 2 dias'), findsOneWidget); // PT-BR, a última foto
+    expect(find.byType(CartaoHeroi), findsOneWidget);
+    await rolarAte(tester, find.byType(CartaoEsteMes));
+    expect(find.text('Passou há 2 dias'), findsOneWidget); // na linha de "Este mês paga"
     // A última foto da suíte é PT-BR: verifica o estado, não o texto.
     expect(find.byWidgetPredicate((w) => w is SemaforoGrande && w.estado == Semaforo.vermelho), findsOneWidget);
   });

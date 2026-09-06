@@ -203,7 +203,7 @@ class _IaScreenState extends State<IaScreen> {
                           itemCount: mensagens.length + (_store.aPensar ? 1 : 0),
                           itemBuilder: (context, i) {
                             if (i >= mensagens.length) return const _BalaoAPensar();
-                            return _Balao(mensagem: mensagens[i]);
+                            return _Balao(mensagem: mensagens[i], indice: i);
                           },
                         ),
                 ),
@@ -290,7 +290,11 @@ class TextoIa extends StatelessWidget {
 
 class _Balao extends StatelessWidget {
   final MensagemIa mensagem;
-  const _Balao({required this.mensagem});
+
+  /// Lugar da mensagem na conversa — só serve para dar uma etiqueta diferente
+  /// a cada botão de ouvir (a voz precisa de saber qual deles está a falar).
+  final int indice;
+  const _Balao({required this.mensagem, required this.indice});
 
   @override
   Widget build(BuildContext context) {
@@ -335,6 +339,9 @@ class _Balao extends StatelessWidget {
                   ],
                 ),
               ],
+              // Cada resposta do Em Dia é uma explicação — logo tem o botão de
+              // ouvir. Nas perguntas do próprio utilizador não faz sentido.
+              if (!meu) BotaoOuvir(etiqueta: 'ia-resposta-$indice', texto: mensagem.texto, soIcone: true),
             ],
           ),
         ),

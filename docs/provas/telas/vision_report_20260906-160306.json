@@ -1,0 +1,61 @@
+{
+  "data": "20260906-160306",
+  "modelo": "gemini-flash-latest",
+  "fotos": 6,
+  "contagem": {
+    "verde": 2,
+    "amarelo": 4,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã de erro de ligação está claro, bem explicado e tem um botão visível para tentar de novo.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_erro_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens dois avisos laranjas a mostrar que há coisas a vencer depressa.",
+      "jargao": [
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e pronto para pagares sem confusão.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tem um cartão laranja a avisar de coisas a vencer e outro logo a seguir em baixo.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais de um elemento laranja no ecrã.",
+      "jargao": [
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem vários elementos laranjas no ecrã quando devia existir apenas um.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_pequeno_br.png"
+    }
+  ]
+}

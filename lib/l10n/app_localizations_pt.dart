@@ -3092,6 +3092,348 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get admAuColDepois => 'Depois';
+
+  @override
+  String get carroFormBasicoAjuda =>
+      'Só preciso destas três coisas. Pelo mês fico a saber quando pagas o imposto do carro; pelo ano, quando toca a inspeção.';
+
+  @override
+  String get carroFormMatriculaInvalida =>
+      'Essa matrícula não me parece certa. Escreve as letras e os números, assim: AA-00-AA.';
+
+  @override
+  String get carroFormOpcionalTitulo => 'Queres afinar as contas? (opcional)';
+
+  @override
+  String get carroFormOpcionalAjuda =>
+      'Podes fechar isto e guardar já. Só com a matrícula e a data eu aviso-te a tempo do imposto do carro, da inspeção e do seguro. Estes extras servem para eu acertar melhor o valor do imposto do carro — sem eles a app avisa na mesma, só não te diz um valor certo.';
+
+  @override
+  String get carroFormAbrir => 'Abrir';
+
+  @override
+  String get carroFormFechar => 'Fechar';
+
+  @override
+  String get carroFormIucPorConfirmar => 'imposto por confirmar';
+
+  @override
+  String get carroFormIucContaFeita => 'já consigo contar o imposto';
+
+  @override
+  String get carroFormIucPorConfirmarLinha =>
+      'Sem a cilindrada não invento nenhum valor: aviso-te na data certa e escrevo «por confirmar» em vez de um número errado.';
+
+  @override
+  String get carroFormCilindrada => 'Cilindrada (o tamanho do motor, em cc)';
+
+  @override
+  String get carroFormCo2 => 'CO2 (o gás que o carro deita, em g/km)';
+
+  @override
+  String get carroFormOndeEstao =>
+      'Estes dois números estão no papel do carro (o certificado de matrícula, o antigo livrete).';
+
+  @override
+  String get guiaIniSaltar => 'Saltar';
+
+  @override
+  String get guiaIniSeguinte => 'Seguinte';
+
+  @override
+  String get guiaIniComecar => 'Começar';
+
+  @override
+  String guiaIniPasso(int n, int total) {
+    return 'Ecrã $n de $total';
+  }
+
+  @override
+  String get guiaIniAvisoTitulo => 'Eu aviso-te';
+
+  @override
+  String get guiaIniAvisoTexto =>
+      'Cada coisa que tens de pagar tem um dia certo. Eu aviso-te antes desse dia, com tempo para tratares disso. Assim nunca pagas uma multa só por te teres esquecido.';
+
+  @override
+  String get guiaIniGanhosTitulo => 'Escreve o que ganhas';
+
+  @override
+  String get guiaIniGanhosTexto =>
+      'Sempre que receberes dinheiro, escreve aqui. Leva poucos segundos. Quanto mais escreveres, mais certas ficam as minhas contas e os meus avisos.';
+
+  @override
+  String get guiaIniPerguntaTitulo => 'Pergunta-me o que quiseres';
+
+  @override
+  String get guiaIniPerguntaTexto =>
+      'Tens uma dúvida? Escreve-a como se falasses com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite.';
+
+  @override
+  String get painelAcaoEtiqueta => 'O que fazer agora';
+
+  @override
+  String get painelAcaoPagaSs => 'Paga a Segurança Social';
+
+  @override
+  String get painelAcaoEntregaSs => 'Entrega a declaração da Segurança Social';
+
+  @override
+  String get painelAcaoPagaIva => 'Paga o IVA (o imposto da fatura)';
+
+  @override
+  String get painelAcaoEntregaIva => 'Entrega a declaração do IVA';
+
+  @override
+  String get painelAcaoEntregaIrs => 'Entrega o IRS';
+
+  @override
+  String get painelAcaoPagaIrsConta => 'Paga o adiantamento do IRS';
+
+  @override
+  String get painelAcaoValidaFaturas => 'Valida as tuas faturas no e-fatura';
+
+  @override
+  String get painelAcaoComunicaFaturas => 'Comunica as faturas que passaste';
+
+  @override
+  String get painelAcaoPagaIuc => 'Paga o IUC (o imposto do carro)';
+
+  @override
+  String get painelAcaoInspecao => 'Leva o carro à inspeção';
+
+  @override
+  String get painelAcaoRevisao => 'Faz a revisão do carro';
+
+  @override
+  String get painelAcaoSeguro => 'Paga o seguro do carro';
+
+  @override
+  String get painelAcaoCarta => 'Renova a carta de condução';
+
+  @override
+  String get painelAcaoTrocaCarta => 'Troca a carta de condução';
+
+  @override
+  String get painelAcaoResidencia => 'Renova a autorização de residência';
+
+  @override
+  String get painelAcaoCertificadoTvde =>
+      'Renova o certificado de motorista TVDE';
+
+  @override
+  String get painelAcaoLicencaTvde => 'Renova a licença TVDE do carro';
+
+  @override
+  String get painelAcaoMulta => 'Paga a multa';
+
+  @override
+  String get painelAcaoPortagem => 'Paga a portagem';
+
+  @override
+  String get painelAcaoFimIsencao =>
+      'Prepara-te: acaba a tua isenção da Segurança Social';
+
+  @override
+  String painelAcaoGenerica(String nome) {
+    return 'Trata disto: $nome';
+  }
+
+  @override
+  String get painelAcaoValorPorSaber => 'Ainda não sei o valor';
+
+  @override
+  String painelAcaoPrazoPassou(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Já passou há $dias dias',
+      one: 'Já passou há 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get painelAcaoPrazoHoje => 'É mesmo hoje';
+
+  @override
+  String get painelAcaoPrazoAmanha => 'É amanhã';
+
+  @override
+  String painelAcaoPrazoDiaSemana(String diaSemana, int dia) {
+    return 'Até $diaSemana, dia $dia';
+  }
+
+  @override
+  String painelAcaoPrazoData(String data) {
+    return 'Até $data';
+  }
+
+  @override
+  String get painelAcaoDia1 => 'segunda';
+
+  @override
+  String get painelAcaoDia2 => 'terça';
+
+  @override
+  String get painelAcaoDia3 => 'quarta';
+
+  @override
+  String get painelAcaoDia4 => 'quinta';
+
+  @override
+  String get painelAcaoDia5 => 'sexta';
+
+  @override
+  String get painelAcaoDia6 => 'sábado';
+
+  @override
+  String get painelAcaoDia7 => 'domingo';
+
+  @override
+  String get painelAcaoBotaoComoPagar => 'Ver como pagar';
+
+  @override
+  String get painelAcaoBotaoOQueFazer => 'Ver o que tenho de fazer';
+
+  @override
+  String get painelAcaoTudoTitulo => 'Não tens nada a pagar agora';
+
+  @override
+  String get painelAcaoTudoAjuda =>
+      'Está tudo tratado. Quando houver um prazo, ponho-o aqui e aviso-te antes.';
+
+  @override
+  String get painelAcaoTudoSugestao =>
+      'Já agora: escreve quanto ganhaste este mês. Com esse número faço as contas certas por ti.';
+
+  @override
+  String get painelAcaoTudoBotao => 'Escrever o que ganhei';
+
+  @override
+  String get oficioServicos => 'Serviços (cabelo, unhas, limpeza…)';
+
+  @override
+  String get oficioObras => 'Obras e construção';
+
+  @override
+  String get oficioOutro => 'Outra coisa';
+
+  @override
+  String get oficioComoFunciona => 'Como isto funciona';
+
+  @override
+  String get oficioExplicacaoTvde =>
+      'Aqui tratas dos teus recibos das viagens. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoEstafeta =>
+      'Aqui tratas dos teus recibos das entregas. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoServicos =>
+      'Aqui tratas dos recibos dos teus clientes. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoObras =>
+      'Aqui tratas dos recibos dos teus trabalhos na obra. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoFreelancer =>
+      'Aqui tratas dos recibos dos trabalhos que entregas. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoOutro =>
+      'Aqui tratas dos teus recibos. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoGeral =>
+      'Aqui tratas dos recibos verdes. Escreve quanto ganhaste, eu faço as contas e digo-te o que é mesmo teu e o que é do Estado.';
+
+  @override
+  String get oficioAjudaTvde =>
+      'Ao fim do mês vai ao extrato da Uber ou da Bolt, tira o total que te pagaram e escreve-o aqui.';
+
+  @override
+  String get oficioAjudaEstafeta =>
+      'Ao fim do mês vai ao extrato da Glovo, da Bolt Food ou da Uber Eats, tira o total que te pagaram e escreve-o aqui.';
+
+  @override
+  String get oficioAjudaServicos =>
+      'Faz um recibo a cada cliente que te paga. Ao fim do mês soma tudo e escreve aqui o total.';
+
+  @override
+  String get oficioAjudaObras =>
+      'Faz um recibo por cada trabalho que te pagam, seja ao dono da casa seja à empresa. Ao fim do mês soma tudo e escreve aqui o total.';
+
+  @override
+  String get oficioAjudaFreelancer =>
+      'Faz um recibo por cada trabalho que entregas. Ao fim do mês soma tudo e escreve aqui o total.';
+
+  @override
+  String get oficioAjudaOutro =>
+      'Faz um recibo sempre que alguém te paga o teu trabalho. Ao fim do mês soma tudo e escreve aqui o total.';
+
+  @override
+  String get oficioAjudaGeral =>
+      'Faz um recibo sempre que alguém te paga o teu trabalho. Ao fim do mês soma tudo e escreve aqui o total.';
+
+  @override
+  String get oficioExemploTvde =>
+      'No teu caso o cliente é a plataforma: a Uber ou a Bolt. O número de contribuinte delas está no extrato.';
+
+  @override
+  String get oficioExemploEstafeta =>
+      'No teu caso o cliente é a plataforma: a Glovo, a Bolt Food ou a Uber Eats. O número de contribuinte delas está no extrato.';
+
+  @override
+  String get oficioExemploServicos =>
+      'No teu caso o cliente é quem te pagou: a pessoa que atendeste ou o salão. Pede-lhe o número de contribuinte.';
+
+  @override
+  String get oficioExemploObras =>
+      'No teu caso o cliente é quem te pagou a obra: o dono da casa ou a empresa de construção. Pede-lhe o número de contribuinte.';
+
+  @override
+  String get oficioExemploFreelancer =>
+      'No teu caso o cliente é a empresa ou a pessoa para quem fizeste o trabalho. Pede-lhe o número de contribuinte.';
+
+  @override
+  String get oficioExemploOutro =>
+      'No teu caso o cliente é a pessoa ou a empresa que te pagou. Pede-lhe o número de contribuinte.';
+
+  @override
+  String get oficioExemploGeral =>
+      'O cliente é a pessoa ou a empresa que te paga. Pede-lhe o número de contribuinte.';
+
+  @override
+  String get oficioDescricaoTvde =>
+      'Serviços de transporte em veículo descaracterizado (TVDE)';
+
+  @override
+  String get oficioDescricaoEstafeta => 'Serviços de entrega ao domicílio';
+
+  @override
+  String get oficioDescricaoServicos =>
+      'Prestação de serviços de cabeleireiro e estética';
+
+  @override
+  String get oficioDescricaoObras => 'Serviços de construção civil';
+
+  @override
+  String get oficioDescricaoFreelancer => 'Prestação de serviços';
+
+  @override
+  String get oficioDescricaoOutro => 'Prestação de serviços';
+
+  @override
+  String get oficioDescricaoGeral => 'Prestação de serviços';
+
+  @override
+  String get sufixoLitros => 'L';
+
+  @override
+  String get sufixoKm => 'km';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -6184,4 +6526,346 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get admAuColDepois => 'Depois';
+
+  @override
+  String get carroFormBasicoAjuda =>
+      'Só preciso destas três coisas. Pelo mês eu fico sabendo quando você paga o imposto do carro; pelo ano, quando é a inspeção.';
+
+  @override
+  String get carroFormMatriculaInvalida =>
+      'Essa placa não me parece certa. Escreva as letras e os números, assim: AA-00-AA.';
+
+  @override
+  String get carroFormOpcionalTitulo => 'Quer ajustar as contas? (opcional)';
+
+  @override
+  String get carroFormOpcionalAjuda =>
+      'Você pode fechar isto e salvar agora. Só com a placa e a data eu já aviso a tempo do imposto do carro, da inspeção e do seguro. Estes extras servem para eu acertar melhor o valor do imposto do carro — sem eles o app avisa do mesmo jeito, só não diz um valor certo.';
+
+  @override
+  String get carroFormAbrir => 'Abrir';
+
+  @override
+  String get carroFormFechar => 'Fechar';
+
+  @override
+  String get carroFormIucPorConfirmar => 'imposto por confirmar';
+
+  @override
+  String get carroFormIucContaFeita => 'já consigo calcular o imposto';
+
+  @override
+  String get carroFormIucPorConfirmarLinha =>
+      'Sem a cilindrada eu não invento nenhum valor: aviso na data certa e escrevo «por confirmar» no lugar de um número errado.';
+
+  @override
+  String get carroFormCilindrada => 'Cilindrada (o tamanho do motor, em cc)';
+
+  @override
+  String get carroFormCo2 => 'CO2 (o gás que o carro solta, em g/km)';
+
+  @override
+  String get carroFormOndeEstao =>
+      'Estes dois números estão no documento do carro (o certificado de matrícula).';
+
+  @override
+  String get guiaIniSaltar => 'Pular';
+
+  @override
+  String get guiaIniSeguinte => 'Próximo';
+
+  @override
+  String get guiaIniComecar => 'Começar';
+
+  @override
+  String guiaIniPasso(int n, int total) {
+    return 'Tela $n de $total';
+  }
+
+  @override
+  String get guiaIniAvisoTitulo => 'Eu te aviso';
+
+  @override
+  String get guiaIniAvisoTexto =>
+      'Cada coisa que você tem que pagar tem um dia certo. Eu te aviso antes desse dia, com tempo para você resolver. Assim você nunca paga multa só por ter esquecido.';
+
+  @override
+  String get guiaIniGanhosTitulo => 'Anote o que você ganha';
+
+  @override
+  String get guiaIniGanhosTexto =>
+      'Toda vez que você receber dinheiro, anote aqui. Leva poucos segundos. Quanto mais você anotar, mais certas ficam as minhas contas e os meus avisos.';
+
+  @override
+  String get guiaIniPerguntaTitulo => 'Me pergunte o que quiser';
+
+  @override
+  String get guiaIniPerguntaTexto =>
+      'Ficou com dúvida? Escreva como se estivesse falando com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite.';
+
+  @override
+  String get painelAcaoEtiqueta => 'O que fazer agora';
+
+  @override
+  String get painelAcaoPagaSs => 'Pague a Segurança Social';
+
+  @override
+  String get painelAcaoEntregaSs => 'Entregue a declaração da Segurança Social';
+
+  @override
+  String get painelAcaoPagaIva => 'Pague o IVA (o imposto da nota fiscal)';
+
+  @override
+  String get painelAcaoEntregaIva => 'Entregue a declaração do IVA';
+
+  @override
+  String get painelAcaoEntregaIrs => 'Entregue o IRS';
+
+  @override
+  String get painelAcaoPagaIrsConta => 'Pague o adiantamento do IRS';
+
+  @override
+  String get painelAcaoValidaFaturas => 'Valide suas faturas no e-fatura';
+
+  @override
+  String get painelAcaoComunicaFaturas => 'Informe as faturas que você emitiu';
+
+  @override
+  String get painelAcaoPagaIuc => 'Pague o IUC (o imposto do carro)';
+
+  @override
+  String get painelAcaoInspecao => 'Leve o carro na inspeção';
+
+  @override
+  String get painelAcaoRevisao => 'Faça a revisão do carro';
+
+  @override
+  String get painelAcaoSeguro => 'Pague o seguro do carro';
+
+  @override
+  String get painelAcaoCarta => 'Renove a carta de condução';
+
+  @override
+  String get painelAcaoTrocaCarta => 'Troque a carta de condução';
+
+  @override
+  String get painelAcaoResidencia => 'Renove a autorização de residência';
+
+  @override
+  String get painelAcaoCertificadoTvde =>
+      'Renove o certificado de motorista TVDE';
+
+  @override
+  String get painelAcaoLicencaTvde => 'Renove a licença TVDE do carro';
+
+  @override
+  String get painelAcaoMulta => 'Pague a multa';
+
+  @override
+  String get painelAcaoPortagem => 'Pague o pedágio';
+
+  @override
+  String get painelAcaoFimIsencao =>
+      'Se prepare: sua isenção da Segurança Social está acabando';
+
+  @override
+  String painelAcaoGenerica(String nome) {
+    return 'Cuide disto: $nome';
+  }
+
+  @override
+  String get painelAcaoValorPorSaber => 'Ainda não sei o valor';
+
+  @override
+  String painelAcaoPrazoPassou(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Já passou faz $dias dias',
+      one: 'Já passou faz 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get painelAcaoPrazoHoje => 'É hoje mesmo';
+
+  @override
+  String get painelAcaoPrazoAmanha => 'É amanhã';
+
+  @override
+  String painelAcaoPrazoDiaSemana(String diaSemana, int dia) {
+    return 'Até $diaSemana, dia $dia';
+  }
+
+  @override
+  String painelAcaoPrazoData(String data) {
+    return 'Até $data';
+  }
+
+  @override
+  String get painelAcaoDia1 => 'segunda';
+
+  @override
+  String get painelAcaoDia2 => 'terça';
+
+  @override
+  String get painelAcaoDia3 => 'quarta';
+
+  @override
+  String get painelAcaoDia4 => 'quinta';
+
+  @override
+  String get painelAcaoDia5 => 'sexta';
+
+  @override
+  String get painelAcaoDia6 => 'sábado';
+
+  @override
+  String get painelAcaoDia7 => 'domingo';
+
+  @override
+  String get painelAcaoBotaoComoPagar => 'Ver como pagar';
+
+  @override
+  String get painelAcaoBotaoOQueFazer => 'Ver o que eu tenho de fazer';
+
+  @override
+  String get painelAcaoTudoTitulo => 'Você não tem nada para pagar agora';
+
+  @override
+  String get painelAcaoTudoAjuda =>
+      'Está tudo resolvido. Quando aparecer um prazo, eu coloco aqui e aviso você antes.';
+
+  @override
+  String get painelAcaoTudoSugestao =>
+      'Já que dá: escreva quanto você ganhou neste mês. Com esse número eu faço as contas certas para você.';
+
+  @override
+  String get painelAcaoTudoBotao => 'Escrever o que ganhei';
+
+  @override
+  String get oficioServicos => 'Serviços (cabelo, unhas, limpeza…)';
+
+  @override
+  String get oficioObras => 'Obras e construção';
+
+  @override
+  String get oficioOutro => 'Outra coisa';
+
+  @override
+  String get oficioComoFunciona => 'Como isso funciona';
+
+  @override
+  String get oficioExplicacaoTvde =>
+      'Aqui você cuida dos seus recibos das viagens. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoEstafeta =>
+      'Aqui você cuida dos seus recibos das entregas. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoServicos =>
+      'Aqui você cuida dos recibos dos seus clientes. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoObras =>
+      'Aqui você cuida dos recibos dos seus trabalhos na obra. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoFreelancer =>
+      'Aqui você cuida dos recibos dos trabalhos que você entrega. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoOutro =>
+      'Aqui você cuida dos seus recibos. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.';
+
+  @override
+  String get oficioExplicacaoGeral =>
+      'Aqui você cuida dos recibos verdes. Escreva quanto você ganhou, eu faço as contas e digo o que é mesmo seu e o que é do Estado.';
+
+  @override
+  String get oficioAjudaTvde =>
+      'No fim do mês abra o extrato da Uber ou da Bolt, pegue o total que pagaram a você e escreva aqui.';
+
+  @override
+  String get oficioAjudaEstafeta =>
+      'No fim do mês abra o extrato da Glovo, da Bolt Food ou da Uber Eats, pegue o total que pagaram a você e escreva aqui.';
+
+  @override
+  String get oficioAjudaServicos =>
+      'Faça um recibo para cada cliente que paga a você. No fim do mês some tudo e escreva aqui o total.';
+
+  @override
+  String get oficioAjudaObras =>
+      'Faça um recibo para cada trabalho que pagam a você, seja ao dono da casa seja à empresa. No fim do mês some tudo e escreva aqui o total.';
+
+  @override
+  String get oficioAjudaFreelancer =>
+      'Faça um recibo para cada trabalho que você entrega. No fim do mês some tudo e escreva aqui o total.';
+
+  @override
+  String get oficioAjudaOutro =>
+      'Faça um recibo sempre que alguém paga o seu trabalho. No fim do mês some tudo e escreva aqui o total.';
+
+  @override
+  String get oficioAjudaGeral =>
+      'Faça um recibo sempre que alguém paga o seu trabalho. No fim do mês some tudo e escreva aqui o total.';
+
+  @override
+  String get oficioExemploTvde =>
+      'No seu caso o cliente é a plataforma: a Uber ou a Bolt. O número de contribuinte delas está no extrato.';
+
+  @override
+  String get oficioExemploEstafeta =>
+      'No seu caso o cliente é a plataforma: a Glovo, a Bolt Food ou a Uber Eats. O número de contribuinte delas está no extrato.';
+
+  @override
+  String get oficioExemploServicos =>
+      'No seu caso o cliente é quem pagou: a pessoa que você atendeu ou o salão. Peça a ela o número de contribuinte.';
+
+  @override
+  String get oficioExemploObras =>
+      'No seu caso o cliente é quem pagou a obra: o dono da casa ou a empresa de construção. Peça a ele o número de contribuinte.';
+
+  @override
+  String get oficioExemploFreelancer =>
+      'No seu caso o cliente é a empresa ou a pessoa para quem você fez o trabalho. Peça a ela o número de contribuinte.';
+
+  @override
+  String get oficioExemploOutro =>
+      'No seu caso o cliente é a pessoa ou a empresa que pagou a você. Peça a ela o número de contribuinte.';
+
+  @override
+  String get oficioExemploGeral =>
+      'O cliente é a pessoa ou a empresa que paga a você. Peça a ela o número de contribuinte.';
+
+  @override
+  String get oficioDescricaoTvde =>
+      'Serviços de transporte em veículo descaracterizado (TVDE)';
+
+  @override
+  String get oficioDescricaoEstafeta => 'Serviços de entrega ao domicílio';
+
+  @override
+  String get oficioDescricaoServicos =>
+      'Prestação de serviços de cabeleireiro e estética';
+
+  @override
+  String get oficioDescricaoObras => 'Serviços de construção civil';
+
+  @override
+  String get oficioDescricaoFreelancer => 'Prestação de serviços';
+
+  @override
+  String get oficioDescricaoOutro => 'Prestação de serviços';
+
+  @override
+  String get oficioDescricaoGeral => 'Prestação de serviços';
+
+  @override
+  String get sufixoLitros => 'L';
+
+  @override
+  String get sufixoKm => 'km';
 }

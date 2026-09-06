@@ -1,0 +1,19 @@
+{
+  "@@locale": "pt_BR",
+
+  "carroFormBasicoAjuda": "Só preciso destas três coisas. Pelo mês eu fico sabendo quando você paga o imposto do carro; pelo ano, quando é a inspeção.",
+  "carroFormMatriculaInvalida": "Essa placa não me parece certa. Escreva as letras e os números, assim: AA-00-AA.",
+
+  "carroFormOpcionalTitulo": "Quer ajustar as contas? (opcional)",
+  "carroFormOpcionalAjuda": "Você pode fechar isto e salvar agora. Só com a placa e a data eu já aviso a tempo do imposto do carro, da inspeção e do seguro. Estes extras servem para eu acertar melhor o valor do imposto do carro — sem eles o app avisa do mesmo jeito, só não diz um valor certo.",
+  "carroFormAbrir": "Abrir",
+  "carroFormFechar": "Fechar",
+
+  "carroFormIucPorConfirmar": "imposto por confirmar",
+  "carroFormIucContaFeita": "já consigo calcular o imposto",
+  "carroFormIucPorConfirmarLinha": "Sem a cilindrada eu não invento nenhum valor: aviso na data certa e escrevo «por confirmar» no lugar de um número errado.",
+
+  "carroFormCilindrada": "Cilindrada (o tamanho do motor, em cc)",
+  "carroFormCo2": "CO2 (o gás que o carro solta, em g/km)",
+  "carroFormOndeEstao": "Estes dois números estão no documento do carro (o certificado de matrícula)."
+}

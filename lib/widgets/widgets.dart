@@ -2,6 +2,8 @@
 /// cartões, botões nem o semáforo.
 library;
 
+export 'botao_ouvir.dart';
+
 import 'package:flutter/material.dart';
 
 import '../config/app_colors.dart';

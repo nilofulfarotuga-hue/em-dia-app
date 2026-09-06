@@ -1,0 +1,13 @@
+{
+  "@@locale": "pt_BR",
+
+  "sufixoLitros": "L",
+  "@sufixoLitros": {
+    "description": "Sufixo do campo dos litros no formulário do abastecimento. Estava escrito à mão no Dart."
+  },
+
+  "sufixoKm": "km",
+  "@sufixoKm": {
+    "description": "Sufixo do campo dos quilômetros no formulário do abastecimento. Estava escrito à mão no Dart."
+  }
+}

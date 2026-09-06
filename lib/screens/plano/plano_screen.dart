@@ -228,10 +228,15 @@ class _EstadoAtual extends StatelessWidget {
     final t = Theme.of(context).textTheme;
     final efetivo = plano.planoEfetivo;
     final Widget corpo;
+    // A voz lê o mesmo que o cartão mostra: o que tens agora e o que isso
+    // quer dizer. Muda com o plano, por isso é montada dentro do switch.
+    final String falado;
     switch (efetivo) {
       case 'trial':
         final ate = trialAte ?? hoje;
         final dias = (soDia(ate).difference(soDia(hoje)).inDays + 1).clamp(0, 999);
+        falado = '${l.planoEstadoTitulo}. ${l.faltamDias(dias)}. '
+            '${l.planoTrial(dataExtensoPt(ate))}. ${l.planoTrialDepois}';
         corpo = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -243,14 +248,24 @@ class _EstadoAtual extends StatelessWidget {
           ],
         );
       case 'pro':
+        falado = '${l.planoEstadoTitulo}. ${l.planoTensPro}';
         corpo = _Linha(icone: Icons.verified_rounded, texto: l.planoTensPro, estilo: t.titleMedium);
       case 'familia':
+        falado = '${l.planoEstadoTitulo}. ${l.planoTensFamilia(plano.limite('membros') ?? _membrosFamiliaPadrao)}';
         corpo = _Linha(
           icone: Icons.verified_rounded,
           texto: l.planoTensFamilia(plano.limite('membros') ?? _membrosFamiliaPadrao),
           estilo: t.titleMedium,
         );
       default:
+        falado = [
+          l.planoEstadoTitulo,
+          l.planoFree,
+          l.planoLimAvisos(plano.limite('avisos_push') ?? _limAvisosPadrao),
+          l.planoLimCarros(plano.limite('carros') ?? _limCarrosPadrao),
+          l.planoLimPerguntas(plano.limite('ia_perguntas') ?? _limPerguntasPadrao),
+          l.planoLimResto,
+        ].join('. ');
         corpo = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -276,8 +291,15 @@ class _EstadoAtual extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(l.planoEstadoTitulo.toUpperCase(),
-              style: t.labelSmall!.copyWith(letterSpacing: 0.8, color: AppColors.primaryDeep)),
+          Row(
+            children: [
+              Expanded(
+                child: Text(l.planoEstadoTitulo.toUpperCase(),
+                    style: t.labelSmall!.copyWith(letterSpacing: 0.8, color: AppColors.primaryDeep)),
+              ),
+              BotaoOuvir(etiqueta: 'plano-o-que-tens', texto: falado, soIcone: true),
+            ],
+          ),
           const SizedBox(height: 6),
           corpo,
         ],

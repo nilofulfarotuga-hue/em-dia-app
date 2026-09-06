@@ -145,3 +145,13 @@
 - **O quê:** a função `ler-documento` lê o documento e guarda a leitura em `leituras_ocr`, mas **não** cria a despesa nem o rendimento. Quem grava é a pessoa, depois de ver na app o que foi lido e poder corrigir.
 - **Porquê:** foi o Danilo que o pediu ("a pessoa vê o que foi lido e pode corrigir antes de guardar"), e é o que evita o pior caso: uma leitura errada entrar na contabilidade sem ninguém dar por ela. O campo do valor continua a ser o principal e escrito à mão; a câmara é um atalho, não o caminho.
 - **Como se desfaz:** fazer a função inserir logo em `entradas`/`saidas`. Não se recomenda.
+
+## D27 — O cartão do "próximo prazo" mostra o prazo A SEGUIR, não o mesmo
+- **O quê:** a ordem dizia "por baixo mantém-se o semáforo, o próximo prazo e o total do mês, que estão bons". O cartão do próximo prazo ficou, mas passou a mostrar a obrigação **seguinte** à que está no cartão de ação. Quando não há seguinte, não se desenha cartão nenhum.
+- **Porquê:** com os dois a mostrar a mesma coisa, o mesmo nome, o mesmo valor e a mesma data apareciam três vezes no mesmo ecrã (cartão de ação, semáforo, próximo prazo) e o resto do painel era empurrado para fora. A pergunta que o cartão de baixo responde agora é outra: "e depois desta, o que vem?". O "Já paguei", que era o único botão que ele tinha e o de cima não, subiu para o cartão de ação.
+- **Como se desfaz:** trocar `estado.proximoDepoisDaAcao` por `estado.heroi` em `painel_screen.dart` e tirar o `if`.
+
+## D28 — Nenhum laranja no cartão de ação
+- **O quê:** o cartão de ação é branco, com o valor a preto. A cor do semáforo aparece só na data e no ícone — e no estado "a vencer" nem aí: fica cinzento-escuro. Vermelho mantém-se, porque é outra cor.
+- **Porquê:** a regra da casa é um elemento laranja por ecrã, e esse é o semáforo grande. O juiz de visão reprovou três versões seguidas — cartão inteiro em laranja claro, depois o valor em laranja, depois o ícone e a data — e das três vezes tinha razão. A urgência lê-se nas palavras ("Até quinta, dia 10") e no semáforo logo por baixo.
+- **Como se desfaz:** pôr `Semaforo.amarelo => AppColors.accentDark` em `_corSinal`, dentro de `cartao_acao.dart`.

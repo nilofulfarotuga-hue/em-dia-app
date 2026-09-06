@@ -119,7 +119,7 @@ class _NovoAbastecimentoState extends State<NovoAbastecimento> {
                 child: TextField(
                   controller: _litros,
                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                  decoration: InputDecoration(labelText: l.carroLitros, suffixText: 'L'),
+                  decoration: InputDecoration(labelText: l.carroLitros, suffixText: l.sufixoLitros),
                 ),
               ),
               const SizedBox(width: 12),
@@ -137,7 +137,7 @@ class _NovoAbastecimentoState extends State<NovoAbastecimento> {
             controller: _km,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            decoration: InputDecoration(labelText: l.carroKmConta, suffixText: 'km'),
+            decoration: InputDecoration(labelText: l.carroKmConta, suffixText: l.sufixoKm),
           ),
           const SizedBox(height: 12),
           TextField(

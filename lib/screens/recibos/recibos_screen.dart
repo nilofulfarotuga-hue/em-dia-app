@@ -43,6 +43,30 @@ class RecibosScreen extends StatelessWidget {
       body: ListView(
         padding: paddingEcra,
         children: [
+          // A tela deixou de ser só de motorista: a explicação, a ajuda e o
+          // exemplo do cliente mudam com o ofício que ele escolheu no início.
+          Cartao(
+            key: const Key('oficio_card'),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CabecalhoCartao(
+                  icone: Icons.receipt_long_rounded,
+                  titulo: l.oficioComoFunciona,
+                  direita: BotaoOuvir(
+                    etiqueta: 'recibos-explicacao',
+                    texto: '${_explicacao(l, perfil)} ${_ajuda(l, perfil)}',
+                    soIcone: true,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(_explicacao(l, perfil), style: t.bodyMedium),
+                const SizedBox(height: 12),
+                NotaInfo(_ajuda(l, perfil)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
           CalculadoraRecibo(
             regras: regras,
             perfil: perfil,
@@ -74,6 +98,7 @@ class RecibosScreen extends StatelessWidget {
                 isentoIva: isento,
                 descricaoSugerida: _descricao(l, perfil),
                 mencaoIsencao: regras.txt('iva_mencao_isencao'),
+                exemploCliente: _exemplo(l, perfil),
               ),
             )),
             child: Row(
@@ -100,9 +125,49 @@ class RecibosScreen extends StatelessWidget {
     );
   }
 
+  /// Frase da explicação principal, pelo ofício. Quem ainda não abriu
+  /// atividade (ou só quer o carro) leva o texto geral.
+  static String _explicacao(AppLocalizations l, Perfil? p) => switch (p?.tipoAtividade) {
+        TipoAtividade.tvde => l.oficioExplicacaoTvde,
+        TipoAtividade.estafeta => l.oficioExplicacaoEstafeta,
+        TipoAtividade.servicos => l.oficioExplicacaoServicos,
+        TipoAtividade.obras => l.oficioExplicacaoObras,
+        TipoAtividade.freelancer => l.oficioExplicacaoFreelancer,
+        TipoAtividade.outro => l.oficioExplicacaoOutro,
+        _ => l.oficioExplicacaoGeral,
+      };
+
+  /// Como se junta o dinheiro do mês — muda muito entre plataformas (extrato
+  /// pronto) e trabalho a clientes (um recibo de cada vez).
+  static String _ajuda(AppLocalizations l, Perfil? p) => switch (p?.tipoAtividade) {
+        TipoAtividade.tvde => l.oficioAjudaTvde,
+        TipoAtividade.estafeta => l.oficioAjudaEstafeta,
+        TipoAtividade.servicos => l.oficioAjudaServicos,
+        TipoAtividade.obras => l.oficioAjudaObras,
+        TipoAtividade.freelancer => l.oficioAjudaFreelancer,
+        TipoAtividade.outro => l.oficioAjudaOutro,
+        _ => l.oficioAjudaGeral,
+      };
+
+  /// Quem é o cliente do recibo — a pergunta que mais trava quem começa.
+  static String _exemplo(AppLocalizations l, Perfil? p) => switch (p?.tipoAtividade) {
+        TipoAtividade.tvde => l.oficioExemploTvde,
+        TipoAtividade.estafeta => l.oficioExemploEstafeta,
+        TipoAtividade.servicos => l.oficioExemploServicos,
+        TipoAtividade.obras => l.oficioExemploObras,
+        TipoAtividade.freelancer => l.oficioExemploFreelancer,
+        TipoAtividade.outro => l.oficioExemploOutro,
+        _ => l.oficioExemploGeral,
+      };
+
+  /// A descrição do serviço que vai no recibo do Portal das Finanças.
   static String _descricao(AppLocalizations l, Perfil? p) => switch (p?.tipoAtividade) {
-        TipoAtividade.tvde => l.emitirDescricaoTvde,
-        TipoAtividade.estafeta => l.emitirDescricaoEstafeta,
-        _ => l.emitirDescricaoServicos,
+        TipoAtividade.tvde => l.oficioDescricaoTvde,
+        TipoAtividade.estafeta => l.oficioDescricaoEstafeta,
+        TipoAtividade.servicos => l.oficioDescricaoServicos,
+        TipoAtividade.obras => l.oficioDescricaoObras,
+        TipoAtividade.freelancer => l.oficioDescricaoFreelancer,
+        TipoAtividade.outro => l.oficioDescricaoOutro,
+        _ => l.oficioDescricaoGeral,
       };
 }

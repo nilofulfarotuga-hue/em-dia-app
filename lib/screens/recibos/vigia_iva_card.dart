@@ -31,11 +31,23 @@ class VigiaIvaCard extends StatelessWidget {
       NivelIva.critico => l.vigiaIvaCritico,
     };
 
+    // A voz diz o mesmo que o cartão: onde estás, e o que acontece se passares.
+    final falado = [
+      l.vigiaIvaTitulo,
+      l.vigiaIvaBarra(moeda(v.acumuladoAno, casas: 0), moeda(v.limite, casas: 0)),
+      if (v.nivel == NivelIva.ok && !temDados) l.vigiaIvaSemDados else texto,
+      if (v.nivel == NivelIva.ok && temDados) l.vigiaIvaFalta(moeda(v.faltaParaLimite, casas: 0)),
+    ].join('. ');
+
     return Cartao(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CabecalhoCartao(icone: Icons.visibility_rounded, titulo: l.vigiaIvaTitulo),
+          CabecalhoCartao(
+            icone: Icons.visibility_rounded,
+            titulo: l.vigiaIvaTitulo,
+            direita: BotaoOuvir(etiqueta: 'recibos-vigia-iva', texto: falado, soIcone: true),
+          ),
           const SizedBox(height: 12),
           Text(
             l.vigiaIvaBarra(moeda(v.acumuladoAno, casas: 0), moeda(v.limite, casas: 0)),

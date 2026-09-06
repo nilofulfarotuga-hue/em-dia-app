@@ -1,0 +1,14 @@
+{
+  "@@locale": "pt_BR",
+  "guiaIniSaltar": "Pular",
+  "guiaIniSeguinte": "Próximo",
+  "guiaIniComecar": "Começar",
+  "guiaIniPasso": "Tela {n} de {total}",
+  "@guiaIniPasso": {"placeholders": {"n": {"type": "int"}, "total": {"type": "int"}}},
+  "guiaIniAvisoTitulo": "Eu te aviso",
+  "guiaIniAvisoTexto": "Cada coisa que você tem que pagar tem um dia certo. Eu te aviso antes desse dia, com tempo para você resolver. Assim você nunca paga multa só por ter esquecido.",
+  "guiaIniGanhosTitulo": "Anote o que você ganha",
+  "guiaIniGanhosTexto": "Toda vez que você receber dinheiro, anote aqui. Leva poucos segundos. Quanto mais você anotar, mais certas ficam as minhas contas e os meus avisos.",
+  "guiaIniPerguntaTitulo": "Me pergunte o que quiser",
+  "guiaIniPerguntaTexto": "Ficou com dúvida? Escreva como se estivesse falando com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite."
+}

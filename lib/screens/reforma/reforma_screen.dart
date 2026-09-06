@@ -46,6 +46,36 @@ class _ReformaScreenState extends State<ReformaScreen> {
     final reforma = estimarReformaMensal(contribuicaoMensal: contribuicao, anosDeDescontos: _anos, r: regras);
     final trancado = !plano.permitida('reforma_completa');
 
+    // Os textos das duas secções ficam aqui em cima porque são lidos duas
+    // vezes: uma pelos olhos, nos cartões, e outra pela voz.
+    final baixaTexto = l.reformaBaixaTexto(
+      regras.n('baixa_doenca_dia_inicio').toInt(),
+      regras.n('baixa_doenca_prazo_garantia_meses').toInt(),
+    );
+    final cessacaoTexto = l.reformaCessacaoTexto(regras.n('cessacao_atividade_prazo_garantia_dias').toInt());
+    final direitosFalado = [
+      l.reformaDireitos,
+      '${l.reformaBaixaTitulo}. $baixaTexto',
+      '${l.reformaParentalidadeTitulo}. ${l.reformaParentalidadeTexto}',
+      '${l.reformaCessacaoTitulo}. $cessacaoTexto',
+      '${l.reformaFilhosTitulo}. ${l.reformaFilhosTexto}',
+    ].join('. ');
+    final perdesFalado = [
+      l.reformaPerdes,
+      l.reformaPerdesBaixa,
+      l.reformaPerdesSubsidio,
+      l.reformaPerdesTempo,
+      l.reformaPerdesDivida,
+    ].join('. ');
+    final estimativaFalado = [
+      l.reformaSubtitulo,
+      l.reformaDescontasHoje(moeda(contribuicao)),
+      '${l.reformaValeCerca} ${moeda(reforma)} ${l.reformaPorMesDeReforma}',
+      l.reformaAnosDescontos(_anos),
+      l.reformaEstimativaNota,
+      if (semDados) l.reformaSemDados,
+    ].join('. ');
+
     return Scaffold(
       appBar: AppBar(title: Text(l.reformaTitulo)),
       body: ListView(
@@ -97,6 +127,7 @@ class _ReformaScreenState extends State<ReformaScreen> {
                   const SizedBox(height: 6),
                   Text(l.reformaSemDados, style: t.bodySmall),
                 ],
+                BotaoOuvir(etiqueta: 'reforma-estimativa', texto: estimativaFalado),
               ],
             ),
           ),
@@ -109,14 +140,14 @@ class _ReformaScreenState extends State<ReformaScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _CartaoIdade(regras: regras, hoje: hoje),
-                TituloSeccao(l.reformaDireitos),
+                TituloSeccao(
+                  l.reformaDireitos,
+                  acao: BotaoOuvir(etiqueta: 'reforma-direitos', texto: direitosFalado, soIcone: true),
+                ),
                 _Direito(
                   icone: Icons.sick_rounded,
                   titulo: l.reformaBaixaTitulo,
-                  texto: l.reformaBaixaTexto(
-                    regras.n('baixa_doenca_dia_inicio').toInt(),
-                    regras.n('baixa_doenca_prazo_garantia_meses').toInt(),
-                  ),
+                  texto: baixaTexto,
                 ),
                 _Direito(
                   icone: Icons.child_friendly_rounded,
@@ -126,14 +157,17 @@ class _ReformaScreenState extends State<ReformaScreen> {
                 _Direito(
                   icone: Icons.work_off_rounded,
                   titulo: l.reformaCessacaoTitulo,
-                  texto: l.reformaCessacaoTexto(regras.n('cessacao_atividade_prazo_garantia_dias').toInt()),
+                  texto: cessacaoTexto,
                 ),
                 _Direito(
                   icone: Icons.family_restroom_rounded,
                   titulo: l.reformaFilhosTitulo,
                   texto: l.reformaFilhosTexto,
                 ),
-                TituloSeccao(l.reformaPerdes),
+                TituloSeccao(
+                  l.reformaPerdes,
+                  acao: BotaoOuvir(etiqueta: 'reforma-perdes', texto: perdesFalado, soIcone: true),
+                ),
                 Cartao(
                   child: Column(
                     children: [
@@ -305,6 +339,10 @@ class _CartaoAcordo extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(l.reformaAcordoTexto, style: t.bodyMedium),
+          BotaoOuvir(
+            etiqueta: 'reforma-acordo-brasil',
+            texto: '${l.reformaAcordoTitulo}. ${l.reformaAcordoTexto}',
+          ),
           if (url != null) ...[
             const SizedBox(height: 12),
             BotaoGrande(

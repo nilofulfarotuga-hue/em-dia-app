@@ -1,0 +1,14 @@
+{
+  "@@locale": "pt",
+  "guiaIniSaltar": "Saltar",
+  "guiaIniSeguinte": "Seguinte",
+  "guiaIniComecar": "Começar",
+  "guiaIniPasso": "Ecrã {n} de {total}",
+  "@guiaIniPasso": {"placeholders": {"n": {"type": "int"}, "total": {"type": "int"}}},
+  "guiaIniAvisoTitulo": "Eu aviso-te",
+  "guiaIniAvisoTexto": "Cada coisa que tens de pagar tem um dia certo. Eu aviso-te antes desse dia, com tempo para tratares disso. Assim nunca pagas uma multa só por te teres esquecido.",
+  "guiaIniGanhosTitulo": "Escreve o que ganhas",
+  "guiaIniGanhosTexto": "Sempre que receberes dinheiro, escreve aqui. Leva poucos segundos. Quanto mais escreveres, mais certas ficam as minhas contas e os meus avisos.",
+  "guiaIniPerguntaTitulo": "Pergunta-me o que quiseres",
+  "guiaIniPerguntaTexto": "Tens uma dúvida? Escreve-a como se falasses com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite."
+}

@@ -34,6 +34,26 @@ Future<Carro?> mostrarFormularioCarro(BuildContext context, {required String use
   );
 }
 
+/// Escreve a matrícula sempre em maiúsculas e mete os traços sozinho:
+/// quem escreve "aa00aa" vê "AA-00-AA". Guarda no máximo 6 letras/números,
+/// que é o tamanho de todas as matrículas portuguesas.
+class _MatriculaFormatador extends TextInputFormatter {
+  const _MatriculaFormatador();
+
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue antigo, TextEditingValue novo) {
+    final limpo = soLetrasENumeros(novo.text);
+    final cru = limpo.length > 6 ? limpo.substring(0, 6) : limpo;
+    final sb = StringBuffer();
+    for (var i = 0; i < cru.length; i++) {
+      if (i > 0 && i.isEven) sb.write('-');
+      sb.write(cru[i]);
+    }
+    final texto = sb.toString();
+    return TextEditingValue(text: texto, selection: TextSelection.collapsed(offset: texto.length));
+  }
+}
+
 class FormularioCarro extends StatefulWidget {
   final String userId;
   final DateTime hoje;
@@ -77,11 +97,21 @@ class _FormularioCarroState extends State<FormularioCarro> {
         Combustivel.outro => l.carroCombOutro,
       };
 
+  /// Só há conta do imposto do carro se houver cilindrada (ou se for elétrico,
+  /// que é isento). Sem isso a app diz "por confirmar" — nunca um número
+  /// inventado. Ver `estimarIuc` em lib/regras/carro.dart.
+  bool get _daParaContarIuc =>
+      _combustivel == Combustivel.eletrico || int.tryParse(_cilindrada.text.trim()) != null;
+
   Future<void> _guardar() async {
     final l = AppLocalizations.of(context);
     final matricula = _matricula.text.trim().toUpperCase();
     if (matricula.isEmpty) {
       setState(() => _erro = l.carroFaltaMatricula);
+      return;
+    }
+    if (!matriculaPortuguesaValida(matricula)) {
+      setState(() => _erro = l.carroFormMatriculaInvalida);
       return;
     }
     if (_mes == null) {
@@ -109,6 +139,8 @@ class _FormularioCarroState extends State<FormularioCarro> {
       categoria: _categoria,
       usoTvde: _tvde,
       combustivel: _combustivel,
+      // Campos em branco ficam a null de propósito: é o null que faz a app
+      // escrever "por confirmar" em vez de arriscar um valor errado.
       cilindradaCc: int.tryParse(_cilindrada.text.trim()),
       co2: int.tryParse(_co2.text.trim()),
       seguradora: seguradora.isEmpty ? null : seguradora,
@@ -137,6 +169,7 @@ class _FormularioCarroState extends State<FormularioCarro> {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
     final t = Theme.of(context).textTheme;
+    final daPara = _daParaContarIuc;
 
     return SingleChildScrollView(
       padding: EdgeInsets.fromLTRB(20, 4, 20, 24 + MediaQuery.of(context).viewInsets.bottom),
@@ -146,15 +179,13 @@ class _FormularioCarroState extends State<FormularioCarro> {
         children: [
           Text(l.carroNovoTitulo, style: t.headlineSmall),
           const SizedBox(height: 16),
-          TextField(
-            controller: _nome,
-            textCapitalization: TextCapitalization.sentences,
-            decoration: InputDecoration(labelText: l.carroNome),
-          ),
-          const SizedBox(height: 12),
+
+          // ---- As três coisas de que a app precisa mesmo ----
           TextField(
             controller: _matricula,
             textCapitalization: TextCapitalization.characters,
+            autocorrect: false,
+            inputFormatters: const [_MatriculaFormatador()],
             decoration: InputDecoration(labelText: l.carroMatricula, hintText: l.carroMatriculaDica),
           ),
           const SizedBox(height: 12),
@@ -185,94 +216,128 @@ class _FormularioCarroState extends State<FormularioCarro> {
               ),
             ],
           ),
-          const SizedBox(height: 6),
-          Text(l.carroMatriculaAjuda, style: t.bodySmall),
-          const SizedBox(height: 16),
-          Text(l.carroCombustivel, style: t.titleSmall),
           const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final c in Combustivel.values)
-                ChoiceChip(
-                  label: Text(_rotuloComb(l, c)),
-                  selected: _combustivel == c,
-                  showCheckmark: false,
-                  labelStyle: TextStyle(color: _combustivel == c ? AppColors.primaryDark : AppColors.textPrimary),
-                  onSelected: (_) => setState(() => _combustivel = c),
+          Text(l.carroFormBasicoAjuda, style: t.bodySmall),
+          const SizedBox(height: 16),
+
+          // ---- Tudo o resto, dobrado e fechado ----
+          SeccaoDobravel(
+            titulo: l.carroFormOpcionalTitulo,
+            rotuloAbrir: l.carroFormAbrir,
+            rotuloFechar: l.carroFormFechar,
+            // A etiqueta diz, sem abrir nada, o que se perde por deixar fechado.
+            etiqueta: Etiqueta(
+              daPara ? l.carroFormIucContaFeita : l.carroFormIucPorConfirmar,
+              cor: daPara ? AppColors.emDiaClaro : AppColors.surface2,
+              corTexto: daPara ? AppColors.primaryDeep : AppColors.textSecondary,
+              icone: daPara ? Icons.check_circle_rounded : Icons.help_outline_rounded,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(l.carroFormOpcionalAjuda, style: t.bodyMedium),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: BotaoOuvir(etiqueta: 'carro-form-opcional', texto: l.carroFormOpcionalAjuda),
                 ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
+                if (!daPara) ...[
+                  const SizedBox(height: 4),
+                  Text(l.carroFormIucPorConfirmarLinha,
+                      style: t.bodySmall!.copyWith(color: AppColors.textSecondary)),
+                ],
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _nome,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: InputDecoration(labelText: l.carroNome),
+                ),
+                const SizedBox(height: 16),
+                Text(l.carroCombustivel, style: t.titleSmall),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final c in Combustivel.values)
+                      ChoiceChip(
+                        label: Text(_rotuloComb(l, c)),
+                        selected: _combustivel == c,
+                        showCheckmark: false,
+                        labelStyle:
+                            TextStyle(color: _combustivel == c ? AppColors.primaryDark : AppColors.textPrimary),
+                        onSelected: (_) => setState(() => _combustivel = c),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                TextField(
                   controller: _cilindrada,
                   keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  decoration: InputDecoration(labelText: l.carroCilindrada),
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(5)],
+                  // Redesenha para a etiqueta lá em cima mudar assim que houver número.
+                  onChanged: (_) => setState(() {}),
+                  decoration: InputDecoration(labelText: l.carroFormCilindrada),
                 ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: TextField(
+                const SizedBox(height: 12),
+                TextField(
                   controller: _co2,
                   keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  decoration: InputDecoration(labelText: l.carroCo2),
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(4)],
+                  onChanged: (_) => setState(() {}),
+                  decoration: InputDecoration(labelText: l.carroFormCo2),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 6),
-          Text(l.carroCilindradaAjuda, style: t.bodySmall),
-          const SizedBox(height: 16),
-          TextField(
-            controller: _seguradora,
-            textCapitalization: TextCapitalization.words,
-            decoration: InputDecoration(labelText: l.carroSeguradora),
-          ),
-          const SizedBox(height: 12),
-          CampoData(
-            rotulo: l.carroSeguroRenova,
-            valor: _seguroRenova,
-            hoje: widget.hoje,
-            aoEscolher: (d) => setState(() => _seguroRenova = d),
-          ),
-          const SizedBox(height: 12),
-          CampoData(
-            rotulo: l.carroUltimaIpo,
-            valor: _ultimaIpo,
-            hoje: widget.hoje,
-            ultima: widget.hoje,
-            aoEscolher: (d) => setState(() => _ultimaIpo = d),
-          ),
-          const SizedBox(height: 16),
-          Text(l.onbProprioOuFrota, style: t.titleSmall),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final (chave, rotulo) in [('proprio', l.onbProprio), ('alugado_frota', l.onbAlugadoFrota)])
-                ChoiceChip(
-                  label: Text(rotulo),
-                  selected: _categoria == chave,
-                  showCheckmark: false,
-                  labelStyle: TextStyle(color: _categoria == chave ? AppColors.primaryDark : AppColors.textPrimary),
-                  onSelected: (_) => setState(() => _categoria = chave),
+                const SizedBox(height: 6),
+                Text(l.carroFormOndeEstao, style: t.bodySmall),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _seguradora,
+                  textCapitalization: TextCapitalization.words,
+                  decoration: InputDecoration(labelText: l.carroSeguradora),
                 ),
-            ],
+                const SizedBox(height: 12),
+                CampoData(
+                  rotulo: l.carroSeguroRenova,
+                  valor: _seguroRenova,
+                  hoje: widget.hoje,
+                  aoEscolher: (d) => setState(() => _seguroRenova = d),
+                ),
+                const SizedBox(height: 12),
+                CampoData(
+                  rotulo: l.carroUltimaIpo,
+                  valor: _ultimaIpo,
+                  hoje: widget.hoje,
+                  ultima: widget.hoje,
+                  aoEscolher: (d) => setState(() => _ultimaIpo = d),
+                ),
+                const SizedBox(height: 16),
+                Text(l.onbProprioOuFrota, style: t.titleSmall),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final (chave, rotulo) in [('proprio', l.onbProprio), ('alugado_frota', l.onbAlugadoFrota)])
+                      ChoiceChip(
+                        label: Text(rotulo),
+                        selected: _categoria == chave,
+                        showCheckmark: false,
+                        labelStyle:
+                            TextStyle(color: _categoria == chave ? AppColors.primaryDark : AppColors.textPrimary),
+                        onSelected: (_) => setState(() => _categoria = chave),
+                      ),
+                  ],
+                ),
+                Interruptor(rotulo: l.carroUsoTvde, valor: _tvde, aoMudar: (v) => setState(() => _tvde = v)),
+                CampoData(
+                  rotulo: l.carroCartaValidade,
+                  valor: _carta,
+                  hoje: widget.hoje,
+                  aoEscolher: (d) => setState(() => _carta = d),
+                ),
+              ],
+            ),
           ),
-          Interruptor(rotulo: l.carroUsoTvde, valor: _tvde, aoMudar: (v) => setState(() => _tvde = v)),
-          CampoData(
-            rotulo: l.carroCartaValidade,
-            valor: _carta,
-            hoje: widget.hoje,
-            aoEscolher: (d) => setState(() => _carta = d),
-          ),
+
           if (_erro != null) ...[
             const SizedBox(height: 12),
             Aviso(_erro!, tom: Semaforo.vermelho),

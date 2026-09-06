@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -7,6 +6,7 @@ import '../../config/app_colors.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/guia.dart';
 import '../../regras/regras.dart';
+import '../../services/fala.dart';
 import '../../stores/perfil_store.dart';
 import '../../widgets/widgets.dart';
 
@@ -21,12 +21,9 @@ class GuiaScreen extends StatefulWidget {
 }
 
 class _GuiaScreenState extends State<GuiaScreen> {
-  FlutterTts? _tts;
-  bool _aFalar = false;
-
   @override
   void dispose() {
-    _tts?.stop();
+    Fala.instancia.parar();
     super.dispose();
   }
 
@@ -51,11 +48,11 @@ class _GuiaScreenState extends State<GuiaScreen> {
         children: [
           Text(guia.titulo, style: t.headlineSmall),
           const SizedBox(height: 12),
-          BotaoGrande(
+          BotaoOuvir(
             key: const Key('guia_ouvir'),
-            texto: _aFalar ? l.guiasParar : l.guiasOuvir,
-            icone: _aFalar ? Icons.stop_rounded : Icons.volume_up_rounded,
-            aoTocar: corpo.isEmpty ? null : () => _alternar(corpo, variante),
+            etiqueta: 'guia-${guia.slug}',
+            // Guia ainda por escrever: o botão fica apagado em vez de ler só o título.
+            texto: corpo.isEmpty ? '' : '${guia.titulo}. $corpo',
           ),
           const SizedBox(height: 16),
           if (corpo.isEmpty)
@@ -78,43 +75,13 @@ class _GuiaScreenState extends State<GuiaScreen> {
     );
   }
 
-  Future<void> _alternar(String corpo, String variante) async {
-    final l = AppLocalizations.of(context);
-    final mensageiro = ScaffoldMessenger.of(context);
-    try {
-      if (_aFalar) {
-        await _tts?.stop();
-        if (mounted) setState(() => _aFalar = false);
-        return;
-      }
-      final tts = _tts ??= FlutterTts();
-      await tts.setLanguage(variante == 'br' ? 'pt-BR' : 'pt-PT');
-      tts.setCompletionHandler(() {
-        if (mounted) setState(() => _aFalar = false);
-      });
-      tts.setCancelHandler(() {
-        if (mounted) setState(() => _aFalar = false);
-      });
-      setState(() => _aFalar = true);
-      await tts.speak('${widget.guia.titulo}. ${textoParaVoz(corpo)}');
-    } catch (_) {
-      if (mounted) setState(() => _aFalar = false);
-      mensageiro.showSnackBar(SnackBar(content: Text(l.guiasOuvirErro)));
-    }
-  }
 }
 
-/// Tira as marcas (`#`, `-`, `1.`, `**`) para a voz ler só as palavras.
-String textoParaVoz(String corpo) => corpo
-    .split('\n')
-    .map((linha) => linha
-        .replaceFirst(RegExp(r'^\s*#{1,6}\s+'), '')
-        .replaceFirst(RegExp(r'^\s*[-*•]\s+'), '')
-        .replaceFirst(RegExp(r'^\s*\d+[.)]\s+'), '')
-        .replaceAll('**', ''))
-    .where((linha) => linha.trim().isNotEmpty)
-    .join('. ')
-    .replaceAll('..', '.');
+/// A limpeza do texto para a voz vive agora em `Fala.paraVoz` — um só sítio,
+/// usado por todos os botões de ouvir da app. Fica este atalho porque os
+/// testes das guias já o conheciam por este nome.
+String textoParaVoz(String corpo) => Fala.paraVoz(corpo);
+
 
 /// Rodapé: "Fonte oficial: {domínio} · verificado em {data}" (clicável) —
 /// ou "por confirmar" quando ainda ninguém verificou.

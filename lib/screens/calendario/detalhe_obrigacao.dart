@@ -7,7 +7,9 @@ import '../../config/app_theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/obrigacao.dart';
 import '../../regras/regras.dart';
+import '../../services/fala.dart';
 import '../../stores/dados_store.dart';
+import '../../stores/perfil_store.dart';
 import '../../stores/regras_store.dart';
 import '../../widgets/widgets.dart';
 import '../painel/comprovativo.dart' show juntarComprovativo, ligarPhotoPickerAndroid;
@@ -23,6 +25,9 @@ Future<void> mostrarDetalheObrigacao(
 }) {
   final obrig = context.read<ObrigacoesStore>();
   final plano = context.read<PlanoStore>();
+  // O botão de ouvir precisa da voz e do perfil (é o perfil que diz se lê em
+  // português de Portugal ou do Brasil) — e nesta folha eles não vêm de cima.
+  final perfilStore = context.read<PerfilStore>();
   return showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
@@ -32,6 +37,8 @@ Future<void> mostrarDetalheObrigacao(
       providers: [
         ChangeNotifierProvider<ObrigacoesStore>.value(value: obrig),
         ChangeNotifierProvider<PlanoStore>.value(value: plano),
+        ChangeNotifierProvider<PerfilStore>.value(value: perfilStore),
+        ChangeNotifierProvider<Fala>.value(value: Fala.instancia),
       ],
       child: DetalheObrigacao(inicial: obrigacao, hoje: hoje),
     ),
@@ -170,6 +177,11 @@ class _DetalheObrigacaoState extends State<DetalheObrigacao> {
                 Expanded(child: Text(comoPagarDe(l, o), style: t.bodyMedium)),
               ],
             ),
+          ),
+          // Uma só voz para o detalhe todo: o que é, e como se paga.
+          BotaoOuvir(
+            etiqueta: 'calendario-como-pagar',
+            texto: '${o.nomeCurto}. ${o.descricao} ${l.calComoPagar}. ${comoPagarDe(l, o)}',
           ),
           if (site != null) ...[
             const SizedBox(height: 10),

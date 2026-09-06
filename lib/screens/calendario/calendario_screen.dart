@@ -177,7 +177,20 @@ class _CalendarioScreenState extends State<CalendarioScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _fraseResumo(l, t, pagamentosDoMes.length, totalMes),
+                  // A frase que resume o mês é a explicação deste ecrã — logo
+                  // leva o botão de ouvir, encostado ao canto para não roubar
+                  // espaço ao número.
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: _fraseResumo(l, t, pagamentosDoMes.length, totalMes)),
+                      BotaoOuvir(
+                        etiqueta: 'calendario-resumo-mes',
+                        texto: l.calResumo(pagamentosDoMes.length, moeda(totalMes)),
+                        soIcone: true,
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 14),
                   Text(tituloMes, style: t.titleSmall!.copyWith(color: AppColors.textSecondary)),
                   const SizedBox(height: 6),

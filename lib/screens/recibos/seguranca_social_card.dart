@@ -33,12 +33,31 @@ class SegurancaSocialCard extends StatelessWidget {
     final abertura = perfil.dataAbertura;
 
     final Widget corpo;
+    // O que a voz lê muda com a situação de cada um — por isso é montado
+    // dentro dos mesmos ramos que desenham o cartão, com as mesmas palavras.
+    final String falado;
     if (abertura == null) {
+      falado = '${l.ssTitulo}. ${l.ssSemDataAbertura}';
       corpo = NotaInfo(l.ssSemDataAbertura);
     } else if (mesesDeIsencaoRestantes(abertura, hoje, r) > 0) {
       final meses = mesesDeIsencaoRestantes(abertura, hoje, r);
       final ultimo = ultimoDiaIsencaoSS(abertura, r);
       final mensal = _rendimentoMensalEstimado();
+      final avisoAntes = (mensal != null && mensal > 0)
+          ? l.ssAvisoAntes(
+              r.n('ss_aviso_fim_isencao_dias').toInt(),
+              moeda(estimarSSMensal(
+                      rendimentoMensal: mensal, tipo: perfil.tipoRendimento, ajustePct: perfil.ajusteSsPct, r: r)
+                  .contribuicaoMensal),
+            )
+          : null;
+      falado = [
+        l.ssTitulo,
+        l.ssIsencaoFaltam(meses),
+        l.ssIsencaoAte(dataExtensoPt(ultimo)),
+        l.ssIsencaoExplica,
+        if (avisoAntes != null) avisoAntes,
+      ].join('. ');
       corpo = Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -54,22 +73,23 @@ class SegurancaSocialCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(l.ssIsencaoExplica, style: t.bodySmall),
-          if (mensal != null && mensal > 0) ...[
+          if (avisoAntes != null) ...[
             const SizedBox(height: 12),
-            Text(
-              l.ssAvisoAntes(
-                r.n('ss_aviso_fim_isencao_dias').toInt(),
-                moeda(estimarSSMensal(rendimentoMensal: mensal, tipo: perfil.tipoRendimento, ajustePct: perfil.ajusteSsPct, r: r)
-                    .contribuicaoMensal),
-              ),
-              style: t.bodyMedium,
-            ),
+            Text(avisoAntes, style: t.bodyMedium),
           ],
         ],
       );
     } else {
       final decl = _proximaDeclaracao(abertura);
       final (contrib, base, estimativa) = _contribuicao(l);
+      falado = [
+        l.ssTitulo,
+        l.ssDeclararEm(nomeMes(decl.month)),
+        l.ssPagaPorMes(moeda(contrib.contribuicaoMensal)),
+        base,
+        if (contrib.bateuNoMinimo) l.ssMinimo(moeda(r.n('ss_minimo_mensal'))),
+        l.ssAjustarAjuda,
+      ].join('. ');
       corpo = Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -115,7 +135,11 @@ class SegurancaSocialCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CabecalhoCartao(icone: Icons.health_and_safety_rounded, titulo: l.ssTitulo),
+          CabecalhoCartao(
+            icone: Icons.health_and_safety_rounded,
+            titulo: l.ssTitulo,
+            direita: BotaoOuvir(etiqueta: 'recibos-seguranca-social', texto: falado, soIcone: true),
+          ),
           const SizedBox(height: 12),
           corpo,
         ],

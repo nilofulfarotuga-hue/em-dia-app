@@ -5,8 +5,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'config/app_theme.dart';
+import 'services/fala.dart';
 import 'services/push.dart';
 import 'l10n/app_localizations.dart';
+import 'screens/guia_inicio/guia_inicio_screen.dart';
 import 'screens/login/login_screen.dart';
 import 'screens/onboarding/onboarding_screen.dart';
 import 'screens/shell/shell_screen.dart';
@@ -27,6 +29,8 @@ class EmDiaApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SessaoStore()),
+        // A voz é uma só em toda a app: começar a ler num sítio cala o outro.
+        ChangeNotifierProvider<Fala>.value(value: Fala.instancia),
         ChangeNotifierProvider(create: (_) => RegrasStore()..carregar()),
         ChangeNotifierProvider(create: (_) => PlanoStore()),
         ChangeNotifierProvider(create: (_) => PerfilStore()),
@@ -123,6 +127,9 @@ class _RaizNavegadorState extends State<RaizNavegador> {
       );
     }
     if (!perfil.onboardingConcluido) return const OnboardingScreen();
+    // Guia de primeira utilização: três ecrãs, uma só vez. A marca fica no
+    // servidor (`viu_guia_inicio`), para quem trocar de telemóvel não repetir.
+    if (!perfil.viuGuiaInicio) return const GuiaInicioScreen();
     return const ShellScreen();
   }
 }

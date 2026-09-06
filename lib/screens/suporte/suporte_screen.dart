@@ -12,6 +12,7 @@ import '../../config/app_theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/ticket_suporte.dart';
 import '../../regras/regras.dart';
+import '../../services/fala.dart';
 import '../../stores/dados_store.dart';
 import '../../stores/perfil_store.dart';
 import '../../stores/regras_store.dart';
@@ -170,43 +171,54 @@ class _LinhaTicket extends StatelessWidget {
 
   void _detalhe(BuildContext context) {
     final l = AppLocalizations.of(context);
+    // A folha abre no Navigator de raiz, acima das stores: o botão de ouvir
+    // só encontra a voz e o perfil se eles forem com ela.
+    final perfilStore = context.read<PerfilStore>();
     showModalBottomSheet<void>(
       context: context,
       backgroundColor: AppColors.surface,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(AppTheme.raio))),
-      builder: (ctx) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Etiqueta(_estadoTexto(l, ticket.estado), cor: _estadoCor(ticket.estado)),
-                  const SizedBox(width: 8),
-                  Etiqueta(l.suporteTicket(ticket.idCurto), cor: AppColors.surface2, corTexto: AppColors.textSecondary),
-                ],
-              ),
-              const SizedBox(height: 12),
-              Text(ticket.assunto, style: Theme.of(ctx).textTheme.titleLarge),
-              const SizedBox(height: 4),
-              Text('${_tipoTexto(l, ticket.tipo)} · ${dataPt(ticket.criadoEm)}',
-                  style: Theme.of(ctx).textTheme.bodySmall!.copyWith(color: AppColors.textSecondary)),
-              if ((ticket.respostaIa ?? '').trim().isNotEmpty) ...[
-                const SizedBox(height: 16),
-                Text(l.suporteRespostaTitulo,
-                    style: const TextStyle(
-                        fontFamily: AppTheme.fonte, fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textSecondary)),
-                const SizedBox(height: 6),
-                Flexible(child: SingleChildScrollView(child: TextoIa(ticket.respostaIa!))),
-              ],
-              if (ticket.escalarHumano) ...[
+      builder: (ctx) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider<PerfilStore>.value(value: perfilStore),
+          ChangeNotifierProvider<Fala>.value(value: Fala.instancia),
+        ],
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Etiqueta(_estadoTexto(l, ticket.estado), cor: _estadoCor(ticket.estado)),
+                    const SizedBox(width: 8),
+                    Etiqueta(l.suporteTicket(ticket.idCurto), cor: AppColors.surface2, corTexto: AppColors.textSecondary),
+                  ],
+                ),
                 const SizedBox(height: 12),
-                Aviso(l.suporteEscalado, tom: Semaforo.verde, icone: Icons.person_outline_rounded),
+                Text(ticket.assunto, style: Theme.of(ctx).textTheme.titleLarge),
+                const SizedBox(height: 4),
+                Text('${_tipoTexto(l, ticket.tipo)} · ${dataPt(ticket.criadoEm)}',
+                    style: Theme.of(ctx).textTheme.bodySmall!.copyWith(color: AppColors.textSecondary)),
+                if ((ticket.respostaIa ?? '').trim().isNotEmpty) ...[
+                  const SizedBox(height: 16),
+                  Text(l.suporteRespostaTitulo,
+                      style: const TextStyle(
+                          fontFamily: AppTheme.fonte, fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textSecondary)),
+                  const SizedBox(height: 6),
+                  Flexible(child: SingleChildScrollView(child: TextoIa(ticket.respostaIa!))),
+                  // A resposta do Em Dia é uma explicação: dá para a ouvir.
+                  BotaoOuvir(etiqueta: 'suporte-ticket-resposta', texto: ticket.respostaIa!),
+                ],
+                if (ticket.escalarHumano) ...[
+                  const SizedBox(height: 12),
+                  Aviso(l.suporteEscalado, tom: Semaforo.verde, icone: Icons.person_outline_rounded),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),
@@ -366,6 +378,7 @@ class _SuporteBugScreenState extends State<SuporteBugScreen> {
                 ),
                 const SizedBox(height: 12),
                 Aviso(l.suporteLogsNota, tom: Semaforo.verde, icone: Icons.shield_outlined),
+                BotaoOuvir(etiqueta: 'suporte-o-que-vai-junto', texto: l.suporteLogsNota),
                 if (_erro != null) ...[
                   const SizedBox(height: 10),
                   Aviso(_erro!, tom: Semaforo.vermelho, icone: Icons.error_outline_rounded),
@@ -408,6 +421,7 @@ class _Enviado extends StatelessWidget {
                         fontFamily: AppTheme.fonte, fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textSecondary)),
                 const SizedBox(height: 6),
                 TextoIa(resposta.resposta),
+                BotaoOuvir(etiqueta: 'suporte-resposta', texto: resposta.resposta),
               ],
             ),
           ),
@@ -497,7 +511,9 @@ class _SuporteReembolsoScreenState extends State<SuporteReembolsoScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 20),
+          // As três linhas são UMA explicação: um só botão para as ouvir.
+          BotaoOuvir(etiqueta: 'suporte-reembolso', texto: linhas.join('. ')),
+          const SizedBox(height: 12),
           BotaoGrande(
             texto: l.suporteAbrirSubscricoes,
             icone: Icons.open_in_new_rounded,
