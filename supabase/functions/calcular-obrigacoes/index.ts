@@ -11,13 +11,17 @@
 //  - linhas pendentes geradas que já não existam no novo conjunto são apagadas,
 //    EXCETO os tipos manuais ('multa', 'portagem', 'outro').
 //
-// Corpo opcional: { "hoje": "YYYY-MM-DD" } — só para testes/QA; por omissão é hoje em Lisboa.
+// Corpo opcional: { "hoje": "YYYY-MM-DD" } — SÓ para QA: exige o header x-cron-secret igual ao
+// segredo 'cron_secret' (env/Vault) e um dia civil real; sem isso responde 403/400 e não toca
+// em nada. Por omissão é hoje em Lisboa.
 // Resposta: { geradas, novas, atualizadas, apagadas, hoje, itens: [...] }
 
 import { createClient } from 'jsr:@supabase/supabase-js@2';
+import { lerSegredo } from '../_shared/segredos.ts';
 import {
   carroDeLinha,
   dataIso,
+  ehDiaIsoValido,
   gerarObrigacoes,
   hojeLisboa,
   lerDia,
@@ -58,19 +62,40 @@ Deno.serve(async (req: Request) => {
     return json({ erro: 'nao_autenticado', mensagem: 'Precisas de iniciar sessão.' }, 401);
   }
 
-  // 2) Corpo (opcional): "hoje" para QA
+  const admin = createClient(url, service);
+
+  // 2) Corpo (opcional): "hoje" é SÓ para QA.
+  //    - só se aceita com o header x-cron-secret igual ao segredo 'cron_secret' (env/Vault): um
+  //      utilizador normal (ou um bug na app) nunca regenera a lista para outra janela;
+  //    - tem de ser um dia civil real em YYYY-MM-DD (2026-13-45 e 2026-02-30 → 400, sem overflow).
   let hoje = hojeLisboa();
+  let corpo: Record<string, unknown> = {};
   try {
-    const corpo = await req.json();
-    if (corpo && typeof corpo.hoje === 'string' && /^\d{4}-\d{2}-\d{2}/.test(corpo.hoje)) {
-      hoje = lerDia(corpo.hoje);
-    }
+    const lido = await req.json();
+    if (lido && typeof lido === 'object' && !Array.isArray(lido)) corpo = lido as Record<string, unknown>;
   } catch {
     // corpo vazio ou não-JSON: ignora-se
   }
+  if (corpo.hoje !== undefined && corpo.hoje !== null) {
+    const segredoRecebido = req.headers.get('x-cron-secret') ?? '';
+    const segredoEsperado = segredoRecebido ? await lerSegredo('cron_secret', admin) : null;
+    if (!segredoEsperado || segredoRecebido !== segredoEsperado) {
+      return json({
+        erro: 'hoje_so_qa',
+        mensagem: 'O campo "hoje" é só para testes: exige o header x-cron-secret válido. Sem ele, usa-se sempre o dia de hoje em Lisboa.',
+      }, 403);
+    }
+    if (typeof corpo.hoje !== 'string' || !ehDiaIsoValido(corpo.hoje)) {
+      return json({
+        erro: 'hoje_invalido',
+        mensagem: 'O campo "hoje" tem de ser um dia real no formato YYYY-MM-DD (ex.: 2026-09-06).',
+        recebido: corpo.hoje,
+      }, 400);
+    }
+    hoje = lerDia(corpo.hoje);
+  }
 
   // 3) Dados (service role: as tabelas de regras são públicas, as do utilizador filtram-se por user_id)
-  const admin = createClient(url, service);
   const [perfilQ, carrosQ, regrasQ, escaloesQ, feriadosQ, existentesQ] = await Promise.all([
     admin.from('profiles').select('*').eq('user_id', user.id).maybeSingle(),
     admin.from('carros').select('*').eq('user_id', user.id).eq('ativo', true),

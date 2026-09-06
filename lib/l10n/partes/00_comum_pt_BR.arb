@@ -15,6 +15,7 @@
   "pushTrial25": "Faltam 5 dias para o seu mês grátis acabar. Depois disso o Em Dia continua te avisando, mas com limites. Por 3,49 €/mês (ou 29,90 €/ano) fica tudo como está.",
   "pushTrial31": "Hoje você evitou multas durante um mês. Para continuar assim é 3,49 € por mês — menos que uma multa. Toque para ativar.",
   "pushReativacao": "Está tudo em dia do seu lado. Não precisa fazer nada. Eu aviso.",
+
   "semaforoVerde": "Está tudo em dia",
   "semaforoAmareloUma": "Você tem 1 coisa vencendo em {dias} dias",
   "semaforoAmareloVarias": "Você tem {n} coisas vencendo em {dias} dias",
@@ -34,11 +35,13 @@
   "juntarComprovativo": "Anexar foto do comprovante",
   "comoPagar": "Como pagar",
   "verComoPagar": "Ver como pagar",
+
   "navPainel": "Painel",
   "navRecibos": "Recibos",
   "navCalendario": "Calendário",
   "navCarro": "Carro",
   "navMais": "Mais",
+
   "onbOQueFazes": "O que você faz?",
   "onbTvde": "Motorista TVDE",
   "onbEstafeta": "Entregador",
@@ -69,6 +72,7 @@
   "onbSaltar": "Pular",
   "onbComecar": "Começar",
   "onbEntrarNaApp": "Entrar no app",
+
   "loginTitulo": "Entre com o seu e-mail",
   "loginAjuda": "Eu mando um código de 6 números. Sem senha, sem complicação.",
   "loginEmail": "Seu e-mail",
@@ -81,6 +85,7 @@
   "loginErro": "Não consegui entrar. Veja se o e-mail está certo e tente de novo.",
   "loginCodigoErrado": "Esse código não bate. Tente de novo ou peça um novo.",
   "sair": "Sair",
+
   "calcTitulo": "Calculadora de recibo",
   "calcValorRecibo": "Valor do recibo (sem IVA)",
   "calcRetencao": "Retenção na fonte (o que o cliente guarda para as Finanças)",
@@ -97,12 +102,14 @@
   "calcMencaoIsencao": "Frase para colocar no recibo",
   "calcCopiar": "Copiar",
   "calcCopiado": "Copiado",
+
   "vigiaIvaTitulo": "Vigia do IVA",
   "vigiaIvaBarra": "Você está em {atual} de {limite}",
   "vigiaIvaOk": "Você está longe do limite. Continue registrando.",
   "vigiaIvaAviso": "Atenção: você já passou de 12.000 €. Se chegar aos 15.000 € este ano, no ano que vem cobra IVA.",
   "vigiaIvaAlarme": "Você passou de 15.000 €. No ano que vem tem que cobrar IVA (23%). Fale com o contador.",
   "vigiaIvaCritico": "Você passou de 18.750 €: perde a isenção JÁ. A próxima fatura leva IVA e você tem 15 dias úteis para avisar as Finanças.",
+
   "ssTitulo": "Segurança Social",
   "ssIsencaoAte": "Você está isento até {data}",
   "ssIsencaoFaltam": "Faltam {meses} meses de isenção",
@@ -110,12 +117,14 @@
   "ssPagaPorMes": "Depois você paga cerca de {valor} por mês, do dia 10 ao dia 20",
   "ssAjustar": "Quero pagar 25% a menos / a mais",
   "ssAjustarAjuda": "A lei deixa ajustar até 25% para cima ou para baixo. Menos agora = menos aposentadoria depois.",
+
   "irsTitulo": "IRS",
   "irsGuardarEsteMes": "Guarde {valor} este mês para o IRS",
   "irsEstimativaAno": "Estimativa para o ano: {valor}",
   "irsMinimoExistencia": "Abaixo de {valor} por ano você não paga IRS (mínimo de existência).",
   "irsAvisoDespesas": "Acima de {valor} por ano você tem que justificar 15% com notas com NIF. Confira com um contador.",
   "irsPagamentosConta": "Pagamentos por conta: 20 jul · 20 set · 20 dez",
+
   "rendTitulo": "Rendimentos",
   "rendAdicionar": "Registrar rendimento",
   "rendValor": "Quanto você ganhou (bruto)",
@@ -123,10 +132,12 @@
   "rendFoto": "Ler extrato por foto (Uber, Bolt, Glovo)",
   "rendGuardar": "Salvar",
   "rendSemDados": "Você ainda não registrou nada. Comece pelo mês passado.",
+
   "calTitulo": "Calendário",
   "calSemObrigacoes": "Nada marcado. Quando tiver, aparece aqui.",
   "calValorEstimado": "Valor estimado",
   "calAte": "Até {data}",
+
   "carroTitulo": "O carro",
   "carroAdicionar": "Adicionar carro",
   "carroIuc": "IUC (imposto do carro)",
@@ -140,21 +151,25 @@
   "carroMultas": "Pedágios e multas",
   "carroSemCarro": "Você ainda não tem carro registrado.",
   "carroSeguroAviso": "O seguro renova em {dias} dias. É agora que você compara.",
+
   "reformaTitulo": "Aposentadoria e direitos",
   "reformaDescontas": "Você contribui {mensal}/mês — vale cerca de {reforma} de aposentadoria",
   "reformaIdade": "Idade da aposentadoria em 2026: 66 anos e 9 meses. Mínimo: 15 anos de contribuição.",
   "reformaDireitos": "O que você ganha por pagar",
   "reformaPerdes": "O que você perde se não pagar",
   "reformaAcordoBrasil": "Acordo Portugal–Brasil: o tempo dos dois países conta.",
+
   "guiasTitulo": "Guias de 1 minuto",
   "guiasOuvir": "Ouvir",
   "guiasParar": "Parar",
   "guiasFonte": "Fonte oficial: {fonte} · verificado em {data}",
+
   "iaTitulo": "Pergunte o que quiser",
   "iaEscreve": "Escreva a sua pergunta…",
   "iaRodape": "Informação geral, não substitui contador.",
   "iaLimiteFree": "No plano grátis você tem {n} perguntas por mês. Usou {usadas}.",
   "iaSemRegra": "Não tenho essa regra confirmada. Vou pedir um guia novo sobre isso.",
+
   "suporteTitulo": "Ajuda",
   "suporteDuvida": "Tenho uma dúvida",
   "suporteBug": "Algo não funciona",
@@ -162,6 +177,7 @@
   "suporteDescreve": "Me conte o que aconteceu",
   "suporteEnviar": "Enviar",
   "suporteEnviado": "Recebi. Respondo em breve.",
+
   "planoTitulo": "O seu plano",
   "planoTrial": "Mês grátis — tudo aberto até {data}",
   "planoFree": "Plano grátis",
@@ -174,7 +190,9 @@
   "planoCadeadoLinha": "Ative o Pro para ter avisos sem limite, IA sem limite e mais carros.",
   "planoWeb": "Para assinar, use o app no celular Android por enquanto.",
   "planoGerir": "Gerenciar na Google Play",
+
   "adminTitulo": "Painel Em Dia",
+
   "erroRede": "Sem conexão. Tente de novo daqui a pouco.",
   "aCarregar": "Carregando…",
   "guardar": "Salvar",

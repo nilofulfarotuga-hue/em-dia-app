@@ -103,6 +103,10 @@ Deno.serve(async (req: Request) => {
   const inicioAno = `${hoje.slice(0, 4)}-01-01`
   const inicioMes = `${hoje.slice(0, 7)}-01`
   const ha7Dias = somarDias(hoje, -DIAS_REATIVACAO)
+  // Os eventos carregam-se desde a data MAIS ANTIGA entre o início do mês (vigia_iva e limite do
+  // plano são "este mês") e há 7 dias (reativacao é "últimos 7 dias"). Só com o início do mês, um
+  // reativacao enviado a 31 ficava invisível no dia 1-6 e repetia-se (bug encontrado na verificação).
+  const inicioEventos = ha7Dias < inicioMes ? ha7Dias : inicioMes
 
   const [perfis, obrigs, rendimentos, eventosMes, eventosTrial31, tokensTodos] = await Promise.all([
     admin.from('profiles')
@@ -118,7 +122,7 @@ Deno.serve(async (req: Request) => {
         ...(datasIpo.length ? [`and(estado.eq.pendente,tipo.eq.ipo,data_limite.in.(${datasIpo.join(',')}))`] : []),
       ].join(',')),
     admin.from('rendimentos').select('user_id, valor_bruto').gte('mes', inicioAno),
-    admin.from('eventos_push').select('user_id, tipo, dia, resultado').gte('dia', inicioMes),
+    admin.from('eventos_push').select('user_id, tipo, dia, resultado').gte('dia', inicioEventos),
     admin.from('eventos_push').select('user_id').eq('tipo', 'trial_31'),
     admin.from('push_tokens').select('user_id, token'),
   ])
@@ -131,6 +135,7 @@ Deno.serve(async (req: Request) => {
   const tokensPor = new Map<string, string[]>()
   for (const t of tokensTodos.data ?? []) tokensPor.set(t.user_id, [...(tokensPor.get(t.user_id) ?? []), t.token])
   const jaTrial31 = new Set((eventosTrial31.data ?? []).map((e) => e.user_id))
+  // todos os eventos carregados do utilizador (desde inicioEventos) e só os deste mês
   const eventosDoUser = (uid: string) => (eventosMes.data ?? []).filter((e) => e.user_id === uid)
 
   const fcm = await carregarFcm(admin)
@@ -143,7 +148,8 @@ Deno.serve(async (req: Request) => {
     const uid = p.user_id as string
     const variante: VariantePt = p.variante_pt === 'br' ? 'br' : 'pt'
     const T = MENSAGENS[variante]
-    const eventos = eventosDoUser(uid)
+    const eventos = eventosDoUser(uid)                          // desde inicioEventos (≥ 7 dias)
+    const eventosMesUser = eventos.filter((e) => e.dia >= inicioMes)  // só este mês
     const jaHoje = (tipo: string) => eventos.some((e) => e.tipo === tipo && e.dia === hoje)
     const avisos: Aviso[] = []
 
@@ -182,7 +188,7 @@ Deno.serve(async (req: Request) => {
     // vigia do IVA (só faz sentido para quem está isento pelo art. 53.º): 1 vez por mês
     const soma = somaAno.get(uid) ?? 0
     if (p.regime_iva === 'isento_53' && Number.isFinite(ivaAviso) && soma >= ivaAviso
-        && !eventos.some((e) => e.tipo === 'vigia_iva')) {
+        && !eventosMesUser.some((e) => e.tipo === 'vigia_iva')) {
       avisos.push({ tipo: 'vigia_iva', obrigacao_id: null, titulo: T.titulos.vigia_iva, corpo: T.pushVigiaIva(formatarMoeda(soma)!) })
     }
 
@@ -210,8 +216,9 @@ Deno.serve(async (req: Request) => {
     if (avisos.length === 0) continue
 
     // ---------- registar eventos (a unique (user_id,tipo,dia,obrigacao_id) impede repetir) ----------
-    // Nota: com obrigacao_id NULL a unique não dispara (NULL ≠ NULL), por isso os tipos sem
-    // obrigação já foram filtrados acima pelo que existe em eventos_push.
+    // Desde a migração 0005 a unique é NULLS NOT DISTINCT: também trava os tipos sem obrigação
+    // (obrigacao_id NULL). Os filtros acima (jaHoje, vigia_iva do mês, reativacao 7 dias) continuam
+    // a evitar a tentativa; a base de dados é a rede de segurança.
     const { data: inseridos, error: erroIns } = await admin
       .from('eventos_push')
       .upsert(
@@ -231,7 +238,7 @@ Deno.serve(async (req: Request) => {
 
     // ---------- limite do plano (free = N avisos/mês; trial/pro/família = sem limite) ----------
     const { data: limite } = await admin.rpc('feature_limite', { uid, flag: FLAG_PUSH })
-    const okEsteMes = eventos.filter((e) => e.resultado === 'ok').length
+    const okEsteMes = eventosMesUser.filter((e) => e.resultado === 'ok').length
     if (limite !== null && limite !== undefined && okEsteMes >= Number(limite)) {
       await admin.from('eventos_push').update({ resultado: 'limite_plano' }).in('id', ids)
       totais.limite_plano += inseridos.length

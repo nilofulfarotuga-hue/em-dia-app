@@ -25,6 +25,9 @@ class SessaoStore extends ChangeNotifier {
     });
   }
 
+  /// Para testes e fotos: sem Supabase, ninguém autenticado.
+  SessaoStore.semServidor() : _pronto = true;
+
   User? get user => _user;
   String? get userId => _user?.id;
   bool get autenticado => _user != null;

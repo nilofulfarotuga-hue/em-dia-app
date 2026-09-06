@@ -27,7 +27,9 @@ export interface GeminiErro {
 export type GeminiResultado = GeminiOk | GeminiErro
 
 export function modeloGemini(): string {
-  return Deno.env.get('GEMINI_MODEL')?.trim() || 'gemini-2.5-flash'
+  // gemini-2.5-flash deixou de existir para contas novas (404 provado 2026-09-06 01:20);
+  // 'gemini-flash-latest' resolve para o Flash atual (3.8 em setembro de 2026).
+  return Deno.env.get('GEMINI_MODEL')?.trim() || 'gemini-flash-latest'
 }
 
 export async function chamarGemini(

@@ -40,6 +40,17 @@ export function lerDia(s: string): Date {
   return dia(a, m, d);
 }
 
+/**
+ * `true` só para um dia civil REAL em `YYYY-MM-DD`. `lerDia` → `Date.UTC` faz overflow
+ * em silêncio (2026-13-45 → 2027-02-14; 2026-02-30 → 2026-03-02), por isso valida-se
+ * o formato e depois confirma-se que a data lida volta a escrever-se igual.
+ */
+export function ehDiaIsoValido(s: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
+  const d = lerDia(s);
+  return !Number.isNaN(d.getTime()) && dataIso(d) === s;
+}
+
 export function somarDias(d: Date, n: number): Date {
   return dia(ano(d), mes(d), diaDoMes(d) + n);
 }

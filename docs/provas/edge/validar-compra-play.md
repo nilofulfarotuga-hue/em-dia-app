@@ -178,3 +178,94 @@ GET `subscriptionsv2` na Google, 400 `produto_nao_corresponde`, 409 `token_de_ou
 ### Veredicto do verificador
 
 **Reprovado por 1 defeito real:** corpo JSON `null` → HTTP 500 em vez de 400 (`supabase/functions/validar-compra-play/index.ts`, linhas 75-81: `corpo = await req.json()` sem guardar contra `null`). Tudo o resto verificado bate com a especificação. Reproduzir: `POST /functions/v1/validar-compra-play` com JWT válido, `Content-Type: application/json`, corpo literal `null`.
+
+## Correção
+
+**Data/hora:** 2026-09-05 23:39 UTC (2026-09-06 00:39 Lisboa).
+
+### O que estava mal
+
+`supabase/functions/validar-compra-play/index.ts` (linhas 75-81 da v1) fazia `corpo = await req.json()` e a seguir `typeof corpo.produto_id`. `req.json()` aceita o literal `null` (e também `[]`, números, strings, `true`) sem lançar, por isso um corpo `null` chegava a `null.produto_id` e rebentava com HTTP 500 em vez de 400. Log literal da v1 (function_logs, 2026-09-05T23:32:16, reproduzido pelo verificador):
+
+```
+TypeError: Cannot read properties of null (reading 'produto_id')
+    at Object.handler (file:///var/tmp/sb-compile-edge-runtime/functions/validar-compra-play/index.ts:94:34)
+```
+
+### O que mudou
+
+Guarda explícita depois do parse — só um objeto JSON (não-null, não-array) passa; o resto responde 400 `corpo_invalido`:
+
+```ts
+let bruto: unknown;
+try {
+  bruto = await req.json();
+} catch {
+  return json({ erro: 'corpo_invalido', mensagem: 'O corpo do pedido tem de ser JSON.' }, 400);
+}
+if (bruto === null || typeof bruto !== 'object' || Array.isArray(bruto)) {
+  return json({ erro: 'corpo_invalido', mensagem: 'O corpo do pedido tem de ser um objeto JSON com produto_id e token_compra.' }, 400);
+}
+const corpo = bruto as { produto_id?: unknown; token_compra?: unknown };
+```
+
+Redeploy via MCP `deploy_edge_function` (verify_jwt: true, ficheiros `functions/validar-compra-play/index.ts` + `functions/_shared/google_oauth.ts`, sem alterações no `_shared`). Resultado literal:
+
+```
+{"id":"21eddb85-14d6-4fb9-a9da-260574787c56","slug":"validar-compra-play","status":"ACTIVE","version":2,"updated_at":1788651565150,"verify_jwt":true,"ezbr_sha256":"94c25ff70700463eed07ecf6afa454826abcdda108831550631759e862d33bbd"}
+```
+
+### Prova — reprodução do caso do verificador e vizinhos (JWT novo de teste@emdia.pt, `Content-Type: application/json`)
+
+Script: `scratchpad/teste_null.py` (Python urllib). Saída literal (só os acentos vieram estropiados pela consola Windows):
+
+```
+agora (UTC): 2026-09-05T23:39:50.384979
+login 200
+--- corpo literal null
+POST null
+HTTP 400
+{"erro":"corpo_invalido","mensagem":"O corpo do pedido tem de ser um objeto JSON com produto_id e token_compra."}
+--- corpo literal [] (array)
+POST []
+HTTP 400
+{"erro":"corpo_invalido","mensagem":"O corpo do pedido tem de ser um objeto JSON com produto_id e token_compra."}
+--- corpo literal 123 (numero)
+POST 123
+HTTP 400
+{"erro":"corpo_invalido","mensagem":"O corpo do pedido tem de ser um objeto JSON com produto_id e token_compra."}
+--- corpo literal "texto" (string)
+POST "texto"
+HTTP 400
+{"erro":"corpo_invalido","mensagem":"O corpo do pedido tem de ser um objeto JSON com produto_id e token_compra."}
+--- corpo literal true
+POST true
+HTTP 400
+{"erro":"corpo_invalido","mensagem":"O corpo do pedido tem de ser um objeto JSON com produto_id e token_compra."}
+--- corpo {} (regressao)
+POST {}
+HTTP 400
+{"erro":"produto_id_invalido","mensagem":"produto_id em falta ou inválido. Valores aceites: pro_mensal, pro_anual, familia_mensal, familia_anual."}
+--- corpo valido sem service account (regressao)
+POST {"produto_id": "pro_mensal", "token_compra": "tok-correcao-1"}
+HTTP 503
+{"erro":"sem_play_service_account","mensagem":"A conta de serviço do Google Play ainda não está configurada. A validação de compras fica disponível quando a app for publicada."}
+```
+
+Logs depois do deploy (query_logs, `event_message like '%TypeError%'`, janela 23:00–23:45 UTC): o único TypeError é o da v1 às 23:32:16 (reprodução do verificador). A chamada com `null` às 23:39:50 contra a v2 não gerou nenhum.
+
+SELECT de confirmação (nada gravado, plano intacto, Vault limpo):
+
+```sql
+select now() as agora, (select count(*) from public.assinaturas) as total_assinaturas,
+       (select plano from public.profiles where email = 'teste@emdia.pt') as plano_teste,
+       (select count(*) from vault.secrets where name = 'play_service_account') as segredo_play_existe;
+```
+```
+[{"agora":"2026-09-05 23:40:11.155739+00","total_assinaturas":0,"plano_teste":"free","segredo_play_existe":0}]
+```
+
+### Estado
+
+- Corpo JSON `null` → 500: **resolvido** (agora 400 `corpo_invalido`); arrays, números, strings e booleanos apanhados pela mesma guarda.
+- Continua sem prova real (sem credenciais Google, inalterado): GET `subscriptionsv2`, 400 `produto_nao_corresponde`, 409, upsert, plano via função, `:acknowledge` — fica para o bloco de publicação.

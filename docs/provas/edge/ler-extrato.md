@@ -76,3 +76,43 @@ Função `d43d1868…`: só `booted` — sem `console.error`.
 - Aceita `data:...;base64,` no início (é retirado). Limite ~6 MB de imagem (8 M chars base64) → 413.
 - Validação do JSON do modelo: `plataforma` fora de uber/bolt/glovo → `outro`; `mes` tem de ser `AAAA-MM`; `valor_bruto` numérico ≥ 0; `confianca` presa a [0,1]. Se falhar → 502 `resposta_invalida` com o detalhe (não inventa valores).
 - Modo JSON do Gemini (`responseMimeType: application/json`), temperatura 0.2.
+
+## Verificação independente
+
+Verificador com contexto limpo · 2026-09-05 23:43–23:45 UTC · JWT novo para teste@emdia.pt · script `verif_ia.py`. Nenhum token nesta prova.
+
+**Deploy confirmado** (`list_edge_functions`): `ler-extrato` id `d43d1868-c961-45b1-bf9c-f10c11a069eb`, `ACTIVE`, `version: 1`, `verify_jwt: true`; `get_edge_function` devolve `ler-extrato/index.ts` + `_shared/{cors,segredos,gemini}.ts`, iguais ao repo.
+
+**Chamadas (saída literal):**
+```
+### LE-1 sem JWT
+HTTP 401  {"code":"UNAUTHORIZED_NO_AUTH_HEADER","message":"Missing authorization header"}
+### LE-2 corpo vazio (trial)
+HTTP 400  {"erro":"corpo_invalido","mensagem":"O corpo do pedido tem de ser JSON."}
+### LE-3 {} (trial)
+HTTP 400  {"erro":"imagem_em_falta","mensagem":"Envia a foto do extrato (imagem_base64)."}
+### LE-4 "data:image/png;base64,aGVsbG8=" + mime "IMAGE/PNG" (trial, sem chave) — prefixo retirado e mime normalizado, para só na chave
+HTTP 503  {"erro":"sem_gemini_api_key","mensagem":"O assistente ainda não está ligado: falta a chave da Gemini no Vault (gemini_api_key). Tenta mais tarde."}
+### LE-5 imagem só espaços
+HTTP 400  {"erro":"imagem_em_falta","mensagem":"Envia a foto do extrato (imagem_base64)."}
+### LE-6 mime image/gif
+HTTP 400  {"erro":"mime_invalido","mensagem":"Formato não suportado. Usa: image/jpeg, image/png, image/webp, image/heic, application/pdf."}
+```
+
+**Cadeado em free** (mesma preparação SQL da prova do ia-responder: `plano_efetivo: free`, `extrato: false`):
+```
+### LE-402 free
+HTTP 402  {"cadeado":true,"mensagem":"Ler o extrato por foto faz parte do plano Pro. No mês grátis está aberto."}
+### LE-402 free com corpo inválido ("xx") — o cadeado é verificado antes do corpo
+HTTP 402  {"cadeado":true,"mensagem":"Ler o extrato por foto faz parte do plano Pro. No mês grátis está aberto."}
+```
+
+**Confirmação após limpeza:** `plano_efetivo: trial`, `conversas: 0` (nada foi gravado em modo `extrato`, como esperado sem chave). `conversas_ia_modo_check` aceita `'extrato'` (CHECK lido de pg_constraint), por isso o insert vai passar quando houver chave.
+
+**Logs** (function_logs 23:42–23:46 UTC): fn `d43d1868…` 12 linhas, `erros: 0`.
+
+**Segredos / números cravados:** ver secção equivalente em `ia-responder.md` (greps a zero). Os preços de tokens são lidos de `regras_legais` dentro da função.
+
+**Por provar (sem chave, confirmado por SQL `ler_segredo('gemini_api_key') is null`):** leitura real de imagem, JSON validado, registo `modo='extrato'`.
+
+**Veredicto:** aprovado.

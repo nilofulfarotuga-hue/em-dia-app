@@ -8,6 +8,7 @@
 
 import {
   adicionarMeses,
+  ehDiaIsoValido,
   avisoEm,
   calcularIrs,
   calcularSS,
@@ -356,4 +357,16 @@ Deno.test('C46 número em falta é erro, nunca um valor inventado', () => {
 Deno.test('C47 escalões: 2027 não existe → usa o ano mais recente (2026)', () => {
   eq(r.escaloesDoAno(2027)[0].ano, 2026);
   eq(r.escaloesDoAno(2025).length, 9);
+});
+
+Deno.test('C48 dia ISO válido: aceita dias reais; recusa mês 13, 30 de fevereiro, 29/02 não bissexto e formatos parciais', () => {
+  eq(ehDiaIsoValido('2026-09-06'), true);
+  eq(ehDiaIsoValido('2028-02-29'), true, 'bissexto');
+  eq(ehDiaIsoValido('2026-13-45'), false, 'mês 13 (overflow em lerDia → 2027-02-14)');
+  eq(ehDiaIsoValido('2026-02-30'), false, '30 de fevereiro (overflow → 2026-03-02)');
+  eq(ehDiaIsoValido('2027-02-29'), false, '2027 não é bissexto');
+  eq(ehDiaIsoValido('2026-00-10'), false, 'mês 0');
+  eq(ehDiaIsoValido('2026-09-06T00:00:00Z'), false, 'só se aceita YYYY-MM-DD');
+  eq(ehDiaIsoValido('06-09-2026'), false);
+  eq(ehDiaIsoValido(''), false);
 });
