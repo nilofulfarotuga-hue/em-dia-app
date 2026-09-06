@@ -1,0 +1,150 @@
+{
+  "data": "20260906-042912",
+  "modelo": "gemini-flash-latest",
+  "fotos": 14,
+  "contagem": {
+    "verde": 1,
+    "amarelo": 13,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis sem explicar o que significam para quem não percebe.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p0_boasvindas_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela de boas-vindas está limpa e legível.",
+      "jargao": [
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p0_boasvindas_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto usa pronomes do Brasil (você) em vez de Portugal e menciona termos fiscais sem explicação.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p0_boasvindas_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis sem explicar o que significam.",
+      "jargao": [
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p0_boasvindas_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto usa pronomes do Brasil em vez de Portugal e tem termos fiscais sem explicação.",
+      "jargao": [
+        "IVA",
+        "IRS",
+        "Segurança Social"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p0_boasvindas_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis sem explicação e o botão está colado em baixo.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p0_boasvindas_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra 'atividade' é jargão difícil para quem está a começar.",
+      "jargao": [
+        "atividade"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p1_atividade_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A opção 'abrir atividade' tem jargão difícil para quem não sabe.",
+      "jargao": [
+        "atividade"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p1_atividade_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra 'Freelancer' é um bocado difícil de entender para quem não sabe.",
+      "jargao": [
+        "Freelancer",
+        "TVDE"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p1_atividade_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra freelancer é difícil de entender para quem não sabe.",
+      "jargao": [
+        "Freelancer"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p1_atividade_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra freelancer é difícil para quem não sabe.",
+      "jargao": [
+        "Freelancer"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p1_atividade_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra Freelancer pode ser difícil de entender para algumas pessoas.",
+      "jargao": [
+        "Freelancer"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p1_atividade_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A instrução pede o Portal das Finanças sem explicar o que é.",
+      "jargao": [
+        "Portal das Finanças"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p2_abertura_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra 'isento' pode ser difícil de entender para quem não sabe o que significa.",
+      "jargao": [
+        "isento"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p2_abertura_grande_pt.png"
+    }
+  ]
+}

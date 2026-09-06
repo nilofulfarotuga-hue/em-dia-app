@@ -174,7 +174,7 @@ export async function responderComIA(
   const r = await chamarGemini({
     system,
     partes: [{ text: `CONTEXTO:\n${ctx.texto}\n\nPERGUNTA DO UTILIZADOR:\n${pergunta.trim()}` }],
-    maxTokens: 2048,
+    maxTokens: 4096,
     admin,
   })
   if (!r.ok) return r

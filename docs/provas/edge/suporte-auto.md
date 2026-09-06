@@ -196,3 +196,11 @@ ticket: {"id":"06f894a7-6554-49ff-805f-b4f4db5fa891","tipo":"duvida","estado":"a
 conversa: {"id":"5b6378a4-219e-4629-8655-5019e883e1cf","modo":"suporte","modelo":"gemini-3.6-flash","tokens_entrada":6157,"tokens_saida":2044,"custo_tokens":0.006425,"fora_das_regras":false}
 ```
 A `resposta_ia` real da Gemini ficou **gravada no ticket** (sem `erro_ia`), com `modelo` = `gemini-3.6-flash` (da roda). Cita `ss_isencao_meses` e usa a data de fim de isenção do perfil (2027-03-01). **Mas vem cortada** ("passas a pagar") e sem `Próximo passo:` — `tokens_saida` 2044 ≈ `maxTokens` 2048, o mesmo corte por MAX_TOKENS descrito na prova do `ia-responder`; o rodapé foi colado pelo código. A roda está provada; o orçamento de saída para modelos que "pensam" muito fica como problema aberto.
+
+## Resposta inteira (04:35)
+
+**Deploy (`_shared/gemini.ts` com `maxOutputTokens ?? 4096`, `thinkingConfig: { thinkingBudget: 512 }` e `cortada`; `verify_jwt: true`):**
+```
+{"slug":"suporte-auto","status":"ACTIVE","version":4,"updated_at":1788665396930,"ezbr_sha256":"706ad4b7f94db44490b5f96af704270d5a9d1486579685bc743570b72b62b663"}
+```
+Só redeploy nesta ronda (a ordem pedia repetir as perguntas no `ia-responder`, que usa exatamente o mesmo `responderComIA`/`chamarGemini`). A prova de que a resposta chega inteira com o `thinkingBudget: 512` está na prova do `ia-responder` (Q3: 578 tokens de saída, PT-BR: 94, ambas terminadas em `Próximo passo:` + rodapé), contra os 2044 cortados da ronda anterior neste mesmo caminho. Mesma observação: `responderComIA` ainda passa `maxTokens: 2048`, pelo que o 4096 não se aplica aqui.

@@ -158,3 +158,11 @@ Leu a plataforma, o mês e o valor exatos da imagem. SELECT `conversas_ia`:
 {"id":"a3f7be2f-6a28-40f0-b8e0-f24642d42cbd","modo":"extrato","modelo":"gemini-3.6-flash","tokens_entrada":1368,"tokens_saida":336,"custo_tokens":0.001156,"fora_das_regras":false,"variante":"pt","fim_resposta":"1234,56 € lido com clareza para o mês de setembro de 2026.\"}","criado_em":"2026-09-06T03:19:53Z"}
 ```
 `modelo` = `gemini-3.6-flash` (modelo da roda; o 3.8 e o 3.7 devolveram 429 e foram saltados). O registo em modo `extrato` com tokens e custo > 0 fica assim provado.
+
+## Resposta inteira (04:35)
+
+**Deploy (`_shared/gemini.ts` com `maxOutputTokens ?? 4096`, `thinkingConfig: { thinkingBudget: 512 }` e `cortada`; `verify_jwt: true`):**
+```
+{"slug":"ler-extrato","status":"ACTIVE","version":4,"updated_at":1788665271061,"ezbr_sha256":"d6d8733456c7eafce8c60f806ff390722d5c7f6fface5c5c3c2c0fd61cafa73b"}
+```
+Só redeploy nesta ronda (a ordem pedia repetir as perguntas no `ia-responder`); a última leitura de imagem (04:19, `gemini-3.6-flash`, 336 tokens de saída, JSON completo) já estava inteira. O `thinkingConfig` foi aceite pelos modelos exercitados no `ia-responder` v4 (`gemini-3.5-flash`, `gemini-flash-lite-latest`) sem 400. Esta função passa `maxTokens: 512` e `jsonMode`, por isso o `cortada` só se manifestaria em respostas JSON anormalmente longas.

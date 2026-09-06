@@ -268,3 +268,41 @@ Cita `ipo_ligeiros_anos` e usa o carro do perfil (AA-11-BB, 2021-02-28), mas **v
 `modelo` gravado é um modelo da roda (`gemini-3.7-flash` na Q2, `gemini-3.6-flash` nas seguintes), **não** o `gemini-3.8-flash` esgotado. A roda funciona.
 
 **Problema encontrado (não bloqueia a roda, mas é resultado errado para o utilizador):** Q3 e o suporte-auto têm `tokens_saida = 2044` ≈ `maxTokens: 2048` de `responderComIA` — o modelo esgotou o orçamento de saída (que inclui os tokens de raciocínio, `thoughtsTokenCount`) e a resposta chegou cortada (finishReason MAX_TOKENS). Como o código acrescenta o rodapé sempre que falta, o corte fica mascarado e passa por resposta completa (`fora_das_regras: false`). O `gemini-3.7-flash` (Q2, 1794 tokens) coube; o `gemini-3.6-flash` gasta mais a "pensar". Sugestão para o próximo passo: em `contexto_ia.ts` subir `maxTokens` (ex.: 4096) e/ou passar `thinkingConfig: { thinkingBudget: 512 }` em `generationConfig`; e tratar `finishReason === 'MAX_TOKENS'` como erro `resposta_cortada` em vez de colar o rodapé.
+
+## Resposta inteira (04:35)
+
+**Data:** 2026-09-06, 04:27–04:32 (hora de Lisboa). `_shared/gemini.ts` passou a ter `maxOutputTokens: opts.maxTokens ?? 4096`, `thinkingConfig: { thinkingBudget: 512 }` e devolve `cortada: true` (com aviso no texto) quando `finishReason === 'MAX_TOKENS'`.
+
+**Deploy (mesmo processo, `verify_jwt: true`):**
+```
+{"slug":"ia-responder","status":"ACTIVE","version":4,"updated_at":1788665207544,"ezbr_sha256":"8873e7adf8d51f6365a662fba7fbb252a1759858a012bfcece483e0553ab0f53"}
+```
+`thinkingConfig` **não foi rejeitado** por nenhum modelo usado (sem 400): as duas chamadas abaixo passaram por `gemini-3.5-flash` e `gemini-flash-lite-latest` e responderam 200.
+
+**Q3 (literal):**
+```
+### PERGUNTA quando é a inspeção do meu carro de 2021 | 04:30:23 | 10.3s | HTTP 200
+{"resposta": "O teu carro (matrícula AA-11-BB) é usado para TVDE (o serviço de transportar pessoas em carros bonitos). Os carros que trabalham no TVDE têm de fazer um exame especial todos os anos para ver se estão seguros e sem estragos. \n\nNão tenho essa regra confirmada. Sugiro falares com um contabilista para te ajudar a saber a data certa.\n\nPróximo passo: Falar com um contabilista para confirmar a data da inspeção do teu carro TVDE o quanto antes.\nInformação geral, não substitui contabilista.",
+ "variante": "pt", "fora_das_regras": true, "usadas": 4, "limite": null}
+>>> penúltima linha começa por "Próximo passo:": True | última = rodapé: True
+```
+Inteira: termina em `Próximo passo:` e depois o rodapé (o rodapé veio do modelo, não foi colado). O carro do perfil é TVDE e a regra `ipo_tvde` está `por_confirmar`, por isso o modelo disse corretamente "Não tenho essa regra confirmada." → `fora_das_regras: true` e abriu-se o ticket `guia_novo` automaticamente (SELECT abaixo).
+
+**Pergunta em PT-BR (literal):**
+```
+### PERGUNTA sou brasileiro, o tempo do INSS conta pra aposentadoria? | 04:30:25 | 2.3s | HTTP 200
+{"resposta": "Sim! O tempo que você descontou no Brasil (INSS) conta para a sua reforma (aposentadoria) em Portugal. \n\nIsso acontece por causa do Acordo de Segurança Social Portugal–Brasil, que junta o tempo dos dois países (acordo_pt_br_url).\n\nPróximo passo: Guarde os seus papéis do INSS para quando precisar pedir a reforma.\nInformação geral, não substitui contabilista.",
+ "variante": "br", "fora_das_regras": false, "usadas": 5, "limite": null}
+>>> penúltima linha começa por "Próximo passo:": True | última = rodapé: True
+```
+`variante: "br"` detetada (marcas `INSS`, `pra `, `aposentadoria`), resposta em PT-BR ("você", "aposentadoria"), cita `acordo_pt_br_url`, inteira.
+
+**SELECT `conversas_ia` + ticket:**
+```
+{"id":"80593533-7234-4a9b-a080-610a24cc4532","modo":"chat","modelo":"gemini-3.5-flash","variante":"pt","tokens_entrada":6092,"tokens_saida":578,"custo_tokens":0.003035,"fora_das_regras":true,"fim_resposta":"a inspeção do teu carro TVDE o quanto antes.\nInformação geral, não substitui contabilista.","criado_em":"2026-09-06T03:30:22Z"}
+{"id":"193ed54d-22ad-4d3d-914f-44461295244d","modo":"chat","modelo":"gemini-flash-lite-latest","variante":"br","tokens_entrada":6087,"tokens_saida":94,"custo_tokens":0.001921,"fora_das_regras":false,"fim_resposta":"o INSS para quando precisar pedir a reforma.\nInformação geral, não substitui contabilista.","criado_em":"2026-09-06T03:30:24Z"}
+ticket_guia_novo: {"id":"f52f1368-ddf0-4cce-83af-605f5db55e4c","tipo":"guia_novo","estado":"aberto","assunto":"Pergunta sem regra confirmada: quando é a inspeção do meu carro de 2021?","criado_em":"2026-09-06T03:30:22Z"}
+```
+`tokens_saida` caiu de 2044 (cortada, na ronda anterior) para 578 e 94: o orçamento de raciocínio de 512 deixou de comer a resposta. A roda continua a andar (3.8, 3.7 e 3.6 já esgotados hoje → 3.5-flash, depois flash-lite-latest).
+
+**Observação (para o próximo passo, não bloqueia):** `contexto_ia.ts` → `responderComIA` ainda passa `maxTokens: 2048` explicitamente a `chamarGemini`, por isso o novo default de 4096 do `gemini.ts` **não** se aplica ao chat nem ao suporte — só ao `ler-extrato` (que passa 512). Com o `thinkingBudget: 512` chega (as duas respostas couberam com folga), mas se se quiser mesmo 4096 no chat é preciso remover ou subir esse `maxTokens: 2048` em `contexto_ia.ts`.
