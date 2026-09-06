@@ -1645,6 +1645,9 @@
   "cofreFaltaValor": "Escreva quanto foi.",
   "cofreErroGuardar": "Não consegui anotar. Tente outra vez.",
   "cofreGuardado": "Anotado.",
+  "@cofreBotaoPor": {
+    "description": "Botao de por dinheiro de lado. UMA palavra: \"Pus de lado\" partia em duas linhas dentro do botao a 390 px (fabrica de fotos, cofre_folha_medio_pt)."
+  },
   "falaTitulo": "Fala comigo",
   "falaSubtitulo": "Você não precisa escrever nada. Aperte o botão, fale como fala com uma pessoa, e eu respondo por escrito e em voz alta.",
   "falaCarregaEFala": "Aperte o botão e fale. Solte quando terminar.",

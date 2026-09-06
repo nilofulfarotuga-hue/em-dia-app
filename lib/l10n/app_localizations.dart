@@ -5718,10 +5718,10 @@ abstract class AppLocalizations {
   /// **'Tens {saldo} no cofre do imposto. Devias ter {devia}. {fecho}'**
   String cofreOuvir(String saldo, String devia, String fecho);
 
-  /// No description provided for @cofreBotaoPor.
+  /// Botao de por dinheiro de lado. UMA palavra: "Pus de lado" partia em duas linhas dentro do botao a 390 px (fabrica de fotos, cofre_folha_medio_pt).
   ///
   /// In pt, this message translates to:
-  /// **'Pus de lado'**
+  /// **'Separei'**
   String get cofreBotaoPor;
 
   /// No description provided for @cofreBotaoTirar.

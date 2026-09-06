@@ -2056,7 +2056,7 @@
       }
     }
   },
-  "cofreBotaoPor": "Pus de lado",
+  "cofreBotaoPor": "Separei",
   "cofreBotaoTirar": "Tirei",
   "cofreListaTitulo": "O que já apontaste",
   "cofreVazio": "Ainda não apontaste nada. Quando puseres dinheiro de lado, escreve aqui quanto foi.",
@@ -2105,6 +2105,9 @@
   "cofreFaltaValor": "Escreve quanto foi.",
   "cofreErroGuardar": "Não consegui apontar. Tenta outra vez.",
   "cofreGuardado": "Apontado.",
+  "@cofreBotaoPor": {
+    "description": "Botao de por dinheiro de lado. UMA palavra: \"Pus de lado\" partia em duas linhas dentro do botao a 390 px (fabrica de fotos, cofre_folha_medio_pt)."
+  },
   "falaTitulo": "Fala comigo",
   "falaSubtitulo": "Não precisas de escrever nada. Carrega no botão, fala como falas com uma pessoa, e eu respondo por escrito e em voz alta.",
   "falaCarregaEFala": "Carrega no botão e fala. Larga quando acabares.",

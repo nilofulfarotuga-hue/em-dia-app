@@ -3342,7 +3342,7 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get cofreBotaoPor => 'Pus de lado';
+  String get cofreBotaoPor => 'Separei';
 
   @override
   String get cofreBotaoTirar => 'Tirei';

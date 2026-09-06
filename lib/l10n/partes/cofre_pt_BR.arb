@@ -131,5 +131,8 @@
   "cofreTirasMaisDoQueTens": "Você está tirando mais do que anotou. Não tem problema — só confira o número.",
   "cofreFaltaValor": "Escreva quanto foi.",
   "cofreErroGuardar": "Não consegui anotar. Tente outra vez.",
-  "cofreGuardado": "Anotado."
+  "cofreGuardado": "Anotado.",
+  "@cofreBotaoPor": {
+    "description": "Botao de por dinheiro de lado. UMA palavra: \"Pus de lado\" partia em duas linhas dentro do botao a 390 px (fabrica de fotos, cofre_folha_medio_pt)."
+  }
 }

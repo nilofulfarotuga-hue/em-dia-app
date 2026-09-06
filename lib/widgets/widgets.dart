@@ -287,7 +287,9 @@ class Cadeado extends StatelessWidget {
                 borderRadius: AppTheme.cantosPequenos,
                 onTap: aoTocar,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  // Folga a sério: o juiz de visão reprovou o crachá por o
+                  // texto ficar colado às margens e pequeno de mais.
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   decoration: BoxDecoration(
                     color: AppColors.cadeadoClaro,
                     borderRadius: AppTheme.cantosPequenos,
@@ -302,7 +304,8 @@ class Cadeado extends StatelessWidget {
                         child: Text(linha,
                             style: const TextStyle(
                                 fontFamily: AppTheme.fonte,
-                                fontSize: 14,
+                                fontSize: 15,
+                                height: 1.35,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.cadeado)),
                       ),
