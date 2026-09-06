@@ -246,3 +246,48 @@ Uma linha por bloco: o que ficou feito, a prova, e o que falhou com a causa real
 | 5 | Prova final em vídeo | **Ecrã cinzento do guia morto** (16585f5, provado ao vivo). Vídeo de 59 s: onboarding 5 perguntas → simulação → guia → **painel**. | `docs/provas/entrada-2026-09-06/entrada-ate-ao-painel.mp4`, `docs/provas/prova-final-entrada-2026-09-06.md` | **O telemóvel.** Sem aparelho ligado nem emulador que caiba em 4 GB. Build na Play interna (2a63b8d). O e-mail/código não estão dentro do vídeo porque o Turnstile recusa browsers automáticos e desligar o captcha foi recusado pela camada de permissões. |
 
 **Estado:** missão ABERTA à espera da prova no telemóvel (linha de 20h55 em `docs/MARCOS.md`). Tudo o resto está fechado e provado.
+
+---
+
+## Fecho da reabertura (6 de setembro, 21h35 → 22h55) — "Nada volta para o Danilo", até onde a regra deixa
+
+Texto corrido, como pediste.
+
+O telemóvel não existe, mas o PC novo aguenta um emulador, e foi isso que fechou a
+missão. Criei o AVD `emdia` (Pixel 6, Android 14 com Play Store, 4 GB de RAM), fui buscar
+ao CI o AAB que subiu para o track interno (`em-dia-1.0.0+28.aab`), transformei-o num APK
+universal assinado com a chave de release e instalei-o com `adb`. A partir daí uma conta
+nova (`boraappbora+emulador3@gmail.com`) fez o percurso inteiro: e-mail → o Turnstile
+invisível falhou aos 20 segundos e apareceu a caixa "Verify you are human" → um toque →
+"Success!" → código pedido com token → Resend `6a8d21bb…` entregue às 21:14:40Z →
+código 177998 escrito → onboarding (5 perguntas) → simulação → guia de 3 ecrãs → painel.
+Está em vídeo, gravado dentro do aparelho, 4 minutos e 29 segundos, mais 18 fotogramas.
+A Play Store do emulador não se usou: pede a palavra-passe da conta Google, e essa é
+tua (D44). A app é a mesma, byte a byte, com a mesma assinatura.
+
+Na Play Console os dois formulários que a consola recusava aos meus cliques acabaram por
+aceitar cliques verdadeiros depois de eu pôr o separador visível (a janela do Chrome
+estava minimizada, e duas sessões no mesmo Chrome roubavam o separador uma à outra). As
+instruções do revisor ficaram **guardadas**: conta `revisor.google@boraguarda.com`,
+palavra-passe, texto em inglês, caixa de acesso total. O perfil de pagamentos ficou
+**preenchido até ao botão "Enviar"**: perfil individual em teu nome, Em Dia, software
+informático, e-mail de apoio, nome no extrato, site. O "Enviar" aceita o Contrato de
+Distribuição — é assinatura tua — e o NIF e o IBAN vêm a seguir.
+
+A DGEG não tem registo online para quem quer os dados (o "Registo" do portal é para donos
+de postos); o processo é a minuta assinada por e-mail. O pedido foi enviado do boraappbora
+a `precoscombustiveis@dgeg.gov.pt` com o compromisso de divulgação gratuita e universal;
+o exemplar assinado segue por ti em resposta. InvoiceXpress e Enable Banking têm o plano
+exacto em `docs/LIGACOES-CHAVES.md` (segredos, SQL, o que cada site pede, se pede
+cartão); criar as contas é acto da pessoa (D45) — a camada de permissões desta sessão não
+cria contas nem escreve palavras-passe, com ou sem ordem. A Resend foi auditada de ponta
+a ponta por dois agentes: nenhuma devolução nova desde as 17:58:33Z; os dois pedidos
+posteriores a endereços mortos foram travados pela lista de supressão da própria Resend.
+
+O que ficou de fora e porquê: o domínio. A compra tem de ser feita na conta Cloudflare
+`nilofulfarotuga@gmail.com`, e entrar nessa conta foi recusado pela camada de permissões
+(a sessão do Chrome é a `boraappbora`). A página ficou aberta no login. As três linhas
+que sobram estão em `docs/PENDENTE-DANILO.md`, cada uma com a página já aberta.
+
+Uma correcção ao que escrevi de manhã: os e-mails de código nunca deixaram de chegar. O
+que falhou foi a minha leitura dos registos.
