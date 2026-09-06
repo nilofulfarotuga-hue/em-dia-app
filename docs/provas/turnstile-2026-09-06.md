@@ -69,3 +69,27 @@ a regra `registo_aberto` também. Já não há "linha do dia do lançamento".
 `GET https://app-em-dia.pages.dev/` → 200 com `X-Robots-Tag: noindex, nofollow,
 noarchive`, `<meta name="robots" content="noindex">`, e `robots.txt` com
 `Disallow: /` (commit `e97dc6a`).
+
+## O que o Turnstile NÃO trava — visto às 20:09Z, depois da prova (acrescentado 21h40)
+
+| Hora (UTC) | IP | Pedido | Resposta |
+|---|---|---|---|
+| 20:09:17 | `74.125.209.194` (Google), referer `app-em-dia.pages.dev` | `POST /otp` `testuser12345@gmail.com` | **200** — `user_confirmation_requested`; Resend `d0dda5f4-1d52-432e-af14-2c109d569e4c` delivered |
+| 20:09:43 | `74.125.209.195` | `POST /verify` (código inventado) | 403 `otp_expired` |
+
+O renderizador da Google é um Chrome a sério e a Cloudflare, em modo *managed*,
+dá-lhe token. Um pedido meu sem token às 21:28 continuou a levar **400** — o
+Turnstile está ligado; simplesmente não distingue um robô da Google de uma
+pessoa num Chrome. Por isso:
+
+1. **`web/index.html`** (commit `e65cbeb`): quem se apresenta como robô no
+   User-Agent (`bot`, `crawl`, `spider`, `Google-InspectionTool`,
+   `HeadlessChrome`, …) ou com `navigator.webdriver` não carrega a app — vê uma
+   frase e o link do site. Era o terceiro item da ordem ("bloqueio por
+   User-Agent de bots na página de entrada") e faltava.
+2. **Migração 0029/0029b**: a guarda dos endereços inventados apanha nome de
+   teste + números nos provedores grandes. Padrão testado com 20 caixas:
+   `testuser12345`, `testuser1234`, `demo2026`, `user1`, `abc123`, `teste.user`,
+   `test.emdia`, `usuario2026` → apanhados; `joao.silva`, `maria.ferreira`,
+   `testa.silva`, `testemunha.silva`, `carlos.teste`, `revisor.google` → passam.
+3. A conta `testuser12345@gmail.com` (7b5af669…, nunca confirmada) foi apagada.
