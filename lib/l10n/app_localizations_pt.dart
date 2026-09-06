@@ -334,6 +334,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get sair => 'Sair';
 
   @override
+  String get arranqueFalhouTitulo => 'Não consegui abrir a tua conta';
+
+  @override
+  String get arranqueFalhouLinha =>
+      'Isto costuma ser a internet. Toca em tentar outra vez. Se continuar assim, sai e entra de novo — os teus dados ficam guardados no servidor.';
+
+  @override
+  String get tentarOutraVez => 'Tentar outra vez';
+
+  @override
   String get calcTitulo => 'Calculadora de recibo';
 
   @override
@@ -3411,6 +3421,16 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get sair => 'Sair';
+
+  @override
+  String get arranqueFalhouTitulo => 'Não consegui abrir a sua conta';
+
+  @override
+  String get arranqueFalhouLinha =>
+      'Isso costuma ser a internet. Toque em tentar de novo. Se continuar assim, saia e entre de novo — seus dados ficam guardados no servidor.';
+
+  @override
+  String get tentarOutraVez => 'Tentar de novo';
 
   @override
   String get calcTitulo => 'Calculadora de recibo';

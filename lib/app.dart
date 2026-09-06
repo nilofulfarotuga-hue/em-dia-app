@@ -14,6 +14,7 @@ import 'stores/dados_store.dart';
 import 'stores/perfil_store.dart';
 import 'stores/regras_store.dart';
 import 'stores/sessao_store.dart';
+import 'widgets/widgets.dart';
 
 /// A app inteira: providers (padrão Model → Store → Screen do Bora), tema,
 /// idiomas (PT-PT por omissão; PT-BR se o perfil ou o telemóvel pedirem) e o
@@ -111,9 +112,58 @@ class _RaizNavegadorState extends State<RaizNavegador> {
       WidgetsBinding.instance.addPostFrameCallback((_) => _carregarTudo(context, userId));
     }
     final perfil = perfilStore.perfil;
-    if (perfil == null) return const _Splash();
+    if (perfil == null) {
+      // Sem perfil há dois casos, e são muito diferentes: ou ainda está a
+      // carregar, ou falhou. Antes mostravam o mesmo — um splash a rodar para
+      // sempre. Foi assim que o Bora ficou preso, e não se repete aqui.
+      if (perfilStore.aCarregar || perfilStore.erro == null) return const _Splash();
+      return ContaNaoAbriu(
+        aoTentar: () => perfilStore.carregar(userId),
+        aoSair: sessao.sair,
+      );
+    }
     if (!perfil.onboardingConcluido) return const OnboardingScreen();
     return const ShellScreen();
+  }
+}
+
+/// Entrou, mas a conta não abriu. Diz o que se passa e dá dois caminhos —
+/// nunca uma roda a girar sem fim.
+class ContaNaoAbriu extends StatelessWidget {
+  final Future<void> Function() aoTentar;
+  final Future<void> Function() aoSair;
+  const ContaNaoAbriu({super.key, required this.aoTentar, required this.aoSair});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
+    final t = Theme.of(context).textTheme;
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 440),
+            child: ListView(
+              padding: paddingEcra,
+              shrinkWrap: true,
+              children: [
+                const Icon(Icons.wifi_off_rounded, size: 56, color: AppTheme.aVencer),
+                const SizedBox(height: 16),
+                Text(l.arranqueFalhouTitulo, textAlign: TextAlign.center, style: t.headlineSmall),
+                const SizedBox(height: 10),
+                Text(l.arranqueFalhouLinha,
+                    textAlign: TextAlign.center,
+                    style: t.bodyMedium!.copyWith(color: AppTheme.textSecondary)),
+                const SizedBox(height: 24),
+                BotaoGrande(texto: l.tentarOutraVez, aoTocar: aoTentar),
+                const SizedBox(height: 10),
+                BotaoGrande(texto: l.sair, secundario: true, aoTocar: aoSair),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

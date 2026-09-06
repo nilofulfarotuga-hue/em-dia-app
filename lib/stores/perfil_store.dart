@@ -19,23 +19,29 @@ class PerfilStore extends ChangeNotifier {
     _erro = null;
     notifyListeners();
     try {
-      final m = await sb.from('profiles').select().eq('user_id', userId).maybeSingle();
-      if (m == null) {
-        // O trigger cria o perfil no registo; se ainda não existir, cria agora.
-        await sb.from('profiles').upsert({'user_id': userId, 'email': sb.auth.currentUser?.email});
-        final m2 = await sb.from('profiles').select().eq('user_id', userId).single();
-        _perfil = Perfil.fromMap(Map<String, dynamic>.from(m2));
-      } else {
-        _perfil = Perfil.fromMap(Map<String, dynamic>.from(m));
-      }
-      // último acesso (para a mensagem de reativação aos 7 dias)
-      await sb.from('profiles').update({'ultimo_acesso': DateTime.now().toUtc().toIso8601String()}).eq('user_id', userId);
+      // Com prazo: um pedido pendurado deixava a app num splash a rodar para
+      // sempre. Ao fim de 20 s desiste e o ecrã mostra a saída.
+      await _carregarComPrazo(userId).timeout(const Duration(seconds: 20));
     } catch (e) {
       _erro = e.toString();
     } finally {
       _aCarregar = false;
       notifyListeners();
     }
+  }
+
+  Future<void> _carregarComPrazo(String userId) async {
+    final m = await sb.from('profiles').select().eq('user_id', userId).maybeSingle();
+    if (m == null) {
+      // O trigger cria o perfil no registo; se ainda não existir, cria agora.
+      await sb.from('profiles').upsert({'user_id': userId, 'email': sb.auth.currentUser?.email});
+      final m2 = await sb.from('profiles').select().eq('user_id', userId).single();
+      _perfil = Perfil.fromMap(Map<String, dynamic>.from(m2));
+    } else {
+      _perfil = Perfil.fromMap(Map<String, dynamic>.from(m));
+    }
+    // último acesso (para a mensagem de reativação aos 7 dias)
+    await sb.from('profiles').update({'ultimo_acesso': DateTime.now().toUtc().toIso8601String()}).eq('user_id', userId);
   }
 
   Future<bool> guardar(Perfil novo) async {

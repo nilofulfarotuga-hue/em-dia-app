@@ -642,6 +642,24 @@ abstract class AppLocalizations {
   /// **'Sair'**
   String get sair;
 
+  /// No description provided for @arranqueFalhouTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui abrir a tua conta'**
+  String get arranqueFalhouTitulo;
+
+  /// No description provided for @arranqueFalhouLinha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto costuma ser a internet. Toca em tentar outra vez. Se continuar assim, sai e entra de novo — os teus dados ficam guardados no servidor.'**
+  String get arranqueFalhouLinha;
+
+  /// No description provided for @tentarOutraVez.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tentar outra vez'**
+  String get tentarOutraVez;
+
   /// No description provided for @calcTitulo.
   ///
   /// In pt, this message translates to:
