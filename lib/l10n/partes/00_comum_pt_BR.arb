@@ -135,7 +135,7 @@
   "irsGuardarEsteMes": "Guarde {valor} este mês para o IRS",
   "irsEstimativaAno": "Estimativa para o ano: {valor}",
   "irsMinimoExistencia": "Abaixo de {valor} por ano você não paga IRS (mínimo de existência).",
-  "irsAvisoDespesas": "Acima de {valor} por ano você tem que justificar 15% com notas com NIF. Confira com um contador.",
+  "irsAvisoDespesas": "Acima de {valor} por ano você tem que justificar 15% com notas com NIF (o número de contribuinte português, como o CPF). Confira com um contador.",
   "irsPagamentosConta": "Pagamentos por conta: 20 jul · 20 set · 20 dez",
 
   "rendTitulo": "Rendimentos",

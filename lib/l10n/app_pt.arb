@@ -317,7 +317,7 @@
       }
     }
   },
-  "irsAvisoDespesas": "Acima de {valor} por ano tens de justificar 15% com faturas com NIF. Verifica com um contabilista.",
+  "irsAvisoDespesas": "Acima de {valor} por ano tens de justificar 15% com faturas com NIF (o teu número de contribuinte). Verifica com um contabilista.",
   "@irsAvisoDespesas": {
     "placeholders": {
       "valor": {
@@ -851,7 +851,7 @@
   "emitirTitulo": "Como emitir o recibo",
   "emitirSubtitulo": "Passo a passo no Portal das Finanças, com textos prontos a copiar.",
   "emitirAbrirGuia": "Ver o passo a passo",
-  "emitirPasso1": "Entra no Portal das Finanças com o teu NIF e a tua senha.",
+  "emitirPasso1": "Entra no Portal das Finanças com o teu NIF (o teu número de contribuinte) e a tua senha.",
   "emitirPasso2": "Procura “Faturas e Recibos Verdes” e toca em “Emitir”.",
   "emitirPasso3": "Escolhe “Recibo” (ou “Fatura-Recibo” se o cliente pedir fatura).",
   "emitirPasso4": "Preenche o NIF do cliente. Se for uma plataforma (Uber, Bolt, Glovo), o NIF está no extrato ou no contrato.",
@@ -1145,7 +1145,7 @@
       }
     }
   },
-  "carroDespesasIrs": "Guardadas para o IRS: cada fatura com NIF conta como despesa da atividade.",
+  "carroDespesasIrs": "Guardadas para o IRS: cada fatura com o teu NIF (número de contribuinte) conta como despesa da atividade.",
   "carroSemDespesas": "Ainda não registaste despesas.",
   "carroNovaDespesa": "Nova despesa",
   "carroTipoDespesa": "O que foi?",

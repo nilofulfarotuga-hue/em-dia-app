@@ -133,7 +133,7 @@
   "irsGuardarEsteMes": "Guarde {valor} este mês para o IRS",
   "irsEstimativaAno": "Estimativa para o ano: {valor}",
   "irsMinimoExistencia": "Abaixo de {valor} por ano você não paga IRS (mínimo de existência).",
-  "irsAvisoDespesas": "Acima de {valor} por ano você tem que justificar 15% com notas com NIF. Confira com um contador.",
+  "irsAvisoDespesas": "Acima de {valor} por ano você tem que justificar 15% com notas com NIF (o número de contribuinte português, como o CPF). Confira com um contador.",
   "irsPagamentosConta": "Pagamentos por conta: 20 jul · 20 set · 20 dez",
   "rendTitulo": "Rendimentos",
   "rendAdicionar": "Registrar rendimento",
@@ -539,7 +539,7 @@
   "emitirTitulo": "Como emitir o recibo",
   "emitirSubtitulo": "Passo a passo no Portal das Finanças, com textos prontos para copiar.",
   "emitirAbrirGuia": "Ver o passo a passo",
-  "emitirPasso1": "Entre no Portal das Finanças com o seu NIF e a sua senha.",
+  "emitirPasso1": "Entre no Portal das Finanças com o seu NIF (o número de contribuinte português, como o CPF) e a sua senha.",
   "emitirPasso2": "Procure “Faturas e Recibos Verdes” e toque em “Emitir”.",
   "emitirPasso3": "Escolha “Recibo” (ou “Fatura-Recibo” se o cliente pedir fatura).",
   "emitirPasso4": "Preencha o NIF do cliente. Se for uma plataforma (Uber, Bolt, Glovo), o NIF está no extrato ou no contrato.",
@@ -833,7 +833,7 @@
       }
     }
   },
-  "carroDespesasIrs": "Guardadas para o IRS: cada nota com NIF conta como despesa da atividade.",
+  "carroDespesasIrs": "Guardadas para o IRS: cada nota com o seu NIF (número de contribuinte) conta como despesa da atividade.",
   "carroSemDespesas": "Você ainda não registrou despesas.",
   "carroNovaDespesa": "Nova despesa",
   "carroTipoDespesa": "O que foi?",

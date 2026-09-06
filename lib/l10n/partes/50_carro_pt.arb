@@ -62,7 +62,7 @@
 
   "carroDespesasAnoNif": "Com NIF em {ano}",
   "@carroDespesasAnoNif": {"placeholders": {"ano": {"type": "int"}}},
-  "carroDespesasIrs": "Guardadas para o IRS: cada fatura com NIF conta como despesa da atividade.",
+  "carroDespesasIrs": "Guardadas para o IRS: cada fatura com o teu NIF (número de contribuinte) conta como despesa da atividade.",
   "carroSemDespesas": "Ainda não registaste despesas.",
   "carroNovaDespesa": "Nova despesa",
   "carroTipoDespesa": "O que foi?",

@@ -157,7 +157,7 @@
   "@irsEstimativaAno": {"placeholders": {"valor": {"type": "String"}}},
   "irsMinimoExistencia": "Abaixo de {valor} por ano não pagas IRS (mínimo de existência).",
   "@irsMinimoExistencia": {"placeholders": {"valor": {"type": "String"}}},
-  "irsAvisoDespesas": "Acima de {valor} por ano tens de justificar 15% com faturas com NIF. Verifica com um contabilista.",
+  "irsAvisoDespesas": "Acima de {valor} por ano tens de justificar 15% com faturas com NIF (o teu número de contribuinte). Verifica com um contabilista.",
   "@irsAvisoDespesas": {"placeholders": {"valor": {"type": "String"}}},
   "irsPagamentosConta": "Pagamentos por conta: 20 jul · 20 set · 20 dez",
 

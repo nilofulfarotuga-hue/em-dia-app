@@ -861,7 +861,7 @@ abstract class AppLocalizations {
   /// No description provided for @irsAvisoDespesas.
   ///
   /// In pt, this message translates to:
-  /// **'Acima de {valor} por ano tens de justificar 15% com faturas com NIF. Verifica com um contabilista.'**
+  /// **'Acima de {valor} por ano tens de justificar 15% com faturas com NIF (o teu número de contribuinte). Verifica com um contabilista.'**
   String irsAvisoDespesas(String valor);
 
   /// No description provided for @irsPagamentosConta.
@@ -2037,7 +2037,7 @@ abstract class AppLocalizations {
   /// No description provided for @emitirPasso1.
   ///
   /// In pt, this message translates to:
-  /// **'Entra no Portal das Finanças com o teu NIF e a tua senha.'**
+  /// **'Entra no Portal das Finanças com o teu NIF (o teu número de contribuinte) e a tua senha.'**
   String get emitirPasso1;
 
   /// No description provided for @emitirPasso2.
@@ -2907,7 +2907,7 @@ abstract class AppLocalizations {
   /// No description provided for @carroDespesasIrs.
   ///
   /// In pt, this message translates to:
-  /// **'Guardadas para o IRS: cada fatura com NIF conta como despesa da atividade.'**
+  /// **'Guardadas para o IRS: cada fatura com o teu NIF (número de contribuinte) conta como despesa da atividade.'**
   String get carroDespesasIrs;
 
   /// No description provided for @carroSemDespesas.

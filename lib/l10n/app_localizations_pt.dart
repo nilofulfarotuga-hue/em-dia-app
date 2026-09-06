@@ -466,7 +466,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String irsAvisoDespesas(String valor) {
-    return 'Acima de $valor por ano tens de justificar 15% com faturas com NIF. Verifica com um contabilista.';
+    return 'Acima de $valor por ano tens de justificar 15% com faturas com NIF (o teu número de contribuinte). Verifica com um contabilista.';
   }
 
   @override
@@ -1199,7 +1199,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get emitirPasso1 =>
-      'Entra no Portal das Finanças com o teu NIF e a tua senha.';
+      'Entra no Portal das Finanças com o teu NIF (o teu número de contribuinte) e a tua senha.';
 
   @override
   String get emitirPasso2 =>
@@ -1735,7 +1735,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get carroDespesasIrs =>
-      'Guardadas para o IRS: cada fatura com NIF conta como despesa da atividade.';
+      'Guardadas para o IRS: cada fatura com o teu NIF (número de contribuinte) conta como despesa da atividade.';
 
   @override
   String get carroSemDespesas => 'Ainda não registaste despesas.';
@@ -3555,7 +3555,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String irsAvisoDespesas(String valor) {
-    return 'Acima de $valor por ano você tem que justificar 15% com notas com NIF. Confira com um contador.';
+    return 'Acima de $valor por ano você tem que justificar 15% com notas com NIF (o número de contribuinte português, como o CPF). Confira com um contador.';
   }
 
   @override
@@ -4288,7 +4288,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get emitirPasso1 =>
-      'Entre no Portal das Finanças com o seu NIF e a sua senha.';
+      'Entre no Portal das Finanças com o seu NIF (o número de contribuinte português, como o CPF) e a sua senha.';
 
   @override
   String get emitirPasso2 =>
@@ -4825,7 +4825,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get carroDespesasIrs =>
-      'Guardadas para o IRS: cada nota com NIF conta como despesa da atividade.';
+      'Guardadas para o IRS: cada nota com o seu NIF (número de contribuinte) conta como despesa da atividade.';
 
   @override
   String get carroSemDespesas => 'Você ainda não registrou despesas.';

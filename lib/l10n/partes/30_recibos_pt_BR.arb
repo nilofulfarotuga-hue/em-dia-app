@@ -77,7 +77,7 @@
   "emitirTitulo": "Como emitir o recibo",
   "emitirSubtitulo": "Passo a passo no Portal das Finanças, com textos prontos para copiar.",
   "emitirAbrirGuia": "Ver o passo a passo",
-  "emitirPasso1": "Entre no Portal das Finanças com o seu NIF e a sua senha.",
+  "emitirPasso1": "Entre no Portal das Finanças com o seu NIF (o número de contribuinte português, como o CPF) e a sua senha.",
   "emitirPasso2": "Procure “Faturas e Recibos Verdes” e toque em “Emitir”.",
   "emitirPasso3": "Escolha “Recibo” (ou “Fatura-Recibo” se o cliente pedir fatura).",
   "emitirPasso4": "Preencha o NIF do cliente. Se for uma plataforma (Uber, Bolt, Glovo), o NIF está no extrato ou no contrato.",
