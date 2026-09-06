@@ -101,8 +101,12 @@ def julgar(png: Path, chave: str) -> dict:
             if e.code == 429 or (e.code == 404 and "not found" in corpo_erro.lower()):
                 _modelo_idx += 1  # quota deste modelo esgotada (ou modelo indisponível): passa ao seguinte
                 continue
-            if e.code == 503:
-                time.sleep(8)
+            if e.code in (500, 503):
+                # «This model is currently experiencing high demand». Insistir no
+                # MESMO modelo era esperar por quem está cheio: dá-se um fôlego
+                # curto e passa-se ao seguinte da roda (2026-09-06).
+                time.sleep(3)
+                _modelo_idx += 1
                 continue
             return {"severity": "erro", "finding": f"HTTP {e.code} ({modelo}): {corpo_erro}"}
         except Exception as exc:  # noqa: BLE001

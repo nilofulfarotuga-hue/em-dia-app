@@ -1,12 +1,12 @@
 # RELATÓRIO — Em Dia
 
-Missão `em-dia-missao-total-2026-09-05`. Começou às 22h20 de sexta, 5 de setembro. Este relatório fecha no sábado, 6 de setembro, à tarde. É para ser lido em voz alta, por isso está escrito corrido, sem tabelas.
+Missão `em-dia-missao-total-2026-09-05`. Começou às 22h20 de sexta, 5 de setembro. Este relatório vai até à noite de sábado, 6 de setembro. É para ser lido em voz alta, por isso está escrito corrido, sem tabelas.
 
 ---
 
 ## Primeiro, o que NÃO está feito
 
-A app ainda não está publicada na loja para toda a gente. Está no teste interno, que é o passo antes disso. Para ir para a loja a sério faltam quatro declarações do formulário da Google (segurança dos dados, classificação de conteúdo, público-alvo e como é que o revisor entra na app) e a resposta a uma coisa que só tu podes decidir.
+A app ainda não está publicada na loja para toda a gente. Está no teste interno, que é o passo antes disso. Para ir para a loja a sério faltam declarações do formulário da Google. A da segurança dos dados está escrita e a Google já a lê e valida, mas encravou numa pergunta que o modelo público dela não tem e cujos códigos de resposta a Google não publica em lado nenhum — testei vinte hipóteses contra a API e a Google recusou-as todas, e não invento uma. Resolve-se com um clique teu: exportar o ficheiro da consola. As outras três — classificação de conteúdo, público-alvo e como é que o revisor entra na app — não existem na API da Google, só no formulário da consola, por isso precisam de uma janela com browser aberta.
 
 As quatro assinaturas não foram criadas. A Google recusou, e a resposta dela foi esta, tal e qual: não é possível criar uma subscrição sem primeiro registar um perfil de pagamentos na conta de programador. Esse perfil pede dados fiscais, morada e conta bancária. É teu.
 
@@ -17,6 +17,30 @@ Não gravei o vídeo do fluxo completo na app instalada, porque o telemóvel nun
 E o domínio emdia.pt já é de outra empresa. O em-dia.pt está livre, mas comprar é pagamento teu.
 
 ---
+
+## O que se arranjou no sábado, depois de tu experimentares
+
+Disseste que não dava para entrar com o e-mail, e que o ecrã ficava preso. Estavas certo, e não era uma coisa só: eram três.
+
+A primeira, e a que te travava mesmo: o servidor mandava um código de **oito** números e o campo da app só deixava escrever **seis**. Nunca ias conseguir entrar. Tenho o e-mail das dez e cinquenta e nove guardado, com o código de oito números, como prova.
+
+A segunda: quando voltavas atrás para pedir outro código, o servidor recusa durante um minuto — e a app dizia apenas "não consegui entrar, vê se o e-mail está certo". Parecia que tinhas escrito o e-mail mal. Agora cada erro tem a sua frase, e um relógio diz quantos segundos faltam.
+
+A terceira só apareceu porque entrei mesmo na app, como uma pessoa qualquer: depois do login, se a conta não abrisse, ficava um símbolo a rodar para sempre e não havia por onde sair. Era a mesma cicatriz do Bora. Agora desiste ao fim de vinte segundos e mostra dois botões: tentar outra vez, e sair.
+
+Ainda a entrar a sério, apanhei uma quarta coisa que nada tinha que ver com o login: o painel anunciava "próximo prazo: daqui a trezentos e quarenta e oito dias" quando o próximo prazo era dia vinte desse mesmo mês. A culpa era de uma armadilha do Supabase — quando se pede uma lista "por ordem", ele devolve-a ao contrário se não lhe disserem o contrário. Isso estragava também a ordem dos guias, dos carros e de quatro tabelas do painel de administração. Está tudo corrigido, e há um teste que reprova quem voltar a cair nisso.
+
+Tudo isto foi provado a entrar de verdade no browser: pedi o código, escrevi os seis números, entrou, fiz as cinco perguntas do início e cheguei ao painel.
+
+## Uma auditoria de segurança que valeu a pena
+
+À noite passei a base de dados a pente fino com a ferramenta do próprio Supabase, e confirmei cada aviso com um pedido a sério — não acreditei em nenhum só porque um programa o disse.
+
+Encontrei duas portas abertas. A pior: qualquer pessoa com conta na app conseguia ler quanto a inteligência artificial nos custou e quantas conversas houve na plataforma toda. Entrei com uma conta normal de teste e recebi o número. Isso é informação do negócio e agora só o teu painel a vê — confirmei que continua a ver.
+
+A segunda: sem sessão nenhuma, bastava saber o número de conta de outra pessoa para descobrir que plano ela tinha. Agora responde "não tens permissão".
+
+Ficaram treze avisos por fechar, e cada um está explicado um a um no ficheiro de prova — nenhum é um buraco. Há também sessenta e seis avisos de desempenho que **não** toquei de propósito: são reescritas de regras de acesso, e uma regra de acesso mal escrita não fica lenta, fica aberta. Isso faz-se contigo acordado. A proposta já está escrita e verificada, à espera.
 
 ## O que está feito, e como se prova
 
@@ -52,7 +76,7 @@ A verdadeira causa era um erro de compilação num ficheiro do painel de adminis
 
 ## O que preciso de ti
 
-São doze coisas, e estão todas escritas com detalhe no ficheiro PENDENTE-DANILO. As quatro que valem mais são estas:
+Estão todas escritas com detalhe no ficheiro PENDENTE-DANILO. As que valem mais são estas:
 
 A primeira é aceitar os termos do Firebase. É um visto e um botão. Sem isso não há avisos no telemóvel.
 
@@ -61,6 +85,10 @@ A segunda é o perfil de pagamentos na Play. Sem ele não há assinaturas, e sem
 A terceira é dizer-me como queres que o revisor da Google entre na app. Hoje a entrada é por código enviado ao e-mail, e o revisor não tem acesso a esse e-mail. Ou faço uma entrada por palavra-passe só para a conta de revisão, ou ligo o "entrar com Google". As duas estão prontas a fazer, é escolheres.
 
 A quarta é o aviso do Supabase, que diz que o período de carência terminou e que os projetos podem parar de responder quando atingirem a cota. Isso afeta esta app e o Bora.
+
+A quinta apareceu no sábado à noite e é um clique: na consola da Play, exportar o ficheiro da segurança dos dados. Com ele fecho essa declaração com um comando.
+
+A sexta também é um clique, e é a que mais me solta as mãos: criar um token de acesso do Supabase e guardá-lo na pasta dos segredos. Sem ele não consigo pôr no servidor as correções das funções — está uma à espera, que faz o assistente trocar de modelo quando a Google diz que está cheia, em vez de responder com um erro.
 
 ---
 
