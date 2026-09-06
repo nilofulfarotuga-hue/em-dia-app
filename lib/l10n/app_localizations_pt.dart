@@ -328,7 +328,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get loginOndeEsta =>
-      'Se não vires o e-mail, procura no lixo (spam) e nas promoções.';
+      'Não vês o e-mail? Procura na pasta do lixo. Às vezes é para lá que ele vai.';
 
   @override
   String get sair => 'Sair';
@@ -3417,7 +3417,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get loginOndeEsta =>
-      'Se não achar o e-mail, procure no lixo eletrônico (spam) e em promoções.';
+      'Não achou o e-mail? Procure na pasta de lixo. Às vezes é para lá que ele vai.';
 
   @override
   String get sair => 'Sair';

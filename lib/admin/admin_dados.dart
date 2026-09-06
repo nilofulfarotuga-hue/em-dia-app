@@ -316,7 +316,7 @@ class AdminDados {
           DetalheUsuario(perfil: u.toMap(), obrigacoes: const [], rendimentos: const [], assinaturas: const [], conversas: const []);
     }
     final perfil = await sb.from('profiles').select().eq('user_id', userId).single();
-    final obrigacoes = await sb.from('obrigacoes').select().eq('user_id', userId).order('data_limite').limit(60);
+    final obrigacoes = await sb.from('obrigacoes').select().eq('user_id', userId).order('data_limite', ascending: true).limit(60);
     final rendimentos = await sb.from('rendimentos').select().eq('user_id', userId).order('mes', ascending: false).limit(24);
     final assinaturas = await sb.from('assinaturas').select().eq('user_id', userId).order('criado_em', ascending: false).limit(20);
     final conversas = await sb
@@ -390,7 +390,7 @@ class AdminDados {
       _falhaSePedido();
       return List.of(_regras);
     }
-    return _linhas(await sb.from('regras_legais').select().order('chave'));
+    return _linhas(await sb.from('regras_legais').select().order('chave', ascending: true));
   }
 
   Future<void> guardarRegra(Linha antes, Linha depois) async {
@@ -420,7 +420,7 @@ class AdminDados {
       _falhaSePedido();
       return List.of(_escaloes);
     }
-    return _linhas(await sb.from('irs_escaloes').select().order('ano', ascending: false).order('ordem'));
+    return _linhas(await sb.from('irs_escaloes').select().order('ano', ascending: false).order('ordem', ascending: true));
   }
 
   Future<void> guardarEscalao(Linha antes, Linha depois) async {
@@ -440,7 +440,7 @@ class AdminDados {
       _falhaSePedido();
       return List.of(_flags);
     }
-    return _linhas(await sb.from('feature_flags').select().order('chave'));
+    return _linhas(await sb.from('feature_flags').select().order('chave', ascending: true));
   }
 
   Future<void> guardarFlag(Linha antes, Linha depois) async {

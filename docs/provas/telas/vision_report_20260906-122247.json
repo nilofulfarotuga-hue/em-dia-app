@@ -1,0 +1,73 @@
+{
+  "data": "20260906-122247",
+  "modelo": "gemini-flash-latest",
+  "fotos": 8,
+  "contagem": {
+    "verde": 6,
+    "amarelo": 2,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã de verificação de código está limpo, legível e bem estruturado.",
+      "jargao": [],
+      "modelo": "gemini-flash-latest",
+      "foto": "login-codigo_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã de verificação de código está simples, bem espaçado e fácil de compreender.",
+      "jargao": [],
+      "modelo": "gemini-flash-latest",
+      "foto": "login-codigo_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã de verificação de código apresenta um aspeto limpo, claro e bem estruturado.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "login-codigo_grande_teclado_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã está limpo e bem estruturado, mas apresenta o termo técnico 'spam' entre parênteses sem uma explicação simples para o público menos digital.",
+      "jargao": [
+        "spam"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "login-codigo_grande_teclado_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está limpa e direitinha para meter o código.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "login-codigo_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está direitinho e limpo para pores o teu código.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "login-codigo_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto sobre 'lixo eletrônico' usa um termo pouco claro para cá.",
+      "jargao": [
+        "lixo eletrônico"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "login-codigo_medio_teclado_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está direitinho e pronto para meteres o código.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "login-codigo_medio_teclado_pt.png"
+    }
+  ]
+}

@@ -30,6 +30,12 @@ class ObrigacoesStore extends ChangeNotifier {
     _erro = erro;
   }
 
+  // CICATRIZ (2026-09-06): no cliente do Supabase, `.order('coluna')` sem mais
+  // nada devolve por ordem DECRESCENTE (`ascending` vale false por omissão em
+  // postgrest-dart). O painel mostrava «próximo prazo: em 348 dias, 20 de
+  // agosto de 2027» em vez do dia 20 deste mês, porque `proxima()` apanhava o
+  // primeiro de uma lista ao contrário. Daqui para a frente escreve-se sempre
+  // `ascending:` à mão, mesmo quando é `true`.
   Future<void> carregar(String userId) async {
     _aCarregar = true;
     notifyListeners();
@@ -38,7 +44,7 @@ class ObrigacoesStore extends ChangeNotifier {
           .from('obrigacoes')
           .select()
           .eq('user_id', userId)
-          .order('data_limite');
+          .order('data_limite', ascending: true);
       _itens = (rows as List).map((m) => ObrigacaoItem.fromMap(Map<String, dynamic>.from(m as Map))).toList();
       _erro = null;
     } catch (e) {
@@ -131,9 +137,13 @@ class ObrigacoesStore extends ChangeNotifier {
   List<ObrigacaoItem> doMes(DateTime hoje) => _itens
       .where((o) => o.dataLimite.year == hoje.year && o.dataLimite.month == hoje.month)
       .toList();
+  /// A que vence primeiro. Escolhe pela data, não pela posição na lista —
+  /// assim continua certa mesmo que a lista venha do servidor ao contrário
+  /// (ver a cicatriz do `.order` no topo deste ficheiro).
   ObrigacaoItem? proxima(DateTime hoje) {
-    final p = _itens.where((o) => o.pendente && !o.passou(hoje)).toList();
-    return p.isEmpty ? null : p.first;
+    final p = _itens.where((o) => o.pendente && !o.passou(hoje));
+    if (p.isEmpty) return null;
+    return p.reduce((a, b) => a.dataLimite.isAfter(b.dataLimite) ? b : a);
   }
 }
 
@@ -251,9 +261,9 @@ class CarrosStore extends ChangeNotifier {
 
   Future<void> carregar(String userId) async {
     try {
-      final rows = await sb.from('carros').select().eq('user_id', userId).eq('ativo', true).order('criado_em');
+      final rows = await sb.from('carros').select().eq('user_id', userId).eq('ativo', true).order('criado_em', ascending: true);
       _carros = (rows as List).map((m) => Carro.fromMap(Map<String, dynamic>.from(m as Map))).toList();
-      final ab = await sb.from('abastecimentos').select().eq('user_id', userId).order('data');
+      final ab = await sb.from('abastecimentos').select().eq('user_id', userId).order('data', ascending: true);
       _abastecimentos.clear();
       for (final m in ab as List) {
         final a = Abastecimento.fromMap(Map<String, dynamic>.from(m as Map));

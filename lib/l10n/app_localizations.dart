@@ -633,7 +633,7 @@ abstract class AppLocalizations {
   /// No description provided for @loginOndeEsta.
   ///
   /// In pt, this message translates to:
-  /// **'Se não vires o e-mail, procura no lixo (spam) e nas promoções.'**
+  /// **'Não vês o e-mail? Procura na pasta do lixo. Às vezes é para lá que ele vai.'**
   String get loginOndeEsta;
 
   /// No description provided for @sair.

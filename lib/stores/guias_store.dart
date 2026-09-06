@@ -29,7 +29,7 @@ class GuiasStore extends ChangeNotifier {
     notifyListeners();
     try {
       if (!temChaves) throw StateError('sem chaves do servidor');
-      final rows = await sb.from('guias').select().eq('publicado', true).order('ordem');
+      final rows = await sb.from('guias').select().eq('publicado', true).order('ordem', ascending: true);
       final lidos = (rows as List).map((m) => Guia.fromMap(Map<String, dynamic>.from(m as Map))).toList();
       _itens = lidos.isEmpty ? guiasLocais() : lidos;
       _erro = null;
