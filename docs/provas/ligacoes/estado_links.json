@@ -1,0 +1,299 @@
+{
+ "dimensao": "estado_links",
+ "achado": {
+  "dimensao": "Ligações diretas (deep links) para as páginas do Estado português — Portal das Finanças (AT) e Segurança Social Direta — para pôr um botão em cada obrigação do app \"Em Dia\"",
+  "resumo": "Do lado da AT (Portal das Finanças) os deep links existem e funcionam: cada obrigação tem um URL próprio e, quando a pessoa não tem sessão, o portal reencaminha para www.acesso.gov.pt guardando o caminho no parâmetro \"path=\", ou seja, depois de entrar cai na página certa. Retirei a lista dos URLs do mapa do site oficial (https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap, HTTP 200, 516 KB, servido em HTML puro), que é a fonte mais fiável e serve também de vigia automática. Do lado da Segurança Social é o contrário: em 2026 o app.seg-social.pt já reencaminha (301) para www.seg-social.pt/ptss/, a área autenticada vive em /ptss/pssd/home?dswid=<número da janela> gerado por sessão, e o login tem reCAPTCHA — logo NÃO há deep link estável para a declaração trimestral nem para a conta corrente. Aviso grande e provado: tanto a AT como a Segurança Social respondem \"tudo bem\" a caminhos inventados — a AT devolve 302 para o login mesmo para /recibos/portal/xxxx-nao-existe-zzz, e a Segurança Social devolve 200 para /ptss/pssd/menu/xpto-nao-existe-zzz999. Portanto um health-check por código HTTP fica verde para sempre e mente. A deteção de link morto tem de ser feita por diferença ao mapa do site da AT, não por status code. As páginas novas são todas responsivas (têm meta viewport); a exceção é o portal antigo em main.jsp (notas de cobrança), que não tem viewport nenhum e fica mau no telemóvel.",
+  "factos": [
+   {
+    "facto": "O mapa do site oficial da AT é servido em HTML puro (HTTP 200, 516083 bytes, text/html) e contém todos os deep links com o respetivo rótulo. É a única fonte de verdade que se pode raspar e comparar automaticamente para detetar links mortos.",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Os deep links da AT preservam o destino no login: pedir https://irs.portaldasfinancas.gov.pt/recibos/portal/emitir sem sessão devolve 302 para https://www.acesso.gov.pt/v2/loginForm?partID=SIRE&path=/recibos/portal/emitir. Depois de autenticar, a pessoa cai na página certa. Confirmado por curl para os 16 URLs testados.",
+    "fonte_url": "https://irs.portaldasfinancas.gov.pt/recibos/portal/emitir",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "FALSO POSITIVO PROVADO na AT: https://irs.portaldasfinancas.gov.pt/recibos/portal/xxxx-nao-existe-zzz devolve 302 para o login com partID=SIRE, exatamente igual a um URL válido. E https://faturas.portaldasfinancas.gov.pt/zzzNaoExiste.action devolve 200. Um teste de vida por código HTTP fica verde num link já morto.",
+    "fonte_url": "https://irs.portaldasfinancas.gov.pt/recibos/portal/xxxx-nao-existe-zzz",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "FALSO POSITIVO PROVADO na Segurança Social: https://www.seg-social.pt/ptss/pssd/menu/xpto-nao-existe-zzz999 devolve HTTP 200 com 12970 bytes e <title>Segurança Social Direta</title> — a mesma casca que um caminho verdadeiro (carreira-contributiva: 200, 13074 bytes, mesmo title). Qualquer caminho inventado passa no teste.",
+    "fonte_url": "https://www.seg-social.pt/ptss/pssd/menu/xpto-nao-existe-zzz999",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O antigo endereço da Segurança Social Direta mudou: https://app.seg-social.pt/ptss/ devolve 301 para https://www.seg-social.pt/ptss/, e https://www.seg-social.pt/ devolve 302 para https://www.seg-social.pt/ptss/. As páginas públicas antigas também migraram: https://www.seg-social.pt/trabalhadores-independentes acaba em https://www.seg-social.pt/ptss/pssd/home?r=%2Ftrabalhadores-independentes%2F&dswid=-7357.",
+    "fonte_url": "https://www.seg-social.pt/ptss/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A área autenticada da Segurança Social Direta é uma aplicação JSF/PrimeFaces com estado: o formulário da própria página aponta para action=\"/ptss/pssd/home?dswid=-4131\". O dswid é um identificador de janela gerado por sessão, logo um deep link guardado no app não abre o ecrã certo noutra sessão.",
+    "fonte_url": "https://www.seg-social.pt/ptss/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O login da Segurança Social é um CAS em https://app.seg-social.pt/sso/login (HTTP 200) e carrega https://www.google.com/recaptcha/api.js — tem reCAPTCHA. Nenhuma automatização de login é possível nem admissível.",
+    "fonte_url": "https://app.seg-social.pt/sso/login",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Emitir fatura, fatura-recibo ou recibo verde: https://irs.portaldasfinancas.gov.pt/recibos/portal/emitir (rótulo \"Emitir\" no mapa do site). O menu clássico expõe ainda os dois caminhos específicos https://irs.portaldasfinancas.gov.pt/recibos/portal/emitirrecibo e https://irs.portaldasfinancas.gov.pt/recibos/portal/emitirfatura.",
+    "fonte_url": "https://www.portaldasfinancas.gov.pt/pt/Pat/menu.action?pai=5406",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Consultar recibos verdes já emitidos: https://irs.portaldasfinancas.gov.pt/recibos/portal/consultar (rótulo \"Consultar\", partID=SIRE). Há ainda https://irs.portaldasfinancas.gov.pt/recibos/portal/sempreenchimento para obter/recolher sem preenchimento.",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "e-fatura, lado do consumidor (validar despesas): https://faturas.portaldasfinancas.gov.pt/consultarDocumentosAdquirente.action e o painel https://faturas.portaldasfinancas.gov.pt/painelAdquirente.action; registar uma fatura em falta em https://faturas.portaldasfinancas.gov.pt/registarDocumentoAdquirenteForm.action. Todos com partID=EFPF.",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Despesas afetas à atividade (o que interessa mesmo a quem está no regime simplificado, e não as deduções pessoais): https://irs.portaldasfinancas.gov.pt/app/dashboard-regime-simplificado, rótulo oficial \"Consultar Despesas Afetas à Atividade\" (partID=M3SV).",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Entregar o IRS Modelo 3: https://irs.portaldasfinancas.gov.pt/escolherModoEntregaIRS.action (partID=M3SV). A aplicação do IRS é https://irs.portaldasfinancas.gov.pt/app/home, o IRS automático https://irs.portaldasfinancas.gov.pt/app/irs-automatico e consultar a declaração https://irs.portaldasfinancas.gov.pt/app/consulta.",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Declaração de início, alteração e cessação de atividade: https://sitfiscal.portaldasfinancas.gov.pt/atividade/atividade/entregar (partID=DAPF). Consultar as declarações já entregues: https://sitfiscal.portaldasfinancas.gov.pt/atividade/atividade/consultardeclaracoes.",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Pagamentos por conta das categorias A/B/F/G/H: https://irs.portaldasfinancas.gov.pt/pagantah/listaPedidos/entrar (partID=PCAH), rótulo \"Submissão de Documento de Pagamento\". A raiz é https://irs.portaldasfinancas.gov.pt/pagantah/.",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Ver o que está por pagar e tirar a referência: https://sitfiscal.portaldasfinancas.gov.pt/inffin/pagamentosEmFalta.html (partID=DFCP) e https://sitfiscal.portaldasfinancas.gov.pt/inffin/pagamentosDecorrer.html. Visão geral: https://sitfiscal.portaldasfinancas.gov.pt/integrada (partID=SFIC). Plano de prestações: https://sitfiscal.portaldasfinancas.gov.pt/planosprestacionais/registarsimular/listaNotasCobranca.",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A página \"Consultar Notas de Cobrança\" é do portal antigo: https://www.portaldasfinancas.gov.pt/pt/main.jsp?body=/ca/notasCobrancaForm.jsp. Não tem meta viewport nenhuma (verificado por curl) e usa larguras fixas em píxeis — fica mau no telemóvel. Além disso é a via do IMI/património, não do IRS.",
+    "fonte_url": "https://www.portaldasfinancas.gov.pt/pt/main.jsp?body=/ca/notasCobrancaForm.jsp",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "IUC: consultar em https://sitfiscal.portaldasfinancas.gov.pt/iuc/consultarIUC/consultarIUC e emitir o documento de pagamento do ano corrente em https://sitfiscal.portaldasfinancas.gov.pt/iuc/entregarIUC/entregarIUC (anos anteriores: .../entregarIUCAnosAnt; veículos cancelados: .../entregarIUCCancelados). Raiz: https://sitfiscal.portaldasfinancas.gov.pt/iuc, partID=LIUC.",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "ATENÇÃO: https://iuc.portaldasfinancas.gov.pt/ NÃO responde (curl devolve código 000, falha de ligação). Se alguém tiver esse endereço em memória de versões antigas, está morto — o IUC vive agora em sitfiscal.portaldasfinancas.gov.pt/iuc.",
+    "fonte_url": "https://iuc.portaldasfinancas.gov.pt/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Segurança Social: NÃO existe URL público e estável para o ecrã da declaração trimestral, da conta corrente, da isenção nem da alteração de escalão. Só existem páginas informativas renderizadas no cliente, como https://www.seg-social.pt/ptss/pssd/menu/trabalho/remuneracoes-contribuicoes/trabalhadores-independentes e https://www.seg-social.pt/ptss/pssd/menu/trabalho/remuneracoes-contribuicoes/carreira-contributiva. Digo-o com estas palavras: o deep link para o formulário não está publicado.",
+    "fonte_url": "https://www.seg-social.pt/ptss/pssd/menu/trabalho/remuneracoes-contribuicoes/trabalhadores-independentes",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O caminho dentro da Segurança Social Direta, em palavras, vem da documentação oficial: Conta Corrente » Posição Atual » Valores a Pagar » Contribuições Correntes (as em atraso ficam no separador Contribuições em Dívida). O débito direto ativa-se no menu Conta-Corrente, opção \"Autorizar débito direto para pagamento de contribuições\".",
+    "fonte_url": "https://sisscontent.seg-social.pt/documents/10152/13523/N47seguranca_social_direta/9d67a026-1245-4c4e-a76f-490a4777d537",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Prazos da declaração trimestral: até ao último dia de janeiro, abril, julho e outubro, cobrindo os três meses anteriores; fora de prazo dá coima de 50 a 250 euros. As contribuições pagam-se entre o dia 10 e o dia 20 do mês seguinte.",
+    "fonte_url": "https://www.seg-social.pt/ptss/pssd/noticias/trabalhadores-independentes-entrega-declaracao-trimestral",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Quem tem contabilidade organizada não entrega a declaração trimestral — a Segurança Social recebe os dados da AT automaticamente. Também fica isento de declarar quem está isento de contribuir por acumular com pensão. O botão não deve aparecer a toda a gente.",
+    "fonte_url": "https://www.seg-social.pt/ptss/pssd/menu/trabalho/remuneracoes-contribuicoes/trabalhadores-independentes",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Responsividade no telemóvel: acesso.gov.pt, faturas.portaldasfinancas.gov.pt, sitfiscal.portaldasfinancas.gov.pt e www.seg-social.pt/ptss/ têm todos meta viewport width=device-width. Mas o e-fatura usa maximum-scale=1 e o login da Segurança Social usa maximum-scale=1.0, user-scalable=0 — bloqueiam o zoom com os dedos, o que é mau para pessoas mais velhas ou com vista fraca.",
+    "fonte_url": "https://faturas.portaldasfinancas.gov.pt/",
+    "confianca": "alta",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "Cada aplicação da AT tem o seu próprio partID no reencaminhamento para o login, e ele é estável por aplicação: SIRE (recibos verdes), EFPF (e-fatura), M3SV (IRS), DAPF (declarações de atividade), PCAH (pagamentos por conta), DFCP (situação de pagamentos), LIUC (IUC), SFIC (situação fiscal integrada). Serve de assinatura para confirmar que o botão continua a apontar para a aplicação certa.",
+    "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "confianca": "alta",
+    "decide_implementacao": true
+   }
+  ],
+  "urls_ou_endpoints": [
+   {
+    "para_que": "Emitir fatura-recibo / recibo verde (o botão mais usado do app)",
+    "url": "https://irs.portaldasfinancas.gov.pt/recibos/portal/emitir",
+    "metodo": "GET (abrir no browser externo)",
+    "notas": "302 para acesso.gov.pt com partID=SIRE e path preservado. Funciona bem no telemóvel. Texto para a pessoa: \"Aqui fazes o teu recibo. Escreves o número de quem te pagou, quanto recebeste e o que fizeste. O computador faz as contas do imposto sozinho. No fim carregas em Emitir e guardas o PDF.\" Alternativas específicas: /recibos/portal/emitirrecibo e /recibos/portal/emitirfatura."
+   },
+   {
+    "para_que": "Consultar recibos verdes já emitidos",
+    "url": "https://irs.portaldasfinancas.gov.pt/recibos/portal/consultar",
+    "metodo": "GET",
+    "notas": "partID=SIRE. Responsivo. Texto: \"Aqui vês todos os recibos que já fizeste. Escolhes o ano e carregas em Pesquisar. Podes voltar a descarregar qualquer um, ou anular um que esteja errado.\""
+   },
+   {
+    "para_que": "Validar faturas no e-fatura (despesas pessoais)",
+    "url": "https://faturas.portaldasfinancas.gov.pt/consultarDocumentosAdquirente.action",
+    "metodo": "GET",
+    "notas": "partID=EFPF. Responsivo mas bloqueia o zoom (maximum-scale=1). Texto: \"Aqui aparecem as compras que fizeste com o teu número de contribuinte. Se alguma estiver sem categoria, escolhes a categoria certa. Isso faz-te pagar menos imposto no IRS.\" Painel geral: https://faturas.portaldasfinancas.gov.pt/painelAdquirente.action"
+   },
+   {
+    "para_que": "Registar uma fatura que a loja não comunicou",
+    "url": "https://faturas.portaldasfinancas.gov.pt/registarDocumentoAdquirenteForm.action",
+    "metodo": "GET",
+    "notas": "partID=EFPF. Texto: \"Se compraste uma coisa e a fatura não apareceu sozinha, metes aqui os dados do papel que tens na mão: o número de contribuinte da loja, a data e o valor.\""
+   },
+   {
+    "para_que": "Ver as despesas da atividade (regime simplificado) — o que conta mesmo para quem passa recibos verdes",
+    "url": "https://irs.portaldasfinancas.gov.pt/app/dashboard-regime-simplificado",
+    "metodo": "GET",
+    "notas": "partID=M3SV. Texto: \"Aqui vês as despesas do teu trabalho: combustível, o carro, o telemóvel. Dizes quanto de cada uma é para o trabalho e quanto é para ti. Isto conta para pagares menos imposto.\""
+   },
+   {
+    "para_que": "Entregar a declaração de IRS (Modelo 3)",
+    "url": "https://irs.portaldasfinancas.gov.pt/escolherModoEntregaIRS.action",
+    "metodo": "GET",
+    "notas": "partID=M3SV. Responsivo. Texto: \"Aqui entregas o IRS uma vez por ano. Escolhes o ano, confirmas se os teus dados e a tua família estão certos, e vês se os recibos que fizeste já lá estão. Depois carregas em Simular para ver quanto pagas ou recebes, e só no fim em Entregar.\" Ver depois em https://irs.portaldasfinancas.gov.pt/app/consulta"
+   },
+   {
+    "para_que": "Declaração de início, alteração ou cessação de atividade",
+    "url": "https://sitfiscal.portaldasfinancas.gov.pt/atividade/atividade/entregar",
+    "metodo": "GET",
+    "notas": "partID=DAPF. Responsivo. Texto: \"Aqui dizes às Finanças que vais começar a trabalhar por conta própria, ou que vais parar. Escolhes o que fazes na lista de profissões, dizes quanto pensas ganhar no ano e a partir de que dia. É de graça e é rápido.\" Consultar: https://sitfiscal.portaldasfinancas.gov.pt/atividade/atividade/consultardeclaracoes"
+   },
+   {
+    "para_que": "Pagamentos por conta (categorias A/B/F/G/H) — gerar o documento de pagamento",
+    "url": "https://irs.portaldasfinancas.gov.pt/pagantah/listaPedidos/entrar",
+    "metodo": "GET",
+    "notas": "partID=PCAH. Texto: \"Aqui pedes o papel para pagar o adiantamento do imposto. Escolhes o ano e o valor, e o portal dá-te uma referência de Multibanco para pagares no telemóvel.\""
+   },
+   {
+    "para_que": "Ver tudo o que está por pagar às Finanças e obter a referência",
+    "url": "https://sitfiscal.portaldasfinancas.gov.pt/inffin/pagamentosEmFalta.html",
+    "metodo": "GET",
+    "notas": "partID=DFCP. Responsivo. Texto: \"Aqui está a lista do que ainda deves às Finanças. Carregas em cima de cada linha e sai uma referência de Multibanco com a entidade, a referência e o valor. Pagas pelo banco do telemóvel.\" Visão geral em https://sitfiscal.portaldasfinancas.gov.pt/integrada"
+   },
+   {
+    "para_que": "Notas de cobrança (portal antigo — usar só se for mesmo preciso)",
+    "url": "https://www.portaldasfinancas.gov.pt/pt/main.jsp?body=/ca/notasCobrancaForm.jsp",
+    "metodo": "GET",
+    "notas": "NÃO tem meta viewport, não é responsivo, fica mau no telemóvel. É a via do IMI/património, não do IRS. Preferir sempre /inffin/pagamentosEmFalta.html."
+   },
+   {
+    "para_que": "Consultar o IUC do veículo",
+    "url": "https://sitfiscal.portaldasfinancas.gov.pt/iuc/consultarIUC/consultarIUC",
+    "metodo": "GET",
+    "notas": "partID=LIUC. Responsivo. Texto: \"Aqui vês o imposto do teu carro. Escreves a matrícula e ele mostra-te se já pagaste este ano e quanto foi.\""
+   },
+   {
+    "para_que": "Emitir o DUC do IUC (documento de pagamento do ano corrente)",
+    "url": "https://sitfiscal.portaldasfinancas.gov.pt/iuc/entregarIUC/entregarIUC",
+    "metodo": "GET",
+    "notas": "partID=LIUC. Texto: \"Aqui pagas o imposto do carro. Escreves a matrícula, confirmas os dados do carro e sai um papel com a referência de Multibanco. Paga-se no mês do aniversário da matrícula.\" Anos anteriores: .../entregarIUCAnosAnt"
+   },
+   {
+    "para_que": "Segurança Social Direta — entrada única (declaração trimestral, contribuições, carreira, isenção)",
+    "url": "https://www.seg-social.pt/ptss/",
+    "metodo": "GET",
+    "notas": "É o ÚNICO endereço estável. Não há deep link para os ecrãs de dentro: a área autenticada é /ptss/pssd/home?dswid=<id gerado por sessão>. Responsivo, mas o login (app.seg-social.pt/sso/login) bloqueia o zoom e tem reCAPTCHA. O app tem de levar a pessoa aqui e mostrar o caminho no ecrã, passo a passo."
+   },
+   {
+    "para_que": "Página informativa oficial dos trabalhadores independentes (para consulta, não é formulário)",
+    "url": "https://www.seg-social.pt/ptss/pssd/menu/trabalho/remuneracoes-contribuicoes/trabalhadores-independentes",
+    "metodo": "GET",
+    "notas": "Conteúdo carregado por JavaScript — não dá para raspar com um GET simples. Serve como botão de \"saber mais\"."
+   },
+   {
+    "para_que": "Página informativa oficial da carreira contributiva",
+    "url": "https://www.seg-social.pt/ptss/pssd/menu/trabalho/remuneracoes-contribuicoes/carreira-contributiva",
+    "metodo": "GET",
+    "notas": "Idem. O extrato real só se vê dentro da Segurança Social Direta, com sessão iniciada."
+   },
+   {
+    "para_que": "Mapa do site da AT — fonte de vigia automática dos links",
+    "url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+    "metodo": "GET (raspar semanalmente e comparar)",
+    "notas": "HTTP 200, 516 KB, HTML servido pelo servidor, com <a href> e rótulo de cada serviço. É a ÚNICA forma fiável de detetar que um botão morreu, porque o código HTTP mente."
+   }
+  ],
+  "bloqueios": [
+   "Login obrigatório em todos os serviços: NIF + senha das Finanças ou Chave Móvel Digital. O app nunca deve pedir nem guardar estas credenciais — abre o browser e a pessoa entra sozinha.",
+   "O login da Segurança Social Direta tem reCAPTCHA (carrega google.com/recaptcha/api.js). Automatizar é impossível e não se deve tentar.",
+   "A área autenticada da Segurança Social usa um identificador de janela (dswid) gerado a cada sessão — não existe deep link guardável para a declaração trimestral, conta corrente, isenção ou escalão. Só se pode abrir a porta da frente.",
+   "Pedir isenção de contribuições e alterar o escalão / base de incidência são decisões com efeito no dinheiro e na proteção social da pessoa (subsídio de doença, reforma). O app pode lembrar e explicar, mas quem decide e submete é a pessoa.",
+   "Aderir ao débito direto exige IBAN e autorização do titular dentro da Segurança Social Direta — ação humana, nunca do app.",
+   "O primeiro registo no Portal das Finanças exige uma senha que chega por carta ao domicílio fiscal. Para um imigrante brasileiro recém-chegado isto pode demorar semanas e é o maior travão real ao onboarding — vale a pena o app avisar disto logo no início e sugerir a Chave Móvel Digital como alternativa.",
+   "Não vi nenhum destes ecrãs por dentro: todos exigem sessão. As descrições do que a pessoa preenche vêm da documentação oficial e dos rótulos do mapa do site, não de observação direta."
+  ],
+  "recomendacao": "Implementar em duas velocidades, porque os dois lados do Estado não são iguais.\n\nLADO DAS FINANÇAS — botão direto, funciona já. Guardar os 12 URLs numa tabela `obligation_links` no Supabase (colunas: chave, url, part_id, responsivo, texto_ajuda, verificado_em) em vez de os cravar no código Dart, para se poderem corrigir sem lançar nova versão na loja. Abrir sempre com `url_launcher` em `LaunchMode.externalApplication`, nunca num WebView embutido: o login do Estado usa cookies de sessão e Chave Móvel Digital, e num WebView isso parte-se e ainda dá ao utilizador a impressão de que está a dar a senha ao app. Usar `/recibos/portal/emitir` como botão principal da app inteira.\n\nLADO DA SEGURANÇA SOCIAL — botão único mais ecrã-guia. Como não existe deep link, o padrão é: um botão \"Abrir a Segurança Social Direta\" que vai a `https://www.seg-social.pt/ptss/`, e imediatamente antes um ecrã do próprio app com o caminho em três passos grandes e ilustrados (\"1. Entra com o teu número da Segurança Social. 2. No menu do lado esquerdo carrega em Trabalhador Independente. 3. Carrega em Declaração Trimestral de Rendimentos.\"). Para pagar: \"Conta Corrente » Posição Atual » Valores a Pagar\". Não prometer no texto do app que o botão abre o formulário — não abre, e essa promessa quebrada custa confiança.\n\nVIGIA DOS LINKS — e isto não é opcional. Está provado que os dois portais devolvem sucesso para caminhos inventados, portanto um monitor por código HTTP fica verde para sempre num link morto. O que funciona: uma tarefa semanal (Edge Function agendada) que descarrega `https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap`, extrai todos os `<a href>` e compara com a coluna `url` da tabela. Alerta quando um URL do app deixa de aparecer no mapa do site. Duas travas de sanidade: se o mapa vier com menos de 300 KB ou menos de 200 links, não é uma mudança do Estado, é o download que falhou — não apagar nada nem alarmar. Segunda camada barata: confirmar que o 302 continua a apontar para `www.acesso.gov.pt` com o `partID` esperado (SIRE, EFPF, M3SV, DAPF, PCAH, DFCP, LIUC, SFIC); se o partID mudar, a aplicação por trás foi substituída. Para a Segurança Social não há vigia automática possível — marcar revisão humana trimestral, alinhada com os prazos de janeiro, abril, julho e outubro.\n\nDETALHES QUE MUDAM A EXPERIÊNCIA — não usar `https://www.portaldasfinancas.gov.pt/pt/main.jsp?body=/ca/notasCobrancaForm.jsp` como botão de pagamentos: não tem viewport, fica ilegível no telemóvel e é a via do IMI. O botão certo para \"quanto devo e como pago\" é `/inffin/pagamentosEmFalta.html`. Apagar de qualquer nota ou memória antiga o endereço `iuc.portaldasfinancas.gov.pt` — está morto (ligação recusada); o IUC é agora `sitfiscal.portaldasfinancas.gov.pt/iuc`. E não mostrar o botão da declaração trimestral a quem tem contabilidade organizada, porque essa pessoa não a entrega — a Segurança Social recebe os dados direto das Finanças; pôr uma pergunta no onboarding (\"Tens contabilista com contabilidade organizada?\") resolve isto e evita fazer a pessoa ir preencher uma coisa que não lhe compete.\n\nPARA O DANILO — uma decisão só tua: no ecrã-guia da Segurança Social, queres que o app diga explicitamente os prazos (último dia de janeiro, abril, julho e outubro) e a coima de 50 a 250 euros? Assusta, mas é o que faz a pessoa carregar no botão. Eu meto, mas quem decide o tom da marca és tu."
+ },
+ "veredictos": [
+  {
+   "facto": "O mapa do site oficial da AT (https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap) é servido em HTML puro (HTTP 200, 516083 bytes, text/html) e contém todos os deep links com o respetivo rótulo, sendo a única fonte de verdade que se pode raspar e comparar automaticamente para detetar links mortos.",
+   "confirmado": false,
+   "fonte_url": "https://sitfiscal.portaldasfinancas.gov.pt/geral/siteMap",
+   "correcao": "A primeira metade confirma-se; a segunda metade — a que interessa para o \"estado_links\" — é falsa.\n\nCONFIRMADO (medido hoje, 2026-09-06):\n- curl devolve exatamente: http=200, size=516083, content_type=text/html; charset=UTF-8, redirects=0. Os números batem certo ao byte.\n- É mesmo HTML servido pelo servidor, sem login e sem JavaScript. Contém 1488 tags <a>, das quais 1288 apontam para domínios portaldasfinancas.gov.pt, e 1281 dessas têm rótulo em texto (só 7 são decorativas). São 1270 URLs únicos, espalhados por 16 subdomínios da AT (oa 267, aduaneiro 256, www 147, sitfiscal 146, iva 103, imoveis 103, justica 71, irs 50, processos 41, faturas 32, irc 23, etc.).\n- Os deep links críticos para trabalhadores a recibos verdes existem mesmo e com rótulo, por exemplo //irs.portaldasfinancas.gov.pt/recibos/portal/emitir (\"Emitir\"), /recibos/portal/consultar (\"Consultar\") e /recibos/portal/sempreenchimento, dentro da secção \"Faturas e Recibos\".\n\nDERRUBADO — não serve para detetar links mortos:\nEste é o erro que estraga a decisão. Todos os serviços úteis estão atrás do login, e o portão de autenticação responde ANTES do routing. Testei um URL que INVENTEI e que garantidamente não existe:\n- https://irs.portaldasfinancas.gov.pt/recibos/portal/ESTE-LINK-NAO-EXISTE-XPTO123 → 302 → www.acesso.gov.pt/v2/loginForm?partID=SIRE&path=/recibos/portal/ESTE-LINK-NAO-EXISTE-XPTO123 → 200.\n- https://irs.portaldasfinancas.gov.pt/recibos/portal/emitir (real) → 302 → www.acesso.gov.pt/v2/loginForm?partID=SIRE&path=/recibos/portal/emitir → 200.\nAssinatura HTTP idêntica. O link falso e o link verdadeiro são indistinguíveis pelo código de estado. Pior ainda: https://faturas.portaldasfinancas.gov.pt/naoExisteXpto999.action devolve 200 logo à primeira, sem sequer redirecionar — uma action inexistente responde 200, nunca 404. Um verificador automático que compare status codes vai dar \"tudo verde\" para sempre, incluindo para links já mortos. É exatamente o falso positivo que a regra da casa avisa: um 200 não prova nada por dentro.\n\nDERRUBADO — não é a \"única fonte de verdade\":\nNão há como auditar exaustividade e não há fonte alternativa publicada para cruzar: https://www.portaldasfinancas.gov.pt/robots.txt devolve 404 e https://www.portaldasfinancas.gov.pt/sitemap.xml devolve 404 (só https://sitfiscal.portaldasfinancas.gov.pt/robots.txt devolve 200). A AT não publica um sitemap.xml nem um índice de serviços em formato de dados. Ou seja: a página é a melhor fonte disponível, mas nada prova que está completa, e não existe segunda fonte oficial para a validar.\n\nARMADILHA DE IMPLEMENTAÇÃO (grave, quase me enganou a mim):\n1056 dos 1288 links da AT são protocol-relative, no formato //host/caminho, e apenas 232 são https:// absolutos. Um raspador que procure \"https://\" perde 82% dos links. Na minha primeira contagem apanhei só 9 links para sitfiscal; contando bem são 146. Quem escrever o raspador tem de normalizar // para https:// antes de contar seja o que for.\n\nO QUE FAZER EM VEZ DISSO:\nRaspar a página serve para extrair o catálogo de URLs e rótulos (isso funciona bem e é estável). Não serve para o campo \"estado_links\". Para saber se um link morreu é preciso verificar o conteúdo, não o invólucro: seguir o redirect e confirmar que o parâmetro path= devolvido pelo acesso.gov.pt corresponde ao caminho pedido E que o partID é o esperado para aquele serviço, ou então marcar o estado como \"não verificável automaticamente\" e depender de revisão humana periódica. Recomendo guardar o hash do bloco HTML do mapa e alertar quando MUDA, em vez de tentar afirmar que cada link está vivo.\n\nPREÇOS: não se aplica. O Portal das Finanças é um serviço público do Estado português, sem plano pago nem nível gratuito; não há página de preços oficial a confirmar."
+  },
+  {
+   "facto": "estado_links: \"Os deep links da AT preservam o destino no login: pedir https://irs.portaldasfinancas.gov.pt/recibos/portal/emitir sem sessão devolve 302 para https://www.acesso.gov.pt/v2/loginForm?partID=SIRE&path=/recibos/portal/emitir. Depois de autenticar, a pessoa cai na página certa. Confirmado por curl para os 16 URLs testados.\"",
+   "confirmado": false,
+   "correcao": "A ideia geral está certa, mas os detalhes que importam para implementar estão errados. Seis problemas, todos com saída real (testes a 2026-09-06).\n\n1) O URL de destino do 302 NÃO é o que está escrito. O cabeçalho real é:\nLocation: https://www.acesso.gov.pt/v2/loginForm;sireinter_JSessionID=fAV3CP6pDO-XvF7H53w3hplzJ00mvfjOEMVadIyFPV2c4_MDVhen!1537252851!2028210987?partID=SIRE&path=/recibos/portal/emitir\nHá um parâmetro de sessão (;sireinter_JSessionID=...) colado ao caminho, e ele muda a cada pedido (em três chamadas seguidas deu três valores diferentes). Conclusão prática: a app NUNCA pode ter o URL de login gravado no código. Tem de abrir o URL de destino da AT e deixar a AT redirecionar.\n\n2) O partID não é sempre SIRE. Depende do subsistema:\n- https://irs.portaldasfinancas.gov.pt/recibos/portal/emitir -> partID=SIRE\n- https://sitfiscal.portaldasfinancas.gov.pt/geral/dashboard -> Location: https://www.acesso.gov.pt/v2/loginForm?partID=PFAP&path=/geral/dashboard\nExiste ainda um terceiro (https://www.acesso.gov.pt/loginRedirectForm?partID=PFIN). Escrever \"os deep links da AT usam SIRE\" é falso.\n\n3) Nem todos os deep links redirecionam — e é aqui que o teste por curl mente. Este devolveu HTTP 200, não 302:\nhttps://sitfiscal.portaldasfinancas.gov.pt/dividas/consultarSituacao\nCorpo: \"<title>Aplicação Inexistente</title> ... ADC O pedido é inválido.\"\nOu seja, 200 com página de erro. Uma varredura por curl que conte 2xx/3xx como \"funciona\" marca este URL como bom. Se os \"16 URLs testados\" foram validados por código HTTP, o resultado não vale — há que ler o corpo.\n\n4) A query string é deitada fora. Pedi https://irs.portaldasfinancas.gov.pt/recibos/portal/emitir?x=1 e o retorno foi path=/recibos/portal/emitir, sem o ?x=1. Qualquer deep link que dependa de parâmetros (ex.: pré-preencher NIF do cliente ou o mês) perde-os no login.\n\n5) A parte decisiva — \"depois de autenticar, a pessoa cai na página certa\" — NÃO foi verificada e não é verificável por curl. O curl só prova que o valor chega ao formulário. Prova parcial que consegui: o HTML de https://www.acesso.gov.pt/v2/loginForm?partID=SIRE&path=/recibos/portal/emitir contém, num objeto JavaScript, path: `/recibos/portal/emitir` — o valor é mesmo transportado. Sem path, o mesmo campo fica com o valor por defeito path: `recibos`. Mas o salto final acontece depois de autenticação real (Cartão de Cidadão, Chave Móvel Digital ou senha AT) e isso exige credenciais de uma pessoa. Só um teste manual num telemóvel real fecha este ponto.\n\n6) Impossível meter em iframe. A resposta do acesso.gov.pt traz Content-Security-Policy: frame-ancestors 'none' e X-Frame-Options: DENY. Na versão web do Em Dia não dá para embeber o login numa moldura — tem de ser browser externo; no telemóvel, browser externo ou WebView do sistema (Custom Tabs / SFSafariViewController).\n\nNota sobre documentação: este esquema partID/path NÃO está publicado em documentação oficial da AT. Procurei e não existe página oficial que o descreva. É comportamento observado, não contrato público — pode mudar sem aviso, por isso a app deve ter caminho de recurso (abrir a raiz do portal) se o deep link falhar.\n\nSem preços envolvidos neste ponto.",
+   "fonte_url": "https://irs.portaldasfinancas.gov.pt/recibos/portal/emitir"
+  },
+  {
+   "facto": "Um teste de vida de links por codigo HTTP da em falso positivo no Portal das Financas. Prova literal obtida hoje (2026-09-06) com curl: (1) https://irs.portaldasfinancas.gov.pt/recibos/portal/xxxx-nao-existe-zzz devolve 302 -> https://www.acesso.gov.pt/v2/loginForm;sireinter_JSessionID=...?partID=SIRE&path=/recibos/portal/xxxx-nao-existe-zzz — estruturalmente identico ao que devolvem os caminhos validos /recibos/portal/emitir e /recibos/portal/consultar (mesmo host de login, mesmo partID=SIRE; so muda o parametro path, que e o eco do que se pediu, e o JSESSIONID, que muda a cada pedido). Nao ha maneira de distinguir vivo de morto por codigo nem por destino de redireccionamento. (2) https://faturas.portaldasfinancas.gov.pt/zzzNaoExiste.action devolve 200 com 25519 bytes de HTML do e-fatura, praticamente a mesma pagina da raiz do site (26481 bytes) — soft-404 classico. Conclusao: um monitor que so olhe para o codigo HTTP fica verde num link ja morto.",
+   "confirmado": true,
+   "correcao": "Confirmado, e o problema e maior do que a afirmacao diz — tres complementos verificados hoje: (a) Ha mais um soft-200 noutro subdominio: https://sitfiscal.portaldasfinancas.gov.pt/nao-existe-zzz devolve 200 (202 bytes). (b) O erro tambem corre ao contrario (falso NEGATIVO): https://info.portaldasfinancas.gov.pt/pt/Pages/default.aspx devolve 404 (SharePoint, 704 bytes) a um cliente HTTP simples, enquanto https://info.portaldasfinancas.gov.pt/ devolve 302 para /Pages/VariationRoot.aspx — ou seja, nesse host um 404 nao prova que a pagina esta morta, e um alarme por codigo dispara sozinho. (c) Uma nuance a favor da AT que nao salva o teste: no host faturas, algumas paginas protegidas validas comportam-se diferente do inexistente — https://faturas.portaldasfinancas.gov.pt/painelAdquirente.action devolve 302 para acesso.gov.pt com partID=EFPF, enquanto o inexistente devolve 200. Mas como o inexistente e que fica verde, o falso positivo mantem-se. Implicacao para o estado_links do Em Dia: nao se pode validar estes links por status code. Ou se compara o corpo da resposta com uma assinatura conhecida da pagina certa (titulo/hash de fragmento estavel), ou se marca estes URLs como verificacao manual periodica. Nao encontrei nenhuma pagina oficial da AT que publique contrato de codigos HTTP para estes portais — nao esta publicado.",
+   "fonte_url": "https://irs.portaldasfinancas.gov.pt/recibos/portal/xxxx-nao-existe-zzz"
+  },
+  {
+   "facto": "Afirmacao testada: \"FALSO POSITIVO PROVADO na Seguranca Social: https://www.seg-social.pt/ptss/pssd/menu/xpto-nao-existe-zzz999 devolve HTTP 200 com 12970 bytes e <title>Seguranca Social Direta</title> - a mesma casca que um caminho verdadeiro (carreira-contributiva: 200, 13074 bytes, mesmo title). Qualquer caminho inventado passa no teste.\"",
+   "confirmado": false,
+   "correcao": "O nucleo do achado e verdadeiro, mas a afirmacao esta INCOMPLETA e os numeros nao reproduzem, por isso nao pode passar como escrita.\n\nO QUE SE CONFIRMA (medido hoje, 2026-09-06, por pedido HTTP direto):\n- https://www.seg-social.pt/ptss/pssd/menu/xpto-nao-existe-zzz999 => HTTP 200\n- https://www.seg-social.pt/ptss/pssd/menu/carreira-contributiva => HTTP 200\n- Ambos com <title>Seguranca Social Direta</title> e Content-Type: text/html;charset=ISO-8859-15.\n- O diff linha-a-linha dos dois corpos da 18 linhas diferentes e NENHUMA e conteudo: sao token_value, session_uuid, o script Dynatrace (ruxitagentjs), e o proprio caminho ecoado de volta (last_bookmarkable_url e gtag metric1). Nao existe qualquer marcador de erro que distinga o caminho falso do verdadeiro.\n- Outros slugs inventados no mesmo prefixo tambem dao 200: /menu/aaaaaaaa (13968 bytes), /menu/1234 (13958 bytes), /menu/!!!lixo!!! (13974 bytes).\n\nO QUE ESTA ERRADO NA AFIRMACAO:\n1) \"Qualquer caminho inventado passa no teste\" e FALSO para o site. O buraco esta limitado ao prefixo /ptss/pssd/menu/<slug>, que e uma rota catch-all da aplicacao JSF/PrimeFaces onde o slug e apenas um marcador de bookmark, ecoado e ignorado. Fora desse prefixo o servidor devolve 404 correcto, verificado:\n   - https://www.seg-social.pt/ptss/pssd/zzz-fake => HTTP 404\n   - https://www.seg-social.pt/ptss/zzz-nao-existe => HTTP 404\n   - https://www.seg-social.pt/ptss/pssd/menu-zzz => HTTP 404\n   Esta distincao e material: como esta escrita, a afirmacao leva a concluir que o dominio seg-social.pt inteiro e intestavel, quando so um prefixo o e.\n\n2) Os tamanhos citados (12970 e 13074 bytes) NAO se reproduzem. Hoje medi 14012 e 14009 bytes, e o valor muda a cada pedido (intervalo observado 13958 a 14014) porque o token de sessao e o UUID mudam. Contagem de bytes nao serve como assinatura estavel nesta rota, nem para distinguir verdadeiro de falso nem para reconhecer a pagina.\n\nIMPLICACAO PARA O estado_links: um verificador que valide so o codigo HTTP (ou HTTP + bytes + <title>) da falso positivo em todo o /ptss/pssd/menu/*. Para essa zona e preciso ou procurar um marcador no DOM depois de autenticado, ou marcar o prefixo como nao-verificavel e apontar o link para https://www.seg-social.pt/ptss/, que devolve 404 honesto.\n\nNota: esta afirmacao nao envolve preco nem nivel gratuito, por isso nao havia pagina de precos oficial a confirmar.",
+   "fonte_url": "https://www.seg-social.pt/ptss/pssd/menu/xpto-nao-existe-zzz999"
+  },
+  {
+   "facto": "estado_links da Seguranca Social: app.seg-social.pt/ptss/ da 301 para www.seg-social.pt/ptss/; www.seg-social.pt/ da 302 para www.seg-social.pt/ptss/; e www.seg-social.pt/trabalhadores-independentes acaba em www.seg-social.pt/ptss/pssd/home?r=%2Ftrabalhadores-independentes%2F&dswid=-7357, com as paginas publicas antigas a terem migrado para esse endereco.",
+   "confirmado": false,
+   "correcao": "Os tres redirecionamentos existem mesmo (verificados hoje, 2026-09-06, com curl), mas a afirmacao esta errada em duas coisas que partem a app, e incompleta numa terceira.\n\n1) A fonte apontada nao e um destino. https://www.seg-social.pt/ptss/ NAO para ali: devolve novo 302 para https://www.seg-social.pt/ptss/pssd/home?dswid=NNNN. Cadeia completa medida: app.seg-social.pt/ptss/ -> 301 -> www.seg-social.pt/ptss/ -> 302 -> www.seg-social.pt/ptss/pssd/home?dswid=750 -> 200. O URL estavel, que devolve 200 com zero redirecionamentos, e https://www.seg-social.pt/ptss/pssd/home (e o login e https://www.seg-social.pt/ptss/fraw/autent, tambem 200 e zero redirecionamentos).\n\n2) O dswid=-7357 NAO e fixo. E um identificador de janela/sessao gerado a cada pedido. Cinco pedidos seguidos a /ptss/ deram: dswid=-3254, -512, -5916, 2488, 9216. Guardar esse URL literal no estado_links e um bug: ou se guarda sem dswid, ou se guarda so o caminho.\n\n3) NAO houve migracao nenhuma para esse endereco. E um catch-all: qualquer caminho antigo cai na home da Seguranca Social Direta. Prova de falso positivo: inventei o caminho inexistente /trabalhadores-independentes- (com hifen a mais) e deu exactamente a mesma cadeia de 3 saltos, terminando em /ptss/pssd/home?r=%2Ftrabalhadores-independentes-%2F&dswid=-2773 e 200. O mesmo acontece com /noticias, /estatisticas, /inicio.html, /sitemap.xml e ate com um PDF antigo (/documents/10152/13334/regime_trabalhadores_independentes.pdf). O parametro ?r= apenas ecoa o caminho que foi deitado fora; nao resolve para o conteudo. Ou seja, quem clicar no link antigo aterra na home de login, nao em informacao sobre trabalhadores independentes. Um teste \"por nivel\" (so ver o 200 final) mente aqui.\n\n4) O que e verdade em vez disso: o conteudo publico foi reorganizado dentro da aplicacao PTSS, com URLs proprios e estaveis sob /ptss/pssd/menu/..., listados no sitemap oficial https://www.seg-social.pt/ptss/sitemap/sitemap.xml (declarado em https://www.seg-social.pt/robots.txt, que diz \"Sitemap: https://www.seg-social.pt/ptss/sitemap/sitemap.xml\"). Nos 341 URLs do sitemap NAO existe nenhuma pagina chamada \"trabalhadores-independentes\". Os enderecos oficiais uteis para a app Em Dia, todos verificados hoje com code=200 e redirs=0:\n - https://www.seg-social.pt/ptss/fraw/autent (autenticacao)\n - https://www.seg-social.pt/ptss/pssd/home (home)\n - https://www.seg-social.pt/ptss/pssd/menu/trabalho/relacoes-trabalho/trabalhadores\n - https://www.seg-social.pt/ptss/pssd/menu/trabalho/remuneracoes-contribuicoes\n - https://www.seg-social.pt/ptss/pssd/menu/trabalho/remuneracoes-contribuicoes/como-pagar\n - https://www.seg-social.pt/ptss/pssd/menu/pagamentos-dividas/situacao-contributiva\n - https://www.seg-social.pt/ptss/pssd/menu/pagamentos-dividas/valores-a-pagar\n - https://www.seg-social.pt/ptss/pssd/menu/ajuda/guias-praticos\n - https://www.seg-social.pt/ptss/pssd/menu/ajuda/niss\n - https://www.seg-social.pt/ptss/pssd/menu/simuladores\nO guia pratico do trabalhador independente continua servido noutro host: https://sisscontent.seg-social.pt/documents/10152/14965/1009+Trabalhador+independente+-+novo+regime/87b6e00c-523d-4718-8a88-942ea804c18a devolve 200 com Content-Type: application/pdf e 434305 bytes.\n\n5) Aviso para quem implementar: as paginas /ptss/pssd/menu/... sao 200 e estaveis, mas o conteudo e desenhado no cliente (JSF/PrimeFaces, appId PTSS versao 6.112.5 visto no HTML). Um fetch estatico devolve so o banner de cookies. Nao serve para raspar texto; serve para abrir no browser do utilizador.\n\n6) Nao ha aqui precos nem niveis gratuitos a confirmar: o portal da Seguranca Social e de acesso publico e nao publica tabela de precos.",
+   "fonte_url": "https://www.seg-social.pt/ptss/sitemap/sitemap.xml"
+  },
+  {
+   "facto": "estado_links: \"A área autenticada da Segurança Social Direta é uma aplicação JSF/PrimeFaces com estado: o formulário da própria página aponta para action=\\\"/ptss/pssd/home?dswid=-4131\\\". O dswid é um identificador de janela gerado por sessão, logo um deep link guardado no app não abre o ecrã certo noutra sessão.\" (fonte apontada: https://www.seg-social.pt/ptss/)",
+   "confirmado": false,
+   "correcao": "A primeira metade está certa, a segunda está errada — e é a segunda que decide a implementação.\n\nO QUE SE CONFIRMA (pedido feito hoje, 2026-09-06, a https://www.seg-social.pt/ptss/):\n1) É mesmo JSF com PrimeFaces. O HTML devolvido carrega \"primefaces-extensions.js\", chama \"PrimeFaces.cw(...)\" e serve recursos por \"/ptss/javax.faces.resource/...\" (também OmniFaces). Confirmado.\n2) O formulário traz mesmo o dswid na action. Exemplo literal de hoje: action=\"/ptss/pssd/home?dswid=3134\". Confirmado o formato; o número -4131 é apenas o valor que calhou a quem observou.\n\nO QUE ESTÁ ERRADO:\n3) O dswid NÃO é \"gerado por sessão\". É o DeltaSpike Window ID (Apache DeltaSpike, o mesmo que põe o cookie \"dsrwid-3134=3134\" que a resposta do /ptss/ envia). A documentação oficial diz que o âmbito é por janela/separador do browser, não por sessão: \"The window-scope is like a session per window. That means that the data is bound to a window/tab and it not shared between windows\". Ou seja, o mesmo utilizador na mesma sessão tem dswid diferente em dois separadores.\n\n4) A conclusão \"um deep link guardado no app não abre o ecrã certo noutra sessão\" é FALSA pela razão dada. O dswid não trava deep links — o servidor trata-o sozinho. Provas medidas hoje:\n   - GET https://www.seg-social.pt/ptss/ (sem dswid) -> 302 para /ptss/pssd/home?dswid=3134. O servidor CRIA o dswid; não é preciso levá-lo.\n   - GET .../ptss/pssd/menu/links-uteis/termos-condicoes-uso/politica-cookies SEM dswid -> HTTP 200, página certa, e a action passa a trazer um dswid novo (dswid=-7618).\n   - GET a mesma página COM o dswid velho do enunciado (?dswid=-4131) -> HTTP 200, sem erro; reaproveita o valor.\n   - GET .../ptss/pssd/home?dswid=-4131 -> HTTP 200, sem erro.\n   A documentação DeltaSpike explica porquê: quando o id não bate certo, o window handler recarrega com o id correcto (\"If it does not match, reload the URL with the right windowId taken from window.name\"), em vez de falhar.\n\n5) O que REALMENTE trava um deep link guardado é a autenticação, não o dswid. O caminho é estável e utilizável (ex.: /ptss/pssd/menu/conta-corrente devolve 200 sem dswid); o que falta é a sessão iniciada com NISS + palavra-passe ou Chave Móvel Digital/Cartão de Cidadão.\n\nLIMITE HONESTO DESTA VERIFICAÇÃO: não iniciei sessão (não posso usar credenciais), por isso não observei o comportamento dentro da área autenticada — só os pedidos anónimos acima. E a Segurança Social NÃO publica documentação sobre estabilidade de URLs, deep links nem sobre o dswid; isso não está publicado, e não deve ser inventado.\n\nCONSEQUÊNCIA PARA O \"Em Dia\": guardar o URL sem dswid é a escolha certa (limpar o parâmetro antes de gravar). O deep link abre a página, e o utilizador cai no login se não tiver sessão — que é o comportamento aceitável. Não vale a pena desenhar contornos por causa do dswid.",
+   "fonte_url": "https://www.seg-social.pt/ptss/pssd/home (redirecionado de https://www.seg-social.pt/ptss/, com action=\"/ptss/pssd/home?dswid=3134\"); documentação oficial do window id: https://deltaspike.apache.org/documentation/jsf.html"
+  }
+ ]
+}

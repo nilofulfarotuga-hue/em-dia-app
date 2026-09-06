@@ -1,0 +1,263 @@
+{
+ "dimensao": "faturacao",
+ "achado": {
+  "dimensao": "Software de faturação certificado em Portugal com API, para a app \"Em Dia\" emitir fatura-recibo (recibo verde) em nome do utilizador, sem ele entrar no Portal das Finanças",
+  "resumo": "Os três têm API pública documentada e os três emitem fatura-recibo com comunicação automática à AT. A diferença que decide não é a API — é o modelo de conta. O InvoiceXpress é o único que deixa a nossa plataforma criar contas de utilizador por API (POST /api/accounts/create.json devolve logo a api_key dessa conta) e configurar a comunicação à AT dessa conta também por API (POST /api/v3/accounts/at_communication.json), e tem uma modalidade \"Multiconta\" desenhada exactamente para o nosso caso — o exemplo que eles próprios dão é a Cabify, uma plataforma cujos prestadores faturam cada um com o seu NIF, todos debaixo de uma subscrição-base. O Moloni tem o OAuth mais limpo (authorization_code, cada pessoa autoriza com a conta dela), mas obriga cada utilizador a ter e a pagar um plano Moloni com API (Flex, 10,90 EUR/mês). O Vendus é o mais fraco para nós: a API é boa e tem modo de testes, mas não há forma de criar contas por API e a API só existe a partir do plano Flex, 17 EUR/mês por conta. Em nenhum dos três se escapa a um passo humano: por lei, a comunicação automática à AT exige um sub-utilizador criado pela pessoa no Portal das Finanças (formato NIF/1, com a permissão WFA) e a respectiva senha. Isso não se automatiza com nenhum fornecedor.",
+  "factos": [
+   {
+    "facto": "InvoiceXpress tem API REST/JSON pública e documentada, autenticada por api_key passada na query string; cada api_key autentica um utilizador dentro de uma conta e o URL base é https://{account_name}.app.invoicexpress.com/",
+    "fonte_url": "https://docs.invoicexpress.com/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "InvoiceXpress: criar fatura-recibo e finalizá-la são dois passos — POST /{invoices-type}.json (com invoices-type = invoice_receipts) e depois PUT /{invoices-type}/{document-id}/change-state.json com state=finalized. A tabela oficial de estados diz que, só para invoice_receipt, 'draft -> settled' usa state=finalized, ou seja o documento fica logo liquidado",
+    "fonte_url": "https://docs.invoicexpress.com/invoices.md",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "InvoiceXpress permite criar contas novas por API: POST /api/accounts/create.json, com account.organization_name, email, password, fiscal_id, terms. A resposta 201 devolve account.id, account.name (subdomínio), account.url e account.api_key — ou seja, a nossa app fica logo com a chave para faturar naquela conta",
+    "fonte_url": "https://docs.invoicexpress.com/accounts/createaccount.md",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "InvoiceXpress permite configurar a comunicação à AT por API: POST /api/v3/accounts/at_communication.json com at_subuser (ex. 500100200/1), at_password e communication_type com valor 'auto'. É isto que evita a pessoa andar a mexer em ecrãs de configuração",
+    "fonte_url": "https://docs.invoicexpress.com/accounts/atcommunication.md",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "InvoiceXpress tem a modalidade Multiconta, feita para plataformas online de serviços partilhados: a plataforma detém a conta-base e a subscrição, cada parceiro tem uma subconta que emite faturas com o NIF próprio, e os documentos são descontados do plafond partilhado da conta-base. O exemplo dado pela própria InvoiceXpress é a Cabify (motoristas com NIF próprio). A página diz que está disponível 'a partir do plano L'",
+    "fonte_url": "https://invoicexpress.com/blog/modalidade-multiconta/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "InvoiceXpress: preços publicados por volume de documentos por mês, com utilizadores ilimitados em todos os planos e 'Acesso à API para integração' listado em todos — X3 3 EUR/mês (3 docs), X10 9 EUR (10 docs), X20 14 EUR (20), X30 18 EUR (30), X100 24 EUR (100), X500 29 EUR (500), X750 34 EUR, X1k 43 EUR (1000 docs), até X100k 624 EUR. Todos acrescem IVA",
+    "fonte_url": "https://invoicexpress.com/planos-precos/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Existe um plano InvoiceXpress chamado X1 — a FAQ do programa de parceiros diz que contam todas as subscrições 'de todos os planos em vigor (exceto X1)'. O preço e os limites do X1 NÃO estão publicados na tabela oficial de preços, que começa no X3",
+    "fonte_url": "https://invoicexpress.com/parceiro/",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "InvoiceXpress: no período experimental gratuito de 30 dias podem criar-se documentos, mas 'a configuração da comunicação da sua faturação à Autoridade Tributária não está disponível durante o período experimental gratuito'. Ou seja, não dá para testar o circuito completo até à AT sem pagar",
+    "fonte_url": "https://invoicexpress.com/planos-precos/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "InvoiceXpress: o limite de pedidos por conta é de 780 pedidos por minuto",
+    "fonte_url": "https://docs.invoicexpress.com/accounts",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "Moloni tem API pública documentada, por POST HTTP com resposta JSON, autenticada por OAuth. Fluxo web: https://www.moloni.pt/ac/root/oauth/?response_type=code&client_id=[developer_id]&redirect_uri=[callback] e depois https://api.moloni.pt/v1/grant/?grant_type=authorization_code. Também existe grant_type=password para apps nativas. Access token dura 1 hora, refresh token 14 dias",
+    "fonte_url": "https://www.moloni.pt/dev/autenticacao/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Moloni: a fatura-recibo cria-se com POST https://api.moloni.pt/v1/invoiceReceipts/insert/?access_token=... com company_id, date, expiration_date, document_set_id, customer_id, products e payments. O campo status=0 é rascunho e status=1 fecha o documento; ao fechar, o documento é comunicado à Autoridade Tributária se a empresa tiver essa opção activa",
+    "fonte_url": "https://www.moloni.pt/dev/documents/invoice-receipts/insert/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Moloni: o programador não paga nada nem precisa de plano — basta ter um Developer ID e login válido na plataforma, com registo normal em https://www.moloni.pt/registo/ e activação da ligação à API. Mas o acesso à API depende do plano do CLIENTE final",
+    "fonte_url": "https://www.moloni.pt/dev/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Moloni tem sandbox: o API Explorer em https://api.moloni.pt/sandbox/explorer.php, onde se testam todas as classes e métodos. Mas o login precisa de ter acesso à conta de demonstração, e se não tiver é preciso pedir por email a apoio@moloni.pt",
+    "fonte_url": "https://www.moloni.pt/dev/sandbox/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Moloni preços (faturação anual): On 3,50 EUR/mês (1 utilizador), Base 6,49 EUR/mês (2 utilizadores, sem API), Flex 10,90 EUR/mês (2 utilizadores, com 'API e sites de E-commerce'), Pro 15,90 EUR/mês (5 utilizadores, com API). 30 dias grátis, sem plano permanentemente gratuito. O plano mais barato COM API é o Flex, 10,90 EUR/mês",
+    "fonte_url": "https://www.moloni.pt/planos/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Vendus tem API pública documentada na versão 1.1, base https://www.vendus.pt/ws/v1.1/, com autenticação por api_key: Bearer no header, Basic auth (curl -u api_key:) ou ?api_key=. Cada api_key pertence a um utilizador e herda as permissões desse utilizador",
+    "fonte_url": "https://www.vendus.pt/ws/v1.1/authentication.doc",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Vendus: POST /ws/v1.1/documents/ cria o documento; o tipo FR é exactamente 'Fatura Recibo'. A resposta devolve hash, atcud e at_id, sendo que o at_id 'only set on documents that have been automatically communicated to AT'. Não há passo separado de finalização — o documento nasce fiscalmente emitido",
+    "fonte_url": "https://www.vendus.pt/ws/v1.1/documents.doc",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Vendus tem modo de testes: o parâmetro mode aceita 'normal' e 'tests' na criação de documentos; se não for enviado assume a definição do registo (POS). Isto serve de sandbox sem precisar de ambiente separado",
+    "fonte_url": "https://www.vendus.pt/ws/v1.1/documents.doc",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Vendus: a chave de API obtém-se em auto-serviço dentro da conta, em APPS > API (ou Configuração > Utilizadores > Opções > API), bastando ter pelo menos um utilizador activo. A chave é única e intransmissível e identifica quem emitiu o documento",
+    "fonte_url": "https://www.vendus.pt/ajuda/implementar-api-vendus/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Vendus: o endpoint /ws/v1.1/account/ só faz list, detail e update da conta actual — NÃO cria contas novas. Não existe endpoint accounts (devolve 404). Logo, não há forma de a nossa app provisionar contas de utilizador por API",
+    "fonte_url": "https://www.vendus.pt/ws/v1.1/account.doc",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Vendus preços (acrescem IVA): Base 9 EUR/mês (2 utilizadores, SEM API), Flex 17 EUR/mês (5 utilizadores, com API e integrações), Pro 22 EUR/mês (utilizadores ilimitados, com API). Anualmente: 6,25 / 10,83 / 15,83 EUR/mês. Documentos ilimitados em todos. 30 dias grátis, sem plano gratuito depois. O plano mais barato COM API é o Flex, 17 EUR/mês",
+    "fonte_url": "https://www.vendus.pt/planos-precos/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Para qualquer um dos três, a comunicação automática à AT exige que a PESSOA crie no Portal das Finanças um sub-utilizador (Serviços Tributários > Gestão de Utilizadores) com a operação autorizada WFA - comunicação de dados de faturas. O utilizador fica no formato NIF/número e é essa credencial que se entrega ao software",
+    "fonte_url": "https://invoicexpress.helpscoutdocs.com/article/92-como-crio-um-sub-utilizador-no-portal-das-financas",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Não confirmei os números de certificado AT de cada um dos três produtos. A lista oficial de programas de faturação certificados está em https://www.portaldasfinancas.gov.pt/pt/consultaProgCertificadosM24.action e deve ser consultada antes de assinar contrato",
+    "fonte_url": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Faturacao/Paginas/certificacao-de-software.aspx",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "InvoiceXpress tem programa de parceiros com até 30% de comissão por subscrição e renovação, adesão gratuita, e o contacto é comercial@invoicexpress.com. O suporte técnico é suporte@invoicexpress.com",
+    "fonte_url": "https://invoicexpress.com/parceiro/",
+    "confianca": "alta",
+    "decide_implementacao": false
+   }
+  ],
+  "urls_ou_endpoints": [
+   {
+    "para_que": "InvoiceXpress — criar fatura-recibo em rascunho na conta do utilizador",
+    "url": "https://{conta}.app.invoicexpress.com/invoice_receipts.json?api_key={API_KEY}",
+    "metodo": "POST",
+    "notas": "Content-Type: application/json. O corpo vai em {\"invoice_receipt\": {...}}. Cria o cliente e os itens no mesmo pedido se ainda não existirem. Contas portuguesas têm de enviar o motivo de isenção de IVA quando a taxa é 0% (ex. M10 - IVA regime de isenção, artigo 57.º do CIVA, que é o caso típico do trabalhador independente abaixo do limiar)."
+   },
+   {
+    "para_que": "InvoiceXpress — finalizar a fatura-recibo (é aqui que ela passa a documento fiscal e é comunicada à AT)",
+    "url": "https://{conta}.app.invoicexpress.com/invoice_receipts/{document-id}/change-state.json?api_key={API_KEY}",
+    "metodo": "PUT",
+    "notas": "Corpo: {\"invoice_receipt\": {\"state\": \"finalized\"}}. Na tabela oficial de estados, para invoice_receipt o finalized leva de draft directamente a settled (liquidado). Depois disto o documento já não se altera — só se cancela."
+   },
+   {
+    "para_que": "InvoiceXpress — criar por API a conta do utilizador (uma subconta por trabalhador independente, com o NIF dele)",
+    "url": "https://{conta}.app.invoicexpress.com/api/accounts/create.json?api_key={API_KEY}",
+    "metodo": "POST",
+    "notas": "Devolve account.name (subdomínio), account.url e account.api_key. É esta api_key que guardamos (cifrada) para depois faturar em nome dessa pessoa. Existe também /api/accounts/create_already_user.json para quem já tem conta InvoiceXpress."
+   },
+   {
+    "para_que": "InvoiceXpress — ligar a comunicação automática à AT na conta do utilizador",
+    "url": "https://{conta}.app.invoicexpress.com/api/v3/accounts/at_communication.json",
+    "metodo": "POST",
+    "notas": "Corpo: {\"at_communication\": {\"at_subuser\": \"NIF/1\", \"at_password\": \"...\", \"communication_type\": \"auto\"}}. É o passo que evita a pessoa ir configurar isto à mão. A senha do sub-utilizador tem de ser recolhida na app e é dado sensível — nunca guardar em claro."
+   },
+   {
+    "para_que": "InvoiceXpress — onde a pessoa vê o nome de conta e a chave de API (só necessário em casos manuais)",
+    "url": "https://www.app.invoicexpress.com/users/api",
+    "metodo": "GET",
+    "notas": "Página do painel, não é endpoint de API."
+   },
+   {
+    "para_que": "Moloni — obter token em nome do utilizador (fluxo web, o correcto para multi-utilizador)",
+    "url": "https://www.moloni.pt/ac/root/oauth/?response_type=code&client_id={developer_id}&redirect_uri={callback}",
+    "metodo": "GET",
+    "notas": "A pessoa faz login com a conta Moloni dela e autoriza a nossa app. Depois trocamos o code em https://api.moloni.pt/v1/grant/?grant_type=authorization_code&client_id=...&client_secret=...&code=... Access token 1 hora, refresh token 14 dias."
+   },
+   {
+    "para_que": "Moloni — criar e fechar a fatura-recibo",
+    "url": "https://api.moloni.pt/v1/invoiceReceipts/insert/?access_token={ACCESS_TOKEN}",
+    "metodo": "POST",
+    "notas": "Campos obrigatórios: company_id, date, expiration_date, document_set_id, customer_id, products[], payments[]. status=1 fecha o documento e é nesse momento que vai à AT, desde que a empresa tenha a opção activa. Um documento fechado não se actualiza nem se apaga."
+   },
+   {
+    "para_que": "Moloni — sandbox (API Explorer)",
+    "url": "https://api.moloni.pt/sandbox/explorer.php",
+    "metodo": "GET",
+    "notas": "Precisa que o login tenha acesso à conta de demonstração; se não tiver, pedir a apoio@moloni.pt."
+   },
+   {
+    "para_que": "Vendus — criar a fatura-recibo (nasce já emitida e comunicada)",
+    "url": "https://www.vendus.pt/ws/v1.1/documents/",
+    "metodo": "POST",
+    "notas": "type=FR, items[] com qty e id ou reference, register_id do POS, mode=tests para ensaios e mode=normal para produção. Resposta traz hash, atcud e at_id (o at_id só aparece nos documentos comunicados automaticamente à AT). Autenticação: Authorization: Bearer {api_key} ou curl -u api_key:"
+   },
+   {
+    "para_que": "Vendus — onde a pessoa gera a chave de API",
+    "url": "https://www.vendus.pt/ajuda/implementar-api-vendus/",
+    "metodo": "GET",
+    "notas": "Dentro da conta: APPS > API. Auto-serviço, sem contacto comercial, mas exige plano Flex ou superior."
+   },
+   {
+    "para_que": "Lista oficial de programas de faturação certificados pela AT — confirmar os três antes de assinar",
+    "url": "https://www.portaldasfinancas.gov.pt/pt/consultaProgCertificadosM24.action",
+    "metodo": "GET",
+    "notas": "Verificar produtor e número de certificado. Não confirmei os números."
+   }
+  ],
+  "recomendacao": "Escolher o InvoiceXpress, na modalidade Multiconta, e começar já a integração com uma conta paga barata (X10, 9 EUR/mês) enquanto se fala com o comercial. A razão é uma só e é decisiva: é o único dos três em que a nossa plataforma consegue provisionar a conta do utilizador por API e ligar-lhe a comunicação à AT por API. POST /api/accounts/create.json devolve a api_key daquela conta na resposta, e POST /api/v3/accounts/at_communication.json liga o modo auto com o sub-utilizador dele. Isto significa que, no onboarding do \"Em Dia\", a pessoa preenche nome, NIF e as credenciais do sub-utilizador da AT dentro da nossa app, e nunca mais toca em nada — que é exactamente o produto que queremos. O modelo Multiconta é literalmente o nosso: a InvoiceXpress documenta-o com o exemplo da Cabify, motoristas a faturar cada um com o seu NIF debaixo de uma subscrição da plataforma, com plafond de documentos partilhado. Isso resolve também a economia: em vez de cada motorista TVDE pagar o seu plano, nós compramos volume de documentos e distribuímos. O Moloni ficaria em segundo — o OAuth authorization_code é tecnicamente mais elegante e mais seguro do lado da privacidade (a pessoa autoriza com a conta dela, nós nunca vemos a senha), e o programador não paga nada. Mas obriga cada utilizador a criar e pagar uma conta Moloni Flex a 10,90 EUR/mês só para ter API, e a passar por um ecrã de login do Moloni no meio do nosso onboarding. Para imigrantes brasileiros e estafetas que estão a começar, isso mata a conversão. O Vendus fica de fora: a API é boa e o mode=tests é a melhor sandbox dos três, mas não cria contas por API, o /account só lê e actualiza a conta actual, e a API só existe a partir dos 17 EUR/mês por conta — é o mais caro e o menos automatizável dos três para o nosso caso. Plano de execução concreto: (1) abrir uma conta InvoiceXpress paga X10 e integrar de imediato o par POST invoice_receipts.json + PUT change-state.json com state=finalized, mais o motivo de isenção M10 para quem está no artigo 57.º do CIVA; (2) enviar em paralelo o email a comercial@invoicexpress.com a pedir proposta Multiconta descrevendo o modelo (plataforma, N subcontas de trabalhadores independentes com NIF próprio, emissão por API, previsão de X documentos/mês), porque o Multiconta não é auto-serviço; (3) construir o ecrã de onboarding que recolhe o sub-utilizador AT e a senha e chama at_communication.json — com a senha cifrada em repouso e nunca em logs. Atenção a uma armadilha já confirmada na página oficial: durante o trial gratuito de 30 dias a configuração da comunicação à AT está desligada, portanto o teste ponta-a-ponta até à AT só se faz com plano pago — não dar por bom um 201 do InvoiceXpress como prova de que o documento chegou à AT; a prova é o documento aparecer no Portal das Finanças e ter ATCUD/at_id.",
+  "bloqueios": [
+   "Cada utilizador tem de criar, ele próprio, um sub-utilizador no Portal das Finanças (Serviços Tributários > Gestão de Utilizadores) com a operação WFA activada, e dar-nos esse utilizador NIF/n e a senha. Isto é exigência da AT e nenhum dos três fornecedores a contorna. O melhor que podemos fazer é um guia com fotos dentro da app, ou abrir-lhe a página certa e deixar só os cliques.",
+   "A modalidade Multiconta do InvoiceXpress NÃO é auto-serviço — exige contacto comercial. Email: comercial@invoicexpress.com. A página diz 'disponível a partir do plano L', que é nomenclatura antiga face aos planos X actuais, logo o preço tem de vir por proposta. Sem esta conversa, cada utilizador precisaria da sua própria subscrição.",
+   "Guardar a senha do sub-utilizador da AT de cada pessoa é dado sensível e obriga a cifragem em repouso, RLS apertada e nunca aparecer em logs. Vale a pena decidir se guardamos ou se a enviamos só uma vez para o at_communication.json e a deitamos fora — o Danilo tem de aprovar a opção.",
+   "Não dá para testar o circuito completo até à AT no trial gratuito do InvoiceXpress: a configuração da comunicação à AT está desligada nos 30 dias experimentais. É preciso subscrever um plano pago (X3 a 3 EUR/mês ou X10 a 9 EUR/mês) para provar que a fatura chega mesmo à AT. Isto é uma decisão de gastar dinheiro, por isso é do Danilo.",
+   "A subscrição do plano é um pagamento com cartão — tem de ser o Danilo a fazê-lo.",
+   "Os números de certificado AT dos três produtos não foram confirmados. Antes de assinar, confirmar na lista oficial em https://www.portaldasfinancas.gov.pt/pt/consultaProgCertificadosM24.action",
+   "O preço e os limites do plano gratuito InvoiceXpress (X1) não estão publicados na tabela oficial de preços — só sabemos que existe porque a FAQ dos parceiros o exclui das comissões. Se quisermos contar com ele, tem de ser perguntado ao comercial."
+  ]
+ },
+ "veredictos": [
+  {
+   "facto": "InvoiceXpress tem API REST/JSON pública e documentada, autenticada por api_key passada na query string; cada api_key autentica um utilizador dentro de uma conta e o URL base é https://{account_name}.app.invoicexpress.com/",
+   "confirmado": true,
+   "fonte_url": "https://docs.invoicexpress.com/",
+   "correcao": "Confirmado, mas incompleto. A documentação oficial (https://docs.invoicexpress.com/) diz literalmente que a chave \"must be passed on the query string in each HTTPS request to authenticate the user\" e mostra o exemplo \"https://ACCOUNT_NAME.app.invoicexpress.com/invoices.json?api_key=API_KEY\". Só HTTPS; HTTP é recusado. Prova material: pedido real a https://naoexiste-teste-emdia.app.invoicexpress.com/invoices.json?api_key=xxxx devolveu HTTP 401 com Content-Type application/json (06-09-2026), e docs.invoicexpress.com devolveu 200. Não existe OAuth nem bearer token. Falta na afirmação: (1) limite de 780 pedidos por minuto por conta, com 429 Too Many Requests acima disso; (2) POST e PUT exigem o header Content-Type: application/json; (3) nem todos os endpoints estão na raiz — há endpoints sob /api/v3/, por exemplo /api/v3/accounts/at_communication.json, no mesmo host e com a mesma api_key. Risco prático: a chave viaja no URL, logo aparece em logs de proxies — nunca pode ficar na app Flutter, tem de viver numa Edge Function do Supabase. Preços verificados hoje em https://invoicexpress.com/planos-precos/: X3 3€/mês (3 documentos/mês), X10 7€/mês (10 documentos), X100 20€/mês (100 documentos), X500 24€/mês (500 documentos), todos referentes a subscrição anual e acrescendo IVA. A mesma página lista, no bloco \"Todos os planos incluem\", a linha \"API e Plugins de Integração\" — ou seja, a API está incluída em todos os planos. Existe plano grátis (a FAQ da página de preços refere \"mudar para o plano grátis\"), mas o plafond de documentos desse plano grátis não está publicado na página de preços."
+  },
+  {
+   "facto": "InvoiceXpress: criar fatura-recibo e finalizá-la são dois passos — POST /{invoices-type}.json (com invoices-type = invoice_receipts) e depois PUT /{invoices-type}/{document-id}/change-state.json com state=finalized. A tabela oficial de estados diz que, só para invoice_receipt, 'draft -> settled' usa state=finalized, ou seja o documento fica logo liquidado.",
+   "confirmado": false,
+   "correcao": "O miolo está certo, mas o corpo do pedido está errado — quem implementar à letra apanha um erro de validação. O que a fonte oficial diz:\n\n1) CONFIRMADO — os dois passos e os caminhos. Criar: POST /{invoices-type}.json. Mudar estado: PUT /{invoices-type}/{document-id}/change-state.json. (https://docs.invoicexpress.com/invoices.md)\n\n2) CONFIRMADO — o segmento do URL é mesmo no plural, invoice_receipts. Os valores aceites em {invoices-type} são: invoices, invoice_receipts, simplified_invoices, credit_notes, debit_notes. Atenção à armadilha: o texto corrido da documentação fala em \"invoice, simplified_invoice, invoice_receipt, credit_note ou debit_note\" no singular, mas isso é o nome do tipo de documento, não o segmento do URL. No URL é plural. (https://docs.invoicexpress.com/invoices/createinvoice)\n\n3) CONFIRMADO, e verbatim — a tabela oficial de estados tem mesmo estas duas linhas exclusivas da fatura-recibo:\n   | draft | settled | finalized | Only invoice_receipt. |\n   | settled | canceled | canceled | Only invoice_receipt. |\n   Ou seja, sim: numa fatura-recibo, enviar \"finalized\" faz o documento saltar de draft directamente para settled (liquidado), enquanto numa fatura normal o mesmo \"finalized\" só o leva a final. (https://docs.invoicexpress.com/invoices/changeinvoicestate.md)\n\n4) ERRADO — \"com state=finalized\" não é o corpo do pedido. O esquema oficial exige um objecto de embrulho obrigatório chamado \"invoice\", com o \"state\" lá dentro:\n   {\"invoice\": {\"state\": \"finalized\", \"message\": \"...\"}}\n   O campo \"message\" é opcional. E, ponto importante que engana: o embrulho chama-se sempre \"invoice\" para TODOS os tipos de documento — não muda para \"invoice_receipt\" só porque o caminho é /invoice_receipts/{id}/change-state.json. Enviar {\"state\":\"finalized\"} no topo não corresponde ao esquema publicado. (https://docs.invoicexpress.com/invoices/changeinvoicestate.md)\n\n5) A ACRESCENTAR — o enum completo de \"state\" tem seis valores, não os quatro que se costuma assumir: \"finalized\", \"canceled\", \"deleted\", \"accepted\", \"refused\", \"settled\". Os \"accepted\"/\"refused\" são de orçamentos, não de faturas. E há uma diferença de vocabulário que dá bugs: o que se ENVIA é \"finalized\"/\"settled\", mas o que a API DEVOLVE no campo de estado do documento é \"final\"/\"settled\". Não comparar o que se envia com o que se lê. (https://docs.invoicexpress.com/invoices/changeinvoicestate.md)\n\n6) NÃO PUBLICADO — a documentação de criação não mostra qualquer campo \"state\" no POST, portanto não há forma documentada de criar a fatura-recibo já finalizada num só passo. Ficam mesmo dois pedidos. Campos obrigatórios na criação: date, due_date, client (id, code ou name) e items. Para Portugal há ainda tax_exemption_reason (até 210 caracteres, ex. \"M00\") e, na fatura-recibo, mb_reference (\"0\" ou \"1\"). (https://docs.invoicexpress.com/invoices/createinvoice)\n\n7) PREÇOS — não consegui confirmar. A página oficial de preços, https://invoicexpress.com/planos-precos/, devolveu HTTP 403 ao meu pedido, e o mesmo aconteceu a https://invoicexpress.com/api-v2/invoices/change-state/. Não vou inventar valores: o preço exacto dos planos e os limites do plano grátis ficam POR CONFIRMAR e têm de ser vistos com um browser normal nessa página.\n\nResumo para quem vai codificar o \"Em Dia\": passo 1 POST https://{conta}.app.invoicexpress.com/invoice_receipts.json?api_key=... com {\"invoice_receipt\":{...}}; passo 2 PUT https://{conta}.app.invoicexpress.com/invoice_receipts/{id}/change-state.json?api_key=... com {\"invoice\":{\"state\":\"finalized\"}} — reparar que o embrulho muda de \"invoice_receipt\" no passo 1 para \"invoice\" no passo 2.",
+   "fonte_url": "https://docs.invoicexpress.com/invoices/changeinvoicestate.md"
+  },
+  {
+   "facto": "InvoiceXpress permite criar contas novas por API: POST /api/accounts/create.json, com account.organization_name, email, password, fiscal_id, terms. A resposta 201 devolve account.id, account.name (subdomínio), account.url e account.api_key — ou seja, a nossa app fica logo com a chave para faturar naquela conta",
+   "confirmado": false,
+   "correcao": "O endpoint existe e devolve mesmo a api_key, mas a afirmação está incompleta em pontos que partem a implementação:\n\n1) OVO E GALINHA — o mais grave. O próprio POST /api/accounts/create.json exige um parâmetro de query `api_key` (\"Your API Key\", marcado como obrigatório). Ou seja, NÃO se criam contas do nada: a app \"Em Dia\" precisa de já ter uma conta e uma chave InvoiceXpress para poder criar contas de terceiros. A frase \"a nossa app fica logo com a chave\" só é verdade DEPOIS de já termos uma chave-mãe. Fonte: https://docs.invoicexpress.com/accounts/createaccount.md\n\n2) O URL não é global, é por subdomínio. A base documentada é https://{account_name}.app.invoicexpress.com/ — o pedido real é POST https://{account_name}.app.invoicexpress.com/api/accounts/create.json?api_key=... , não um caminho solto /api/accounts/create.json. Fonte: https://docs.invoicexpress.com/\n\n3) Falta um campo obrigatório: `account.password_confirmation` (string, obrigatório). Sem ele o pedido não passa.\n\n4) `account.fiscal_id` é OPCIONAL, não obrigatório. A afirmação lista-o ao lado dos obrigatórios. Os obrigatórios são apenas: organization_name, email, password, password_confirmation, terms (\"1\" ou \"0\"). Opcionais: first_name, last_name, phone, fiscal_id, tax_country (\"1\"/\"2\"/\"3\"), language (\"pt\"/\"en\"/\"es\"), marketing (\"1\"/\"0\").\n\n5) A resposta 201 tem CINCO campos, não quatro: account.id, account.name (subdomínio/slug, não o nome comercial), account.url, account.api_key e account.state. O `state` foi esquecido e é o que nos diz se a conta está utilizável.\n\n6) Armadilha por escrito na doc: organization_name tem máximo de 100 caracteres; acima disso devolve HTTP 422 com `errors`. Nomes longos de empresa (comuns em brasileiros com nome completo no NIF) rebentam aqui.\n\n7) Existe um endpoint irmão que a afirmação ignora: create_already_user.json (POST /api/accounts/create_already_user.json), para quando o email já pertence a um utilizador InvoiceXpress. Sem tratar este caso, todo o utilizador que já use InvoiceXpress falha no registo da nossa app. Fonte: https://invoicexpress.com/api-v2/accounts/create-for-existing-user\n\n8) PREÇOS — NÃO CONFIRMADO. A página oficial de preços (https://invoicexpress.com/planos-precos/) devolve HTTP 403 ao nosso acesso automático e a base de conhecimento oficial remete para lá sem repetir valores. Não está publicado num sítio que eu conseguisse ler hoje: por isso NÃO indico preços nem limites do plano gratuito. Sabe-se apenas, por comunicado, que passou a existir uma modalidade gratuita — os valores exatos, o limite de documentos/mês e se a API entra em todos os planos têm de ser confirmados a olho na página oficial ou por email ao comercial antes de decidirmos. Isto é decisão de custo e não pode assentar em suposição.\n\nConclusão prática para o \"Em Dia\": a via de criar conta por API é viável, mas obriga a (a) termos uma conta-mãe InvoiceXpress com chave, (b) confirmar com a InvoiceXpress se o uso dessa chave para abrir contas de clientes é permitido no nosso plano — a doc não diz quem pode chamar este endpoint, e não se assume permissão que não está escrita —, e (c) tratar o ramo create_already_user.",
+   "fonte_url": "https://docs.invoicexpress.com/accounts/createaccount.md"
+  },
+  {
+   "facto": "InvoiceXpress permite configurar a comunicação à AT por API: POST /api/v3/accounts/at_communication.json com at_subuser (ex. 500100200/1), at_password e communication_type com valor 'auto'. É isto que evita a pessoa andar a mexer em ecrãs de configuração.",
+   "confirmado": false,
+   "correcao": "O endpoint existe e os campos estão certos, mas a afirmação está INCOMPLETA em quatro pontos, e a conclusão (\"evita a pessoa andar a mexer em ecrãs de configuração\") é FALSA.\n\n1) O que está certo. A documentação oficial mostra POST /api/v3/accounts/at_communication.json com os três campos at_subuser (formato \"500100200/1\"), at_password e communication_type. Resposta 200 devolve {\"success\": true}; 401 em falha de autenticação; 422 em erro de validação (campos em falta ou at_subuser mal formatado). Fonte: https://docs.invoicexpress.com/accounts/atcommunication.md\n\n2) Falta o URL completo. Não se chama \"docs.invoicexpress.com\" nem um host genérico: a API é por subdomínio da conta — https://{ACCOUNT_NAME}.app.invoicexpress.com/api/v3/accounts/at_communication.json?api_key={API_KEY} — e o api_key vai em query string, não em header. Só HTTPS (HTTP é recusado) e POST exige Content-Type: application/json. ACCOUNT_NAME e API_KEY obtêm-se em https://www.app.invoicexpress.com/users/api. Fonte: https://docs.invoicexpress.com/\n\n3) Falta o envelope do corpo. O JSON não é plano — os campos vão dentro de um objeto raiz \"at_communication\":\n{\"at_communication\": {\"at_subuser\": \"500100200/1\", \"at_password\": \"password\", \"communication_type\": \"auto\"}}\nEnviar os campos à raiz falha. Fonte: https://docs.invoicexpress.com/accounts/atcommunication.md\n\n4) communication_type tem quatro valores, não um. São permitidos \"auto\", \"manual\", \"guides\" e \"portal_at\". Dizer só \"auto\" esconde as outras opções. Fonte: https://docs.invoicexpress.com/accounts/atcommunication.md\n\n5) A conclusão é errada — continua a haver trabalho manual e um segundo passo por API:\n   a) O sub-utilizador da AT NÃO se cria por API. Tem de ser criado pela própria pessoa no Portal das Finanças; a documentação de Accounts diz que é preciso ter esse sub-utilizador AT criado no Portal das Finanças antes de usar este endpoint. Ou seja, o \"ecrã de configuração\" que sobra é o do Portal das Finanças, e esse é obrigatoriamente humano (login com as credenciais fiscais da pessoa — coisa que nem o app deve pedir nem guardar em claro). Fonte: https://docs.invoicexpress.com/accounts\n   b) Configurar as credenciais NÃO regista as séries. Para os documentos saírem com ATCUD é preciso, à parte, PUT /sequences/{sequence_id}/register.json, que regista a série na AT. Nas contas portuguesas é necessário ter as credenciais AT configuradas para conseguir registar a série, e o código de validação da série vem \"N/D\" enquanto a série for relevante para ATCUD mas não estiver registada. Fontes: https://docs.invoicexpress.com/sequences e https://docs.invoicexpress.com/\n\nEm resumo, a sequência real para o \"Em Dia\" é: (i) a pessoa cria o sub-utilizador AT no Portal das Finanças — passo manual dela, inevitável; (ii) a app envia POST at_communication com o envelope correto e communication_type \"auto\"; (iii) a app cria a série e faz PUT /sequences/{id}/register.json para obter o ATCUD. Só depois de (iii) é que as faturas saem conformes.\n\nNota sobre preços: a página oficial de preços do InvoiceXpress não foi verificada nesta tarefa (a afirmação não continha preço). Qualquer valor de plano ou de nível gratuito fica POR CONFIRMAR em https://invoicexpress.com/precos/ antes de ser usado numa decisão.",
+   "fonte_url": "https://docs.invoicexpress.com/accounts/atcommunication.md"
+  },
+  {
+   "facto": "InvoiceXpress tem a modalidade Multiconta para plataformas online de servicos partilhados: a plataforma detem a conta-base e a subscricao, cada parceiro tem uma subconta que emite faturas com NIF proprio, e os documentos sao descontados do plafond partilhado da conta-base. O exemplo dado pela propria InvoiceXpress e a Cabify. A pagina diz que esta disponivel 'a partir do plano L'.",
+   "confirmado": false,
+   "correcao": "O MECANISMO esta certo, mas o NIVEL DE PLANO esta desatualizado e falta o custo mais importante. Tres erros:\n\n1) \"A PARTIR DO PLANO L\" JA NAO E VERDADE. Essa frase existe mesmo, mas so no artigo do blogue, publicado a 26/06/2018 (atualizado 19/04/2024). O FAQ oficial atual diz outra coisa, literalmente: \"A modalidade Multiconta esta disponivel a partir do plano X2k.\" Fonte: https://invoicexpress.com/faqs/multiconta/quais-os-planos-e-custos-da-multiconta/\nHoje NAO EXISTE nenhum \"plano L\". A pagina de precos oficial (https://invoicexpress.com/planos-e-precos/) lista 18 planos, todos com nome \"X\": X3, X10, X20, X30, X100, X500, X750, X1k, X2k, X3k, X4k, X5k, X10k, X20k, X30k, X40k, X50k, X100k. A nomenclatura por letras (S/M/L/XL) foi abandonada.\n\n2) FALTA O CUSTO POR SUBCONTA - e este e o ponto que muda a decisao. A afirmacao da a entender que basta pagar o plano-base e partilhar o plafond. FALSO. O mesmo FAQ diz, literalmente: \"Cada subconta adicionada tem um custo mensal variavel consoante a quantidade de subcontas: quanto maior o numero de subcontas, menor sera o valor da mensalidade a pagar por cada uma.\" Ou seja: paga-se o plano-base MAIS uma mensalidade por cada subconta. ESSE VALOR NAO ESTA PUBLICADO em lado nenhum do site - a InvoiceXpress diz para pedir proposta por email a equipa comercial. Nao invento o numero: o preco por subconta nao esta publicado.\n\n3) NAO E AUTO-SERVICO. Nao se contrata nem se cria subcontas sozinho no painel. O FAQ \"Como posso aderir a Multiconta?\" (https://invoicexpress.com/faqs/multiconta/como-posso-aderir-a-multiconta/) diz que a adesao e feita por pedido por email a equipa, e o FAQ \"Como adicionar ou eliminar subcontas?\" (https://invoicexpress.com/faqs/multiconta/como-agregar-ou-eliminar-subcontas/) diz que adicionar/remover subcontas \"passa por uma configuracao especial na sua subscricao\" e tambem tem de ser pedido a equipa. Isto e relevante para o \"Em Dia\": nao ha API para dar entrada a um motorista novo sozinho - ha um humano no meio.\n\nO QUE SE CONFIRMA: o mecanismo descrito esta correto. O FAQ \"O que e a Multiconta?\" (https://invoicexpress.com/faqs/multiconta/o-que-e-a-multiconta) confirma: \"existe uma conta-base responsavel pela subscricao a qual estao ligadas varias subcontas\" e \"sempre que uma das contas emite uma factura (...) esse documento e subtraido do plafond disponivel no plano da conta principal\". O exemplo Cabify tambem esta mesmo escrito no blogue (\"A Cabify e a responsavel pela subscricao InvoiceXpress e detentora da conta-base\"; \"Cada empresa parceira da Cabify possui uma subconta para emissao de facturas com NIF proprio\"). ATENCAO: e um texto de 2018 - nao ha prova de que a Cabify continue cliente hoje.\n\nPRECOS REAIS DE HOJE (https://invoicexpress.com/planos-e-precos/, consultado 2026-09-06; a pagina avisa \"Todos os precos apresentados acrescem de IVA a taxa em vigor\"):\nX3 = 3 EUR/mes (3 docs) | X10 = 9 (10) | X20 = 14 (20) | X30 = 18 (30) | X100 = 24 (100) | X500 = 29 (500) | X750 = 34 (750) | X1k = 43 (1000) | X2k = 48 (2000) | X3k = 58 (3000) | X4k = 67 (4000) | X5k = 77 (5000) | X10k = 101 (10000) | X20k = 156 (20000) | X30k = 312 (30000) | X40k = 384 (40000) | X50k = 528 (50000) | X100k = 624 (100000).\n\nO QUE ISTO CUSTA AO \"EM DIA\": a porta de entrada e o X2k, 48 EUR/mes + IVA, com 2000 documentos/mes partilhados por todos os utilizadores. MAIS o custo por subconta, que nao esta publicado. Com 2000 documentos partilhados, cada trabalhador independente que emita ~10 recibos/mes esgota o plafond a 200 utilizadores - o plafond partilhado e um teto que escala mal e obriga a subir de plano.\n\nNOTA TECNICA: todo o dominio invoicexpress.com devolve HTTP 403 ao fetcher automatico. As paginas acima foram lidas com curl e user-agent de browser, todas com HTTP 200 (blog 178592 bytes, planos-e-precos 683275 bytes, FAQ dos planos e custos 200 OK).",
+   "fonte_url": "https://invoicexpress.com/faqs/multiconta/quais-os-planos-e-custos-da-multiconta/"
+  },
+  {
+   "facto": "InvoiceXpress: preços publicados por volume de documentos por mês, com utilizadores ilimitados em todos os planos e \"Acesso à API para integração\" listado em todos — X3 3 EUR/mês (3 docs), X10 9 EUR (10 docs), X20 14 EUR (20), X30 18 EUR (30), X100 24 EUR (100), X500 29 EUR (500), X750 34 EUR, X1k 43 EUR (1000 docs), até X100k 624 EUR. Todos acrescem IVA",
+   "confirmado": false,
+   "correcao": "Todos os números citados batem certo com a página oficial de hoje (06-09-2026) — não há um único preço errado. Marco confirmado=false porque a afirmação está INCOMPLETA num ponto que muda a decisão para o \"Em Dia\": falta o plano GRÁTIS.\n\nO que verifiquei literalmente em https://invoicexpress.com/planos-precos/ (obtido com curl, HTTP 200; o WebFetch dá 403):\n- Tabela paga, 18 escalões, todos com \"Utilizadores ILIMITADOS\" e \"Acesso à API para integração\" com visto verde (classe \"feature-available\" nos 18 cartões e 18 <td class=\"checked\"> na tabela comparativa): X3 3€/mês (3 docs), X10 9€ (10), X20 14€ (20), X30 18€ (30), X100 24€ (100), X500 29€ (500), X750 34€ (750), X1k 43€ (1 000), X2k 48€ (2 000), X3k 58€, X4k 67€, X5k 77€, X10k 101€, X20k 156€, X30k 312€, X40k 384€ (a página escreve \"384/mês\", sem o símbolo €), X50k 528€, X100k 624€ (100 000 docs).\n- Rodapé literal: \"*Todos os preços apresentados acrescem de IVA à taxa em vigor.\" — a parte do IVA está certa.\n\nO que a afirmação NÃO diz e é material:\n1) Existe um plano gratuito que NÃO aparece na tabela de preços. A própria página, nas FAQ, fala nele duas vezes: \"a sua conta ficará suspensa até efetuar um pagamento ou mudar para o plano grátis\" e \"O suporte está incluído em todos os planos do InvoiceXpress, exceto no plano gratuito\". O anúncio oficial da empresa (https://invoicexpress.com/blog/plano-gratisinvoicexpress-novos-planos/) identifica-o: chama-se X1, é o \"plano de entrada gratuito\", pensado para \"quem tem um volume de faturação mais reduzido (freelancers ou ENI)\", e responde \"Sim. O plano gratuito não tem custos de subscrição\". Para aderir: criar conta e \"avançar para uma subscrição e escolher o plano X1\".\n2) O limite de documentos do X1 e, sobretudo, SE o X1 dá acesso à API NÃO ESTÃO PUBLICADOS na página de preços — o X1 não consta da tabela nem da comparação de funcionalidades. Não invento: para o plano grátis, o acesso à API não está publicado. O que está publicado é que o suporte não está incluído nesse plano. Fontes de terceiros dizem 1 documento/mês, mas não encontrei isso numa página oficial da InvoiceXpress.\n3) A frase \"utilizadores ilimitados em todos os planos\" e \"API em todos\" só está provada para os 18 planos pagos listados; não para o X1.\n4) Nota de custo: os ciclos de renovação alternativos aparecem hoje como \"Semestral (0% desconto)\", \"Anual (0% desconto)\" e \"Bienal (0% desconto)\" — ou seja, pagar adiantado não traz desconto anunciado nesta leitura da página.\n\nConclusão prática para o \"Em Dia\": se a integração por API for obrigatória, o escalão pago mais barato com API confirmada é o X3 a 3€/mês + IVA (3 documentos/mês). Antes de assumir que o plano grátis X1 serve para integração automática, é preciso confirmar com a InvoiceXpress se o X1 tem API — isso não está publicado.",
+   "fonte_url": "https://invoicexpress.com/planos-precos/"
+  }
+ ]
+}

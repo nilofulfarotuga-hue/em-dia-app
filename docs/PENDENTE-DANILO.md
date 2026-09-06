@@ -1,5 +1,10 @@
 # PENDENTE-DANILO — só o que precisa mesmo da pessoa
 
+## 🔴 PRIMEIRO: houve um apagão de dados hoje às 13:56
+- [ ] **Decidir se queres repor uma cópia da base de dados.** Todos os dados de utilizador desapareceram (perfis 7→2 com o onboarding a zero, obrigações 17→0, conversas com o assistente 37→0, tickets, eventos e auditoria a 0). O conteúdo — regras legais, guias, flags, escalões — ficou de pé. Não havia clientes: eram as tuas duas contas e as de teste. A app está inteira (funções a 200, site 57/57) e as obrigações regeneram-se assim que refizeres o onboarding. **Não repus nada de propósito**: não tenho cópia destes dados e inventar seria pior. O Supabase guarda cópias diárias em *Database → Backups*; repor uma **desfaz também os arranjos de segurança de hoje**. A minha opinião: não repor. Tudo em `docs/provas/apagao-dados-2026-09-06.md`.
+- [ ] **Decidir quem manda na pasta à noite.** Houve **duas sessões a escrever no mesmo repositório e na mesma base de dados de produção** ao mesmo tempo (apanhei ficheiros e quatro migrações que não escrevi). O vigia lança uma retoma sempre que a tranca `docs/.sessao-viva` tem mais de 20 minutos, mesmo com uma sessão viva a trabalhar. Ou só corre uma, ou o vigia tem de verificar se já há uma antes de lançar.
+
+
 > Cada linha: o quê · onde (página já aberta no ecrã, quando possível) · porquê não pude fazer sozinho.
 > Nada aqui trava a noite: anota-se e salta-se para o bloco seguinte.
 

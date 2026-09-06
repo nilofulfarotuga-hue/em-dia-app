@@ -97,3 +97,35 @@
 - **O quê:** `nilofulfarotuga@gmail.com` e `boraappbora@gmail.com` não foram apagadas na limpeza; os perfis é que foram recriados de raiz.
 - **Porquê:** são as duas contas que a migração 0004 torna administrador automático. Apagá-las tirava o acesso ao painel de administração e não havia como voltar a entrar.
 - **Como se desfaz:** apagá-las e voltar a criar; o administrador automático volta a agarrá-las pelo e-mail.
+
+## D19 — Faturação certificada: InvoiceXpress, e só por causa da multiconta
+- **O quê:** a ligação a software de faturação certificado fica escrita para o **InvoiceXpress**, atrás de uma opção desligada (`feature_flags.faturacao_certificada`, a falso).
+- **Porquê:** os três (InvoiceXpress, Vendus, Moloni) têm API e emitem fatura-recibo com comunicação automática à Autoridade Tributária. O que decide não é a API, é o modelo de conta. O InvoiceXpress é o único que deixa a nossa plataforma **criar a conta do utilizador por API** (`POST /api/accounts/create.json` devolve logo a chave dessa conta) e **configurar a comunicação à AT por API** (`POST /api/v3/accounts/at_communication.json`), e tem uma modalidade "Multiconta" feita para plataformas onde cada prestador fatura com o NIF dele — o exemplo que a própria empresa dá é a Cabify. O Moloni obriga cada pessoa a pagar um plano Flex (10,90 €/mês) para ter API; o Vendus obriga ao plano Flex (17 €/mês por conta) e não deixa criar contas por API.
+- **O que NÃO se automatiza, em nenhum deles:** por lei, a comunicação automática à AT precisa de um sub-utilizador criado pela própria pessoa no Portal das Finanças (formato `NIF/1`, com a permissão WFA) e da senha dele. Isso é um passo humano, sempre.
+- **Custo:** os planos do InvoiceXpress são por número de documentos por mês e todos incluem API — X3 3 €/mês (3 documentos), X10 9 €, X100 24 €, X500 29 €. Acima de 10 €/mês é decisão de dinheiro do Danilo, por isso fica desligado.
+- **Como se desfaz:** ligar a flag. O código e as chamadas estão escritos e ensaiados.
+
+## D20 — Banco: Enable Banking para construir, escolha do fornecedor só quando houver receita
+- **O quê:** a leitura de movimentos bancários entra atrás de uma camada nossa (`BancoFornecedor`), com o primeiro adaptador para **Enable Banking** em modo restrito, e fica desligada para o público.
+- **Porquê:** o grátis da GoCardless/Nordigen fechou a novos registos. A SIBS API Market exige licença de TPP do Banco de Portugal e certificados eIDAS. A Enable Banking tem um modo "Restricted Production" **gratuito** onde só se leem as contas que nós próprios ligámos — dá bancos portugueses a sério (CGD, Millennium, Santander, novobanco, BPI, Montepio), com movimentos reais e sujos, que é sobre o que a app vai ter de trabalhar. A alternativa paga com preço público e auto-serviço é a open-banking.io, a 3 € por conta ligada por mês.
+- **Como se desfaz:** trocar uma linha de configuração para outro adaptador. A camada existe desde a primeira linha exactamente para isso.
+
+## D21 — Preços de combustível: recolha escrita, mas desligada até haver autorização da DGEG
+- **O quê:** a recolha diária dos preços fica escrita (`sync-precos-combustiveis`) e **desligada** (`feature_flags.precos_combustivel`, a falso). A conta do "vale a pena esta corrida" usa o preço que a pessoa pagou no último abastecimento, ou um que ela escreva.
+- **Porquê:** a API da DGEG é aberta, sem chave, e devolve tudo numa chamada — 3 131 postos, 14 178 preços, com coordenadas. Tecnicamente não há nada a impedir. Mas o portal diz, com estas palavras, **"É proibida a sua utilização para fins comerciais"**, e o Em Dia é um produto comercial. Há um processo formal de "Partilha de Informação" com uma minuta oficial. Enquanto não houver resposta, a app não mostra preços da DGEG.
+- **Como se desfaz:** com a autorização escrita, liga-se a flag. O pedido está redigido em `docs/PENDENTE-DANILO.md`.
+
+## D22 — Centros de inspeção: carregados do PDF do IMT, uma vez, para uma tabela nossa
+- **O quê:** os centros de inspeção vêm do PDF oficial "Lista CITV atualizada" do IMT, lido por um script, guardados em `centros_inspecao` com o código CITV como chave.
+- **Porquê:** não há API nem CSV, e o dados.gov.pt não tem este conjunto. O PDF traz distrito, código, nome, morada, código postal e **coordenadas** — mas em cerca de seis formatos diferentes e muitas vezes sem o sinal negativo na longitude, por isso é preciso normalizar e validar contra uma caixa geográfica de Portugal. Não traz telefone, concelho nem a categoria A/B.
+- **Como se desfaz:** apagar a tabela e mandar as pessoas ao site do IMT.
+
+## D23 — Nada de ler SMS nem o Gmail, e a razão fica escrita
+- **O quê:** a app **não** pede permissão de SMS e **não** liga à API do Gmail. As faturas entram por foto (Photo Picker) e por uma caixa de correio nossa para onde a pessoa reencaminha.
+- **Porquê:** a política da Play só deixa ler SMS a quem for a app de SMS por omissão, ou por exceção caso a caso com revisão manual — e a política de programas-espia aponta expressamente para apps de orçamento. Quanto ao Gmail, todos os âmbitos de leitura são "restritos": obrigam a verificação OAuth com avaliação de segurança anual por avaliador independente (CASA), a Google estima cerca de 6 semanas, o preço é negociado com o avaliador, e — o travão decisivo — **é proibido passar dados do Gmail por modelos de inteligência artificial generalistas**, que é exactamente o que a app faria. O reencaminhamento para uma caixa nossa fica fora destas políticas: o conteúdo chega entregue pela pessoa.
+- **Como se desfaz:** não se desfaz sem passar pela verificação da Google. Se um dia se quiser SMS, a linha aplicável chama-se "SMS-based money management".
+
+## D24 — A caixa de correio das faturas monta-se na Cloudflare, com catch-all para um Worker
+- **O quê:** cada pessoa recebe um endereço `<nome>-<8 letras ao acaso>@contas.<domínio>`; uma **única** regra catch-all entrega tudo a um Worker, que separa o PDF, mete-o no Storage e chama a Edge Function que o lê.
+- **Porquê:** o Email Routing da Cloudflare recebe **sem limite de volume no plano grátis**, e a regra catch-all pode ligar directamente a código nosso. Criar um endereço por pessoa batia no tecto de 200 regras por domínio; com catch-all, o endereço passa a existir no momento em que o gravamos na nossa base de dados. As 8 letras ao acaso são a fechadura: sem elas, um estranho adivinhava o endereço de outro.
+- **Como se desfaz:** apagar a regra catch-all. O endereço deixa de receber e nada mais parte.

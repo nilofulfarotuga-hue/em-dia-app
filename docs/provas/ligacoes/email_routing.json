@@ -1,0 +1,227 @@
+{
+ "dimensao": "email_routing",
+ "achado": {
+  "dimensao": "Email por utilizador (endereco proprio) com Cloudflare Email Routing + Email Worker -> Edge Function Supabase -> Gemini le o PDF -> cria conta a pagar",
+  "resumo": "O Cloudflare Email Routing serve e e gratuito, sem limite de emails recebidos: a documentacao de precos diz \"Inbound emails (Email Routing) Unlimited\" no plano Free e no Pago. Da para catch-all, ou seja, aceitar QUALQUER coisa @contas.emdia.pt sem criar endereco a endereco, e a regra catch-all pode ser ligada directamente a um Worker (accao \"worker\"), o que evita de vez os limites de 200 regras por dominio e 200 destinos verificados. O Worker recebe um objecto com from, to, headers, rawSize e raw (stream MIME); le-se o corpo e os anexos com a biblioteca postal-mime. O limite duro que interessa e o tamanho da mensagem: 25 MiB de entrada. Da para o Worker fazer POST para uma Edge Function do Supabase (fetch normal, ate 50 subpedidos), mas o tamanho maximo de corpo aceite por uma Edge Function nao esta publicado na documentacao da Supabase - por isso a recomendacao e o Worker separar o PDF, enviar o ficheiro para o Supabase Storage e mandar a Edge Function so um JSON pequeno com o link. O DNS (MX + SPF) e criado e trancado pela propria Cloudflare quando se activa o Email Routing, e ha API REST para as regras. Alternativas: ImprovMX gratuito nao tem webhooks (so a partir de 9 USD/mes), Mailgun gratuito da 100 emails/dia e 1 rota, Postmark so tem inbound nos planos Pro/Platform, e o Resend inclui inbound em todos os planos incluindo o gratuito de 3.000 emails/mes.",
+  "factos": [
+   {
+    "facto": "Email Routing e gratuito e o recebimento de email nao tem limite: a tabela de precos oficial diz \"Inbound emails (Email Routing)\" = \"Unlimited\" tanto no plano Free como no Paid. Envio para fora e que exige plano Workers Paid (3.000 emails/mes incluidos, depois 0,35 USD por 1.000).",
+    "fonte_url": "https://developers.cloudflare.com/email-service/platform/pricing/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Limites publicados do Email Routing: 200 regras de encaminhamento por dominio, 200 enderecos de destino por conta, 30 dominios por zona, e 25 MiB de tamanho maximo da mensagem recebida (acima disso e rejeitada). Nao ha limite publicado de volume de mensagens recebidas.",
+    "fonte_url": "https://developers.cloudflare.com/email-routing/limits/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O catch-all existe e aceita qualquer local-part do dominio (\"forwards every email sent to your domain, including misspelled local parts\"). Liga-se em Compute > Email Service > Email Routing > Routing Rules, ligando o toggle \"Catch-all rule\" e escolhendo a accao: Forward to email, Send to Worker, ou Drop. Como usamos \"Send to Worker\", nao ha que criar cada endereco a mao nem validar destinos.",
+    "fonte_url": "https://developers.cloudflare.com/email-routing/setup/email-routing-addresses/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O Email Routing ja suporta subdominios (antes so o dominio de topo). Adiciona-se em Email > Email Routing > Settings > Add subdomain e configuram-se os registos DNS desse subdominio. Isto permite usar contas.emdia.pt sem tocar no email do dominio principal. O anuncio diz explicitamente: \"There are no changes in pricing, and Email Routing is still free for Cloudflare customers\".",
+    "fonte_url": "https://blog.cloudflare.com/email-routing-subdomains/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O handler e `export default { async email(message, env, ctx) {...} }`. O objecto ForwardableEmailMessage tem: `from` (envelope MAIL FROM), `to` (envelope RCPT TO), `headers` (Headers, ex.: message.headers.get(\"subject\")), `rawSize` (bytes), `raw` (ReadableStream com o MIME completo), `canBeForwarded`, e os metodos `forward()`, `reply()` e `setReject(motivo)`.",
+    "fonte_url": "https://developers.cloudflare.com/email-routing/email-workers/runtime-api/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Para ler corpo e anexos a documentacao oficial manda usar a biblioteca postal-mime: `const email = await PostalMime.parse(message.raw)` e depois `email.text`, `email.html` e `email.attachments` (que traz os PDFs). Trata sozinha multipart, encodings e charsets.",
+    "fonte_url": "https://developers.cloudflare.com/email-routing/email-workers/runtime-api/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Para enviar o email em bruto por HTTP, o padrao oficial e embrulhar o stream numa Response: `const rawBuffer = await new Response(message.raw).arrayBuffer();` e, se for preciso texto, `new TextDecoder().decode(rawBuffer)`. Esse buffer pode ir directo no body de um fetch POST.",
+    "fonte_url": "https://developers.cloudflare.com/email-service/examples/email-routing/email-storage/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Limites do Worker no plano gratuito que apertam este desenho: 100.000 pedidos/dia, 10 ms de CPU por invocacao, 50 subpedidos (fetch) por pedido, 128 MB de memoria por isolate. Os 10 ms de CPU sao o ponto sensivel - parsing MIME de um PDF grande gasta CPU; o tempo de espera do fetch nao conta como CPU, mas o decode/parse conta.",
+    "fonte_url": "https://developers.cloudflare.com/workers/platform/limits/",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Limites da Edge Function Supabase: 256 MB de memoria, 2 s de CPU por pedido, 150 s de relogio no plano gratuito (400 s nos pagos), 20 MB de tamanho de funcao. O tamanho maximo do CORPO do pedido NAO esta publicado na documentacao oficial da Supabase - ha issues abertos no proprio repositorio a pedir que seja documentado. Por isso nao se pode contar com POST de 25 MiB de email em bruto.",
+    "fonte_url": "https://supabase.com/docs/guides/functions/limits",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Os 2 s de CPU da Edge Function nao chegam para esperar pelo Gemini? Chegam - o limite e de CPU, \"excludes async I/O\", e a espera pela resposta do Gemini e I/O. O que manda e o relogio: 150 s no plano gratuito.",
+    "fonte_url": "https://supabase.com/docs/guides/functions/limits",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "O Email Routing cria e tranca sozinho os registos DNS precisos: MX (servidores tipo amir.mx.cloudflare.net, linda.mx.cloudflare.net, isaac.mx.cloudflare.net, com prioridades) e TXT de SPF `v=spf1 include:_spf.mx.cloudflare.net ~all`. A pagina de arranque fala de MX, TXT de SPF e TXT de DKIM. DMARC nao e criado pela Cloudflare - se quisermos DMARC no subdominio, cria-se a mao ou por API de DNS.",
+    "fonte_url": "https://developers.cloudflare.com/email-routing/postmaster/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Ha API REST para tudo o que interessa: POST /zones/{zone_id}/email/routing/enable (marcada como Deprecated na referencia - por isso a activacao inicial faz-se no dashboard), PUT /zones/{zone_id}/email/routing/rules/catch_all para a regra catch-all (actions com type \"drop\"|\"forward\"|\"worker\", matchers com type \"all\"), POST /zones/{zone_id}/email/routing/rules para regras individuais (matchers type \"literal\", field \"to\", value ate 90 caracteres), e PATCH /zones/{zone_id}/email/routing/dns para destrancar os MX. Token precisa da permissao \"Email Routing Rules Write\".",
+    "fonte_url": "https://developers.cloudflare.com/api/resources/email_routing/subresources/rules/subresources/catch_alls/methods/update/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Anti-spoof que ja vem de graca: a Cloudflare rejeita mensagens de entrada que falhem a politica DMARC do remetente e rejeita remetentes que estejam em Realtime Block Lists (RBL), com erro SMTP.",
+    "fonte_url": "https://developers.cloudflare.com/email-routing/postmaster/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O problema do SPF partido no reencaminho esta tratado do lado da Cloudflare: ela aplica SRS (reescreve o envelope MAIL FROM para um dominio dela, deixando o cabecalho From intacto) e suporta ARC (Authenticated Received Chain), que preserva o resultado de autenticacao original quando passa por intermediarios. Ou seja: quando o utilizador reencaminha a factura do Gmail dele, o SPF do emissor original ja nao valida, mas o DKIM do emissor costuma sobreviver e o ARC guarda o registo.",
+    "fonte_url": "https://developers.cloudflare.com/email-routing/postmaster/",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A documentacao NAO diz se a Cloudflare acrescenta um cabecalho Authentication-Results na mensagem entregue ao Worker. Nao se pode desenhar a validacao a contar com esse cabecalho sem primeiro fazer um teste real e imprimir os headers recebidos.",
+    "fonte_url": "https://developers.cloudflare.com/email-routing/postmaster/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "ImprovMX: plano gratuito com 1 dominio, 25 aliases, 500 emails reencaminhados por dia e 7 dias de log. Webhooks de email SO existem a partir do Premium (9 USD/mes, 30 dominios, 100 aliases por dominio, 5.000 reencaminhos/dia). Sem webhook no gratuito, nao serve para ler as facturas em codigo.",
+    "fonte_url": "https://improvmx.com/pricing/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Mailgun: plano gratuito com 100 emails/dia e apenas 1 rota de entrada (inbound route); o plano Basic comeca em 15 USD/mes com 10.000 emails/mes e 5 rotas. Rotas de entrada existem em todos os planos, mas 1 rota chega para catch-all - o travao e o volume diario.",
+    "fonte_url": "https://www.mailgun.com/pricing/",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "Postmark: plano gratuito \"Developer\" de 100 emails/mes que nunca expira; planos pagos a partir de 15 USD/mes por 10.000 emails. O processamento inbound so esta disponivel nos planos Pro e Platform. A pagina de precos nao diz se os emails recebidos descontam da quota mensal.",
+    "fonte_url": "https://postmarkapp.com/pricing",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "Resend: inbound (receber emails) esta listado como incluido em TODOS os planos, incluindo o gratuito de 3.000 emails/mes; funciona com um subdominio da Resend (<alias>@<id>.resend.app) ou dominio proprio com MX, e faz POST de um JSON para o nosso webhook com conteudo e anexos. E a melhor alternativa se a Cloudflare falhar, mas 3.000/mes e um tecto real e a documentacao nao publica limite de tamanho de anexo.",
+    "fonte_url": "https://resend.com/docs/dashboard/receiving/introduction",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Gemini a ler o PDF: aceita PDF ate 50 MB ou 1000 paginas; PDFs pequenos podem ir inline em base64 com mime_type \"application/pdf\"; para ficheiros maiores ou reutilizados, usa-se a Files API (ficheiros ficam 48 h, sem custo). Cada pagina custa cerca de 258 tokens.",
+    "fonte_url": "https://ai.google.dev/gemini-api/docs/document-processing",
+    "confianca": "alta",
+    "decide_implementacao": true
+   }
+  ],
+  "urls_ou_endpoints": [
+   {
+    "para_que": "Activar o Email Routing na zona (cria e tranca MX+SPF). Marcado Deprecated - fazer no dashboard e so gerir regras por API.",
+    "url": "https://api.cloudflare.com/client/v4/zones/{zone_id}/email/routing/enable",
+    "metodo": "POST",
+    "notas": "Headers X-Auth-Email + X-Auth-Key, ou Bearer token com Zone Settings Write. Corpo {}."
+   },
+   {
+    "para_que": "Ligar o catch-all de contas.emdia.pt directamente ao Worker (o passo que dispensa criar enderecos a mao)",
+    "url": "https://api.cloudflare.com/client/v4/zones/{zone_id}/email/routing/rules/catch_all",
+    "metodo": "PUT",
+    "notas": "Corpo: {\"enabled\":true,\"name\":\"contas-catchall\",\"matchers\":[{\"type\":\"all\"}],\"actions\":[{\"type\":\"worker\",\"value\":[\"emdia-inbox\"]}]}. Token precisa de Email Routing Rules Write."
+   },
+   {
+    "para_que": "Criar/listar regras individuais, se algum dia se quiser um endereco especifico em vez de catch-all",
+    "url": "https://api.cloudflare.com/client/v4/zones/{zone_id}/email/routing/rules",
+    "metodo": "POST",
+    "notas": "matchers: [{\"type\":\"literal\",\"field\":\"to\",\"value\":\"nome7f2@contas.emdia.pt\"}] (value ate 90 chars); actions: type worker|forward|drop. Limite de 200 regras por dominio - por isso o catch-all e obrigatorio a escala."
+   },
+   {
+    "para_que": "Destrancar os registos MX que o Email Routing trancou (so em manutencao)",
+    "url": "https://api.cloudflare.com/client/v4/zones/{zone_id}/email/routing/dns",
+    "metodo": "PATCH",
+    "notas": "Usa-se se for preciso mexer manualmente no DNS de email."
+   },
+   {
+    "para_que": "Criar o TXT de DMARC do subdominio (a Cloudflare cria MX/SPF/DKIM, DMARC nao)",
+    "url": "https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records",
+    "metodo": "POST",
+    "notas": "{\"type\":\"TXT\",\"name\":\"_dmarc.contas\",\"content\":\"v=DMARC1; p=none; rua=mailto:...\"}. Comecar em p=none para nao partir nada."
+   },
+   {
+    "para_que": "O Worker entrega o email processado a nossa Edge Function",
+    "url": "https://{project-ref}.supabase.co/functions/v1/inbox-fatura",
+    "metodo": "POST",
+    "notas": "JSON pequeno: {to, from, subject, message_id, text, attachment_path, size}. Header proprio X-EmDia-Secret com segredo partilhado (guardado com `wrangler secret put`), verify_jwt desligado. NAO enviar o email em bruto: o limite de corpo da Edge Function nao esta publicado."
+   },
+   {
+    "para_que": "O Worker envia o PDF directamente para o Storage, sem passar pela Edge Function",
+    "url": "https://{project-ref}.supabase.co/storage/v1/object/faturas-inbox/{user_id}/{message_id}.pdf",
+    "metodo": "POST",
+    "notas": "Header Authorization: Bearer <service_role> guardado como segredo do Worker, Content-Type application/pdf. Assim o corpo grande nunca toca na Edge Function."
+   },
+   {
+    "para_que": "A Edge Function pede ao Gemini para ler o PDF e devolver valor, data, entidade e referencia Multibanco",
+    "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+    "metodo": "POST",
+    "notas": "inline_data com mime_type application/pdf em base64 (PDF ate 50 MB / 1000 paginas); pedir responseMimeType application/json com esquema fixo para nao vir texto solto."
+   }
+  ],
+  "recomendacao": "Implementar com Cloudflare Email Routing. E o unico caminho gratuito e sem tecto de volume dos quatro avaliados, e o unico onde o catch-all liga directamente a codigo nosso.\n\nMontagem concreta, por ordem:\n\n1) Subdominio dedicado. Activar Email Routing na zona do dominio e adicionar o subdominio `contas.emdia.pt` (Email > Email Routing > Settings > Add subdomain). O email do dominio principal fica intacto. A Cloudflare cria e tranca os MX (amir/linda/isaac.mx.cloudflare.net) e o SPF `v=spf1 include:_spf.mx.cloudflare.net ~all`. Acrescentar a mao um TXT `_dmarc.contas` com `p=none` no arranque.\n\n2) Uma regra so, para sempre. `PUT /zones/{zone_id}/email/routing/rules/catch_all` com `matchers:[{type:\"all\"}]` e `actions:[{type:\"worker\", value:[\"emdia-inbox\"]}]`. Assim NAO se cria endereco nenhum por utilizador: o endereco `nome7f2@contas.emdia.pt` existe no momento em que o gravamos na nossa base de dados. Isto contorna de vez os limites de 200 regras/dominio e 200 destinos verificados, que sao os que matariam a abordagem \"um endereco criado a mao por cliente\".\n\n3) Formato do endereco. `<slug>-<8 caracteres aleatorios>@contas.emdia.pt`, gerados por nos e guardados em `user_inbox_addresses(local_part unique, user_id)`. Os 8 caracteres aleatorios sao a fechadura: sem eles, um estranho nao consegue adivinhar o endereco de outro. Nunca usar o nome ou o NIF sozinhos.\n\n4) O Worker (`email()` handler): le `message.to`, tira o local-part, e consulta a nossa tabela. Se nao existir, chama `message.setReject(\"Endereco desconhecido\")` - devolve erro SMTP e nao aceitamos lixo. Se existir, faz `PostalMime.parse(message.raw)`, tira `email.text` e os `email.attachments`; envia o primeiro PDF para o Supabase Storage e faz um POST pequeno para a Edge Function `inbox-fatura` com um segredo partilhado no header. Enviar o PDF pelo Storage e nao pela Edge Function e deliberado: o limite de corpo da Edge Function nao esta publicado pela Supabase, e o email pode ter ate 25 MiB.\n\n5) Cuidado com o CPU do Worker: 10 ms no plano gratuito. Parsing MIME de um anexo grande pode estourar. Regra de implementacao: se `message.rawSize` for acima de ~2 MB, nao fazer parse no Worker - enviar o `raw` inteiro para o Storage e deixar a Edge Function (2 s de CPU, 256 MB) fazer o parse. Medir isto no primeiro teste real, com o `rawSize` gravado em log.\n\n6) A Edge Function chama o Gemini com o PDF em base64 (ate 50 MB/1000 paginas), pedindo JSON com esquema fixo: valor, data_limite, entidade, entidade_multibanco, referencia_multibanco. Grava a conta a pagar com estado `por_confirmar`, nunca `confirmada` - o utilizador aprova no ecra.\n\nSobre a confianca no remetente, que e a pergunta 7: nao se prova nada pelo cabecalho `From`, porque quem reencaminha e o utilizador e o `From` continua a ser o da EDP ou da Vodafone. A prova real e outra: o endereco secreto so o dono conhece. Reforcar com tres coisas: (a) a Cloudflare ja rejeita quem falha o DMARC do remetente e quem esta em RBL, de graca; (b) comparar `message.from` (envelope) com o email registado do utilizador - se bater certo, marcar `origem: auto_reencaminho`, senao `origem: desconhecida` e mostrar aviso no ecra; (c) nunca criar pagamento automatico a partir de um email, so a conta a pagar em rascunho. E preciso um teste real a imprimir todos os headers recebidos antes de assumir que existe `Authentication-Results` - a documentacao nao o diz.\n\nPlano B, se a Cloudflare falhar: Resend inbound, que esta incluido ate no plano gratuito de 3.000 emails/mes e faz POST de JSON com anexos. ImprovMX esta fora (webhooks so a partir de 9 USD/mes), Postmark esta fora no arranque (inbound so nos planos Pro/Platform) e Mailgun tem tecto de 100 emails/dia no gratuito.",
+  "bloqueios": [
+   "Ter (ou registar) o dominio e po-lo com DNS na Cloudflare - a compra do dominio .pt e decisao e cartao do Danilo.",
+   "Activar o Email Routing e adicionar o subdominio contas.<dominio> no dashboard da Cloudflare: exige login e o endpoint POST /email/routing/enable esta marcado como Deprecated na API. Deixa-se a pagina aberta e fica so o clique.",
+   "Criar o API token da Cloudflare com as permissoes 'Email Routing Rules Write' e 'Zone DNS Write' - passo de login, tem de ser humano.",
+   "Chave da Gemini API com faturacao activa (leitura de PDF a escala nao cabe no tier gratuito por muito tempo).",
+   "Decisao RGPD do Danilo: ler o conteudo dos emails de faturas dos utilizadores e tratamento de dados pessoais; precisa de texto de consentimento no onboarding e de politica de retencao dos PDFs no Storage. Isto e decisao legal, nao tecnica.",
+   "Teste real por fazer antes de fechar o desenho: enviar um email a serio para o catch-all e imprimir TODOS os headers que chegam ao Worker, para saber se ha Authentication-Results/ARC utilizavel. A documentacao nao o diz e nao se inventa.",
+   "Por confirmar em teste, nao esta publicado: qual o corpo maximo que uma Edge Function da Supabase aceita num POST. Enquanto nao houver numero medido, o PDF vai pelo Storage."
+  ]
+ },
+ "veredictos": [
+  {
+   "facto": "Email Routing (recebimento de email na Cloudflare) e gratuito e sem limite de volume, tanto no plano Workers Free como no Workers Paid; o envio para fora exige Workers Paid, com 3.000 emails/mes incluidos e depois 0,35 USD por cada 1.000.",
+   "confirmado": false,
+   "correcao": "Os numeros citados estao literalmente corretos na pagina de hoje (ultima atualizacao: 9 de junho de 2026). A tabela diz mesmo: \"Outbound emails (Email Sending)\" = \"Not available\" no Workers Free e \"3,000 included per month, then $0.35 per 1,000 emails\" no Workers Paid; \"Inbound emails (Email Routing)\" = \"Unlimited\" nas duas colunas. Fonte: https://developers.cloudflare.com/email-service/platform/pricing/\n\nMarco confirmado=false porque a afirmacao esta INCOMPLETA em cinco pontos que mudam a decisao para o \"Em Dia\":\n\n1) \"Sem limite\" nao quer dizer sem travoes. A mesma documentacao impoe, no recebimento: 200 regras de encaminhamento por dominio, 200 enderecos de destino verificados por conta, 25 MiB por mensagem recebida, e 30 dominios por zona. Para o \"Em Dia\", o teto das 200 regras e o que interessa: nao se pode dar um endereco proprio por utilizador com uma regra cada. A saida e uma regra catch-all a apontar para um Worker.\nFonte: https://developers.cloudflare.com/email-service/platform/limits/\n\n2) O recebimento so e mesmo gratuito se for REENCAMINHAMENTO puro. A propria pagina de precos diz, a seguir a tabela: \"Email Routing Workers is billed according to Workers pricing.\" Ou seja, no minuto em que o email e processado por um Worker (que e exatamente o caso do \"Em Dia\" - abrir a fatura/recibo e escrever no Supabase), cada email e uma invocacao de Worker faturada em https://developers.cloudflare.com/workers/platform/pricing/ : Free = 100.000 pedidos/dia e 10 ms de CPU por invocacao; Paid = 10 milhoes/mes incluidos, depois 0,30 USD por milhao.\n\n3) No Workers Free, um handler de email pesado pode simplesmente falhar. A documentacao diz que os Workers que recebem email contam para os limites normais de CPU e memoria e que \"complex handlers may exceed these limits and fail to process a message\", com erro EXCEEDED_CPU nos logs. Um parser de PDF/anexo cabe mal em 10 ms de CPU. Isto e perda de email do utilizador, nao um aviso cosmetico.\nFonte: https://developers.cloudflare.com/email-service/platform/limits/#routing-to-workers-on-the-workers-free-plan\n\n4) A parte do envio esta demasiado dura, e a favor da Cloudflare. Nao e verdade que qualquer envio exija Workers Paid: \"Sends to verified destination addresses are free and do not count toward the included quota\", \"on any plan, including when only Email Routing is configured\". Traduzindo para o \"Em Dia\": enviar para os nossos proprios enderecos verificados (alertas internos, copias para o dono da conta ja verificada) e gratuito mesmo no Free. So o envio para destinatarios arbitrarios - que e o caso de mandar o resumo mensal ao cliente - e que precisa do Workers Paid.\nFontes: https://developers.cloudflare.com/email-service/platform/pricing/ e https://developers.cloudflare.com/email-service/platform/limits/#verified-destination-addresses\n\n5) Os 3.000/mes NAO sao o unico portao do envio. Existe um limite DIARIO por conta, separado: \"New accounts start with a conservative daily quota and scale up over time based on your sending behavior, deliverability rates, and account standing.\" O valor exato desse limite diario NAO ESTA PUBLICADO na documentacao - digo-o com estas palavras em vez de inventar um numero. Ha um formulario para pedir aumento. Isto significa que uma campanha de \"enviar o recibo do mes a todos os utilizadores no dia 1\" pode bater num teto que nao conseguimos planear a partir da documentacao.\nFonte: https://developers.cloudflare.com/email-service/platform/limits/#daily-sending-limits\n\nExtras que valem para o \"Em Dia\" e nao estavam na afirmacao: o servico e so para email transacional - \"Email Service is intended only for transactional emails\" (https://developers.cloudflare.com/email-service/reference/faq/); no envio, 50 destinatarios por email e 5 MiB por mensagem (25 MiB apenas para enderecos verificados); e os emails enviados por um Worker aparecem no resumo do Email Routing como \"dropped\" mesmo quando foram entregues - se olharmos so para esse painel, vamos julgar que esta tudo partido quando nao esta.\n\nResumo para decidir: receber email na Cloudflare e de facto gratuito e sem teto de volume publicado, e isso aguenta o \"Em Dia\". O custo escondido nao esta no email, esta no Worker que o processa e no envio para o cliente. Contar com Workers Paid (5 USD/mes minimo) desde o inicio, e nao com o Free.",
+   "fonte_url": "https://developers.cloudflare.com/email-service/platform/pricing/"
+  },
+  {
+   "facto": "Limites publicados do Cloudflare Email Routing: 200 regras de encaminhamento por dominio, 200 enderecos de destino por conta, 30 dominios por zona, 25 MiB de tamanho maximo da mensagem recebida (acima disso e rejeitada). Nao ha limite publicado de volume de mensagens recebidas.",
+   "confirmado": false,
+   "correcao": "Os quatro numeros estao certos, mas a afirmacao esta incompleta e a fonte apontada ja nao e a pagina canonica. Verificado hoje (2026-09-06):\n\n1) A DOCUMENTACAO MUDOU DE CASA. O Email Routing foi absorvido pelo produto \"Cloudflare Email Service\". A pagina de limites canonica e agora https://developers.cloudflare.com/email-service/platform/limits/ (titulo \"Limits - Cloudflare Email Service docs\", ultima actualizacao indicada 9 de Junho de 2026). O URL antigo https://developers.cloudflare.com/email-routing/limits/ ainda responde, mas ja serve o conteudo do Email Service, nao uma pagina propria do Email Routing. Quem citar o URL antigo esta a citar um alias.\n\n2) FALTA UM LIMITE DA MESMA TABELA: \"Reply References entries - 100\". Palavras da doc: se o email recebido tiver mais de 100 entradas References, o message.reply() lanca erro. Isto importa directamente para a app \"Em Dia\" se algum dia se usar um Email Worker para responder a fios longos (ex.: um cliente que responde 100 vezes ao mesmo email de recibo). Nao e detalhe academico: e um erro em runtime.\n\n3) O \"30 dominios por zona\" esta mal caracterizado. A doc diz que sao o total COMBINADO de dominios configurados para Email Routing OU Email Sending na mesma zona. Nao sao 30 so para receber; se se comecar a enviar pelo Cloudflare, os dominios de envio comem do mesmo balde de 30.\n\n4) O que se confirma tal e qual: \"Routing rules per domain - 200\" (cada regra mapeia um padrao de email para um destino); \"Destination addresses per account - 200\" (os destinos verificados sao partilhados por todos os dominios da conta); \"Inbound message size - 25 MiB\", com a nota literal de que mensagens maiores sao rejeitadas. Confirma-se tambem que NAO ha limite publicado de volume/numero de mensagens recebidas - nem na pagina de limites nem na pagina Postmaster (https://developers.cloudflare.com/email-service/reference/postmaster/). Nao esta publicado; nao quer dizer que nao exista.\n\n5) CUIDADO COM A CONFUSAO DE TAMANHOS, que e a armadilha desta pagina. Ha DOIS numeros diferentes e sao facilmente trocados:\n   - RECEBER (Email Routing): 25 MiB.\n   - ENVIAR (Email Sending): 5 MiB no geral, e so 25 MiB quando o destinatario e um endereco de destino verificado da propria conta.\n   Ou seja, se a app \"Em Dia\" enviar um PDF de recibo/factura para o email pessoal do trabalhador (destinatario arbitrario, nao verificado), o tecto e 5 MiB, nao 25 MiB. A afirmacao original, ao falar so de 25 MiB, arrisca que se dimensione o envio de anexos pelo numero errado.\n\n6) Outros limites de conteudo publicados na mesma pagina e omitidos: 50 destinatarios por email (to+cc+bcc somados), 998 caracteres no assunto, 16 KB no total dos cabecalhos personalizados.\n\n7) PRECO, verificado na pagina oficial de precos (https://developers.cloudflare.com/email-service/platform/pricing/): o Email Routing (receber e reencaminhar) continua gratuito e esta disponivel nos planos Workers Free e Workers Paid. O envio para enderecos de destino verificados da conta e gratuito em todos os planos e nao conta para a quota. Ha 3.000 emails incluidos por conta e por mes, alinhados com o ciclo de facturacao; enviar para destinatarios arbitrarios exige plano Workers Paid. A quota diaria de envio NAO tem numero publicado - a doc diz apenas que contas novas comecam com uma quota diaria conservadora que sobe com o tempo, conforme o comportamento de envio, taxas de entrega e situacao da conta. Nao inventar um numero para essa quota diaria.\n\nPara pedir limites acima destes existe um \"Limit Increase Request Form\" referido na propria pagina de limites.",
+   "fonte_url": "https://developers.cloudflare.com/email-service/platform/limits/"
+  },
+  {
+   "facto": "Cloudflare Email Routing: existe uma regra \"catch-all\" que aceita qualquer local-part do domínio, liga-se em Compute > Email Service > Email Routing > Routing Rules, com três acções (email, Worker, Drop), e usando \"Send to a Worker\" não é preciso criar cada endereço à mão nem validar destinos.",
+   "confirmado": false,
+   "fonte_url": "https://developers.cloudflare.com/email-service/configuration/email-routing-addresses/",
+   "correcao": "O miolo está certo, mas a afirmação tem duas falhas — por isso não confirmo.\n\n1) A FONTE APONTADA ESTÁ MORTA (redirecciona). Prova literal:\n   curl -s -o /dev/null -w \"%{http_code} -> %{redirect_url}\" https://developers.cloudflare.com/email-routing/setup/email-routing-addresses/\n   -> 301 -> https://developers.cloudflare.com/email-service/configuration/email-routing-addresses/\n   Também https://developers.cloudflare.com/email-routing/ dá 301 -> https://developers.cloudflare.com/email-service/. O produto passou a ser documentado como \"Cloudflare Email Service\"; os caminhos /email-routing/ são legado. A citar, cita-se o URL novo (200 OK).\n\n2) O QUE ESTÁ CERTO (confirmado no URL novo):\n   - Catch-all: \"Email Routing forwards every email sent to your domain, including misspelled local parts, to a single destination.\" Exemplo dos docs: regra para info@example.com e alguém escreve ifno@example.com — o email é na mesma tratado se o Catch-all rule estiver ligado.\n   - Caminho no painel: \"In the Cloudflare dashboard, go to Compute > Email Service > Email Routing. Select Routing Rules. Enable Catch-all rule\". Bate certo.\n   - Três acções, mas os nomes exactos nos docs são \"Send to an email\", \"Send to a Worker\" e \"Drop\" — não \"Forward to email\". Detalhe pequeno, mas quem procura o botão procura o nome certo.\n   - Não é preciso criar cada endereço à mão: verdade, é isso que o catch-all faz.\n\n3) O QUE ESTÁ ERRADO: \"nem validar destinos\".\n   A mesma página diz: \"To prevent spamming unintended recipients, all routing rules are automatically disabled until the destination address is validated by the user.\" E a página de arranque (https://developers.cloudflare.com/email-service/get-started/route-emails/) diz: \"Before you can create a routing rule, add and verify the destination address that will receive the forwarded emails.\"\n   Ou seja, o onboarding do Email Routing exige na mesma adicionar e verificar pelo menos um endereço de destino (clicar no link do email de verificação — tarefa humana, do Danilo). E se o Worker chamar message.forward(), só reencaminha para endereços de destino verificados (https://developers.cloudflare.com/email-routing/email-workers/ -> 200 na página nova).\n   NÃO ESTÁ PUBLICADO nos docs oficiais nenhuma isenção explícita a dizer que uma regra só-Worker dispensa por completo o endereço de destino verificado. Como não está publicado, não afirmo que dispensa.\n\n4) LIMITES E PREÇO DE HOJE (2026-09-06), da página oficial https://developers.cloudflare.com/email-service/platform/limits/ e https://developers.cloudflare.com/email-service/platform/pricing/:\n   - Regras de routing por domínio: 200. Endereços de destino por conta: 200. Domínios por zona: 30. Tamanho da mensagem recebida: 25 MiB.\n   - Entrada (Email Routing) é \"Unlimited\" e sem custo, tanto no Workers Free como no Paid. Enviar para endereços de destino verificados é grátis em todos os planos.\n   - ATENÇÃO para o \"Em Dia\": ENVIAR email (Email Sending, para destinatários arbitrários — ex.: responder ao utilizador) NÃO está disponível no plano Workers Free. No Workers Paid são 3.000 emails/mês incluídos e depois 0,35 USD por 1.000 emails. A quota diária de contas novas não tem número publicado: os docs dizem só \"New accounts start with a conservative daily quota and scale up over time\".\n   - O Worker que trata o email conta para os limites normais de CPU/memória dos Workers.\n\nRESUMO PARA A DECISÃO: o desenho (catch-all -> Worker) funciona e a parte de entrada é grátis. Mas há um passo humano inevitável no arranque (verificar um endereço de destino por email) e, se o Em Dia tiver de responder ao utilizador por email, isso já é Email Sending e obriga a plano pago."
+  },
+  {
+   "facto": "Cloudflare Email Routing suporta subdominios (ex.: contas.emdia.pt), adiciona-se em Email > Email Routing > Settings > Add subdomain, configuram-se os registos DNS do subdominio, nao se toca no email do dominio principal, e o servico continua gratuito (\"There are no changes in pricing, and Email Routing is still free for Cloudflare customers\").",
+   "confirmado": false,
+   "correcao": "A afirmacao acerta no essencial (os subdominios sao mesmo suportados e o Email Routing continua gratuito hoje), mas esta desatualizada em 3 pontos e ERRADA num 4o, que e justamente o que interessa ao \"Em Dia\".\n\n1) A CITACAO E REAL MAS VELHA. A frase esta correta palavra a palavra, mas o post e de 26 de outubro de 2023 (https://blog.cloudflare.com/email-routing-subdomains/). Citar um preco de ha quase 3 anos nao prova nada sobre hoje. Verifiquei na pagina de precos oficial de hoje: Email Routing = \"Unlimited\" nos planos Workers Free e Workers Paid, e \"Sends to verified destination addresses are free and do not count toward the included quota\" (https://developers.cloudflare.com/email-service/platform/pricing/). Logo o gratuito confirma-se, mas por esta fonte, nao pela do blog.\n\n2) O CAMINHO NO PAINEL JA NAO E ESSE. O produto passou a chamar-se Cloudflare Email Service e o Email Routing vive la dentro. O caminho atual e: Compute > Email Service > Email Routing, escolher o dominio de topo, abrir Settings e, em \"Subdomains\", escrever o subdominio no formulario e submeter. Quem seguir \"Email > Email Routing > Settings > Add subdomain\" nao encontra o menu (https://developers.cloudflare.com/email-service/configuration/subdomains/).\n\n3) OS REGISTOS DNS NAO SE CONFIGURAM A MAO. A doc diz que \"Cloudflare adds the required DNS records to the subdomain\" e que so depois de propagarem se criam as regras. Nao ha passo manual de DNS no subdominio.\n\n4) O ERRO A SERIO: \"sem tocar no email do dominio principal\" E FALSO. O Email Routing e uma funcionalidade de zona e ativa-se no dominio de topo; os registos MX, SPF e DKIM sao colocados no dominio raiz, nao no subdominio (\"Optionally review the DNS records that Cloudflare will add to your root domain\" — https://developers.cloudflare.com/email-service/get-started/route-emails/). O subdominio so pode ser adicionado depois de escolher o dominio apex. A propria Cloudflare avisa que, se ja houver outro fornecedor de email, os MX do Email Routing podem entrar em conflito com os dele (https://developers.cloudflare.com/email-service/configuration/domains/). Ou seja: para ter contas.emdia.pt, mexe-se mesmo no DNS de email de emdia.pt. Se o email principal do \"Em Dia\" estiver noutro sitio (Google Workspace, Zoho, etc.), isto tem de ser planeado, nao e indolor.\n\n5) LIMITE QUE A AFIRMACAO OMITE: \"A zone can have up to 30 domains configured for Email Routing or Email Sending combined, including the apex domain\" — 30 dominios por zona, apex incluido. Alem disso: 200 regras de encaminhamento por dominio, 200 enderecos de destino por conta, 25 MiB por mensagem recebida (https://developers.cloudflare.com/email-service/platform/limits/).\n\n6) AVISO PRATICO PARA O \"EM DIA\": o Email Routing so RECEBE e reencaminha. Nao envia. Se a app precisar de mandar emails a partir de contas@emdia.pt (recibos, avisos de IVA, IRS, recuperacao de conta), isso e o Email Sending, que NAO e gratuito: exige plano Workers Paid, inclui 3.000 emails por mes e depois custa 0,35 USD por cada 1.000 emails (https://developers.cloudflare.com/email-service/platform/pricing/). Para envio transacional do \"Em Dia\" o custo nao e zero.",
+   "fonte_url": "https://developers.cloudflare.com/email-service/configuration/subdomains/"
+  },
+  {
+   "facto": "O handler e `export default { async email(message, env, ctx) {...} }`. O objecto ForwardableEmailMessage tem: `from` (envelope MAIL FROM), `to` (envelope RCPT TO), `headers` (Headers, ex.: message.headers.get(\"subject\")), `rawSize` (bytes), `raw` (ReadableStream com o MIME completo), `canBeForwarded`, e os metodos `forward()`, `reply()` e `setReject(motivo)`.",
+   "confirmado": false,
+   "correcao": "A descricao da interface esta certa palavra por palavra — confirmei o bloco TypeScript na doc oficial, incluindo `canBeForwarded`, e o exemplo `message.headers.get(\"subject\")` aparece tal e qual. Marco confirmado=false por duas razoes.\n\n1) O URL citado esta desactualizado. `curl -sIL https://developers.cloudflare.com/email-routing/email-workers/runtime-api/` devolve \"HTTP/1.1 301 Moved Permanently / Location: /email-service/api/route-emails/email-handler/\". O Email Routing foi absorvido pelo produto \"Cloudflare Email Service\"; a pagina viva e https://developers.cloudflare.com/email-service/api/route-emails/email-handler/ (marcada \"Last updated Jun 15, 2026\"). Quem for ao URL antigo cair num redireccionamento e as paginas irmas (limites, precos) mudaram de sitio.\n\n2) Esta incompleta nas restricoes que rebentam em producao. A doc oficial acrescenta: `forward()` so entrega a destination addresses verificadas da conta e so deixa acrescentar headers com prefixo `X-` (os restantes sao removidos); `reply()` atira excepcao se o email recebido nao tiver resultado DMARC valido, se ja tiver havido uma resposta nesse mesmo evento EmailMessage, se o destinatario da resposta nao for o remetente do email recebido, se o dominio do sender de saida nao for o dominio que recebeu o email, ou se o header `References` tiver mais de 100 entradas; e o inbound acima de 25 MiB e rejeitado antes de chegar ao Worker (https://developers.cloudflare.com/email-service/platform/limits/). Uma regra de encaminhamento mapeia um padrao para UM destino — para varios destinos e preciso um Worker a chamar `forward()` uma vez por destino.\n\nPrecos verificados hoje em https://developers.cloudflare.com/email-service/platform/pricing/ (\"Last updated Jun 9, 2026\"): inbound (Email Routing) ILIMITADO em Workers Free e em Workers Paid; outbound (Email Sending) nao esta disponivel no Free e no Paid tem 3.000 emails/mes incluidos e depois 0,35 USD por cada 1.000 emails; enviar para destination addresses verificadas e gratis em todos os planos e nao conta para a quota. O Worker em si e cobrado pelo pricing normal de Workers. Para o \"Em Dia\" isto significa: receber email sai a zero, mas enviar email para um destinatario qualquer (ex.: o cliente final) obriga a plano Workers Paid.",
+   "fonte_url": "https://developers.cloudflare.com/email-service/api/route-emails/email-handler/"
+  },
+  {
+   "facto": "Para ler corpo e anexos, a documentacao oficial da Cloudflare manda usar a biblioteca postal-mime: `const email = await PostalMime.parse(message.raw)` e depois `email.text`, `email.html` e `email.attachments` (que traz os PDFs). Trata sozinha multipart, encodings e charsets. Fonte apontada: https://developers.cloudflare.com/email-routing/email-workers/runtime-api/",
+   "confirmado": false,
+   "fonte_url": "https://developers.cloudflare.com/email-service/api/route-emails/email-handler/",
+   "correcao": "A afirmacao esta PARTE certa, mas tem tres erros e falta um aviso importante. Nao se aceita como esta.\n\n1) O URL citado ja nao existe. Verificado hoje com pedido HTTP: `https://developers.cloudflare.com/email-routing/email-workers/runtime-api/` devolve **301** e redireciona para `https://developers.cloudflare.com/email-service/api/route-emails/email-handler/`. O produto foi absorvido pelo \"Cloudflare Email Service\". Citar o URL antigo e citar uma pagina morta.\n\n2) O que a pagina oficial DIZ mesmo (isto confirma-se): \"Use postal-mime to parse the MIME structure of an incoming email. The parser handles multipart boundaries, transfer encodings, and character sets correctly.\" O exemplo oficial e exactamente:\n   import PostalMime from \"postal-mime\";\n   const email = await PostalMime.parse(message.raw);\n   console.log(`Subject: ${email.subject}`);\n   console.log(`Text: ${email.text}`);\n   console.log(`HTML: ${email.html}`);\nOu seja: postal-mime, `PostalMime.parse(message.raw)`, `email.text` e `email.html` estao certos, e o multipart/encodings/charsets tambem.\n\n3) **`email.attachments` NAO esta nessa pagina.** Procurei a palavra \"attachment\" em toda a documentacao oficial do Email Service (ficheiro llms-full.txt, 348 KB) e nao ha uma unica ocorrencia de `email.attachments` no contexto de email recebido. O exemplo oficial mostra so subject, text e html. Onde a Cloudflare fala de `attachments` e sempre no lado do ENVIO (interface `Attachment`, com `content` em base64 e `disposition`, maximo 32 anexos e 5 MiB) — e outra coisa, com outro formato. A biblioteca postal-mime tem mesmo `attachments`, mas isso e documentacao do npm, nao da Cloudflare. A afirmacao poe na boca da Cloudflare uma coisa que ela nao escreve.\n\n4) Ha um segundo exemplo oficial de email recebido que usa uma API DIFERENTE da citada — no exemplo de bounces:\n   const parser = new PostalMime.default();\n   const rawEmail = new Response(message.raw);\n   const email = await parser.parse(await rawEmail.arrayBuffer());\nPortanto a documentacao nao e coerente consigo propria; ha duas formas de chamar.\n\n5) AVISO QUE FALTA, e o mais caro para o \"Em Dia\": a propria pagina de limites diz que o Worker que trata email conta para os limites de CPU e memoria do Workers, e no plano **Workers Free** \"complex handlers may exceed these limits and fail to process a message\", aparecendo `EXCEEDED_CPU` nos logs. Parsear PDFs de recibos e exactamente um handler pesado. Fonte: https://developers.cloudflare.com/email-service/platform/limits/\n\nLIMITES CONFIRMADOS HOJE (https://developers.cloudflare.com/email-service/platform/limits/):\n- Tamanho maximo de email recebido (inbound): **25 MiB**; acima disso e rejeitado.\n- Regras de encaminhamento por dominio: 200. Enderecos de destino por conta: 200. Dominios por zona: 30.\n\nPRECOS CONFIRMADOS HOJE (https://developers.cloudflare.com/email-service/platform/pricing/ , pagina actualizada a 9 Jun 2026):\n- **Emails recebidos (Email Routing): ilimitados**, tanto no Workers Free como no Workers Paid. Ou seja, receber e gratis — isto e boa noticia para o \"Em Dia\".\n- Emails enviados: **nao disponivel** no Workers Free. No Workers Paid: 3.000 incluidos por mes, depois **$0,35 por cada 1.000 emails**.\n- Enviar para enderecos de destino ja verificados na conta e gratis em qualquer plano e nao gasta a quota.\n- Os Workers do Email Routing sao cobrados pelo preco normal dos Workers.\n\nRESUMO PARA DECIDIR: usa-se postal-mime, sim, e a Cloudflare recomenda-o mesmo. Mas escreve-se o URL novo, nao se diz que a Cloudflare documenta `email.attachments` (documenta a biblioteca, verifica-se no npm antes de assentar nisso), e conta-se com o plano Workers Paid se o handler for abrir PDFs, senao arrisca-se `EXCEEDED_CPU` a meio."
+  }
+ ]
+}

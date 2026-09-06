@@ -1,0 +1,231 @@
+{
+ "dimensao": "imt",
+ "achado": {
+  "dimensao": "Lista publica dos centros de inspecao automovel em Portugal (IMT) — fonte de dados, geocodificacao, licenca e plano de carregamento para Supabase + mapa na app \"Em Dia\"",
+  "resumo": "A lista oficial existe, e uma so, e e um PDF do IMT: \"Lista CITV atualizada\", ligado tanto da pagina do IMT como do servico no gov.pt. Nao ha API, nao ha CSV nem XLSX publicados, e NAO existe nenhum dataset de centros de inspecao no dados.gov.pt (a unica coisa que o IMT la tem sao paragens de autocarro de Lisboa e Porto). A boa noticia e que o PDF ja traz coordenadas GPS por centro — extrai o PDF e tens 225 linhas com distrito, codigo CITV, nome, morada, codigo postal e coordenadas. A ma noticia e que as coordenadas vem em cerca de seis formatos diferentes e muitas vezes sem o sinal negativo na longitude, por isso e preciso normalizar e validar contra uma caixa geografica de Portugal continental. O que o PDF NAO traz: telefone, concelho e a categoria A/B do centro. Recomendo carregar uma vez por script (pypdf), guardar numa tabela Supabase com o codigo CITV como chave, e manter atualizado com um cron mensal que compara o Last-Modified/hash do PDF antes de reprocessar. Para o mapa, comecar sem mapa embebido: lista ordenada por distancia + botao \"Ir\" que abre o Google/Apple Maps.",
+  "factos": [
+   {
+    "facto": "A lista oficial e um unico PDF: \"Lista CITV atualizada\", publicado pelo IMT. A pagina de pesquisa do IMT nao tem formulario nenhum — so dois links, o mapa em PDF e a lista em PDF.",
+    "fonte_url": "https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O servico oficial no gov.pt (\"Consultar a lista de centros de inspecao de veiculos\", da responsabilidade do IMT, I.P.) aponta para exatamente o mesmo PDF. Confirma que nao ha outra fonte oficial escondida.",
+    "fonte_url": "https://www.gov.pt/servicos/consultar-a-lista-de-centros-de-inspecao-de-veiculos",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O PDF responde HTTP 200, application/pdf, 328,9 KB, com Last-Modified: Wed, 04 Feb 2026 09:28:54 GMT. O rodape do proprio documento diz \"Lista CITV atualizada.xlsx / 03/02/2026\". Ou seja, o IMT gera o PDF a partir de um Excel interno — mas esse Excel NAO esta publicado (o URL equivalente .xlsx devolve 301 para uma pagina de concursos, nao o ficheiro).",
+    "fonte_url": "https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Campos que o PDF traz, pelo cabecalho literal: Distrito | Codigo CITV | Nome do Centro | Morada do Centro | Codigo Postal Centro | Coordenadas GPS (Graus, Minutos e Segundos). Nao traz telefone, nao traz concelho e nao traz a categoria A/B.",
+    "fonte_url": "https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Extrai o PDF com pypdf (11 paginas) e contei 225 linhas de centro, distribuidas por 18 distritos do continente. Distribuicao: Porto 43, Lisboa 35, Braga 19, Aveiro 17, Setubal 17, Leiria 16, Coimbra 12, Santarem 12, Faro 11, Viseu 8, Viana do Castelo 7, Evora 5, Castelo Branco 4, Braganca 4, Guarda 4, Beja 4, Vila Real 3, Portalegre 3. Acores e Madeira NAO constam desta lista.",
+    "fonte_url": "https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Ha uma discrepancia a assumir: a pagina do IMT diz \"221 centros aprovados e em atividade, dos quais 128 de categoria B\" (categoria A so faz inspecoes periodicas; categoria B faz todas — extraordinarias, apreensao, GPL, ADR, etc.). O PDF de fevereiro de 2026 tem 225 linhas. O texto da pagina e mais antigo que o PDF. Nao dou o numero exato como certo — a app deve mostrar o que vier do PDF, nao um numero fixo.",
+    "fonte_url": "https://www.imt-ip.pt/veiculos/inspecao-de-veiculos/centros-de-inspecao-tecnica-de-veiculos-citv/",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A categoria A/B por centro NAO esta publicada em lado nenhum que tenha encontrado. O IMT publica so o total agregado (128 de categoria B). Se a app quiser filtrar por \"faz inspecao extraordinaria\", esse dado tem de vir de outra via — nao existe fonte oficial descarregavel.",
+    "fonte_url": "https://www.imt-ip.pt/veiculos/inspecao-de-veiculos/centros-de-inspecao-tecnica-de-veiculos-citv/",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Praticamente todos os 225 centros trazem coordenadas, MAS em cerca de seis formatos misturados no mesmo ficheiro: DMS com simbolo de grau (41°16'28\"N 7°42'22\"W), DMS com plica invertida (41°27`32,21\"N), DMS com virgula decimal nos segundos, decimal com ponto (38.5563, 7.91399), decimal com virgula (40,189186N; 8,830668O) e formatos estranhos como \"N 39,41,002 / W 8,33,752\". Com duas regex simples parseei 202/225; as 23 restantes falham por variantes de aspa/plica ou por a linha partir em duas no PDF.",
+    "fonte_url": "https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Armadilha grave: em varias linhas a longitude vem SEM sinal negativo (ex.: Dekra Beja \"38.022064, 7.8588\", Dekra Evora \"38.5563, 7.91399\"). Se carregares tal e qual, esses centros aparecem no mapa algures na Turquia/Grecia. Regra obrigatoria no parser: forcar longitude negativa e validar caixa de Portugal continental (lat 36,9 a 42,2 / lon -9,6 a -6,1); fora disso, coordenada a NULL.",
+    "fonte_url": "https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O URL do PDF contem a pasta da data de publicacao (/2026/02/). Quando o IMT atualizar a lista, o URL muda. Nao se pode hardcodar: o script tem de ir a pagina de pesquisa do IMT e apanhar o href que corresponde a \"Lista-CITV*.pdf\".",
+    "fonte_url": "https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O robots.txt do imt-ip.pt nao bloqueia nada relevante — so Disallow em /wp-content/uploads/wpforms/. Descarregar o PDF por script e permitido pelas regras do site.",
+    "fonte_url": "https://www.imt-ip.pt/robots.txt",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "NAO existe dataset de centros de inspecao no dados.gov.pt. Consultei a API: pesquisas por \"inspecao\"/\"inspecao\" devolvem 5 datasets, todos da Agencia Portuguesa do Ambiente sobre fiscalizacao ambiental; \"CITV\", \"centros de inspecao\" e \"inspecao tecnica de veiculos\" devolvem total=0.",
+    "fonte_url": "https://dados.gov.pt/api/1/datasets/?q=inspe%C3%A7%C3%A3o",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A organizacao IMT existe no dados.gov.pt (slug instituto-da-mobilidade-e-dos-transportes) mas tem exatamente 1 dataset publicado — \"Paragens\" (GTFS de Lisboa e Porto, CC BY 4.0). Nada de veiculos nem de inspecoes.",
+    "fonte_url": "https://dados.gov.pt/api/1/organizations/instituto-da-mobilidade-e-dos-transportes/datasets/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A antiga pagina de pesquisa em ASPX (PesquisaCentrosInspeccao.aspx), que teria formulario por distrito/categoria, ja nao existe: responde 301 e redireciona para a pagina nova, que so tem os dois PDFs. Nao ha endpoint de pesquisa para consumir.",
+    "fonte_url": "https://www.imt-ip.pt/sites/IMTT/Portugues/Veiculos/PesquisaCentrosInspeccao/Paginas/PesquisaCentrosInspeccao.aspx",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Nominatim (geocodificacao gratuita do OpenStreetMap) — limites literais da politica oficial: maximo absoluto de 1 pedido por segundo; obrigatorio um HTTP Referer ou User-Agent valido que identifique a aplicacao; os resultados TEM de ser cacheados do nosso lado; autocomplete e explicitamente proibido (\"you must not implement such a service\"); bulk geocoding so em tarefas pontuais pequenas, thread unica; dados sob licenca ODbL, que exige share-alike e atribuicao visivel.",
+    "fonte_url": "https://operations.osmfoundation.org/policies/nominatim/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Tiles do OpenStreetMap — a politica permite apps nativas (\"Native apps usually do not have a referer, this is ok\"), mas exige User-Agent que identifique a app, atribuicao visivel \"© OpenStreetMap contributors\" e cache local de pelo menos 7 dias; proibe bulk downloading e diz claramente que \"Offline use is not permitted on tile.openstreetmap.org\". Ou seja: nao serve para um mapa offline numa app com muitos utilizadores.",
+    "fonte_url": "https://operations.osmfoundation.org/policies/tiles/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A reutilizacao de documentos do setor publico esta regulada pela Lei n.º 68/2021, de 26 de agosto, que aprova os principios gerais em materia de dados abertos e transpoe a Diretiva (UE) 2019/1024, alterando a Lei n.º 26/2016. O PDF do IMT nao traz licenca explicita indicada no proprio ficheiro, por isso o enquadramento e este regime geral, nao uma licenca CC declarada.",
+    "fonte_url": "https://www.sgeconomia.gov.pt/destaques/lei-n-682021-de-26-de-agosto-aprova-os-principios-gerais-em-materia-de-dados-abertos-e-transpoe-para-a-ordem-juridica-interna-a-diretiva-ue-20191024-.aspx",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "O preco e os limites exatos de fornecedores comerciais de tiles (MapTiler, Stadia, Carto, Mapbox) NAO foram verificados nesta investigacao. Nao invento numeros: se se decidir mapa embebido, isso tem de ser verificado antes.",
+    "fonte_url": "https://operations.osmfoundation.org/policies/tiles/",
+    "confianca": "alta",
+    "decide_implementacao": false
+   }
+  ],
+  "recomendacao": "IMPLEMENTAR ASSIM.\n\n1) Tabela Supabase (chave natural = codigo CITV, 3 digitos, e o que o IMT usa e e estavel):\n\ncreate table public.centros_inspecao (\n  codigo_citv text primary key,\n  nome text not null,\n  morada text,\n  codigo_postal text,\n  localidade text,\n  distrito text not null,\n  concelho text,\n  categoria text,               -- 'A'/'B' -> fica NULL, o IMT nao publica por centro\n  telefone text,                -- fica NULL, nao vem na fonte\n  lat double precision,\n  lng double precision,\n  coord_origem text default 'imt_pdf' check (coord_origem in ('imt_pdf','nominatim','manual')),\n  fonte_url text,\n  fonte_data date,\n  ativo boolean not null default true,\n  atualizado_em timestamptz not null default now()\n);\nalter table public.centros_inspecao enable row level security;\ncreate policy \"leitura publica\" on public.centros_inspecao for select to anon, authenticated using (ativo);\n-- escrita: so service_role (o script de sync). Sem policy de insert/update para anon.\n\nNao vale a pena PostGIS para 225 linhas. Ou um RPC com haversine em SQL puro, ou — melhor para motoristas TVDE com rede fraca — a app puxa as 225 linhas uma vez (cerca de 40 KB de JSON), guarda em cache local e calcula a distancia no telemovel. Recomendo a segunda: funciona sem rede, que e exatamente quando o motorista precisa.\n\n2) Carregamento inicial (uma vez, script Python, stdlib + pypdf — ja testei e funciona neste PC):\n   a. GET a https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/ e apanhar o href que casa com Lista-CITV*.pdf (NAO hardcodar o URL, a pasta muda com a data).\n   b. Descarregar o PDF, guardar o sha256 e o Last-Modified.\n   c. Extrair texto com pypdf, juntar linhas partidas, e parsear com: ^(distrito)\\s+(\\d{3})\\s+(nome)\\s+(morada)\\s+(\\d{4}-\\d{3})\\s+(localidade)\\s+(coordenadas)$\n   d. Normalizar coordenadas ANTES de tudo: substituir todos os caracteres de plica/aspa (´ ` ' ’ ′ ″ '' \" ) por um so; aceitar DMS e decimal; virgula decimal -> ponto; converter DMS para decimal; FORCAR longitude negativa; validar lat 36,9–42,2 e lon -9,6 a -6,1. Fora da caixa -> lat/lng a NULL.\n   e. Upsert por codigo_citv com service_role.\n   f. Os poucos que ficarem sem coordenada: geocodificar com Nominatim a 1 pedido/segundo, User-Agent \"EmDia/1.0 (contacto@...)\", gravar coord_origem='nominatim' e cachear. Sao poucas dezenas no maximo — cabe folgadamente no uso pontual que a politica permite. Nunca chamar Nominatim a partir da app.\n\n3) Manter atualizado (cron mensal, dia 1, via GitHub Action ou Edge Function agendada):\n   - HEAD ao PDF -> comparar Last-Modified e sha256 com o guardado. Se nao mudou, nao faz nada e regista \"sem alteracoes\".\n   - Se mudou: reparsear, upsert, e marcar ativo=false para os codigos que desapareceram. NUNCA DELETE.\n   - Travao anti-parse-partido: se o numero de linhas parseadas cair mais de 10% face a ultima corrida, aborta e alerta em vez de escrever.\n   - Gravar sempre uma linha em centros_inspecao_sync com: data, url usado, hash, total lido, novos, removidos, sem coordenada. Isto e a prova, sem isto o cron pode devolver \"OK\" durante meses a falhar por dentro.\n\n4) Mapa na app — comecar SEM mapa embebido. Ecra \"Inspecao\": lista ordenada por distancia a partir do GPS do utilizador, filtro por distrito, e botao \"Ir\" que abre a app de mapas nativa via url_launcher (geo:lat,lng?q=lat,lng no Android; https://maps.apple.com/?ll=lat,lng no iOS). E o que o motorista quer mesmo — navegar — e nao custa tiles nem licenca nenhuma. Se depois se quiser mapa dentro da app, usar flutter_map com um fornecedor de tiles pago/free-tier (a verificar preco na altura) e nunca tile.openstreetmap.org em producao, porque a politica proibe uso offline e exige cache de 7 dias e User-Agent proprio.\n\n5) Texto obrigatorio na app (rodape do ecra): \"Fonte: IMT, I.P. — Lista de Centros de Inspecao Tecnica de Veiculos, atualizada a 03/02/2026\" com link para o PDF, e um aviso curto \"confirme horarios e telefone junto do centro\". Se alguma coordenada vier do OpenStreetMap, juntar \"© OpenStreetMap contributors\". Nao apresentar a lista como oficial nem em tempo real.\n\n6) O que NAO fazer: nao prometer telefone, horario nem categoria A/B no primeiro lancamento — nao ha fonte oficial para isso. Se for mesmo preciso, e recolha manual centro a centro (ou pelos sites das marcas: Controlauto, Dekra, CIMA, Inspecentro, IPOV), e ai passa a ser dado nosso, com o custo de manutencao que isso traz.",
+  "urls_ou_endpoints": [
+   {
+    "para_que": "Pagina de onde o script descobre o link do PDF atual (nunca hardcodar o PDF)",
+    "url": "https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/",
+    "metodo": "GET",
+    "notas": "HTTP 200, text/html. Procurar href que case com Lista-CITV.*\\.pdf. A pagina tambem tem o MAPA_CENTROS_INSPECAO.pdf, que e so uma imagem — ignorar."
+   },
+   {
+    "para_que": "O ficheiro com os dados (lista oficial de CITV)",
+    "url": "https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf",
+    "metodo": "GET / HEAD",
+    "notas": "200, application/pdf, 328,9 KB, Last-Modified: Wed, 04 Feb 2026 09:28:54 GMT. 11 paginas, 225 linhas de centro. Fazer HEAD primeiro no cron para nao descarregar em vao. O URL muda de pasta quando atualizam."
+   },
+   {
+    "para_que": "Confirmar que e a fonte oficial do Estado (pagina do servico no gov.pt)",
+    "url": "https://www.gov.pt/servicos/consultar-a-lista-de-centros-de-inspecao-de-veiculos",
+    "metodo": "GET",
+    "notas": "Aponta para o mesmo PDF. Servico da responsabilidade do IMT, I.P."
+   },
+   {
+    "para_que": "Contexto das categorias A e B e total de centros",
+    "url": "https://www.imt-ip.pt/veiculos/inspecao-de-veiculos/centros-de-inspecao-tecnica-de-veiculos-citv/",
+    "metodo": "GET",
+    "notas": "Diz 221 aprovados e ativos, 128 de categoria B. Numero agregado, sem detalhe por centro."
+   },
+   {
+    "para_que": "Provar que nao ha dataset aberto (verificacao, nao integracao)",
+    "url": "https://dados.gov.pt/api/1/datasets/?q=inspe%C3%A7%C3%A3o&page_size=20",
+    "metodo": "GET",
+    "notas": "total=0 para CITV / centros de inspecao / inspecao tecnica de veiculos. A API funciona (paragens devolve 19, veiculos devolve 92) — o zero e real, nao e a API partida."
+   },
+   {
+    "para_que": "Confirmar que o IMT so tem 1 dataset aberto e nao e este",
+    "url": "https://dados.gov.pt/api/1/organizations/instituto-da-mobilidade-e-dos-transportes/datasets/",
+    "metodo": "GET",
+    "notas": "Unico dataset: \"Paragens\" (GTFS Lisboa/Porto, CC BY 4.0)."
+   },
+   {
+    "para_que": "Geocodificar os poucos centros sem coordenada valida (so no script, nunca na app)",
+    "url": "https://nominatim.openstreetmap.org/search?q=<morada>+<codigo_postal>+Portugal&format=jsonv2&countrycodes=pt&limit=1",
+    "metodo": "GET",
+    "notas": "Obrigatorio: User-Agent proprio, 1 pedido/segundo, thread unica, cachear resultado. Atribuicao ODbL: © OpenStreetMap contributors."
+   },
+   {
+    "para_que": "Politica de uso do Nominatim (limites a respeitar)",
+    "url": "https://operations.osmfoundation.org/policies/nominatim/",
+    "metodo": "GET",
+    "notas": "1 req/s maximo, User-Agent/Referer valido, cache obrigatorio, autocomplete proibido, ODbL."
+   },
+   {
+    "para_que": "Politica de uso dos tiles OSM (se algum dia se meter mapa embebido)",
+    "url": "https://operations.osmfoundation.org/policies/tiles/",
+    "metodo": "GET",
+    "notas": "Apps nativas permitidas, mas cache >=7 dias, User-Agent proprio, atribuicao visivel, e uso offline NAO permitido em tile.openstreetmap.org."
+   },
+   {
+    "para_que": "Verificar que o scraping do PDF e permitido pelo site",
+    "url": "https://www.imt-ip.pt/robots.txt",
+    "metodo": "GET",
+    "notas": "So bloqueia /wp-content/uploads/wpforms/. O resto e livre."
+   },
+   {
+    "para_que": "Enquadramento legal da reutilizacao dos dados publicos",
+    "url": "https://www.sgeconomia.gov.pt/destaques/lei-n-682021-de-26-de-agosto-aprova-os-principios-gerais-em-materia-de-dados-abertos-e-transpoe-para-a-ordem-juridica-interna-a-diretiva-ue-20191024-.aspx",
+    "metodo": "GET",
+    "notas": "Lei n.º 68/2021, de 26 de agosto. Transpoe a Diretiva (UE) 2019/1024 e altera a Lei n.º 26/2016."
+   }
+  ],
+  "bloqueios": [
+   "Nenhum login, nenhum cartao, nenhuma assinatura: o PDF do IMT e publico e descarrega-se sem conta. Esta dimensao pode ser implementada sem tocar no Danilo.",
+   "DECISAO PARA O DANILO (nao trava o arranque): a lista NAO tem telefone nem horario dos centros. Ou lancamos sem isso (recomendado), ou alguem tem de recolher a mao / aos sites das marcas. Precisa da palavra dele, e trabalho recorrente de manutencao.",
+   "DECISAO PARA O DANILO: a categoria A/B por centro nao existe publicada. Se a app quiser dizer 'este faz inspecao extraordinaria', esse dado teria de ser inferido ou comprado. Sem ordem dele, fica de fora.",
+   "DECISAO PARA O DANILO, so se quisermos mapa embebido dentro da app: os tiles do OpenStreetMap nao servem para producao pesada, e um fornecedor de tiles pode ter custo. Nao verifiquei precos nesta investigacao e nao os invento. A minha recomendacao evita isto: lista + botao que abre a app de mapas do telemovel, custo zero.",
+   "Aviso tecnico, nao bloqueio: se o IMT mudar o layout do PDF, o parser parte em silencio. Por isso o cron leva travao de queda >10% no numero de linhas e grava contagens em tabela de sync — sem isso o robo devolve OK a falhar por dentro."
+  ]
+ },
+ "veredictos": [
+  {
+   "facto": "A lista oficial e um unico PDF: \"Lista CITV atualizada\", publicado pelo IMT. A pagina de pesquisa do IMT nao tem formulario nenhum — so dois links, o mapa em PDF e a lista em PDF.",
+   "confirmado": false,
+   "correcao": "Quase certo, mas errado em pontos que interessam a quem vai implementar.\n\n1) FORMULARIO — falso como esta escrito. O HTML de https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/ (curl: HTTP 200, 107722 bytes) TEM um formulario: <form role=\"search\" method=\"get\" class=\"search-form\" action=\"https://www.imt-ip.pt/\"> com <input type=\"search\" name=\"s\">. E a caixa de pesquisa geral do site WordPress. O que e verdade: nao ha formulario de pesquisa DE CENTROS (sem campos de distrito, concelho ou nome), nem lista em HTML, nem API. O antigo endereco .aspx (https://www.imt-ip.pt/SITES/IMTT/PORTUGUES/VEICULOS/PESQUISACENTROSINSPECCAO/Paginas/PesquisaCentrosInspeccao.aspx) ja so reencaminha para esta pagina nova.\n\n2) DOIS LINKS — verdade no corpo da pagina, mas o HTML tem 3 links .pdf; o terceiro (Organogramas-IMT.pdf) e do menu/rodape, nao do conteudo.\n\n3) OS DOIS PDF NAO VALEM O MESMO. O mapa (https://www.imt-ip.pt/wp-content/uploads/2025/04/MAPA_CENTROS_INSPECAO.pdf) tem CreationDate D:20210317151622 — e de marco de 2021, esta desatualizado. So a lista serve.\n\n4) A LISTA E INCOMPLETA PARA O PAIS. Descarreguei e extrai o texto do PDF (329 KB, 11 paginas). Rodape de cada pagina: \"Lista CITV atualizada.xlsx / 03/02/2026\" — foi impresso de um Excel a 3 de fevereiro de 2026, mas o XLSX nao esta publicado, so o PDF. Contem 228 centros em 18 distritos, todos do Continente (Guarda tem 5). Nao ha um unico centro dos Acores nem da Madeira (zero ocorrencias de Funchal, Ponta Delgada ou Angra) — as regioes autonomas tem regime proprio. Portanto nao e \"a lista oficial\" de Portugal, e a lista oficial do Continente.\n\n5) COLUNAS REAIS (para quem for fazer parser): DISTRITO | CODIGO CITV | NOME DO CENTRO | MORADA DO CENTRO | CODIGO POSTAL CENTRO | COORDENADAS GPS (graus, minutos e segundos) | CENTRO DE INSPECAO (conforme contrato de gestao). NAO tem telefone, NAO tem horario e NAO tem a categoria A/B — apesar de a propria pagina CITV do IMT falar de centros de categoria A e B. As coordenadas vem em graus/minutos/segundos e com formatacao inconsistente entre linhas (uns com ; outros sem, uns com aspas retas outros com plicas duplas, alguns com \"O\" em vez de \"W\") — vai precisar de normalizacao, nao de split simples.\n\n6) Nao encontrei nenhuma versao aberta e legivel por maquina (CSV/JSON/API) publicada pelo IMT; se existir em dados.gov.pt nao a consegui confirmar hoje. Nao ha preco envolvido: a consulta e gratuita.",
+   "fonte_url": "https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/"
+  },
+  {
+   "facto": "O servico oficial no gov.pt (\"Consultar a lista de centros de inspecao de veiculos\", IMT, I.P.) aponta para exatamente o mesmo PDF, e nao ha outra fonte oficial escondida.",
+   "confirmado": false,
+   "correcao": "Errado em tres pontos, verificados no HTML e no PDF em 2026-09-06.\n\n1) O botao \"Realizar servico\" do gov.pt NAO aponta para um PDF. O HTML da pagina (HTTP 200) traz literalmente: \"buttonText\":\"Realizar servico\",\"buttonUrl\":\"https://www.imt-ip.pt/sites/IMTT/Portugues/Veiculos/PesquisaCentrosInspeccao/Paginas/PesquisaCentrosInspeccao.aspx\" e \"lastUpdatedAt\":\"23.03.2026\". Esse .aspx redireciona (HTTP 200) para https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/.\n\n2) Nao e \"o mesmo PDF\" - sao DOIS PDFs oficiais. A pagina de pesquisa do IMT tem os hrefs: https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf (lista, fevereiro de 2026) e https://www.imt-ip.pt/wp-content/uploads/2025/04/MAPA_CENTROS_INSPECAO.pdf (mapa, com conteudo datado de 2021-03-09, ou seja desatualizado). O proprio gov.pt tem aqui um erro de texto: escreve \"consulte o mapa onde e disponibilizada a localizacao de cada centro\" mas o link vai para o ficheiro da LISTA, nao para o do mapa.\n\n3) HA outras fontes oficiais, e elas importam para uma app nacional. Extrai o texto do Lista-CITV-atualizada.pdf (336.771 bytes, 111.446 caracteres) e contei ocorrencias: \"ACORES\" 0, \"FUNCHAL\" 0, \"PONTA DELGADA\" 0, \"ANGRA\" 0. O PDF do IMT cobre so Portugal Continental. Nas Regioes Autonomas as competencias sao exercidas por entidades proprias, com listas proprias:\n- Acores: Subdirecao Regional dos Transportes Terrestres - https://portal.azores.gov.pt/web/sctt/centros-de-inspe%C3%A7%C3%A3o-nos-a%C3%A7ores (bloqueia Cloudflare a pedidos automaticos: 403; a pagina existe e e indexada)\n- Madeira: \"IMT, IP-RAM - Instituto de Mobilidade e Transportes, IP-RAM\" / Direcao Regional dos Transportes e da Mobilidade Terrestre - https://www.madeira.gov.pt/drtmt/ (HTTP 200, entidade confirmada no site)\n\nNota util para o \"Em Dia\": o Lista-CITV-atualizada.pdf e melhor do que se pensava - traz por centro o distrito, nome, morada, codigo postal E coordenadas GPS (exemplo literal do PDF: \"Vila Real 001 CABANELAS-VILA REAL (CONSTANTIM) ZONA INDUSTRIAL DE CONSTANTIM RUA H LOTE 1 7 6.5000-082 CONSTANTIM VRL 41 16 28 N 7 42 22 W\"). Da para geocodificar sem servico externo. Sao cerca de 221 centros (128 de categoria B), numero que o proprio IMT publica.\n\nLimites que nao invento: nao encontrei nenhum dataset CITV publicado em CSV/JSON/API no dados.gov.pt sob a organizacao do IMT - a pagina da organizacao nao lista datasets acessiveis, por isso digo apenas: nao esta publicado que exista API ou ficheiro estruturado oficial. Nao ha coluna de categoria (A/B) no texto que extrai do PDF. Preco: o gov.pt afirma literalmente \"A consulta da lista de centros de inspecao e gratuita.\"\n\nConclusao pratica: se a app so consumir o PDF do IMT, deixa de fora todos os centros dos Acores e da Madeira, e arrisca apanhar o mapa de 2021 em vez da lista de 2026.",
+   "fonte_url": "https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/"
+  },
+  {
+   "facto": "O PDF da Lista CITV do IMT responde HTTP 200, application/pdf, 336 771 bytes (328,9 KiB), Last-Modified: Wed, 04 Feb 2026 09:28:54 GMT; o rodapé do documento diz \"Lista CITV atualizada.xlsx/03/02/2026\"; o Excel de origem não está publicado.",
+   "confirmado": false,
+   "correcao": "Os números estão todos exatos — mas uma das provas apresentadas não prova o que diz, por isso marco não confirmado.\n\nO QUE CONFIRMEI AO BYTE (curl -I em 06/09/2026):\n- HTTP/1.1 200 OK, Content-Type: application/pdf, Content-Length: 336771, Last-Modified: Wed, 04 Feb 2026 09:28:54 GMT. Os 336 771 bytes dão 328,88 KiB, ou seja os \"328,9 KB\" estão certos se KB for KiB (em KB decimais seriam 336,8 KB).\n- O rodapé existe mesmo. Descomprimi o stream do PDF e li o texto literal: \"Lista CITV atualizada.xlsx/03/02/2026 1/11\". Tem 11 páginas.\n\nO QUE ESTÁ ERRADO:\nA frase \"o URL equivalente .xlsx devolve 301 para uma página de concursos\" está tecnicamente certa mas é enganadora, porque sugere um comportamento específico do IMT quando é apenas o tratamento genérico de 404 do WordPress. Prova: inventei um nome que não existe, https://www.imt-ip.pt/wp-content/uploads/2026/02/ficheiro-que-nao-existe-xyz123.xlsx, e devolve exatamente o mesmo 301 para o mesmo Location (https://www.imt-ip.pt/concurso/https-www-imt-ip-pt-wp-content-uploads-2025-06-aviso_n-o_2_2025_v2-pdf/). O mesmo acontece com .csv, .xls e Lista_CITV_atualizada.xlsx. Ou seja, esse 301 só diz \"este caminho não existe\" — não diz nada sobre concursos nem sobre o Excel.\n\nO QUE É VERDADE, PROVADO DE OUTRA MANEIRA:\nA conclusão de fundo mantém-se — o Excel não está publicado — mas prova-se a varrer o HTML das páginas oficiais, não pelo 301. Nas duas páginas do IMT que tratam do assunto, os únicos ficheiros ligados são PDF:\n- https://www.imt-ip.pt/veiculos/inspecao-de-veiculos/centros-de-inspecao-tecnica-de-veiculos-citv/ liga a Lista-CITV-atualizada.pdf, DL412023.pdf e DL139E2912023.pdf. Zero .xlsx, .xls ou .csv.\n- https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/ liga a Lista-CITV-atualizada.pdf e a https://www.imt-ip.pt/wp-content/uploads/2025/04/MAPA_CENTROS_INSPECAO.pdf (outro PDF, de abril de 2025).\n\nDUAS COISAS QUE A AFIRMAÇÃO OMITE E QUE INTERESSAM AO \"EM DIA\":\n1. Existe um segundo PDF (MAPA_CENTROS_INSPECAO.pdf) que a afirmação não menciona.\n2. Não há API nem dados estruturados. A página \"Pesquisa Centros Inspeção\" promete um mapa (\"Veja no mapa qual o centro mais perto de si\") mas o HTML servido não traz iframe, marcadores, coordenadas, GeoJSON nem qualquer endpoint — só oembed genérico do WordPress. E não encontrei conjunto de dados equivalente em dados.gov.pt. Para o app, isto significa que só há um caminho: extrair as 11 páginas do PDF.\n\nNOTA DE DATA: a página oficial diz 221 centros ativos, dos quais 128 de categoria B. O PDF não é tocado desde 04/02/2026 (sete meses), apesar de se chamar \"atualizada\" — se o app depender disto, convém verificar o Last-Modified antes de cada importação em vez de confiar no nome.\n\nSobre preços: não se aplica: nada disto é um serviço pago e o IMT não publica preçário para estes ficheiros.",
+   "fonte_url": "https://www.imt-ip.pt/veiculos/inspecao-de-veiculos/centros-de-inspecao-tecnica-de-veiculos-citv/"
+  },
+  {
+   "facto": "Campos que o PDF da Lista CITV traz, pelo cabecalho literal: Distrito | Codigo CITV | Nome do Centro | Morada do Centro | Codigo Postal Centro | Coordenadas GPS (Graus, Minutos e Segundos). Nao traz telefone, nao traz concelho e nao traz a categoria A/B.",
+   "confirmado": true,
+   "fonte_url": "https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf",
+   "correcao": "CONFIRMADO por extracao do ficheiro real (pdftotext -layout, 11 paginas). O cabecalho repete-se 11 vezes, sempre com as mesmas 6 colunas, sob o titulo de grupo \"CENTRO DE INSPECAO (Conforme contrato de gestao)\". Procura por \"categoria|telefone|contacto|concelho|munic|tipo|classe|email|fax\": zero ocorrencias. Procura por padroes de telefone portugues (2xx xxx xxx / 9[1236]x xxx xxx): zero ocorrencias. Rodape: \"(Lista CITV atualizada.xlsx/03/02/2026\". Fonte ainda atual hoje (2026-09-06): a pagina oficial https://www.imt-ip.pt/veiculos/inspecao-de-veiculos/centros-de-inspecao-tecnica-de-veiculos-citv/ continua a apontar para este mesmo URL, com o texto de link \"221 centros\". Cobre 18 distritos do continente (inclui Evora e Guarda), sem Acores nem Madeira. DOIS AVISOS PARA A IMPLEMENTACAO, que nao invalidam a afirmacao: (1) a categoria A/B existe mas fora do PDF - a propria pagina do IMT afirma que dos 221 centros ativos 128 sao de categoria B (A = so inspecoes periodicas, B = todos os tipos); se a app precisar disto, e preciso outra fonte. (2) O PDF NAO e seguro para parsing linha a linha: as celulas saem desalinhadas na extracao - na pagina 1, o nome \"CIMA - PONTE DE LIMA (ARCOZELO)\" aparece numa linha e o distrito \"Viana do Castelo 002\" na seguinte, com morada e coordenadas GPS deslocadas entre linhas. Um parser ingenuo associa moradas e GPS ao centro errado. E preciso reconstruir por posicao de coluna (coordenada X) ou obter o .xlsx original referido no rodape."
+  },
+  {
+   "facto": "Lista oficial de Centros de Inspecao Tecnica de Veiculos (CITV) do IMT: alegadamente 225 centros em 18 distritos do continente, com a distribuicao Porto 43, Lisboa 35, Braga 19, Aveiro 17, Setubal 17, Leiria 16, Coimbra 12, Santarem 12, Faro 11, Viseu 8, Viana do Castelo 7, Evora 5, Castelo Branco 4, Braganca 4, Guarda 4, Beja 4, Vila Real 3, Portalegre 3, sem Acores nem Madeira.",
+   "confirmado": false,
+   "correcao": "NAO CONFIRMADO. O PDF existe e e o que a pagina oficial do IMT liga hoje (6/9/2026), tem mesmo 11 paginas e o rodape diz \"Lista CITV atualizada.xlsx/03/02/2026\" (lista de 3 de fevereiro de 2026). Mas a contagem esta errada.\n\n1) O TOTAL NAO E 225, E 227. Descarreguei o PDF e extrai-o de duas maneiras (pypdf modo normal e modo layout). Ha 227 linhas de centro, com 227 codigos CITV unicos e zero duplicados. As duas contagens de 225 sao artefactos de parsing: quatro linhas escapam a um parser ingenuo porque a etiqueta do distrito esta escrita de forma diferente ou fica numa linha separada. Sao estas:\n- \"V. do Castelo 327 JOSE ALBERTO VAZ RODRIGUES - VIANA DO CASTELO\" (abreviado, nao diz \"Viana do Castelo\")\n- \"LISBOA 347 DEKRA - MAFRA\" (em maiusculas, nao \"Lisboa\")\n- \"Guarda 315 MANUEL FRANCISCO CERDEIRA SARAIVA - FIGUEIRA DE CASTELO RODRIGO\" (nome parte para a linha seguinte)\n- \"Braga 338 CITN - CENTRO DE INSPECOES TERRA NEGRA - BARCELOS\" (idem)\nCada metodo de extracao perde duas destas quatro e da 225 por coincidencia. A uniao dos dois, sem conflitos, da 227.\n\n2) A PROPRIA AFIRMACAO NAO FECHA. Os 18 numeros que ela lista somam 224, nao 225. Isso ja e sinal de que a contagem nao foi verificada.\n\n3) DISTRIBUICAO CORRECTA (227, 18 distritos):\nPorto 43, Lisboa 36, Braga 20, Aveiro 17, Setubal 17, Leiria 16, Coimbra 12, Santarem 12, Faro 11, Viseu 8, Viana do Castelo 7, Evora 5, Guarda 5, Castelo Branco 4, Braganca 4, Beja 4, Vila Real 3, Portalegre 3. Soma = 227.\nErros da afirmacao: Lisboa 35 (e 36), Braga 19 (e 20), Guarda 4 (e 5). Os outros 15 distritos estao certos.\n\n4) O QUE SE CONFIRMA: sao mesmo 18 distritos, todos do continente, e Acores e Madeira NAO constam desta lista. Procurei \"Acores\", \"Madeira\", \"Funchal\", \"Ponta Delgada\" e \"Angra\" no texto extraido: zero ocorrencias. A propria pagina do IMT diz que os centros \"distribuem-se pelos 18 Distritos de Portugal Continental\".\n\n5) AVISO IMPORTANTE PARA A APP: a pagina oficial do IMT contradiz o seu proprio PDF. O texto da pagina (https://www.imt-ip.pt/veiculos/inspecao-de-veiculos/centros-de-inspecao-tecnica-de-veiculos-citv/) afirma \"Atualmente estao aprovados e em atividade 221 centros, dos quais 128 sao da categoria B\", enquanto o PDF que essa mesma pagina liga tem 227 linhas. Nao consigo resolver esta contradicao a partir da fonte oficial e nao invento um numero: o PDF nao publica coluna de categoria A/B nem de estado activo/inactivo que eu consiga ler na extracao. Conclusao pratica: nao gravar um total fixo (\"221\" ou \"225\") no codigo da Em Dia. Guardar a lista de centros por codigo CITV e distrito, com a data da fonte (03/02/2026), e revalidar contra o PDF periodicamente.\n\n6) SOBRE PRECOS: esta afirmacao nao contem nenhum preco nem limite de plano gratuito, por isso nao havia valor de preco para confirmar. O PDF do IMT e uma lista de moradas e coordenadas, nao uma tabela de precos. O preco das inspeccoes nao esta publicado neste documento.",
+   "fonte_url": "https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf"
+  },
+  {
+   "facto": "Discrepância entre a página do IMT (221 centros, 128 de categoria B) e o PDF de fevereiro de 2026, que a afirmação diz ter 225 linhas; a app deve mostrar o que vier do PDF e não um número fixo.",
+   "confirmado": false,
+   "correcao": "A ideia geral está certa (há mesmo discrepância, e a app não deve fixar número), mas o número do PDF está errado e há uma parte por provar, mais uma limitação grave que a afirmação não menciona.\n\n1) O que a página diz — CONFIRMADO, palavra por palavra (obtido com HTTP 200 em 2026-09-06):\n\"Estes centros estão divididos nas categorias A e B. Os de categoria A apenas realizam as inspeções periódicas; os de categoria B realizam todos os tipos de inspeções.\"\n\"Atualmente estão aprovados e em atividade 221 centros, dos quais 128 são da categoria B. Estes centros distribuem-se pelos 18 Distritos de Portugal Continental.\"\nA página lista ainda, em tabela, os tipos de inspeção do CENTRO A (só periódica obrigatória) e do CENTRO B (periódica + extraordinárias por acidente, atribuição de matrícula, identificação, transporte de crianças, GPL, confirmação de condições de segurança, apreensão, chapa de construtor e certificação ADR). Esta parte da afirmação está certa.\nURL: https://www.imt-ip.pt/veiculos/inspecao-de-veiculos/centros-de-inspecao-tecnica-de-veiculos-citv/\n\n2) \"O PDF tem 225 linhas\" — FALSO. O PDF tem 227 centros, não 225.\nDescarreguei e extraí o ficheiro https://www.imt-ip.pt/wp-content/uploads/2026/02/Lista-CITV-atualizada.pdf (11 páginas, rodapé \"Lista CITV atualizada.xlsx/03/02/2026\"). Contando os fragmentos de texto da coluna \"Código CITV\": 227 códigos, todos únicos, sem duplicados, entre 001 e 378. Uma contagem ingénua por linha dá 225 porque duas fichas partem a linha a meio (Guarda 315 - MANUEL FRANCISCO CERDEIRA SARAIVA - FIGUEIRA DE CASTELO RODRIGO; Braga 338 - CITN - CENTRO DE INSPEÇÕES TERRA NEGRA - BARCELOS): o distrito e o código ficam numa linha e o nome na seguinte. Quem escrever o parser tem de contar por código, não por linha, senão perde estes dois centros. A diferença face à página é portanto de 6 centros (221 vs 227), não de 4.\n\n3) \"O texto da página é mais antigo que o PDF\" — NÃO PROVADO. A página não publica qualquer data de atualização do texto; o PDF traz 03/02/2026 no rodapé. É uma explicação plausível para a diferença, mas o IMT não publica a razão. Outras explicações possíveis (centros aprovados mas ainda não em atividade a constarem da lista, por exemplo) não estão desmentidas em lado nenhum. Não se pode afirmar como facto.\n\n4) LIMITAÇÃO QUE FALTA E QUE MUDA A IMPLEMENTAÇÃO: o PDF NÃO tem coluna de categoria. As colunas são apenas: Distrito, Código CITV, Nome do Centro, Morada do Centro, Código Postal Centro e Coordenadas GPS. Não há categoria A/B, nem telefone, nem horário, nem empresa exploradora em campo próprio. Ou seja, \"a app deve mostrar o que vier do PDF\" resolve a contagem e a morada/GPS, mas não permite dizer ao utilizador se um centro faz inspeções extraordinárias, GPL, apreensão ou ADR — que é exactamente a informação que interessa a um TVDE ou estafeta. O número 128 de categoria B só existe no texto da página e não é ligável a centros concretos por esta fonte. Se a app precisar de categoria por centro, tem de vir de outra fonte (por exemplo, a \"Pesquisa Centros Inspeção\" do IMT), e isso ainda está por verificar.\n\nConclusão prática: mostrar contagem e lista derivadas do PDF (contando por código: 227 à data de 03/02/2026), nunca fixar 221 nem 225, e não prometer filtro por categoria A/B com base neste PDF.",
+   "fonte_url": "https://www.imt-ip.pt/veiculos/inspecao-de-veiculos/centros-de-inspecao-tecnica-de-veiculos-citv/"
+  }
+ ]
+}

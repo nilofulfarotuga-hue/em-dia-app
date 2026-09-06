@@ -1,0 +1,279 @@
+{
+ "dimensao": "dgeg",
+ "achado": {
+  "dimensao": "Preços de combustível em Portugal — portal oficial DGEG (precoscombustiveis.dgeg.gov.pt)",
+  "resumo": "Sim, o portal da DGEG tem uma API JSON pública, sem chave, sem login e com CORS aberto. O endpoint `PesquisarPostos` devolve, numa única chamada, todos os postos de Portugal continental com nome, marca, morada, código postal, latitude, longitude, tipo de combustível, preço e data/hora da última atualização. Testei ao vivo: 14 178 linhas de preço, 3 131 postos distintos, 5,3 MB, resposta em 1,7 segundos, HTTP 200, todas com coordenadas. Não é preciso percorrer distrito a distrito — o parâmetro `qtdPorPagina` aceita 99999 e devolve tudo de uma vez. Em dados.gov.pt existe um dataset da DGEG (CC BY 4.0) mas só tem localização e marca dos postos, via WFS/WMS — não tem preços; confirmei isso a puxar uma feature. O travão não é técnico, é legal: o portal diz literalmente \"É proibida a sua utilização para fins comerciais\", e há um processo formal (\"Partilha de Informação\") com uma minuta em Word que tem de ser assinada e enviada por email à DGEG. Sem essa assinatura, a funcionalidade não pode ir para uma app que cobra.",
+  "factos": [
+   {
+    "facto": "O endpoint https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos existe, devolve JSON, HTTP 200, sem chave, sem cookie, sem cabecalho de autenticacao. Testado com curl simples.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201&qtdPorPagina=2&pagina=1",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Uma unica chamada com qtdPorPagina=99999 e os 14 idsTiposComb separados por virgula devolveu 14178 linhas, 3131 postos distintos, 5 274 487 bytes, em 1,717 segundos. Nao e preciso paginar nem percorrer distritos.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=2115,2150,2155,2105,2101,3400,3210,3205,3405,3201,1143,1141,1142,1120&qtdPorPagina=99999&pagina=1",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Campos devolvidos por cada linha: Id, Nome, TipoPosto, Municipio, Preco, Marca, Combustivel, DataAtualizacao, Distrito, Morada, Localidade, CodPostal, Latitude, Longitude, Quantidade. O campo Quantidade repete o total de resultados da pesquisa em todas as linhas.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201&qtdPorPagina=2&pagina=1",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Preco vem como texto no formato portugues com virgula e simbolo do euro, por exemplo \"1,789 €\". Tem de ser convertido para numero: tirar \" €\" e trocar virgula por ponto. Para GNC/GNL a unidade nao e o litro (kg ou m3) e isso so se sabe pelo texto do campo Combustivel.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "DataAtualizacao vem como \"2026-09-01 08:35\", sem fuso horario. E hora local de Lisboa. Tem de ser interpretada como Europe/Lisbon ao gravar em timestamptz.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201&qtdPorPagina=2&pagina=1",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Frescura dos dados medida a 2026-09-06 sobre as 14178 linhas: 4215 atualizadas ha 2 dias ou menos, 14129 ha 7 dias ou menos, 14158 ha 30 dias ou menos. Ha um residuo de 19 linhas com data anterior a 30 dias (a mais velha de 2024-08-05). Todas as 14178 linhas tem latitude e longitude preenchidas.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=2115,2150,2155,2105,2101,3400,3210,3205,3405,3201,1143,1141,1142,1120&qtdPorPagina=99999&pagina=1",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Ids dos tipos de combustivel (endpoint GetTiposCombustiveis): Gasolina simples 95 = 3201, Gasolina especial 95 = 3205, Gasolina 98 = 3400, Gasolina especial 98 = 3405, Gasoleo simples = 2101, Gasoleo especial = 2105, Gasoleo colorido = 2150, Gasoleo de aquecimento = 2155, Biodiesel B15 = 2115, Gasolina de mistura 2 tempos = 3210, GPL Auto = 1120, GNC em €/m3 = 1141, GNC em €/kg = 1143, GNL em €/kg = 1142. Cada tipo traz a flag fl_rodoviario que diz se e combustivel de estrada.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Cobertura por combustivel nas 14178 linhas: Gasolina simples 95 = 3057 postos, Gasoleo especial = 2912, Gasoleo simples = 2895, Gasolina especial 95 = 1472, Gasoleo colorido = 1331, Gasolina especial 98 = 1149, Gasolina 98 = 505, GPL Auto = 419. Para TVDE e estafetas os que interessam sao 3201, 2101, 2105, 3205, 3400, 3405 e 1120.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=2115,2150,2155,2105,2101,3400,3210,3205,3405,3201,1143,1141,1142,1120&qtdPorPagina=99999&pagina=1",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Os 18 distritos do continente vem em GetDistritos com Id 1 a 18 por ordem alfabetica (Aveiro=1 ... Viseu=18; Guarda=9). Os municipios vem em GetMunicipios?idDistrito=N. Nao ha Acores nem Madeira no portal: o Decreto-Lei 243/2008 cobre so o territorio continental.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetDistritos",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Nao e preciso percorrer distritos e municipios para a recolha diaria, porque a chamada sem filtro geografico ja devolve o pais todo. As listas de distrito/municipio so servem para filtros na interface da app.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetMunicipios?idDistrito=9",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "TERMOS DE USO — o portal diz textualmente: \"A informacao disponivel neste sitio e gratuita, podendo ser utilizada livremente. E proibida a sua utilizacao para fins comerciais. O conteudo deste sitio e protegido pelos Direitos de Autor e Direitos Conexos e Direitos de Propriedade Industrial ao abrigo das leis portuguesas\". Isto aparece na pagina inicial e na pagina de Apresentacao.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/apresentacao/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Existe caminho legal para usar os dados: subscrever o documento \"Partilha de Informacao\". A entidade envia pedido por correio ou email para precoscombustiveis@dgeg.gov.pt, dirigido ao Diretor-Geral de Energia e Geologia, com a descricao do projeto e a forma de divulgacao, \"indicando inequivocamente que toda e qualquer divulgacao e gratuita e universal\", acompanhado de um exemplar do documento assinado e rubricado sem data (dois exemplares se for por correio). A DGEG analisa e, em caso de deferimento, assina e devolve.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/apresentacao/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A minuta do documento \"Partilha de Informacao\" esta publicada em Word e descarrega com HTTP 200 (517 119 bytes, formato .docx).",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/media/l0epxygq/20260708_template-informacao.docx",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A condicao \"toda e qualquer divulgacao e gratuita e universal\" significa, na pratica, que a funcionalidade de precos de combustivel nao pode ficar atras de assinatura paga na app Em Dia. Esta e a leitura direta do texto; a interpretacao final e da DGEG na resposta ao pedido.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/apresentacao/",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Nao ha chave de API, nao ha registo, nao ha quota publicada. Cabecalhos da resposta: Access-Control-Allow-Origin: *, Access-Control-Allow-Methods: GET,POST, Cache-Control: no-cache, Server: cloudflare. Nao ha cabecalhos de rate limit. Seis chamadas seguidas devolveram todas 200 em cerca de 0,35 s cada. Nao ha limite de uso publicado.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201&qtdPorPagina=1&pagina=1",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O robots.txt do portal so bloqueia /media/* e /files/*. Nao bloqueia /api/*.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/robots.txt",
+    "confianca": "alta",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "Em dados.gov.pt o dataset oficial da DGEG e \"Postos de Abastecimento de Combustiveis para Veiculos Rodoviarios\", licenca cc-by (CC BY 4.0), mas os unicos recursos publicados sao WFS e WMS. Nao ha CSV nem JSON, e a frequencia de atualizacao esta como \"unknown\".",
+    "fonte_url": "https://dados.gov.pt/api/1/datasets/postos-de-abastecimento-de-combustiveis-para-veiculos-rodoviarios/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Puxei uma feature do WFS da DGEG: os unicos campos sao OBJECTID, Marca, Latitude__Y_, Longitude__X_, Inspire_ID, Thematic_ID e globalid. NAO tem preco, nem nome do posto, nem morada. Este dataset aberto nao serve para o objetivo.",
+    "fonte_url": "https://servergeo.dgeg.gov.pt/arcgis/services/Visualizadores/PACVR/MapServer/WFSServer?request=GetFeature&service=WFS&version=2.0.0&typeNames=PACVR:Postos_Abastecimento&count=1&outputFormat=GEOJSON",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Procurei em dados.gov.pt por \"combustiveis\": 16 datasets, nenhum com precos diarios por posto. Os do INE sao vendas e consumos agregados; o de Oeiras e uma camara municipal; o dos Acores e regional. Confirma-se: nao existe ficheiro aberto CSV/JSON de precos diarios em Portugal.",
+    "fonte_url": "https://dados.gov.pt/api/1/datasets/?q=combust%C3%ADveis&page_size=20",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O mapa do portal usa uma FeatureServer ArcGIS (services3.arcgis.com/L8wRKpelHTajqMnK/ArcGIS/rest/services/PostosAbastecimento/FeatureServer/0) que suporta consulta por geometria, mas os campos sao so OBJECTID, CodInterno, CodPosto, Marca, nLatitude, nLongitude e Estado, com maxRecordCount 2000. Nao tem precos, logo nao serve para a pesquisa \"mais barato perto de mim\".",
+    "fonte_url": "https://services3.arcgis.com/L8wRKpelHTajqMnK/ArcGIS/rest/services/PostosAbastecimento/FeatureServer/0?f=json",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Endpoint de detalhe do posto: GetDadosPostoMapa?id=<Id> devolve, alem dos precos, o horario (DiasUteis, Sabado, Domingo, Feriado), os servicos (cafetaria, multibanco, restaurante...), os meios de pagamento aceites (Dinheiro, MbWay, Multibanco) e observacoes. Nota: nesta resposta a DataAtualizacao vem em formato diferente, \"01-09-2026 08:35\" (dia-mes-ano), ao contrario do PesquisarPostos.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetDadosPostoMapa?id=67360&f=json",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Lista completa de endpoints da API, extraida do codigo da propria pagina: PesquisarPostos, RelatorioPostos, ListarDadosPostos, ListarTopPostos, PMD, PMDGrafico, GetNVisitas, SetNVisitas, GetTiposCombustiveis, GetMarcas, GetTiposPostos, GetDistritos, GetMunicipios, CalculaPrecoMedio, GetDadosPosto, GetDadosPostoMapa. Todos sob https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "ListarDadosPostos existe mas devolve um objeto administrativo com quase todos os campos a null (Entidade, Marca, Morada, Combustiveis, Alvara, etc.) quando chamado sem sessao. Nao serve como fonte de precos. O endpoint PMD chamado sem parametros devolve {\"status\":false,\"mensagem\":\"Nenhum preco encontrado.\"} — precisa de parametros que nao estao documentados publicamente.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/ListarDadosPostos?idsTiposComb=3201&qtdPorPagina=1&pagina=1",
+    "confianca": "alta",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "NAO existe documentacao oficial publicada da API. Nao ha pagina de developers, nao ha OpenAPI/Swagger, nao ha contrato de estabilidade. Os endpoints acima foram descobertos a partir do JavaScript do proprio portal e confirmados por chamada real. Isto significa que a DGEG pode mudar ou fechar a API sem aviso.",
+    "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/apresentacao/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Limites das Supabase Edge Functions: memoria maxima 256 MB, CPU time maximo 2s por pedido (nao conta I/O assincrono), wall clock 150s no plano gratuito e 400s nos pagos, timeout de inatividade 150s. O CPU time de 2s e o limite apertado: fazer JSON.parse de 5,3 MB e montar 14 mil linhas numa so invocacao arrisca estourar.",
+    "fonte_url": "https://supabase.com/docs/guides/functions/limits",
+    "confianca": "alta",
+    "decide_implementacao": true
+   }
+  ],
+  "urls_ou_endpoints": [
+   {
+    "para_que": "RECOLHA DIARIA — todos os postos e precos dos combustiveis rodoviarios de Portugal continental numa chamada. Testado: HTTP 200, 1,7s. Sem chave, sem cabecalhos.",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201,3205,3400,3405,2101,2105,1120&qtdPorPagina=99999&pagina=1",
+    "metodo": "GET",
+    "notas": "Resposta: {\"status\":true,\"mensagem\":\"sucesso\",\"resultado\":[{...}],\"token\":null}. Cada item: {\"Id\":67360,\"Nome\":\"INTERMARCHE VILAR FORMOSO\",\"TipoPosto\":\"Area comercial (Hipermercados)\",\"Municipio\":\"Almeida\",\"Preco\":\"1,789 €\",\"Marca\":\"INTERMARCHE\",\"Combustivel\":\"Gasolina simples 95\",\"DataAtualizacao\":\"2026-09-01 08:35\",\"Distrito\":\"Guarda\",\"Morada\":\"Sitio da Represa\",\"Localidade\":\"Vilar Formoso\",\"CodPostal\":\"6355-289\",\"Latitude\":40.61817,\"Longitude\":-6.84339,\"Quantidade\":3057}. ATENCAO: o Id repete-se entre combustiveis (e o id do posto, nao da linha) — a chave unica e (Id, tipo de combustivel)."
+   },
+   {
+    "para_que": "Variante recomendada na pratica: uma chamada por tipo de combustivel, para nao estourar o limite de 2s de CPU da Edge Function.",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201&qtdPorPagina=99999&pagina=1",
+    "metodo": "GET",
+    "notas": "~1,1 MB e ~3000 linhas por combustivel, cerca de 1 segundo. Trocar 3201 por 2101, 2105, 3205, 3400, 3405, 1120."
+   },
+   {
+    "para_que": "Filtrar por distrito na recolha (plano B se o pedido inteiro for demasiado pesado). idDistrito=9 e a Guarda.",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201&idDistrito=9&qtdPorPagina=99999&pagina=1",
+    "metodo": "GET",
+    "notas": "Aceita tambem idMarca, idTipoPosto e idMunicipio. Parametros vazios sao ignorados."
+   },
+   {
+    "para_que": "Lista de tipos de combustivel e respetivos ids (correr uma vez por mes, para apanhar tipos novos).",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis",
+    "metodo": "GET",
+    "notas": "Item: {\"Descritivo\":\"Gasolina simples 95\",\"UnidadeMedida\":\"litro\",\"fl_ViewWebSite\":true,\"fl_rodoviario\":true,\"fl_ativo\":true,\"BackGroundColor\":null,\"Id\":3201}. Usar fl_rodoviario=true para filtrar os que interessam a motoristas."
+   },
+   {
+    "para_que": "Lista dos 18 distritos do continente (para o filtro na app).",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetDistritos",
+    "metodo": "GET",
+    "notas": "Item: {\"Descritivo\":\"Guarda\",\"Id\":9}. Ordem alfabetica, Aveiro=1 ate Viseu=18."
+   },
+   {
+    "para_que": "Lista de municipios de um distrito (para o filtro na app).",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetMunicipios?idDistrito=9",
+    "metodo": "GET",
+    "notas": "Item: {\"Descritivo\":\"Trancoso\",\"IdDistrito\":9,\"Distrito\":{\"Descritivo\":\"Guarda\",\"Id\":9},\"Id\":132}. Correr o ciclo de idDistrito=1 a 18 uma vez por mes para ter a tabela toda."
+   },
+   {
+    "para_que": "Lista de marcas (Galp, BP, Repsol, Continente, Intermarche, Prio...).",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetMarcas",
+    "metodo": "GET",
+    "notas": "Item: {\"Descritivo\":\"CONTINENTE\",\"Id\":18}. Cuidado: ha ids duplicados com o mesmo nome (AUCHAN aparece com Id 5 e Id 75). Nao usar o nome como chave."
+   },
+   {
+    "para_que": "Tipos de posto.",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposPostos",
+    "metodo": "GET",
+    "notas": "So tres: {\"Area comercial (Hipermercados)\",Id:2}, {\"Auto-estrada\",Id:1}, {\"Outro\",Id:3}. Util para o utilizador excluir auto-estradas (mais caras)."
+   },
+   {
+    "para_que": "Ecra de detalhe do posto na app: horario, servicos e meios de pagamento. Chamar so quando o utilizador abre um posto, nao na recolha diaria.",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetDadosPostoMapa?id=67360&f=json",
+    "metodo": "GET",
+    "notas": "Devolve HorarioPosto {DiasUteis, Sabado, Domingo, Feriado}, Servicos[], MeiosPagamento[], Observacoes e a lista Combustiveis com Preco em \"1,789 €/litro\". A DataAtualizacao aqui vem em dd-MM-yyyy HH:mm, formato diferente do PesquisarPostos."
+   },
+   {
+    "para_que": "Minuta oficial do documento \"Partilha de Informacao\" que tem de ser assinada para uso legitimo dos dados. E o passo que desbloqueia tudo.",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/media/l0epxygq/20260708_template-informacao.docx",
+    "metodo": "GET",
+    "notas": "Word, 517 KB, HTTP 200 confirmado. Enviar assinado para precoscombustiveis@dgeg.gov.pt, dirigido ao Diretor-Geral de Energia e Geologia."
+   },
+   {
+    "para_que": "Pagina com os termos de uso e o processo de Partilha de Informacao (a prova legal a guardar).",
+    "url": "https://precoscombustiveis.dgeg.gov.pt/apresentacao/",
+    "metodo": "GET",
+    "notas": "Contem a frase \"E proibida a sua utilizacao para fins comerciais\" e os passos do pedido a DGEG."
+   },
+   {
+    "para_que": "Dataset aberto da DGEG em dados.gov.pt, licenca CC BY 4.0 — SO localizacao e marca, sem precos. Serve no maximo para validar coordenadas.",
+    "url": "https://dados.gov.pt/api/1/datasets/postos-de-abastecimento-de-combustiveis-para-veiculos-rodoviarios/",
+    "metodo": "GET",
+    "notas": "Recursos: WFS e WMS em servergeo.dgeg.gov.pt/arcgis/services/Visualizadores/PACVR/MapServer/. Campos da feature: OBJECTID, Marca, Latitude__Y_, Longitude__X_, Inspire_ID, Thematic_ID, globalid. Nao tem preco nem nome do posto."
+   }
+  ],
+  "recomendacao": "IMPLEMENTAR ASSIM.\n\n1) Base de dados (duas tabelas + uma de historico)\n\n`fuel_stations`: `dgeg_id bigint primary key` (o campo `Id`), `nome text`, `marca text`, `tipo_posto text`, `distrito text`, `municipio text`, `morada text`, `localidade text`, `cod_postal text`, `lat double precision not null`, `lon double precision not null`, `updated_at timestamptz`. Indice em `(lat, lon)`.\n\n`fuel_prices`: `station_id bigint references fuel_stations(dgeg_id)`, `fuel_id int` (3201, 2101, ...), `fuel_nome text`, `preco numeric(6,3) not null`, `unidade text` (litro/kg/m3), `data_atualizacao timestamptz not null`, `fetched_at timestamptz default now()`, com `primary key (station_id, fuel_id)`.\n\n`fuel_prices_history`: mesma coisa mas sem chave unica, insert-only, para poderes mostrar \"subiu 3 centimos esta semana\" — que e exatamente o tipo de coisa que um motorista TVDE quer ver e que nenhuma app concorrente mostra bem.\n\n2) Edge Function `sync-precos-combustiveis`\n\nUma so funcao, que recebe `?fuel=3201` e trata de um combustivel de cada vez. Faz:\n- `GET https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=<fuel>&qtdPorPagina=99999&pagina=1`\n- valida `status === true`; se vier `false`, aborta e regista o erro, nao apaga nada\n- para cada item: `preco = parseFloat(Preco.replace(' €','').replace(',','.'))`; `data_atualizacao` interpretada como Europe/Lisbon\n- descarta linhas com `preco` invalido, `Latitude`/`Longitude` a zero, ou `DataAtualizacao` com mais de 15 dias (sao 19 linhas mortas em 14 mil, uma delas de 2024 — mostrar isso a um motorista destruia a confianca na app)\n- upsert em `fuel_stations` (on conflict dgeg_id do update) e em `fuel_prices` (on conflict (station_id, fuel_id) do update), em lotes de 1000\n- insere tambem em `fuel_prices_history` so quando o preco mudou face ao que ja la esta.\n\nPorque um combustivel de cada vez: o limite da Edge Function e **2 segundos de CPU por pedido**. Puxar os 14 tipos de uma vez sao 5,3 MB de JSON e 14 mil linhas — arrisca rebentar. Por combustivel sao ~1,1 MB e ~3000 linhas, folgado. Nunca uses `qtdPorPagina=99999` com todos os tipos dentro da Edge Function.\n\n3) Agendamento\n\nSete entradas no Supabase Cron (pg_cron), uma por combustivel rodoviario, espacadas de 3 minutos a partir das 06:15 de Lisboa: 3201, 2101, 2105, 3205, 3400, 3405, 1120. Espacar e por educacao com um servidor do Estado e para nao teres sete invocacoes em paralelo. Uma vez por mes, uma oitava entrada que refresca as tabelas de apoio (`GetTiposCombustiveis`, `GetDistritos`, `GetMarcas`, `GetTiposPostos`, e o ciclo de `GetMunicipios?idDistrito=1..18`).\n\n4) A resposta \"o mais barato a 10 km de ti\"\n\nRPC em SQL, sem precisar de PostGIS. Caixa envolvente primeiro (para usar o indice), haversine depois:\n\n```sql\ncreate or replace function postos_mais_baratos(\n  p_lat double precision, p_lon double precision,\n  p_raio_km double precision default 10, p_fuel_id int default 3201,\n  p_limite int default 10)\nreturns table (dgeg_id bigint, nome text, marca text, morada text,\n               preco numeric, data_atualizacao timestamptz, distancia_km double precision)\nlanguage sql stable as $$\n  with cx as (\n    select p_raio_km/111.045 as dlat,\n           p_raio_km/(111.045*cos(radians(p_lat))) as dlon)\n  select s.dgeg_id, s.nome, s.marca, s.morada, p.preco, p.data_atualizacao,\n         111.045*degrees(acos(least(1, cos(radians(p_lat))*cos(radians(s.lat))\n           *cos(radians(s.lon)-radians(p_lon)) + sin(radians(p_lat))*sin(radians(s.lat))))) as distancia_km\n  from fuel_stations s\n  join fuel_prices p on p.station_id = s.dgeg_id and p.fuel_id = p_fuel_id\n  cross join cx\n  where s.lat between p_lat-cx.dlat and p_lat+cx.dlat\n    and s.lon between p_lon-cx.dlon and p_lon+cx.dlon\n    and p.data_atualizacao > now() - interval '15 days'\n  having 111.045*degrees(acos(least(1, cos(radians(p_lat))*cos(radians(s.lat))\n           *cos(radians(s.lon)-radians(p_lon)) + sin(radians(p_lat))*sin(radians(s.lat))))) <= p_raio_km\n  order by p.preco asc, distancia_km asc\n  limit p_limite;\n$$;\n```\n\nNao chames a API da DGEG a partir do telemovel. Tem CORS aberto (`Access-Control-Allow-Origin: *`) e daria para o Flutter web chamar direto, mas seria mandar 3000 postos para o telemovel de cada vez, gastar dados do utilizador e martelar um servidor publico. Uma leitura por dia para a tua base e a app le a tua base.\n\n5) Na interface, tres regras que nascem dos dados reais\n\n- Mostrar sempre a data/hora do preco ao lado do preco. So 4215 das 14178 linhas foram atualizadas nas ultimas 48 horas — o utilizador tem de saber se aquele preco e de hoje ou de terca-feira passada.\n- Deixar filtrar por tipo de posto, para excluir `Auto-estrada`. Um estafeta na Guarda nao quer sugestoes em A25.\n- Distinguir \"simples\" de \"especial\" (3201 vs 3205). Sao produtos diferentes com precos diferentes e misturar os dois faz a app parecer errada.\n\n6) O passo que nao e teu\n\nAntes de isto ir para producao, o pedido de \"Partilha de Informacao\" tem de estar enviado. Detalhe no campo dos bloqueios.",
+  "bloqueios": [
+   "LEGAL, e o bloqueio principal: o portal diz \"E proibida a sua utilizacao para fins comerciais\". A app Em Dia e um produto comercial. Tecnicamente nada impede a recolha (API aberta, sem chave, robots.txt nao bloqueia /api), mas publicar a funcionalidade sem autorizacao e usar dados protegidos por direitos de autor contra os termos declarados do titular. Nao e um risco teorico: o texto e explicito e o titular e o Estado portugues.",
+   "ACAO DO DANILO (assinatura, nao ha volta): descarregar a minuta em https://precoscombustiveis.dgeg.gov.pt/media/l0epxygq/20260708_template-informacao.docx, preencher, assinar e rubricar SEM POR DATA (a DGEG e que data), e enviar por email para precoscombustiveis@dgeg.gov.pt dirigido ao Diretor-Geral de Energia e Geologia. O email tem de levar a descricao do projeto Em Dia, a forma de divulgacao, e a frase inequivoca de que toda e qualquer divulgacao da informacao e gratuita e universal. Eu preparo o texto do email e o preenchimento do documento; a assinatura e o envio sao dele.",
+   "DECISAO DE NEGOCIO para o Danilo, antes de enviar o pedido: a DGEG exige que a divulgacao seja \"gratuita e universal\". Isso quer dizer, na leitura direta, que o ecra de precos de combustivel nao pode ficar fechado atras da assinatura paga da Em Dia. Ou o combustivel e gratuito para todos (funciona bem como isco de aquisicao para motoristas TVDE, e depois vendes a parte fiscal), ou nao se faz. Precisa da decisao dele antes de eu escrever o pedido, porque a promessa fica escrita no documento assinado.",
+   "RISCO TECNICO sem culpado: a API nao tem documentacao oficial, nem OpenAPI, nem compromisso de estabilidade. Descobri os endpoints a ler o JavaScript do proprio portal. A DGEG pode mudar nomes de campos ou fechar o acesso sem aviso. Mitigacao obrigatoria: a Edge Function nunca apaga a tabela antes de confirmar que a resposta veio com status true e com um numero de linhas dentro do esperado (por exemplo, nunca menos de 60% da recolha anterior), e manda alerta quando falha. Sem essa trava, um dia mau da DGEG apaga os precos todos da app e ninguem da por isso.",
+   "Sem cobertura das ilhas: o portal cobre so Portugal continental, por forca do Decreto-Lei 243/2008. Um utilizador nos Acores ou na Madeira ve um ecra vazio. Tem de haver mensagem explicita a dizer porque, senao parece bug."
+  ]
+ },
+ "veredictos": [
+  {
+   "facto": "O endpoint https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos existe, devolve JSON, HTTP 200, sem chave, sem cookie, sem cabecalho de autenticacao. Testado com curl simples.",
+   "confirmado": false,
+   "correcao": "A parte tecnica confirma-se, mas a afirmacao esta INCOMPLETA no ponto que decide o uso no \"Em Dia\" — e por isso marco confirmado=false.\n\nO QUE SE CONFIRMOU (saida literal, 2026-09-06):\n- `curl -s -D -` a https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201&qtdPorPagina=2&pagina=1 devolveu `HTTP/1.1 200 OK`, `Content-Type: application/json; charset=utf-8`, `Content-Length: 812`, `Access-Control-Allow-Origin: *`, `Server: cloudflare`. Sem `Set-Cookie`, sem `WWW-Authenticate`.\n- Corpo real: `{\"status\":true,\"mensagem\":\"sucesso\",\"resultado\":[{\"Id\":67360,\"Nome\":\"INTERMARCHE VILAR FORMOSO\",...,\"Preco\":\"1,789 €\",\"Combustivel\":\"Gasolina simples 95\",\"DataAtualizacao\":\"2026-09-01 08:35\",\"Distrito\":\"Guarda\",\"Latitude\":40.61817,\"Longitude\":-6.84339,\"Quantidade\":3057}],\"token\":null}`. Dados uteis: preco, marca, morada, lat/long, data de atualizacao.\n- Funciona sem User-Agent (`-H \"User-Agent:\"` -> HTTP 200, 812 bytes) e sem parametros nenhuns (HTTP 200, 18417 bytes). Logo, nao ha cookie nem Referer obrigatorio.\n- `qtdPorPagina=5000` devolveu HTTP 200 com 3057 registos (o total declarado no campo `Quantidade`), ou seja da para puxar o pais inteiro num pedido so.\n- 30 pedidos seguidos sem pausa: 30x HTTP 200. Nao apanhei limitacao de ritmo. O limite de ritmo NAO ESTA PUBLICADO em lado nenhum.\n- So aceita GET: com `-X POST` devolveu HTTP 411.\n\nO QUE A AFIRMACAO OMITE E DERRUBA O USO:\n\n1) NAO E UMA API PUBLICA DOCUMENTADA. E o endpoint interno do proprio site. Encontrei-o cravado no JavaScript da pagina: `var urlGlobal = 'https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb';`. Nao existe pagina de documentacao, nem de precos, nem contrato de servico. Sem publicacao nao ha compromisso nenhum de que continue a funcionar — pode mudar de nome de parametro ou fechar sem aviso.\n\n2) A DGEG PROIBE EXPRESSAMENTE O USO COMERCIAL. Frase literal da pagina oficial: \"A informação disponível neste sítio é gratuita, podendo ser utilizada livremente. É proibida a sua utilização para fins comerciais.\" A mesma pagina acrescenta: \"O conteúdo deste sítio é protegido pelos Direitos de Autor e Direitos Conexos e Direitos de Propriedade Industrial ao abrigo das leis portuguesas e da União Europeia e Convenções internacionais.\"\n   O \"Em Dia\" e uma app comercial (assinatura, trabalhadores independentes). Meter estes dados la dentro cai direito nesta proibicao. Isto e uma decisao legal, nao tecnica.\n\n3) HA UM CAMINHO OFICIAL, E E POR CARTA/EMAIL. Para uma entidade poder usar a informacao tem de subscrever o \"Documento de Partilha de Informação\": \"A entidade que pretende subscrever o Documento envia o pedido, por correio ou email (precoscombustiveis@dgeg.gov.pt), dirigido ao Diretor-Geral de Energia e Geologia, solicitando o acesso à informação, bem como a descrição do projeto a desenvolver e a forma de divulgação do mesmo.\" Deferido o pedido, a DGEG envia um \"Manual de Utilizador\" e so a partir dai a entidade \"passa a poder aceder e a utilizar a informação nas condições exigidas no Documento\".\n\n4) NAO HA ALTERNATIVA ABERTA COM PRECOS DIARIOS. No dados.gov.pt existe o conjunto da DGEG \"Postos de Abastecimento de Combustíveis para Veículos Rodoviários\" com licenca cc-by, mas isso e a localizacao dos postos, nao os precos diarios. Nao encontrei publicado nenhum conjunto de precos diarios com licenca aberta.\n\nPARA O DANILO (decisao que so ele pode dar):\nTecnicamente da para ligar hoje, em 5 minutos, sem chave nenhuma. Juridicamente nao devemos, porque a DGEG escreve preto no branco que e proibido usar para fins comerciais. Sao dois caminhos:\n(a) enviar o email a precoscombustiveis@dgeg.gov.pt a descrever o \"Em Dia\" e pedir a subscricao do Documento de Partilha de Informacao — e gratuito, mas demora e a resposta e humana; ou\n(b) nao poupar os precos de combustivel nesta versao e deixar o utilizador escrever o preco a mao.\nNao avanco com a ligacao ao endpoint sem ordem tua.",
+   "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/apresentacao/"
+  },
+  {
+   "facto": "Uma unica chamada a PesquisarPostos com qtdPorPagina=99999 e os 14 idsTiposComb separados por virgula devolveu 14178 linhas, 3131 postos distintos, 5 274 487 bytes, em 1,717 segundos. Nao e preciso paginar nem percorrer distritos.",
+   "confirmado": false,
+   "correcao": "A ESTRATEGIA esta certa e fica validada: uma unica chamada chega mesmo. Mas um dos numeros citados nao reproduz e faltam duas limitacoes que decidem o desenho da app. Por isso, confirmado=false.\n\nO QUE REPRODUZI EXATAMENTE (chamada real feita hoje, 2026-09-06, HTTP 200):\n- 14178 linhas no array \"resultado\" — bate ao numero. O proprio JSON traz o campo \"Quantidade\":14178 em cada linha, que confirma o total.\n- 3131 postos distintos — bate. Contei por \"Id\" unico e tambem por Nome+Latitude+Longitude; deu 3131 nas duas contagens.\n- 5 274 487 bytes UTF-8 — bate ao byte, em duas chamadas independentes.\n- Nao e preciso paginar: pedi &pagina=2 com o mesmo qtdPorPagina=99999 e voltaram 0 linhas. Tambem testei qtdPorPagina=20000 e devolveu na mesma as 14178 — o teto de 99999 nao esta a truncar nada.\n- Nao e preciso percorrer distritos: a resposta traz 18 distritos, exatamente os mesmos 18 que o endpoint oficial https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetDistritos lista.\n- Os 14 idsTiposComb sao mesmo a lista completa. O endpoint oficial https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis devolve 14 tipos e os Ids batem um a um com os da query (2115, 2150, 2155, 2105, 2101, 3400, 3210, 3205, 3405, 3201, 1143, 1141, 1142, 1120). Nao falta nenhum.\n\nO QUE NAO REPRODUZI:\n- O tempo de 1,717 segundos. Medi 2,353 s e 2,227 s em duas chamadas separadas. Nunca desceu de 2,2 s. Nao e um erro grave — e rede, varia — mas nao se pode escrever 1,7 s como se fosse um facto estavel. Para a app, contar com cerca de 2 a 3 segundos e mais honesto, e o timeout nunca deve ser inferior a 30 s.\n\nO QUE A AFIRMACAO OMITE, E IMPORTA MUITO PARA O \"EM DIA\":\n1) So cobre Portugal CONTINENTAL. Nao ha Acores nem Madeira — nem na resposta, nem sequer na lista oficial de distritos da DGEG, que tem so 18 entradas e nenhuma regiao autonoma. Um motorista TVDE no Funchal ou em Ponta Delgada nao vai ter dados nenhuns. A app tem de tratar isto explicitamente, nao pode deixar o ecra vazio sem explicacao.\n2) Os precos NAO sao \"de hoje\". Li o campo DataAtualizacao das 14178 linhas: idade media 4,53 dias; so 3859 linhas (27%) tem 2 dias ou menos; 49 linhas passam dos 7 dias e 20 passam dos 30, com um caso extremo de 762 dias. Ou seja, a app tem de mostrar sempre a data de atualizacao ao lado do preco e nunca prometer \"preco atual\".\n3) Nao existe documentacao oficial desta API. Testei /swagger/index.html, /api/swagger.json e /api/PrecoComb/swagger — os tres devolvem apenas o HTML do site, nao uma especificacao. O robots.txt (https://precoscombustiveis.dgeg.gov.pt/robots.txt) so bloqueia /media/* e /files/*, nao menciona /api.\n4) Sobre custo e limites: a DGEG NAO PUBLICA qualquer preco de utilizacao nem qualquer limite de chamadas para esta API. Nao ha pagina de precos, nao ha plano gratuito documentado, nao ha rate limit publicado. Digo isto com estas palavras em vez de inventar um numero. Como e uma API sem contrato publico, o prudente e chamar uma vez por dia a partir do servidor (Supabase Edge Function + cache em tabela), nunca a partir do telemovel de cada utilizador.\n\nRESUMO PARA DECIDIR: podem avancar com a chamada unica, sem paginacao e sem percorrer distritos — isso esta provado. Corrijam o tempo para cerca de 2 a 3 segundos, assumam so continente, e mostrem sempre a data de atualizacao.",
+   "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=2115,2150,2155,2105,2101,3400,3210,3205,3405,3201,1143,1141,1142,1120&qtdPorPagina=99999&pagina=1"
+  },
+  {
+   "facto": "API DGEG PesquisarPostos: cada linha de resultado devolve exatamente 15 campos — Id, Nome, TipoPosto, Municipio, Preco, Marca, Combustivel, DataAtualizacao, Distrito, Morada, Localidade, CodPostal, Latitude, Longitude, Quantidade — e o campo Quantidade repete, em todas as linhas, o total de resultados da pesquisa.",
+   "confirmado": true,
+   "correcao": "Confirmado com prova material, mas com quatro precisões que a afirmação não diz e que importam para implementar:\n\n1) PROVA. Chamada real hoje (2026-09-06), HTTP 200. Com qtdPorPagina=99999 vieram 3057 linhas e TODAS as 3057 têm exatamente o mesmo conjunto de 15 chaves — nenhuma linha traz campo extra nem falta nenhum. Quantidade é 3057 em todas, igual ao número real de linhas: logo é mesmo o total da PESQUISA, não da página (com qtdPorPagina=1&pagina=500 continua a dizer 3057; com outro combustível, idsTiposComb=2101, diz 2895 em todas as linhas).\n\n2) A resposta não é uma lista à cabeça. O JSON de topo tem 4 chaves — {\"status\":true,\"mensagem\":\"sucesso\",\"resultado\":[...],\"token\":null} — e as 15 colunas estão dentro de \"resultado\". Quem ler a resposta como array direto parte.\n\n3) Preco NÃO é número. Vem como texto à portuguesa com vírgula e símbolo: \"1,789 €\". Tem de ser limpo (trocar vírgula por ponto, tirar \" €\") antes de qualquer cálculo. Latitude e Longitude, essas sim, vêm como números (40.61817 / -6.84339). DataAtualizacao é texto \"2026-09-01 08:35\", sem fuso horário indicado.\n\n4) LIMITE CONHECIDO: a DGEG não publica documentação oficial deste endpoint — não há página de referência da API com a lista de campos. O que está acima é comportamento observado hoje no serviço em produção, não um contrato publicado. Pode mudar sem aviso; convém validar as chaves em runtime em vez de assumir.\n\nNão há preços nem níveis gratuitos a confirmar: o serviço é público e sem chave.",
+   "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201&qtdPorPagina=2&pagina=1"
+  },
+  {
+   "facto": "Preço vem como texto no formato português com vírgula e símbolo do euro, por exemplo \"1,789 €\". Tem de ser convertido para número: tirar \" €\" e trocar vírgula por ponto. Para GNC/GNL a unidade não é o litro (kg ou m3) e isso só se sabe pelo texto do campo Combustivel.",
+   "confirmado": false,
+   "correcao": "Meio certo, mas errado nas duas partes que interessam para implementar.\n\n1) A fonte apontada não devolve preços. https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis (HTTP 200, verificado a 2026-09-06) devolve só os 14 tipos de combustível, cada um com \"Id\", \"Descritivo\", \"UnidadeMedida\", \"fl_rodoviario\" e \"fl_ativo\". Nenhum preço.\n\n2) A unidade NÃO se sabe só pelo texto do campo Combustivel — isso é o caminho frágil. A própria fonte apontada dá a unidade em campo próprio \"UnidadeMedida\", com os valores \"litro\", \"kg\" e \"m3\". Exemplo literal: {\"Descritivo\":\"GNC (gás natural comprimido) - €/kg\",\"UnidadeMedida\":\"kg\",\"fl_rodoviario\":true,\"fl_ativo\":true,\"Id\":1143}. O correcto é carregar uma vez GetTiposCombustiveis e fazer um mapa Id -> UnidadeMedida, e depois ligar pelo Id do tipo (o mesmo que se envia em idsTiposComb). Nunca fazer parsing do texto \"- €/kg\".\nOs quatro tipos que não são litro: Id 1143 GNC €/kg (kg), Id 1141 GNC €/m3 (m3), Id 1142 GNL €/kg (kg). Atenção: \"GPL Auto\" (Id 1120) É em litro. Há também tipos não rodoviários (fl_rodoviario=false): Biodiesel B15 (2115) e Gasóleo de aquecimento (2155) — devem ser filtrados numa app para motoristas.\n\n3) O formato do preço muda conforme o endpoint, por isso a regra \"tirar ' €'\" não chega:\n- https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?qtdPorPagina=2&pagina=1&orderAsc=true&idsTiposComb=3201&idDistrito=14 devolve \"Preco\":\"1,917 €\" (sem unidade).\n- https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetDadosPosto?id=94703 devolve \"Preco\":\"1,939 €/litro\", e num posto de gás (id=93221) \"Preco\":\"2,108 €/kg\" e \"2,745 €/kg\". Aqui a unidade vem colada ao preço.\nParser seguro: extrair com regex os dígitos e a vírgula (ex.: ^(\\d+,\\d+)) e trocar vírgula por ponto, ignorando tudo o resto. Não fazer replace(\" €\",\"\").\n\n4) Detalhes medidos, não assumidos: em 4000 registos de PesquisarPostos (idsTiposComb=3201,2101,1120,1143,1141,1142), 4000/4000 seguiram o padrão d,ddd € — sempre 3 casas decimais, separador vírgula, espaço normal U+0020 (não é espaço duro/NBSP) e euro U+20AC. Zero valores nulos nessa amostra.\n\n5) Armadilha a evitar: o campo \"Quantidade\" na resposta de PesquisarPostos NÃO é quantidade de combustível — vinha 6398 igual em todos os registos, é o total de resultados da pesquisa (para paginação). \"DataAtualizacao\" vem como texto \"2026-09-01 13:00\" (sem fuso declarado — não está publicado qual é).\n\nNota sobre preços/limites de utilização da API: a DGEG não publica nesta API qualquer preçário, chave, quota ou limite de pedidos. Não está publicado.",
+   "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis"
+  },
+  {
+   "facto": "DataAtualizacao da API DGEG vem como \"2026-09-01 08:35\", sem fuso horario, e e hora local de Lisboa, devendo ser interpretada como Europe/Lisbon ao gravar em timestamptz.",
+   "confirmado": false,
+   "correcao": "O formato esta certo, o comportamento observado bate certo, mas a afirmacao e incompleta e a fonte apontada nao a suporta. Tres correcoes.\n\n1) FORMATO — CONFIRMADO. Puxei os 3057 postos de gasolina simples 95 (idsTiposComb=3201, 4 paginas de 1000). Os 3057 valores de DataAtualizacao tem exatamente 16 caracteres, no formato \"AAAA-MM-DD HH:MM\": sem segundos, sem \"T\", sem offset, sem \"Z\". Nenhuma excecao.\n\n2) \"E HORA LOCAL DE LISBOA\" — NAO ESTA DOCUMENTADO. A DGEG nao publica qualquer documentacao desta API. A pagina oficial de apresentacao (https://precoscombustiveis.dgeg.gov.pt/apresentacao/) nao tem uma unica mencao a fuso horario; so diz que as alteracoes de preco sao comunicadas \"com a indicacao do respetivo dia e hora\". A fonte apontada na afirmacao e o proprio endpoint JSON, que nao devolve fuso nenhum. Portanto a afirmacao apresenta como facto publicado aquilo que e apenas inferencia.\n   O que consegui provar por medicao (nao por documentacao), a 2026-09-06: o cabecalho HTTP Date do endpoint dava \"Sun, 06 Sep 2026 14:03:08 GMT\", ou seja 15:04 em Lisboa (WEST, UTC+1). Nos 3057 registos, o valor mais recente era \"2026-09-06 15:00\", e havia 3 registos acima do relogio UTC (14:10, 14:25 e 15:00) mas ZERO registos acima do relogio de Lisboa. Se o campo fosse UTC, existiriam precos gravados ate 55 minutos no futuro, o que e impossivel. Conclusao: o comportamento e compativel com hora local de Lisboa e incompativel com UTC. Isto e prova empirica de um instante, nao garantia da DGEG.\n\n3) FALTA O PROBLEMA DA HORA DE VERAO — E AQUI QUE PARTE EM PRODUCAO. Europe/Lisbon nao e um desvio fixo: e WET (UTC+0) no inverno e WEST (UTC+1) no verao. A afirmacao trata o fuso como constante. Duas datas partem a conversao:\n   - 25-10-2026: o relogio recua das 02:00 WEST para as 01:00 WET. As horas 01:00 a 01:59 acontecem DUAS vezes. Uma string \"2026-10-25 01:30\" e ambigua e pode ser gravada com uma hora de erro.\n   - 29-03-2026: o relogio avanca da 01:00 WET para as 02:00 WEST. As horas 01:00 a 01:59 NAO EXISTEM. Uma string nessa janela nao tem instante correspondente.\n   Isto nao e teorico neste conjunto: a DGEG grava lotes as 00:00 e as 00:30 (contei 17 registos as 00:30 so numa pagina), mesmo ao lado da janela perigosa. Na conversao (por exemplo AT TIME ZONE 'Europe/Lisbon' no Postgres) e preciso decidir e testar explicitamente o que fazer com hora ambigua e com hora inexistente, e nunca assumir UTC+1.\n\n4) BONUS QUE A AFIRMACAO NAO COBRE, MAS TRAVA O PROJETO. Ainda so ha postos do continente: os 3057 registos cobrem apenas os 18 distritos continentais, zero Acores e zero Madeira. Isso e conveniente, porque evita o problema de Atlantic/Azores (UTC-1 no inverno) — mas se a DGEG passar a incluir as ilhas, a regra \"tudo Europe/Lisbon\" deixa de servir e a decisao tem de ser revista.\n\n5) AVISO LEGAL, FORA DO AMBITO DA AFIRMACAO MAS MAIS GRAVE QUE ELA. A pagina oficial diz, literalmente: \"A informacao disponivel neste sitio e gratuita, podendo ser utilizada livremente. E proibida a sua utilizacao para fins comerciais.\" O \"Em Dia\" e um produto comercial. Antes de construir qualquer funcionalidade em cima desta API, isto tem de ser decidido pelo Danilo — a DGEG tem um processo de pedido de acesso com um documento \"Partilha de Informacao\" assinado, e exige que a divulgacao seja \"gratuita e universal\". Contacto oficial: precoscombustiveis@dgeg.gov.pt.\n\n6) PRECOS E LIMITES. Nao estao publicados. A informacao e gratuita (a propria pagina o diz), mas nao existe pagina de precos, nem plano pago, nem limites de chamadas publicados, precisamente porque nao existe documentacao de API. Nao invento numeros: os limites de rate desta API nao estao publicados.\n\nRECOMENDACAO DE IMPLEMENTACAO: gravar sempre a string original em texto (coluna crua) ao lado do timestamptz convertido, para permitir recuperar de um erro de fuso sem voltar a chamar a API; converter com Europe/Lisbon e nao com UTC+1 fixo; e escrever um teste que force as strings \"2026-10-25 01:30\" e \"2026-03-29 01:30\" antes de considerar isto pronto.",
+   "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/apresentacao/"
+  },
+  {
+   "facto": "Frescura dos dados medida a 2026-09-06 sobre as 14178 linhas: 4215 atualizadas ha 2 dias ou menos, 14129 ha 7 dias ou menos, 14158 ha 30 dias ou menos. Ha um residuo de 19 linhas com data anterior a 30 dias (a mais velha de 2024-08-05). Todas as 14178 linhas tem latitude e longitude preenchidas.",
+   "confirmado": false,
+   "correcao": "Dois numeros estao errados. Medicao propria feita hoje, 2026-09-06 (cerca das 15h10 WEST), no URL exato indicado: HTTP 200, 5.274.487 bytes, md5 8b0ed20937347bf1c5047a4e8b220574 identico em tres descargas seguidas.\n\nBATE CERTO:\n- 14178 linhas (o proprio campo \"Quantidade\" da API traz 14178 em todas as linhas).\n- 14129 linhas com data de atualizacao ha 7 dias ou menos. Exato.\n- 14158 linhas com data ha 30 dias ou menos. Exato.\n- A mais velha e mesmo de 2024-08-05 (07:00), posto Id 72681 \"BP Cabacos JMGracio\", Gasolina especial 98.\n- Latitude e longitude preenchidas em todas as 14178 linhas: 0 nulos, 0 com valor zero, 0 fora dos limites geograficos de Portugal.\n\nNAO BATE:\n1) \"4215 atualizadas ha 2 dias ou menos\" e FALSO. O valor medido e 3732 (diferenca de 483). Testei varias definicoes possiveis de \"2 dias\" e nenhuma produz 4215: <=24h = 2384, <=36h = 2571, <=48h = 3341, <=60h = 3615, <=72h = 3827 (contados a partir das 15h10 de hoje); em dias de calendario, <=0 dias = 2330, <=1 = 3245, <=2 = 3732, <=3 = 4316. O valor mais proximo de 4215 e o de tres dias de calendario (4316), nao o de dois.\n2) \"residuo de 19 linhas\" e FALSO. Sao 20 linhas com data anterior a 30 dias. A afirmacao nem fecha em aritmetica sozinha: 14158 + 19 = 14177, e o total declarado e 14178. Com 20 fecha certo.\n\nDADO EM FALTA QUE IMPORTA AO APP: as 14178 linhas nao sao 14178 postos. Sao 3131 postos distintos (uma linha por combinacao posto x combustivel). Quem construir o mapa a partir disto tem de agrupar por Id, senao mostra o mesmo posto ate 14 vezes.\n\nNotas de completude a favor da fonte: os 14 ids de combustivel do URL sao exatamente os 14 tipos ativos publicados em https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis, logo o pedido nao deixa combustivel de fora. Nenhuma linha vem com preco vazio.\n\nSobre custo e limites: a DGEG NAO PUBLICA precario, termos de utilizacao, quotas nem limites de chamadas para esta API. O endpoint e o mesmo que o site publico usa e nao vem documentado em lado nenhum oficial. O robots.txt de precoscombustiveis.dgeg.gov.pt bloqueia apenas /media/* e /files/*, nao bloqueia /api/. Como os limites nao estao publicados, nao se pode assumir que o uso intensivo esteja autorizado.\n\nRessalva honesta: os dados sao vivos e mudam ao longo do dia (a contagem de \"hoje\" cresce a cada hora). Os valores de 7 e 30 dias baterem ao certo sugere que a medicao original foi feita hoje, o que torna os desvios de 4215 e de 19 erros de contagem e nao efeito do tempo.",
+   "fonte_url": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=2115,2150,2155,2105,2101,3400,3210,3205,3405,3201,1143,1141,1142,1120&qtdPorPagina=99999&pagina=1"
+  }
+ ]
+}

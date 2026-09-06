@@ -1,0 +1,313 @@
+{
+ "dimensao": "banco",
+ "achado": {
+  "dimensao": "Ler movimentos bancários em Portugal (PSD2 / open banking) sem sermos TPP licenciados",
+  "resumo": "Dá para ler contas bancárias portuguesas sem termos licença de TPP, desde que usemos um agregador que já é entidade regulada e nos deixe operar debaixo da licença dele. Duas portas estão mesmo abertas e são self-service: a Enable Banking, que tem um modo \"Restricted Production\" gratuito onde só se leem as contas que nós próprios ligámos (perfeito para construir e testar já, sem pagar nada e sem contrato), e a open-banking.io, que tem um programa de parceiro white-label a 3 EUR por conta ligada por mês, com candidatura e ambiente de staging grátis. As portas fechadas são a GoCardless Bank Account Data (ex-Nordigen), que tem os registos novos desativados, e a SIBS API Market, que em produção exige ser TPP registado junto de uma autoridade competente (Banco de Portugal) e ter certificados eIDAS QWAC e QSEAL. Tink, TrueLayer e Yapily deixam entrar no sandbox sozinho, mas a produção é toda por comercial e sem preço publicado; a Salt Edge exige que o cliente já seja AISP autorizado. Cobertura portuguesa não é problema: CGD, Millennium BCP, Santander Totta, novobanco, BPI e Montepio estão documentados nos dois fornecedores recomendados. O caminho é começar hoje em Restricted Production da Enable Banking com as contas do Danilo, atrás de uma camada de abstração nossa, e só depois escolher entre o parceiro da open-banking.io e um contrato da Enable Banking (cujo preço não está publicado e tem de ser pedido).",
+  "factos": [
+   {
+    "facto": "A Enable Banking é ela própria a entidade regulada: a FAQ oficial diz que as aplicações podem aceder aos ASPSPs sem autorização individual, ou seja NÃO precisamos de licença de TPP. A ressalva é que 'Applications can't be made available to the public before a contract is signed' — para lançar ao público é preciso contrato assinado.",
+    "fonte_url": "https://enablebanking.com/docs/faq/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O modo 'Restricted Production' da Enable Banking permite ativar uma aplicação de produção ligando as nossas próprias contas: 'Using restricted applications you can only fetch data from accounts linked to the application.' Serve para avaliação em cenários reais e uso individual não comercial, e mantém-se nesse estado até ser assinado um acordo. A ativação faz-se no Control Panel em 'Activate by linking accounts'. Não é indicado um número máximo de contas.",
+    "fonte_url": "https://enablebanking.com/docs/api/linked-accounts/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Registo na Enable Banking é self-service: cria-se a aplicação na página 'API applications' do Control Panel, indica-se o nome (que é mostrado ao utilizador final no ecrã de autorização do banco) e os URLs de redireccionamento; o próprio browser gera a chave privada RSA e descarrega um ficheiro .pem cujo nome é o ID da aplicação (ex.: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee.pem).",
+    "fonte_url": "https://enablebanking.com/docs/api/quick-start/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Autenticação da Enable Banking é JWT RS256 assinado com a chave privada, enviado em 'Authorization: Bearer {jwt}'. Header: {\"typ\":\"JWT\",\"alg\":\"RS256\",\"kid\":\"<application-id>\"}. Claims: iss='enablebanking.com', aud='api.enablebanking.com', iat=agora, exp=iat+3600. Não há endpoint de token — o JWT é gerado localmente a cada pedido/hora.",
+    "fonte_url": "https://enablebanking.com/docs/api/quick-start/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Fluxo da Enable Banking em 5 passos: (1) POST /auth devolve o URL de redireccionamento do banco; (2) o utilizador autentica-se no banco; (3) o redirect volta com o parâmetro 'code'; (4) POST /sessions com esse 'code' devolve o session_id e a lista de contas com os respetivos account_uid; (5) usam-se os account_uid em GET /accounts/{uid}/balances e GET /accounts/{uid}/transactions.",
+    "fonte_url": "https://enablebanking.com/docs/api/quick-start/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O objeto de transação da Enable Banking tem booking_date, value_date, transaction_date, transaction_amount (com moeda), balance_after_transaction, nomes e contas de devedor/credor, credit_debit_indicator (CRDT/DBIT), status, remittance_information (array), entry_reference, transaction_id e merchant_category_code. A paginação faz-se por 'continuation_key'.",
+    "fonte_url": "https://enablebanking.com/docs/api/reference/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Cobertura portuguesa da Enable Banking documentada oficialmente: Caixa Geral de Depósitos, Banco Comercial Português (Millennium BCP), Banco Santander Totta, novobanco, Banco BPI, Banco Montepio e BBVA. Todos com fluxo por redireccionamento. Nota específica: na CGD o app switching automático não é suportado. ActivoBank, Bankinter, Revolut e N26 não aparecem nesta página de mercado.",
+    "fonte_url": "https://enablebanking.com/docs/markets/pt/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "O preço da Enable Banking NÃO está publicado. A FAQ oficial diz apenas que 'Our pricing is volume based. The cost depends on the number of accounts accessed and payments made per month', que existe um mínimo mensal com um determinado número de contas incluído, e manda pedir cotação a info@enablebanking.com. Qualquer número concreto que se veja em blogs não é oficial.",
+    "fonte_url": "https://enablebanking.com/docs/faq/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Preço da open-banking.io confirmado no site oficial, texto literal: '€3/month — 1 account included · No credit card required' e 'per additional account €1/month'. Inclui exportação total em CSV, chaves de API servidor-a-servidor, ligações bancárias ilimitadas e cifra com chave que só o utilizador tem.",
+    "fonte_url": "https://open-banking.io/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A open-banking.io tem um Partner Program white-label: o parceiro licencia o fluxo Connect e a cobertura bancária com a sua própria marca (nome, logo, cor nos ecrãs de login, escolha de banco e consentimento). Candidatura e desenvolvimento em staging são grátis; produção custa '€3 per connected account / month'. Volumes maiores negoceiam-se antes de ir para produção.",
+    "fonte_url": "https://open-banking.io/en/partner-program",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "API de parceiro da open-banking.io: OAuth 2.0 authorization code com PKCE, com /oauth/authorize, POST /oauth/token e POST /oauth/revoke. No fim recebem-se dois artefactos por utilizador: uma API key no formato 'ebk_…' válida 365 dias ou até ser revogada, e uma chave privada que é entregue do browser do utilizador diretamente ao nosso endpoint de callback e serve para decifrar os envelopes de dados. Cada utilizador é um tenant 'wl:{partner}:connect:{email}'. Quando as chaves são revogadas a API devolve 401 e a documentação diz para tratar isso como 'pedir ao utilizador que ligue outra vez'.",
+    "fonte_url": "https://open-banking.io/en/docs/partners",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "API pessoal da open-banking.io: a chave vai no header 'X-Api-Key' e 'grants the same access you have to your own data'. Métodos do SDK: getAccounts(), getTransactions(accountId, …) com intervalo de datas, limit e offset, getConnections(), sync(accountId) e syncAll(). Há SDKs para Node/TS, Python, Rust, Go, Java, PHP, .NET e Ruby. O exemplo de base URL na documentação é local (http://localhost:42063/api/accounts).",
+    "fonte_url": "https://open-banking.io/en/developers",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Limitação crítica do produto pessoal da open-banking.io: os dados NÃO continuam a atualizar-se com o utilizador fora da aplicação — 'No — and that follows from the encryption rather than being a limitation we chose'. Também confirmam que na primeira sincronização pedem cerca de dois anos de histórico e negoceiam para baixo se o banco recusar, com um piso de 90 dias, e que o consentimento PSD2 expira, na maioria dos bancos, aos 90 dias.",
+    "fonte_url": "https://open-banking.io/en/faq",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A open-banking.io lista 2.611 bancos no EEE e Reino Unido. Em Portugal aparecem, entre outros: Caixa Geral de Depósitos, Millennium BCP (Banco Comercial Portugues), Santander Totta, novobanco e novobanco dos Açores, BPI, Caixa Económica Montepio Geral, Activo Bank, Bankinter, Abanca, BBVA, BiG, Crédito Agrícola e várias caixas agrícolas, Openbank, Revolut, N26, Wise, PayPal, SumUp, bunq, Cofidis, Unicre, Swan e Viva.com.",
+    "fonte_url": "https://open-banking.io/en/banks",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A GoCardless Bank Account Data (ex-Nordigen) está fechada a novos registos. A página oficial diz literalmente 'New signups for Bank Account Data are currently disabled' e manda ir ao Help Centre ou falar com o suporte. A página NÃO publica data de início nem calendário de reabertura ou de encerramento definitivo.",
+    "fonte_url": "https://bankaccountdata.gocardless.com/new-signups-disabled",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A documentação técnica da GoCardless Bank Account Data continua online e sem qualquer aviso de descontinuação, com os endpoints de token, institutions, requisitions, accounts, balances e transactions a funcionar para quem já tem conta. Um detalhe que vale para qualquer fornecedor: os bancos impõem limites próprios, 'down to 4 API calls per day for every account'.",
+    "fonte_url": "https://docs.gocardless.com/bank-account-data/overview",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Fontes da comunidade apontam para meados de 2025 (julho) como o momento em que a GoCardless deixou de aceitar novas contas de Bank Account Data, mas isto NÃO está confirmado em documentação oficial — a página oficial não publica data nenhuma.",
+    "fonte_url": "https://github.com/adept/gocardless-to-csv/issues/4",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "SIBS API Market: o sandbox é aberto e gratuito, 'No need to use certificates, eIDAS or other to start testing our APIs'. Mas para Teste e Produção é preciso ser TPP registado com certificado eIDAS válido, ou pelo menos ter começado formalmente o registo junto de uma Autoridade Nacional Competente (em Portugal, o Banco de Portugal). O formulário de registo pede o certificado QSEAL e o QWAC com todas as raízes e intermediários.",
+    "fonte_url": "https://www.pay.sibs.com/en/solutions/api-market/tpps-registration/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "As instituições portuguesas por trás do SIBS API Market são Banco BPI, Caixa Geral de Depósitos, Millennium BCP, Santander, SIBS Pagamentos e UNICRE — ou seja, mesmo que tivéssemos licença, o SIBS sozinho não cobriria novobanco nem Montepio.",
+    "fonte_url": "https://www.pay.sibs.com/en/solutions/api-market/tpps-registration/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Salt Edge: a API de Account Information está disponível para Account Information Service Providers autorizados sob PSD2 na UE e para outros TPP regulados. Ou seja, não serve para quem não tem licença. Não há tier gratuito publicado.",
+    "fonte_url": "https://docs.saltedge.com/account_information/v5/",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Tink (Visa): dá para criar conta gratuita na console.tink.com e experimentar com dados de teste, e a API REST devolve contas, transações e saldos de mais de 3.400 bancos europeus por AISP PSD2. Mas o preço de produção não está publicado e depende de escalões, utilizadores e funcionalidades — é conversa comercial.",
+    "fonte_url": "https://tink.com/open-banking-developer-console/",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "TrueLayer e Yapily: ambos deixam entrar no sandbox sozinho, mas a produção é sales-led e o preço não está publicado (a página truelayer.com/pricing devolve 404). O 'Yapily Connect' que às vezes é apresentado como tier grátis é na verdade a entidade regulada da Yapily, não um plano de preços.",
+    "fonte_url": "https://truelayer.com/pricing/",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "Neonomics tem portal de programador com registo self-service e sandbox gratuito (docs.neonomics.io/docs/sign-up), mas a página de preços não publica valores concretos para leitura de contas.",
+    "fonte_url": "https://docs.neonomics.io/docs/sign-up",
+    "confianca": "media",
+    "decide_implementacao": false
+   },
+   {
+    "facto": "A Enable Banking também suporta o cenário inverso, se um dia quisermos licença própria: 'Enable Banking API can use eIDAS certificates (QWAC and QSealC) of a licensed TPP and connect to ASPSP on behalf of the TPP'. Isto significa que a mesma integração técnica sobrevive a uma eventual mudança para licença nossa — não é preciso reescrever.",
+    "fonte_url": "https://enablebanking.com/docs/faq/",
+    "confianca": "alta",
+    "decide_implementacao": false
+   }
+  ],
+  "urls_ou_endpoints": [
+   {
+    "para_que": "Enable Banking — base da API (todos os pedidos levam Authorization: Bearer <JWT RS256>)",
+    "url": "https://api.enablebanking.com",
+    "metodo": "-",
+    "notas": "JWT gerado localmente com a chave .pem. Header {typ:JWT, alg:RS256, kid:<application_id>}. Claims iss=enablebanking.com, aud=api.enablebanking.com, iat=agora, exp=iat+3600. Não há endpoint de token."
+   },
+   {
+    "para_que": "Enable Banking — listar bancos portugueses disponíveis",
+    "url": "https://api.enablebanking.com/aspsps?country=PT",
+    "metodo": "GET",
+    "notas": "Devolve nome, país, métodos de autenticação e serviços (AIS/PIS) de cada ASPSP. O par (name, country) é o que se envia depois no /auth."
+   },
+   {
+    "para_que": "Enable Banking — iniciar a autorização do utilizador no banco",
+    "url": "https://api.enablebanking.com/auth",
+    "metodo": "POST",
+    "notas": "Body: access.valid_until (ISO 8601), aspsp.name, aspsp.country, redirect_url (tem de estar na whitelist da aplicação), psu_type ('personal' ou 'business'), state. Devolve o URL do banco para onde se manda o utilizador."
+   },
+   {
+    "para_que": "Enable Banking — trocar o code do redirect por sessão + lista de contas",
+    "url": "https://api.enablebanking.com/sessions",
+    "metodo": "POST",
+    "notas": "Body: {\"code\": \"<code do querystring do redirect>\"}. Devolve session_id e os accounts com account_uid, que é a chave para tudo o resto."
+   },
+   {
+    "para_que": "Enable Banking — ver estado da sessão e validade do consentimento",
+    "url": "https://api.enablebanking.com/sessions/{session_id}",
+    "metodo": "GET",
+    "notas": "Mostra o período de validade do acesso e as contas ligadas. É daqui que sai o 'consent_expires_at' para avisar o utilizador antes dos 90 dias."
+   },
+   {
+    "para_que": "Enable Banking — revogar o consentimento e fechar a sessão",
+    "url": "https://api.enablebanking.com/sessions/{session_id}",
+    "metodo": "DELETE",
+    "notas": "Obrigatório expor isto na app (RGPD e boa prática): o utilizador tem de conseguir desligar o banco com um toque."
+   },
+   {
+    "para_que": "Enable Banking — saldo da conta",
+    "url": "https://api.enablebanking.com/accounts/{account_uid}/balances",
+    "metodo": "GET",
+    "notas": "Atenção aos limites do banco: alguns descem a 4 chamadas por dia por conta. Guardar o saldo em cache no Supabase, nunca chamar a cada abertura de ecrã."
+   },
+   {
+    "para_que": "Enable Banking — movimentos da conta",
+    "url": "https://api.enablebanking.com/accounts/{account_uid}/transactions",
+    "metodo": "GET",
+    "notas": "Aceita filtro por intervalo de datas e pagina com 'continuation_key'. Campos: booking_date, value_date, transaction_date, transaction_amount, credit_debit_indicator (CRDT/DBIT), remittance_information[], entry_reference, transaction_id, merchant_category_code, balance_after_transaction."
+   },
+   {
+    "para_que": "Enable Banking — confirmar em que ambiente e estado está a aplicação",
+    "url": "https://api.enablebanking.com/application",
+    "metodo": "GET",
+    "notas": "Devolve nome, ambiente (sandbox/produção), redirect URLs registados e serviços ativos. Serve de teste de fumo: se isto responde 200, o JWT está bem assinado."
+   },
+   {
+    "para_que": "Enable Banking — registar a aplicação e ativar o Restricted Production",
+    "url": "https://enablebanking.com/cp/applications",
+    "metodo": "GET (browser)",
+    "notas": "Passo humano. O browser gera e descarrega o .pem — se esse ficheiro se perder, a aplicação morre e tem de ser registada de novo. Guardar no cofre, não no repo."
+   },
+   {
+    "para_que": "open-banking.io — programa de parceiro (white-label, é este o caminho para utilizadores reais)",
+    "url": "https://open-banking.io/en/partner-program",
+    "metodo": "GET (browser)",
+    "notas": "Candidatura + staging grátis; produção a 3 EUR por conta ligada por mês. É aqui que se pede acesso."
+   },
+   {
+    "para_que": "open-banking.io — autorização do utilizador final (OAuth 2.0 + PKCE)",
+    "url": "https://open-banking.io/oauth/authorize",
+    "metodo": "GET (redirect)",
+    "notas": "Fluxo authorization code com PKCE. O redirect_uri tem de estar registado — as credenciais só são entregues a URIs registados."
+   },
+   {
+    "para_que": "open-banking.io — trocar o code pelas credenciais do utilizador",
+    "url": "https://open-banking.io/oauth/token",
+    "metodo": "POST",
+    "notas": "Devolve uma API key 'ebk_…' válida 365 dias. A chave privada do utilizador chega ao nosso callback vinda do browser dele — é ela que decifra os envelopes. NUNCA pode ir para o Flutter nem para um repositório."
+   },
+   {
+    "para_que": "open-banking.io — revogar o acesso de um utilizador",
+    "url": "https://open-banking.io/oauth/revoke",
+    "metodo": "POST",
+    "notas": "Depois de revogado, a API devolve 401. Tratar o 401 como 'pedir ao utilizador para ligar outra vez', não como erro técnico."
+   },
+   {
+    "para_que": "open-banking.io — ler contas, ligações e movimentos",
+    "url": "https://open-banking.io/en/developers",
+    "metodo": "GET (docs)",
+    "notas": "Chave no header 'X-Api-Key'. Métodos: getConnections(), getAccounts(), getTransactions(accountId, {from, to, limit, offset}), sync(accountId), syncAll(). SDKs em Node/TS, Python, Go, Rust, Java, PHP, .NET e Ruby. CONFIRMAR com eles o base URL de servidor no modo parceiro — o exemplo público mostra localhost:42063, que é o modo pessoal."
+   },
+   {
+    "para_que": "GoCardless Bank Account Data — página oficial que confirma o fecho a novos registos",
+    "url": "https://bankaccountdata.gocardless.com/new-signups-disabled",
+    "metodo": "GET",
+    "notas": "Prova documental de que esta via está fechada. Sem data publicada."
+   },
+   {
+    "para_que": "SIBS API Market — registo de TPP (exige licença + eIDAS)",
+    "url": "https://www.pay.sibs.com/en/solutions/api-market/tpps-registration/",
+    "metodo": "GET (browser)",
+    "notas": "Fora do nosso alcance por agora. Sandbox aberto em developer.sibsapimarket.com, mas só com dados de teste."
+   },
+   {
+    "para_que": "Enable Banking — pedir proposta de preço para produção",
+    "url": "mailto:info@enablebanking.com",
+    "metodo": "EMAIL",
+    "notas": "O preço é por volume de contas por mês, com mínimo mensal, e não está publicado em lado nenhum. Sem este email não há forma honesta de comparar com os 3 EUR da open-banking.io."
+   }
+  ],
+  "bloqueios": [
+   "Criar a conta na Enable Banking e registar a aplicação no Control Panel — é o Danilo que tem de criar conta e aceitar os termos. O browser descarrega a chave privada .pem: essa transferência só acontece uma vez e o ficheiro tem de ir para o cofre (não para o repositório, não para o Drive partilhado).",
+   "Completar o KYB (Know Your Business) da Enable Banking para a aplicação passar de Inactive a Restricted — implica dados da empresa e provavelmente documentos.",
+   "Ligar as contas bancárias próprias no modo Restricted: exige login no banco e SCA no telemóvel (app do Millennium, Digital Mobile Key da CGD, etc.). Só o Danilo pode fazer isto — nenhum agente pode entrar em bancos. O que se pode fazer é abrir-lhe a página certa e deixar só a autenticação.",
+   "Assinar o contrato de produção com a Enable Banking, se for esse o caminho escolhido: sem contrato assinado a aplicação NÃO pode ser aberta ao público, mesmo que tecnicamente funcione.",
+   "Candidatura ao Partner Program da open-banking.io: formulário com dados da empresa e aceitação de termos comerciais. É uma decisão de negócio (3 EUR por conta ligada por mês entra direto na estrutura de custos do 'Em Dia').",
+   "Subscrição/pagamento na open-banking.io quando passar a produção — exige método de pagamento do Danilo.",
+   "PERGUNTA TÉCNICA A FAZER À OPEN-BANKING.IO ANTES DE DECIDIR: no modo parceiro, os dados sincronizam em background com o utilizador fora da app? No produto pessoal a resposta oficial é NÃO, por causa da cifra ponta-a-ponta. Se no modo parceiro for igual, o 'Em Dia' não consegue fazer o resumo mensal noturno sem o utilizador abrir a app — e isso muda a arquitetura toda. Não avançar para produção sem resposta escrita.",
+   "Renovação de consentimento aos 90 dias (limite do PSD2, não do fornecedor): a cada 90 dias o utilizador tem de voltar a autenticar-se no banco. Isto não é um bloqueio de instalação, é um bloqueio recorrente que tem de estar desenhado na app desde o primeiro dia (notificação + ecrã de reconexão), senão os dados param em silêncio.",
+   "Nada disto se aplica à SIBS: aceder ao SIBS API Market em produção exige registo como TPP junto do Banco de Portugal e certificados eIDAS QWAC e QSEAL comprados a um prestador qualificado. É um processo legal e financeiro, de meses, e é decisão exclusiva do Danilo se alguma vez valer a pena."
+  ],
+  "recomendacao": "DECISÃO: não sermos TPP. Vamos de agregador, em duas fases, com uma camada de abstração nossa desde a primeira linha de código.\n\nFASE 0 — JÁ, GRÁTIS, SEM CONTRATO: Enable Banking em Restricted Production, com as contas do próprio Danilo ligadas. Isto dá-nos bancos portugueses REAIS (CGD, Millennium BCP, Santander Totta, novobanco, BPI, Montepio estão documentados), JSON real, datas reais, descrições reais de movimentos TVDE e Uber/Bolt, e zero euros. É infinitamente melhor do que sandbox com dados falsos, porque é sobre a sujidade dos dados reais que a app \"Em Dia\" vai ter de trabalhar. Constrói-se o adaptador completo e o motor de categorização em cima destes dados.\n\nFASE 1 — QUANDO HOUVER UTILIZADORES REAIS: open-banking.io Partner Program, a 3 EUR por conta ligada por mês, com candidatura e staging grátis. É o único fornecedor que encontrei com preço público, self-service e white-label. Em paralelo, e ANTES de fechar, mandar email a info@enablebanking.com a pedir proposta — o preço deles é por volume com mínimo mensal e pode bater os 3 EUR a partir de certa escala; sem esse email não há comparação honesta. A escolha é uma linha de configuração, não um refactor, porque a Fase 0 já deixou a abstração feita.\n\nDESCARTADOS, com razão: GoCardless Bank Account Data (registos novos desativados na página oficial); SIBS API Market (produção exige TPP registado no Banco de Portugal + eIDAS QWAC/QSEAL, e nem sequer cobre novobanco ou Montepio); Salt Edge (só para AISP autorizados); Tink, TrueLayer e Yapily (sandbox grátis, mas produção só por comercial e sem preço publicado — não dá para planear custo de um app de 5 EUR/mês contra um preço que não existe).\n\nREGRA DE OURO DA ARQUITETURA: o adaptador vive nas Edge Functions do Supabase (Deno/TypeScript), NUNCA no Flutter. A chave privada .pem da Enable Banking e a chave privada do utilizador na open-banking.io não podem tocar no telemóvel — um APK é um ficheiro zip que qualquer pessoa abre. O Flutter só fala com o Supabase e só vê o modelo neutro. O Dart abaixo é o lado do cliente (leitura da nossa própria base de dados); o TypeScript é o lado que fala com o fornecedor.\n\n=== MODELO NEUTRO (partilhado, Dart e TS espelhados) ===\n\nNenhum campo pode ter nome de fornecedor. Se aparecer 'continuation_key' ou 'ebk_' fora da pasta do adaptador, a abstração falhou.\n\n// Dart — lib/domain/banking/models.dart\nenum ConnectionStatus { active, consentExpired, revoked, error }\nenum EntryType { credit, debit }\n\nclass Money {\n  final int minorUnits;      // cêntimos, SEMPRE inteiro. Nunca double em dinheiro.\n  final String currency;     // ISO 4217, 'EUR'\n  const Money(this.minorUnits, this.currency);\n}\n\nclass Institution {\n  final String id;           // id opaco do fornecedor, tratado como string cega\n  final String name;         // 'Caixa Geral de Depósitos'\n  final String country;      // 'PT'\n  final String? logoUrl;\n}\n\nclass BankConnection {\n  final String id;                  // o NOSSO uuid, não o do fornecedor\n  final String providerId;          // 'enable_banking' | 'open_banking_io'\n  final String institutionId;\n  final String institutionName;\n  final ConnectionStatus status;\n  final DateTime? consentExpiresAt; // os tais 90 dias do PSD2\n  final DateTime lastSyncedAt;\n}\n\nclass BankAccount {\n  final String id;                  // o NOSSO uuid\n  final String connectionId;\n  final String? iban;\n  final String currency;\n  final String? ownerName;\n  final String displayName;\n}\n\nclass Balance {\n  final String accountId;\n  final Money amount;\n  final DateTime referenceDate;\n}\n\nclass BankTransaction {\n  final String id;                  // o NOSSO uuid, estável entre sincronizações\n  final String accountId;\n  final Money amount;               // sinal já normalizado: débito = negativo\n  final EntryType type;\n  final DateTime bookingDate;\n  final DateTime? valueDate;\n  final String description;         // remittance_information juntado numa string\n  final String? counterpartyName;\n  final String? counterpartyIban;\n  final String? merchantCategoryCode;\n}\n\n=== A INTERFACE MÍNIMA (é isto que permite trocar de fornecedor) ===\n\n// TypeScript — supabase/functions/_shared/banking/provider.ts\nexport interface TransactionPage {\n  items: BankTransaction[];\n  nextCursor: string | null;   // OPACO. Esconde continuation_key, offset, o que for.\n}\n\nexport interface AuthorizationStart {\n  redirectUrl: string;         // para onde mandar o utilizador\n  handle: string;              // estado nosso para retomar no callback\n}\n\nexport interface BankDataProvider {\n  readonly providerId: string;\n\n  listInstitutions(country: string): Promise<Institution[]>;\n\n  startAuthorization(params: {\n    institutionId: string;\n    redirectUri: string;\n    state: string;\n    validFor?: number;          // dias; o adaptador trata do formato do fornecedor\n  }): Promise<AuthorizationStart>;\n\n  completeAuthorization(params: {\n    handle: string;\n    callbackParams: Record<string, string>;  // ?code=..., ?state=..., o que vier\n  }): Promise<BankConnection>;\n\n  listAccounts(connectionId: string): Promise<BankAccount[]>;\n\n  getBalance(accountId: string): Promise<Balance>;\n\n  listTransactions(accountId: string, opts?: {\n    from?: Date; to?: Date; cursor?: string;\n  }): Promise<TransactionPage>;\n\n  revokeConnection(connectionId: string): Promise<void>;\n}\n\nSão SETE métodos. Se um fornecedor não conseguir cumprir estes sete, não serve para o \"Em Dia\". Se cumprir, entra sem mexer numa linha de Flutter.\n\n=== AS QUATRO DECISÕES QUE FAZEM A ABSTRAÇÃO AGUENTAR ===\n\n1. CURSOR OPACO. A Enable Banking pagina com 'continuation_key', a open-banking.io com limit/offset, a GoCardless não pagina. O adaptador serializa o que precisar (ex.: base64 de {\"offset\":200}) numa string que ninguém fora dele interpreta. Sem isto, mudar de fornecedor obriga a mexer na paginação de toda a app.\n\n2. SINAL NORMALIZADO NO ADAPTADOR. A Enable Banking manda credit_debit_indicator = CRDT/DBIT com o valor sempre positivo. Outros mandam o valor já com sinal. O adaptador converte SEMPRE para: débito = minorUnits negativo. Isto é zona de dinheiro — a regra fica num sítio só, com teste, e nunca se repete espalhada pelos ecrãs.\n\n3. GUARDAR O JSON ORIGINAL. Cada movimento fica na tabela com uma coluna 'provider_raw jsonb' e 'provider_txn_ref text'. Se um dia se descobrir que a categorização precisa do merchant_category_code que não estava mapeado, re-deriva-se do que já está guardado, sem voltar a chamar o banco — e os bancos limitam a 4 chamadas por dia por conta, portanto re-buscar não é opção.\n\n4. CHAVE DE DEDUPLICAÇÃO PRÓPRIA. O 'entry_reference' e o 'transaction_id' não existem em todos os fornecedores nem em todos os bancos, e alguns bancos mudam-nos quando o movimento passa de pendente a contabilizado. A chave de deduplicação é um hash de (accountId + bookingDate + minorUnits + normalize(description)). É isto que impede o utilizador de ver a mesma corrida da Uber duas vezes depois de trocarmos de fornecedor.\n\n=== BASE DE DADOS (Supabase) ===\n\nbank_connections: id uuid PK, user_id, provider_id text NOT NULL, provider_connection_ref text, institution_id, institution_name, status, consent_expires_at, last_synced_at, credentials_ref (referência ao Vault, NUNCA a chave em claro).\nbank_accounts: id uuid PK, connection_id FK, provider_account_ref text, iban, currency, display_name.\nbank_transactions: id uuid PK, account_id FK, amount_minor bigint, currency, entry_type, booking_date, value_date, description, counterparty_name, counterparty_iban, mcc, dedupe_hash text UNIQUE por conta, provider_txn_ref, provider_raw jsonb.\n\nA coluna 'provider_id' em bank_connections é o que permite ter dois fornecedores vivos ao mesmo tempo e migrar utilizador a utilizador, em vez de um big bang. RLS em todas as três tabelas, por user_id — dados bancários são a informação mais sensível que a app vai tocar.\n\n=== ORDEM DE TRABALHO ===\n\n1. Danilo: criar conta Enable Banking, registar a aplicação, guardar o .pem no cofre, ligar 1 ou 2 contas próprias. (Único passo humano da Fase 0.)\n2. Edge Function 'banking-sync' com a interface acima e o adaptador EnableBankingProvider. Teste de fumo obrigatório: GET /application devolver 200 prova que o JWT está bem assinado.\n3. Migrações das três tabelas + RLS.\n4. Puxar os movimentos reais do Danilo e olhar para eles — é aí que se descobre como é que a Uber, a Bolt e a Glovo aparecem no extrato português, e isso vale mais do que qualquer suposição sobre categorização.\n5. Só depois: email à Enable Banking + candidatura ao parceiro da open-banking.io, com a pergunta do sync em background feita por escrito."
+ },
+ "veredictos": [
+  {
+   "facto": "Enable Banking é a entidade regulada e por isso a app \"Em Dia\" não precisa de licença própria de TPP; a única ressalva é a frase da FAQ \"Applications can't be made available to the public before a contract is signed\".",
+   "confirmado": false,
+   "fonte_url": "https://enablebanking.com/terms/",
+   "correcao": "A afirmação está meio certa mas mal citada e, sobretudo, incompleta em três pontos que mudam a decisão.\n\n1) A citação não existe. Li a FAQ oficial inteira (https://enablebanking.com/docs/faq/) e NÃO há nenhuma frase a dizer que \"as aplicações podem aceder aos ASPSPs sem autorização individual\". Essa ideia é uma paráfrase de outra pessoa, não texto da Enable Banking. A frase que EXISTE mesmo é a segunda: \"You can create an Enable Banking account and access both mock and production environments before signing a contract, but applications can't be made available to the public before a contract is signed.\"\n\n2) A licença deles é só de AIS (leitura de contas), não de pagamentos. Os Termos oficiais (https://enablebanking.com/terms/, última actualização 9 de Janeiro de 2026), secção \"Compliance\", dizem: \"For communications with ASPSPs in the Production Environment, the API relies on Enable Banking acting as an authorised AISP.\" O registo é AISP na EBA/FIN-FSA: https://euclid.eba.europa.eu/register/pir/view/PSD_AISP/FI_FIN_FSA!29884997 (Enable Banking Oy, NIF finlandês 2988499-7, Espoo). Ou seja: para LER as contas do trabalhador (que é o que o \"Em Dia\" precisa), sim, a licença deles cobre-nos. Para INICIAR pagamentos (PIS) o guarda-chuva não está provado — não encontrei registo PISP publicado. Dizer \"não precisamos de licença de TPP\" como regra geral é errado; só é verdade para leitura de contas.\n\n3) O bloqueio real é maior do que \"contrato assinado\". Os mesmos Termos, secção \"Restriction of Use\", dizem à letra: \"Use of the API in the Production Environment is limited to Linked Accounts and is available solely for evaluation purposes or for the personal use of private individuals\" e \"These Terms do not grant any right or license to use the API for any business or professional purpose, including... (iii) using the API for any commercial purpose whatsoever.\"\n\nO que isto significa na prática para nós, sem rodeios:\n- Antes do contrato NÃO podemos sequer testar com contas de utilizadores reais (beta testers). Em produção só funcionam as \"Linked Accounts\" — as contas do próprio Danilo, adicionadas à mão e whitelisted. A FAQ confirma: uma app em modo restrito devolve lista VAZIA para qualquer conta que não tenha sido previamente ligada.\n- Qualquer uso comercial (que é o \"Em Dia\") está proibido pelos Termos gratuitos. Não há \"nível gratuito\" para o nosso caso — há sandbox e há as nossas próprias contas.\n- Para produção a sério são precisas DUAS coisas, não uma: contrato assinado E processo KYB da empresa concluído (\"Your production application will become active once you have signed a contract with Enable Banking and completed the KYB process for your company.\"). O KYB implica ter empresa constituída, o que é uma decisão do Danilo, não uma tarefa técnica.\n- Também é exigido, antes de activar em produção sem restrição: link para termos de serviço da app, link para política de privacidade, e um email de contacto de protecção de dados válido — e a Enable Banking monitoriza se continuam activos.\n- E o ecrã de termos da Enable Banking aparece ao utilizador antes da autenticação no banco (\"When your application relies on Enable Banking accessing ASPSPs as a regulated entity...\"). Não é invisível: dá para embeber num widget nosso, mas o consentimento deles tem de ser mostrado. Só quem tem licença própria de TPP é que fica com o fluxo 100% em marca própria.\n\nPREÇO: não está publicado. A página https://enablebanking.com/pricing/ devolve 404. A única informação oficial é a FAQ: \"Our pricing is volume based. The cost depends on the number of accounts accessed and payments made per month. There is a minimum invoicing per month which includes a certain amount of accounts and payments. For a quota please contact sales at info@enablebanking.com.\" Há uma facturação mínima mensal cujo valor NÃO ESTÁ PUBLICADO. Não invento um número — tem de se pedir orçamento.\n\nConclusão para a decisão: dá para construir e demonstrar o \"Em Dia\" já hoje sem licença nenhuma (sandbox + as contas do Danilo). Mas não dá para pôr um único cliente pagante lá dentro sem empresa + KYB + contrato + preço negociado. O risco de planeamento não é a licença de TPP — é o custo mínimo mensal desconhecido e o KYB. Recomendo pedir o orçamento a info@enablebanking.com antes de assumir que este caminho é viável."
+  },
+  {
+   "facto": "Enable Banking — modo \"Restricted Production\": permite ativar uma aplicação de produção ligando as nossas próprias contas (\"Activate by linking accounts\"), com a frase \"Using restricted applications you can only fetch data from accounts linked to the application\", para avaliação em cenário real e uso individual não comercial, até ser assinado um acordo; sem número máximo de contas indicado.",
+   "confirmado": false,
+   "correcao": "A parte citada está correta na letra, mas a afirmação está INCOMPLETA de uma forma que muda a decisão de implementação — por isso marco não confirmado.\n\nO que a documentação oficial diz mesmo (https://enablebanking.com/docs/api/linked-accounts/):\n1) Confirma-se: a ativação faz-se no Control Panel com o botão \"Activate by linking accounts\"; a app passa de \"Inactive\" para \"Active\" mas em modo restrito; a frase citada existe tal e qual; serve para avaliar a API em condições reais antes de assinar contrato e para uso individual não comercial; mantém-se restrita \"until an agreement has been signed\"; e, de facto, não é publicado nenhum número máximo de contas ligadas (nem nesta página nem na FAQ) — logo, esse limite não está publicado.\n\n2) O que falta e é decisivo: \"restricted\" é uma LISTA BRANCA de contas, não apenas um rótulo de estado. Qualquer pessoa pode passar pelo fluxo de autorização com qualquer banco, mas o backend compara as contas devolvidas pelo banco com as contas que ligámos à aplicação e só devolve essas. Uma conta que não tenha sido previamente ligada devolve LISTA VAZIA — sem erro visível. Ou seja: em modo restrito a app NÃO consegue ler as contas dos utilizadores reais (motoristas TVDE, estafetas, freelancers). Serve para nós testarmos com as nossas próprias contas e mais nada. Confirmado também na FAQ oficial: \"you can only fetch data from the specific accounts that have been explicitly linked to the application (i.e., whitelisted to being accessible through the API)\" (https://enablebanking.com/docs/faq/).\n\n3) Segunda omissão: a mesma página avisa que \"This process won't handle authorization on behalf of the app. Access needs to be authorized through API like was done with the sandbox application\" — a ligação da conta no Control Panel não dispensa fazer o fluxo de autorização pela API na app.\n\n4) Para produção a sério (utilizadores reais) é preciso o modo não restrito, que exige revisão manual pela Enable Banking (dados da aplicação, política de privacidade, termos de serviço, contrato e KYB/KYC concluído) — https://enablebanking.com/docs/api/control-panel/.\n\n5) Preço: NÃO ESTÁ PUBLICADO. Não existe página de preços oficial (https://enablebanking.com/pricing devolve HTTP 404) e o site só oferece \"Get a Quote\" / \"Book a meeting\". A FAQ diz apenas que o preço é \"volume based\", dependente do volume mensal de acessos a contas e de pagamentos, com um mínimo mensal de fatura que inclui um determinado volume incluído — sem valores em euros publicados. Qualquer valor concreto que apareça noutro sítio não vem da fonte oficial.\n\nConsequência prática para o \"Em Dia\": o Restricted Production dá para construir e demonstrar o produto com as contas do Danilo sem custo nem contrato, mas não dá para um único cliente pago. O passo bloqueante antes do lançamento é o contrato + KYB para modo não restrito, e o preço tem de ser pedido por orçamento porque não está publicado.",
+   "fonte_url": "https://enablebanking.com/docs/api/linked-accounts/"
+  },
+  {
+   "facto": "Registo na Enable Banking é self-service: cria-se a aplicação na página \"API applications\" do Control Panel, indica-se o nome (mostrado ao utilizador final no ecrã de autorização do banco) e os URLs de redireccionamento; o browser gera a chave privada RSA e descarrega um ficheiro .pem cujo nome é o ID da aplicação (ex.: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee.pem).",
+   "confirmado": false,
+   "correcao": "O núcleo mecânico está correcto, mas a afirmação é INCOMPLETA em três pontos, e o mais grave dá-nos um falso \"verde\" para produção.\n\n1) O \"self-service\" só vale para o SANDBOX. O quick-start que serve de fonte descreve apenas esse caso — manda expressamente deixar o ambiente por defeito: \"Keep the Sandbox environment as the default setting\" (https://enablebanking.com/docs/api/quick-start/). Uma aplicação de PRODUÇÃO não fica activa sozinha. Segundo https://enablebanking.com/docs/api/control-panel/, há dois caminhos:\n   - Modo irrestrito (activação completa): exige \"manual review by our personnel\" — revisão manual de pessoas da Enable Banking, que verifica os dados da aplicação, política de privacidade, contrato assinado e o processo de Know-Your-Customer, antes de ligar a aplicação a uma conta de facturação.\n   - Modo restrito: dá para activar sem revisão completa, mas só ligando as NOSSAS próprias contas bancárias — serve para testar, não para servir clientes.\n   Excepção: aplicações registadas em infraestrutura dedicada activam automaticamente, \"if the Control Panel user registering it has the MFA enabled\".\n   O FAQ oficial confirma: \"Your production application will become active once you have signed a contract with Enable Banking\" e exige o KYB da empresa, além de links para os termos e privacidade da app e um email de protecção de dados (https://enablebanking.com/docs/faq/).\n\n2) O formulário tem mais campos do que os dois citados. Pede também a escolha do AMBIENTE (\"Choose Environment: Select either Sandbox or Production\") e o método de criação da chave.\n\n3) A geração da chave no browser é a opção por DEFEITO, não a única. O Control Panel diz: \"You can allow the browser to generate the private key for your application (which is saved directly to your local machine and not transmitted) and the corresponding public key, or generate the private externally (e.g., via OpenSSL) and provide the public key.\" Ou seja, também podemos gerar a chave nós com OpenSSL e entregar só a pública — o que, para o \"Em Dia\", é a via mais limpa se quisermos a chave num cofre e não na pasta de transferências de um portátil.\n\nO que fica confirmado à letra: a página é mesmo https://enablebanking.com/cp/applications, chegada \"using the top menu of the Control Panel\"; o nome é mesmo mostrado ao utilizador final — \"this name will be shown to end users when they will be requested to authorise sharing of their account information with your application or to confirm a payment initiated by your application\"; os URLs de redireccionamento são \"URLs whitelisted for redirecting of end users after they complete authorisation\"; e o ficheiro descarregado tem mesmo o ID da aplicação como nome — \"The file name will be the ID that was assigned to the newly registered application (e.g. aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee.pem)\". A documentação diz \"private key\", sem escrever a palavra \"RSA\" nesse parágrafo, por isso o \"RSA\" é dedução nossa, não citação.\n\nPREÇO: não há preço publicado. A página https://enablebanking.com/pricing/ devolve HTTP 404. O único texto oficial sobre custo está no FAQ: \"Our pricing is volume based. The cost depends on the number of accounts accessed and payments made per month. There is a minimum invoicing per month\", e manda contactar vendas em info@enablebanking.com. Não existe nível gratuito publicado para produção — o que é gratuito, na prática, é o sandbox. Qualquer número de euros que apareça num plano nosso sobre a Enable Banking é inventado até termos proposta escrita deles.\n\nConsequência para o \"Em Dia\": podemos começar a construir hoje sem falar com ninguém, mas não podemos ligar a conta bancária real de um motorista TVDE sem contrato assinado, KYB da empresa feito e revisão manual aprovada. Isso é prazo e é dinheiro por confirmar, e tem de entrar no plano como dependência externa, não como detalhe técnico.",
+   "fonte_url": "https://enablebanking.com/docs/api/control-panel/"
+  },
+  {
+   "facto": "Autenticação da Enable Banking é JWT RS256 assinado com a chave privada, enviado em 'Authorization: Bearer {jwt}'. Header: {\"typ\":\"JWT\",\"alg\":\"RS256\",\"kid\":\"<application-id>\"}. Claims: iss='enablebanking.com', aud='api.enablebanking.com', iat=agora, exp=iat+3600. Não há endpoint de token — o JWT é gerado localmente a cada pedido/hora.",
+   "confirmado": false,
+   "correcao": "O núcleo está certo, mas a afirmação tem dois erros de implementação. CONFIRMADO pela documentação oficial: algoritmo RS256; header {\"typ\":\"JWT\",\"alg\":\"RS256\",\"kid\":\"<application-id>\"} onde o kid é o ID da aplicação obtido no Control Panel após registo do certificado; claims iss=\"enablebanking.com\" e aud=\"api.enablebanking.com\" (ambos valores fixos), mais iat e exp; envio em Authorization: Bearer {jwt}; e não existe endpoint de token para a aplicação — o JWT é construído e assinado localmente com a chave privada (https://enablebanking.com/docs/api/quick-start/ e https://enablebanking.com/docs/api/reference/). ERRO 1 — exp=iat+3600 não é a regra, é só o valor do exemplo. A referência oficial diz que o TTL máximo permitido é 86400 segundos (24 horas) e que tokens criados com TTL maior não são aceites pela API. Ou seja, um token pode durar até 24h; não é preciso regenerar de hora a hora nem a cada pedido (https://enablebanking.com/docs/api/reference/). ERRO 2 — a afirmação dá a entender que o JWT sozinho dá acesso aos dados. Não dá: o JWT só autentica a aplicação. Para ler contas é preciso o fluxo de autorização do utilizador: GET /aspsps (bancos disponíveis por país) -> POST /auth (devolve o URL de autorização do banco) -> o utilizador autoriza e regressa com um parâmetro 'code' -> POST /sessions (troca o code por um session_id e a lista de contas autorizadas) -> só então GET /accounts/{account_uid}/balances e GET /accounts/{account_uid}/transactions (https://enablebanking.com/docs/api/quick-start/). NÃO PUBLICADO: o quick-start não indica se o ambiente sandbox aceita chave/certificado auto-assinado ou se exige certificado eIDAS — refere apenas que o acesso ao ambiente de produção é restrito. Não confirmámos esse ponto. Sem preços envolvidos nesta afirmação, portanto não havia valor de preço para verificar na página de preços oficial.",
+   "fonte_url": "https://enablebanking.com/docs/api/reference/"
+  },
+  {
+   "facto": "Fluxo da Enable Banking em 5 passos: (1) POST /auth devolve o URL de redireccionamento do banco; (2) o utilizador autentica-se no banco; (3) o redirect volta com o parâmetro 'code'; (4) POST /sessions com esse 'code' devolve o session_id e a lista de contas com os respetivos account_uid; (5) usam-se os account_uid em GET /accounts/{uid}/balances e GET /accounts/{uid}/transactions.",
+   "confirmado": false,
+   "fonte_url": "https://enablebanking.com/docs/api/quick-start/",
+   "correcao": "A espinha do fluxo está certa, mas a afirmação tem um erro de nome de campo e falta-lhe os passos obrigatórios que vêm ANTES do POST /auth. Não serve como especificação para implementar.\n\n1) NÃO existe campo \"account_uid\" na resposta do POST /sessions. O identificador chama-se \"uid\", dentro do array \"accounts\": no exemplo oficial do quick-start é `session[\"accounts\"][0][\"uid\"]`. Na API reference o parâmetro do caminho está documentado como `{account_id}`, ou seja `/accounts/{account_id}/balances` e `/accounts/{account_id}/transactions`. Quem procurar a chave \"account_uid\" no JSON apanha None. Fontes: https://enablebanking.com/docs/api/quick-start/ e https://enablebanking.com/docs/api/reference/\n\n2) Faltam 4 passos anteriores, todos obrigatórios (quick-start): (a) criar conta em https://enablebanking.com/sign-in/; (b) registar a aplicação no Control Panel — o browser gera e descarrega a chave privada RSA, que só se obtém nesse momento; (c) construir um JWT RS256 assinado com essa chave privada, com payload `iss`, `aud`, `iat`, `exp` e o header com `kid` (o ID da aplicação), enviado em `Authorization: Bearer <jwt>` em TODAS as chamadas — não há API key simples; (d) GET https://api.enablebanking.com/aspsps?country=PT para obter a lista de bancos, porque o POST /auth identifica o banco por nome + país, não por um ID opaco.\n\n3) O corpo do POST /auth é mais do que \"pedir um URL\". Campos do exemplo oficial: `access.valid_until` (validade do consentimento), `aspsp{name, country}`, `redirect_url`, `state` e `psu_type` (ex.: \"personal\"). E a resposta não devolve só `url`: devolve também `authorization_id` e `psu_id_hash`.\n\n4) O passo 5 está incompleto para uso real. GET /accounts/{account_id}/transactions aceita `date_from`, `date_to`, `transaction_status`, `strategy` e devolve `continuation_key` para paginação — sem tratar o `continuation_key` só se lê a primeira página de movimentos. O /balances não pagina.\n\n5) Aviso de produto, não de API: segundo a FAQ oficial (https://enablebanking.com/docs/faq/), pode-se aceder aos ambientes mock e de produção antes de assinar contrato, mas \"applications can't be made available to the public before a contract is signed\" — em produção sem contrato só se pode correr em modo restrito, ligando contas próprias. Para uma app pública como a Em Dia isto é um bloqueio comercial a resolver antes de escrever código.\n\n6) Preços: NÃO ESTÃO PUBLICADOS. A página https://enablebanking.com/pricing/ devolve HTTP 404 hoje (2026-09-06). A FAQ oficial diz apenas que o preço é por volume, \"depends on the number of accounts accessed and payments made per month\", com um mínimo mensal de facturação, e remete para info@enablebanking.com. Não há qualquer valor em euros nem limite de nível gratuito publicado — qualquer número concreto que apareça noutro sítio não vem da fonte oficial."
+  },
+  {
+   "facto": "O objeto de transação da Enable Banking tem booking_date, value_date, transaction_date, transaction_amount (com moeda), balance_after_transaction, nomes e contas de devedor/credor, credit_debit_indicator (CRDT/DBIT), status, remittance_information (array), entry_reference, transaction_id e merchant_category_code. A paginação faz-se por 'continuation_key'.",
+   "fonte_url": "https://enablebanking.com/docs/api/reference/",
+   "confirmado": false,
+   "correcao": "A lista de campos está toda CORRECTA — verifiquei o HTML cru da página oficial (HTTP 200, 500 440 bytes) e todos os nomes batem certo, letra por letra, na secção \"# Transaction Properties\". CRDT/DBIT também está certo (\"# CreditDebitIndicator Enumerated Values: CRDT Credit type transaction / DBIT Debit type transaction\"). Atenção: um resumo automático da mesma página devolveu-me \"DRDT\", que NÃO existe no documento; o valor real é DBIT.\n\nMarco confirmado=false porque a afirmação está INCOMPLETA em três pontos que, tal como está, levam a app \"Em Dia\" a duplicar ou perder movimentos:\n\n1) QUASE TUDO É OPCIONAL. Na tabela oficial só três campos têm Required=true: transaction_amount, credit_debit_indicator e status. Todos os outros — booking_date, value_date, transaction_date, balance_after_transaction, entry_reference, merchant_category_code, transaction_id, creditor/debtor e as respetivas contas — estão marcados Required=false. A afirmação lista-os como se viessem sempre. Não vêm: dependem do banco (ASPSP). Para um motorista TVDE ou estafeta em Portugal, contar com merchant_category_code para categorizar despesas é apostar num campo que a maioria dos bancos não devolve.\n\n2) NENHUM DOS DOIS IDENTIFICADORES SERVE DE CHAVE. A afirmação põe entry_reference e transaction_id lado a lado como se fossem IDs fiáveis. A documentação diz o contrário, de forma explícita:\n   - entry_reference: \"este identificador não é globalmente único e é provável que ocorram as mesmas entry references para transações pertencentes a contas diferentes\". É único e imutável apenas dentro da mesma conta (mesmos hashes de identificação).\n   - transaction_id: \"este valor não pode ser usado para identificar transações de forma única e pode mudar se a lista de transações for obtida novamente. Null se a obtenção de detalhes da transação não for suportada.\" Serve só para chamar GET /accounts/{account_id}/transactions/{transaction_id}.\n   Conclusão prática: a chave de deduplicação no Supabase tem de ser composta (conta + entry_reference), nunca transaction_id sozinho.\n\n3) A continuation_key MORRE COM A SESSÃO. A afirmação diz apenas que \"a paginação faz-se por continuation_key\". Na definição de HalTransactions lê-se: \"Valor para obter a página seguinte de transações. Null se não houver mais páginas. Só válida na sessão actual.\" Ou seja, não se pode guardar a chave na base de dados e retomar a paginação num cron do dia seguinte — a sincronização tem de esgotar as páginas dentro da mesma sessão de autenticação.\n\nO que a afirmação também não diz e é útil: existem campos adicionais no mesmo objeto (creditor_agent, debtor_agent, bank_transaction_code, reference_number, reference_number_schema, exchange_rate, note, debtor/creditor_account_additional_identification); o status é um enum de sete valores (BOOK, CNCL, HOLD, OTHR, PDNG, RJCT, SCHD) — para o \"Em Dia\" só BOOK conta como dinheiro realmente recebido, PDNG é saldo instantâneo e pode desaparecer; e o endpoint GET /accounts/{account_id}/transactions aceita ainda date_from, date_to, transaction_status e strategy (default ou longest, sendo que \"longest\" tenta o período mais longo possível e gasta chamadas extra ao banco).\n\nSobre preços: esta afirmação não contém qualquer valor de preço ou limite gratuito, por isso não havia número para confirmar. Não verifiquei a página de preços da Enable Banking nesta tarefa — fica por confirmar."
+  }
+ ]
+}

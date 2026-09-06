@@ -1,0 +1,268 @@
+{
+ "dimensao": "politicas_loja",
+ "achado": {
+  "dimensao": "Google Play e Google — proibicoes e atritos para o app \"Em Dia\"",
+  "resumo": "A leitura de SMS esta praticamente fechada: a politica do Play so a permite a quem for o \"default SMS handler\" ou a quem receba uma excecao temporaria caso a caso — existe mesmo uma linha \"SMS-based money management (apps que seguem e gerem orcamento)\", mas exige provar que nao ha metodo alternativo e passa por revisao manual da Google a cada envio, e a politica de Spyware aponta expressamente para apps de orcamento. Ler o Gmail e pior: todos os scopes de leitura (gmail.readonly, gmail.modify, gmail.metadata) sao \"restricted\", obrigam a verificacao OAuth com avaliacao de seguranca anual por avaliador independente (CASA), a Google estima cerca de 6 semanas, nao publica preco nenhum (o preco e negociado com o avaliador), e — o travao decisivo — proibe passar dados do Gmail por modelos de IA generalistas, o que mata a ideia de mandar o email para o Claude/GPT extrair a fatura. Por isso a recomendacao e construir a v1 sem SMS e sem Gmail API: foto/PDF pelo Android Photo Picker, reencaminhamento de faturas para uma caixa de correio nossa (fora do alcance destas politicas), e um botao de falar em primeiro plano sem foreground service. No Play Console ficam obrigatorias tres declaracoes: Data safety (com Informacao financeira, Fotos e Gravacoes de voz), a Financial features declaration (mesmo que seja \"nao tem funcionalidades financeiras\"), e apagar conta dentro da app e tambem num link web.",
+  "factos": [
+   {
+    "facto": "O Google Play restringe SMS e Call Log e exige que a app esteja ativamente registada como default SMS, Phone ou Assistant handler antes de pedir estas permissoes: \"Apps must be actively registered as the default SMS, Phone, or Assistant handler before prompting users to accept any of SMS or Call Log permissions.\" Apps que nao qualificam tem de remover as permissoes do manifest ou podem ser removidas da loja.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10208820?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Existe uma excecao TEMPORARIA para apps que nao sao default handler, incluindo a linha literal \"SMS-based money management — For example, apps that track and manage budget\", com as permissoes elegiveis READ_SMS, RECEIVE_MMS, RECEIVE_SMS, RECEIVE_WAP_PUSH. Mas a excecao so se aplica quando \"there's currently no alternative method to provide the core functionality\" e e \"Subject to Google Play review and approval\", com Permissions Declaration Form obrigatorio no Play Console. Em Portugal existe alternativa evidente (foto da fatura, e-Fatura, open banking), pelo que a condicao de 'nao ha alternativa' dificilmente se sustenta.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10208820?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A mesma pagina avisa que qualquer excecao de SMS continua sujeita a politica de Spyware, com mencao directa a apps de orcamento: \"personal loans or budgeting apps may not exfiltrate or share non-financial or personal SMS history of a user.\" Ou seja, mesmo aprovado, ler SMS coloca o Em Dia na categoria vigiada de perto.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10208820?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Casos invalidos explicitos incluem \"Account or device authentication via broad access to SMS or Call Log permissions\" — para codigos SMS usa-se a SMS Retriever API, nao READ_SMS. Ha ainda uma alteracao anunciada com efeito a 27 de janeiro de 2027 que retira a verificacao de conta por chamada como caso de uso do READ_CALL_LOG.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10208820?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Os scopes de leitura do Gmail (gmail.readonly, gmail.modify, gmail.metadata) sao classificados como RESTRICTED. Nao existe nenhum scope nao-sensivel que leia o corpo do email numa app movel; os scopes leves (gmail.addons.current.message.action) so existem para add-ons do Workspace.",
+    "fonte_url": "https://developers.google.com/workspace/gmail/api/auth/scopes",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Toda a app que peca scopes restritos e consiga aceder aos dados a partir de um servidor tem de passar por uma avaliacao de seguranca anual feita por avaliador independente aprovado pela Google, no quadro CASA da App Defense Alliance, repetida pelo menos de 12 em 12 meses apos a Letter of Assessment (LOA).",
+    "fonte_url": "https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A Google NAO publica um preco para a avaliacao de seguranca: \"Google does not charge the developer any fees for security assessment... The cost for such a service is agreed on between the developer and the assessor without any involvement from Google.\" Existe um Tier 2 gratuito de auto-scan; quem nao quiser fazer o scan proprio paga directamente ao avaliador autorizado, a valor nao publicado. O preco exato nao esta publicado — nao inventamos numero.",
+    "fonte_url": "https://support.google.com/cloud/answer/13463817?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Prazos oficiais estimados pela Google: Brand Verification 2-3 dias uteis; Sensitive Scope Verification 10 dias uteis; Restricted Scope Verification 6 semanas (\"estimates are not guaranteed and will vary based on developer responsiveness\").",
+    "fonte_url": "https://support.google.com/cloud/answer/13463817?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Casos de uso aprovados para scopes do Gmail incluem \"Applications that use information from emails to provide reporting or monitoring services for the benefit of users that improve the email experience (such as applications that automate travel itineraries or track flights or package delivery statuses)\". Um leitor de faturas por email cabe plausivelmente aqui, mas a decisao e da equipa de revisao da Google e exige video de demonstracao do fluxo OAuth completo.",
+    "fonte_url": "https://developers.google.com/workspace/workspace-api-user-data-developer-policy",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "TRAVAO DECISIVO no Gmail: a politica proibe \"Transferring, selling, or using user data to create, train, or improve a machine learning or artificial intelligence model beyond that specific user's personalized model for the appropriate use case\". A FAQ oficial clarifica que 'personalized model' e um modelo on-device ou dedicado a esse utilizador, e que dados do Google \"may not be used to train or improve foundational or frontier models or be stored in conjunction with such models\". Mandar o conteudo do email para um LLM generalista (Claude, GPT, Gemini API generico) para extrair a fatura cai do lado proibido.",
+    "fonte_url": "https://support.google.com/cloud/answer/13463817?hl=en",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A mesma politica proibe expressamente usar dados do Google \"to determine credit-worthiness or for lending purposes\" — se o Em Dia algum dia fizer scoring ou ligacao a credito, dados de Gmail nao podem entrar nisso.",
+    "fonte_url": "https://developers.google.com/terms/api-services-user-data-policy",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Data safety: 'Collect' significa transmitir dados para fora do dispositivo, incluindo por SDKs de terceiros; processamento so no dispositivo NAO tem de ser declarado como recolha. Transferencias para um 'service provider' que processa por nossa conta nao contam como 'sharing', mas continuam a contar como 'collection'.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Tipos de dados que o Em Dia tera de declarar no Data safety, com os nomes exatos do formulario: Financial info > Purchase history (\"Information about purchases or transactions a user has made\") e Other financial info (salario, dividas); Messages > Emails (se lermos email) e SMS or MMS; Photos and videos > Photos (foto de fatura); Audio files > Voice or sound recordings (botao de falar); Personal info > Name/Email address/User IDs. O formulario pergunta ainda se tudo vai encriptado em transito e se ha mecanismo de pedido de eliminacao.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Todos os programadores tem de completar o formulario Data safety, incluindo faixas de teste fechado e aberto; so a faixa de teste interno esta isenta. E preciso politica de privacidade publicada.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Politica de Financial Services: \"Any app that contains any financial features must complete the Financial features declaration form within Play Console.\" O formulario tem de ser preenchido por TODAS as apps — quem nao tem funcionalidades financeiras declara \"My app doesn't provide any financial features\". As categorias listadas sao emprestimos, pagamentos/carteiras, cripto, trading, credito, seguros e 'Financial advice'; gerir IVA/IRS e mostrar referencias nao consta como categoria financeira.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/13849271?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "As exigencias pesadas da politica financeira (categoria 'Finance' obrigatoria, APR, licencas por pais, proibicao de READ_MEDIA_IMAGES/READ_CONTACTS/ACCESS_FINE_LOCATION) aplicam-se a apps de emprestimo pessoal, linhas de credito, apps acessorias de credito e Earned Wage Access — nao a uma app de contabilidade/impostos que nao empresta dinheiro. Nota: se um dia o Em Dia fizer adiantamento de rendimento, cai imediatamente nessa lista e perde acesso a fotos.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/9876821?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Fotos: apps que visam Android 13+ so podem pedir READ_MEDIA_IMAGES/READ_MEDIA_VIDEO se o Android Photo Picker nao chegar, e nesse caso tem de submeter uma declaracao no Play Console a justificar. Usar o Photo Picker evita a permissao e evita a declaracao.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Microfone/RECORD_AUDIO nao consta da lista de Restricted Permissions da politica de permissoes do Play (a lista cobre Fotos/Video, SMS/Call Log, Localizacao, All Files Access, Accessibility, Install Packages, Body Sensors, Health Connect, VPN, Exact Alarm). Nao ha formulario especifico de microfone. O que se aplica e a regra geral de Prominent Disclosure & Consent e o Data safety.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Prominent Disclosure & Consent: quando o acesso a dados pessoais/sensiveis pode nao estar dentro da expectativa razoavel do utilizador, e obrigatorio um aviso DENTRO da app (nao so na politica de privacidade nem na descricao da loja), visivel no uso normal, imediatamente antes do pedido de permissao em runtime, com aceitacao afirmativa. Formato sugerido pela Google: \"[This app] collects/transmits/syncs/stores [type of data] to enable [feature], [in what scenario].\"",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10144311?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A politica de User Data exige ainda: politica de privacidade na loja E dentro da app, dados sensiveis transmitidos com criptografia moderna (HTTPS), proibicao de venda de dados pessoais, e eliminacao de conta disponivel tanto na app como num recurso web externo (congelar a conta nao serve).",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10144311?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Se o botao de falar gravar apenas enquanto a app esta em primeiro plano, nao ha foreground service e nao ha declaracao de Foreground Service Types. Se algum dia gravar em segundo plano, passa a exigir FOREGROUND_SERVICE_MICROPHONE no manifest MAIS uma declaracao no Play Console (App content) com descricao, impacto no utilizador e video, e so e permitido se for iniciado pelo utilizador ou percetivel por ele.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/13392821?hl=en",
+    "confianca": "media",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "A API de Accessibility nao pode ser usada como atalho para ler ecrãs de outras apps (bancos, Uber): a politica proibe expressamente 'remote call audio recording' e apps que agem autonomamente, e exige declaracao + video no Play Console para qualquer uso nao-acessibilidade.",
+    "fonte_url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
+    "confianca": "alta",
+    "decide_implementacao": true
+   },
+   {
+    "facto": "Se usarmos Gmail API, e obrigatorio publicar a frase de Limited Use: \"The use of information received from Google Workspace scopes will adhere to the Google User Data Policy, including the Limited Use requirements\", com politica de privacidade no mesmo dominio da homepage e dominio verificado no Google Search Console pela conta dona do projeto Cloud.",
+    "fonte_url": "https://developers.google.com/workspace/workspace-api-user-data-developer-policy",
+    "confianca": "alta",
+    "decide_implementacao": true
+   }
+  ],
+  "urls_ou_endpoints": [
+   {
+    "para_que": "Politica oficial de SMS/Call Log do Play — a citar nas decisoes",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10208820?hl=en",
+    "metodo": "GET",
+    "notas": "Contem a tabela literal de excecoes, incluindo 'SMS-based money management'. Versao preview com alteracoes de 2027: answer/17225965"
+   },
+   {
+    "para_que": "Scopes do Gmail e a sua classificacao (restricted/sensitive)",
+    "url": "https://developers.google.com/workspace/gmail/api/auth/scopes",
+    "metodo": "GET",
+    "notas": "Strings de scope: https://www.googleapis.com/auth/gmail.readonly (RESTRICTED), .../gmail.metadata (RESTRICTED), .../gmail.modify (RESTRICTED)"
+   },
+   {
+    "para_que": "Requisitos de verificacao de scopes restritos e avaliacao de seguranca",
+    "url": "https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification",
+    "metodo": "GET",
+    "notas": "Avaliacao CASA anual por terceiro aprovado pela Google"
+   },
+   {
+    "para_que": "FAQ oficial com prazos (6 semanas) e a resposta sobre custos (sem preco publicado)",
+    "url": "https://support.google.com/cloud/answer/13463817?hl=en",
+    "metodo": "GET",
+    "notas": "Tambem a seccao Limited Use sobre IA: nada de foundational models com dados do Gmail"
+   },
+   {
+    "para_que": "Politica Workspace/Gmail: casos de uso aprovados e proibidos + Limited Use",
+    "url": "https://developers.google.com/workspace/workspace-api-user-data-developer-policy",
+    "metodo": "GET",
+    "notas": "Inclui a frase obrigatoria de Limited Use a publicar no site"
+   },
+   {
+    "para_que": "Regras do formulario Data safety (tipos de dados exatos a declarar)",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "metodo": "GET",
+    "notas": "Play Console > Policy and programs > App content > Data safety"
+   },
+   {
+    "para_que": "Financial features declaration — obrigatoria para todas as apps",
+    "url": "https://support.google.com/googleplay/android-developer/answer/13849271?hl=en",
+    "metodo": "GET",
+    "notas": "Play Console > Policy and programs > App content > Financial features"
+   },
+   {
+    "para_que": "Politica Financial Services (o que se aplica a emprestimos/EWA, nao a nos)",
+    "url": "https://support.google.com/googleplay/android-developer/answer/9876821?hl=en",
+    "metodo": "GET",
+    "notas": "Guardar como prova de que nao caimos nas exigencias de credito"
+   },
+   {
+    "para_que": "Permissoes sensiveis: Photo Picker, SMS, Accessibility, restricted permissions",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
+    "metodo": "GET",
+    "notas": "Confirma que RECORD_AUDIO nao e Restricted Permission"
+   },
+   {
+    "para_que": "Prominent Disclosure & Consent, privacidade, eliminacao de conta",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10144311?hl=en",
+    "metodo": "GET",
+    "notas": "Texto do ecra de consentimento do Em Dia sai daqui"
+   },
+   {
+    "para_que": "Foreground service types (so relevante se gravarmos audio em segundo plano)",
+    "url": "https://support.google.com/googleplay/android-developer/answer/13392821?hl=en",
+    "metodo": "GET",
+    "notas": "Evitar: manter gravacao apenas em primeiro plano"
+   },
+   {
+    "para_que": "Alternativa oficial para codigos SMS sem READ_SMS",
+    "url": "https://developers.google.com/identity/sms-retriever/overview",
+    "metodo": "GET",
+    "notas": "SMS Retriever API — a Google aponta-a explicitamente como substituto"
+   }
+  ],
+  "recomendacao": "Construir a v1 do Em Dia SEM permissoes de SMS e SEM Gmail API. Concretamente: (1) Entrada de faturas por imagem — usar o Android Photo Picker (ACTION_PICK_IMAGES / PickVisualMedia do androidx) e a camara por intent ACTION_IMAGE_CAPTURE sem declarar CAMERA no manifest; assim nao ha READ_MEDIA_IMAGES, nao ha declaracao de fotos no Play Console e nao ha risco de rejeicao. (2) Entrada por email — em vez de ler o Gmail do utilizador, dar a cada utilizador um endereco de reencaminhamento nosso (ex.: danilo-a7f3@faturas.emdia.pt) e pedir que reencaminhe ou crie um filtro no Gmail; o email chega ao nosso servidor por SMTP/webhook, fora do alcance das politicas de scopes restritos, sem verificacao OAuth, sem CASA, sem as 6 semanas, e sem a proibicao de usar LLM (o conteudo ja e nosso, entregue pelo utilizador). Esta e a decisao que mais tempo e dinheiro poupa. (3) Botao de falar — RECORD_AUDIO pedido em runtime, gravacao so com a app aberta, sem foreground service, com um ecra de aviso imediatamente antes do pedido no formato da Google: \"O Em Dia grava a sua voz apenas enquanto carrega no botao de falar, para transformar o que disser em despesa ou fatura. O audio e enviado encriptado para o nosso servidor e apagado a seguir.\" (4) Nada de SMS: para OTP usar SMS Retriever API; para extractos bancarios, no futuro, open banking regulado — nunca READ_SMS. Se um dia se quiser mesmo SMS, sabe-se de antemao que a linha aplicavel e \"SMS-based money management\" e que a Google exige provar que nao ha alternativa (temos alternativas, logo esperamos rejeicao). (5) Play Console, antes do primeiro envio: Data safety declarando Financial info (Purchase history + Other financial info), Photos, Voice or sound recordings, Personal info, tudo com finalidade \"App functionality\", encriptado em transito e com mecanismo de eliminacao; Financial features declaration = \"My app doesn't provide any financial features\" enquanto nao houver pagamentos nem credito dentro da app (mostrar uma referencia Multibanco emitida pela AT para o utilizador pagar no banco dele nao e uma funcionalidade financeira das listadas); eliminacao de conta dentro da app E numa pagina web publica; politica de privacidade na loja e dentro da app. (6) Regra escrita para o futuro: no dia em que se ligar Gmail API, o conteudo dos emails NAO pode passar por Claude/GPT/Gemini generico — teria de ser extraccao por regras ou modelo dedicado ao proprio utilizador; e nunca usar dados Google para avaliar solvencia ou credito.",
+  "bloqueios": [
+   "Conta de programador Google Play (25 USD, cartao do Danilo) e login humano no Play Console — todas as declaracoes (Data safety, Financial features, eliminacao de conta) tem de ser submetidas com a conta dele.",
+   "Publicar a politica de privacidade num dominio do Em Dia — decisao legal e publicacao publica, precisa de aprovacao dele.",
+   "Se algum dia se avancar para Gmail API: verificacao de propriedade do dominio no Google Search Console e configuracao do ecra de consentimento OAuth exigem login humano na conta Google.",
+   "Se algum dia se avancar para Gmail API: contratar e pagar um avaliador CASA autorizado — preco nao publicado pela Google, negociado com o avaliador; e uma decisao financeira do Danilo, com repeticao anual.",
+   "Submissao do Permissions Declaration Form de SMS (caso, contra a recomendacao, se decida tentar) — obriga a video de demonstracao e a assumir revisao manual da Google a cada envio.",
+   "O endereco de reencaminhamento de faturas implica registar e manter um dominio de email (ex.: faturas.emdia.pt) com MX proprio — compra de dominio e cartao."
+  ]
+ },
+ "veredictos": [
+  {
+   "facto": "Google Play restringe as permissões SMS e Call Log: a app tem de estar ativamente registada como default SMS, Phone ou Assistant handler antes de pedir essas permissões, e apps que não qualificam têm de as remover do manifest ou podem ser removidas da loja.",
+   "confirmado": false,
+   "correcao": "A citação está literalmente correcta e o URL apontado é o certo — na página oficial lê-se mesmo \"Apps must be actively registered as the default SMS, Phone, or Assistant handler before prompting users to accept any of SMS or Call Log permissions\" e também \"If your app doesn't qualify for access to Call Log or SMS permissions, you must remove these permissions from your app's manifest\" (https://support.google.com/googleplay/android-developer/answer/10208820?hl=en). Marco confirmado=false porque a afirmação está INCOMPLETA em três pontos que mudam a decisão de implementação:\n\n1) Ser default handler NÃO é o único caminho. A política tem uma lista fechada de \"excepções\" que permitem SMS/Call Log a apps que não são default handler, desde que o uso \"enables the core app functionality\" e \"there's currently no alternative method to provide the core functionality\". Entre elas: Caller ID/anti-spam, cópia de segurança e restauro, sincronização entre dispositivos, apps companheiras de dispositivos ligados, automação de dispositivo, empresarial/CRM, mãos-livres no veículo, alertas de segurança física, chamadas proxy, cell broadcast, transacções financeiras por SMS, autenticação bancária por chamada e gestão de dinheiro por SMS. Dizer \"tem de ser default handler\" sem dizer isto é meio quadro.\n\n2) Falta o passo obrigatório do processo: qualquer uso de Call Log ou SMS tem de ser declarado no Play Console através do Permissions Declaration Form. A frase real sobre remoção é \"Apps that fail to meet policy requirements or lack a Permissions Declaration Form may be removed from Google Play\" — ou seja, a app pode ser removida também só por FALTAR o formulário, mesmo que o uso fosse elegível. Há ainda uma \"temporary exception\" para APKs antigos, mas essa está limitada a APKs \"published before January 1, 2019\" e a \"no more than a low single-digit percentage\" das instalações — na prática, morta para uma app nova como a Em Dia.\n\n3) Está a ficar desactualizada: a versão \"Preview\" da mesma política (https://support.google.com/googleplay/android-developer/answer/17225965?hl=en) diz que a partir de 27 de Janeiro de 2027 a verificação de conta por chamada telefónica deixa de ser uso permitido para READ_CALL_LOG, e aponta para a Digital Credentials API, SMS Retriever API ou Incoming Call Retriever API como alternativas.\n\nO que isto significa para a app \"Em Dia\": ler SMS do banco ou das plataformas (Uber, Bolt, Glovo) para extrair rendimentos NÃO cabe em nenhuma das excepções — a excepção \"SMS-based financial transactions\" é para apps que fazem a transacção por SMS, não para quem lê SMS de terceiros. Caminho seguro: não declarar READ_SMS / RECEIVE_SMS / READ_CALL_LOG no manifest, e usar a SMS Retriever API (ou a User Consent API) se for só para o código OTP de login — essas não exigem permissão de SMS nem formulário.\n\nNota de honestidade: a página oficial não mostra data de \"última actualização\", por isso não posso provar a data exacta da versão que li; li-a a 6 de Setembro de 2026. Não há preços envolvidos nesta questão, logo não há valor de preçário a confirmar.",
+   "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10208820?hl=en"
+  },
+  {
+   "facto": "Existe uma excecao TEMPORARIA no Google Play para apps que nao sao default handler, com a linha \"SMS-based money management — For example, apps that track and manage budget\" e as permissoes elegiveis READ_SMS, RECEIVE_MMS, RECEIVE_SMS, RECEIVE_WAP_PUSH; so se aplica quando \"there's currently no alternative method to provide the core functionality\" e e \"Subject to Google Play review and approval\", com Permissions Declaration Form obrigatorio no Play Console. Em Portugal existe alternativa evidente (foto da fatura, e-Fatura, open banking), pelo que a condicao de \"nao ha alternativa\" dificilmente se sustenta.",
+   "confirmado": false,
+   "correcao": "A parte mecanica esta certa, mas a afirmacao esta INCOMPLETA e a conclusao nao vem da fonte. Por isso: confirmado=false.\n\nO QUE SE CONFIRMOU, LITERALMENTE (https://support.google.com/googleplay/android-developer/answer/10208820?hl=en)\n- \"Google Play may provide a temporary exception to apps that aren't Default SMS, Phone, or Assistant handlers when: Use of the permission enables the core app functionality listed in the following table and there's currently no alternative method to provide the core functionality.\"\n- A linha existe mesmo: \"SMS-based money management\", descricao \"For example, apps that track and manage budget\", permissoes elegiveis READ_SMS, RECEIVE_MMS, RECEIVE_SMS, RECEIVE_WAP_PUSH. Nao inclui SEND_SMS nem WRITE_SMS.\n- \"Subject to Google Play review and approval\" aparece nas tabelas; a declaracao faz-se pelo Play Console (\"you must declare any Call Log or SMS permissions directly through Google Play Console\").\n\nO QUE FALTA E MUDA A DECISAO\n\n1) A pagina citada tem aviso de alteracao e ja existe versao Preview. O artigo 10208820 traz o banner \"Changes are coming to this article. This article will be updated with recently announced changes.\" A versao nova esta em https://support.google.com/googleplay/android-developer/answer/17225965?hl=en, com efeito a 27 de janeiro de 2027 (anunciada nas atualizacoes de politica de julho de 2026). Citar hoje 10208820 como fonte estavel e arriscado. Boa noticia para a analise: no Preview a linha \"SMS-based money management\" MANTEM-SE, com as mesmas quatro permissoes. O que cai a 27/01/2027 e \"Account verification via phone call\" (READ_CALL_LOG), substituido pela Digital Credentials API / SMS Retriever API.\n\n2) Falta o travao que realmente mata o desenho do \"Em Dia\" (Flutter + Supabase). A mesma pagina diz: \"personal loans or budgeting apps may not exfiltrate or share non-financial or personal SMS history of a user\" e \"Our spyware policy prohibits exfiltration of data that is not related to policy compliant functionality.\" Ler SMS no telemovel e enviar para o Supabase e exatamente exfiltracao. Este bloqueio e mais firme e mais facil de provar do que o argumento do \"nao ha alternativa\" — nao depende da opiniao do revisor sobre o mercado portugues.\n\n3) A frase sobre Portugal e deducao do autor, nao esta na fonte. A pagina do Google nunca fala de Portugal, e-Fatura, open banking ou foto de fatura. O teste \"no alternative method\" e sobre a funcionalidade nuclear da app, nao sobre o pais. O sinal util e outro e esta na linha irma da tabela, \"SMS-based financial transactions\", exemplificada com \"Unified Payments Interface (UPI), verifications for financial transactions\": a excecao foi desenhada para mercados onde o dinheiro se move POR SMS (India, Africa). Em Portugal o SMS do banco e so notificacao — a app nao precisa do SMS para existir. A conclusao pratica do autor esta certa; a justificacao e que estava mal fundamentada.\n\nCONCLUSAO PARA IMPLEMENTAR\nNao pedir READ_SMS/RECEIVE_SMS no \"Em Dia\". Nao porque a excecao nao exista (existe, e ate sobrevive na versao de 2027), mas por duas razoes verificaveis: (a) a arquitetura Supabase implicaria enviar SMS para servidor, o que a politica de spyware proibe expressamente a apps de orcamento; (b) a aprovacao e discricionaria, temporaria e sujeita a revisao, logo nao serve de base para o produto. Alternativas sem permissao perigosa: entrada manual, OCR de foto de fatura/recibo, ficheiros do e-Fatura, e agregacao bancaria por open banking com consentimento (PSD2).",
+   "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10208820?hl=en"
+  },
+  {
+   "facto": "A pagina oficial \"Use of SMS or Call Log permission groups\" avisa que qualquer excecao de SMS aprovada continua sujeita a politica de Spyware, com mencao directa a apps de orcamento: \"personal loans or budgeting apps may not exfiltrate or share non-financial or personal SMS history of a user.\"",
+   "confirmado": true,
+   "correcao": "Confirmado a letra, mas incompleto em dois pontos (precisao, nao correccao). (1) A pagina diz \"all SMS and Call Log use case exceptions, if granted, need to comply with all existing Play policies, including:\" e lista TRES politicas, nao so a de Spyware: \"Spyware Policy\", \"Permissions and APIs that Access Sensitive Information\" e \"User Data Policy Requirements\" (esta ultima inclui Privacy Policy e Prominent Disclosure and Consent). A frase citada sobre emprestimos e apps de orcamento e o exemplo dado dentro do bloco de Spyware, e esta verbatim na pagina hoje (2026-09-06). (2) A mesma tabela da pagina tem uma excepcao elegivel chamada \"SMS-based money management\", descrita como \"For example, apps that track and manage budget\", com as permissoes READ_SMS, RECEIVE_MMS, RECEIVE_SMS, RECEIVE_WAP_PUSH, sujeita a revisao e aprovacao da Google Play. Ou seja: uma app de orcamento como o Em Dia cabe numa categoria de excepcao NOMEADA pela propria Google; a leitura \"vigiada de perto\" e justa, mas nao se pode dizer que a leitura de SMS a empurre para uma categoria proibida ou de suspeita automatica. A linha vermelha concreta e outra: pode ler SMS para a funcionalidade financeira declarada, nao pode exfiltrar nem partilhar historico de SMS nao-financeiro ou pessoal.",
+   "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10208820?hl=en"
+  },
+  {
+   "facto": "Politica \"SMS and Call Log Permissions\" do Google Play: (a) os casos invalidos explicitos incluem, textualmente, \"Account or device authentication via broad access to SMS or Call Log permissions\", e a alternativa indicada pela propria Google e a SMS Retriever API, que faz a verificacao por SMS \"without requiring any extra app permissions\" — ou seja, nao se usa READ_SMS para codigos; (b) existe uma alteracao anunciada a 15 de julho de 2026, com efeito a 27 de janeiro de 2027, que retira \"account verification via phone call\" como caso de uso valido da permissao READ_CALL_LOG.",
+   "confirmado": true,
+   "correcao": "Confirmado nos tres pontos, mas incompleto num detalhe util: a partir de 27 de janeiro de 2027 as alternativas oficiais nao sao apenas a SMS Retriever API. A pagina preview da politica (https://support.google.com/googleplay/android-developer/answer/17225965?hl=en) recomenda tambem a Digital Credentials API (diretamente ou atraves de um fornecedor de verificacao construido sobre ela) e a Incoming Call Retriever API, que e a substituta direta da verificacao de numero por chamada recebida e usa acesso de ambito restrito em vez de READ_CALL_LOG. Datas verificadas: anuncio 15 de julho de 2026 (https://support.google.com/googleplay/android-developer/announcements/13412212), com pelo menos 30 dias para os programadores atualizarem, e data efetiva 27 de janeiro de 2027. Para o \"Em Dia\" (Flutter + Supabase) a leitura pratica e: OTP por SMS do Supabase Auth com SMS Retriever API no lado Android, e nunca declarar READ_SMS nem READ_CALL_LOG no manifesto. Nao ha precos nem niveis gratuitos envolvidos nesta afirmacao, logo nao havia valor de precos a confirmar.",
+   "fonte_url": "https://support.google.com/googleplay/android-developer/answer/10208820?hl=en"
+  },
+  {
+   "facto": "Scopes de leitura do Gmail (gmail.readonly, gmail.modify, gmail.metadata) sao RESTRICTED; nao ha scope nao-sensivel que leia o corpo do email numa app movel — os scopes leves tipo gmail.addons.current.message.action so existem para add-ons do Workspace.",
+   "confirmado": true,
+   "correcao": "Tentei derrubar e nao consegui: a pagina oficial confirma tudo, palavra por palavra. Texto literal obtido da pagina (curl HTTP 200):\n\nTABELA \"Restricted scopes\" — inclui exactamente: https://mail.google.com/ (\"Read, compose, send, and permanently delete all your email from Gmail\"), https://www.googleapis.com/auth/gmail.readonly (\"View your email messages and settings\"), gmail.compose, gmail.insert, https://www.googleapis.com/auth/gmail.modify (\"Read, compose, and send emails from your Gmail account. This scope does not allow immediate, permanent deletion...\"), https://www.googleapis.com/auth/gmail.metadata (\"View your email message metadata such as labels and headers, but not the email body\"), gmail.settings.basic, gmail.settings.sharing. Os tres scopes citados estao la, os tres. Confirmado.\n\nTABELA \"Non-sensitive scopes\" — so tem tres entradas: gmail.addons.current.action.compose, gmail.addons.current.message.action (\"View your email messages when you interact with the add-on\") e gmail.labels (\"See and edit your email labels\"). Ou seja: o unico scope nao-sensivel que chega ao conteudo da mensagem e mesmo de add-on, e o outro nao-add-on (gmail.labels) so ve etiquetas. Confirmado — nao existe porta lateral.\n\nTABELA \"Sensitive scopes\" — gmail.addons.current.message.metadata, gmail.addons.current.message.readonly, gmail.send.\n\nTRES PRECISOES que a afirmacao nao diz e que interessam a decisao (nao a contradizem, completam-na):\n\n1) Nem todos os scopes de add-on sao \"leves\". gmail.addons.current.message.readonly e gmail.addons.current.message.metadata estao na tabela SENSITIVE, nao na non-sensitive. So gmail.addons.current.message.action e gmail.addons.current.action.compose e que sao non-sensitive. A afirmacao poe todos no mesmo saco de \"leves\".\n\n2) A pagina oficial diz, textualmente: \"If you store restricted scope data on servers (or transmit), then you must go through a security assessment.\" Isto e' condicional, nao automatico. Uma app que leia no telemovel e nunca envie o conteudo para servidor proprio nao cai obrigatoriamente na avaliacao CASA. Para o \"Em Dia\" isto e' decisivo: se o corpo do email for para o Supabase, ha avaliacao de seguranca; se for tratado so no dispositivo, pode nao haver. (https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification)\n\n3) Ha isencoes de verificacao publicadas na mesma pagina: uso pessoal / grupo pequeno de utilizadores de teste, apps em modo de teste com lista de test users, e apps internas de um unico dominio Workspace. Serve para pilotos, nao serve para lancar na App Store/Play a publico geral.\n\nPRECO: o custo da avaliacao de seguranca CASA NAO ESTA PUBLICADO nas paginas oficiais da Google que consultei. Nao invento numero. A pagina oficial tambem nao publica prazo fixo — diz apenas que a verificacao de restricted scope \"can potentially take several weeks to complete\".\n\nFontes: https://developers.google.com/workspace/gmail/api/auth/scopes e https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification",
+   "fonte_url": "https://developers.google.com/workspace/gmail/api/auth/scopes"
+  },
+  {
+   "facto": "Politicas_loja / Google OAuth: \"Toda a app que peca scopes restritos e consiga aceder aos dados a partir de um servidor tem de passar por uma avaliacao de seguranca anual feita por avaliador independente aprovado pela Google, no quadro CASA da App Defense Alliance, repetida pelo menos de 12 em 12 meses apos a Letter of Assessment (LOA).\"",
+   "confirmado": false,
+   "correcao": "O nucleo esta certo, mas a palavra \"toda\" torna a afirmacao falsa, e ha um detalhe oficial que se contradiz. Por isso: nao confirmado.\n\nO QUE A FONTE OFICIAL DIZ MESMO (pagina atualizada a 2026-08-19):\n\"Every app that requests access to Google users' restricted data and has the ability to access data from or through a third-party server must go through a security assessment from Google-empanelled security assessors.\" E: \"To standardize our security assessment we use the App Defense Alliance and the cloud application security assessment framework (CASA).\" E: \"apps must be reverified for compliance and complete a security assessment at least every 12 months after your assessor's Letter of Assessment (LOA) approval date.\"\nURL: https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification\n\nONDE A AFIRMACAO FALHA:\n\n1) NAO e \"toda a app\". A mesma pagina lista casos em que nao e preciso verificacao (logo, nem avaliacao):\n- uso pessoal — \"if you are the only user of your app or if your app is used by only a few users, all of whom are known personally to you\";\n- fases de desenvolvimento, teste ou staging;\n- conta de servico que so acede a dados do proprio servico — \"If your app uses a service account to access only its own data, and it doesn't access any user data (linked to a Google Account), then you don't need to submit for verification\";\n- app usada so por pessoas da mesma organizacao Google Workspace / Cloud Identity (uso interno), incluindo instalacao domain-wide.\nAlem disso, o gatilho da avaliacao nao e \"pedir scopes restritos\" — e pedir scopes restritos E ter capacidade de aceder aos dados a partir de, ou atraves de, um servidor terceiro. Uma app que so trate os dados no aparelho continua a precisar de verificacao OAuth, mas nao cai na avaliacao de seguranca.\n\n2) O nome da carta nao bate entre duas paginas oficiais da Google. A pagina de developers conta os 12 meses a partir da \"Letter of Assessment (LOA)\"; a pagina de ajuda da Cloud Console diz \"This 12-month period is calculated from the effective date of the app's previous 'Letter of Validation' (LOV)\". Sao dois nomes diferentes para a mesma ancora, nas duas fontes oficiais. Na pratica: conta-se 12 meses a partir da carta anterior.\nURL: https://support.google.com/cloud/answer/13463816?hl=en\n\n3) A afirmacao esta incompleta em tres pontos que custam dinheiro e tempo:\n- a reavaliacao anual e completa, nao um \"delta\": \"We require the annual CASA security reassessment to be a comprehensive test of your app, regardless of any changes made to the app.\" (mesmo URL do ponto 2);\n- o nivel de garantia nao e fixo: ha AL1 e AL2, e \"All applications must be revalidated every year\" com \"the required assurance level is dynamic and may increase based on changes in your user base or data-handling practices\" — https://support.google.com/cloud/answer/13465431?hl=en e https://appdefensealliance.dev/casa/casa-tiering\n- \"avaliador independente\" e verdade no sentido de que quem valida e um laboratorio autorizado da ADA, mas em AL1 quem corre os testes e o proprio programador e o laboratorio valida as provas; nao e um pentest independente de raiz.\n\n4) PRECO: nao esta publicado. A Google escreve \"Google does not charge the developer any fees for security assessment\" e \"The cost for such a service is agreed on between the developer and the assessor without any involvement from Google\" (https://support.google.com/cloud/answer/13463817?hl=en). A pagina de auto-inicio da ADA remete para \"Reach out to any preferred Authorized Assessor(s) to price and schedule your assessment\" (https://appdefensealliance.dev/casa/casa-self-start). Ou seja: o valor exato nao esta publicado em fonte oficial. Qualquer numero (do tipo \"entre X e Y euros\") que apareca em blogues nao tem respaldo oficial e nao deve entrar na decisao. Nota: a mesma FAQ da Google fala de um \"free tier 2 assessment\", enquanto a pagina de niveis da ADA descreve AL1 e AL2 ambos validados por laboratorio — as duas fontes oficiais nao estao alinhadas na nomenclatura, e nao ha como resolver isso sem falar com um laboratorio.\n\nO QUE ISTO SIGNIFICA PARA O \"EM DIA\":\nIsto so se aplica se a app pedir scopes RESTRITOS da Google (Gmail, Drive, etc.). Se o \"Em Dia\" so usar Sign in with Google para autenticacao (scopes email/profile/openid), nao ha CASA nenhum — esses nao sao restritos. A decisao pratica e: nao pedir scopes restritos. Se algum dia for preciso ler faturas do Gmail do utilizador, isso passa a custar uma avaliacao CASA anual paga a um laboratorio, com preco nao publicado, e reavaliacao completa todos os anos.",
+   "fonte_url": "https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification"
+  }
+ ]
+}
