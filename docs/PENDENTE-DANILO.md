@@ -1,15 +1,12 @@
 # PENDENTE-DANILO — só o que precisa mesmo da pessoa
 
-## 🔴 PRIMEIRO: houve um apagão de dados hoje às 13:56
-- [ ] **Decidir se queres repor uma cópia da base de dados.** Todos os dados de utilizador desapareceram (perfis 7→2 com o onboarding a zero, obrigações 17→0, conversas com o assistente 37→0, tickets, eventos e auditoria a 0). O conteúdo — regras legais, guias, flags, escalões — ficou de pé. Não havia clientes: eram as tuas duas contas e as de teste. A app está inteira (funções a 200, site 57/57) e as obrigações regeneram-se assim que refizeres o onboarding. **Não repus nada de propósito**: não tenho cópia destes dados e inventar seria pior. O Supabase guarda cópias diárias em *Database → Backups*; repor uma **desfaz também os arranjos de segurança de hoje**. A minha opinião: não repor. Tudo em `docs/provas/apagao-dados-2026-09-06.md`.
-- [ ] **Decidir quem manda na pasta à noite.** Houve **duas sessões a escrever no mesmo repositório e na mesma base de dados de produção** ao mesmo tempo (apanhei ficheiros e quatro migrações que não escrevi). O vigia lança uma retoma sempre que a tranca `docs/.sessao-viva` tem mais de 20 minutos, mesmo com uma sessão viva a trabalhar. Ou só corre uma, ou o vigia tem de verificar se já há uma antes de lançar.
+## ⚪ Sobre o "apagão de dados" das 13:56 — não foi apagão, não é preciso decidir nada
+Outra sessão (lançada pelo vigia) viu os dados de utilizador desaparecer e registou-o como incidente.
+Foi ordem tua: o BLOCO 1 da missão LOOP TOTAL manda apagar todos os dados de teste para um
+utilizador novo arrancar do zero. Está feito e provado em `docs/provas/bloco1-limpar-e-corrigir-2026-09-06.md`.
+**Não é preciso repor nada** — repor traz de volta os dados de teste e desfaz os arranjos de
+segurança de hoje. Ficam as tuas duas contas, prontas a fazer o onboarding de raiz.
 
-
-> Cada linha: o quê · onde (página já aberta no ecrã, quando possível) · porquê não pude fazer sozinho.
-> Nada aqui trava a noite: anota-se e salta-se para o bloco seguinte.
-
-- [ ] **Cópia de segurança da keystore** `C:\BoraLocal\_segredos\em-dia\em-dia-release.jks` + `keystore.env` para o Drive da equipa. Porquê: perder a keystore = perder a app na Play; a escolha do sítio é tua.
-- [ ] **Telemóvel Android por USB** — `adb devices` não mostra nenhum aparelho ligado (2026-09-05 23:20). Liga o cabo de manhã; a instalação pelo track interno e a prova do push ficam para esse momento.
 ## Para a sessão interativa (EU faço; só preciso da janela aberta — não são cliques teus)
 - Supabase Auth: e-mail com **código de 6 números** (o template "Magic Link" tem de levar `{{ .Token }}`), SMTP do Resend (chave já existe) para não bater no limite de e-mails do Supabase, e Google Sign-In (cliente OAuth no projeto em-dia + SHA-1 da keystore `69:5F:69:EE:81:1F:76:70:29:5C:3B:C9:9C:02:FA:80:3C:74:C7:10`).
 - Play Console: criar a app, ficha, Data Safety, 4 produtos, testadores, track interno; service account da Play → secret `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON`.
