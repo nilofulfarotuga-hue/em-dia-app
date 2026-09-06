@@ -369,8 +369,8 @@ insert into public.guias (slug, titulo, resumo, corpo_pt, corpo_br, categoria, o
 - Seguro próprio para TVDE. O seguro normal não chega. Pergunta à seguradora: "quero seguro para TVDE". O tipo exato: POR CONFIRMAR.
 
 3. **Atividade aberta nas Finanças**
-- CAE 49320 — POR CONFIRMAR. Vê o guia "Abrir atividade".
-- Isenção de IVA se faturares menos de 15.000 € (iva_isencao_limite).
+- O CAE (o código que diz às Finanças o que fazes) é o 49320 — POR CONFIRMAR. Vê o guia "Abrir atividade".
+- Isenção de IVA (o imposto sobre o valor acrescentado, aquele que se soma ao preço) se faturares menos de 15.000 € (iva_isencao_limite).
 
 4. **Operador TVDE**
 - Uma empresa licenciada que faz a ligação entre ti e a app. Se é obrigatório ter operador: POR CONFIRMAR. Compara comissões antes de assinar.
@@ -394,8 +394,8 @@ $g$,
 - Seguro próprio para TVDE. O seguro normal não serve. Pergunte à seguradora: "quero seguro para TVDE". O tipo exato: POR CONFIRMAR.
 
 3. **Atividade aberta nas Finanças** (a Receita daqui)
-- CAE 49320 — POR CONFIRMAR. Veja o guia "Abrir atividade".
-- Isenção de IVA se você faturar menos de 15.000 € (iva_isencao_limite).
+- O CAE (o código que diz às Finanças o que você faz, como o CNAE) é o 49320 — POR CONFIRMAR. Veja o guia "Abrir atividade".
+- Isenção de IVA (o imposto sobre o valor acrescentado, aquele que se soma ao preço) se você faturar menos de 15.000 € (iva_isencao_limite).
 
 4. **Operador TVDE**
 - Uma empresa licenciada que faz a ponte entre você e o aplicativo. Se é obrigatório ter operador: POR CONFIRMAR. Compare as comissões antes de assinar.
