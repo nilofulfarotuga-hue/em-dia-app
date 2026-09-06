@@ -1,0 +1,62 @@
+{
+  "@@locale": "pt",
+
+  "resumoTitulo": "Como está o meu mês",
+  "resumoSemSessao": "Entra na app para veres as tuas contas.",
+  "resumoVazioTexto": "Ainda não escreveste nada. Escreve o que ganhaste e as contas que pagas todos os meses. Depois as contas faço eu.",
+  "resumoVazioBotao": "Escrever a primeira coisa",
+
+  "resumoMesSeccao": "O mês de {mes}",
+  "@resumoMesSeccao": {"placeholders": {"mes": {"type": "String"}}},
+
+  "resumoSobra": "Sobram-te {valor}",
+  "@resumoSobra": {"placeholders": {"valor": {"type": "String"}}},
+  "resumoSobraAjuda": "Isto é o que te fica depois de pagares tudo o que ainda falta este mês. Está bom assim.",
+  "resumoFalta": "Vais ficar a faltar {valor}",
+  "@resumoFalta": {"placeholders": {"valor": {"type": "String"}}},
+  "resumoFaltaAjuda": "O que entrou não chega para pagar tudo o que falta. Ainda dá para resolver: vê as tuas contas e corta o que não usas, ou escreve o que já ganhaste e ainda não puseste aqui.",
+  "resumoZero": "Fica tudo a zero",
+  "resumoZeroAjuda": "O que entrou dá certinho para o que ainda tens de pagar.",
+
+  "resumoEntrou": "Entrou",
+  "resumoSaiu": "Já saiu",
+  "resumoFaltaContas": "Falta pagar contas",
+  "resumoFaltaEstado": "Falta pagar ao Estado",
+  "resumoAindaFalta": "Ainda tens de pagar {valor} até ao fim do mês.",
+  "@resumoAindaFalta": {"placeholders": {"valor": {"type": "String"}}},
+
+  "resumoCofre": "No cofre do imposto",
+  "resumoCofreAjuda": "É o dinheiro que puseste de lado para o Estado. Não mexas nele.",
+  "resumoCofreVazio": "Ainda não puseste nada de lado.",
+
+  "resumoFraseSobra": "Sobram-te {valor} este mês.",
+  "@resumoFraseSobra": {"placeholders": {"valor": {"type": "String"}}},
+  "resumoFraseFalta": "Este mês vais ficar a faltar {valor}.",
+  "@resumoFraseFalta": {"placeholders": {"valor": {"type": "String"}}},
+  "resumoFraseZero": "Este mês fica tudo a zero.",
+  "resumoOuvirMes": "{fecho} Entraram {entrou} e já saíram {saiu}. Falta pagar {contas} de contas e {estado} ao Estado. No cofre do imposto tens {cofre}.",
+  "@resumoOuvirMes": {"placeholders": {"fecho": {"type": "String"}, "entrou": {"type": "String"}, "saiu": {"type": "String"}, "contas": {"type": "String"}, "estado": {"type": "String"}, "cofre": {"type": "String"}}},
+
+  "resumoAnoSeccao": "O teu ano",
+  "resumoEsteAno": "Este ano",
+  "resumoAnoPassado": "Ano passado",
+  "resumoAnoEntrou": "Entrou em {ano}",
+  "@resumoAnoEntrou": {"placeholders": {"ano": {"type": "String"}}},
+  "resumoAnoIrs": "Conta para o IRS",
+  "resumoAnoIrsAjuda": "Nem tudo o que entra vai para o IRS. Só conta o dinheiro do teu trabalho e o que a lei manda declarar. O resto entrou na tua conta, mas não vai na declaração.",
+  "resumoAnoPorTipo": "De onde veio o dinheiro",
+  "resumoAnoPorMes": "Mês a mês",
+  "resumoAnoSaiu": "Já pagaste {valor} em contas.",
+  "@resumoAnoSaiu": {"placeholders": {"valor": {"type": "String"}}},
+  "resumoAnoVazio": "Em {ano} ainda não escreveste nada.",
+  "@resumoAnoVazio": {"placeholders": {"ano": {"type": "String"}}},
+
+  "resumoTipoReciboVerde": "Recibos verdes",
+  "resumoTipoPlataforma": "Uber, Bolt, Glovo e afins",
+  "resumoTipoSalario": "Salário",
+  "resumoTipoDinheiroMao": "Dinheiro à mão",
+  "resumoTipoArrendamento": "Rendas de casa",
+  "resumoTipoSubsidio": "Apoios",
+  "resumoTipoPensao": "Pensão",
+  "resumoTipoOutro": "Outro"
+}

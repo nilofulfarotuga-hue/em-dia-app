@@ -13,7 +13,10 @@ import 'screens/login/login_screen.dart';
 import 'screens/onboarding/onboarding_screen.dart';
 import 'screens/shell/shell_screen.dart';
 import 'stores/dados_store.dart';
+import 'stores/entradas_store.dart';
 import 'stores/perfil_store.dart';
+import 'stores/resumo_store.dart';
+import 'stores/saidas_store.dart';
 import 'stores/regras_store.dart';
 import 'stores/sessao_store.dart';
 import 'widgets/widgets.dart';
@@ -36,6 +39,11 @@ class EmDiaApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => PerfilStore()),
         ChangeNotifierProvider(create: (_) => ObrigacoesStore()),
         ChangeNotifierProvider(create: (_) => RendimentosStore()),
+        // O que entra (tela "A minha vida"). Carrega-se no primeiro ecrã que
+        // a mostra, não no arranque: quem nunca lá entra não paga a viagem.
+        ChangeNotifierProvider(create: (_) => EntradasStore()),
+        ChangeNotifierProvider(create: (_) => SaidasStore()),
+        ChangeNotifierProvider(create: (_) => ResumoStore()),
         ChangeNotifierProvider(create: (_) => CarrosStore()),
       ],
       child: Consumer<PerfilStore>(

@@ -1,0 +1,83 @@
+{
+  "@@locale": "pt_BR",
+  "vidaNav": "Minha vida",
+  "vidaTitulo": "Minha vida",
+  "vidaAbaEntra": "Entra",
+  "vidaAbaSai": "Sai",
+  "vidaAbaSobra": "Sobra",
+  "@vidaAbaSobra": {
+    "description": "Terceira aba da tela da vida: o resumo do mes. Entra, Sai, Sobra."
+  },
+  "vidaEsteMes": "Este mês entrou",
+  "vidaQuantasEntradas": "{n, plural, =0{Você ainda não escreveu nada este mês} =1{1 vez que você ganhou} other{{n} vezes que você ganhou}}",
+  "@vidaQuantasEntradas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "vidaListaTitulo": "O que já entrou",
+  "vidaVazio": "Você ainda não escreveu nada. Comece pelo dinheiro que ganhou hoje.",
+  "vidaBotaoNovo": "Escrevi que ganhei",
+  "vidaSemSessao": "Entre no app para salvar.",
+  "vidaGuardado": "Salvo.",
+  "vidaApagado": "Apagado.",
+  "vidaApagarPergunta": "Apagar {valor} do dia {data}?",
+  "@vidaApagarPergunta": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      },
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "vidaErroGuardar": "Não consegui salvar. Tente de novo.",
+  "vidaQuanto": "Quanto você ganhou",
+  "vidaFaltaValor": "Escreva quanto você ganhou.",
+  "vidaLiDaFoto": "Li isso da foto. Veja se está certo antes de salvar.",
+  "vidaDeOndeVeio": "De onde veio esse dinheiro?",
+  "vidaTipoReciboVerde": "Recibo verde",
+  "vidaTipoReciboVerdeAjuda": "Você fez um trabalho e passou recibo.",
+  "vidaTipoPlataforma": "App de trabalho",
+  "vidaTipoPlataformaAjuda": "Uber, Bolt, Glovo, Uber Eats.",
+  "vidaTipoSalario": "Salário",
+  "vidaTipoSalarioAjuda": "Trabalho com contrato, com holerite.",
+  "vidaTipoDinheiroMao": "Dinheiro na mão",
+  "vidaTipoDinheiroMaoAjuda": "Te pagaram em dinheiro, sem papel nenhum.",
+  "vidaTipoArrendamento": "Aluguel que você recebe",
+  "vidaTipoArrendamentoAjuda": "Você alugou um quarto ou uma casa para alguém.",
+  "vidaTipoSubsidio": "Apoio do Estado",
+  "vidaTipoSubsidioAjuda": "Seguro-desemprego, abono, apoio ao aluguel.",
+  "vidaTipoPensao": "Pensão",
+  "vidaTipoPensaoAjuda": "Aposentadoria ou outra pensão.",
+  "vidaTipoOutro": "Outra coisa",
+  "vidaTipoOutroAjuda": "Não é nada disso.",
+  "vidaQualPlataforma": "De qual app?",
+  "vidaPlataformaOutra": "Outro",
+  "vidaQuando": "Quando foi que entrou?",
+  "vidaPorQuePeriodo": "Esse dinheiro é de quanto tempo?",
+  "vidaPeriodoDia": "Um dia",
+  "vidaPeriodoSemana": "Uma semana",
+  "vidaPeriodoMes": "Um mês",
+  "vidaPeriodoExplica": "Quem trabalha nos apps recebe a semana toda de uma vez. Se for o seu caso, escolha semana — assim as contas ficam certas.",
+  "vidaKm": "Quantos km você fez?",
+  "vidaKmAjuda": "Não é obrigatório. Se você escrever os km, eu te digo depois quanto ganha por km.",
+  "vidaKmUnidade": "km",
+  "vidaKmCurto": "{km} km",
+  "@vidaKmCurto": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "vidaDescricao": "Quer escrever o que foi?",
+  "vidaDescricaoDica": "Por exemplo: sábado à noite",
+  "vidaContaIrs": "Isso conta para o IRS",
+  "vidaContaIrsExplica": "Ligado quer dizer: esse dinheiro entra nas contas que você faz com as Finanças. Deixe ligado. Só desligue se o dinheiro não for seu a ganhar, como quando te devolvem um empréstimo.",
+  "vidaListaSemana": "semana toda",
+  "vidaListaMes": "mês todo"
+}

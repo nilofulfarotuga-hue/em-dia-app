@@ -5981,6 +5981,1195 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Copiado. Cola no multibanco ou na app do banco.'**
   String get refCopiado;
+
+  /// No description provided for @vidaNav.
+  ///
+  /// In pt, this message translates to:
+  /// **'A minha vida'**
+  String get vidaNav;
+
+  /// No description provided for @vidaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'A minha vida'**
+  String get vidaTitulo;
+
+  /// No description provided for @vidaAbaEntra.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra'**
+  String get vidaAbaEntra;
+
+  /// No description provided for @vidaAbaSai.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sai'**
+  String get vidaAbaSai;
+
+  /// Terceira aba da tela da vida: o resumo do mes. Entra, Sai, Sobra.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sobra'**
+  String get vidaAbaSobra;
+
+  /// No description provided for @vidaEsteMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este mês entrou'**
+  String get vidaEsteMes;
+
+  /// No description provided for @vidaQuantasEntradas.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =0{Ainda não escreveste nada este mês} =1{1 vez que ganhaste} other{{n} vezes que ganhaste}}'**
+  String vidaQuantasEntradas(int n);
+
+  /// No description provided for @vidaListaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que já entrou'**
+  String get vidaListaTitulo;
+
+  /// No description provided for @vidaVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não escreveste nada. Começa pelo dinheiro que ganhaste hoje.'**
+  String get vidaVazio;
+
+  /// No description provided for @vidaBotaoNovo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escrevi que ganhei'**
+  String get vidaBotaoNovo;
+
+  /// No description provided for @vidaSemSessao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra na app para guardar.'**
+  String get vidaSemSessao;
+
+  /// No description provided for @vidaGuardado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardado.'**
+  String get vidaGuardado;
+
+  /// No description provided for @vidaApagado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagado.'**
+  String get vidaApagado;
+
+  /// No description provided for @vidaApagarPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar {valor} do dia {data}?'**
+  String vidaApagarPergunta(String valor, String data);
+
+  /// No description provided for @vidaErroGuardar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui guardar. Tenta outra vez.'**
+  String get vidaErroGuardar;
+
+  /// No description provided for @vidaQuanto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto ganhaste'**
+  String get vidaQuanto;
+
+  /// No description provided for @vidaFaltaValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve quanto ganhaste.'**
+  String get vidaFaltaValor;
+
+  /// No description provided for @vidaLiDaFoto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Li isto da foto. Vê se está certo antes de guardares.'**
+  String get vidaLiDaFoto;
+
+  /// No description provided for @vidaDeOndeVeio.
+  ///
+  /// In pt, this message translates to:
+  /// **'De onde veio este dinheiro?'**
+  String get vidaDeOndeVeio;
+
+  /// No description provided for @vidaTipoReciboVerde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Recibo verde'**
+  String get vidaTipoReciboVerde;
+
+  /// No description provided for @vidaTipoReciboVerdeAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fizeste um trabalho e passaste recibo.'**
+  String get vidaTipoReciboVerdeAjuda;
+
+  /// No description provided for @vidaTipoPlataforma.
+  ///
+  /// In pt, this message translates to:
+  /// **'App de trabalho'**
+  String get vidaTipoPlataforma;
+
+  /// No description provided for @vidaTipoPlataformaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Uber, Bolt, Glovo, Uber Eats.'**
+  String get vidaTipoPlataformaAjuda;
+
+  /// No description provided for @vidaTipoSalario.
+  ///
+  /// In pt, this message translates to:
+  /// **'Salário'**
+  String get vidaTipoSalario;
+
+  /// No description provided for @vidaTipoSalarioAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Trabalho com contrato, com recibo de vencimento.'**
+  String get vidaTipoSalarioAjuda;
+
+  /// No description provided for @vidaTipoDinheiroMao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dinheiro à mão'**
+  String get vidaTipoDinheiroMao;
+
+  /// No description provided for @vidaTipoDinheiroMaoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagaram-te em notas, sem papel nenhum.'**
+  String get vidaTipoDinheiroMaoAjuda;
+
+  /// No description provided for @vidaTipoArrendamento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Renda que recebes'**
+  String get vidaTipoArrendamento;
+
+  /// No description provided for @vidaTipoArrendamentoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Alugaste um quarto ou uma casa a alguém.'**
+  String get vidaTipoArrendamentoAjuda;
+
+  /// No description provided for @vidaTipoSubsidio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apoio do Estado'**
+  String get vidaTipoSubsidio;
+
+  /// No description provided for @vidaTipoSubsidioAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Subsídio de desemprego, abono, apoio à renda.'**
+  String get vidaTipoSubsidioAjuda;
+
+  /// No description provided for @vidaTipoPensao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pensão'**
+  String get vidaTipoPensao;
+
+  /// No description provided for @vidaTipoPensaoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Reforma ou outra pensão.'**
+  String get vidaTipoPensaoAjuda;
+
+  /// No description provided for @vidaTipoOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outra coisa'**
+  String get vidaTipoOutro;
+
+  /// No description provided for @vidaTipoOutroAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não é nada disto.'**
+  String get vidaTipoOutroAjuda;
+
+  /// No description provided for @vidaQualPlataforma.
+  ///
+  /// In pt, this message translates to:
+  /// **'De qual app?'**
+  String get vidaQualPlataforma;
+
+  /// No description provided for @vidaPlataformaOutra.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outra'**
+  String get vidaPlataformaOutra;
+
+  /// No description provided for @vidaQuando.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando é que entrou?'**
+  String get vidaQuando;
+
+  /// No description provided for @vidaPorQuePeriodo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este dinheiro é de quanto tempo?'**
+  String get vidaPorQuePeriodo;
+
+  /// No description provided for @vidaPeriodoDia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um dia'**
+  String get vidaPeriodoDia;
+
+  /// No description provided for @vidaPeriodoSemana.
+  ///
+  /// In pt, this message translates to:
+  /// **'Uma semana'**
+  String get vidaPeriodoSemana;
+
+  /// No description provided for @vidaPeriodoMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um mês'**
+  String get vidaPeriodoMes;
+
+  /// No description provided for @vidaPeriodoExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quem trabalha nas apps recebe a semana toda de uma vez. Se for esse o teu caso, escolhe semana — assim as contas ficam certas.'**
+  String get vidaPeriodoExplica;
+
+  /// No description provided for @vidaKm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quantos km fizeste?'**
+  String get vidaKm;
+
+  /// No description provided for @vidaKmAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não é obrigatório. Se escreveres os km, eu digo-te depois quanto ganhas por km.'**
+  String get vidaKmAjuda;
+
+  /// No description provided for @vidaKmUnidade.
+  ///
+  /// In pt, this message translates to:
+  /// **'km'**
+  String get vidaKmUnidade;
+
+  /// No description provided for @vidaKmCurto.
+  ///
+  /// In pt, this message translates to:
+  /// **'{km} km'**
+  String vidaKmCurto(int km);
+
+  /// No description provided for @vidaDescricao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Queres escrever o que foi?'**
+  String get vidaDescricao;
+
+  /// No description provided for @vidaDescricaoDica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Por exemplo: sábado à noite'**
+  String get vidaDescricaoDica;
+
+  /// No description provided for @vidaContaIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto conta para o IRS'**
+  String get vidaContaIrs;
+
+  /// No description provided for @vidaContaIrsExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ligado quer dizer: este dinheiro entra nas contas que fazes com as Finanças. Deixa ligado. Só desligas se o dinheiro não for teu a ganhar, como quando te devolvem um empréstimo.'**
+  String get vidaContaIrsExplica;
+
+  /// No description provided for @vidaListaSemana.
+  ///
+  /// In pt, this message translates to:
+  /// **'semana toda'**
+  String get vidaListaSemana;
+
+  /// No description provided for @vidaListaMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'mês todo'**
+  String get vidaListaMes;
+
+  /// No description provided for @resumoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Como está o meu mês'**
+  String get resumoTitulo;
+
+  /// No description provided for @resumoSemSessao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra na app para veres as tuas contas.'**
+  String get resumoSemSessao;
+
+  /// No description provided for @resumoVazioTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não escreveste nada. Escreve o que ganhaste e as contas que pagas todos os meses. Depois as contas faço eu.'**
+  String get resumoVazioTexto;
+
+  /// No description provided for @resumoVazioBotao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escrever a primeira coisa'**
+  String get resumoVazioBotao;
+
+  /// No description provided for @resumoMesSeccao.
+  ///
+  /// In pt, this message translates to:
+  /// **'O mês de {mes}'**
+  String resumoMesSeccao(String mes);
+
+  /// No description provided for @resumoSobra.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sobram-te {valor}'**
+  String resumoSobra(String valor);
+
+  /// No description provided for @resumoSobraAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto é o que te fica depois de pagares tudo o que ainda falta este mês. Está bom assim.'**
+  String get resumoSobraAjuda;
+
+  /// No description provided for @resumoFalta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vais ficar a faltar {valor}'**
+  String resumoFalta(String valor);
+
+  /// No description provided for @resumoFaltaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que entrou não chega para pagar tudo o que falta. Ainda dá para resolver: vê as tuas contas e corta o que não usas, ou escreve o que já ganhaste e ainda não puseste aqui.'**
+  String get resumoFaltaAjuda;
+
+  /// No description provided for @resumoZero.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fica tudo a zero'**
+  String get resumoZero;
+
+  /// No description provided for @resumoZeroAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que entrou dá certinho para o que ainda tens de pagar.'**
+  String get resumoZeroAjuda;
+
+  /// No description provided for @resumoEntrou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrou'**
+  String get resumoEntrou;
+
+  /// No description provided for @resumoSaiu.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já saiu'**
+  String get resumoSaiu;
+
+  /// No description provided for @resumoFaltaContas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falta pagar contas'**
+  String get resumoFaltaContas;
+
+  /// No description provided for @resumoFaltaEstado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falta pagar ao Estado'**
+  String get resumoFaltaEstado;
+
+  /// No description provided for @resumoAindaFalta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda tens de pagar {valor} até ao fim do mês.'**
+  String resumoAindaFalta(String valor);
+
+  /// No description provided for @resumoCofre.
+  ///
+  /// In pt, this message translates to:
+  /// **'No cofre do imposto'**
+  String get resumoCofre;
+
+  /// No description provided for @resumoCofreAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'É o dinheiro que puseste de lado para o Estado. Não mexas nele.'**
+  String get resumoCofreAjuda;
+
+  /// No description provided for @resumoCofreVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não puseste nada de lado.'**
+  String get resumoCofreVazio;
+
+  /// No description provided for @resumoFraseSobra.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sobram-te {valor} este mês.'**
+  String resumoFraseSobra(String valor);
+
+  /// No description provided for @resumoFraseFalta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este mês vais ficar a faltar {valor}.'**
+  String resumoFraseFalta(String valor);
+
+  /// No description provided for @resumoFraseZero.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este mês fica tudo a zero.'**
+  String get resumoFraseZero;
+
+  /// No description provided for @resumoOuvirMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'{fecho} Entraram {entrou} e já saíram {saiu}. Falta pagar {contas} de contas e {estado} ao Estado. No cofre do imposto tens {cofre}.'**
+  String resumoOuvirMes(
+    String fecho,
+    String entrou,
+    String saiu,
+    String contas,
+    String estado,
+    String cofre,
+  );
+
+  /// No description provided for @resumoAnoSeccao.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu ano'**
+  String get resumoAnoSeccao;
+
+  /// No description provided for @resumoEsteAno.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este ano'**
+  String get resumoEsteAno;
+
+  /// No description provided for @resumoAnoPassado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ano passado'**
+  String get resumoAnoPassado;
+
+  /// No description provided for @resumoAnoEntrou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrou em {ano}'**
+  String resumoAnoEntrou(String ano);
+
+  /// No description provided for @resumoAnoIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conta para o IRS'**
+  String get resumoAnoIrs;
+
+  /// No description provided for @resumoAnoIrsAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nem tudo o que entra vai para o IRS. Só conta o dinheiro do teu trabalho e o que a lei manda declarar. O resto entrou na tua conta, mas não vai na declaração.'**
+  String get resumoAnoIrsAjuda;
+
+  /// No description provided for @resumoAnoPorTipo.
+  ///
+  /// In pt, this message translates to:
+  /// **'De onde veio o dinheiro'**
+  String get resumoAnoPorTipo;
+
+  /// No description provided for @resumoAnoPorMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mês a mês'**
+  String get resumoAnoPorMes;
+
+  /// No description provided for @resumoAnoSaiu.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já pagaste {valor} em contas.'**
+  String resumoAnoSaiu(String valor);
+
+  /// No description provided for @resumoAnoVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em {ano} ainda não escreveste nada.'**
+  String resumoAnoVazio(String ano);
+
+  /// No description provided for @resumoTipoReciboVerde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Recibos verdes'**
+  String get resumoTipoReciboVerde;
+
+  /// No description provided for @resumoTipoPlataforma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Uber, Bolt, Glovo e afins'**
+  String get resumoTipoPlataforma;
+
+  /// No description provided for @resumoTipoSalario.
+  ///
+  /// In pt, this message translates to:
+  /// **'Salário'**
+  String get resumoTipoSalario;
+
+  /// No description provided for @resumoTipoDinheiroMao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dinheiro à mão'**
+  String get resumoTipoDinheiroMao;
+
+  /// No description provided for @resumoTipoArrendamento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Rendas de casa'**
+  String get resumoTipoArrendamento;
+
+  /// No description provided for @resumoTipoSubsidio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apoios'**
+  String get resumoTipoSubsidio;
+
+  /// No description provided for @resumoTipoPensao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pensão'**
+  String get resumoTipoPensao;
+
+  /// No description provided for @resumoTipoOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outro'**
+  String get resumoTipoOutro;
+
+  /// No description provided for @saidasFaltaPagar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este mês falta pagar'**
+  String get saidasFaltaPagar;
+
+  /// No description provided for @saidasTudoPago.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este mês está tudo pago. Podes descansar.'**
+  String get saidasTudoPago;
+
+  /// No description provided for @saidasMaisSemValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'E ainda há {n} contas que não sabem o valor.'**
+  String saidasMaisSemValor(int n);
+
+  /// No description provided for @saidasTemAtrasadas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens contas com o dia já passado. Paga hoje e fica arrumado.'**
+  String get saidasTemAtrasadas;
+
+  /// No description provided for @saidasContasDoMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'As contas deste mês'**
+  String get saidasContasDoMes;
+
+  /// No description provided for @saidasAtrasadasDeAntes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ficou para trás'**
+  String get saidasAtrasadasDeAntes;
+
+  /// No description provided for @saidasSemContasMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não há contas para este mês.'**
+  String get saidasSemContasMes;
+
+  /// No description provided for @saidasDia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dia {dia}'**
+  String saidasDia(int dia);
+
+  /// No description provided for @saidasValorPorSaber.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor por saber'**
+  String get saidasValorPorSaber;
+
+  /// No description provided for @saidasEstadoPago.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pago'**
+  String get saidasEstadoPago;
+
+  /// No description provided for @saidasEstadoSaltado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este mês não'**
+  String get saidasEstadoSaltado;
+
+  /// No description provided for @saidasEstadoPassou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passou o dia'**
+  String get saidasEstadoPassou;
+
+  /// No description provided for @saidasAsTuasContas.
+  ///
+  /// In pt, this message translates to:
+  /// **'As tuas contas'**
+  String get saidasAsTuasContas;
+
+  /// No description provided for @saidasNova.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nova conta'**
+  String get saidasNova;
+
+  /// No description provided for @saidasSemContas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não tens contas aqui. Junta a primeira: a renda, a luz, o telemóvel.'**
+  String get saidasSemContas;
+
+  /// No description provided for @saidasTodosOsMeses.
+  ///
+  /// In pt, this message translates to:
+  /// **'Todos os meses, dia {dia}'**
+  String saidasTodosOsMeses(int dia);
+
+  /// No description provided for @saidasValorVaria.
+  ///
+  /// In pt, this message translates to:
+  /// **'O valor muda todos os meses'**
+  String get saidasValorVaria;
+
+  /// No description provided for @saidasFidelizacaoAcaba.
+  ///
+  /// In pt, this message translates to:
+  /// **'O contrato acaba daqui a {dias} dias. É agora que mudas sem multa.'**
+  String saidasFidelizacaoAcaba(int dias);
+
+  /// No description provided for @saidasSemSessao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra na tua conta para veres as tuas contas.'**
+  String get saidasSemSessao;
+
+  /// No description provided for @saidasErroGuardar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui guardar. Tenta outra vez.'**
+  String get saidasErroGuardar;
+
+  /// No description provided for @saidasErroMarcar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui marcar. Tenta outra vez.'**
+  String get saidasErroMarcar;
+
+  /// No description provided for @saidasContaGuardada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conta guardada.'**
+  String get saidasContaGuardada;
+
+  /// No description provided for @saidasContaCancelada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conta cancelada. O que já pagaste fica guardado.'**
+  String get saidasContaCancelada;
+
+  /// No description provided for @saidasGrupoCasa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Casa'**
+  String get saidasGrupoCasa;
+
+  /// No description provided for @saidasGrupoComunicacoes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Telefone e internet'**
+  String get saidasGrupoComunicacoes;
+
+  /// No description provided for @saidasGrupoCarro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carro'**
+  String get saidasGrupoCarro;
+
+  /// No description provided for @saidasGrupoFamilia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Família'**
+  String get saidasGrupoFamilia;
+
+  /// No description provided for @saidasGrupoDinheiro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dinheiro'**
+  String get saidasGrupoDinheiro;
+
+  /// No description provided for @saidasGrupoDiaAdia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dia a dia'**
+  String get saidasGrupoDiaAdia;
+
+  /// No description provided for @saidasCatRenda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Renda'**
+  String get saidasCatRenda;
+
+  /// No description provided for @saidasCatLuz.
+  ///
+  /// In pt, this message translates to:
+  /// **'Luz'**
+  String get saidasCatLuz;
+
+  /// No description provided for @saidasCatAgua.
+  ///
+  /// In pt, this message translates to:
+  /// **'Água'**
+  String get saidasCatAgua;
+
+  /// No description provided for @saidasCatGas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Gás'**
+  String get saidasCatGas;
+
+  /// No description provided for @saidasCatTelemovel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Telemóvel'**
+  String get saidasCatTelemovel;
+
+  /// No description provided for @saidasCatInternet.
+  ///
+  /// In pt, this message translates to:
+  /// **'Internet'**
+  String get saidasCatInternet;
+
+  /// No description provided for @saidasCatTv.
+  ///
+  /// In pt, this message translates to:
+  /// **'TV'**
+  String get saidasCatTv;
+
+  /// No description provided for @saidasCatCarro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carro'**
+  String get saidasCatCarro;
+
+  /// No description provided for @saidasCatCombustivel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Combustível'**
+  String get saidasCatCombustivel;
+
+  /// No description provided for @saidasCatSeguro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Seguro'**
+  String get saidasCatSeguro;
+
+  /// No description provided for @saidasCatEscola.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escola'**
+  String get saidasCatEscola;
+
+  /// No description provided for @saidasCatCreche.
+  ///
+  /// In pt, this message translates to:
+  /// **'Creche'**
+  String get saidasCatCreche;
+
+  /// No description provided for @saidasCatSaude.
+  ///
+  /// In pt, this message translates to:
+  /// **'Saúde'**
+  String get saidasCatSaude;
+
+  /// No description provided for @saidasCatGinasio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ginásio'**
+  String get saidasCatGinasio;
+
+  /// No description provided for @saidasCatCredito.
+  ///
+  /// In pt, this message translates to:
+  /// **'Crédito'**
+  String get saidasCatCredito;
+
+  /// No description provided for @saidasCatImposto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Imposto'**
+  String get saidasCatImposto;
+
+  /// No description provided for @saidasCatAssinatura.
+  ///
+  /// In pt, this message translates to:
+  /// **'Assinatura'**
+  String get saidasCatAssinatura;
+
+  /// No description provided for @saidasCatCompras.
+  ///
+  /// In pt, this message translates to:
+  /// **'Compras'**
+  String get saidasCatCompras;
+
+  /// No description provided for @saidasCatOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outra coisa'**
+  String get saidasCatOutro;
+
+  /// No description provided for @saidasMeioDebitoDireto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sai sozinho da conta'**
+  String get saidasMeioDebitoDireto;
+
+  /// No description provided for @saidasMeioReferenciaMb.
+  ///
+  /// In pt, this message translates to:
+  /// **'Referência Multibanco'**
+  String get saidasMeioReferenciaMb;
+
+  /// No description provided for @saidasMeioMbway.
+  ///
+  /// In pt, this message translates to:
+  /// **'MB WAY'**
+  String get saidasMeioMbway;
+
+  /// No description provided for @saidasMeioTransferencia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Transferência'**
+  String get saidasMeioTransferencia;
+
+  /// No description provided for @saidasMeioDinheiro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dinheiro'**
+  String get saidasMeioDinheiro;
+
+  /// No description provided for @saidasMeioCartao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cartão'**
+  String get saidasMeioCartao;
+
+  /// No description provided for @saidasPagaAte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paga até'**
+  String get saidasPagaAte;
+
+  /// No description provided for @saidasQuantoE.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto é'**
+  String get saidasQuantoE;
+
+  /// No description provided for @saidasComoSePaga.
+  ///
+  /// In pt, this message translates to:
+  /// **'Como se paga'**
+  String get saidasComoSePaga;
+
+  /// No description provided for @saidasDebitoNadaFazer.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não tens de fazer nada. O dinheiro sai sozinho da tua conta no dia {dia}. Só tens de o ter lá nesse dia.'**
+  String saidasDebitoNadaFazer(int dia);
+
+  /// No description provided for @saidasMbwayAbrir.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir o MB WAY'**
+  String get saidasMbwayAbrir;
+
+  /// No description provided for @saidasMbwayComoPagar.
+  ///
+  /// In pt, this message translates to:
+  /// **'No MB WAY escolhe «Pagamentos» e escreve estes números.'**
+  String get saidasMbwayComoPagar;
+
+  /// No description provided for @saidasMbwaySemApp.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui abrir o MB WAY. Se não tens essa app no telemóvel, paga num multibanco ou no site do teu banco com estes mesmos números.'**
+  String get saidasMbwaySemApp;
+
+  /// No description provided for @saidasRefNoMultibanco.
+  ///
+  /// In pt, this message translates to:
+  /// **'Num multibanco é assim: escolhe «Pagamentos de serviços» e escreve a entidade e a referência.'**
+  String get saidasRefNoMultibanco;
+
+  /// No description provided for @saidasAjudaMbway.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta pagas pelo MB WAY, no telemóvel.'**
+  String get saidasAjudaMbway;
+
+  /// No description provided for @saidasAjudaTransferencia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta pagas por transferência, no site ou na app do teu banco.'**
+  String get saidasAjudaTransferencia;
+
+  /// No description provided for @saidasAjudaDinheiro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta pagas em dinheiro, à mão.'**
+  String get saidasAjudaDinheiro;
+
+  /// No description provided for @saidasAjudaCartao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta pagas com o cartão.'**
+  String get saidasAjudaCartao;
+
+  /// No description provided for @saidasJaEstaPago.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já está pago'**
+  String get saidasJaEstaPago;
+
+  /// No description provided for @saidasPagoEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Marcaste como pago a {data}'**
+  String saidasPagoEm(String data);
+
+  /// No description provided for @saidasAfinalNaoPaguei.
+  ///
+  /// In pt, this message translates to:
+  /// **'Afinal não paguei'**
+  String get saidasAfinalNaoPaguei;
+
+  /// No description provided for @saidasSaltarMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este mês não pago esta'**
+  String get saidasSaltarMes;
+
+  /// No description provided for @saidasSaltada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Disseste que este mês não pagas esta conta. Não entra nas contas do mês.'**
+  String get saidasSaltada;
+
+  /// No description provided for @saidasEscreveValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto foi?'**
+  String get saidasEscreveValor;
+
+  /// No description provided for @saidasEscreveValorAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta conta muda todos os meses. Escreve quanto foi desta vez, para eu somar certo.'**
+  String get saidasEscreveValorAjuda;
+
+  /// No description provided for @saidasNovaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nova conta'**
+  String get saidasNovaTitulo;
+
+  /// No description provided for @saidasEditarTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mudar a conta'**
+  String get saidasEditarTitulo;
+
+  /// No description provided for @saidasNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Que conta é esta?'**
+  String get saidasNome;
+
+  /// No description provided for @saidasNomeDica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve como lhe chamas: «Luz de casa», «Renda»'**
+  String get saidasNomeDica;
+
+  /// No description provided for @saidasFaltaNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falta o nome. Escreve como chamas a esta conta.'**
+  String get saidasFaltaNome;
+
+  /// No description provided for @saidasCategoria.
+  ///
+  /// In pt, this message translates to:
+  /// **'De que é esta conta?'**
+  String get saidasCategoria;
+
+  /// No description provided for @saidasValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto é por mês'**
+  String get saidasValor;
+
+  /// No description provided for @saidasSempreMesmoValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'É sempre o mesmo valor?'**
+  String get saidasSempreMesmoValor;
+
+  /// No description provided for @saidasValorVariaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Disseste que muda. Então não escrevo nenhum número: quando a conta chegar, escreves quanto foi.'**
+  String get saidasValorVariaAjuda;
+
+  /// No description provided for @saidasFaltaValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falta o valor. Escreve quanto é, ou desliga o «é sempre o mesmo valor».'**
+  String get saidasFaltaValor;
+
+  /// No description provided for @saidasDiaDoMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em que dia do mês se paga?'**
+  String get saidasDiaDoMes;
+
+  /// No description provided for @saidasDiaAviso.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se esse dia calhar a um domingo ou a um feriado, eu aviso-te na sexta-feira antes.'**
+  String get saidasDiaAviso;
+
+  /// No description provided for @saidasComoPagas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Como pagas esta conta?'**
+  String get saidasComoPagas;
+
+  /// No description provided for @saidasEntidade.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entidade (5 números)'**
+  String get saidasEntidade;
+
+  /// No description provided for @saidasReferencia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Referência (9 números)'**
+  String get saidasReferencia;
+
+  /// No description provided for @saidasRefAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estes dois números estão na conta que te chega, ao lado de «Entidade» e «Referência». Guardo-os aqui para nunca mais os teres de procurar.'**
+  String get saidasRefAjuda;
+
+  /// No description provided for @saidasEntidadeInvalida.
+  ///
+  /// In pt, this message translates to:
+  /// **'A entidade tem 5 números. Confere e escreve outra vez.'**
+  String get saidasEntidadeInvalida;
+
+  /// No description provided for @saidasReferenciaInvalida.
+  ///
+  /// In pt, this message translates to:
+  /// **'A referência tem 9 números. Confere e escreve outra vez.'**
+  String get saidasReferenciaInvalida;
+
+  /// No description provided for @saidasFornecedor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quem te manda esta conta? (não é obrigatório)'**
+  String get saidasFornecedor;
+
+  /// No description provided for @saidasFornecedorCurto.
+  ///
+  /// In pt, this message translates to:
+  /// **'De quem é'**
+  String get saidasFornecedorCurto;
+
+  /// No description provided for @saidasFornecedorDica.
+  ///
+  /// In pt, this message translates to:
+  /// **'EDP, MEO, Galp…'**
+  String get saidasFornecedorDica;
+
+  /// No description provided for @saidasFidelizacao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Até quando estás preso ao contrato? (não é obrigatório)'**
+  String get saidasFidelizacao;
+
+  /// No description provided for @saidasFidelizacaoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aviso-te 30 dias antes de acabar. É aí que ainda dá para mudar de empresa sem pagar multa.'**
+  String get saidasFidelizacaoAjuda;
+
+  /// No description provided for @saidasFidelizacaoLimpar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não estou preso a nada'**
+  String get saidasFidelizacaoLimpar;
+
+  /// No description provided for @saidasLidaFatura.
+  ///
+  /// In pt, this message translates to:
+  /// **'Li a fatura. Vê se está tudo certo antes de guardar.'**
+  String get saidasLidaFatura;
+
+  /// No description provided for @saidasLidaComReferencia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Li a fatura e guardei os números do Multibanco. Assim não os escreves outra vez.'**
+  String get saidasLidaComReferencia;
+
+  /// No description provided for @saidasCancelarConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelar esta conta'**
+  String get saidasCancelarConta;
+
+  /// No description provided for @saidasCancelarPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Queres mesmo cancelar esta conta?'**
+  String get saidasCancelarPergunta;
+
+  /// No description provided for @saidasCancelarExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Deixo de a pôr nos próximos meses. O que já pagaste fica guardado.'**
+  String get saidasCancelarExplica;
+
+  /// No description provided for @saidasCancelarConfirmar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sim, cancelar'**
+  String get saidasCancelarConfirmar;
 }
 
 class _AppLocalizationsDelegate

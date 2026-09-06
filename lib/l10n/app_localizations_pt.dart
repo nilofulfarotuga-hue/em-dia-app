@@ -3485,6 +3485,688 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get refCopiado => 'Copiado. Cola no multibanco ou na app do banco.';
+
+  @override
+  String get vidaNav => 'A minha vida';
+
+  @override
+  String get vidaTitulo => 'A minha vida';
+
+  @override
+  String get vidaAbaEntra => 'Entra';
+
+  @override
+  String get vidaAbaSai => 'Sai';
+
+  @override
+  String get vidaAbaSobra => 'Sobra';
+
+  @override
+  String get vidaEsteMes => 'Este mês entrou';
+
+  @override
+  String vidaQuantasEntradas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n vezes que ganhaste',
+      one: '1 vez que ganhaste',
+      zero: 'Ainda não escreveste nada este mês',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get vidaListaTitulo => 'O que já entrou';
+
+  @override
+  String get vidaVazio =>
+      'Ainda não escreveste nada. Começa pelo dinheiro que ganhaste hoje.';
+
+  @override
+  String get vidaBotaoNovo => 'Escrevi que ganhei';
+
+  @override
+  String get vidaSemSessao => 'Entra na app para guardar.';
+
+  @override
+  String get vidaGuardado => 'Guardado.';
+
+  @override
+  String get vidaApagado => 'Apagado.';
+
+  @override
+  String vidaApagarPergunta(String valor, String data) {
+    return 'Apagar $valor do dia $data?';
+  }
+
+  @override
+  String get vidaErroGuardar => 'Não consegui guardar. Tenta outra vez.';
+
+  @override
+  String get vidaQuanto => 'Quanto ganhaste';
+
+  @override
+  String get vidaFaltaValor => 'Escreve quanto ganhaste.';
+
+  @override
+  String get vidaLiDaFoto =>
+      'Li isto da foto. Vê se está certo antes de guardares.';
+
+  @override
+  String get vidaDeOndeVeio => 'De onde veio este dinheiro?';
+
+  @override
+  String get vidaTipoReciboVerde => 'Recibo verde';
+
+  @override
+  String get vidaTipoReciboVerdeAjuda =>
+      'Fizeste um trabalho e passaste recibo.';
+
+  @override
+  String get vidaTipoPlataforma => 'App de trabalho';
+
+  @override
+  String get vidaTipoPlataformaAjuda => 'Uber, Bolt, Glovo, Uber Eats.';
+
+  @override
+  String get vidaTipoSalario => 'Salário';
+
+  @override
+  String get vidaTipoSalarioAjuda =>
+      'Trabalho com contrato, com recibo de vencimento.';
+
+  @override
+  String get vidaTipoDinheiroMao => 'Dinheiro à mão';
+
+  @override
+  String get vidaTipoDinheiroMaoAjuda =>
+      'Pagaram-te em notas, sem papel nenhum.';
+
+  @override
+  String get vidaTipoArrendamento => 'Renda que recebes';
+
+  @override
+  String get vidaTipoArrendamentoAjuda =>
+      'Alugaste um quarto ou uma casa a alguém.';
+
+  @override
+  String get vidaTipoSubsidio => 'Apoio do Estado';
+
+  @override
+  String get vidaTipoSubsidioAjuda =>
+      'Subsídio de desemprego, abono, apoio à renda.';
+
+  @override
+  String get vidaTipoPensao => 'Pensão';
+
+  @override
+  String get vidaTipoPensaoAjuda => 'Reforma ou outra pensão.';
+
+  @override
+  String get vidaTipoOutro => 'Outra coisa';
+
+  @override
+  String get vidaTipoOutroAjuda => 'Não é nada disto.';
+
+  @override
+  String get vidaQualPlataforma => 'De qual app?';
+
+  @override
+  String get vidaPlataformaOutra => 'Outra';
+
+  @override
+  String get vidaQuando => 'Quando é que entrou?';
+
+  @override
+  String get vidaPorQuePeriodo => 'Este dinheiro é de quanto tempo?';
+
+  @override
+  String get vidaPeriodoDia => 'Um dia';
+
+  @override
+  String get vidaPeriodoSemana => 'Uma semana';
+
+  @override
+  String get vidaPeriodoMes => 'Um mês';
+
+  @override
+  String get vidaPeriodoExplica =>
+      'Quem trabalha nas apps recebe a semana toda de uma vez. Se for esse o teu caso, escolhe semana — assim as contas ficam certas.';
+
+  @override
+  String get vidaKm => 'Quantos km fizeste?';
+
+  @override
+  String get vidaKmAjuda =>
+      'Não é obrigatório. Se escreveres os km, eu digo-te depois quanto ganhas por km.';
+
+  @override
+  String get vidaKmUnidade => 'km';
+
+  @override
+  String vidaKmCurto(int km) {
+    return '$km km';
+  }
+
+  @override
+  String get vidaDescricao => 'Queres escrever o que foi?';
+
+  @override
+  String get vidaDescricaoDica => 'Por exemplo: sábado à noite';
+
+  @override
+  String get vidaContaIrs => 'Isto conta para o IRS';
+
+  @override
+  String get vidaContaIrsExplica =>
+      'Ligado quer dizer: este dinheiro entra nas contas que fazes com as Finanças. Deixa ligado. Só desligas se o dinheiro não for teu a ganhar, como quando te devolvem um empréstimo.';
+
+  @override
+  String get vidaListaSemana => 'semana toda';
+
+  @override
+  String get vidaListaMes => 'mês todo';
+
+  @override
+  String get resumoTitulo => 'Como está o meu mês';
+
+  @override
+  String get resumoSemSessao => 'Entra na app para veres as tuas contas.';
+
+  @override
+  String get resumoVazioTexto =>
+      'Ainda não escreveste nada. Escreve o que ganhaste e as contas que pagas todos os meses. Depois as contas faço eu.';
+
+  @override
+  String get resumoVazioBotao => 'Escrever a primeira coisa';
+
+  @override
+  String resumoMesSeccao(String mes) {
+    return 'O mês de $mes';
+  }
+
+  @override
+  String resumoSobra(String valor) {
+    return 'Sobram-te $valor';
+  }
+
+  @override
+  String get resumoSobraAjuda =>
+      'Isto é o que te fica depois de pagares tudo o que ainda falta este mês. Está bom assim.';
+
+  @override
+  String resumoFalta(String valor) {
+    return 'Vais ficar a faltar $valor';
+  }
+
+  @override
+  String get resumoFaltaAjuda =>
+      'O que entrou não chega para pagar tudo o que falta. Ainda dá para resolver: vê as tuas contas e corta o que não usas, ou escreve o que já ganhaste e ainda não puseste aqui.';
+
+  @override
+  String get resumoZero => 'Fica tudo a zero';
+
+  @override
+  String get resumoZeroAjuda =>
+      'O que entrou dá certinho para o que ainda tens de pagar.';
+
+  @override
+  String get resumoEntrou => 'Entrou';
+
+  @override
+  String get resumoSaiu => 'Já saiu';
+
+  @override
+  String get resumoFaltaContas => 'Falta pagar contas';
+
+  @override
+  String get resumoFaltaEstado => 'Falta pagar ao Estado';
+
+  @override
+  String resumoAindaFalta(String valor) {
+    return 'Ainda tens de pagar $valor até ao fim do mês.';
+  }
+
+  @override
+  String get resumoCofre => 'No cofre do imposto';
+
+  @override
+  String get resumoCofreAjuda =>
+      'É o dinheiro que puseste de lado para o Estado. Não mexas nele.';
+
+  @override
+  String get resumoCofreVazio => 'Ainda não puseste nada de lado.';
+
+  @override
+  String resumoFraseSobra(String valor) {
+    return 'Sobram-te $valor este mês.';
+  }
+
+  @override
+  String resumoFraseFalta(String valor) {
+    return 'Este mês vais ficar a faltar $valor.';
+  }
+
+  @override
+  String get resumoFraseZero => 'Este mês fica tudo a zero.';
+
+  @override
+  String resumoOuvirMes(
+    String fecho,
+    String entrou,
+    String saiu,
+    String contas,
+    String estado,
+    String cofre,
+  ) {
+    return '$fecho Entraram $entrou e já saíram $saiu. Falta pagar $contas de contas e $estado ao Estado. No cofre do imposto tens $cofre.';
+  }
+
+  @override
+  String get resumoAnoSeccao => 'O teu ano';
+
+  @override
+  String get resumoEsteAno => 'Este ano';
+
+  @override
+  String get resumoAnoPassado => 'Ano passado';
+
+  @override
+  String resumoAnoEntrou(String ano) {
+    return 'Entrou em $ano';
+  }
+
+  @override
+  String get resumoAnoIrs => 'Conta para o IRS';
+
+  @override
+  String get resumoAnoIrsAjuda =>
+      'Nem tudo o que entra vai para o IRS. Só conta o dinheiro do teu trabalho e o que a lei manda declarar. O resto entrou na tua conta, mas não vai na declaração.';
+
+  @override
+  String get resumoAnoPorTipo => 'De onde veio o dinheiro';
+
+  @override
+  String get resumoAnoPorMes => 'Mês a mês';
+
+  @override
+  String resumoAnoSaiu(String valor) {
+    return 'Já pagaste $valor em contas.';
+  }
+
+  @override
+  String resumoAnoVazio(String ano) {
+    return 'Em $ano ainda não escreveste nada.';
+  }
+
+  @override
+  String get resumoTipoReciboVerde => 'Recibos verdes';
+
+  @override
+  String get resumoTipoPlataforma => 'Uber, Bolt, Glovo e afins';
+
+  @override
+  String get resumoTipoSalario => 'Salário';
+
+  @override
+  String get resumoTipoDinheiroMao => 'Dinheiro à mão';
+
+  @override
+  String get resumoTipoArrendamento => 'Rendas de casa';
+
+  @override
+  String get resumoTipoSubsidio => 'Apoios';
+
+  @override
+  String get resumoTipoPensao => 'Pensão';
+
+  @override
+  String get resumoTipoOutro => 'Outro';
+
+  @override
+  String get saidasFaltaPagar => 'Este mês falta pagar';
+
+  @override
+  String get saidasTudoPago => 'Este mês está tudo pago. Podes descansar.';
+
+  @override
+  String saidasMaisSemValor(int n) {
+    return 'E ainda há $n contas que não sabem o valor.';
+  }
+
+  @override
+  String get saidasTemAtrasadas =>
+      'Tens contas com o dia já passado. Paga hoje e fica arrumado.';
+
+  @override
+  String get saidasContasDoMes => 'As contas deste mês';
+
+  @override
+  String get saidasAtrasadasDeAntes => 'Ficou para trás';
+
+  @override
+  String get saidasSemContasMes => 'Ainda não há contas para este mês.';
+
+  @override
+  String saidasDia(int dia) {
+    return 'Dia $dia';
+  }
+
+  @override
+  String get saidasValorPorSaber => 'Valor por saber';
+
+  @override
+  String get saidasEstadoPago => 'Pago';
+
+  @override
+  String get saidasEstadoSaltado => 'Este mês não';
+
+  @override
+  String get saidasEstadoPassou => 'Passou o dia';
+
+  @override
+  String get saidasAsTuasContas => 'As tuas contas';
+
+  @override
+  String get saidasNova => 'Nova conta';
+
+  @override
+  String get saidasSemContas =>
+      'Ainda não tens contas aqui. Junta a primeira: a renda, a luz, o telemóvel.';
+
+  @override
+  String saidasTodosOsMeses(int dia) {
+    return 'Todos os meses, dia $dia';
+  }
+
+  @override
+  String get saidasValorVaria => 'O valor muda todos os meses';
+
+  @override
+  String saidasFidelizacaoAcaba(int dias) {
+    return 'O contrato acaba daqui a $dias dias. É agora que mudas sem multa.';
+  }
+
+  @override
+  String get saidasSemSessao => 'Entra na tua conta para veres as tuas contas.';
+
+  @override
+  String get saidasErroGuardar => 'Não consegui guardar. Tenta outra vez.';
+
+  @override
+  String get saidasErroMarcar => 'Não consegui marcar. Tenta outra vez.';
+
+  @override
+  String get saidasContaGuardada => 'Conta guardada.';
+
+  @override
+  String get saidasContaCancelada =>
+      'Conta cancelada. O que já pagaste fica guardado.';
+
+  @override
+  String get saidasGrupoCasa => 'Casa';
+
+  @override
+  String get saidasGrupoComunicacoes => 'Telefone e internet';
+
+  @override
+  String get saidasGrupoCarro => 'Carro';
+
+  @override
+  String get saidasGrupoFamilia => 'Família';
+
+  @override
+  String get saidasGrupoDinheiro => 'Dinheiro';
+
+  @override
+  String get saidasGrupoDiaAdia => 'Dia a dia';
+
+  @override
+  String get saidasCatRenda => 'Renda';
+
+  @override
+  String get saidasCatLuz => 'Luz';
+
+  @override
+  String get saidasCatAgua => 'Água';
+
+  @override
+  String get saidasCatGas => 'Gás';
+
+  @override
+  String get saidasCatTelemovel => 'Telemóvel';
+
+  @override
+  String get saidasCatInternet => 'Internet';
+
+  @override
+  String get saidasCatTv => 'TV';
+
+  @override
+  String get saidasCatCarro => 'Carro';
+
+  @override
+  String get saidasCatCombustivel => 'Combustível';
+
+  @override
+  String get saidasCatSeguro => 'Seguro';
+
+  @override
+  String get saidasCatEscola => 'Escola';
+
+  @override
+  String get saidasCatCreche => 'Creche';
+
+  @override
+  String get saidasCatSaude => 'Saúde';
+
+  @override
+  String get saidasCatGinasio => 'Ginásio';
+
+  @override
+  String get saidasCatCredito => 'Crédito';
+
+  @override
+  String get saidasCatImposto => 'Imposto';
+
+  @override
+  String get saidasCatAssinatura => 'Assinatura';
+
+  @override
+  String get saidasCatCompras => 'Compras';
+
+  @override
+  String get saidasCatOutro => 'Outra coisa';
+
+  @override
+  String get saidasMeioDebitoDireto => 'Sai sozinho da conta';
+
+  @override
+  String get saidasMeioReferenciaMb => 'Referência Multibanco';
+
+  @override
+  String get saidasMeioMbway => 'MB WAY';
+
+  @override
+  String get saidasMeioTransferencia => 'Transferência';
+
+  @override
+  String get saidasMeioDinheiro => 'Dinheiro';
+
+  @override
+  String get saidasMeioCartao => 'Cartão';
+
+  @override
+  String get saidasPagaAte => 'Paga até';
+
+  @override
+  String get saidasQuantoE => 'Quanto é';
+
+  @override
+  String get saidasComoSePaga => 'Como se paga';
+
+  @override
+  String saidasDebitoNadaFazer(int dia) {
+    return 'Não tens de fazer nada. O dinheiro sai sozinho da tua conta no dia $dia. Só tens de o ter lá nesse dia.';
+  }
+
+  @override
+  String get saidasMbwayAbrir => 'Abrir o MB WAY';
+
+  @override
+  String get saidasMbwayComoPagar =>
+      'No MB WAY escolhe «Pagamentos» e escreve estes números.';
+
+  @override
+  String get saidasMbwaySemApp =>
+      'Não consegui abrir o MB WAY. Se não tens essa app no telemóvel, paga num multibanco ou no site do teu banco com estes mesmos números.';
+
+  @override
+  String get saidasRefNoMultibanco =>
+      'Num multibanco é assim: escolhe «Pagamentos de serviços» e escreve a entidade e a referência.';
+
+  @override
+  String get saidasAjudaMbway => 'Esta pagas pelo MB WAY, no telemóvel.';
+
+  @override
+  String get saidasAjudaTransferencia =>
+      'Esta pagas por transferência, no site ou na app do teu banco.';
+
+  @override
+  String get saidasAjudaDinheiro => 'Esta pagas em dinheiro, à mão.';
+
+  @override
+  String get saidasAjudaCartao => 'Esta pagas com o cartão.';
+
+  @override
+  String get saidasJaEstaPago => 'Já está pago';
+
+  @override
+  String saidasPagoEm(String data) {
+    return 'Marcaste como pago a $data';
+  }
+
+  @override
+  String get saidasAfinalNaoPaguei => 'Afinal não paguei';
+
+  @override
+  String get saidasSaltarMes => 'Este mês não pago esta';
+
+  @override
+  String get saidasSaltada =>
+      'Disseste que este mês não pagas esta conta. Não entra nas contas do mês.';
+
+  @override
+  String get saidasEscreveValor => 'Quanto foi?';
+
+  @override
+  String get saidasEscreveValorAjuda =>
+      'Esta conta muda todos os meses. Escreve quanto foi desta vez, para eu somar certo.';
+
+  @override
+  String get saidasNovaTitulo => 'Nova conta';
+
+  @override
+  String get saidasEditarTitulo => 'Mudar a conta';
+
+  @override
+  String get saidasNome => 'Que conta é esta?';
+
+  @override
+  String get saidasNomeDica =>
+      'Escreve como lhe chamas: «Luz de casa», «Renda»';
+
+  @override
+  String get saidasFaltaNome =>
+      'Falta o nome. Escreve como chamas a esta conta.';
+
+  @override
+  String get saidasCategoria => 'De que é esta conta?';
+
+  @override
+  String get saidasValor => 'Quanto é por mês';
+
+  @override
+  String get saidasSempreMesmoValor => 'É sempre o mesmo valor?';
+
+  @override
+  String get saidasValorVariaAjuda =>
+      'Disseste que muda. Então não escrevo nenhum número: quando a conta chegar, escreves quanto foi.';
+
+  @override
+  String get saidasFaltaValor =>
+      'Falta o valor. Escreve quanto é, ou desliga o «é sempre o mesmo valor».';
+
+  @override
+  String get saidasDiaDoMes => 'Em que dia do mês se paga?';
+
+  @override
+  String get saidasDiaAviso =>
+      'Se esse dia calhar a um domingo ou a um feriado, eu aviso-te na sexta-feira antes.';
+
+  @override
+  String get saidasComoPagas => 'Como pagas esta conta?';
+
+  @override
+  String get saidasEntidade => 'Entidade (5 números)';
+
+  @override
+  String get saidasReferencia => 'Referência (9 números)';
+
+  @override
+  String get saidasRefAjuda =>
+      'Estes dois números estão na conta que te chega, ao lado de «Entidade» e «Referência». Guardo-os aqui para nunca mais os teres de procurar.';
+
+  @override
+  String get saidasEntidadeInvalida =>
+      'A entidade tem 5 números. Confere e escreve outra vez.';
+
+  @override
+  String get saidasReferenciaInvalida =>
+      'A referência tem 9 números. Confere e escreve outra vez.';
+
+  @override
+  String get saidasFornecedor =>
+      'Quem te manda esta conta? (não é obrigatório)';
+
+  @override
+  String get saidasFornecedorCurto => 'De quem é';
+
+  @override
+  String get saidasFornecedorDica => 'EDP, MEO, Galp…';
+
+  @override
+  String get saidasFidelizacao =>
+      'Até quando estás preso ao contrato? (não é obrigatório)';
+
+  @override
+  String get saidasFidelizacaoAjuda =>
+      'Aviso-te 30 dias antes de acabar. É aí que ainda dá para mudar de empresa sem pagar multa.';
+
+  @override
+  String get saidasFidelizacaoLimpar => 'Não estou preso a nada';
+
+  @override
+  String get saidasLidaFatura =>
+      'Li a fatura. Vê se está tudo certo antes de guardar.';
+
+  @override
+  String get saidasLidaComReferencia =>
+      'Li a fatura e guardei os números do Multibanco. Assim não os escreves outra vez.';
+
+  @override
+  String get saidasCancelarConta => 'Cancelar esta conta';
+
+  @override
+  String get saidasCancelarPergunta => 'Queres mesmo cancelar esta conta?';
+
+  @override
+  String get saidasCancelarExplica =>
+      'Deixo de a pôr nos próximos meses. O que já pagaste fica guardado.';
+
+  @override
+  String get saidasCancelarConfirmar => 'Sim, cancelar';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -6970,4 +7652,685 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get refCopiado => 'Copiado. Cole no multibanco ou no app do banco.';
+
+  @override
+  String get vidaNav => 'Minha vida';
+
+  @override
+  String get vidaTitulo => 'Minha vida';
+
+  @override
+  String get vidaAbaEntra => 'Entra';
+
+  @override
+  String get vidaAbaSai => 'Sai';
+
+  @override
+  String get vidaAbaSobra => 'Sobra';
+
+  @override
+  String get vidaEsteMes => 'Este mês entrou';
+
+  @override
+  String vidaQuantasEntradas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n vezes que você ganhou',
+      one: '1 vez que você ganhou',
+      zero: 'Você ainda não escreveu nada este mês',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get vidaListaTitulo => 'O que já entrou';
+
+  @override
+  String get vidaVazio =>
+      'Você ainda não escreveu nada. Comece pelo dinheiro que ganhou hoje.';
+
+  @override
+  String get vidaBotaoNovo => 'Escrevi que ganhei';
+
+  @override
+  String get vidaSemSessao => 'Entre no app para salvar.';
+
+  @override
+  String get vidaGuardado => 'Salvo.';
+
+  @override
+  String get vidaApagado => 'Apagado.';
+
+  @override
+  String vidaApagarPergunta(String valor, String data) {
+    return 'Apagar $valor do dia $data?';
+  }
+
+  @override
+  String get vidaErroGuardar => 'Não consegui salvar. Tente de novo.';
+
+  @override
+  String get vidaQuanto => 'Quanto você ganhou';
+
+  @override
+  String get vidaFaltaValor => 'Escreva quanto você ganhou.';
+
+  @override
+  String get vidaLiDaFoto =>
+      'Li isso da foto. Veja se está certo antes de salvar.';
+
+  @override
+  String get vidaDeOndeVeio => 'De onde veio esse dinheiro?';
+
+  @override
+  String get vidaTipoReciboVerde => 'Recibo verde';
+
+  @override
+  String get vidaTipoReciboVerdeAjuda =>
+      'Você fez um trabalho e passou recibo.';
+
+  @override
+  String get vidaTipoPlataforma => 'App de trabalho';
+
+  @override
+  String get vidaTipoPlataformaAjuda => 'Uber, Bolt, Glovo, Uber Eats.';
+
+  @override
+  String get vidaTipoSalario => 'Salário';
+
+  @override
+  String get vidaTipoSalarioAjuda => 'Trabalho com contrato, com holerite.';
+
+  @override
+  String get vidaTipoDinheiroMao => 'Dinheiro na mão';
+
+  @override
+  String get vidaTipoDinheiroMaoAjuda =>
+      'Te pagaram em dinheiro, sem papel nenhum.';
+
+  @override
+  String get vidaTipoArrendamento => 'Aluguel que você recebe';
+
+  @override
+  String get vidaTipoArrendamentoAjuda =>
+      'Você alugou um quarto ou uma casa para alguém.';
+
+  @override
+  String get vidaTipoSubsidio => 'Apoio do Estado';
+
+  @override
+  String get vidaTipoSubsidioAjuda =>
+      'Seguro-desemprego, abono, apoio ao aluguel.';
+
+  @override
+  String get vidaTipoPensao => 'Pensão';
+
+  @override
+  String get vidaTipoPensaoAjuda => 'Aposentadoria ou outra pensão.';
+
+  @override
+  String get vidaTipoOutro => 'Outra coisa';
+
+  @override
+  String get vidaTipoOutroAjuda => 'Não é nada disso.';
+
+  @override
+  String get vidaQualPlataforma => 'De qual app?';
+
+  @override
+  String get vidaPlataformaOutra => 'Outro';
+
+  @override
+  String get vidaQuando => 'Quando foi que entrou?';
+
+  @override
+  String get vidaPorQuePeriodo => 'Esse dinheiro é de quanto tempo?';
+
+  @override
+  String get vidaPeriodoDia => 'Um dia';
+
+  @override
+  String get vidaPeriodoSemana => 'Uma semana';
+
+  @override
+  String get vidaPeriodoMes => 'Um mês';
+
+  @override
+  String get vidaPeriodoExplica =>
+      'Quem trabalha nos apps recebe a semana toda de uma vez. Se for o seu caso, escolha semana — assim as contas ficam certas.';
+
+  @override
+  String get vidaKm => 'Quantos km você fez?';
+
+  @override
+  String get vidaKmAjuda =>
+      'Não é obrigatório. Se você escrever os km, eu te digo depois quanto ganha por km.';
+
+  @override
+  String get vidaKmUnidade => 'km';
+
+  @override
+  String vidaKmCurto(int km) {
+    return '$km km';
+  }
+
+  @override
+  String get vidaDescricao => 'Quer escrever o que foi?';
+
+  @override
+  String get vidaDescricaoDica => 'Por exemplo: sábado à noite';
+
+  @override
+  String get vidaContaIrs => 'Isso conta para o IRS';
+
+  @override
+  String get vidaContaIrsExplica =>
+      'Ligado quer dizer: esse dinheiro entra nas contas que você faz com as Finanças. Deixe ligado. Só desligue se o dinheiro não for seu a ganhar, como quando te devolvem um empréstimo.';
+
+  @override
+  String get vidaListaSemana => 'semana toda';
+
+  @override
+  String get vidaListaMes => 'mês todo';
+
+  @override
+  String get resumoTitulo => 'Como está o meu mês';
+
+  @override
+  String get resumoSemSessao => 'Entre no app para ver as suas contas.';
+
+  @override
+  String get resumoVazioTexto =>
+      'Você ainda não escreveu nada. Escreva o que ganhou e as contas que paga todo mês. Depois as contas faço eu.';
+
+  @override
+  String get resumoVazioBotao => 'Escrever a primeira coisa';
+
+  @override
+  String resumoMesSeccao(String mes) {
+    return 'O mês de $mes';
+  }
+
+  @override
+  String resumoSobra(String valor) {
+    return 'Sobra $valor para você';
+  }
+
+  @override
+  String get resumoSobraAjuda =>
+      'É o que sobra depois de pagar tudo o que ainda falta neste mês. Está bom assim.';
+
+  @override
+  String resumoFalta(String valor) {
+    return 'Vai faltar $valor';
+  }
+
+  @override
+  String get resumoFaltaAjuda =>
+      'O que entrou não dá para pagar tudo o que falta. Ainda dá para resolver: veja as suas contas e corte o que não usa, ou escreva o que já ganhou e ainda não colocou aqui.';
+
+  @override
+  String get resumoZero => 'Fica tudo zerado';
+
+  @override
+  String get resumoZeroAjuda =>
+      'O que entrou dá certinho para o que você ainda tem que pagar.';
+
+  @override
+  String get resumoEntrou => 'Entrou';
+
+  @override
+  String get resumoSaiu => 'Já saiu';
+
+  @override
+  String get resumoFaltaContas => 'Falta pagar contas';
+
+  @override
+  String get resumoFaltaEstado => 'Falta pagar ao Estado';
+
+  @override
+  String resumoAindaFalta(String valor) {
+    return 'Você ainda tem que pagar $valor até o fim do mês.';
+  }
+
+  @override
+  String get resumoCofre => 'No cofre do imposto';
+
+  @override
+  String get resumoCofreAjuda =>
+      'É o dinheiro que você separou para o Estado. Não mexa nele.';
+
+  @override
+  String get resumoCofreVazio => 'Você ainda não separou nada.';
+
+  @override
+  String resumoFraseSobra(String valor) {
+    return 'Sobra $valor para você neste mês.';
+  }
+
+  @override
+  String resumoFraseFalta(String valor) {
+    return 'Neste mês vai faltar $valor.';
+  }
+
+  @override
+  String get resumoFraseZero => 'Neste mês fica tudo zerado.';
+
+  @override
+  String resumoOuvirMes(
+    String fecho,
+    String entrou,
+    String saiu,
+    String contas,
+    String estado,
+    String cofre,
+  ) {
+    return '$fecho Entraram $entrou e já saíram $saiu. Falta pagar $contas de contas e $estado ao Estado. No cofre do imposto você tem $cofre.';
+  }
+
+  @override
+  String get resumoAnoSeccao => 'O seu ano';
+
+  @override
+  String get resumoEsteAno => 'Este ano';
+
+  @override
+  String get resumoAnoPassado => 'Ano passado';
+
+  @override
+  String resumoAnoEntrou(String ano) {
+    return 'Entrou em $ano';
+  }
+
+  @override
+  String get resumoAnoIrs => 'Conta para o IRS';
+
+  @override
+  String get resumoAnoIrsAjuda =>
+      'Nem tudo o que entra vai para o IRS. Só conta o dinheiro do seu trabalho e o que a lei manda declarar. O resto entrou na sua conta, mas não vai na declaração.';
+
+  @override
+  String get resumoAnoPorTipo => 'De onde veio o dinheiro';
+
+  @override
+  String get resumoAnoPorMes => 'Mês a mês';
+
+  @override
+  String resumoAnoSaiu(String valor) {
+    return 'Você já pagou $valor em contas.';
+  }
+
+  @override
+  String resumoAnoVazio(String ano) {
+    return 'Em $ano você ainda não escreveu nada.';
+  }
+
+  @override
+  String get resumoTipoReciboVerde => 'Recibos verdes';
+
+  @override
+  String get resumoTipoPlataforma => 'Uber, Bolt, Glovo e parecidos';
+
+  @override
+  String get resumoTipoSalario => 'Salário';
+
+  @override
+  String get resumoTipoDinheiroMao => 'Dinheiro na mão';
+
+  @override
+  String get resumoTipoArrendamento => 'Aluguéis de casa';
+
+  @override
+  String get resumoTipoSubsidio => 'Apoios';
+
+  @override
+  String get resumoTipoPensao => 'Aposentadoria';
+
+  @override
+  String get resumoTipoOutro => 'Outro';
+
+  @override
+  String get saidasFaltaPagar => 'Este mês falta pagar';
+
+  @override
+  String get saidasTudoPago => 'Este mês está tudo pago. Pode descansar.';
+
+  @override
+  String saidasMaisSemValor(int n) {
+    return 'E ainda tem $n contas que não sabem o valor.';
+  }
+
+  @override
+  String get saidasTemAtrasadas =>
+      'Você tem contas com o dia já passado. Pague hoje e resolva.';
+
+  @override
+  String get saidasContasDoMes => 'As contas deste mês';
+
+  @override
+  String get saidasAtrasadasDeAntes => 'Ficou para trás';
+
+  @override
+  String get saidasSemContasMes => 'Ainda não tem contas para este mês.';
+
+  @override
+  String saidasDia(int dia) {
+    return 'Dia $dia';
+  }
+
+  @override
+  String get saidasValorPorSaber => 'Valor a saber';
+
+  @override
+  String get saidasEstadoPago => 'Pago';
+
+  @override
+  String get saidasEstadoSaltado => 'Este mês não';
+
+  @override
+  String get saidasEstadoPassou => 'Passou o dia';
+
+  @override
+  String get saidasAsTuasContas => 'As suas contas';
+
+  @override
+  String get saidasNova => 'Nova conta';
+
+  @override
+  String get saidasSemContas =>
+      'Você ainda não tem contas aqui. Coloque a primeira: o aluguel, a luz, o celular.';
+
+  @override
+  String saidasTodosOsMeses(int dia) {
+    return 'Todo mês, dia $dia';
+  }
+
+  @override
+  String get saidasValorVaria => 'O valor muda todo mês';
+
+  @override
+  String saidasFidelizacaoAcaba(int dias) {
+    return 'O contrato acaba em $dias dias. É agora que você troca sem multa.';
+  }
+
+  @override
+  String get saidasSemSessao => 'Entre na sua conta para ver as suas contas.';
+
+  @override
+  String get saidasErroGuardar => 'Não consegui salvar. Tente de novo.';
+
+  @override
+  String get saidasErroMarcar => 'Não consegui marcar. Tente de novo.';
+
+  @override
+  String get saidasContaGuardada => 'Conta salva.';
+
+  @override
+  String get saidasContaCancelada =>
+      'Conta cancelada. O que você já pagou fica guardado.';
+
+  @override
+  String get saidasGrupoCasa => 'Casa';
+
+  @override
+  String get saidasGrupoComunicacoes => 'Telefone e internet';
+
+  @override
+  String get saidasGrupoCarro => 'Carro';
+
+  @override
+  String get saidasGrupoFamilia => 'Família';
+
+  @override
+  String get saidasGrupoDinheiro => 'Dinheiro';
+
+  @override
+  String get saidasGrupoDiaAdia => 'Dia a dia';
+
+  @override
+  String get saidasCatRenda => 'Aluguel';
+
+  @override
+  String get saidasCatLuz => 'Luz';
+
+  @override
+  String get saidasCatAgua => 'Água';
+
+  @override
+  String get saidasCatGas => 'Gás';
+
+  @override
+  String get saidasCatTelemovel => 'Celular';
+
+  @override
+  String get saidasCatInternet => 'Internet';
+
+  @override
+  String get saidasCatTv => 'TV';
+
+  @override
+  String get saidasCatCarro => 'Carro';
+
+  @override
+  String get saidasCatCombustivel => 'Combustível';
+
+  @override
+  String get saidasCatSeguro => 'Seguro';
+
+  @override
+  String get saidasCatEscola => 'Escola';
+
+  @override
+  String get saidasCatCreche => 'Creche';
+
+  @override
+  String get saidasCatSaude => 'Saúde';
+
+  @override
+  String get saidasCatGinasio => 'Academia';
+
+  @override
+  String get saidasCatCredito => 'Crédito';
+
+  @override
+  String get saidasCatImposto => 'Imposto';
+
+  @override
+  String get saidasCatAssinatura => 'Assinatura';
+
+  @override
+  String get saidasCatCompras => 'Compras';
+
+  @override
+  String get saidasCatOutro => 'Outra coisa';
+
+  @override
+  String get saidasMeioDebitoDireto => 'Sai sozinho da conta';
+
+  @override
+  String get saidasMeioReferenciaMb => 'Referência Multibanco';
+
+  @override
+  String get saidasMeioMbway => 'MB WAY';
+
+  @override
+  String get saidasMeioTransferencia => 'Transferência';
+
+  @override
+  String get saidasMeioDinheiro => 'Dinheiro';
+
+  @override
+  String get saidasMeioCartao => 'Cartão';
+
+  @override
+  String get saidasPagaAte => 'Pague até';
+
+  @override
+  String get saidasQuantoE => 'Quanto é';
+
+  @override
+  String get saidasComoSePaga => 'Como se paga';
+
+  @override
+  String saidasDebitoNadaFazer(int dia) {
+    return 'Você não precisa fazer nada. O dinheiro sai sozinho da sua conta no dia $dia. Só precisa ter o dinheiro lá nesse dia.';
+  }
+
+  @override
+  String get saidasMbwayAbrir => 'Abrir o MB WAY';
+
+  @override
+  String get saidasMbwayComoPagar =>
+      'No MB WAY escolha «Pagamentos» e escreva estes números.';
+
+  @override
+  String get saidasMbwaySemApp =>
+      'Não consegui abrir o MB WAY. Se você não tem esse aplicativo no celular, pague num multibanco ou no site do seu banco com estes mesmos números.';
+
+  @override
+  String get saidasRefNoMultibanco =>
+      'Num multibanco é assim: escolha «Pagamentos de serviços» e escreva a entidade e a referência.';
+
+  @override
+  String get saidasAjudaMbway => 'Esta você paga pelo MB WAY, no celular.';
+
+  @override
+  String get saidasAjudaTransferencia =>
+      'Esta você paga por transferência, no site ou no aplicativo do seu banco.';
+
+  @override
+  String get saidasAjudaDinheiro => 'Esta você paga em dinheiro, na mão.';
+
+  @override
+  String get saidasAjudaCartao => 'Esta você paga com o cartão.';
+
+  @override
+  String get saidasJaEstaPago => 'Já está pago';
+
+  @override
+  String saidasPagoEm(String data) {
+    return 'Você marcou como pago em $data';
+  }
+
+  @override
+  String get saidasAfinalNaoPaguei => 'Na verdade não paguei';
+
+  @override
+  String get saidasSaltarMes => 'Este mês não pago esta';
+
+  @override
+  String get saidasSaltada =>
+      'Você disse que este mês não paga esta conta. Ela não entra nas contas do mês.';
+
+  @override
+  String get saidasEscreveValor => 'Quanto foi?';
+
+  @override
+  String get saidasEscreveValorAjuda =>
+      'Esta conta muda todo mês. Escreva quanto foi desta vez, para eu somar certo.';
+
+  @override
+  String get saidasNovaTitulo => 'Nova conta';
+
+  @override
+  String get saidasEditarTitulo => 'Mudar a conta';
+
+  @override
+  String get saidasNome => 'Que conta é esta?';
+
+  @override
+  String get saidasNomeDica =>
+      'Escreva do jeito que você chama: «Luz de casa», «Aluguel»';
+
+  @override
+  String get saidasFaltaNome =>
+      'Falta o nome. Escreva como você chama esta conta.';
+
+  @override
+  String get saidasCategoria => 'Esta conta é de quê?';
+
+  @override
+  String get saidasValor => 'Quanto é por mês';
+
+  @override
+  String get saidasSempreMesmoValor => 'É sempre o mesmo valor?';
+
+  @override
+  String get saidasValorVariaAjuda =>
+      'Você disse que muda. Então não escrevo nenhum número: quando a conta chegar, você escreve quanto foi.';
+
+  @override
+  String get saidasFaltaValor =>
+      'Falta o valor. Escreva quanto é, ou desligue o «é sempre o mesmo valor».';
+
+  @override
+  String get saidasDiaDoMes => 'Em que dia do mês você paga?';
+
+  @override
+  String get saidasDiaAviso =>
+      'Se esse dia cair num domingo ou num feriado, eu aviso você na sexta-feira antes.';
+
+  @override
+  String get saidasComoPagas => 'Como você paga esta conta?';
+
+  @override
+  String get saidasEntidade => 'Entidade (5 números)';
+
+  @override
+  String get saidasReferencia => 'Referência (9 números)';
+
+  @override
+  String get saidasRefAjuda =>
+      'Estes dois números estão na conta que chega para você, do lado de «Entidade» e «Referência». Guardo aqui para você nunca mais procurar.';
+
+  @override
+  String get saidasEntidadeInvalida =>
+      'A entidade tem 5 números. Confira e escreva de novo.';
+
+  @override
+  String get saidasReferenciaInvalida =>
+      'A referência tem 9 números. Confira e escreva de novo.';
+
+  @override
+  String get saidasFornecedor =>
+      'Quem manda esta conta para você? (não é obrigatório)';
+
+  @override
+  String get saidasFornecedorCurto => 'De quem é';
+
+  @override
+  String get saidasFornecedorDica => 'EDP, MEO, Galp…';
+
+  @override
+  String get saidasFidelizacao =>
+      'Até quando você está preso no contrato? (não é obrigatório)';
+
+  @override
+  String get saidasFidelizacaoAjuda =>
+      'Eu aviso 30 dias antes de acabar. É aí que ainda dá para trocar de empresa sem pagar multa.';
+
+  @override
+  String get saidasFidelizacaoLimpar => 'Não estou preso a nada';
+
+  @override
+  String get saidasLidaFatura =>
+      'Li a fatura. Veja se está tudo certo antes de salvar.';
+
+  @override
+  String get saidasLidaComReferencia =>
+      'Li a fatura e guardei os números do Multibanco. Assim você não escreve de novo.';
+
+  @override
+  String get saidasCancelarConta => 'Cancelar esta conta';
+
+  @override
+  String get saidasCancelarPergunta => 'Você quer mesmo cancelar esta conta?';
+
+  @override
+  String get saidasCancelarExplica =>
+      'Eu paro de colocar ela nos próximos meses. O que você já pagou fica guardado.';
+
+  @override
+  String get saidasCancelarConfirmar => 'Sim, cancelar';
 }
