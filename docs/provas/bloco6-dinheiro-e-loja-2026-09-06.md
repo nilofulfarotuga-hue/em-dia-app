@@ -118,3 +118,33 @@ Nenhum destes é código. Estão todos em `docs/PENDENTE-DANILO.md`:
 4. **Como é que o revisor da Google entra na app** — a entrada é por código no
    e-mail e o revisor não tem acesso a essa caixa. Duas saídas prontas a
    executar; falta escolher qual.
+
+---
+
+## Anexo — os 12 avisos de segurança do Supabase, um a um
+
+O linter do Supabase dá **12 avisos**, todos do mesmo tipo
+(`authenticated_security_definer_function_executable`): funções `SECURITY
+DEFINER` que um utilizador com sessão consegue chamar. **Zero erros.**
+
+Ele está a apontar o *padrão*, não um buraco: é assim que se fazem RPCs no
+Supabase — a função corre com privilégios e **pergunta lá dentro** se quem
+chamou tem direito. Para não ficar pela palavra, chamei-as todas com a sessão de
+um utilizador normal, passando-lhe o identificador de OUTRA pessoa:
+
+```
+plano_efetivo(outra pessoa)       -> recusado: so_o_proprio
+feature_limite(outra pessoa)      -> recusado: so_o_proprio
+radar_fidelizacao(outra pessoa)   -> recusado: so_o_proprio
+resumo_do_mes(outra pessoa)       -> recusado: so_o_proprio
+pode_ver_plano(outra pessoa)      -> false        (é o próprio guarda: false é a resposta certa)
+is_admin() do intruso             -> false
+```
+
+E `admin_resumo()` e `admin_ia_top_perguntas()` já tinham sido provadas a
+responder **403** a um utilizador normal
+(`docs/provas/fuga-do-admin-2026-09-06.md`).
+
+A única função nova desta noite, `minha_caixa_de_faturas()`, **não recebe
+argumento nenhum**: só sabe olhar para o `auth.uid()` de quem a chama. Não há
+por onde lhe pedir a caixa de outra pessoa.
