@@ -95,21 +95,29 @@ export async function chamarGemini(
       }
     }
     textoBruto = await resp.text()
-    if (resp.status === 429 || (resp.status === 404 && /not found|no longer available/i.test(textoBruto))) {
-      continue // quota deste modelo esgotada (ou modelo indisponível) → próximo da roda
-    }
+    // Passa-se ao modelo seguinte quando ESTE modelo não serviu o pedido:
+    //   429 — quota diária deste modelo esgotada;
+    //   503 — «This model is currently experiencing high demand» (apanhado ao vivo
+    //         a 2026-09-06 14:20: a roda parava aqui e a pessoa levava um erro,
+    //         quando o modelo seguinte respondia bem);
+    //   500 — falha passageira do lado da Google;
+    //   404 — o modelo já não existe para esta conta.
+    // Em nenhum destes casos a resposta foi gerada, por isso não se gasta quota.
+    const trocaDeModelo = resp.status === 429 || resp.status === 503 || resp.status === 500 ||
+      (resp.status === 404 && /not found|no longer available/i.test(textoBruto))
+    if (trocaDeModelo) continue
     break
   }
   if (!resp) {
     return { ok: false, status: 503, erro: 'gemini_indisponivel', mensagem: 'O assistente está com muitos pedidos. Tenta daqui a um minuto.' }
   }
-  if (resp.status === 403 || resp.status === 429) {
+  if (resp.status === 403 || resp.status === 429 || resp.status === 503 || resp.status === 500) {
     return {
       ok: false, status: 503, erro: 'gemini_indisponivel',
       detalhe: `HTTP ${resp.status}: ${textoBruto.slice(0, 400)}`,
-      mensagem: resp.status === 429
-        ? 'O assistente está com muitos pedidos. Tenta daqui a um minuto.'
-        : 'O assistente recusou o pedido (chave sem permissão). Avisámos a equipa.',
+      mensagem: resp.status === 403
+        ? 'O assistente recusou o pedido (chave sem permissão). Avisámos a equipa.'
+        : 'O assistente está com muitos pedidos. Tenta daqui a um minuto.',
     }
   }
   if (!resp.ok) {
