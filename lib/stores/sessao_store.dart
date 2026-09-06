@@ -13,6 +13,7 @@ import '../services/push.dart';
 enum ErroLogin {
   nenhum,
   emailInvalido,
+  emailDeMentira,
   rede,
   muitosPedidos,
   codigoCurto,
@@ -44,6 +45,46 @@ class SessaoStore extends ChangeNotifier {
 
   static final RegExp _emailOk = RegExp(r'^[^@\s]+@[^@\s.]+\.[^@\s]{2,}$');
   static final RegExp _naoNumero = RegExp(r'\D');
+
+  /// Terminações que NUNCA recebem correio. `.test`, `.invalid`, `.example` e
+  /// `.localhost` estão reservadas por norma (RFC 2606 e RFC 6761) e não existem
+  /// na internet; `example.com` é o domínio de exemplo oficial.
+  static const List<String> _dominiosQueNaoExistem = [
+    '.test', '.invalid', '.example', '.localhost', '.local',
+    'example.com', 'example.org', 'example.net',
+  ];
+
+  /// Caixas de correio inventadas nos fornecedores grandes.
+  ///
+  /// Isto não é preciosismo: cada envio para uma destas volta para trás, e cada
+  /// devolução gasta a reputação do domínio que manda os códigos de entrada a
+  /// toda a gente. A 6 de setembro de 2026, sete de quinze envios do Em Dia
+  /// falharam — todos para `test@gmail.com` e `newuser@gmail.com`, escritos a
+  /// experimentar o registo. O `test@gmail.com` foi devolvido e a Resend
+  /// pô-lo na lista negra. Uma pessoa a sério nunca perde nada com esta
+  /// travagem; um teste distraído perde o domínio a toda a gente.
+  static const List<String> _caixasInventadas = [
+    'test', 'teste', 'testes', 'testing', 'newuser', 'novouser', 'utilizador',
+    'exemplo', 'example', 'demo', 'asdf', 'aaaa', 'qwerty', 'noreply', 'no-reply',
+  ];
+  static const List<String> _fornecedoresGrandes = [
+    'gmail.com', 'hotmail.com', 'outlook.com', 'outlook.pt', 'live.com',
+    'yahoo.com', 'yahoo.com.br', 'icloud.com', 'sapo.pt',
+  ];
+
+  /// `true` quando o endereço não vai chegar a lado nenhum.
+  static bool enderecoDeMentira(String email) {
+    final e = email.trim().toLowerCase();
+    for (final fim in _dominiosQueNaoExistem) {
+      if (e.endsWith(fim)) return true;
+    }
+    final partes = e.split('@');
+    if (partes.length != 2) return false;
+    // `nome+etiqueta@gmail.com` é a forma certa de fazer testes: chega mesmo à
+    // caixa de quem a escreveu. Só se olha para o que vem antes do `+`.
+    final caixa = partes[0].split('+').first;
+    return _fornecedoresGrandes.contains(partes[1]) && _caixasInventadas.contains(caixa);
+  }
 
   StreamSubscription<AuthState>? _sub;
   Timer? _relogio;
@@ -160,6 +201,10 @@ class SessaoStore extends ChangeNotifier {
     final limpo = email.trim().toLowerCase();
     if (!_emailOk.hasMatch(limpo)) {
       _acabar(ErroLogin.emailInvalido, 'e-mail fora do formato: "$limpo"');
+      return false;
+    }
+    if (enderecoDeMentira(limpo)) {
+      _acabar(ErroLogin.emailDeMentira, 'endereço que não recebe correio: "$limpo"');
       return false;
     }
     _comecar();

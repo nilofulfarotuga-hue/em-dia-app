@@ -302,6 +302,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'Esse e-mail não parece certo. Confere as letras e escreve outra vez.';
 
   @override
+  String get loginEmailDeMentira =>
+      'Esse e-mail não recebe correio. Escreve o teu a sério, senão o código não chega a lado nenhum.';
+
+  @override
   String get loginCodigoCurto => 'Faltam números. O código tem 6.';
 
   @override
@@ -3732,6 +3736,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get loginEmailInvalido =>
       'Esse e-mail não parece certo. Confira as letras e escreva de novo.';
+
+  @override
+  String get loginEmailDeMentira =>
+      'Esse e-mail não recebe correio. Escreva o seu de verdade, senão o código não chega em lugar nenhum.';
 
   @override
   String get loginCodigoCurto => 'Faltam números. O código tem 6.';

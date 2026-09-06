@@ -127,6 +127,47 @@ void main() {
     expect(find.textContaining('Você pediu códigos demais'), findsOneWidget);
   });
 
+  test('L10 e-mails que nao recebem correio nem saem do telemovel', () async {
+    // Cicatriz de 2026-09-06: sete de quinze envios do Em Dia falharam, todos
+    // para `test@gmail.com` e `newuser@gmail.com`, escritos a experimentar o
+    // registo. Cada devolucao gasta a reputacao do dominio que manda os codigos
+    // de entrada a toda a gente, e o `test@gmail.com` acabou na lista negra da
+    // Resend. Estes nunca mais saem daqui.
+    const naoRecebem = [
+      'test@gmail.com',
+      'newuser@gmail.com',
+      'teste@hotmail.com',
+      'demo@outlook.com',
+      'noreply@gmail.com',
+      'alguem@example.com',
+      'e2e_admin@boraapp.test',
+      'x@qualquercoisa.invalid',
+      'y@servidor.local',
+    ];
+    for (final mau in naoRecebem) {
+      expect(SessaoStore.enderecoDeMentira(mau), isTrue, reason: '"$mau" nao recebe correio');
+      final s = SessaoStore.semServidor();
+      expect(await s.enviarCodigo(mau), isFalse);
+      expect(s.erro, ErroLogin.emailDeMentira);
+    }
+  });
+
+  test('L11 e as pessoas a serio passam, incluindo a forma certa de testar', () {
+    // `nome+etiqueta@gmail.com` chega mesmo a caixa de quem a escreveu: e ESTA
+    // a maneira de fazer testes sem partir nada.
+    const recebem = [
+      'danilo@gmail.com',
+      'boraappbora+ocr@gmail.com',
+      'test.silva@umaempresa.pt',
+      'maria@sapo.pt',
+      'joao@boraguarda.com',
+      'testador@empresa.com',
+    ];
+    for (final bom in recebem) {
+      expect(SessaoStore.enderecoDeMentira(bom), isFalse, reason: '"$bom" e um endereco a serio');
+    }
+  });
+
   test('L08 o tamanho do código da app cobre o do servidor', () {
     // O servidor manda 6 (mailer_otp_length). A margem existe para o dia em
     // que alguém lá mexer sem avisar.

@@ -588,6 +588,12 @@ abstract class AppLocalizations {
   /// **'Esse e-mail não parece certo. Confere as letras e escreve outra vez.'**
   String get loginEmailInvalido;
 
+  /// No description provided for @loginEmailDeMentira.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esse e-mail não recebe correio. Escreve o teu a sério, senão o código não chega a lado nenhum.'**
+  String get loginEmailDeMentira;
+
   /// No description provided for @loginCodigoCurto.
   ///
   /// In pt, this message translates to:

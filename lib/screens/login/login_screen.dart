@@ -235,6 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String _frase(AppLocalizations l, ErroLogin e) => switch (e) {
         ErroLogin.emailInvalido => l.loginEmailInvalido,
+        ErroLogin.emailDeMentira => l.loginEmailDeMentira,
         ErroLogin.rede => l.erroRede,
         ErroLogin.muitosPedidos => l.loginMuitosPedidos,
         ErroLogin.codigoCurto => l.loginCodigoCurto,
