@@ -1,0 +1,106 @@
+{
+  "data": "20260906-044413",
+  "modelo": "gemini-flash-latest",
+  "fotos": 8,
+  "contagem": {
+    "verde": 0,
+    "amarelo": 8,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "O botão em baixo está cortado pela metade.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O botão está cortado na margem direita e há termos técnicos como SS, IVA e IRS sem explicação clara para leigos.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem termos técnicos sem explicação simples e os botões sugeridos estão cortados na lateral.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "isenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_grande_teclado_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis e há botões cortados em baixo.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "isenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_grande_teclado_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto da conversa usa jargão técnico sem explicação simples.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS",
+        "isenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_limite_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tem jargão fiscal sem explicação simples para quem não percebe nada do assunto.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "isenção",
+        "SS",
+        "IRS",
+        "recibo"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_limite_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis sem explicar o que significam.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_limite_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto no topo está cortado e há múltiplos avisos sobre o plano grátis no fundo.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS",
+        "recibos"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_limite_medio_pt.png"
+    }
+  ]
+}

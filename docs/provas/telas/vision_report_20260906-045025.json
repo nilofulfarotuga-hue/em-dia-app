@@ -1,0 +1,33 @@
+{
+  "data": "20260906-045025",
+  "modelo": "gemini-flash-latest",
+  "fotos": 2,
+  "contagem": {
+    "verde": 1,
+    "amarelo": 1,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã está bem organizado e legível, com as informações do carro e lembretes claros.",
+      "jargao": [
+        "TVDE",
+        "IUC",
+        "Portal das Finanças"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O lembrete do seguro está a usar a cor laranja e tens outro aviso importante a precisar de atenção.",
+      "jargao": [
+        "simulações"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_pequeno_pt.png"
+    }
+  ]
+}

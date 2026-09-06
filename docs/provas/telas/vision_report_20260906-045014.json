@@ -1,0 +1,62 @@
+{
+  "data": "20260906-045014",
+  "modelo": "gemini-flash-latest",
+  "fotos": 6,
+  "contagem": {
+    "verde": 4,
+    "amarelo": 2,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "Ainda falta pores o teu carro aqui para sabermos tudo.",
+      "jargao": [
+        "DGEG"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_vazio_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está limpa e diz-te logo o que podes fazer com o teu carrinho.",
+      "jargao": [
+        "dados abertos",
+        "DGEG"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_vazio_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está arrumado e pronto para o carro.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_vazio_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está limpa e diz-nos logo o que falta fazer.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_vazio_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto diz 'você' em vez de 'tu' e usa a sigla DGEG sem explicar o que é.",
+      "jargao": [
+        "DGEG"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_vazio_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está direitinho e pronto para meteres o teu carro.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_vazio_pequeno_pt.png"
+    }
+  ]
+}

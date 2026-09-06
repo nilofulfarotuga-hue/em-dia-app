@@ -1,0 +1,72 @@
+{
+  "data": "20260906-044901",
+  "modelo": "gemini-flash-latest",
+  "fotos": 6,
+  "contagem": {
+    "verde": 3,
+    "amarelo": 3,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã do carro está limpo e fácil de perceber.",
+      "jargao": [
+        "TVDE",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está limpo e legível com as informações bem organizadas.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto está um bocadinho colado à bordinha do cartão branco.",
+      "jargao": [
+        "TVDE",
+        "NIF",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto da etiqueta NIF está colado à borda e há termos técnicos pouco claros.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto na linha do meio está colado à borda e há jargão sem explicação.",
+      "jargao": [
+        "TVDE",
+        "NIF",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e muito limpo.",
+      "jargao": [
+        "TVDE",
+        "NIF",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_pequeno_pt.png"
+    }
+  ]
+}

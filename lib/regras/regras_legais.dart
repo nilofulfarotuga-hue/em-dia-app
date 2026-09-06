@@ -192,6 +192,8 @@ class RegrasLegais {
       r('baixa_doenca_prazo_garantia_meses', 6, 'Prazo de garantia baixa', unidade: 'meses'),
       r('cessacao_atividade_prazo_garantia_dias', 360, 'Prazo de garantia cessação',
           unidade: 'dias'),
+      t('acordo_pt_br_url', 'https://www.seg-social.pt/acordos-internacionais',
+          'Acordo de Segurança Social Portugal–Brasil'),
       t('iuc_regra', 'mes_da_matricula', 'IUC no mês da matrícula'),
       j('iuc_tabela', _iucTabela2026, 'Tabela IUC aproximada', confianca: 'aproximado'),
       j('ipo_ligeiros_anos', [4, 6, 8], 'IPO aos 4/6/8 anos'),

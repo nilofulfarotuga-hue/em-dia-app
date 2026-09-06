@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../services/arranque.dart';
+import '../services/push.dart';
 
 /// Sessão: quem está a usar a app. Login por e-mail com código de 6 números
 /// (Supabase OTP) ou Google. Sem palavra-passe (decisão D4 em docs/DECISOES.md).
@@ -128,6 +129,7 @@ class SessaoStore extends ChangeNotifier {
   }
 
   Future<void> sair() async {
+    await PushService.esquecer();
     await sb.auth.signOut();
     _user = null;
     _emailPendente = null;

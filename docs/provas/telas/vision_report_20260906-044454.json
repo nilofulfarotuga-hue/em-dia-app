@@ -1,0 +1,132 @@
+{
+  "data": "20260906-044454",
+  "modelo": "gemini-flash-latest",
+  "fotos": 12,
+  "contagem": {
+    "verde": 1,
+    "amarelo": 11,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e muito limpo.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A utilização de termos técnicos sem explicação pode confundir o utilizador.",
+      "jargao": [
+        "NIF",
+        "IRS",
+        "DGEG"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo NIF aparece várias vezes sem uma explicação simples do que é para quem não percebe de impostos.",
+      "jargao": [
+        "NIF",
+        "IRS"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo NIF aparece sem explicação para quem não sabe o que é.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo NIF aparece sem explicação para quem não sabe o que é o número de contribuinte.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto sobre o IRS e o uso de NIF nas despesas pode ser difícil de entender para quem não conhece estes termos.",
+      "jargao": [
+        "NIF",
+        "IRS"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem termos técnicos difíceis de entender como TVDE, IUC e referência MB sem explicação.",
+      "jargao": [
+        "TVDE",
+        "IUC",
+        "referência MB"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã tem jargão técnico difícil de entender para quem não sabe o que é.",
+      "jargao": [
+        "TVDE",
+        "IUC",
+        "referência MB"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem vários termos técnicos difíceis de entender sem explicação.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã tem demasiada informação técnica e jargão difícil de entender para quem não percebe de carros.",
+      "jargao": [
+        "TVDE",
+        "IUC",
+        "referência MB"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto sobre o IUC está cortado e o uso de jargão técnico pode confundir.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã tem jargão técnico difícil de entender e o texto está cortado em alguns pontos.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_pequeno_pt.png"
+    }
+  ]
+}

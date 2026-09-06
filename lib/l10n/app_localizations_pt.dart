@@ -1504,6 +1504,836 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get calNovaGuardada => 'Adicionado ao calendário.';
+
+  @override
+  String get carroOTeuCarro => 'O teu carro';
+
+  @override
+  String carroMatriculaKm(String matricula, String km) {
+    return '$matricula · $km km';
+  }
+
+  @override
+  String get carroAdicionarAjuda =>
+      'Nome, matrícula, seguro, inspeção — em 1 minuto.';
+
+  @override
+  String get carroCadeadoLinha =>
+      'No plano grátis só cabe 1 carro. Ativa o Pro para mais.';
+
+  @override
+  String get carroSemSessao => 'Entra na app para guardar.';
+
+  @override
+  String get carroGuardado => 'Guardado.';
+
+  @override
+  String get carroErroGuardar => 'Não consegui guardar. Tenta outra vez.';
+
+  @override
+  String get carroGuardadoRecalculado =>
+      'Carro guardado. Já refiz o teu calendário.';
+
+  @override
+  String get carroGuardadoSemCalendario =>
+      'Carro guardado. O calendário refaz-se assim que houver rede.';
+
+  @override
+  String get carroLembretes => 'Lembretes';
+
+  @override
+  String get carroSemLembretes =>
+      'Preenche a matrícula e as datas do carro para eu te lembrar do IUC, da inspeção e do seguro.';
+
+  @override
+  String carroFaltamKm(int n) {
+    final intl.NumberFormat nNumberFormat = intl.NumberFormat.decimalPattern(
+      localeName,
+    );
+    final String nString = nNumberFormat.format(n);
+
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'faltam $nString km',
+      one: 'falta 1 km',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get carroSemData => 'sem data';
+
+  @override
+  String get carroIucOnde => 'Imposto do carro. Pagas no Portal das Finanças.';
+
+  @override
+  String get carroIucSemEstimativa =>
+      'Sem estimativa: falta a cilindrada do carro.';
+
+  @override
+  String carroIpoAvisos(int a, int b) {
+    return 'Aviso-te $a e $b dias antes.';
+  }
+
+  @override
+  String get carroIpoTvde =>
+      'TVDE: inspeção todos os anos (ainda por confirmar).';
+
+  @override
+  String carroSeguradoraLinha(String nome) {
+    return 'Seguradora: $nome';
+  }
+
+  @override
+  String get carroSeguroCompara =>
+      'É agora que comparas: pede 2 ou 3 simulações.';
+
+  @override
+  String carroCartaRegra(int a, int b, int c) {
+    return 'A carta vale $a anos até aos 60, $b até aos 70 e depois $c.';
+  }
+
+  @override
+  String carroRevisaoAosKm(String km) {
+    return 'Revisão aos $km km.';
+  }
+
+  @override
+  String get carroSoInformacao =>
+      'Só informação: esta data não está no calendário porque ainda não foi gerada.';
+
+  @override
+  String carroResumoMes(String mes) {
+    return 'Resumo de $mes';
+  }
+
+  @override
+  String get carroResumoGasto => 'gasto';
+
+  @override
+  String get carroResumoKm => 'km';
+
+  @override
+  String get carroResumoEuroKm => '€/km';
+
+  @override
+  String get carroResumoL100 => 'L/100 km';
+
+  @override
+  String get carroCompensa =>
+      'Para o TVDE: é isto que cada km te custa em combustível — assim sabes se a corrida compensa.';
+
+  @override
+  String get carroSemCustoKm =>
+      'Regista 2 depósitos cheios com os km e eu calculo o custo por km.';
+
+  @override
+  String get carroSemAbastecimentos => 'Ainda não registaste abastecimentos.';
+
+  @override
+  String get carroNovoAbastecimento => 'Novo abastecimento';
+
+  @override
+  String get carroLitros => 'Litros';
+
+  @override
+  String get carroValorTotal => 'Valor total';
+
+  @override
+  String get carroKmConta => 'Km no conta-quilómetros';
+
+  @override
+  String get carroDepositoCheio => 'Enchi o depósito';
+
+  @override
+  String get carroPosto => 'Posto (opcional)';
+
+  @override
+  String get carroComNif => 'Pedi fatura com NIF';
+
+  @override
+  String get carroNif => 'NIF';
+
+  @override
+  String carroLitrosCurto(String litros) {
+    return '$litros L';
+  }
+
+  @override
+  String carroPrecoLitro(String preco) {
+    return '$preco €/⁠L';
+  }
+
+  @override
+  String carroKmCurto(String km) {
+    return '$km km';
+  }
+
+  @override
+  String get carroData => 'Data';
+
+  @override
+  String get carroEscolherData => 'Escolher a data';
+
+  @override
+  String get carroFaltaValor => 'Escreve o valor.';
+
+  @override
+  String get carroFaltaData => 'Escolhe a data.';
+
+  @override
+  String get carroAbastecimentoGuardado => 'Abastecimento guardado.';
+
+  @override
+  String carroDespesasAnoNif(int ano) {
+    return 'Com NIF em $ano';
+  }
+
+  @override
+  String get carroDespesasIrs =>
+      'Guardadas para o IRS: cada fatura com NIF conta como despesa da atividade.';
+
+  @override
+  String get carroSemDespesas => 'Ainda não registaste despesas.';
+
+  @override
+  String get carroNovaDespesa => 'Nova despesa';
+
+  @override
+  String get carroTipoDespesa => 'O que foi?';
+
+  @override
+  String get carroTipoIuc => 'IUC';
+
+  @override
+  String get carroTipoIpo => 'Inspeção';
+
+  @override
+  String get carroTipoSeguro => 'Seguro';
+
+  @override
+  String get carroTipoRevisao => 'Revisão';
+
+  @override
+  String get carroTipoPneus => 'Pneus';
+
+  @override
+  String get carroTipoReparacao => 'Reparação';
+
+  @override
+  String get carroTipoPortagem => 'Portagem';
+
+  @override
+  String get carroTipoMulta => 'Multa';
+
+  @override
+  String get carroTipoEstacionamento => 'Estacionamento';
+
+  @override
+  String get carroTipoLavagem => 'Lavagem';
+
+  @override
+  String get carroTipoOutro => 'Outra';
+
+  @override
+  String get carroValor => 'Valor';
+
+  @override
+  String get carroNota => 'Nota (opcional)';
+
+  @override
+  String get carroNotaDica => 'Ex.: A23, Guarda → Covilhã';
+
+  @override
+  String get carroDataNotificacao => 'Quando recebeste a notificação?';
+
+  @override
+  String carroPrazoMulta(String data, int n) {
+    return 'Pagar até $data — $n dias úteis. Depois sobe o valor.';
+  }
+
+  @override
+  String get carroMultaNoCalendario =>
+      'Vai também para o calendário, com aviso na véspera.';
+
+  @override
+  String get carroDespesaGuardada => 'Despesa guardada.';
+
+  @override
+  String carroMultasNota(int n) {
+    return 'Portagens e multas pagam-se em $n dias úteis a contar da notificação.';
+  }
+
+  @override
+  String get carroSemMultas => 'Nada por pagar.';
+
+  @override
+  String carroPagarAte(String data) {
+    return 'pagar até $data';
+  }
+
+  @override
+  String get carroEmBreve => 'Em breve';
+
+  @override
+  String get carroCentrosInspecao => 'Centros de inspeção perto de ti';
+
+  @override
+  String get carroCentrosInspecaoLinha =>
+      'Mapa com os centros mais próximos, a partir dos dados abertos do Estado.';
+
+  @override
+  String get carroCombustivelBarato =>
+      'Combustível mais barato num raio de 10 km';
+
+  @override
+  String get carroCombustivelBaratoLinha =>
+      'Preços de hoje, a partir dos dados abertos do Estado (DGEG).';
+
+  @override
+  String get carroNovoTitulo => 'Adicionar carro';
+
+  @override
+  String get carroNome => 'Nome (ex.: o Clio)';
+
+  @override
+  String get carroMatricula => 'Matrícula';
+
+  @override
+  String get carroMatriculaDica => 'AA-11-BB';
+
+  @override
+  String get carroMesMatricula => 'Mês da matrícula';
+
+  @override
+  String get carroAnoMatricula => 'Ano';
+
+  @override
+  String get carroMatriculaAjuda =>
+      'Pelo mês sei quando é o IUC; pelo ano, quando é a inspeção.';
+
+  @override
+  String get carroCombustivel => 'Combustível';
+
+  @override
+  String get carroCombGasolina => 'Gasolina';
+
+  @override
+  String get carroCombGasoleo => 'Gasóleo';
+
+  @override
+  String get carroCombEletrico => 'Elétrico';
+
+  @override
+  String get carroCombHibrido => 'Híbrido';
+
+  @override
+  String get carroCombGpl => 'GPL';
+
+  @override
+  String get carroCombOutro => 'Outro';
+
+  @override
+  String get carroCilindrada => 'Cilindrada (cc, opcional)';
+
+  @override
+  String get carroCo2 => 'CO2 g/km (opcional)';
+
+  @override
+  String get carroCilindradaAjuda =>
+      'Está no DUA. Com estes dois estimo o IUC.';
+
+  @override
+  String get carroSeguradora => 'Seguradora';
+
+  @override
+  String get carroSeguroRenova => 'Quando renova o seguro?';
+
+  @override
+  String get carroUltimaIpo => 'Última inspeção (se já fez)';
+
+  @override
+  String get carroUsoTvde => 'Uso em TVDE';
+
+  @override
+  String get carroCartaValidade => 'Validade da carta de condução';
+
+  @override
+  String get carroFaltaMatricula => 'Escreve a matrícula.';
+
+  @override
+  String get carroFaltaMesMatricula => 'Escolhe o mês da matrícula.';
+
+  @override
+  String get carroFaltaAnoMatricula =>
+      'Escreve o ano da matrícula (4 dígitos).';
+
+  @override
+  String get maisSubtitulo => 'Tudo o resto está aqui.';
+
+  @override
+  String get maisReforma => 'Reforma e direitos';
+
+  @override
+  String get maisGuias => 'Guias de 1 minuto';
+
+  @override
+  String get maisPergunta => 'Pergunta ao Em Dia';
+
+  @override
+  String get maisAjuda => 'Ajuda';
+
+  @override
+  String get maisPlano => 'O teu plano';
+
+  @override
+  String get maisDefinicoes => 'Definições';
+
+  @override
+  String get defsTitulo => 'Definições';
+
+  @override
+  String get defsIdioma => 'Como falo contigo';
+
+  @override
+  String get defsIdiomaAjuda =>
+      'Muda só as palavras da app. As regras e os números são sempre os de Portugal.';
+
+  @override
+  String get defsPt => 'Português de Portugal';
+
+  @override
+  String get defsPtAjuda => 'Tu, reforma, telemóvel';
+
+  @override
+  String get defsBr => 'Português do Brasil';
+
+  @override
+  String get defsBrAjuda => 'Você, aposentadoria, celular';
+
+  @override
+  String get defsGuardado => 'Guardado.';
+
+  @override
+  String get defsConta => 'A tua conta';
+
+  @override
+  String get defsSairAjuda =>
+      'Sais da app neste telemóvel. Os teus dados ficam guardados.';
+
+  @override
+  String get defsApagarConta => 'Apagar a minha conta';
+
+  @override
+  String get defsApagarTitulo => 'Apagar a conta?';
+
+  @override
+  String get defsApagarTexto =>
+      'Vou pedir para apagar a tua conta e os teus dados. Demora até 30 dias. Deixas de receber avisos já hoje. Não dá para voltar atrás.';
+
+  @override
+  String get defsApagarConfirmar => 'Sim, apagar';
+
+  @override
+  String get defsApagarPedido => 'Pedido recebido. A conta vai ser apagada.';
+
+  @override
+  String defsVersao(String versao) {
+    return 'Versão $versao';
+  }
+
+  @override
+  String get defsSemPerfil => 'Entra na app para mudar as definições.';
+
+  @override
+  String get reformaSubtitulo => 'O que descontas hoje vale dinheiro amanhã.';
+
+  @override
+  String reformaDescontasHoje(String valor) {
+    return 'Descontas $valor por mês';
+  }
+
+  @override
+  String get reformaValeCerca => 'vale cerca de';
+
+  @override
+  String get reformaPorMesDeReforma => 'por mês de reforma';
+
+  @override
+  String reformaAnosDescontos(int anos) {
+    return 'Se descontares durante $anos anos';
+  }
+
+  @override
+  String reformaAnosCurto(int anos) {
+    return '$anos anos';
+  }
+
+  @override
+  String get reformaEstimativaSimples => 'estimativa simples';
+
+  @override
+  String get reformaEstimativaNota =>
+      'É uma conta simples, só para teres uma ideia. A Segurança Social faz a conta certa com toda a tua carreira.';
+
+  @override
+  String get reformaSemDados =>
+      'Diz-me quanto ganhas por mês (no teu perfil) e eu faço a conta. Por agora conto com o mínimo.';
+
+  @override
+  String get reformaIdadeTitulo => 'Quando te podes reformar';
+
+  @override
+  String reformaIdadeRegra(int ano, String idade, int anos) {
+    return 'Em $ano: aos $idade. Precisas de $anos anos de descontos, no mínimo.';
+  }
+
+  @override
+  String reformaAnosEMeses(int anos, int meses) {
+    return '$anos anos e $meses meses';
+  }
+
+  @override
+  String get reformaBaixaTitulo => 'Baixa por doença';
+
+  @override
+  String reformaBaixaTexto(int dia, int meses) {
+    return 'Se adoeceres, recebes a partir do $dia.º dia de baixa. Precisas de $meses meses de descontos.';
+  }
+
+  @override
+  String get reformaParentalidadeTitulo => 'Parentalidade';
+
+  @override
+  String get reformaParentalidadeTexto =>
+      'Se tiveres um filho, recebes subsídio nos dias em que paras para cuidar dele. Vale para o pai e para a mãe.';
+
+  @override
+  String get reformaCessacaoTitulo => 'Cessação de atividade';
+
+  @override
+  String reformaCessacaoTexto(int dias) {
+    return 'É o \"desemprego\" dos independentes: se fechares por falta de trabalho, recebes um apoio. Precisas de $dias dias de descontos.';
+  }
+
+  @override
+  String get reformaFilhosTitulo => 'Assistência a filhos';
+
+  @override
+  String get reformaFilhosTexto =>
+      'Se um filho adoecer e tiveres de ficar com ele, recebes subsídio nesses dias.';
+
+  @override
+  String get reformaPerdesBaixa => 'Sem baixa: se adoeceres, não recebes nada.';
+
+  @override
+  String get reformaPerdesSubsidio => 'Sem apoio se ficares sem trabalho.';
+
+  @override
+  String get reformaPerdesTempo =>
+      'Os meses sem pagar não contam para a reforma.';
+
+  @override
+  String get reformaPerdesDivida => 'A dívida fica lá e cresce com juros.';
+
+  @override
+  String get reformaAcordoTitulo => 'Acordo Portugal–Brasil';
+
+  @override
+  String get reformaAcordoTexto =>
+      'Se descontaste no Brasil (INSS) e em Portugal, o tempo dos dois países soma-se para a reforma. Não perdes o que já pagaste lá.';
+
+  @override
+  String get reformaAcordoBotao => 'Ver no site da Segurança Social';
+
+  @override
+  String get guiasSubtitulo => 'Um minuto cada. Podes ouvir em vez de ler.';
+
+  @override
+  String get guiasUmMinuto => '1 minuto';
+
+  @override
+  String get guiasEmBreve =>
+      'Este guia está a ser escrito. Em breve fica aqui, com a fonte oficial.';
+
+  @override
+  String get guiasVazio => 'Ainda não há guias. Volta daqui a pouco.';
+
+  @override
+  String get guiasPorConfirmar => 'por confirmar';
+
+  @override
+  String get guiasSemFonte => 'Fonte oficial: por confirmar';
+
+  @override
+  String get guiasOuvirErro => 'Não consegui ler em voz alta neste telemóvel.';
+
+  @override
+  String get planoSubtitulo => 'Menos que uma multa.';
+
+  @override
+  String get planoEstadoTitulo => 'O que tens agora';
+
+  @override
+  String get planoTrialDepois =>
+      'Depois passas para o plano grátis, com limites. Se ativares o Pro, fica tudo como está.';
+
+  @override
+  String planoLimAvisos(int n) {
+    return '$n avisos por mês';
+  }
+
+  @override
+  String planoLimCarros(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n carros',
+      one: '1 carro',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planoLimPerguntas(int n) {
+    return '$n perguntas ao Em Dia por mês';
+  }
+
+  @override
+  String get planoLimResto => 'O resto aparece com cadeado.';
+
+  @override
+  String get planoTensPro => 'Tens o Pro. Está tudo aberto.';
+
+  @override
+  String planoTensFamilia(int n) {
+    return 'Tens o Família / Frota. Está tudo aberto, para até $n pessoas ou carros.';
+  }
+
+  @override
+  String get planoEscolhe => 'Escolhe como pagar';
+
+  @override
+  String get planoPorMes => 'Por mês';
+
+  @override
+  String get planoPorAno => 'Por ano';
+
+  @override
+  String planoPrecoMes(String valor) {
+    return '$valor/mês';
+  }
+
+  @override
+  String planoPrecoAno(String valor) {
+    return '$valor/ano';
+  }
+
+  @override
+  String planoPoupas(String valor) {
+    return 'poupas $valor';
+  }
+
+  @override
+  String get planoAbreAvisos => 'Avisos sem limite';
+
+  @override
+  String get planoAbreIa => 'Perguntas ao Em Dia sem limite';
+
+  @override
+  String get planoAbreFoto => 'Ler extratos por foto (Uber, Bolt, Glovo)';
+
+  @override
+  String get planoAbreComprovativos => 'Guardar as fotos dos comprovativos';
+
+  @override
+  String get planoAbreCarros => 'Vários carros';
+
+  @override
+  String get planoAbreExportar => 'Exportar para o contabilista (PDF/CSV)';
+
+  @override
+  String get planoAbreReforma => 'Reforma e direitos completo';
+
+  @override
+  String planoFamiliaAbre(int n) {
+    return 'Tudo o que o Pro tem, para até $n pessoas ou carros';
+  }
+
+  @override
+  String get planoAtivarPro => 'Ativar o Pro';
+
+  @override
+  String get planoAtivarFamilia => 'Ativar o Família';
+
+  @override
+  String get planoATrabalhar => 'A falar com a Google Play…';
+
+  @override
+  String get planoCompraOk => 'Pronto. Já tens tudo aberto.';
+
+  @override
+  String get planoCompraErro =>
+      'Não consegui fazer a compra. Não te cobrei nada. Tenta outra vez daqui a bocado.';
+
+  @override
+  String get planoCompraCancelada => 'Cancelaste. Não te cobrei nada.';
+
+  @override
+  String get planoLojaIndisponivel =>
+      'A Google Play não está disponível neste telemóvel. Vê se tens a Play Store instalada e com sessão iniciada.';
+
+  @override
+  String get planoCancelarQuando => 'Cancelas quando quiseres, na Google Play.';
+
+  @override
+  String get iaSuporteTitulo => 'Tira a tua dúvida';
+
+  @override
+  String get iaVazio =>
+      'Pergunta-me sobre recibos, IVA, Segurança Social ou o teu carro. Respondo com as regras de 2026.';
+
+  @override
+  String get iaChip1 => 'Abri atividade em março, quando começo a pagar?';
+
+  @override
+  String get iaChip2 => 'Passei os 15 mil, e agora?';
+
+  @override
+  String get iaChip3 => 'Posso pagar menos à Segurança Social?';
+
+  @override
+  String get iaChip4 => 'Quando é a inspeção do meu carro?';
+
+  @override
+  String iaContador(int usadas, int n) {
+    return 'Usaste $usadas de $n perguntas este mês';
+  }
+
+  @override
+  String get iaAPensar => 'A pensar…';
+
+  @override
+  String get iaDescansar =>
+      'O assistente está a descansar. Tenta daqui a um minuto.';
+
+  @override
+  String get iaGuiaNovo => 'Pedi um guia novo sobre isto.';
+
+  @override
+  String get iaLimiteCta => 'Ativa o Pro para perguntas sem limite.';
+
+  @override
+  String get iaVerPlano => 'Ver o plano Pro';
+
+  @override
+  String get suporteIntro => 'O que se passa?';
+
+  @override
+  String get suporteDuvidaAjuda =>
+      'O assistente responde já, com as regras de 2026.';
+
+  @override
+  String get suporteBugAjuda =>
+      'Conta-me o que falhou. Eu junto os dados técnicos.';
+
+  @override
+  String get suporteReembolsoAjuda => 'Faz-se na Google Play, em 2 minutos.';
+
+  @override
+  String get suporteAssunto => 'Assunto';
+
+  @override
+  String get suporteAssuntoDica => 'Ex.: A app fecha ao abrir o calendário';
+
+  @override
+  String get suporteDescricaoDica =>
+      'O que fizeste, o que esperavas e o que aconteceu.';
+
+  @override
+  String get suporteLogsNota =>
+      'Junto sozinho a versão da app, o tipo de telemóvel e o teu plano. Nada de palavras-passe.';
+
+  @override
+  String get suporteAssuntoEmFalta => 'Escreve o assunto.';
+
+  @override
+  String get suporteErro => 'Não consegui enviar. Tenta outra vez.';
+
+  @override
+  String suporteTicket(String id) {
+    return 'Pedido n.º $id';
+  }
+
+  @override
+  String get suporteRespostaTitulo => 'Resposta';
+
+  @override
+  String get suporteEscalado =>
+      'Passei isto a uma pessoa da equipa. Respondemos aqui.';
+
+  @override
+  String get suporteFechar => 'Voltar à ajuda';
+
+  @override
+  String get suporteReembolsoLinha1 =>
+      'A assinatura do Em Dia é cobrada pela Google Play, não por nós.';
+
+  @override
+  String get suporteReembolsoLinha2 =>
+      'Para cancelar ou pedir reembolso, vai às subscrições da tua conta Google.';
+
+  @override
+  String get suporteReembolsoLinha3 =>
+      'Continuas com o plano até ao fim do período já pago.';
+
+  @override
+  String get suporteAbrirSubscricoes => 'Abrir as minhas subscrições';
+
+  @override
+  String get suporteReembolsoDescricao =>
+      'Pedido aberto a partir da app (botão \"Abrir as minhas subscrições\").';
+
+  @override
+  String suporteRegistado(String id) {
+    return 'Registei o teu pedido n.º $id. Se a Google recusar, responde aqui com esse número.';
+  }
+
+  @override
+  String get suporteMeusPedidos => 'Os meus pedidos';
+
+  @override
+  String get suporteSemPedidos => 'Ainda não tens pedidos.';
+
+  @override
+  String get suporteEstadoAberto => 'Aberto';
+
+  @override
+  String get suporteEstadoEmCurso => 'Em análise';
+
+  @override
+  String get suporteEstadoFechado => 'Resolvido';
+
+  @override
+  String get suporteTipoDuvida => 'Dúvida';
+
+  @override
+  String get suporteTipoBug => 'Problema';
+
+  @override
+  String get suporteTipoReembolso => 'Reembolso';
+
+  @override
+  String get suporteTipoGuia => 'Guia novo';
+
+  @override
+  String get suporteTipoOutro => 'Outro';
+
+  @override
+  String suporteEmailRodape(String email) {
+    return 'Ou escreve para $email';
+  }
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -3006,4 +3836,838 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get calNovaGuardada => 'Adicionado ao calendário.';
+
+  @override
+  String get carroOTeuCarro => 'Seu carro';
+
+  @override
+  String carroMatriculaKm(String matricula, String km) {
+    return '$matricula · $km km';
+  }
+
+  @override
+  String get carroAdicionarAjuda =>
+      'Nome, placa, seguro, inspeção — em 1 minuto.';
+
+  @override
+  String get carroCadeadoLinha =>
+      'No plano grátis só cabe 1 carro. Ative o Pro para mais.';
+
+  @override
+  String get carroSemSessao => 'Entre no app para salvar.';
+
+  @override
+  String get carroGuardado => 'Salvo.';
+
+  @override
+  String get carroErroGuardar => 'Não consegui salvar. Tente de novo.';
+
+  @override
+  String get carroGuardadoRecalculado =>
+      'Carro salvo. Já refiz o seu calendário.';
+
+  @override
+  String get carroGuardadoSemCalendario =>
+      'Carro salvo. O calendário se refaz assim que tiver internet.';
+
+  @override
+  String get carroLembretes => 'Lembretes';
+
+  @override
+  String get carroSemLembretes =>
+      'Preencha a placa e as datas do carro para eu te lembrar do IUC, da inspeção e do seguro.';
+
+  @override
+  String carroFaltamKm(int n) {
+    final intl.NumberFormat nNumberFormat = intl.NumberFormat.decimalPattern(
+      localeName,
+    );
+    final String nString = nNumberFormat.format(n);
+
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'faltam $nString km',
+      one: 'falta 1 km',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get carroSemData => 'sem data';
+
+  @override
+  String get carroIucOnde =>
+      'Imposto do carro. Você paga no Portal das Finanças.';
+
+  @override
+  String get carroIucSemEstimativa =>
+      'Sem estimativa: falta a cilindrada do carro.';
+
+  @override
+  String carroIpoAvisos(int a, int b) {
+    return 'Te aviso $a e $b dias antes.';
+  }
+
+  @override
+  String get carroIpoTvde => 'TVDE: inspeção todo ano (ainda a confirmar).';
+
+  @override
+  String carroSeguradoraLinha(String nome) {
+    return 'Seguradora: $nome';
+  }
+
+  @override
+  String get carroSeguroCompara =>
+      'É agora que você compara: peça 2 ou 3 simulações.';
+
+  @override
+  String carroCartaRegra(int a, int b, int c) {
+    return 'A carta vale $a anos até os 60, $b até os 70 e depois $c.';
+  }
+
+  @override
+  String carroRevisaoAosKm(String km) {
+    return 'Revisão aos $km km.';
+  }
+
+  @override
+  String get carroSoInformacao =>
+      'Só informação: esta data não está no calendário porque ainda não foi gerada.';
+
+  @override
+  String carroResumoMes(String mes) {
+    return 'Resumo de $mes';
+  }
+
+  @override
+  String get carroResumoGasto => 'gasto';
+
+  @override
+  String get carroResumoKm => 'km';
+
+  @override
+  String get carroResumoEuroKm => '€/km';
+
+  @override
+  String get carroResumoL100 => 'L/100 km';
+
+  @override
+  String get carroCompensa =>
+      'Para o TVDE: é isso que cada km te custa em combustível — assim você sabe se a corrida compensa.';
+
+  @override
+  String get carroSemCustoKm =>
+      'Registre 2 tanques cheios com os km e eu calculo o custo por km.';
+
+  @override
+  String get carroSemAbastecimentos =>
+      'Você ainda não registrou abastecimentos.';
+
+  @override
+  String get carroNovoAbastecimento => 'Novo abastecimento';
+
+  @override
+  String get carroLitros => 'Litros';
+
+  @override
+  String get carroValorTotal => 'Valor total';
+
+  @override
+  String get carroKmConta => 'Km no hodômetro';
+
+  @override
+  String get carroDepositoCheio => 'Enchi o tanque';
+
+  @override
+  String get carroPosto => 'Posto (opcional)';
+
+  @override
+  String get carroComNif => 'Pedi nota com NIF';
+
+  @override
+  String get carroNif => 'NIF';
+
+  @override
+  String carroLitrosCurto(String litros) {
+    return '$litros L';
+  }
+
+  @override
+  String carroPrecoLitro(String preco) {
+    return '$preco €/⁠L';
+  }
+
+  @override
+  String carroKmCurto(String km) {
+    return '$km km';
+  }
+
+  @override
+  String get carroData => 'Data';
+
+  @override
+  String get carroEscolherData => 'Escolher a data';
+
+  @override
+  String get carroFaltaValor => 'Escreva o valor.';
+
+  @override
+  String get carroFaltaData => 'Escolha a data.';
+
+  @override
+  String get carroAbastecimentoGuardado => 'Abastecimento salvo.';
+
+  @override
+  String carroDespesasAnoNif(int ano) {
+    return 'Com NIF em $ano';
+  }
+
+  @override
+  String get carroDespesasIrs =>
+      'Guardadas para o IRS: cada nota com NIF conta como despesa da atividade.';
+
+  @override
+  String get carroSemDespesas => 'Você ainda não registrou despesas.';
+
+  @override
+  String get carroNovaDespesa => 'Nova despesa';
+
+  @override
+  String get carroTipoDespesa => 'O que foi?';
+
+  @override
+  String get carroTipoIuc => 'IUC';
+
+  @override
+  String get carroTipoIpo => 'Inspeção';
+
+  @override
+  String get carroTipoSeguro => 'Seguro';
+
+  @override
+  String get carroTipoRevisao => 'Revisão';
+
+  @override
+  String get carroTipoPneus => 'Pneus';
+
+  @override
+  String get carroTipoReparacao => 'Conserto';
+
+  @override
+  String get carroTipoPortagem => 'Pedágio';
+
+  @override
+  String get carroTipoMulta => 'Multa';
+
+  @override
+  String get carroTipoEstacionamento => 'Estacionamento';
+
+  @override
+  String get carroTipoLavagem => 'Lavagem';
+
+  @override
+  String get carroTipoOutro => 'Outra';
+
+  @override
+  String get carroValor => 'Valor';
+
+  @override
+  String get carroNota => 'Nota (opcional)';
+
+  @override
+  String get carroNotaDica => 'Ex.: A23, Guarda → Covilhã';
+
+  @override
+  String get carroDataNotificacao => 'Quando você recebeu a notificação?';
+
+  @override
+  String carroPrazoMulta(String data, int n) {
+    return 'Pagar até $data — $n dias úteis. Depois o valor sobe.';
+  }
+
+  @override
+  String get carroMultaNoCalendario =>
+      'Vai também para o calendário, com aviso na véspera.';
+
+  @override
+  String get carroDespesaGuardada => 'Despesa salva.';
+
+  @override
+  String carroMultasNota(int n) {
+    return 'Pedágios e multas se pagam em $n dias úteis a contar da notificação.';
+  }
+
+  @override
+  String get carroSemMultas => 'Nada a pagar.';
+
+  @override
+  String carroPagarAte(String data) {
+    return 'pagar até $data';
+  }
+
+  @override
+  String get carroEmBreve => 'Em breve';
+
+  @override
+  String get carroCentrosInspecao => 'Centros de inspeção perto de você';
+
+  @override
+  String get carroCentrosInspecaoLinha =>
+      'Mapa com os centros mais próximos, a partir dos dados abertos do Estado.';
+
+  @override
+  String get carroCombustivelBarato =>
+      'Combustível mais barato num raio de 10 km';
+
+  @override
+  String get carroCombustivelBaratoLinha =>
+      'Preços de hoje, a partir dos dados abertos do Estado (DGEG).';
+
+  @override
+  String get carroNovoTitulo => 'Adicionar carro';
+
+  @override
+  String get carroNome => 'Nome (ex.: o Clio)';
+
+  @override
+  String get carroMatricula => 'Placa (matrícula)';
+
+  @override
+  String get carroMatriculaDica => 'AA-11-BB';
+
+  @override
+  String get carroMesMatricula => 'Mês da matrícula';
+
+  @override
+  String get carroAnoMatricula => 'Ano';
+
+  @override
+  String get carroMatriculaAjuda =>
+      'Pelo mês eu sei quando é o IUC; pelo ano, quando é a inspeção.';
+
+  @override
+  String get carroCombustivel => 'Combustível';
+
+  @override
+  String get carroCombGasolina => 'Gasolina';
+
+  @override
+  String get carroCombGasoleo => 'Diesel (gasóleo)';
+
+  @override
+  String get carroCombEletrico => 'Elétrico';
+
+  @override
+  String get carroCombHibrido => 'Híbrido';
+
+  @override
+  String get carroCombGpl => 'GPL';
+
+  @override
+  String get carroCombOutro => 'Outro';
+
+  @override
+  String get carroCilindrada => 'Cilindrada (cc, opcional)';
+
+  @override
+  String get carroCo2 => 'CO2 g/km (opcional)';
+
+  @override
+  String get carroCilindradaAjuda =>
+      'Está no DUA. Com esses dois eu estimo o IUC.';
+
+  @override
+  String get carroSeguradora => 'Seguradora';
+
+  @override
+  String get carroSeguroRenova => 'Quando renova o seguro?';
+
+  @override
+  String get carroUltimaIpo => 'Última inspeção (se já fez)';
+
+  @override
+  String get carroUsoTvde => 'Uso em TVDE';
+
+  @override
+  String get carroCartaValidade => 'Validade da carteira de motorista';
+
+  @override
+  String get carroFaltaMatricula => 'Escreva a placa.';
+
+  @override
+  String get carroFaltaMesMatricula => 'Escolha o mês da matrícula.';
+
+  @override
+  String get carroFaltaAnoMatricula =>
+      'Escreva o ano da matrícula (4 dígitos).';
+
+  @override
+  String get maisSubtitulo => 'Todo o resto está aqui.';
+
+  @override
+  String get maisReforma => 'Aposentadoria e direitos';
+
+  @override
+  String get maisGuias => 'Guias de 1 minuto';
+
+  @override
+  String get maisPergunta => 'Pergunte ao Em Dia';
+
+  @override
+  String get maisAjuda => 'Ajuda';
+
+  @override
+  String get maisPlano => 'O seu plano';
+
+  @override
+  String get maisDefinicoes => 'Configurações';
+
+  @override
+  String get defsTitulo => 'Configurações';
+
+  @override
+  String get defsIdioma => 'Como eu falo com você';
+
+  @override
+  String get defsIdiomaAjuda =>
+      'Muda só as palavras do app. As regras e os números são sempre os de Portugal.';
+
+  @override
+  String get defsPt => 'Português de Portugal';
+
+  @override
+  String get defsPtAjuda => 'Tu, reforma, telemóvel';
+
+  @override
+  String get defsBr => 'Português do Brasil';
+
+  @override
+  String get defsBrAjuda => 'Você, aposentadoria, celular';
+
+  @override
+  String get defsGuardado => 'Salvo.';
+
+  @override
+  String get defsConta => 'A sua conta';
+
+  @override
+  String get defsSairAjuda =>
+      'Você sai do app neste celular. Seus dados ficam guardados.';
+
+  @override
+  String get defsApagarConta => 'Apagar a minha conta';
+
+  @override
+  String get defsApagarTitulo => 'Apagar a conta?';
+
+  @override
+  String get defsApagarTexto =>
+      'Vou pedir para apagar a sua conta e os seus dados. Demora até 30 dias. Você deixa de receber avisos já hoje. Não dá para voltar atrás.';
+
+  @override
+  String get defsApagarConfirmar => 'Sim, apagar';
+
+  @override
+  String get defsApagarPedido => 'Pedido recebido. A conta vai ser apagada.';
+
+  @override
+  String defsVersao(String versao) {
+    return 'Versão $versao';
+  }
+
+  @override
+  String get defsSemPerfil => 'Entre no app para mudar as configurações.';
+
+  @override
+  String get reformaSubtitulo =>
+      'O que você contribui hoje vale dinheiro amanhã.';
+
+  @override
+  String reformaDescontasHoje(String valor) {
+    return 'Você contribui $valor por mês';
+  }
+
+  @override
+  String get reformaValeCerca => 'vale cerca de';
+
+  @override
+  String get reformaPorMesDeReforma => 'por mês de aposentadoria';
+
+  @override
+  String reformaAnosDescontos(int anos) {
+    return 'Se contribuir durante $anos anos';
+  }
+
+  @override
+  String reformaAnosCurto(int anos) {
+    return '$anos anos';
+  }
+
+  @override
+  String get reformaEstimativaSimples => 'estimativa simples';
+
+  @override
+  String get reformaEstimativaNota =>
+      'É uma conta simples, só para você ter uma ideia. A Segurança Social faz a conta certa com toda a sua carreira.';
+
+  @override
+  String get reformaSemDados =>
+      'Me diga quanto você ganha por mês (no seu perfil) e eu faço a conta. Por enquanto conto com o mínimo.';
+
+  @override
+  String get reformaIdadeTitulo => 'Quando você pode se aposentar';
+
+  @override
+  String reformaIdadeRegra(int ano, String idade, int anos) {
+    return 'Em $ano: aos $idade. Você precisa de $anos anos de contribuição, no mínimo.';
+  }
+
+  @override
+  String reformaAnosEMeses(int anos, int meses) {
+    return '$anos anos e $meses meses';
+  }
+
+  @override
+  String get reformaBaixaTitulo => 'Auxílio-doença (baixa)';
+
+  @override
+  String reformaBaixaTexto(int dia, int meses) {
+    return 'Se ficar doente, você recebe a partir do $dia.º dia de baixa. Precisa de $meses meses de contribuição.';
+  }
+
+  @override
+  String get reformaParentalidadeTitulo => 'Licença parental';
+
+  @override
+  String get reformaParentalidadeTexto =>
+      'Se tiver um filho, você recebe subsídio nos dias em que para para cuidar dele. Vale para o pai e para a mãe.';
+
+  @override
+  String get reformaCessacaoTitulo => 'Cessação de atividade';
+
+  @override
+  String reformaCessacaoTexto(int dias) {
+    return 'É o \"seguro-desemprego\" dos autônomos: se fechar por falta de trabalho, você recebe um apoio. Precisa de $dias dias de contribuição.';
+  }
+
+  @override
+  String get reformaFilhosTitulo => 'Assistência a filhos';
+
+  @override
+  String get reformaFilhosTexto =>
+      'Se um filho ficar doente e você tiver que ficar com ele, recebe subsídio nesses dias.';
+
+  @override
+  String get reformaPerdesBaixa =>
+      'Sem baixa: se ficar doente, você não recebe nada.';
+
+  @override
+  String get reformaPerdesSubsidio => 'Sem apoio se ficar sem trabalho.';
+
+  @override
+  String get reformaPerdesTempo =>
+      'Os meses sem pagar não contam para a aposentadoria.';
+
+  @override
+  String get reformaPerdesDivida => 'A dívida fica lá e cresce com juros.';
+
+  @override
+  String get reformaAcordoTitulo => 'Acordo Portugal–Brasil';
+
+  @override
+  String get reformaAcordoTexto =>
+      'Se você contribuiu no Brasil (INSS) e em Portugal, o tempo dos dois países se soma para a aposentadoria. Você não perde o que já pagou lá.';
+
+  @override
+  String get reformaAcordoBotao => 'Ver no site da Segurança Social';
+
+  @override
+  String get guiasSubtitulo => 'Um minuto cada. Você pode ouvir em vez de ler.';
+
+  @override
+  String get guiasUmMinuto => '1 minuto';
+
+  @override
+  String get guiasEmBreve =>
+      'Este guia está sendo escrito. Em breve fica aqui, com a fonte oficial.';
+
+  @override
+  String get guiasVazio => 'Ainda não há guias. Volte daqui a pouco.';
+
+  @override
+  String get guiasPorConfirmar => 'por confirmar';
+
+  @override
+  String get guiasSemFonte => 'Fonte oficial: por confirmar';
+
+  @override
+  String get guiasOuvirErro => 'Não consegui ler em voz alta neste celular.';
+
+  @override
+  String get planoSubtitulo => 'Menos que uma multa.';
+
+  @override
+  String get planoEstadoTitulo => 'O que você tem agora';
+
+  @override
+  String get planoTrialDepois =>
+      'Depois você passa para o plano grátis, com limites. Se ativar o Pro, fica tudo como está.';
+
+  @override
+  String planoLimAvisos(int n) {
+    return '$n avisos por mês';
+  }
+
+  @override
+  String planoLimCarros(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n carros',
+      one: '1 carro',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planoLimPerguntas(int n) {
+    return '$n perguntas ao Em Dia por mês';
+  }
+
+  @override
+  String get planoLimResto => 'O resto aparece com cadeado.';
+
+  @override
+  String get planoTensPro => 'Você tem o Pro. Está tudo aberto.';
+
+  @override
+  String planoTensFamilia(int n) {
+    return 'Você tem o Família / Frota. Está tudo aberto, para até $n pessoas ou carros.';
+  }
+
+  @override
+  String get planoEscolhe => 'Escolha como pagar';
+
+  @override
+  String get planoPorMes => 'Por mês';
+
+  @override
+  String get planoPorAno => 'Por ano';
+
+  @override
+  String planoPrecoMes(String valor) {
+    return '$valor/mês';
+  }
+
+  @override
+  String planoPrecoAno(String valor) {
+    return '$valor/ano';
+  }
+
+  @override
+  String planoPoupas(String valor) {
+    return 'você economiza $valor';
+  }
+
+  @override
+  String get planoAbreAvisos => 'Avisos sem limite';
+
+  @override
+  String get planoAbreIa => 'Perguntas ao Em Dia sem limite';
+
+  @override
+  String get planoAbreFoto => 'Ler extratos por foto (Uber, Bolt, Glovo)';
+
+  @override
+  String get planoAbreComprovativos => 'Guardar as fotos dos comprovantes';
+
+  @override
+  String get planoAbreCarros => 'Vários carros';
+
+  @override
+  String get planoAbreExportar => 'Exportar para o contador (PDF/CSV)';
+
+  @override
+  String get planoAbreReforma => 'Aposentadoria e direitos completo';
+
+  @override
+  String planoFamiliaAbre(int n) {
+    return 'Tudo o que o Pro tem, para até $n pessoas ou carros';
+  }
+
+  @override
+  String get planoAtivarPro => 'Ativar o Pro';
+
+  @override
+  String get planoAtivarFamilia => 'Ativar o Família';
+
+  @override
+  String get planoATrabalhar => 'Falando com a Google Play…';
+
+  @override
+  String get planoCompraOk => 'Pronto. Você já tem tudo aberto.';
+
+  @override
+  String get planoCompraErro =>
+      'Não consegui fazer a compra. Não cobrei nada. Tente de novo daqui a pouco.';
+
+  @override
+  String get planoCompraCancelada => 'Você cancelou. Não cobrei nada.';
+
+  @override
+  String get planoLojaIndisponivel =>
+      'A Google Play não está disponível neste celular. Veja se tem a Play Store instalada e com a sessão iniciada.';
+
+  @override
+  String get planoCancelarQuando =>
+      'Você cancela quando quiser, na Google Play.';
+
+  @override
+  String get iaSuporteTitulo => 'Tire sua dúvida';
+
+  @override
+  String get iaVazio =>
+      'Me pergunte sobre recibos, IVA, Segurança Social ou o seu carro. Respondo com as regras de 2026.';
+
+  @override
+  String get iaChip1 => 'Abri atividade em março, quando começo a pagar?';
+
+  @override
+  String get iaChip2 => 'Passei dos 15 mil, e agora?';
+
+  @override
+  String get iaChip3 => 'Posso pagar menos à Segurança Social?';
+
+  @override
+  String get iaChip4 => 'Quando é a inspeção do meu carro?';
+
+  @override
+  String iaContador(int usadas, int n) {
+    return 'Você usou $usadas de $n perguntas este mês';
+  }
+
+  @override
+  String get iaAPensar => 'Pensando…';
+
+  @override
+  String get iaDescansar =>
+      'O assistente está descansando. Tente daqui a um minuto.';
+
+  @override
+  String get iaGuiaNovo => 'Pedi um guia novo sobre isso.';
+
+  @override
+  String get iaLimiteCta => 'Ative o Pro para perguntas sem limite.';
+
+  @override
+  String get iaVerPlano => 'Ver o plano Pro';
+
+  @override
+  String get suporteIntro => 'O que está acontecendo?';
+
+  @override
+  String get suporteDuvidaAjuda =>
+      'O assistente responde na hora, com as regras de 2026.';
+
+  @override
+  String get suporteBugAjuda =>
+      'Me conte o que falhou. Eu junto os dados técnicos.';
+
+  @override
+  String get suporteReembolsoAjuda => 'É feito na Google Play, em 2 minutos.';
+
+  @override
+  String get suporteAssunto => 'Assunto';
+
+  @override
+  String get suporteAssuntoDica => 'Ex.: O app fecha ao abrir o calendário';
+
+  @override
+  String get suporteDescricaoDica =>
+      'O que você fez, o que esperava e o que aconteceu.';
+
+  @override
+  String get suporteLogsNota =>
+      'Junto sozinho a versão do app, o tipo de celular e o seu plano. Nada de senhas.';
+
+  @override
+  String get suporteAssuntoEmFalta => 'Escreva o assunto.';
+
+  @override
+  String get suporteErro => 'Não consegui enviar. Tente de novo.';
+
+  @override
+  String suporteTicket(String id) {
+    return 'Pedido n.º $id';
+  }
+
+  @override
+  String get suporteRespostaTitulo => 'Resposta';
+
+  @override
+  String get suporteEscalado =>
+      'Passei isso para uma pessoa da equipe. Respondemos aqui.';
+
+  @override
+  String get suporteFechar => 'Voltar à ajuda';
+
+  @override
+  String get suporteReembolsoLinha1 =>
+      'A assinatura do Em Dia é cobrada pela Google Play, não por nós.';
+
+  @override
+  String get suporteReembolsoLinha2 =>
+      'Para cancelar ou pedir reembolso, vá nas assinaturas da sua conta Google.';
+
+  @override
+  String get suporteReembolsoLinha3 =>
+      'Você continua com o plano até o fim do período já pago.';
+
+  @override
+  String get suporteAbrirSubscricoes => 'Abrir minhas assinaturas';
+
+  @override
+  String get suporteReembolsoDescricao =>
+      'Pedido aberto a partir do app (botão \"Abrir minhas assinaturas\").';
+
+  @override
+  String suporteRegistado(String id) {
+    return 'Registrei o seu pedido n.º $id. Se a Google recusar, responda aqui com esse número.';
+  }
+
+  @override
+  String get suporteMeusPedidos => 'Meus pedidos';
+
+  @override
+  String get suporteSemPedidos => 'Você ainda não tem pedidos.';
+
+  @override
+  String get suporteEstadoAberto => 'Aberto';
+
+  @override
+  String get suporteEstadoEmCurso => 'Em análise';
+
+  @override
+  String get suporteEstadoFechado => 'Resolvido';
+
+  @override
+  String get suporteTipoDuvida => 'Dúvida';
+
+  @override
+  String get suporteTipoBug => 'Problema';
+
+  @override
+  String get suporteTipoReembolso => 'Reembolso';
+
+  @override
+  String get suporteTipoGuia => 'Guia novo';
+
+  @override
+  String get suporteTipoOutro => 'Outro';
+
+  @override
+  String suporteEmailRodape(String email) {
+    return 'Ou escreva para $email';
+  }
 }

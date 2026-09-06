@@ -676,5 +676,360 @@
   "calNovaValor": "Valor (se souber)",
   "calNovaFaltaDescricao": "Escreva o que é.",
   "calNovaFaltaData": "Escolha a data.",
-  "calNovaGuardada": "Adicionado ao calendário."
+  "calNovaGuardada": "Adicionado ao calendário.",
+  "carroOTeuCarro": "Seu carro",
+  "carroMatriculaKm": "{matricula} · {km} km",
+  "@carroMatriculaKm": {
+    "placeholders": {
+      "matricula": {
+        "type": "String"
+      },
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "carroAdicionarAjuda": "Nome, placa, seguro, inspeção — em 1 minuto.",
+  "carroCadeadoLinha": "No plano grátis só cabe 1 carro. Ative o Pro para mais.",
+  "carroSemSessao": "Entre no app para salvar.",
+  "carroGuardado": "Salvo.",
+  "carroErroGuardar": "Não consegui salvar. Tente de novo.",
+  "carroGuardadoRecalculado": "Carro salvo. Já refiz o seu calendário.",
+  "carroGuardadoSemCalendario": "Carro salvo. O calendário se refaz assim que tiver internet.",
+  "carroLembretes": "Lembretes",
+  "carroSemLembretes": "Preencha a placa e as datas do carro para eu te lembrar do IUC, da inspeção e do seguro.",
+  "carroFaltamKm": "{n, plural, =1{falta 1 km} other{faltam {n} km}}",
+  "@carroFaltamKm": {
+    "placeholders": {
+      "n": {
+        "type": "int",
+        "format": "decimalPattern"
+      }
+    }
+  },
+  "carroSemData": "sem data",
+  "carroIucOnde": "Imposto do carro. Você paga no Portal das Finanças.",
+  "carroIucSemEstimativa": "Sem estimativa: falta a cilindrada do carro.",
+  "carroIpoAvisos": "Te aviso {a} e {b} dias antes.",
+  "@carroIpoAvisos": {
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      }
+    }
+  },
+  "carroIpoTvde": "TVDE: inspeção todo ano (ainda a confirmar).",
+  "carroSeguradoraLinha": "Seguradora: {nome}",
+  "@carroSeguradoraLinha": {
+    "placeholders": {
+      "nome": {
+        "type": "String"
+      }
+    }
+  },
+  "carroSeguroCompara": "É agora que você compara: peça 2 ou 3 simulações.",
+  "carroCartaRegra": "A carta vale {a} anos até os 60, {b} até os 70 e depois {c}.",
+  "@carroCartaRegra": {
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      },
+      "c": {
+        "type": "int"
+      }
+    }
+  },
+  "carroRevisaoAosKm": "Revisão aos {km} km.",
+  "@carroRevisaoAosKm": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "carroSoInformacao": "Só informação: esta data não está no calendário porque ainda não foi gerada.",
+  "carroResumoMes": "Resumo de {mes}",
+  "@carroResumoMes": {
+    "placeholders": {
+      "mes": {
+        "type": "String"
+      }
+    }
+  },
+  "carroResumoGasto": "gasto",
+  "carroResumoKm": "km",
+  "carroResumoEuroKm": "€/km",
+  "carroResumoL100": "L/100 km",
+  "carroCompensa": "Para o TVDE: é isso que cada km te custa em combustível — assim você sabe se a corrida compensa.",
+  "carroSemCustoKm": "Registre 2 tanques cheios com os km e eu calculo o custo por km.",
+  "carroSemAbastecimentos": "Você ainda não registrou abastecimentos.",
+  "carroNovoAbastecimento": "Novo abastecimento",
+  "carroLitros": "Litros",
+  "carroValorTotal": "Valor total",
+  "carroKmConta": "Km no hodômetro",
+  "carroDepositoCheio": "Enchi o tanque",
+  "carroPosto": "Posto (opcional)",
+  "carroComNif": "Pedi nota com NIF",
+  "carroNif": "NIF",
+  "carroLitrosCurto": "{litros} L",
+  "@carroLitrosCurto": {
+    "placeholders": {
+      "litros": {
+        "type": "String"
+      }
+    }
+  },
+  "carroPrecoLitro": "{preco} €/⁠L",
+  "@carroPrecoLitro": {
+    "placeholders": {
+      "preco": {
+        "type": "String"
+      }
+    }
+  },
+  "carroKmCurto": "{km} km",
+  "@carroKmCurto": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "carroData": "Data",
+  "carroEscolherData": "Escolher a data",
+  "carroFaltaValor": "Escreva o valor.",
+  "carroFaltaData": "Escolha a data.",
+  "carroAbastecimentoGuardado": "Abastecimento salvo.",
+  "carroDespesasAnoNif": "Com NIF em {ano}",
+  "@carroDespesasAnoNif": {
+    "placeholders": {
+      "ano": {
+        "type": "int"
+      }
+    }
+  },
+  "carroDespesasIrs": "Guardadas para o IRS: cada nota com NIF conta como despesa da atividade.",
+  "carroSemDespesas": "Você ainda não registrou despesas.",
+  "carroNovaDespesa": "Nova despesa",
+  "carroTipoDespesa": "O que foi?",
+  "carroTipoIuc": "IUC",
+  "carroTipoIpo": "Inspeção",
+  "carroTipoSeguro": "Seguro",
+  "carroTipoRevisao": "Revisão",
+  "carroTipoPneus": "Pneus",
+  "carroTipoReparacao": "Conserto",
+  "carroTipoPortagem": "Pedágio",
+  "carroTipoMulta": "Multa",
+  "carroTipoEstacionamento": "Estacionamento",
+  "carroTipoLavagem": "Lavagem",
+  "carroTipoOutro": "Outra",
+  "carroValor": "Valor",
+  "carroNota": "Nota (opcional)",
+  "carroNotaDica": "Ex.: A23, Guarda → Covilhã",
+  "carroDataNotificacao": "Quando você recebeu a notificação?",
+  "carroPrazoMulta": "Pagar até {data} — {n} dias úteis. Depois o valor sobe.",
+  "@carroPrazoMulta": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "carroMultaNoCalendario": "Vai também para o calendário, com aviso na véspera.",
+  "carroDespesaGuardada": "Despesa salva.",
+  "carroMultasNota": "Pedágios e multas se pagam em {n} dias úteis a contar da notificação.",
+  "@carroMultasNota": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "carroSemMultas": "Nada a pagar.",
+  "carroPagarAte": "pagar até {data}",
+  "@carroPagarAte": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "carroEmBreve": "Em breve",
+  "carroCentrosInspecao": "Centros de inspeção perto de você",
+  "carroCentrosInspecaoLinha": "Mapa com os centros mais próximos, a partir dos dados abertos do Estado.",
+  "carroCombustivelBarato": "Combustível mais barato num raio de 10 km",
+  "carroCombustivelBaratoLinha": "Preços de hoje, a partir dos dados abertos do Estado (DGEG).",
+  "carroNovoTitulo": "Adicionar carro",
+  "carroNome": "Nome (ex.: o Clio)",
+  "carroMatricula": "Placa (matrícula)",
+  "carroMatriculaDica": "AA-11-BB",
+  "carroMesMatricula": "Mês da matrícula",
+  "carroAnoMatricula": "Ano",
+  "carroMatriculaAjuda": "Pelo mês eu sei quando é o IUC; pelo ano, quando é a inspeção.",
+  "carroCombustivel": "Combustível",
+  "carroCombGasolina": "Gasolina",
+  "carroCombGasoleo": "Diesel (gasóleo)",
+  "carroCombEletrico": "Elétrico",
+  "carroCombHibrido": "Híbrido",
+  "carroCombGpl": "GPL",
+  "carroCombOutro": "Outro",
+  "carroCilindrada": "Cilindrada (cc, opcional)",
+  "carroCo2": "CO2 g/km (opcional)",
+  "carroCilindradaAjuda": "Está no DUA. Com esses dois eu estimo o IUC.",
+  "carroSeguradora": "Seguradora",
+  "carroSeguroRenova": "Quando renova o seguro?",
+  "carroUltimaIpo": "Última inspeção (se já fez)",
+  "carroUsoTvde": "Uso em TVDE",
+  "carroCartaValidade": "Validade da carteira de motorista",
+  "carroFaltaMatricula": "Escreva a placa.",
+  "carroFaltaMesMatricula": "Escolha o mês da matrícula.",
+  "carroFaltaAnoMatricula": "Escreva o ano da matrícula (4 dígitos).",
+  "maisSubtitulo": "Todo o resto está aqui.",
+  "maisReforma": "Aposentadoria e direitos",
+  "maisGuias": "Guias de 1 minuto",
+  "maisPergunta": "Pergunte ao Em Dia",
+  "maisAjuda": "Ajuda",
+  "maisPlano": "O seu plano",
+  "maisDefinicoes": "Configurações",
+  "defsTitulo": "Configurações",
+  "defsIdioma": "Como eu falo com você",
+  "defsIdiomaAjuda": "Muda só as palavras do app. As regras e os números são sempre os de Portugal.",
+  "defsPt": "Português de Portugal",
+  "defsPtAjuda": "Tu, reforma, telemóvel",
+  "defsBr": "Português do Brasil",
+  "defsBrAjuda": "Você, aposentadoria, celular",
+  "defsGuardado": "Salvo.",
+  "defsConta": "A sua conta",
+  "defsSairAjuda": "Você sai do app neste celular. Seus dados ficam guardados.",
+  "defsApagarConta": "Apagar a minha conta",
+  "defsApagarTitulo": "Apagar a conta?",
+  "defsApagarTexto": "Vou pedir para apagar a sua conta e os seus dados. Demora até 30 dias. Você deixa de receber avisos já hoje. Não dá para voltar atrás.",
+  "defsApagarConfirmar": "Sim, apagar",
+  "defsApagarPedido": "Pedido recebido. A conta vai ser apagada.",
+  "defsVersao": "Versão {versao}",
+  "defsSemPerfil": "Entre no app para mudar as configurações.",
+  "reformaSubtitulo": "O que você contribui hoje vale dinheiro amanhã.",
+  "reformaDescontasHoje": "Você contribui {valor} por mês",
+  "reformaValeCerca": "vale cerca de",
+  "reformaPorMesDeReforma": "por mês de aposentadoria",
+  "reformaAnosDescontos": "Se contribuir durante {anos} anos",
+  "reformaAnosCurto": "{anos} anos",
+  "reformaEstimativaSimples": "estimativa simples",
+  "reformaEstimativaNota": "É uma conta simples, só para você ter uma ideia. A Segurança Social faz a conta certa com toda a sua carreira.",
+  "reformaSemDados": "Me diga quanto você ganha por mês (no seu perfil) e eu faço a conta. Por enquanto conto com o mínimo.",
+  "reformaIdadeTitulo": "Quando você pode se aposentar",
+  "reformaIdadeRegra": "Em {ano}: aos {idade}. Você precisa de {anos} anos de contribuição, no mínimo.",
+  "reformaAnosEMeses": "{anos} anos e {meses} meses",
+  "reformaBaixaTitulo": "Auxílio-doença (baixa)",
+  "reformaBaixaTexto": "Se ficar doente, você recebe a partir do {dia}.º dia de baixa. Precisa de {meses} meses de contribuição.",
+  "reformaParentalidadeTitulo": "Licença parental",
+  "reformaParentalidadeTexto": "Se tiver um filho, você recebe subsídio nos dias em que para para cuidar dele. Vale para o pai e para a mãe.",
+  "reformaCessacaoTitulo": "Cessação de atividade",
+  "reformaCessacaoTexto": "É o \"seguro-desemprego\" dos autônomos: se fechar por falta de trabalho, você recebe um apoio. Precisa de {dias} dias de contribuição.",
+  "reformaFilhosTitulo": "Assistência a filhos",
+  "reformaFilhosTexto": "Se um filho ficar doente e você tiver que ficar com ele, recebe subsídio nesses dias.",
+  "reformaPerdesBaixa": "Sem baixa: se ficar doente, você não recebe nada.",
+  "reformaPerdesSubsidio": "Sem apoio se ficar sem trabalho.",
+  "reformaPerdesTempo": "Os meses sem pagar não contam para a aposentadoria.",
+  "reformaPerdesDivida": "A dívida fica lá e cresce com juros.",
+  "reformaAcordoTitulo": "Acordo Portugal–Brasil",
+  "reformaAcordoTexto": "Se você contribuiu no Brasil (INSS) e em Portugal, o tempo dos dois países se soma para a aposentadoria. Você não perde o que já pagou lá.",
+  "reformaAcordoBotao": "Ver no site da Segurança Social",
+  "guiasSubtitulo": "Um minuto cada. Você pode ouvir em vez de ler.",
+  "guiasUmMinuto": "1 minuto",
+  "guiasEmBreve": "Este guia está sendo escrito. Em breve fica aqui, com a fonte oficial.",
+  "guiasVazio": "Ainda não há guias. Volte daqui a pouco.",
+  "guiasPorConfirmar": "por confirmar",
+  "guiasSemFonte": "Fonte oficial: por confirmar",
+  "guiasOuvirErro": "Não consegui ler em voz alta neste celular.",
+  "planoSubtitulo": "Menos que uma multa.",
+  "planoEstadoTitulo": "O que você tem agora",
+  "planoTrialDepois": "Depois você passa para o plano grátis, com limites. Se ativar o Pro, fica tudo como está.",
+  "planoLimAvisos": "{n} avisos por mês",
+  "planoLimCarros": "{n, plural, =1{1 carro} other{{n} carros}}",
+  "@planoLimCarros": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "planoLimPerguntas": "{n} perguntas ao Em Dia por mês",
+  "planoLimResto": "O resto aparece com cadeado.",
+  "planoTensPro": "Você tem o Pro. Está tudo aberto.",
+  "planoTensFamilia": "Você tem o Família / Frota. Está tudo aberto, para até {n} pessoas ou carros.",
+  "planoEscolhe": "Escolha como pagar",
+  "planoPorMes": "Por mês",
+  "planoPorAno": "Por ano",
+  "planoPrecoMes": "{valor}/mês",
+  "planoPrecoAno": "{valor}/ano",
+  "planoPoupas": "você economiza {valor}",
+  "planoAbreAvisos": "Avisos sem limite",
+  "planoAbreIa": "Perguntas ao Em Dia sem limite",
+  "planoAbreFoto": "Ler extratos por foto (Uber, Bolt, Glovo)",
+  "planoAbreComprovativos": "Guardar as fotos dos comprovantes",
+  "planoAbreCarros": "Vários carros",
+  "planoAbreExportar": "Exportar para o contador (PDF/CSV)",
+  "planoAbreReforma": "Aposentadoria e direitos completo",
+  "planoFamiliaAbre": "Tudo o que o Pro tem, para até {n} pessoas ou carros",
+  "planoAtivarPro": "Ativar o Pro",
+  "planoAtivarFamilia": "Ativar o Família",
+  "planoATrabalhar": "Falando com a Google Play…",
+  "planoCompraOk": "Pronto. Você já tem tudo aberto.",
+  "planoCompraErro": "Não consegui fazer a compra. Não cobrei nada. Tente de novo daqui a pouco.",
+  "planoCompraCancelada": "Você cancelou. Não cobrei nada.",
+  "planoLojaIndisponivel": "A Google Play não está disponível neste celular. Veja se tem a Play Store instalada e com a sessão iniciada.",
+  "planoCancelarQuando": "Você cancela quando quiser, na Google Play.",
+  "iaSuporteTitulo": "Tire sua dúvida",
+  "iaVazio": "Me pergunte sobre recibos, IVA, Segurança Social ou o seu carro. Respondo com as regras de 2026.",
+  "iaChip1": "Abri atividade em março, quando começo a pagar?",
+  "iaChip2": "Passei dos 15 mil, e agora?",
+  "iaChip3": "Posso pagar menos à Segurança Social?",
+  "iaChip4": "Quando é a inspeção do meu carro?",
+  "iaContador": "Você usou {usadas} de {n} perguntas este mês",
+  "iaAPensar": "Pensando…",
+  "iaDescansar": "O assistente está descansando. Tente daqui a um minuto.",
+  "iaGuiaNovo": "Pedi um guia novo sobre isso.",
+  "iaLimiteCta": "Ative o Pro para perguntas sem limite.",
+  "iaVerPlano": "Ver o plano Pro",
+  "suporteIntro": "O que está acontecendo?",
+  "suporteDuvidaAjuda": "O assistente responde na hora, com as regras de 2026.",
+  "suporteBugAjuda": "Me conte o que falhou. Eu junto os dados técnicos.",
+  "suporteReembolsoAjuda": "É feito na Google Play, em 2 minutos.",
+  "suporteAssunto": "Assunto",
+  "suporteAssuntoDica": "Ex.: O app fecha ao abrir o calendário",
+  "suporteDescricaoDica": "O que você fez, o que esperava e o que aconteceu.",
+  "suporteLogsNota": "Junto sozinho a versão do app, o tipo de celular e o seu plano. Nada de senhas.",
+  "suporteAssuntoEmFalta": "Escreva o assunto.",
+  "suporteErro": "Não consegui enviar. Tente de novo.",
+  "suporteTicket": "Pedido n.º {id}",
+  "suporteRespostaTitulo": "Resposta",
+  "suporteEscalado": "Passei isso para uma pessoa da equipe. Respondemos aqui.",
+  "suporteFechar": "Voltar à ajuda",
+  "suporteReembolsoLinha1": "A assinatura do Em Dia é cobrada pela Google Play, não por nós.",
+  "suporteReembolsoLinha2": "Para cancelar ou pedir reembolso, vá nas assinaturas da sua conta Google.",
+  "suporteReembolsoLinha3": "Você continua com o plano até o fim do período já pago.",
+  "suporteAbrirSubscricoes": "Abrir minhas assinaturas",
+  "suporteReembolsoDescricao": "Pedido aberto a partir do app (botão \"Abrir minhas assinaturas\").",
+  "suporteRegistado": "Registrei o seu pedido n.º {id}. Se a Google recusar, responda aqui com esse número.",
+  "suporteMeusPedidos": "Meus pedidos",
+  "suporteSemPedidos": "Você ainda não tem pedidos.",
+  "suporteEstadoAberto": "Aberto",
+  "suporteEstadoEmCurso": "Em análise",
+  "suporteEstadoFechado": "Resolvido",
+  "suporteTipoDuvida": "Dúvida",
+  "suporteTipoBug": "Problema",
+  "suporteTipoReembolso": "Reembolso",
+  "suporteTipoGuia": "Guia novo",
+  "suporteTipoOutro": "Outro",
+  "suporteEmailRodape": "Ou escreva para {email}"
 }

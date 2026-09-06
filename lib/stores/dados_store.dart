@@ -229,6 +229,26 @@ class CarrosStore extends ChangeNotifier {
   List<Abastecimento> abastecimentosDe(String carroId) => _abastecimentos[carroId] ?? const [];
   List<DespesaCarro> despesasDe(String carroId) => _despesas[carroId] ?? const [];
 
+  CarrosStore();
+
+  /// Para testes e fotos (golden): carros, abastecimentos e despesas já
+  /// carregados, sem servidor. Ordena como [carregar] faria (abastecimentos
+  /// por data crescente, despesas por data decrescente).
+  CarrosStore.paraTeste(
+    List<Carro> carros, [
+    List<Abastecimento> abastecimentos = const [],
+    List<DespesaCarro> despesas = const [],
+  ]) : _carros = List.of(carros) {
+    final ab = List.of(abastecimentos)..sort((a, b) => a.data.compareTo(b.data));
+    for (final a in ab) {
+      _abastecimentos.putIfAbsent(a.carroId, () => []).add(a);
+    }
+    final de = List.of(despesas)..sort((a, b) => b.data.compareTo(a.data));
+    for (final d in de) {
+      _despesas.putIfAbsent(d.carroId, () => []).add(d);
+    }
+  }
+
   Future<void> carregar(String userId) async {
     try {
       final rows = await sb.from('carros').select().eq('user_id', userId).eq('ativo', true).order('criado_em');

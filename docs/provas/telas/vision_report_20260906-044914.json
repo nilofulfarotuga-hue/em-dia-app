@@ -1,0 +1,69 @@
+{
+  "data": "20260906-044914",
+  "modelo": "gemini-flash-latest",
+  "fotos": 6,
+  "contagem": {
+    "verde": 0,
+    "amarelo": 6,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "O IRS está escrito sem explicar o que é.",
+      "jargao": [
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_despesas_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto IRS aparece sem explicar o que significa para quem percebe pouco.",
+      "jargao": [
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_despesas_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo IRS aparece sem explicação no texto do cartão.",
+      "jargao": [
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_despesas_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã tem termos técnicos de impostos sem explicação simples.",
+      "jargao": [
+        "IRS",
+        "NIF",
+        "DGEG"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_despesas_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis como NIF sem explicação para quem não sabe.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_despesas_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis como NIF sem explicação.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_despesas_pequeno_pt.png"
+    }
+  ]
+}

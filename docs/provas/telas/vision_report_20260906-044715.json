@@ -1,0 +1,126 @@
+{
+  "data": "20260906-044715",
+  "modelo": "gemini-flash-latest",
+  "fotos": 12,
+  "contagem": {
+    "verde": 3,
+    "amarelo": 9,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e limpo, podes ver as tuas despesas do carro sem confusão.",
+      "jargao": [
+        "IRS",
+        "NIF"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã tem termos técnicos sem explicação clara para utilizadores menos digitais.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto do aviso verde está cortado em baixo e a sobrepor-se.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está arrumado e tudo se lê bem.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Esta página mostra as tuas despesas do carro muito arrumadas e fáceis de ver.",
+      "jargao": [
+        "NIF",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo NIF aparece sem explicação para o público.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã tem mais do que um elemento laranja a avisar do tempo que falta.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_cadeado_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais do que um aviso a laranja nos lembretes.",
+      "jargao": [
+        "simulações",
+        "aproximado"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_cadeado_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto sobre o plano grátis tem uma cor roxa que destoa do visual da aplicação.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_cadeado_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais do que um aviso laranja na mesma página.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_cadeado_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto explicativo do IUC e da inspeção tem jargão que pode baralhar quem não percebe.",
+      "jargao": [
+        "IUC",
+        "TVDE",
+        "Portal das Finanças"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_cadeado_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais do que um aviso laranja na mesma página e falta explicar o que significa TVDE.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_cadeado_pequeno_pt.png"
+    }
+  ]
+}

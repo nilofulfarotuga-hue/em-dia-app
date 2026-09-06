@@ -1,0 +1,33 @@
+{
+  "data": "20260906-045037",
+  "modelo": "gemini-flash-latest",
+  "fotos": 2,
+  "contagem": {
+    "verde": 0,
+    "amarelo": 2,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã tem demasiadas coisas laranjas ao mesmo tempo.",
+      "jargao": [
+        "IUC",
+        "TVDE"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais do que um lembrete laranja na mesma página.",
+      "jargao": [
+        "IUC",
+        "TVDE"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_grande_pt.png"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "data": "20260906-045030",
+  "modelo": "gemini-flash-latest",
+  "fotos": 2,
+  "contagem": {
+    "verde": 0,
+    "amarelo": 2,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "Tem mais do que um aviso a laranja ao mesmo tempo.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto do lembrete de seguro está cortado na margem direita.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_medio_pt.png"
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:em_dia/models/carro.dart';
 import 'package:em_dia/models/obrigacao.dart';
 import 'package:em_dia/models/perfil.dart';
 import 'package:em_dia/models/rendimento.dart';
@@ -30,7 +31,9 @@ class PerfilStoreFalso extends PerfilStore {
 /// e nos pagos, nada de flags de servidor.
 class PlanoStoreFalso extends PlanoStore {
   final String _plano;
-  PlanoStoreFalso(this._plano);
+  /// Limites numéricos por chave (ex.: `{'carros': 1}`); vazio = sem limite.
+  final Map<String, int> limites;
+  PlanoStoreFalso(this._plano, {this.limites = const {}});
   @override
   String get planoEfetivo => _plano;
   @override
@@ -42,7 +45,7 @@ class PlanoStoreFalso extends PlanoStore {
   @override
   bool permitida(String chave) => _plano != 'free';
   @override
-  int? limite(String chave) => null;
+  int? limite(String chave) => limites[chave];
   @override
   Future<void> carregar(String? userId) async {}
 }
@@ -119,18 +122,22 @@ Widget embrulhaStores({
   List<Rendimento> rendimentos = const [],
   bool obrigacoesACarregar = false,
   String? obrigacoesErro,
+  List<Carro> carros = const [],
+  List<Abastecimento> abastecimentos = const [],
+  List<DespesaCarro> despesas = const [],
+  Map<String, int> limites = const {},
 }) =>
     MultiProvider(
       providers: [
         ChangeNotifierProvider<SessaoStore>(create: (_) => SessaoStoreFalso()),
         ChangeNotifierProvider<RegrasStore>(create: (_) => RegrasStore()),
-        ChangeNotifierProvider<PlanoStore>(create: (_) => PlanoStoreFalso(plano)),
+        ChangeNotifierProvider<PlanoStore>(create: (_) => PlanoStoreFalso(plano, limites: limites)),
         ChangeNotifierProvider<PerfilStore>(create: (_) => PerfilStoreFalso(perfil)),
         ChangeNotifierProvider<ObrigacoesStore>(
           create: (_) => ObrigacoesStore.paraTeste(obrigacoes, aCarregar: obrigacoesACarregar, erro: obrigacoesErro),
         ),
         ChangeNotifierProvider<RendimentosStore>(create: (_) => RendimentosStore.paraTeste(rendimentos)),
-        ChangeNotifierProvider<CarrosStore>(create: (_) => CarrosStore()),
+        ChangeNotifierProvider<CarrosStore>(create: (_) => CarrosStore.paraTeste(carros, abastecimentos, despesas)),
       ],
       child: tela,
     );

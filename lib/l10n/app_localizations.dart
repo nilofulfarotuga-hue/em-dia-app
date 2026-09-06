@@ -2549,6 +2549,1410 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Adicionado ao calendário.'**
   String get calNovaGuardada;
+
+  /// No description provided for @carroOTeuCarro.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu carro'**
+  String get carroOTeuCarro;
+
+  /// No description provided for @carroMatriculaKm.
+  ///
+  /// In pt, this message translates to:
+  /// **'{matricula} · {km} km'**
+  String carroMatriculaKm(String matricula, String km);
+
+  /// No description provided for @carroAdicionarAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nome, matrícula, seguro, inspeção — em 1 minuto.'**
+  String get carroAdicionarAjuda;
+
+  /// No description provided for @carroCadeadoLinha.
+  ///
+  /// In pt, this message translates to:
+  /// **'No plano grátis só cabe 1 carro. Ativa o Pro para mais.'**
+  String get carroCadeadoLinha;
+
+  /// No description provided for @carroSemSessao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra na app para guardar.'**
+  String get carroSemSessao;
+
+  /// No description provided for @carroGuardado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardado.'**
+  String get carroGuardado;
+
+  /// No description provided for @carroErroGuardar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui guardar. Tenta outra vez.'**
+  String get carroErroGuardar;
+
+  /// No description provided for @carroGuardadoRecalculado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carro guardado. Já refiz o teu calendário.'**
+  String get carroGuardadoRecalculado;
+
+  /// No description provided for @carroGuardadoSemCalendario.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carro guardado. O calendário refaz-se assim que houver rede.'**
+  String get carroGuardadoSemCalendario;
+
+  /// No description provided for @carroLembretes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Lembretes'**
+  String get carroLembretes;
+
+  /// No description provided for @carroSemLembretes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Preenche a matrícula e as datas do carro para eu te lembrar do IUC, da inspeção e do seguro.'**
+  String get carroSemLembretes;
+
+  /// No description provided for @carroFaltamKm.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =1{falta 1 km} other{faltam {n} km}}'**
+  String carroFaltamKm(int n);
+
+  /// No description provided for @carroSemData.
+  ///
+  /// In pt, this message translates to:
+  /// **'sem data'**
+  String get carroSemData;
+
+  /// No description provided for @carroIucOnde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Imposto do carro. Pagas no Portal das Finanças.'**
+  String get carroIucOnde;
+
+  /// No description provided for @carroIucSemEstimativa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sem estimativa: falta a cilindrada do carro.'**
+  String get carroIucSemEstimativa;
+
+  /// No description provided for @carroIpoAvisos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aviso-te {a} e {b} dias antes.'**
+  String carroIpoAvisos(int a, int b);
+
+  /// No description provided for @carroIpoTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'TVDE: inspeção todos os anos (ainda por confirmar).'**
+  String get carroIpoTvde;
+
+  /// No description provided for @carroSeguradoraLinha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Seguradora: {nome}'**
+  String carroSeguradoraLinha(String nome);
+
+  /// No description provided for @carroSeguroCompara.
+  ///
+  /// In pt, this message translates to:
+  /// **'É agora que comparas: pede 2 ou 3 simulações.'**
+  String get carroSeguroCompara;
+
+  /// No description provided for @carroCartaRegra.
+  ///
+  /// In pt, this message translates to:
+  /// **'A carta vale {a} anos até aos 60, {b} até aos 70 e depois {c}.'**
+  String carroCartaRegra(int a, int b, int c);
+
+  /// No description provided for @carroRevisaoAosKm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Revisão aos {km} km.'**
+  String carroRevisaoAosKm(String km);
+
+  /// No description provided for @carroSoInformacao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Só informação: esta data não está no calendário porque ainda não foi gerada.'**
+  String get carroSoInformacao;
+
+  /// No description provided for @carroResumoMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Resumo de {mes}'**
+  String carroResumoMes(String mes);
+
+  /// No description provided for @carroResumoGasto.
+  ///
+  /// In pt, this message translates to:
+  /// **'gasto'**
+  String get carroResumoGasto;
+
+  /// No description provided for @carroResumoKm.
+  ///
+  /// In pt, this message translates to:
+  /// **'km'**
+  String get carroResumoKm;
+
+  /// No description provided for @carroResumoEuroKm.
+  ///
+  /// In pt, this message translates to:
+  /// **'€/km'**
+  String get carroResumoEuroKm;
+
+  /// No description provided for @carroResumoL100.
+  ///
+  /// In pt, this message translates to:
+  /// **'L/100 km'**
+  String get carroResumoL100;
+
+  /// No description provided for @carroCompensa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Para o TVDE: é isto que cada km te custa em combustível — assim sabes se a corrida compensa.'**
+  String get carroCompensa;
+
+  /// No description provided for @carroSemCustoKm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regista 2 depósitos cheios com os km e eu calculo o custo por km.'**
+  String get carroSemCustoKm;
+
+  /// No description provided for @carroSemAbastecimentos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não registaste abastecimentos.'**
+  String get carroSemAbastecimentos;
+
+  /// No description provided for @carroNovoAbastecimento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Novo abastecimento'**
+  String get carroNovoAbastecimento;
+
+  /// No description provided for @carroLitros.
+  ///
+  /// In pt, this message translates to:
+  /// **'Litros'**
+  String get carroLitros;
+
+  /// No description provided for @carroValorTotal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor total'**
+  String get carroValorTotal;
+
+  /// No description provided for @carroKmConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Km no conta-quilómetros'**
+  String get carroKmConta;
+
+  /// No description provided for @carroDepositoCheio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Enchi o depósito'**
+  String get carroDepositoCheio;
+
+  /// No description provided for @carroPosto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Posto (opcional)'**
+  String get carroPosto;
+
+  /// No description provided for @carroComNif.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pedi fatura com NIF'**
+  String get carroComNif;
+
+  /// No description provided for @carroNif.
+  ///
+  /// In pt, this message translates to:
+  /// **'NIF'**
+  String get carroNif;
+
+  /// No description provided for @carroLitrosCurto.
+  ///
+  /// In pt, this message translates to:
+  /// **'{litros} L'**
+  String carroLitrosCurto(String litros);
+
+  /// No description provided for @carroPrecoLitro.
+  ///
+  /// In pt, this message translates to:
+  /// **'{preco} €/⁠L'**
+  String carroPrecoLitro(String preco);
+
+  /// No description provided for @carroKmCurto.
+  ///
+  /// In pt, this message translates to:
+  /// **'{km} km'**
+  String carroKmCurto(String km);
+
+  /// No description provided for @carroData.
+  ///
+  /// In pt, this message translates to:
+  /// **'Data'**
+  String get carroData;
+
+  /// No description provided for @carroEscolherData.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolher a data'**
+  String get carroEscolherData;
+
+  /// No description provided for @carroFaltaValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o valor.'**
+  String get carroFaltaValor;
+
+  /// No description provided for @carroFaltaData.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolhe a data.'**
+  String get carroFaltaData;
+
+  /// No description provided for @carroAbastecimentoGuardado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abastecimento guardado.'**
+  String get carroAbastecimentoGuardado;
+
+  /// No description provided for @carroDespesasAnoNif.
+  ///
+  /// In pt, this message translates to:
+  /// **'Com NIF em {ano}'**
+  String carroDespesasAnoNif(int ano);
+
+  /// No description provided for @carroDespesasIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardadas para o IRS: cada fatura com NIF conta como despesa da atividade.'**
+  String get carroDespesasIrs;
+
+  /// No description provided for @carroSemDespesas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não registaste despesas.'**
+  String get carroSemDespesas;
+
+  /// No description provided for @carroNovaDespesa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nova despesa'**
+  String get carroNovaDespesa;
+
+  /// No description provided for @carroTipoDespesa.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que foi?'**
+  String get carroTipoDespesa;
+
+  /// No description provided for @carroTipoIuc.
+  ///
+  /// In pt, this message translates to:
+  /// **'IUC'**
+  String get carroTipoIuc;
+
+  /// No description provided for @carroTipoIpo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Inspeção'**
+  String get carroTipoIpo;
+
+  /// No description provided for @carroTipoSeguro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Seguro'**
+  String get carroTipoSeguro;
+
+  /// No description provided for @carroTipoRevisao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Revisão'**
+  String get carroTipoRevisao;
+
+  /// No description provided for @carroTipoPneus.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pneus'**
+  String get carroTipoPneus;
+
+  /// No description provided for @carroTipoReparacao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Reparação'**
+  String get carroTipoReparacao;
+
+  /// No description provided for @carroTipoPortagem.
+  ///
+  /// In pt, this message translates to:
+  /// **'Portagem'**
+  String get carroTipoPortagem;
+
+  /// No description provided for @carroTipoMulta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Multa'**
+  String get carroTipoMulta;
+
+  /// No description provided for @carroTipoEstacionamento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estacionamento'**
+  String get carroTipoEstacionamento;
+
+  /// No description provided for @carroTipoLavagem.
+  ///
+  /// In pt, this message translates to:
+  /// **'Lavagem'**
+  String get carroTipoLavagem;
+
+  /// No description provided for @carroTipoOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outra'**
+  String get carroTipoOutro;
+
+  /// No description provided for @carroValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor'**
+  String get carroValor;
+
+  /// No description provided for @carroNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nota (opcional)'**
+  String get carroNota;
+
+  /// No description provided for @carroNotaDica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ex.: A23, Guarda → Covilhã'**
+  String get carroNotaDica;
+
+  /// No description provided for @carroDataNotificacao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando recebeste a notificação?'**
+  String get carroDataNotificacao;
+
+  /// No description provided for @carroPrazoMulta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagar até {data} — {n} dias úteis. Depois sobe o valor.'**
+  String carroPrazoMulta(String data, int n);
+
+  /// No description provided for @carroMultaNoCalendario.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vai também para o calendário, com aviso na véspera.'**
+  String get carroMultaNoCalendario;
+
+  /// No description provided for @carroDespesaGuardada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Despesa guardada.'**
+  String get carroDespesaGuardada;
+
+  /// No description provided for @carroMultasNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Portagens e multas pagam-se em {n} dias úteis a contar da notificação.'**
+  String carroMultasNota(int n);
+
+  /// No description provided for @carroSemMultas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nada por pagar.'**
+  String get carroSemMultas;
+
+  /// No description provided for @carroPagarAte.
+  ///
+  /// In pt, this message translates to:
+  /// **'pagar até {data}'**
+  String carroPagarAte(String data);
+
+  /// No description provided for @carroEmBreve.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em breve'**
+  String get carroEmBreve;
+
+  /// No description provided for @carroCentrosInspecao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Centros de inspeção perto de ti'**
+  String get carroCentrosInspecao;
+
+  /// No description provided for @carroCentrosInspecaoLinha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mapa com os centros mais próximos, a partir dos dados abertos do Estado.'**
+  String get carroCentrosInspecaoLinha;
+
+  /// No description provided for @carroCombustivelBarato.
+  ///
+  /// In pt, this message translates to:
+  /// **'Combustível mais barato num raio de 10 km'**
+  String get carroCombustivelBarato;
+
+  /// No description provided for @carroCombustivelBaratoLinha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Preços de hoje, a partir dos dados abertos do Estado (DGEG).'**
+  String get carroCombustivelBaratoLinha;
+
+  /// No description provided for @carroNovoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Adicionar carro'**
+  String get carroNovoTitulo;
+
+  /// No description provided for @carroNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nome (ex.: o Clio)'**
+  String get carroNome;
+
+  /// No description provided for @carroMatricula.
+  ///
+  /// In pt, this message translates to:
+  /// **'Matrícula'**
+  String get carroMatricula;
+
+  /// No description provided for @carroMatriculaDica.
+  ///
+  /// In pt, this message translates to:
+  /// **'AA-11-BB'**
+  String get carroMatriculaDica;
+
+  /// No description provided for @carroMesMatricula.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mês da matrícula'**
+  String get carroMesMatricula;
+
+  /// No description provided for @carroAnoMatricula.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ano'**
+  String get carroAnoMatricula;
+
+  /// No description provided for @carroMatriculaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pelo mês sei quando é o IUC; pelo ano, quando é a inspeção.'**
+  String get carroMatriculaAjuda;
+
+  /// No description provided for @carroCombustivel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Combustível'**
+  String get carroCombustivel;
+
+  /// No description provided for @carroCombGasolina.
+  ///
+  /// In pt, this message translates to:
+  /// **'Gasolina'**
+  String get carroCombGasolina;
+
+  /// No description provided for @carroCombGasoleo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Gasóleo'**
+  String get carroCombGasoleo;
+
+  /// No description provided for @carroCombEletrico.
+  ///
+  /// In pt, this message translates to:
+  /// **'Elétrico'**
+  String get carroCombEletrico;
+
+  /// No description provided for @carroCombHibrido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Híbrido'**
+  String get carroCombHibrido;
+
+  /// No description provided for @carroCombGpl.
+  ///
+  /// In pt, this message translates to:
+  /// **'GPL'**
+  String get carroCombGpl;
+
+  /// No description provided for @carroCombOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outro'**
+  String get carroCombOutro;
+
+  /// No description provided for @carroCilindrada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cilindrada (cc, opcional)'**
+  String get carroCilindrada;
+
+  /// No description provided for @carroCo2.
+  ///
+  /// In pt, this message translates to:
+  /// **'CO2 g/km (opcional)'**
+  String get carroCo2;
+
+  /// No description provided for @carroCilindradaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Está no DUA. Com estes dois estimo o IUC.'**
+  String get carroCilindradaAjuda;
+
+  /// No description provided for @carroSeguradora.
+  ///
+  /// In pt, this message translates to:
+  /// **'Seguradora'**
+  String get carroSeguradora;
+
+  /// No description provided for @carroSeguroRenova.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando renova o seguro?'**
+  String get carroSeguroRenova;
+
+  /// No description provided for @carroUltimaIpo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Última inspeção (se já fez)'**
+  String get carroUltimaIpo;
+
+  /// No description provided for @carroUsoTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Uso em TVDE'**
+  String get carroUsoTvde;
+
+  /// No description provided for @carroCartaValidade.
+  ///
+  /// In pt, this message translates to:
+  /// **'Validade da carta de condução'**
+  String get carroCartaValidade;
+
+  /// No description provided for @carroFaltaMatricula.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve a matrícula.'**
+  String get carroFaltaMatricula;
+
+  /// No description provided for @carroFaltaMesMatricula.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolhe o mês da matrícula.'**
+  String get carroFaltaMesMatricula;
+
+  /// No description provided for @carroFaltaAnoMatricula.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o ano da matrícula (4 dígitos).'**
+  String get carroFaltaAnoMatricula;
+
+  /// No description provided for @maisSubtitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tudo o resto está aqui.'**
+  String get maisSubtitulo;
+
+  /// No description provided for @maisReforma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Reforma e direitos'**
+  String get maisReforma;
+
+  /// No description provided for @maisGuias.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guias de 1 minuto'**
+  String get maisGuias;
+
+  /// No description provided for @maisPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pergunta ao Em Dia'**
+  String get maisPergunta;
+
+  /// No description provided for @maisAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ajuda'**
+  String get maisAjuda;
+
+  /// No description provided for @maisPlano.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu plano'**
+  String get maisPlano;
+
+  /// No description provided for @maisDefinicoes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Definições'**
+  String get maisDefinicoes;
+
+  /// No description provided for @defsTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Definições'**
+  String get defsTitulo;
+
+  /// No description provided for @defsIdioma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Como falo contigo'**
+  String get defsIdioma;
+
+  /// No description provided for @defsIdiomaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Muda só as palavras da app. As regras e os números são sempre os de Portugal.'**
+  String get defsIdiomaAjuda;
+
+  /// No description provided for @defsPt.
+  ///
+  /// In pt, this message translates to:
+  /// **'Português de Portugal'**
+  String get defsPt;
+
+  /// No description provided for @defsPtAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tu, reforma, telemóvel'**
+  String get defsPtAjuda;
+
+  /// No description provided for @defsBr.
+  ///
+  /// In pt, this message translates to:
+  /// **'Português do Brasil'**
+  String get defsBr;
+
+  /// No description provided for @defsBrAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Você, aposentadoria, celular'**
+  String get defsBrAjuda;
+
+  /// No description provided for @defsGuardado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardado.'**
+  String get defsGuardado;
+
+  /// No description provided for @defsConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'A tua conta'**
+  String get defsConta;
+
+  /// No description provided for @defsSairAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sais da app neste telemóvel. Os teus dados ficam guardados.'**
+  String get defsSairAjuda;
+
+  /// No description provided for @defsApagarConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar a minha conta'**
+  String get defsApagarConta;
+
+  /// No description provided for @defsApagarTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar a conta?'**
+  String get defsApagarTitulo;
+
+  /// No description provided for @defsApagarTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vou pedir para apagar a tua conta e os teus dados. Demora até 30 dias. Deixas de receber avisos já hoje. Não dá para voltar atrás.'**
+  String get defsApagarTexto;
+
+  /// No description provided for @defsApagarConfirmar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sim, apagar'**
+  String get defsApagarConfirmar;
+
+  /// No description provided for @defsApagarPedido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pedido recebido. A conta vai ser apagada.'**
+  String get defsApagarPedido;
+
+  /// No description provided for @defsVersao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Versão {versao}'**
+  String defsVersao(String versao);
+
+  /// No description provided for @defsSemPerfil.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra na app para mudar as definições.'**
+  String get defsSemPerfil;
+
+  /// No description provided for @reformaSubtitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que descontas hoje vale dinheiro amanhã.'**
+  String get reformaSubtitulo;
+
+  /// No description provided for @reformaDescontasHoje.
+  ///
+  /// In pt, this message translates to:
+  /// **'Descontas {valor} por mês'**
+  String reformaDescontasHoje(String valor);
+
+  /// No description provided for @reformaValeCerca.
+  ///
+  /// In pt, this message translates to:
+  /// **'vale cerca de'**
+  String get reformaValeCerca;
+
+  /// No description provided for @reformaPorMesDeReforma.
+  ///
+  /// In pt, this message translates to:
+  /// **'por mês de reforma'**
+  String get reformaPorMesDeReforma;
+
+  /// No description provided for @reformaAnosDescontos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se descontares durante {anos} anos'**
+  String reformaAnosDescontos(int anos);
+
+  /// No description provided for @reformaAnosCurto.
+  ///
+  /// In pt, this message translates to:
+  /// **'{anos} anos'**
+  String reformaAnosCurto(int anos);
+
+  /// No description provided for @reformaEstimativaSimples.
+  ///
+  /// In pt, this message translates to:
+  /// **'estimativa simples'**
+  String get reformaEstimativaSimples;
+
+  /// No description provided for @reformaEstimativaNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'É uma conta simples, só para teres uma ideia. A Segurança Social faz a conta certa com toda a tua carreira.'**
+  String get reformaEstimativaNota;
+
+  /// No description provided for @reformaSemDados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Diz-me quanto ganhas por mês (no teu perfil) e eu faço a conta. Por agora conto com o mínimo.'**
+  String get reformaSemDados;
+
+  /// No description provided for @reformaIdadeTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando te podes reformar'**
+  String get reformaIdadeTitulo;
+
+  /// No description provided for @reformaIdadeRegra.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em {ano}: aos {idade}. Precisas de {anos} anos de descontos, no mínimo.'**
+  String reformaIdadeRegra(int ano, String idade, int anos);
+
+  /// No description provided for @reformaAnosEMeses.
+  ///
+  /// In pt, this message translates to:
+  /// **'{anos} anos e {meses} meses'**
+  String reformaAnosEMeses(int anos, int meses);
+
+  /// No description provided for @reformaBaixaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Baixa por doença'**
+  String get reformaBaixaTitulo;
+
+  /// No description provided for @reformaBaixaTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se adoeceres, recebes a partir do {dia}.º dia de baixa. Precisas de {meses} meses de descontos.'**
+  String reformaBaixaTexto(int dia, int meses);
+
+  /// No description provided for @reformaParentalidadeTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Parentalidade'**
+  String get reformaParentalidadeTitulo;
+
+  /// No description provided for @reformaParentalidadeTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se tiveres um filho, recebes subsídio nos dias em que paras para cuidar dele. Vale para o pai e para a mãe.'**
+  String get reformaParentalidadeTexto;
+
+  /// No description provided for @reformaCessacaoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cessação de atividade'**
+  String get reformaCessacaoTitulo;
+
+  /// No description provided for @reformaCessacaoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'É o \"desemprego\" dos independentes: se fechares por falta de trabalho, recebes um apoio. Precisas de {dias} dias de descontos.'**
+  String reformaCessacaoTexto(int dias);
+
+  /// No description provided for @reformaFilhosTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Assistência a filhos'**
+  String get reformaFilhosTitulo;
+
+  /// No description provided for @reformaFilhosTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se um filho adoecer e tiveres de ficar com ele, recebes subsídio nesses dias.'**
+  String get reformaFilhosTexto;
+
+  /// No description provided for @reformaPerdesBaixa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sem baixa: se adoeceres, não recebes nada.'**
+  String get reformaPerdesBaixa;
+
+  /// No description provided for @reformaPerdesSubsidio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sem apoio se ficares sem trabalho.'**
+  String get reformaPerdesSubsidio;
+
+  /// No description provided for @reformaPerdesTempo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Os meses sem pagar não contam para a reforma.'**
+  String get reformaPerdesTempo;
+
+  /// No description provided for @reformaPerdesDivida.
+  ///
+  /// In pt, this message translates to:
+  /// **'A dívida fica lá e cresce com juros.'**
+  String get reformaPerdesDivida;
+
+  /// No description provided for @reformaAcordoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Acordo Portugal–Brasil'**
+  String get reformaAcordoTitulo;
+
+  /// No description provided for @reformaAcordoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se descontaste no Brasil (INSS) e em Portugal, o tempo dos dois países soma-se para a reforma. Não perdes o que já pagaste lá.'**
+  String get reformaAcordoTexto;
+
+  /// No description provided for @reformaAcordoBotao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver no site da Segurança Social'**
+  String get reformaAcordoBotao;
+
+  /// No description provided for @guiasSubtitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um minuto cada. Podes ouvir em vez de ler.'**
+  String get guiasSubtitulo;
+
+  /// No description provided for @guiasUmMinuto.
+  ///
+  /// In pt, this message translates to:
+  /// **'1 minuto'**
+  String get guiasUmMinuto;
+
+  /// No description provided for @guiasEmBreve.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este guia está a ser escrito. Em breve fica aqui, com a fonte oficial.'**
+  String get guiasEmBreve;
+
+  /// No description provided for @guiasVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não há guias. Volta daqui a pouco.'**
+  String get guiasVazio;
+
+  /// No description provided for @guiasPorConfirmar.
+  ///
+  /// In pt, this message translates to:
+  /// **'por confirmar'**
+  String get guiasPorConfirmar;
+
+  /// No description provided for @guiasSemFonte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fonte oficial: por confirmar'**
+  String get guiasSemFonte;
+
+  /// No description provided for @guiasOuvirErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui ler em voz alta neste telemóvel.'**
+  String get guiasOuvirErro;
+
+  /// No description provided for @planoSubtitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Menos que uma multa.'**
+  String get planoSubtitulo;
+
+  /// No description provided for @planoEstadoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que tens agora'**
+  String get planoEstadoTitulo;
+
+  /// No description provided for @planoTrialDepois.
+  ///
+  /// In pt, this message translates to:
+  /// **'Depois passas para o plano grátis, com limites. Se ativares o Pro, fica tudo como está.'**
+  String get planoTrialDepois;
+
+  /// No description provided for @planoLimAvisos.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} avisos por mês'**
+  String planoLimAvisos(int n);
+
+  /// No description provided for @planoLimCarros.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =1{1 carro} other{{n} carros}}'**
+  String planoLimCarros(int n);
+
+  /// No description provided for @planoLimPerguntas.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} perguntas ao Em Dia por mês'**
+  String planoLimPerguntas(int n);
+
+  /// No description provided for @planoLimResto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O resto aparece com cadeado.'**
+  String get planoLimResto;
+
+  /// No description provided for @planoTensPro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens o Pro. Está tudo aberto.'**
+  String get planoTensPro;
+
+  /// No description provided for @planoTensFamilia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens o Família / Frota. Está tudo aberto, para até {n} pessoas ou carros.'**
+  String planoTensFamilia(int n);
+
+  /// No description provided for @planoEscolhe.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolhe como pagar'**
+  String get planoEscolhe;
+
+  /// No description provided for @planoPorMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Por mês'**
+  String get planoPorMes;
+
+  /// No description provided for @planoPorAno.
+  ///
+  /// In pt, this message translates to:
+  /// **'Por ano'**
+  String get planoPorAno;
+
+  /// No description provided for @planoPrecoMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'{valor}/mês'**
+  String planoPrecoMes(String valor);
+
+  /// No description provided for @planoPrecoAno.
+  ///
+  /// In pt, this message translates to:
+  /// **'{valor}/ano'**
+  String planoPrecoAno(String valor);
+
+  /// No description provided for @planoPoupas.
+  ///
+  /// In pt, this message translates to:
+  /// **'poupas {valor}'**
+  String planoPoupas(String valor);
+
+  /// No description provided for @planoAbreAvisos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avisos sem limite'**
+  String get planoAbreAvisos;
+
+  /// No description provided for @planoAbreIa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Perguntas ao Em Dia sem limite'**
+  String get planoAbreIa;
+
+  /// No description provided for @planoAbreFoto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ler extratos por foto (Uber, Bolt, Glovo)'**
+  String get planoAbreFoto;
+
+  /// No description provided for @planoAbreComprovativos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardar as fotos dos comprovativos'**
+  String get planoAbreComprovativos;
+
+  /// No description provided for @planoAbreCarros.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vários carros'**
+  String get planoAbreCarros;
+
+  /// No description provided for @planoAbreExportar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Exportar para o contabilista (PDF/CSV)'**
+  String get planoAbreExportar;
+
+  /// No description provided for @planoAbreReforma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Reforma e direitos completo'**
+  String get planoAbreReforma;
+
+  /// No description provided for @planoFamiliaAbre.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tudo o que o Pro tem, para até {n} pessoas ou carros'**
+  String planoFamiliaAbre(int n);
+
+  /// No description provided for @planoAtivarPro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ativar o Pro'**
+  String get planoAtivarPro;
+
+  /// No description provided for @planoAtivarFamilia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ativar o Família'**
+  String get planoAtivarFamilia;
+
+  /// No description provided for @planoATrabalhar.
+  ///
+  /// In pt, this message translates to:
+  /// **'A falar com a Google Play…'**
+  String get planoATrabalhar;
+
+  /// No description provided for @planoCompraOk.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pronto. Já tens tudo aberto.'**
+  String get planoCompraOk;
+
+  /// No description provided for @planoCompraErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui fazer a compra. Não te cobrei nada. Tenta outra vez daqui a bocado.'**
+  String get planoCompraErro;
+
+  /// No description provided for @planoCompraCancelada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelaste. Não te cobrei nada.'**
+  String get planoCompraCancelada;
+
+  /// No description provided for @planoLojaIndisponivel.
+  ///
+  /// In pt, this message translates to:
+  /// **'A Google Play não está disponível neste telemóvel. Vê se tens a Play Store instalada e com sessão iniciada.'**
+  String get planoLojaIndisponivel;
+
+  /// No description provided for @planoCancelarQuando.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelas quando quiseres, na Google Play.'**
+  String get planoCancelarQuando;
+
+  /// No description provided for @iaSuporteTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tira a tua dúvida'**
+  String get iaSuporteTitulo;
+
+  /// No description provided for @iaVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pergunta-me sobre recibos, IVA, Segurança Social ou o teu carro. Respondo com as regras de 2026.'**
+  String get iaVazio;
+
+  /// No description provided for @iaChip1.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abri atividade em março, quando começo a pagar?'**
+  String get iaChip1;
+
+  /// No description provided for @iaChip2.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passei os 15 mil, e agora?'**
+  String get iaChip2;
+
+  /// No description provided for @iaChip3.
+  ///
+  /// In pt, this message translates to:
+  /// **'Posso pagar menos à Segurança Social?'**
+  String get iaChip3;
+
+  /// No description provided for @iaChip4.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando é a inspeção do meu carro?'**
+  String get iaChip4;
+
+  /// No description provided for @iaContador.
+  ///
+  /// In pt, this message translates to:
+  /// **'Usaste {usadas} de {n} perguntas este mês'**
+  String iaContador(int usadas, int n);
+
+  /// No description provided for @iaAPensar.
+  ///
+  /// In pt, this message translates to:
+  /// **'A pensar…'**
+  String get iaAPensar;
+
+  /// No description provided for @iaDescansar.
+  ///
+  /// In pt, this message translates to:
+  /// **'O assistente está a descansar. Tenta daqui a um minuto.'**
+  String get iaDescansar;
+
+  /// No description provided for @iaGuiaNovo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pedi um guia novo sobre isto.'**
+  String get iaGuiaNovo;
+
+  /// No description provided for @iaLimiteCta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ativa o Pro para perguntas sem limite.'**
+  String get iaLimiteCta;
+
+  /// No description provided for @iaVerPlano.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver o plano Pro'**
+  String get iaVerPlano;
+
+  /// No description provided for @suporteIntro.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que se passa?'**
+  String get suporteIntro;
+
+  /// No description provided for @suporteDuvidaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'O assistente responde já, com as regras de 2026.'**
+  String get suporteDuvidaAjuda;
+
+  /// No description provided for @suporteBugAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conta-me o que falhou. Eu junto os dados técnicos.'**
+  String get suporteBugAjuda;
+
+  /// No description provided for @suporteReembolsoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faz-se na Google Play, em 2 minutos.'**
+  String get suporteReembolsoAjuda;
+
+  /// No description provided for @suporteAssunto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Assunto'**
+  String get suporteAssunto;
+
+  /// No description provided for @suporteAssuntoDica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ex.: A app fecha ao abrir o calendário'**
+  String get suporteAssuntoDica;
+
+  /// No description provided for @suporteDescricaoDica.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que fizeste, o que esperavas e o que aconteceu.'**
+  String get suporteDescricaoDica;
+
+  /// No description provided for @suporteLogsNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Junto sozinho a versão da app, o tipo de telemóvel e o teu plano. Nada de palavras-passe.'**
+  String get suporteLogsNota;
+
+  /// No description provided for @suporteAssuntoEmFalta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o assunto.'**
+  String get suporteAssuntoEmFalta;
+
+  /// No description provided for @suporteErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui enviar. Tenta outra vez.'**
+  String get suporteErro;
+
+  /// No description provided for @suporteTicket.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pedido n.º {id}'**
+  String suporteTicket(String id);
+
+  /// No description provided for @suporteRespostaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Resposta'**
+  String get suporteRespostaTitulo;
+
+  /// No description provided for @suporteEscalado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passei isto a uma pessoa da equipa. Respondemos aqui.'**
+  String get suporteEscalado;
+
+  /// No description provided for @suporteFechar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Voltar à ajuda'**
+  String get suporteFechar;
+
+  /// No description provided for @suporteReembolsoLinha1.
+  ///
+  /// In pt, this message translates to:
+  /// **'A assinatura do Em Dia é cobrada pela Google Play, não por nós.'**
+  String get suporteReembolsoLinha1;
+
+  /// No description provided for @suporteReembolsoLinha2.
+  ///
+  /// In pt, this message translates to:
+  /// **'Para cancelar ou pedir reembolso, vai às subscrições da tua conta Google.'**
+  String get suporteReembolsoLinha2;
+
+  /// No description provided for @suporteReembolsoLinha3.
+  ///
+  /// In pt, this message translates to:
+  /// **'Continuas com o plano até ao fim do período já pago.'**
+  String get suporteReembolsoLinha3;
+
+  /// No description provided for @suporteAbrirSubscricoes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir as minhas subscrições'**
+  String get suporteAbrirSubscricoes;
+
+  /// No description provided for @suporteReembolsoDescricao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pedido aberto a partir da app (botão \"Abrir as minhas subscrições\").'**
+  String get suporteReembolsoDescricao;
+
+  /// No description provided for @suporteRegistado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Registei o teu pedido n.º {id}. Se a Google recusar, responde aqui com esse número.'**
+  String suporteRegistado(String id);
+
+  /// No description provided for @suporteMeusPedidos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Os meus pedidos'**
+  String get suporteMeusPedidos;
+
+  /// No description provided for @suporteSemPedidos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não tens pedidos.'**
+  String get suporteSemPedidos;
+
+  /// No description provided for @suporteEstadoAberto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aberto'**
+  String get suporteEstadoAberto;
+
+  /// No description provided for @suporteEstadoEmCurso.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em análise'**
+  String get suporteEstadoEmCurso;
+
+  /// No description provided for @suporteEstadoFechado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Resolvido'**
+  String get suporteEstadoFechado;
+
+  /// No description provided for @suporteTipoDuvida.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dúvida'**
+  String get suporteTipoDuvida;
+
+  /// No description provided for @suporteTipoBug.
+  ///
+  /// In pt, this message translates to:
+  /// **'Problema'**
+  String get suporteTipoBug;
+
+  /// No description provided for @suporteTipoReembolso.
+  ///
+  /// In pt, this message translates to:
+  /// **'Reembolso'**
+  String get suporteTipoReembolso;
+
+  /// No description provided for @suporteTipoGuia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guia novo'**
+  String get suporteTipoGuia;
+
+  /// No description provided for @suporteTipoOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outro'**
+  String get suporteTipoOutro;
+
+  /// No description provided for @suporteEmailRodape.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ou escreve para {email}'**
+  String suporteEmailRodape(String email);
 }
 
 class _AppLocalizationsDelegate

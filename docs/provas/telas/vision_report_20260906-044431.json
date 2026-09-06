@@ -1,0 +1,75 @@
+{
+  "data": "20260906-044431",
+  "modelo": "gemini-flash-latest",
+  "fotos": 8,
+  "contagem": {
+    "verde": 5,
+    "amarelo": 3,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "O texto usa palavras do Brasil em vez de Portugal.",
+      "jargao": [
+        "celular"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "suporte_bug_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está arrumado e pronto para enviares a mensagem sem problemas.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "suporte_bug_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto usa palavras do Brasil em vez de Portugal.",
+      "jargao": [
+        "celular"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "suporte_bug_grande_teclado_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está arrumado e pronto para enviares a tua mensagem sem confusão.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "suporte_bug_grande_teclado_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está bonitinho e dá para enviar a mensagem sem confusões.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "suporte_bug_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está limpo e pronto para enviar a mensagem sem problemas.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "suporte_bug_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto usa palavras do Brasil e tem um pequeno erro de concordância.",
+      "jargao": [
+        "celular"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "suporte_bug_medio_teclado_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está arrumado e pronto para enviares a mensagem.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "suporte_bug_medio_teclado_pt.png"
+    }
+  ]
+}

@@ -52,3 +52,13 @@
 - **O quê:** GEMINI_API_KEY, credenciais FCM e o segredo do cron vivem em `vault.secrets`; as funções lêem-nos com a service role (injetada automaticamente pela plataforma).
 - **Porquê:** não há `supabase` CLI instalado nem token de acesso pessoal nesta máquina; o Vault é gerível por SQL via MCP, com prova por SELECT.
 - **Como se desfaz:** `supabase secrets set` quando houver CLI; as funções aceitam env var primeiro e Vault como fallback.
+
+## D11 — Centros de inspeção perto e combustível mais barato (DGEG) ficam para a fase 2: na Tela 4 é só um cartão "Em breve"
+- **O quê:** a Tela 4 (O Carro) mostra um cartão cinzento "Em breve" com duas linhas — "Centros de inspeção perto de ti" (mapa, dados abertos) e "Combustível mais barato num raio de 10 km" (preços DGEG) — sem mapa, sem GPS e sem chamadas a serviços externos. Tudo o resto da tela (lembretes IUC/IPO/seguro/carta/revisão, abastecimentos e custo por km, despesas com NIF, portagens e multas, cadeado de 1 carro no grátis) está feito.
+- **Porquê:** os dois pedem dados abertos (lista de centros do IMT e preços da DGEG), geolocalização com permissão e um mapa — três dependências novas (pacotes, chave de mapas, política de privacidade da localização) que não cabem no bloco das telas sem atrasar o caminho crítico (build + Play). Um cartão honesto "em breve" é melhor do que um mapa vazio ou dados inventados.
+- **Como se desfaz:** substituir `_EmBreve` em `lib/screens/carro/carro_screen.dart` por dois cartões reais (uma Edge Function `combustivel-perto` que lê a API da DGEG e a lista de centros do IMT + `geolocator`), e apagar as chaves `carroEmBreve*`/`carroCentrosInspecao*`/`carroCombustivelBarato*` de `lib/l10n/partes/50_carro_*.arb`.
+
+## D12 — Rotina cloud desligada até o Danilo dar acesso ao GitHub; a fila faz-se localmente
+- **O quê:** `em-dia-noite` fica `enabled=false` desde 2026-09-06 09:15. Os itens F1, F3–F7 são feitos por agentes na sessão local (documentos, guias, marketing, guiões, ficha da loja, privacidade).
+- **Porquê:** 9 corridas na noite, 0 pushes — o ambiente cloud não tem a Claude GitHub App instalada neste repo (403 em git push e na API). Cada corrida gastava ~10 min do limite de 5 h da conta, o mesmo que mantém a sessão local viva.
+- **Como se desfaz:** instalar a app (link em PENDENTE-DANILO) e ligar a rotina em https://claude.ai/code/routines/trig_01DwHNgzNGqmhr5rQaJgXU9q; a fila continua a ser `docs/FILA-CLOUD.md`.

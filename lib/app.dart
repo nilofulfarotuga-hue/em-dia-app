@@ -1,8 +1,11 @@
+import 'dart:async' show unawaited;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'config/app_theme.dart';
+import 'services/push.dart';
 import 'l10n/app_localizations.dart';
 import 'screens/login/login_screen.dart';
 import 'screens/onboarding/onboarding_screen.dart';
@@ -83,6 +86,8 @@ class _RaizNavegadorState extends State<RaizNavegador> {
     final rend = context.read<RendimentosStore>();
     final carros = context.read<CarrosStore>();
     await perfil.carregar(userId);
+    // Avisos push: regista o token deste aparelho (sem Firebase configurado, não faz nada).
+    unawaited(PushService.registar(userId));
     await Future.wait([
       plano.carregar(userId),
       obrig.carregar(userId),
