@@ -62,3 +62,13 @@
 - **O quê:** `em-dia-noite` fica `enabled=false` desde 2026-09-06 09:15. Os itens F1, F3–F7 são feitos por agentes na sessão local (documentos, guias, marketing, guiões, ficha da loja, privacidade).
 - **Porquê:** 9 corridas na noite, 0 pushes — o ambiente cloud não tem a Claude GitHub App instalada neste repo (403 em git push e na API). Cada corrida gastava ~10 min do limite de 5 h da conta, o mesmo que mantém a sessão local viva.
 - **Como se desfaz:** instalar a app (link em PENDENTE-DANILO) e ligar a rotina em https://claude.ai/code/routines/trig_01DwHNgzNGqmhr5rQaJgXU9q; a fila continua a ser `docs/FILA-CLOUD.md`.
+
+## D12 — Produtos de subscrição criados por código, mas só depois do perfil de pagamentos
+- **O quê:** `tool/play/produtos.py` cria os 4 produtos com os preços do prompt (3,49 / 29,90 / 5,99 / 49,90 €) e com os **planos base em rascunho**; por omissão corre em ensaio e não toca em nada.
+- **Porquê:** a Google recusou a criação (`FAILED_PRECONDITION: Cannot create a subscription without first registering a payments profile`) — o perfil de pagamentos exige dados fiscais e bancários da pessoa. E mesmo depois, abrir as compras é acto de dinheiro: fica para o "vai".
+- **Como se desfaz:** não há nada aplicado; o comando existe e está ensaiado.
+
+## D13 — Track `internal` sozinho no CI (sem `alpha`) enquanto a app estiver em rascunho
+- **O quê:** `build_android.yml` envia só para `internal` com `status: completed`.
+- **Porquê:** a Play devolveu `Only releases with status draft may be created on draft app` com `internal,alpha`. O teste fechado (alpha) numa app nunca publicada só aceita rascunho; o interno aceita `completed` (provado: versionCode 7 entrou).
+- **Como se desfaz:** quando a app sair de rascunho (1.ª revisão aprovada), acrescentar `,alpha` na linha `tracks:`.
