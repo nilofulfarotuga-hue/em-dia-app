@@ -155,3 +155,14 @@
 - **O quê:** o cartão de ação é branco, com o valor a preto. A cor do semáforo aparece só na data e no ícone — e no estado "a vencer" nem aí: fica cinzento-escuro. Vermelho mantém-se, porque é outra cor.
 - **Porquê:** a regra da casa é um elemento laranja por ecrã, e esse é o semáforo grande. O juiz de visão reprovou três versões seguidas — cartão inteiro em laranja claro, depois o valor em laranja, depois o ícone e a data — e das três vezes tinha razão. A urgência lê-se nas palavras ("Até quinta, dia 10") e no semáforo logo por baixo.
 - **Como se desfaz:** pôr `Semaforo.amarelo => AppColors.accentDark` em `_corSinal`, dentro de `cartao_acao.dart`.
+
+## D29 — Endereços de teste: só `boraappbora+etiqueta@gmail.com`
+- **O quê:** ninguém inventa endereços para testar. Quem precisar usa `boraappbora+<etiqueta>@gmail.com`, que chega mesmo à caixa. O servidor recusa criar conta com endereços que não recebem (terminações reservadas, domínios de exemplo, e caixas inventadas nos fornecedores grandes).
+- **Porquê:** sete de quinze envios dos últimos 15 dias falharam, todos códigos de entrada do Em Dia para `test@gmail.com` e `newuser@gmail.com`. Cada devolução gasta a reputação de `boraguarda.com`, que é o domínio que manda o código a toda a gente, e o `test@gmail.com` já está na lista negra da Resend.
+- **A trava tem de ser do servidor:** pu-la primeiro só na app, publiquei, e meia hora depois havia mais dois envios — um script fala directo com `/auth/v1/otp` e passa ao lado da app. A trava está agora num gatilho antes de criar a conta.
+- **Como se desfaz:** `drop trigger antes_de_criar_conta_ve_o_email on auth.users`. Não se recomenda.
+
+## D30 — Corrigido o diagnóstico do e-mail: não eram os testes do Bora
+- **O quê:** a suspeita apontava aos testes E2E do Bora. Fui ver: as fixtures do Bora (`@boraapp.test`) são criadas pela API de administração com `email_confirm: True`, que não manda e-mail; e o digest semanal do Bora tem três linhas ao todo, a última de 23 de agosto.
+- **Porquê importa:** a causa a sério era o próprio Em Dia. Se tivesse ido arranjar o Bora, o domínio continuava a queimar.
+- **Mesmo assim mexi no Bora:** o digest de lá manda a partir de `fecho@boraguarda.com`, o mesmo domínio, e uma fixture que lá chegue repete a história. Ficou com a mesma guarda, no ramo `fix/digest-enderecos-mortos`.
