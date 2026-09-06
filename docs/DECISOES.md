@@ -166,3 +166,25 @@
 - **O quê:** a suspeita apontava aos testes E2E do Bora. Fui ver: as fixtures do Bora (`@boraapp.test`) são criadas pela API de administração com `email_confirm: True`, que não manda e-mail; e o digest semanal do Bora tem três linhas ao todo, a última de 23 de agosto.
 - **Porquê importa:** a causa a sério era o próprio Em Dia. Se tivesse ido arranjar o Bora, o domínio continuava a queimar.
 - **Mesmo assim mexi no Bora:** o digest de lá manda a partir de `fecho@boraguarda.com`, o mesmo domínio, e uma fixture que lá chegue repete a história. Ficou com a mesma guarda, no ramo `fix/digest-enderecos-mortos`.
+
+## D31 — A terceira aba chama-se "Sobra", não "Resumo"
+- **O quê:** a tela "A minha vida" tem três abas: **Entra · Sai · Sobra**.
+- **Porquê:** "resumo" é palavra de relatório; "sobra" é a palavra que a pessoa usa quando pensa no fim do mês. E as três juntas contam a história toda em três palavras que uma criança percebe, que é a régua da casa.
+- **Como se desfaz:** trocar `vidaAbaSobra` nos dois `.arb` das entradas.
+
+## D32 — A caixa das faturas fica DESLIGADA até haver domínio, e o interruptor é uma linha da base
+- **O quê:** `regras_legais.caixa_faturas_dominio` vazio = a app diz "ainda não está pronta". Escrever lá o domínio acende a funcionalidade sem publicar versão nenhuma.
+- **Porquê:** o Email Routing da Cloudflare precisa de uma zona e mexe nos MX dela. Na conta há `boraguarda.com`, `guardafcsad.com` e `jaiagarwala.com` — nenhum é do Em Dia, e o primeiro é o que manda os códigos de entrada da app. Um catch-all lá dentro arriscava o login de toda a gente por causa de uma funcionalidade nova. E mostrar um endereço que não recebe nada era pior do que não mostrar nada.
+- **Como se desfaz:** pôr `valor_txt` de volta a `null`. As faturas que já entraram ficam.
+
+## D33 — A fatura que chega por e-mail NÃO é lida sozinha
+- **O quê:** o servidor guarda o PDF e mais nada. Quem carrega em "Fazer conta com esta" é a pessoa.
+- **Porquê:** a leitura por IA tem limite de 5 por mês no plano grátis. Ler tudo o que entra gastava as leituras de quem não pediu — e pagava a conta da Gemini por documentos que talvez ninguém queira. O atalho continua a ser um toque; só não é um toque que outra pessoa dá por ti.
+- **Como se desfaz:** chamar `ler-documento` dentro de `receber-fatura`, a seguir ao upload. Não se recomenda sem mudar o limite do plano.
+
+## D34 — Prazos de aviso diferentes conforme o meio de pagamento
+- **O quê:** débito direto avisa 1 dia antes; referência (e MB WAY, transferência, dinheiro) avisa 3 dias antes E no próprio dia. Os dois números estão em `regras_legais` (`aviso_debito_direto_dias`, `aviso_referencia_dias`).
+- **Porquê:** uma conta em débito direto não pede trabalho nenhum — só que haja dinheiro na conta. Avisar cinco dias antes assustava sem servir. Uma conta com referência obriga a ir pagar, e um aviso só no dia apanha quem já não tem tempo.
+- **A armadilha que isto quase escondeu:** a consulta às regras só pedia três chaves, e as duas novas nunca chegavam à função. Os valores por omissão do código (1 e 3) davam o resultado certo à mesma — e o painel do Danilo não mandava nada, sem ninguém dar por isso. Regra que fica: **quem lê uma regra nova põe a chave na consulta, e prova que ela chegou.**
+- **Como se desfaz:** mudar os números na tabela. Não é preciso publicar app.
+
