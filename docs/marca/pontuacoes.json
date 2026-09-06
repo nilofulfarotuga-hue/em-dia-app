@@ -1,0 +1,50 @@
+{
+  "1": {
+    "legibilidade_48px": 7,
+    "coerencia": 7,
+    "modernidade": 5,
+    "sem_texto_ruido": 7,
+    "comentario": "O ícone apresenta uma leitura imediata e cumpre o conceito pretendido, apesar de ter um aspeto algo genérico.",
+    "modelo": "gemini-3.7-flash"
+  },
+  "2": {
+    "legibilidade_48px": 6,
+    "coerencia": 7,
+    "modernidade": 5,
+    "sem_texto_ruido": 7,
+    "comentario": "O conceito do semáforo com o visto verde cumpre a temática, mantendo uma boa legibilidade e simplicidade visual.",
+    "modelo": "gemini-3.7-flash"
+  },
+  "3": {
+    "legibilidade_48px": 6,
+    "coerencia": 7,
+    "modernidade": 5,
+    "sem_texto_ruido": 7,
+    "comentario": "O visto principal é bastante claro, mas o pequeno ícone de calendário perde definição a 48px e confere um aspeto algo genérico.",
+    "modelo": "gemini-3.7-flash"
+  },
+  "4": {
+    "legibilidade_48px": 6,
+    "coerencia": 7,
+    "modernidade": 5,
+    "sem_texto_ruido": 6,
+    "comentario": "O conceito de calendário com validação é claro, contudo a faixa de rodagem inferior introduz ruído visual e um aspeto algo genérico.",
+    "modelo": "gemini-3.7-flash"
+  },
+  "5": {
+    "legibilidade_48px": 5,
+    "coerencia": 4,
+    "modernidade": 4,
+    "sem_texto_ruido": 5,
+    "comentario": "O símbolo foca-se num monograma confuso em vez de transmitir claramente a ideia de calendário ou cumprimento de prazos.",
+    "modelo": "gemini-3.7-flash"
+  },
+  "1_lite": {
+    "legibilidade_48px": 8,
+    "coerencia": 9,
+    "modernidade": 7,
+    "sem_texto_ruido": 9,
+    "comentario": "O ícone é limpo e transmite perfeitamente a ideia de prazos cumpridos, embora o design do calendário pareça um pouco genérico.",
+    "modelo": "gemini-flash-lite-latest"
+  }
+}

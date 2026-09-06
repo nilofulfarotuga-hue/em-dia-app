@@ -1,0 +1,97 @@
+[2026-09-06 09:26:22 (Lisboa)] início · 30 perguntas · base https://tgdmgtmknbwhcqoxtjbs.supabase.co · utilizador teste@emdia.pt
+[2026-09-06 09:26:22 (Lisboa)] login ok (JWT len=807, não se grava)
+[2026-09-06 09:26:22 (Lisboa)] #01 [pt] já tem prova com HTTP 200 (01-abri-atividade-em-marco-quando.md) -> reaproveitada, veredito PASSA
+[2026-09-06 09:26:22 (Lisboa)] #02 [pt] Passei os 15 mil, e agora?
+[2026-09-06 09:26:25 (Lisboa)]     tentativa 1: HTTP 200 em 2.7s
+[2026-09-06 09:26:25 (Lisboa)]     -> PASSA · variante API=pt · fora=False · 02-passei-os-15-mil-agora.md
+[2026-09-06 09:26:28 (Lisboa)] #03 [pt] Posso pagar menos à Segurança Social?
+[2026-09-06 09:26:31 (Lisboa)]     tentativa 1: HTTP 200 em 2.7s
+[2026-09-06 09:26:31 (Lisboa)]     -> PASSA · variante API=pt · fora=False · 03-posso-pagar-menos-seguranca-social.md
+[2026-09-06 09:26:34 (Lisboa)] #04 [pt] Quando é a inspeção do meu carro de 2021?
+[2026-09-06 09:26:36 (Lisboa)]     tentativa 1: HTTP 200 em 2.7s
+[2026-09-06 09:26:36 (Lisboa)]     -> PASSA · variante API=pt · fora=True · 04-quando-inspecao-do-meu-carro.md
+[2026-09-06 09:26:39 (Lisboa)] #05 [pt] Tenho de emitir recibo verde para tudo o que recebo?
+[2026-09-06 09:26:43 (Lisboa)]     tentativa 1: HTTP 200 em 4.1s
+[2026-09-06 09:26:43 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 05-tenho-de-emitir-recibo-verde.md · motivos: (b) o "Próximo passo:" não tem prazo/data
+[2026-09-06 09:26:46 (Lisboa)] #06 [pt] Qual é a diferença entre a retenção de 23% e a de 25%?
+[2026-09-06 09:26:49 (Lisboa)]     tentativa 1: HTTP 502 em 2.5s
+[2026-09-06 09:26:49 (Lisboa)]     a esperar 20s antes de repetir…
+[2026-09-06 09:27:18 (Lisboa)]     tentativa 2: HTTP 200 em 9.2s
+[2026-09-06 09:27:18 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 06-qual-diferenca-entre-retencao-de.md · motivos: (b) o "Próximo passo:" não tem prazo/data
+[2026-09-06 09:27:21 (Lisboa)] #07 [pt] Quando pago o IUC do meu carro?
+[2026-09-06 09:27:29 (Lisboa)]     tentativa 1: HTTP 200 em 7.7s
+[2026-09-06 09:27:29 (Lisboa)]     -> PASSA · variante API=pt · fora=False · 07-quando-pago-iuc-do-meu.md
+[2026-09-06 09:27:32 (Lisboa)] #08 [pt] Quanto tenho de guardar para o IRS?
+[2026-09-06 09:27:34 (Lisboa)]     tentativa 1: HTTP 200 em 2.6s
+[2026-09-06 09:27:34 (Lisboa)]     -> PASSA · variante API=pt · fora=False · 08-quanto-tenho-de-guardar-para.md
+[2026-09-06 09:27:37 (Lisboa)] #09 [pt] O que é o M10 no recibo?
+[2026-09-06 09:27:40 (Lisboa)]     tentativa 1: HTTP 502 em 3.1s
+[2026-09-06 09:27:40 (Lisboa)]     a esperar 20s antes de repetir…
+[2026-09-06 09:28:03 (Lisboa)]     tentativa 2: HTTP 200 em 2.4s
+[2026-09-06 09:28:03 (Lisboa)]     -> PASSA · variante API=pt · fora=False · 09-que-m10-no-recibo.md
+[2026-09-06 09:28:06 (Lisboa)] #10 [pt] Quando entrego a declaração de IRS?
+[2026-09-06 09:28:10 (Lisboa)]     tentativa 1: HTTP 200 em 3.9s
+[2026-09-06 09:28:10 (Lisboa)]     -> PASSA · variante API=pt · fora=False · 10-quando-entrego-declaracao-de-irs.md
+[2026-09-06 09:28:13 (Lisboa)] #11 [pt] A carta de condução tem prazo de validade?
+[2026-09-06 09:28:15 (Lisboa)]     tentativa 1: HTTP 200 em 2.6s
+[2026-09-06 09:28:15 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 11-carta-de-conducao-tem-prazo.md · motivos: (b) o "Próximo passo:" não tem prazo/data
+[2026-09-06 09:28:18 (Lisboa)] #12 [pt] O que acontece se não pagar a Segurança Social a tempo?
+[2026-09-06 09:28:28 (Lisboa)]     tentativa 1: HTTP 200 em 9.3s
+[2026-09-06 09:28:28 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 12-que-acontece-se-nao-pagar.md · motivos: (a) faltam valores esperados: não tenho essa regra confirmada
+[2026-09-06 09:28:31 (Lisboa)] #13 [pt] Posso ficar isenta de IVA para sempre?
+[2026-09-06 09:28:40 (Lisboa)]     tentativa 1: HTTP 200 em 9.4s
+[2026-09-06 09:28:40 (Lisboa)]     -> PASSA · variante API=pt · fora=False · 13-posso-ficar-isenta-de-iva.md
+[2026-09-06 09:28:43 (Lisboa)] #14 [pt] Quando são os pagamentos por conta do IRS?
+[2026-09-06 09:28:48 (Lisboa)]     tentativa 1: HTTP 200 em 4.9s
+[2026-09-06 09:28:48 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 14-quando-sao-os-pagamentos-por.md · motivos: (a) faltam valores esperados: 65\s?% / irs_pagamentos_conta_pct
+[2026-09-06 09:28:51 (Lisboa)] #15 [pt] Levei uma multa de estacionamento, tenho quanto tempo para pagar?
+[2026-09-06 09:29:04 (Lisboa)]     tentativa 1: HTTP 200 em 13.5s
+[2026-09-06 09:29:04 (Lisboa)]     -> PASSA · variante API=pt · fora=False · 15-levei-uma-multa-de-estacionamento.md
+[2026-09-06 09:29:07 (Lisboa)] #16 [br] Sou brasileiro, o tempo do INSS conta?
+[2026-09-06 09:29:10 (Lisboa)]     tentativa 1: HTTP 200 em 2.5s
+[2026-09-06 09:29:10 (Lisboa)]     -> FALHA · variante API=br · fora=False · 16-sou-brasileiro-tempo-do-inss.md · motivos: (a) faltam valores esperados: 15 anos / reforma_carreira_minima_anos; 66 anos e 9 meses / 66[.,]75 / reforma_idade
+[2026-09-06 09:29:13 (Lisboa)] #17 [br] Quando eu abro atividade, já começo a pagar Segurança Social na hora?
+[2026-09-06 09:29:31 (Lisboa)]     tentativa 1: HTTP 200 em 18.0s
+[2026-09-06 09:29:31 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 17-quando-eu-abro-atividade-ja.md · motivos: (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=8
+[2026-09-06 09:29:34 (Lisboa)] #18 [br] Preciso trocar minha carteira de motorista brasileira?
+[2026-09-06 09:29:54 (Lisboa)]     tentativa 1: HTTP 200 em 19.8s
+[2026-09-06 09:29:54 (Lisboa)]     -> FALHA · variante API=pt · fora=True · 18-preciso-trocar-minha-carteira-de.md · motivos: (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=4
+[2026-09-06 09:29:57 (Lisboa)] #19 [br] O que é o e-fatura e até quando eu tenho que validar?
+[2026-09-06 09:30:19 (Lisboa)]     tentativa 1: HTTP 200 em 22.6s
+[2026-09-06 09:30:19 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 19-que-fatura-ate-quando-eu.md · motivos: (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=9
+[2026-09-06 09:30:22 (Lisboa)] #20 [br] Quanto é a taxa da Segurança Social pra mim?
+[2026-09-06 09:30:39 (Lisboa)]     tentativa 1: HTTP 200 em 16.8s
+[2026-09-06 09:30:39 (Lisboa)]     -> FALHA · variante API=br · fora=False · 20-quanto-taxa-da-seguranca-social.md · motivos: (a) faltam valores esperados: 70\s?% / ss_base_servicos
+[2026-09-06 09:30:42 (Lisboa)] #21 [br] Posso descontar menos do que o valor cheio?
+[2026-09-06 09:30:58 (Lisboa)]     tentativa 1: HTTP 200 em 15.5s
+[2026-09-06 09:30:58 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 21-posso-descontar-menos-do-que.md · motivos: (a) faltam valores esperados: 20\s?€ / 20 euros / ss_minimo_mensal | (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=9
+[2026-09-06 09:31:01 (Lisboa)] #22 [br] O que acontece se eu ultrapassar os 15 mil de faturamento?
+[2026-09-06 09:31:21 (Lisboa)]     tentativa 1: HTTP 200 em 19.8s
+[2026-09-06 09:31:21 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 22-que-acontece-se-eu-ultrapassar.md · motivos: (b) o "Próximo passo:" não tem prazo/data | (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=9
+[2026-09-06 09:31:24 (Lisboa)] #23 [br] Vendo produtos e presto serviço, como calculo o IRS?
+[2026-09-06 09:31:50 (Lisboa)]     tentativa 1: HTTP 200 em 26.2s
+[2026-09-06 09:31:50 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 23-vendo-produtos-presto-servico-como.md · motivos: (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=5
+[2026-09-06 09:31:53 (Lisboa)] #24 [br] Meu seguro do carro vence quando, e quando recebo aviso?
+[2026-09-06 09:31:55 (Lisboa)]     tentativa 1: HTTP 502 em 1.9s
+[2026-09-06 09:31:55 (Lisboa)]     a esperar 20s antes de repetir…
+[2026-09-06 09:32:17 (Lisboa)]     tentativa 2: HTTP 200 em 2.4s
+[2026-09-06 09:32:17 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 24-meu-seguro-do-carro-vence.md · motivos: (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=2
+[2026-09-06 09:32:20 (Lisboa)] #25 [br] Qual é a idade de aposentadoria em Portugal?
+[2026-09-06 09:32:23 (Lisboa)]     tentativa 1: HTTP 200 em 2.5s
+[2026-09-06 09:32:23 (Lisboa)]     -> PASSA · variante API=br · fora=False · 25-qual-idade-de-aposentadoria-em.md
+[2026-09-06 09:32:26 (Lisboa)] #26 [br] Fiquei doente, tenho direito a algum benefício?
+[2026-09-06 09:32:28 (Lisboa)]     tentativa 1: HTTP 200 em 2.4s
+[2026-09-06 09:32:28 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 26-fiquei-doente-tenho-direito-algum.md · motivos: (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=6
+[2026-09-06 09:32:31 (Lisboa)] #27 [br] Posso ficar desempregado sendo autônomo?
+[2026-09-06 09:32:33 (Lisboa)]     tentativa 1: HTTP 200 em 2.1s
+[2026-09-06 09:32:33 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 27-posso-ficar-desempregado-sendo-autonomo.md · motivos: (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=4
+[2026-09-06 09:32:36 (Lisboa)] #28 [br] Até quando tenho que comunicar as faturas dos meus clientes?
+[2026-09-06 09:32:38 (Lisboa)]     tentativa 1: HTTP 200 em 1.8s
+[2026-09-06 09:32:38 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 28-ate-quando-tenho-que-comunicar.md · motivos: (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=1
+[2026-09-06 09:32:41 (Lisboa)] #29 [br] Quantas inspeções meu carro de 2018 já teve?
+[2026-09-06 09:33:00 (Lisboa)]     tentativa 1: HTTP 200 em 19.5s
+[2026-09-06 09:33:00 (Lisboa)]     -> FALHA · variante API=pt · fora=True · 29-quantas-inspecoes-meu-carro-de.md · motivos: (a) faltam valores esperados: 2022; 2024; 2026 | (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=3
+[2026-09-06 09:33:03 (Lisboa)] #30 [br] O certificado de motorista TVDE tem validade?
+[2026-09-06 09:33:05 (Lisboa)]     tentativa 1: HTTP 200 em 1.9s
+[2026-09-06 09:33:05 (Lisboa)]     -> FALHA · variante API=pt · fora=False · 30-certificado-de-motorista-tvde-tem.md · motivos: (c) variante errada: esperada br, API devolveu pt, "você" no texto=False, marcas tu=2
+[2026-09-06 09:33:06 (Lisboa)] fim · PASSA 11 · FALHA 19 · SEM RESPOSTA 0 · RESUMO em C:\BoraLocal\projetosflutter\em_dia\docs\provas\ia\RESUMO.md

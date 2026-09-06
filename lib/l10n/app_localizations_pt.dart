@@ -171,7 +171,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get onbOQueFazes => 'O que fazes?';
 
   @override
-  String get onbTvde => 'Motorista TVDE';
+  String get onbTvde => 'Motorista TVDE (Uber, Bolt)';
 
   @override
   String get onbEstafeta => 'Estafeta';
@@ -2151,7 +2151,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get planoAbreCarros => 'Vários carros';
 
   @override
-  String get planoAbreExportar => 'Exportar para o contabilista (PDF/CSV)';
+  String get planoAbreExportar =>
+      'Exportar para o contabilista (PDF ou folha de cálculo)';
 
   @override
   String get planoAbreReforma => 'Reforma e direitos completo';
@@ -2334,6 +2335,720 @@ class AppLocalizationsPt extends AppLocalizations {
   String suporteEmailRodape(String email) {
     return 'Ou escreve para $email';
   }
+
+  @override
+  String get admNavVisaoGeral => 'Visão geral';
+
+  @override
+  String get admNavUsuarios => 'Usuários';
+
+  @override
+  String get admNavRegras => 'Regras legais';
+
+  @override
+  String get admNavTickets => 'Tickets';
+
+  @override
+  String get admNavIa => 'IA';
+
+  @override
+  String get admNavAvisos => 'Avisos';
+
+  @override
+  String get admNavAuditoria => 'Auditoria';
+
+  @override
+  String get admNaoAdmin => 'Esta conta não é administradora.';
+
+  @override
+  String admErroLer(String erro) {
+    return 'Não consegui ler os dados: $erro';
+  }
+
+  @override
+  String get admTentarDeNovo => 'Tentar de novo';
+
+  @override
+  String get admVazio => 'Nada por aqui ainda.';
+
+  @override
+  String get admErroTitulo => 'Deu erro';
+
+  @override
+  String get admFechar => 'Fechar';
+
+  @override
+  String get admConfirmar => 'Confirmar';
+
+  @override
+  String get admCopiar => 'Copiar';
+
+  @override
+  String get admCopiado => 'Copiado.';
+
+  @override
+  String get admAtualizar => 'Atualizar';
+
+  @override
+  String get admSalvar => 'Salvar';
+
+  @override
+  String get admSalvo => 'Salvo e registrado na auditoria.';
+
+  @override
+  String get admTodos => 'Todos';
+
+  @override
+  String get admSim => 'Sim';
+
+  @override
+  String get admNao => 'Não';
+
+  @override
+  String get admVgTitulo => 'Visão geral';
+
+  @override
+  String get admVgSub =>
+      'Números de agora, direto das tabelas (RPC admin_resumo). Nada é calculado no navegador.';
+
+  @override
+  String get admVgUsuarios => 'Usuários';
+
+  @override
+  String admVgAtivos7(int n) {
+    return '$n ativos nos últimos 7 dias';
+  }
+
+  @override
+  String get admVgTrial => 'Em trial';
+
+  @override
+  String get admVgFree => 'Free';
+
+  @override
+  String get admVgPro => 'Pro';
+
+  @override
+  String get admVgFamilia => 'Família';
+
+  @override
+  String get admVgReceita => 'Receita estimada / mês';
+
+  @override
+  String admVgReceitaSub(int n) {
+    return '$n assinaturas ativas × preço em regras_legais';
+  }
+
+  @override
+  String get admVgTickets => 'Tickets abertos';
+
+  @override
+  String admVgTicketsSub(int n) {
+    return '$n escalados para humano';
+  }
+
+  @override
+  String get admVgCustoHoje => 'Custo IA hoje';
+
+  @override
+  String admVgCustoSub(String valor) {
+    return 'Alarme acima de $valor por dia';
+  }
+
+  @override
+  String get admVgCusto7 => 'Custo IA — 7 dias';
+
+  @override
+  String admVgCusto7Sub(int n) {
+    return '$n conversas';
+  }
+
+  @override
+  String get admVgPassadas => 'Obrigações passadas';
+
+  @override
+  String get admVgPassadasSub =>
+      'Prazos vencidos sem marcar pago, em todos os usuários';
+
+  @override
+  String admVgAlarme(String custo, String limite) {
+    return 'ALARME: o custo de IA de hoje ($custo) passou do limite ($limite, regra ia_custo_alarme_dia_eur). Confira o modelo e o limite de perguntas em Regras legais → Cadeados por plano.';
+  }
+
+  @override
+  String get admVgTabDia => 'Dia';
+
+  @override
+  String get admVgTabConversas => 'Conversas';
+
+  @override
+  String get admVgTabCusto => 'Custo (€)';
+
+  @override
+  String get admVgPushHoje => 'Push de hoje por resultado';
+
+  @override
+  String get admVgPushVazio => 'Nenhum push enviado hoje.';
+
+  @override
+  String get admVgResultado => 'Resultado';
+
+  @override
+  String get admVgQuantidade => 'Quantidade';
+
+  @override
+  String get admUsTitulo => 'Usuários';
+
+  @override
+  String get admUsSub =>
+      'profiles + plano efetivo (view v_admin_usuarios). Clique numa linha para ver o detalhe e agir.';
+
+  @override
+  String get admUsPesquisa => 'Buscar por e-mail ou nome (Enter para buscar)';
+
+  @override
+  String get admUsExportar => 'Exportar CSV';
+
+  @override
+  String admUsCsvTitulo(int n) {
+    return 'CSV dos usuários ($n)';
+  }
+
+  @override
+  String get admUsCsvNota =>
+      'Copie e cole num arquivo .csv (separador ;). O download direto pelo navegador fica para uma próxima versão.';
+
+  @override
+  String admUsTabela(int n) {
+    return '$n usuários';
+  }
+
+  @override
+  String get admColEmail => 'E-mail';
+
+  @override
+  String get admColNome => 'Nome';
+
+  @override
+  String get admColAtividade => 'Atividade';
+
+  @override
+  String get admColPlano => 'Plano efetivo';
+
+  @override
+  String get admColTrialAte => 'Trial até';
+
+  @override
+  String get admColUltimoAcesso => 'Último acesso';
+
+  @override
+  String get admColEstado => 'Estado';
+
+  @override
+  String get admColCriadoEm => 'Criado em';
+
+  @override
+  String get admUsBanido => 'banido';
+
+  @override
+  String get admUsAtivo => 'ativo';
+
+  @override
+  String get admUsDetalhe => 'Usuário';
+
+  @override
+  String get admUsAcoes => 'Ações';
+
+  @override
+  String admUsPlanoAtual(String plano, String efetivo) {
+    return 'Plano manual (profiles.plano): $plano · plano efetivo: $efetivo';
+  }
+
+  @override
+  String get admUsBanir => 'Banir';
+
+  @override
+  String get admUsReativar => 'Reativar';
+
+  @override
+  String admUsBanirConfirma(String email) {
+    return 'Banir $email? O usuário perde o acesso ao app até você reativar.';
+  }
+
+  @override
+  String get admUsAlterarPlano => 'Alterar plano manual';
+
+  @override
+  String get admUsPlanoManualNota =>
+      'profiles.plano vale só quando não há trial ativo nem assinatura ativa na Google Play.';
+
+  @override
+  String get admUsEstenderTrial => 'Estender trial';
+
+  @override
+  String admUsEstenderDias(int n) {
+    return '+$n dias';
+  }
+
+  @override
+  String get admUsApagar => 'Apagar conta';
+
+  @override
+  String get admUsApagarNota =>
+      'Apagar do auth de verdade precisa da service role (servidor). Aqui só marca como banido e registra o pedido na auditoria — o servidor apaga depois.';
+
+  @override
+  String admUsApagarConfirma(String email) {
+    return 'Marcar $email como banido e registrar o pedido de apagar a conta?';
+  }
+
+  @override
+  String get admUsFeito => 'Feito e registrado na auditoria.';
+
+  @override
+  String get admUsPerfil => 'Perfil';
+
+  @override
+  String admUsObrigacoes(int n) {
+    return 'Obrigações ($n)';
+  }
+
+  @override
+  String admUsRendimentos(int n) {
+    return 'Rendimentos ($n)';
+  }
+
+  @override
+  String admUsAssinaturas(int n) {
+    return 'Assinaturas ($n)';
+  }
+
+  @override
+  String admUsConversas(int n) {
+    return 'Últimas conversas com a IA ($n)';
+  }
+
+  @override
+  String get admRgTitulo => 'Regras legais';
+
+  @override
+  String get admRgSub =>
+      'A única fonte de números do app e da IA. Editar aqui muda o app na hora. Confira a fonte oficial antes de salvar.';
+
+  @override
+  String get admRgAba1 => 'Regras';
+
+  @override
+  String get admRgAba2 => 'Escalões IRS';
+
+  @override
+  String get admRgAba3 => 'Cadeados por plano';
+
+  @override
+  String get admRgPesquisa => 'Buscar chave ou descrição';
+
+  @override
+  String admRgTabela(int n, int total) {
+    return '$n de $total regras';
+  }
+
+  @override
+  String get admRgAvisoIas => 'Aviso em massa: o IAS mudou';
+
+  @override
+  String get admRgAvisoIasTitulo => 'O IAS mudou';
+
+  @override
+  String admRgAvisoIasCorpo(String valor) {
+    return 'O IAS (o valor de referência da Segurança Social) mudou para $valor. Os seus valores foram recalculados. Abra o app para conferir.';
+  }
+
+  @override
+  String get admRgAvisoTituloCampo => 'Título';
+
+  @override
+  String get admRgAvisoCorpoCampo => 'Texto do aviso';
+
+  @override
+  String get admRgAvisoCriado =>
+      'Aviso em massa criado. O envio é feito pelo avisos-cron (tipo massa) às 09:00 de Lisboa.';
+
+  @override
+  String get admRgColChave => 'Chave';
+
+  @override
+  String get admRgColDescricao => 'Descrição';
+
+  @override
+  String get admRgColValor => 'Valor';
+
+  @override
+  String get admRgColUnidade => 'Unidade';
+
+  @override
+  String get admRgColAno => 'Ano';
+
+  @override
+  String get admRgColConfianca => 'Confiança';
+
+  @override
+  String get admRgColVerificado => 'Verificado em';
+
+  @override
+  String get admRgColFonte => 'Fonte';
+
+  @override
+  String get admRgEditar => 'Editar regra';
+
+  @override
+  String get admRgValorNum => 'Valor numérico (valor_num)';
+
+  @override
+  String get admRgValorTxt => 'Valor em texto (valor_txt)';
+
+  @override
+  String get admRgValorJson => 'Valor JSON (valor_json)';
+
+  @override
+  String get admRgJsonInvalido =>
+      'O JSON não é válido. Confira as chaves e as vírgulas.';
+
+  @override
+  String get admRgFonteUrl => 'Fonte (URL oficial)';
+
+  @override
+  String get admRgVerificadoEm => 'Verificado em (aaaa-mm-dd)';
+
+  @override
+  String get admRgConfianca => 'Confiança';
+
+  @override
+  String get admRgEscOrdem => 'Ordem';
+
+  @override
+  String get admRgEscAte => 'Até (€)';
+
+  @override
+  String get admRgEscTaxa => 'Taxa';
+
+  @override
+  String get admRgEscTaxaAjuda => 'Taxa (0,13 = 13%)';
+
+  @override
+  String get admRgEscParcela => 'Parcela a abater (€)';
+
+  @override
+  String get admRgEscSemLimite => 'sem limite';
+
+  @override
+  String get admRgEscSemLimiteAjuda => 'Vazio = último escalão, sem limite';
+
+  @override
+  String get admRgEscEditar => 'Editar escalão';
+
+  @override
+  String get admRgFlagChave => 'Chave';
+
+  @override
+  String get admRgFlagDescricao => 'Descrição';
+
+  @override
+  String get admRgFlagFree => 'Free';
+
+  @override
+  String get admRgFlagPro => 'Pro';
+
+  @override
+  String get admRgFlagFamilia => 'Família';
+
+  @override
+  String get admRgFlagLimFree => 'Limite free';
+
+  @override
+  String get admRgFlagLimPro => 'Limite pro';
+
+  @override
+  String get admRgFlagLimFamilia => 'Limite família';
+
+  @override
+  String get admRgFlagEditar => 'Editar cadeado';
+
+  @override
+  String get admRgFlagLimiteAjuda => 'Vazio = sem limite';
+
+  @override
+  String get admTkTitulo => 'Tickets de suporte';
+
+  @override
+  String get admTkSub =>
+      'tickets_suporte. Clique numa linha para ver a descrição, os logs e a resposta da IA.';
+
+  @override
+  String admTkTabela(int n) {
+    return '$n tickets';
+  }
+
+  @override
+  String get admTkEstadoAberto => 'Aberto';
+
+  @override
+  String get admTkEstadoEmCurso => 'Em andamento';
+
+  @override
+  String get admTkEstadoFechado => 'Fechado';
+
+  @override
+  String get admTkEscalados => 'Só escalados para humano';
+
+  @override
+  String get admTkColQuando => 'Quando';
+
+  @override
+  String get admTkColTipo => 'Tipo';
+
+  @override
+  String get admTkColAssunto => 'Assunto';
+
+  @override
+  String get admTkColEstado => 'Estado';
+
+  @override
+  String get admTkColEscalar => 'Humano';
+
+  @override
+  String get admTkColUsuario => 'Usuário';
+
+  @override
+  String admTkDetalhe(String id) {
+    return 'Ticket $id';
+  }
+
+  @override
+  String get admTkDescricao => 'Descrição';
+
+  @override
+  String get admTkLogs => 'Logs';
+
+  @override
+  String get admTkRespostaIa => 'Resposta da IA';
+
+  @override
+  String get admTkMotivo => 'Motivo da escalada';
+
+  @override
+  String get admTkMudarEstado => 'Mudar estado';
+
+  @override
+  String get admTkEstadoMudado =>
+      'Estado atualizado e registrado na auditoria.';
+
+  @override
+  String get admTkParceiro => 'Contato do contador/advogado parceiro';
+
+  @override
+  String get admTkParceiroAjuda =>
+      'Fica em regras_legais (chave contacto_parceiro_contabilista). É o que o suporte mostra quando um ticket sobe para humano. A linha é criada se não existir.';
+
+  @override
+  String get admTkParceiroCampo => 'Nome, telefone, e-mail';
+
+  @override
+  String get admTkParceiroSalvo => 'Contato salvo e registrado na auditoria.';
+
+  @override
+  String get admIaTitulo => 'IA — perguntas e custo';
+
+  @override
+  String get admIaSub =>
+      'conversas_ia (RPC admin_ia_top_perguntas) e v_custo_ia_diario.';
+
+  @override
+  String get admIaVazio => 'Ainda não há perguntas registradas.';
+
+  @override
+  String get admIaTop => 'Perguntas mais feitas (top 30)';
+
+  @override
+  String get admIaColPergunta => 'Pergunta';
+
+  @override
+  String get admIaColVezes => 'Vezes';
+
+  @override
+  String get admIaColFora => 'Fora das regras';
+
+  @override
+  String get admIaColBr => 'Em PT-BR';
+
+  @override
+  String get admIaColUltima => 'Última vez';
+
+  @override
+  String get admIaColVariante => 'Variante';
+
+  @override
+  String get admIaColResposta => 'Resposta';
+
+  @override
+  String admIaFora(int n) {
+    return 'Fora das regras ($n) — candidatas a guia novo';
+  }
+
+  @override
+  String get admIaForaVazio =>
+      'Nenhuma pergunta fora das regras. A IA só citou o que está na tabela.';
+
+  @override
+  String get admIaCriarGuia => 'Criar guia';
+
+  @override
+  String get admIaGuiaConfirma =>
+      'Criar um rascunho de guia (publicado = não) com esta pergunta como corpo? Depois você edita o texto.';
+
+  @override
+  String admIaGuiaCriado(String slug) {
+    return 'Rascunho de guia criado: $slug (publicado = não).';
+  }
+
+  @override
+  String get admIaCusto => 'Custo por dia (últimos 30 dias)';
+
+  @override
+  String get admIaColDia => 'Dia';
+
+  @override
+  String get admIaColConversas => 'Conversas';
+
+  @override
+  String get admIaColCusto => 'Custo (€)';
+
+  @override
+  String get admAvTitulo => 'Avisos';
+
+  @override
+  String get admAvSub =>
+      'Push enviados (eventos_push), avisos em massa (avisos_massa) e log dos testes E2E (e2e_log).';
+
+  @override
+  String get admAvNovoMassa => 'Novo aviso em massa';
+
+  @override
+  String get admAvMassaNota =>
+      'O envio real é feito pelo avisos-cron (tipo massa) às 09:00 de Lisboa, no máximo 1 por usuário por dia. Aqui só cria.';
+
+  @override
+  String get admAvMassaVazio => 'Preencha o título e o texto do aviso.';
+
+  @override
+  String get admAvMassaCriado =>
+      'Aviso em massa criado e registrado na auditoria.';
+
+  @override
+  String get admAvMassaVazioLista => 'Nenhum aviso em massa criado ainda.';
+
+  @override
+  String get admAvFiltroResultado => 'Resultado';
+
+  @override
+  String get admAvFiltroTipo => 'Tipo';
+
+  @override
+  String admAvPush(int n) {
+    return 'Push — últimos $n';
+  }
+
+  @override
+  String get admAvMassa => 'Avisos em massa';
+
+  @override
+  String get admAvE2e => 'E2E log — últimos 100';
+
+  @override
+  String get admAvColDia => 'Dia';
+
+  @override
+  String get admAvColTipo => 'Tipo';
+
+  @override
+  String get admAvColTitulo => 'Título';
+
+  @override
+  String get admAvColCorpo => 'Corpo';
+
+  @override
+  String get admAvColResultado => 'Resultado';
+
+  @override
+  String get admAvColEnviadoEm => 'Enviado em';
+
+  @override
+  String get admAvColErro => 'Erro';
+
+  @override
+  String get admAvColCriadoEm => 'Criado em';
+
+  @override
+  String get admAvColSegmento => 'Segmento';
+
+  @override
+  String get admAvColEnviados => 'Enviados';
+
+  @override
+  String get admAvNaoEnviado => 'ainda não';
+
+  @override
+  String get admAvColFluxo => 'Fluxo';
+
+  @override
+  String get admAvColPasso => 'Passo';
+
+  @override
+  String get admAvColEstado => 'Estado';
+
+  @override
+  String get admAvColDetalhe => 'Detalhe';
+
+  @override
+  String get admAvColDevice => 'Dispositivo';
+
+  @override
+  String get admAuTitulo => 'Auditoria';
+
+  @override
+  String get admAuSub =>
+      'admin_audit_log — últimas 300 ações de administrador. Clique para ver o antes e o depois.';
+
+  @override
+  String get admAuFiltroAcao =>
+      'Buscar ação (ex.: usuario_banir, regra_editar)';
+
+  @override
+  String admAuTabela(int n) {
+    return '$n ações';
+  }
+
+  @override
+  String admAuDetalhe(String id) {
+    return 'Ação #$id';
+  }
+
+  @override
+  String get admAuColQuando => 'Quando';
+
+  @override
+  String get admAuColAdmin => 'Admin';
+
+  @override
+  String get admAuColAcao => 'Ação';
+
+  @override
+  String get admAuColAlvo => 'Alvo';
+
+  @override
+  String get admAuColAntes => 'Antes';
+
+  @override
+  String get admAuColDepois => 'Depois';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -2502,7 +3217,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get onbOQueFazes => 'O que você faz?';
 
   @override
-  String get onbTvde => 'Motorista TVDE';
+  String get onbTvde => 'Motorista TVDE (Uber, Bolt)';
 
   @override
   String get onbEstafeta => 'Entregador';
@@ -4486,7 +5201,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get planoAbreCarros => 'Vários carros';
 
   @override
-  String get planoAbreExportar => 'Exportar para o contador (PDF/CSV)';
+  String get planoAbreExportar => 'Exportar para o contador (PDF ou planilha)';
 
   @override
   String get planoAbreReforma => 'Aposentadoria e direitos completo';
@@ -4670,4 +5385,718 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String suporteEmailRodape(String email) {
     return 'Ou escreva para $email';
   }
+
+  @override
+  String get admNavVisaoGeral => 'Visão geral';
+
+  @override
+  String get admNavUsuarios => 'Usuários';
+
+  @override
+  String get admNavRegras => 'Regras legais';
+
+  @override
+  String get admNavTickets => 'Tickets';
+
+  @override
+  String get admNavIa => 'IA';
+
+  @override
+  String get admNavAvisos => 'Avisos';
+
+  @override
+  String get admNavAuditoria => 'Auditoria';
+
+  @override
+  String get admNaoAdmin => 'Esta conta não é administradora.';
+
+  @override
+  String admErroLer(String erro) {
+    return 'Não consegui ler os dados: $erro';
+  }
+
+  @override
+  String get admTentarDeNovo => 'Tentar de novo';
+
+  @override
+  String get admVazio => 'Nada por aqui ainda.';
+
+  @override
+  String get admErroTitulo => 'Deu erro';
+
+  @override
+  String get admFechar => 'Fechar';
+
+  @override
+  String get admConfirmar => 'Confirmar';
+
+  @override
+  String get admCopiar => 'Copiar';
+
+  @override
+  String get admCopiado => 'Copiado.';
+
+  @override
+  String get admAtualizar => 'Atualizar';
+
+  @override
+  String get admSalvar => 'Salvar';
+
+  @override
+  String get admSalvo => 'Salvo e registrado na auditoria.';
+
+  @override
+  String get admTodos => 'Todos';
+
+  @override
+  String get admSim => 'Sim';
+
+  @override
+  String get admNao => 'Não';
+
+  @override
+  String get admVgTitulo => 'Visão geral';
+
+  @override
+  String get admVgSub =>
+      'Números de agora, direto das tabelas (RPC admin_resumo). Nada é calculado no navegador.';
+
+  @override
+  String get admVgUsuarios => 'Usuários';
+
+  @override
+  String admVgAtivos7(int n) {
+    return '$n ativos nos últimos 7 dias';
+  }
+
+  @override
+  String get admVgTrial => 'Em trial';
+
+  @override
+  String get admVgFree => 'Free';
+
+  @override
+  String get admVgPro => 'Pro';
+
+  @override
+  String get admVgFamilia => 'Família';
+
+  @override
+  String get admVgReceita => 'Receita estimada / mês';
+
+  @override
+  String admVgReceitaSub(int n) {
+    return '$n assinaturas ativas × preço em regras_legais';
+  }
+
+  @override
+  String get admVgTickets => 'Tickets abertos';
+
+  @override
+  String admVgTicketsSub(int n) {
+    return '$n escalados para humano';
+  }
+
+  @override
+  String get admVgCustoHoje => 'Custo IA hoje';
+
+  @override
+  String admVgCustoSub(String valor) {
+    return 'Alarme acima de $valor por dia';
+  }
+
+  @override
+  String get admVgCusto7 => 'Custo IA — 7 dias';
+
+  @override
+  String admVgCusto7Sub(int n) {
+    return '$n conversas';
+  }
+
+  @override
+  String get admVgPassadas => 'Obrigações passadas';
+
+  @override
+  String get admVgPassadasSub =>
+      'Prazos vencidos sem marcar pago, em todos os usuários';
+
+  @override
+  String admVgAlarme(String custo, String limite) {
+    return 'ALARME: o custo de IA de hoje ($custo) passou do limite ($limite, regra ia_custo_alarme_dia_eur). Confira o modelo e o limite de perguntas em Regras legais → Cadeados por plano.';
+  }
+
+  @override
+  String get admVgTabDia => 'Dia';
+
+  @override
+  String get admVgTabConversas => 'Conversas';
+
+  @override
+  String get admVgTabCusto => 'Custo (€)';
+
+  @override
+  String get admVgPushHoje => 'Push de hoje por resultado';
+
+  @override
+  String get admVgPushVazio => 'Nenhum push enviado hoje.';
+
+  @override
+  String get admVgResultado => 'Resultado';
+
+  @override
+  String get admVgQuantidade => 'Quantidade';
+
+  @override
+  String get admUsTitulo => 'Usuários';
+
+  @override
+  String get admUsSub =>
+      'profiles + plano efetivo (view v_admin_usuarios). Clique numa linha para ver o detalhe e agir.';
+
+  @override
+  String get admUsPesquisa => 'Buscar por e-mail ou nome (Enter para buscar)';
+
+  @override
+  String get admUsExportar => 'Exportar CSV';
+
+  @override
+  String admUsCsvTitulo(int n) {
+    return 'CSV dos usuários ($n)';
+  }
+
+  @override
+  String get admUsCsvNota =>
+      'Copie e cole num arquivo .csv (separador ;). O download direto pelo navegador fica para uma próxima versão.';
+
+  @override
+  String admUsTabela(int n) {
+    return '$n usuários';
+  }
+
+  @override
+  String get admColEmail => 'E-mail';
+
+  @override
+  String get admColNome => 'Nome';
+
+  @override
+  String get admColAtividade => 'Atividade';
+
+  @override
+  String get admColPlano => 'Plano efetivo';
+
+  @override
+  String get admColTrialAte => 'Trial até';
+
+  @override
+  String get admColUltimoAcesso => 'Último acesso';
+
+  @override
+  String get admColEstado => 'Estado';
+
+  @override
+  String get admColCriadoEm => 'Criado em';
+
+  @override
+  String get admUsBanido => 'banido';
+
+  @override
+  String get admUsAtivo => 'ativo';
+
+  @override
+  String get admUsDetalhe => 'Usuário';
+
+  @override
+  String get admUsAcoes => 'Ações';
+
+  @override
+  String admUsPlanoAtual(String plano, String efetivo) {
+    return 'Plano manual (profiles.plano): $plano · plano efetivo: $efetivo';
+  }
+
+  @override
+  String get admUsBanir => 'Banir';
+
+  @override
+  String get admUsReativar => 'Reativar';
+
+  @override
+  String admUsBanirConfirma(String email) {
+    return 'Banir $email? O usuário perde o acesso ao app até você reativar.';
+  }
+
+  @override
+  String get admUsAlterarPlano => 'Alterar plano manual';
+
+  @override
+  String get admUsPlanoManualNota =>
+      'profiles.plano vale só quando não há trial ativo nem assinatura ativa na Google Play.';
+
+  @override
+  String get admUsEstenderTrial => 'Estender trial';
+
+  @override
+  String admUsEstenderDias(int n) {
+    return '+$n dias';
+  }
+
+  @override
+  String get admUsApagar => 'Apagar conta';
+
+  @override
+  String get admUsApagarNota =>
+      'Apagar do auth de verdade precisa da service role (servidor). Aqui só marca como banido e registra o pedido na auditoria — o servidor apaga depois.';
+
+  @override
+  String admUsApagarConfirma(String email) {
+    return 'Marcar $email como banido e registrar o pedido de apagar a conta?';
+  }
+
+  @override
+  String get admUsFeito => 'Feito e registrado na auditoria.';
+
+  @override
+  String get admUsPerfil => 'Perfil';
+
+  @override
+  String admUsObrigacoes(int n) {
+    return 'Obrigações ($n)';
+  }
+
+  @override
+  String admUsRendimentos(int n) {
+    return 'Rendimentos ($n)';
+  }
+
+  @override
+  String admUsAssinaturas(int n) {
+    return 'Assinaturas ($n)';
+  }
+
+  @override
+  String admUsConversas(int n) {
+    return 'Últimas conversas com a IA ($n)';
+  }
+
+  @override
+  String get admRgTitulo => 'Regras legais';
+
+  @override
+  String get admRgSub =>
+      'A única fonte de números do app e da IA. Editar aqui muda o app na hora. Confira a fonte oficial antes de salvar.';
+
+  @override
+  String get admRgAba1 => 'Regras';
+
+  @override
+  String get admRgAba2 => 'Escalões IRS';
+
+  @override
+  String get admRgAba3 => 'Cadeados por plano';
+
+  @override
+  String get admRgPesquisa => 'Buscar chave ou descrição';
+
+  @override
+  String admRgTabela(int n, int total) {
+    return '$n de $total regras';
+  }
+
+  @override
+  String get admRgAvisoIas => 'Aviso em massa: o IAS mudou';
+
+  @override
+  String get admRgAvisoIasTitulo => 'O IAS mudou';
+
+  @override
+  String admRgAvisoIasCorpo(String valor) {
+    return 'O IAS (o valor de referência da Segurança Social) mudou para $valor. Os seus valores foram recalculados. Abra o app para conferir.';
+  }
+
+  @override
+  String get admRgAvisoTituloCampo => 'Título';
+
+  @override
+  String get admRgAvisoCorpoCampo => 'Texto do aviso';
+
+  @override
+  String get admRgAvisoCriado =>
+      'Aviso em massa criado. O envio é feito pelo avisos-cron (tipo massa) às 09:00 de Lisboa.';
+
+  @override
+  String get admRgColChave => 'Chave';
+
+  @override
+  String get admRgColDescricao => 'Descrição';
+
+  @override
+  String get admRgColValor => 'Valor';
+
+  @override
+  String get admRgColUnidade => 'Unidade';
+
+  @override
+  String get admRgColAno => 'Ano';
+
+  @override
+  String get admRgColConfianca => 'Confiança';
+
+  @override
+  String get admRgColVerificado => 'Verificado em';
+
+  @override
+  String get admRgColFonte => 'Fonte';
+
+  @override
+  String get admRgEditar => 'Editar regra';
+
+  @override
+  String get admRgValorNum => 'Valor numérico (valor_num)';
+
+  @override
+  String get admRgValorTxt => 'Valor em texto (valor_txt)';
+
+  @override
+  String get admRgValorJson => 'Valor JSON (valor_json)';
+
+  @override
+  String get admRgJsonInvalido =>
+      'O JSON não é válido. Confira as chaves e as vírgulas.';
+
+  @override
+  String get admRgFonteUrl => 'Fonte (URL oficial)';
+
+  @override
+  String get admRgVerificadoEm => 'Verificado em (aaaa-mm-dd)';
+
+  @override
+  String get admRgConfianca => 'Confiança';
+
+  @override
+  String get admRgEscOrdem => 'Ordem';
+
+  @override
+  String get admRgEscAte => 'Até (€)';
+
+  @override
+  String get admRgEscTaxa => 'Taxa';
+
+  @override
+  String get admRgEscTaxaAjuda => 'Taxa (0,13 = 13%)';
+
+  @override
+  String get admRgEscParcela => 'Parcela a abater (€)';
+
+  @override
+  String get admRgEscSemLimite => 'sem limite';
+
+  @override
+  String get admRgEscSemLimiteAjuda => 'Vazio = último escalão, sem limite';
+
+  @override
+  String get admRgEscEditar => 'Editar escalão';
+
+  @override
+  String get admRgFlagChave => 'Chave';
+
+  @override
+  String get admRgFlagDescricao => 'Descrição';
+
+  @override
+  String get admRgFlagFree => 'Free';
+
+  @override
+  String get admRgFlagPro => 'Pro';
+
+  @override
+  String get admRgFlagFamilia => 'Família';
+
+  @override
+  String get admRgFlagLimFree => 'Limite free';
+
+  @override
+  String get admRgFlagLimPro => 'Limite pro';
+
+  @override
+  String get admRgFlagLimFamilia => 'Limite família';
+
+  @override
+  String get admRgFlagEditar => 'Editar cadeado';
+
+  @override
+  String get admRgFlagLimiteAjuda => 'Vazio = sem limite';
+
+  @override
+  String get admTkTitulo => 'Tickets de suporte';
+
+  @override
+  String get admTkSub =>
+      'tickets_suporte. Clique numa linha para ver a descrição, os logs e a resposta da IA.';
+
+  @override
+  String admTkTabela(int n) {
+    return '$n tickets';
+  }
+
+  @override
+  String get admTkEstadoAberto => 'Aberto';
+
+  @override
+  String get admTkEstadoEmCurso => 'Em andamento';
+
+  @override
+  String get admTkEstadoFechado => 'Fechado';
+
+  @override
+  String get admTkEscalados => 'Só escalados para humano';
+
+  @override
+  String get admTkColQuando => 'Quando';
+
+  @override
+  String get admTkColTipo => 'Tipo';
+
+  @override
+  String get admTkColAssunto => 'Assunto';
+
+  @override
+  String get admTkColEstado => 'Estado';
+
+  @override
+  String get admTkColEscalar => 'Humano';
+
+  @override
+  String get admTkColUsuario => 'Usuário';
+
+  @override
+  String admTkDetalhe(String id) {
+    return 'Ticket $id';
+  }
+
+  @override
+  String get admTkDescricao => 'Descrição';
+
+  @override
+  String get admTkLogs => 'Logs';
+
+  @override
+  String get admTkRespostaIa => 'Resposta da IA';
+
+  @override
+  String get admTkMotivo => 'Motivo da escalada';
+
+  @override
+  String get admTkMudarEstado => 'Mudar estado';
+
+  @override
+  String get admTkEstadoMudado =>
+      'Estado atualizado e registrado na auditoria.';
+
+  @override
+  String get admTkParceiro => 'Contato do contador/advogado parceiro';
+
+  @override
+  String get admTkParceiroAjuda =>
+      'Fica em regras_legais (chave contacto_parceiro_contabilista). É o que o suporte mostra quando um ticket sobe para humano. A linha é criada se não existir.';
+
+  @override
+  String get admTkParceiroCampo => 'Nome, telefone, e-mail';
+
+  @override
+  String get admTkParceiroSalvo => 'Contato salvo e registrado na auditoria.';
+
+  @override
+  String get admIaTitulo => 'IA — perguntas e custo';
+
+  @override
+  String get admIaSub =>
+      'conversas_ia (RPC admin_ia_top_perguntas) e v_custo_ia_diario.';
+
+  @override
+  String get admIaVazio => 'Ainda não há perguntas registradas.';
+
+  @override
+  String get admIaTop => 'Perguntas mais feitas (top 30)';
+
+  @override
+  String get admIaColPergunta => 'Pergunta';
+
+  @override
+  String get admIaColVezes => 'Vezes';
+
+  @override
+  String get admIaColFora => 'Fora das regras';
+
+  @override
+  String get admIaColBr => 'Em PT-BR';
+
+  @override
+  String get admIaColUltima => 'Última vez';
+
+  @override
+  String get admIaColVariante => 'Variante';
+
+  @override
+  String get admIaColResposta => 'Resposta';
+
+  @override
+  String admIaFora(int n) {
+    return 'Fora das regras ($n) — candidatas a guia novo';
+  }
+
+  @override
+  String get admIaForaVazio =>
+      'Nenhuma pergunta fora das regras. A IA só citou o que está na tabela.';
+
+  @override
+  String get admIaCriarGuia => 'Criar guia';
+
+  @override
+  String get admIaGuiaConfirma =>
+      'Criar um rascunho de guia (publicado = não) com esta pergunta como corpo? Depois você edita o texto.';
+
+  @override
+  String admIaGuiaCriado(String slug) {
+    return 'Rascunho de guia criado: $slug (publicado = não).';
+  }
+
+  @override
+  String get admIaCusto => 'Custo por dia (últimos 30 dias)';
+
+  @override
+  String get admIaColDia => 'Dia';
+
+  @override
+  String get admIaColConversas => 'Conversas';
+
+  @override
+  String get admIaColCusto => 'Custo (€)';
+
+  @override
+  String get admAvTitulo => 'Avisos';
+
+  @override
+  String get admAvSub =>
+      'Push enviados (eventos_push), avisos em massa (avisos_massa) e log dos testes E2E (e2e_log).';
+
+  @override
+  String get admAvNovoMassa => 'Novo aviso em massa';
+
+  @override
+  String get admAvMassaNota =>
+      'O envio real é feito pelo avisos-cron (tipo massa) às 09:00 de Lisboa, no máximo 1 por usuário por dia. Aqui só cria.';
+
+  @override
+  String get admAvMassaVazio => 'Preencha o título e o texto do aviso.';
+
+  @override
+  String get admAvMassaCriado =>
+      'Aviso em massa criado e registrado na auditoria.';
+
+  @override
+  String get admAvMassaVazioLista => 'Nenhum aviso em massa criado ainda.';
+
+  @override
+  String get admAvFiltroResultado => 'Resultado';
+
+  @override
+  String get admAvFiltroTipo => 'Tipo';
+
+  @override
+  String admAvPush(int n) {
+    return 'Push — últimos $n';
+  }
+
+  @override
+  String get admAvMassa => 'Avisos em massa';
+
+  @override
+  String get admAvE2e => 'E2E log — últimos 100';
+
+  @override
+  String get admAvColDia => 'Dia';
+
+  @override
+  String get admAvColTipo => 'Tipo';
+
+  @override
+  String get admAvColTitulo => 'Título';
+
+  @override
+  String get admAvColCorpo => 'Corpo';
+
+  @override
+  String get admAvColResultado => 'Resultado';
+
+  @override
+  String get admAvColEnviadoEm => 'Enviado em';
+
+  @override
+  String get admAvColErro => 'Erro';
+
+  @override
+  String get admAvColCriadoEm => 'Criado em';
+
+  @override
+  String get admAvColSegmento => 'Segmento';
+
+  @override
+  String get admAvColEnviados => 'Enviados';
+
+  @override
+  String get admAvNaoEnviado => 'ainda não';
+
+  @override
+  String get admAvColFluxo => 'Fluxo';
+
+  @override
+  String get admAvColPasso => 'Passo';
+
+  @override
+  String get admAvColEstado => 'Estado';
+
+  @override
+  String get admAvColDetalhe => 'Detalhe';
+
+  @override
+  String get admAvColDevice => 'Dispositivo';
+
+  @override
+  String get admAuTitulo => 'Auditoria';
+
+  @override
+  String get admAuSub =>
+      'admin_audit_log — últimas 300 ações de administrador. Clique para ver o antes e o depois.';
+
+  @override
+  String get admAuFiltroAcao =>
+      'Buscar ação (ex.: usuario_banir, regra_editar)';
+
+  @override
+  String admAuTabela(int n) {
+    return '$n ações';
+  }
+
+  @override
+  String admAuDetalhe(String id) {
+    return 'Ação #$id';
+  }
+
+  @override
+  String get admAuColQuando => 'Quando';
+
+  @override
+  String get admAuColAdmin => 'Admin';
+
+  @override
+  String get admAuColAcao => 'Ação';
+
+  @override
+  String get admAuColAlvo => 'Alvo';
+
+  @override
+  String get admAuColAntes => 'Antes';
+
+  @override
+  String get admAuColDepois => 'Depois';
 }

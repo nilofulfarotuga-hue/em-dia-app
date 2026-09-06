@@ -1,0 +1,14 @@
+# Relógio dos testes.
+#
+# A fábrica de fotos (test/golden) escreve até 12 PNGs por teste — 3 tamanhos ×
+# PT-PT/PT-BR × com/sem teclado — e cada captura passa pelo codificador PNG real
+# (tester.runAsync). Numa máquina ocupada isso ultrapassa os 30 s do timeout por
+# omissão do flutter_test.
+#
+# CICATRIZ (2026-09-06): a suíte golden completa falhava SEMPRE exatamente 1 teste,
+# mas NUNCA o mesmo — calendario, depois onboarding+suporte, depois recibos. Cada um
+# desses ficheiros, corrido sozinho, passava a 100%. Não era defeito de tela nem
+# concorrência (falhava igual com -j 1) nem falta de memória (falhou com 6,2 GB
+# livres): era o relógio. Multiplicar o timeout não enfraquece nada — um estouro de
+# layout continua a fazer o teste falhar na mesma.
+timeout: 5x

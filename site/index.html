@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Em Dia — Calculadora de recibo verde grátis e avisos de Segurança Social, IVA, IRS e carro</title>
+<meta name="description" content="Calcula o teu recibo verde em segundos (retenção 23%, IVA 23% ou isento) e sabe quanto guardar para a Segurança Social e o IRS. A app Em Dia avisa-te antes de cada prazo. Grátis 30 dias, sem cartão.">
+<link rel="canonical" href="https://em-dia-site.pages.dev/">
+<meta name="theme-color" content="#16A34A">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:site_name" content="Em Dia">
+<meta property="og:title" content="Nunca mais levas multa da Segurança Social.">
+<meta property="og:description" content="Calculadora de recibo verde grátis + avisos de Segurança Social, IVA, IRS e do carro. Grátis 30 dias, sem cartão.">
+<meta property="og:url" content="https://em-dia-site.pages.dev/">
+<meta property="og:image" content="https://em-dia-site.pages.dev/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nunca mais levas multa da Segurança Social.">
+<meta name="twitter:description" content="Calculadora de recibo verde grátis + avisos de Segurança Social, IVA, IRS e do carro.">
+<meta name="twitter:image" content="https://em-dia-site.pages.dev/assets/img/og.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Em Dia",
+  "url": "https://em-dia-site.pages.dev/",
+  "image": "https://em-dia-site.pages.dev/assets/img/og.jpg",
+  "description": "Assistente do trabalhador independente a recibos verdes em Portugal: calculadora de recibo verde, avisos de Segurança Social, IVA e IRS, e lembretes do carro (inspeção, IUC, seguro).",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Android, Web",
+  "inLanguage": "pt-PT",
+  "installUrl": "https://play.google.com/store/apps/details?id=pt.emdia.app",
+  "offers": [
+    {"@type": "Offer", "name": "Grátis", "price": "0", "priceCurrency": "EUR"},
+    {"@type": "Offer", "name": "Pro mensal", "price": "3.49", "priceCurrency": "EUR"},
+    {"@type": "Offer", "name": "Pro anual", "price": "29.90", "priceCurrency": "EUR"},
+    {"@type": "Offer", "name": "Família mensal", "price": "5.99", "priceCurrency": "EUR"},
+    {"@type": "Offer", "name": "Família anual", "price": "49.90", "priceCurrency": "EUR"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "A app Em Dia é grátis?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis (painel, calculadora e calendário) ou passar ao Pro por 3,49 € por mês ou 29,90 € por ano."}},
+    {"@type": "Question", "name": "Tenho iPhone. Posso usar o Em Dia?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Abre app-em-dia.pages.dev no Safari e toca em Partilhar e depois em Adicionar ao ecrã principal. Fica como uma app, com os mesmos dados que no Android e no computador."}},
+    {"@type": "Question", "name": "A calculadora de recibo verde está certa?", "acceptedAnswer": {"@type": "Answer", "text": "Usa os números oficiais de 2026: retenção na fonte de 23% (ou 25% por opção, ou dispensa), IVA de 23% ou isenção do artigo 53.º do CIVA. Os valores vêm de uma tabela com a fonte oficial de cada número. É informação geral e não substitui o teu contabilista."}},
+    {"@type": "Question", "name": "O que é a retenção na fonte?", "acceptedAnswer": {"@type": "Answer", "text": "É a parte do recibo (23% por norma) que o teu cliente entrega às Finanças por ti. Não é dinheiro perdido: é um adiantamento do teu IRS. Por isso no recibo de 1.000 € recebes 770 € na conta."}},
+    {"@type": "Question", "name": "Estou isento de IVA. O que escrevo no recibo?", "acceptedAnswer": {"@type": "Answer", "text": "Escreves a menção obrigatória: IVA - regime de isenção [artigo 53.º do CIVA], código M10. A calculadora mostra-ta pronta a copiar. A isenção vale até 15.000 € de faturação por ano."}},
+    {"@type": "Question", "name": "Os meus dados estão seguros?", "acceptedAnswer": {"@type": "Answer", "text": "Os dados ficam num servidor na Europa (Paris), só tu os vês, a app não usa localização em segundo plano e podes apagar a conta quando quiseres."}}
+  ]
+}
+</script>
+<style>
+@font-face{font-family:Inter;src:url(/assets/fonts/Inter.woff2) format("woff2"),url(/assets/fonts/Inter-VariableFont.ttf) format("truetype");font-weight:100 900;font-display:swap}
+:root{
+  --verde:#16A34A;--verde-esc:#15803D;--verde-noite:#065F46;--verde-claro:#DCFCE7;--verde-fundo:#F0FDF4;
+  --laranja:#F97316;--laranja-claro:#FFEDD5;--vermelho:#DC2626;--vermelho-claro:#FEE2E2;
+  --fundo:#F6F7F4;--superficie:#fff;--superficie2:#F1F3EF;--linha:#E5E7EB;
+  --tinta:#111827;--tinta2:#4B5563;--tinta3:#6B7280;--info:#2563EB;--roxo:#7C3AED;--roxo-claro:#EDE9FE;
+  --raio:16px;--raio-s:12px;--sombra:0 2px 8px rgba(15,23,42,.08);--sombra-g:0 8px 24px rgba(15,23,42,.12);
+  --largura:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:18px;line-height:1.5;color:var(--tinta);background:var(--fundo);overflow-x:hidden}
+@media(min-width:900px){body{font-size:19px}}
+img,video{max-width:100%;display:block}
+a{color:var(--verde-esc)}
+:focus-visible{outline:3px solid var(--tinta);outline-offset:3px;border-radius:6px}
+.container{width:min(var(--largura),100% - 40px);margin-inline:auto}
+.visualmente-escondido{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3{line-height:1.12;letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(30px,4.5vw,44px);font-weight:800}
+h3{font-size:22px;font-weight:700}
+p{margin:0}
+.etiqueta{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verde-esc);margin-bottom:12px}
+section{padding:72px 0}
+@media(min-width:900px){section{padding:104px 0}}
+.intro{max-width:720px;margin-bottom:40px}
+.intro p{font-size:1.1em;color:var(--tinta2);margin-top:14px}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:12px 26px;border-radius:var(--raio);font:inherit;font-weight:700;font-size:19px;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;width:100%}
+@media(min-width:640px){.btn{width:auto}}
+.btn svg{width:26px;height:26px;flex:none}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sombra-g)}
+.btn:active{transform:translateY(0)}
+.btn-verde{background:var(--verde);color:#fff}
+.btn-verde:hover{background:var(--verde-esc)}
+.btn-branco{background:#fff;color:var(--tinta)}
+.btn-contorno{background:transparent;color:var(--verde-esc);border-color:var(--verde)}
+.btn-contorno:hover{background:var(--verde-fundo)}
+.botoes{display:flex;flex-direction:column;gap:14px}
+@media(min-width:640px){.botoes{flex-direction:row;flex-wrap:wrap}}
+.cta-bloco{margin-top:40px}
+
+/* topo */
+.topo{position:sticky;top:0;z-index:20;background:rgba(246,247,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.topo.desceu{border-bottom-color:var(--linha)}
+.topo .container{display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:16px}
+.marca{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--tinta);text-decoration:none}
+.marca img{width:36px;height:36px;border-radius:10px}
+.topo nav{display:none;gap:6px}
+@media(min-width:760px){.topo nav{display:flex}}
+.topo nav a{color:var(--tinta2);text-decoration:none;font-weight:600;padding:10px 14px;border-radius:10px;font-size:17px}
+.topo nav a:hover{background:var(--superficie2);color:var(--tinta)}
+.topo .atalho{font-weight:700;color:var(--verde-esc);text-decoration:none;padding:12px 16px;border-radius:12px;background:var(--verde-claro);white-space:nowrap;font-size:17px;min-height:48px;display:inline-flex;align-items:center}
+
+/* herói com vídeo */
+.heroi{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;padding:0;overflow:hidden;background:var(--verde-noite)}
+.heroi__media{position:absolute;inset:0;z-index:0}
+.heroi__media video,.heroi__media img{width:100%;height:100%;object-fit:cover;object-position:center}
+.heroi__veu{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,95,70,.35) 0%,rgba(6,78,59,.72) 55%,rgba(4,47,38,.94) 100%)}
+.heroi .container{position:relative;z-index:1;padding:120px 0 56px}
+@media(min-width:900px){.heroi .container{padding:160px 0 88px}}
+.heroi h1{font-size:clamp(40px,8vw,84px);font-weight:900;letter-spacing:-.035em;max-width:14ch;text-wrap:balance}
+.heroi h1 em{font-style:normal;color:#BBF7D0}
+.heroi .sub{font-size:clamp(19px,2.4vw,25px);max-width:38ch;margin-top:20px;color:#ECFDF5;line-height:1.4;text-wrap:balance}
+.heroi .botoes{margin-top:36px}
+.heroi .nota{margin-top:18px;font-size:16px;color:#BBF7D0;display:flex;align-items:center;gap:8px}
+.heroi .nota svg{width:20px;height:20px}
+.heroi .desce{position:absolute;right:20px;bottom:20px;color:#BBF7D0;font-size:15px;text-decoration:none;display:none}
+@media(min-width:900px){.heroi .desce{display:inline-flex;align-items:center;gap:6px}}
+
+/* sustos */
+.sustos{background:var(--superficie)}
+.grelha4{display:grid;gap:16px}
+@media(min-width:700px){.grelha4{grid-template-columns:1fr 1fr}}
+@media(min-width:1040px){.grelha4{grid-template-columns:repeat(4,1fr)}}
+.susto{background:var(--fundo);border-radius:var(--raio);padding:24px;border-top:6px solid var(--vermelho);display:flex;flex-direction:column;gap:10px}
+.susto .num{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--tinta)}
+.susto .num small{font-size:16px;font-weight:600;color:var(--tinta3);display:block;margin-top:6px;letter-spacing:0}
+.susto h3{margin-top:4px}
+.susto p{color:var(--tinta2);font-size:17px}
+.susto .fim{margin-top:auto;padding-top:14px;border-top:1px solid var(--linha);font-size:16px;font-weight:600;color:var(--verde-esc);display:flex;gap:8px;align-items:flex-start}
+.susto .fim svg{width:22px;height:22px;flex:none;margin-top:2px}
+
+/* calculadora */
+.calc{background:var(--verde-fundo)}
+.calc-caixa{background:var(--superficie);border-radius:24px;box-shadow:var(--sombra-g);overflow:hidden;max-width:960px;margin-inline:auto}
+.separadores{display:flex;background:var(--superficie2);padding:6px;gap:6px}
+.separadores button{flex:1;min-height:56px;border:0;border-radius:var(--raio-s);background:transparent;font:inherit;font-weight:700;font-size:17px;color:var(--tinta2);cursor:pointer}
+@media(min-width:640px){.separadores button{font-size:19px}}
+.separadores button[aria-selected=true]{background:var(--superficie);color:var(--verde-esc);box-shadow:var(--sombra)}
+.painel{padding:24px}
+@media(min-width:800px){.painel{padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:36px}}
+.painel[hidden]{display:none}
+.campo{margin-bottom:22px}
+.campo label,.campo legend{display:block;font-weight:700;font-size:17px;margin-bottom:8px}
+.campo .ajuda{font-size:15px;color:var(--tinta3);margin-top:6px}
+.entrada{position:relative}
+.entrada input{width:100%;min-height:64px;border:2px solid var(--linha);border-radius:var(--raio-s);padding:0 64px 0 18px;font:inherit;font-size:30px;font-weight:700;color:var(--tinta);background:#fff;font-variant-numeric:tabular-nums}
+.entrada input:focus{border-color:var(--verde);outline:none;box-shadow:0 0 0 4px var(--verde-claro)}
+.entrada span{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:26px;font-weight:700;color:var(--tinta3)}
+fieldset{border:0;padding:0;margin:0}
+.opcoes{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+.opcoes label{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;min-height:56px;padding:10px 12px;border:2px solid var(--linha);border-radius:var(--raio-s);font-weight:600;font-size:16px;cursor:pointer;background:#fff;line-height:1.25}
+.opcoes input{position:absolute;opacity:0;width:1px;height:1px}
+.opcoes input:checked+span{color:var(--verde-esc)}
+.opcoes label:has(input:checked){border-color:var(--verde);background:var(--verde-claro)}
+.opcoes label:has(input:focus-visible){outline:3px solid var(--tinta);outline-offset:2px}
+.resultado{background:var(--fundo);border-radius:var(--raio);padding:22px}
+.linha{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--linha);font-size:17px}
+.linha span:last-child{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.linha.total{border-bottom:0;padding-top:16px;flex-direction:column;gap:2px}
+.linha.total span:first-child{font-size:16px;color:var(--tinta3);font-weight:600}
+.linha.total span:last-child{font-size:clamp(34px,5vw,44px);font-weight:800;letter-spacing:-.03em;color:var(--verde-esc)}
+.linha.total.teu span:last-child{color:var(--tinta)}
+.mencao{margin-top:14px;padding:14px;border-radius:var(--raio-s);background:#DBEAFE;color:#1E3A8A;font-size:15px;line-height:1.4}
+.mencao b{display:block;font-size:16px;margin-top:4px;user-select:all}
+.mencao button{margin-top:10px;min-height:44px;border:0;border-radius:10px;background:#1E40AF;color:#fff;font:inherit;font-weight:700;font-size:15px;padding:0 16px;cursor:pointer}
+.aviso{margin-top:12px;padding:12px 14px;border-radius:var(--raio-s);background:var(--laranja-claro);color:#7C2D12;font-size:15px}
+.aviso.verde{background:var(--verde-claro);color:var(--verde-noite)}
+.rodape-calc{padding:16px 24px 24px;font-size:15px;color:var(--tinta3);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;border-top:1px solid var(--linha)}
+.rodape-calc .fonte{display:inline-flex;align-items:center;gap:6px}
+.rodape-calc .fonte i{width:9px;height:9px;border-radius:50%;background:var(--verde);display:inline-block}
+.rodape-calc .fonte.offline i{background:var(--laranja)}
+
+/* como funciona */
+.passos{display:grid;gap:20px;counter-reset:passo}
+@media(min-width:800px){.passos{grid-template-columns:repeat(3,1fr)}}
+.passo{background:var(--superficie);border-radius:var(--raio);padding:28px 24px;box-shadow:var(--sombra);position:relative}
+.passo::before{counter-increment:passo;content:counter(passo);display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--verde-claro);color:var(--verde-noite);font-weight:800;font-size:22px;margin-bottom:16px}
+.passo p{color:var(--tinta2);margin-top:8px;font-size:17px}
+
+/* capturas */
+.capturas{background:var(--superficie)}
+.tira{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 20px 24px;margin:0 -20px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+@media(min-width:1100px){.tira{margin:0;padding-inline:0;display:grid;grid-template-columns:repeat(6,1fr);overflow:visible}}
+.tele{flex:0 0 250px;scroll-snap-align:center;text-align:center}
+@media(min-width:1100px){.tele{flex:auto}}
+.tele .moldura{border-radius:34px;padding:10px;background:#111827;box-shadow:var(--sombra-g);position:relative}
+.tele .moldura::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:40%;height:22px;background:#111827;border-radius:0 0 14px 14px;z-index:1}
+.tele img{border-radius:26px;width:100%;height:auto;aspect-ratio:1170/2532;object-fit:cover;object-position:top;background:var(--fundo)}
+.tele figcaption{margin-top:12px;font-size:16px;font-weight:600;color:var(--tinta2)}
+
+/* preços */
+.planos{display:grid;gap:18px}
+@media(min-width:900px){.planos{grid-template-columns:repeat(3,1fr);align-items:stretch}}
+.plano{background:var(--superficie);border-radius:var(--raio);padding:28px 24px;box-shadow:var(--sombra);display:flex;flex-direction:column;gap:14px;border:2px solid transparent}
+.plano.destaque{border-color:var(--verde);box-shadow:var(--sombra-g)}
+.plano .selo{align-self:flex-start;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--verde-claro);color:var(--verde-noite)}
+.plano .preco{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.plano .preco small{font-size:17px;font-weight:600;color:var(--tinta3);letter-spacing:0}
+.plano .anual{font-size:16px;color:var(--tinta3);margin-top:-6px}
+.plano ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:17px;color:var(--tinta2)}
+.plano li{display:flex;gap:10px;align-items:flex-start}
+.plano li svg{width:22px;height:22px;flex:none;color:var(--verde)}
+.plano .btn{margin-top:auto;width:100%}
+
+/* faq */
+.faq{background:var(--superficie)}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 0;font-weight:700;font-size:19px;display:flex;justify-content:space-between;gap:16px;align-items:center;min-height:56px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:30px;font-weight:400;color:var(--verde);flex:none;width:32px;text-align:center}
+.faq details[open] summary::after{content:"−"}
+.faq .resposta{padding:0 0 22px;color:var(--tinta2);max-width:70ch}
+
+/* descarregar */
+.descarregar{background:var(--verde-noite);color:#fff;text-align:center}
+.descarregar h2{color:#fff}
+.descarregar p{color:#D1FAE5;max-width:60ch;margin:14px auto 0}
+.descarregar .botoes{justify-content:center;margin-top:36px}
+.descarregar .nota{margin-top:20px;font-size:16px;color:#A7F3D0}
+
+/* rodapé */
+footer{padding:40px 0 56px;font-size:16px;color:var(--tinta3)}
+footer .container{display:grid;gap:20px}
+@media(min-width:800px){footer .container{grid-template-columns:1.4fr 1fr 1fr}}
+footer .aviso-legal{background:var(--superficie2);border-radius:var(--raio-s);padding:14px 16px;color:var(--tinta2)}
+footer h3{font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta3);margin-bottom:10px}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+footer a{color:var(--tinta2)}
+footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+/* revelação ao scroll (desliga-se com prefers-reduced-motion) */
+.revela{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.revela.visto{opacity:1;transform:none}
+.sem-js .revela{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .heroi__media video{display:none}
+  .revela{opacity:1;transform:none;transition:none}
+  .btn{transition:none}
+  .btn:hover{transform:none}
+}
+</style>
+</head>
+<body class="sem-js">
+
+<header class="topo" id="topo">
+  <div class="container">
+    <a class="marca" href="#" aria-label="Em Dia, início"><img src="/assets/img/apple-touch-icon.png" alt="" width="36" height="36">Em Dia</a>
+    <nav aria-label="Secções">
+      <a href="#sustos">Os 4 sustos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#precos">Preços</a>
+      <a href="#faq">Perguntas</a>
+    </nav>
+    <a class="atalho" href="#calculadora">Calculadora grátis</a>
+  </div>
+</header>
+
+<main>
+
+<!-- HERÓI -->
+<section class="heroi" id="inicio" aria-labelledby="titulo">
+  <div class="heroi__media" aria-hidden="true">
+    <video id="video-heroi" muted autoplay loop playsinline preload="metadata" poster="/assets/video/heroi-poster.jpg" width="1280" height="720">
+      <source src="/assets/video/heroi.mp4" type="video/mp4">
+    </video>
+    <div class="heroi__veu"></div>
+  </div>
+  <div class="container">
+    <h1 id="titulo">Nunca mais levas multa da <em>Segurança Social.</em></h1>
+    <p class="sub">A app que te avisa antes de cada prazo: Segurança Social, IVA, IRS e o carro. Em português simples, sem letras miúdas.</p>
+    <div class="botoes">
+      <a class="btn btn-branco" href="https://play.google.com/store/apps/details?id=pt.emdia.app" data-cta="play">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16A34A" d="M3.6 2.4c-.4.4-.6 1-.6 1.7v15.8c0 .7.2 1.3.6 1.7l.1.1 8.9-8.9v-.2L3.7 2.3l-.1.1z"/><path fill="#F97316" d="M15.5 15.8l-3-3v-.2l3-3 .1.1 3.5 2c1 .6 1 1.5 0 2.1l-3.5 2-.1 0z"/><path fill="#DC2626" d="M15.6 15.7L12.6 12.7 3.6 21.7c.3.3.9.4 1.5 0l10.5-6z"/><path fill="#15803D" d="M15.6 9.6L5.1 3.6c-.6-.4-1.2-.3-1.5 0l9 9 3-3z"/></svg>
+        Descarregar na Play Store
+      </a>
+      <a class="btn btn-branco" href="https://app-em-dia.pages.dev" data-cta="web">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        Usar no iPhone/computador
+      </a>
+    </div>
+    <p class="nota"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Grátis 30 dias com tudo aberto. Sem cartão.</p>
+  </div>
+  <a class="desce" href="#calculadora">Calcula o teu recibo ↓</a>
+</section>
+
+<!-- OS 4 SUSTOS -->
+<section class="sustos" id="sustos" aria-labelledby="t-sustos">
+  <div class="container">
+    <div class="intro revela">
+      <span class="etiqueta">Os 4 sustos</span>
+      <h2 id="t-sustos">Quatro prazos que passam despercebidos a quase toda a gente.</h2>
+      <p>Não é falta de cuidado: é que ninguém avisa. O Em Dia avisa. Estes são os números reais de 2026.</p>
+    </div>
+    <div class="grelha4">
+      <article class="susto revela">
+        <div class="num">dia 20 <small>de cada mês</small></div>
+        <h3>Segurança Social</h3>
+        <p>Pagas até ao dia 20. A declaração é trimestral: até ao último dia de janeiro, abril, julho e outubro. São 21,4% sobre 70% do que ganhas (mínimo 20 € por mês). Se falhas, há juros e coima (multa).</p>
+        <p class="fim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg>Aviso na véspera útil, às 9 da manhã. Semáforo verde, laranja ou vermelho.</p>
+      </article>
+      <article class="susto revela">
+        <div class="num">15.000 € <small>por ano, e perdes a isenção</small></div>
+        <h3>IVA</h3>
+        <p>Até 15.000 € de faturação por ano não cobras IVA (artigo 53.º). Passas os 18.750 € e a fatura seguinte já leva 23%. Quem não vê o acumulado só descobre quando as Finanças escrevem.</p>
+        <p class="fim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>A Vigia do IVA mostra «estás em X € de 15.000 €» e avisa aos 12.000 €.</p>
+      </article>
+      <article class="susto revela">
+        <div class="num">20 jul · set · dez <small>pagamentos por conta</small></div>
+        <h3>IRS</h3>
+        <p>No regime simplificado 75% do que faturas conta como rendimento. Há três pagamentos por conta no ano e a declaração entrega-se de 1 de abril a 30 de junho. Quem não guarda todos os meses chega a abril com a conta grande.</p>
+        <p class="fim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg>Diz-te quanto guardar por mês. «Não é tudo teu.»</p>
+      </article>
+      <article class="susto revela">
+        <div class="num">4 · 6 · 8 anos <small>depois, todos os anos</small></div>
+        <h3>O carro</h3>
+        <p>Inspeção aos 4, 6 e 8 anos da matrícula e depois todos os anos (TVDE: todos os anos, a confirmar no IMT). IUC (o imposto do carro) até ao fim do mês da matrícula. Sem inspeção válida o carro fica parado — e tu sem ganhar.</p>
+        <p class="fim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17l1.5-6h9L18 17M3 17v2M21 17v2M8 14h.01M16 14h.01"/></svg>Avisa 30 e 7 dias antes da inspeção, 45 dias antes do seguro renovar.</p>
+      </article>
+    </div>
+    <div class="cta-bloco revela">
+      <a class="btn btn-verde" href="#calculadora">Ver quanto recebes mesmo de cada recibo</a>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calc" id="calculadora" aria-labelledby="t-calc">
+  <div class="container">
+    <div class="intro revela">
+      <span class="etiqueta">Calculadora grátis, sem registo</span>
+      <h2 id="t-calc">Quanto recebes mesmo de um recibo verde?</h2>
+      <p>Escreve o valor. Vês o que entra na conta, o que é mesmo teu e quanto deves guardar todos os meses.</p>
+    </div>
+
+    <div class="calc-caixa revela">
+      <div class="separadores" role="tablist" aria-label="Calculadoras">
+        <button type="button" role="tab" id="tab-recibo" aria-selected="true" aria-controls="painel-recibo">O recibo</button>
+        <button type="button" role="tab" id="tab-guardar" aria-selected="false" aria-controls="painel-guardar" tabindex="-1">Quanto guardar por mês</button>
+      </div>
+
+      <!-- Separador 1: recibo -->
+      <div class="painel" id="painel-recibo" role="tabpanel" aria-labelledby="tab-recibo">
+        <form id="form-recibo" novalidate>
+          <div class="campo">
+            <label for="valor">Valor do recibo (sem IVA)</label>
+            <div class="entrada"><input id="valor" name="valor" inputmode="decimal" autocomplete="off" value="1000" aria-describedby="ajuda-valor"><span aria-hidden="true">€</span></div>
+            <p class="ajuda" id="ajuda-valor">O que combinaste com o cliente. Podes escrever 1.234,56.</p>
+          </div>
+          <div class="campo">
+            <fieldset>
+              <legend>Retenção na fonte (o que o cliente guarda para as Finanças)</legend>
+              <div class="opcoes" id="opcoes-retencao">
+                <label><input type="radio" name="retencao" value="padrao" checked><span>23%<br><small>o normal</small></span></label>
+                <label><input type="radio" name="retencao" value="vinteCinco"><span>25%<br><small>por opção</small></span></label>
+                <label><input type="radio" name="retencao" value="dispensa"><span>Sem retenção<br><small>dispensa</small></span></label>
+              </div>
+              <p class="ajuda">Podes pedir dispensa se no ano passado faturaste menos de <span data-regra="retencao_dispensa_limite" data-formato="moeda0">15.000 €</span> e o cliente tiver contabilidade organizada.</p>
+            </fieldset>
+          </div>
+          <div class="campo">
+            <fieldset>
+              <legend>IVA</legend>
+              <div class="opcoes">
+                <label><input type="radio" name="iva" value="isento" checked><span>Isento<br><small>artigo 53.º</small></span></label>
+                <label><input type="radio" name="iva" value="normal"><span><span data-regra="iva_taxa_normal" data-formato="pct0">23</span>%<br><small>regime normal</small></span></label>
+              </div>
+              <p class="ajuda">Estás isento se faturas menos de <span data-regra="iva_isencao_limite" data-formato="moeda0">15.000 €</span> por ano.</p>
+            </fieldset>
+          </div>
+        </form>
+        <div class="resultado" aria-live="polite" id="res-recibo">
+          <div class="linha"><span>No recibo (sem IVA)</span><span id="r-valor">1.000,00 €</span></div>
+          <div class="linha"><span>IVA (<span id="r-iva-pct">0%</span>)</span><span id="r-iva">0,00 €</span></div>
+          <div class="linha"><span>Total da fatura</span><span id="r-total">1.000,00 €</span></div>
+          <div class="linha"><span>Retenção (<span id="r-ret-pct">23%</span>) — o cliente entrega por ti</span><span id="r-ret">− 230,00 €</span></div>
+          <div class="linha total"><span>O que recebes na conta</span><span id="r-conta">770,00 €</span></div>
+          <div class="linha total teu"><span>O que é teu (o IVA não é teu)</span><span id="r-teu">770,00 €</span></div>
+          <div class="mencao" id="r-mencao">Como estás isento, escreve isto no recibo:<b id="r-mencao-txt">IVA - regime de isenção [artigo 53.º do CIVA] (M10)</b><button type="button" id="btn-copiar">Copiar a frase</button></div>
+          <p class="aviso verde" id="r-nota">A retenção não é dinheiro perdido: é um adiantamento do teu IRS.</p>
+        </div>
+      </div>
+
+      <!-- Separador 2: quanto guardar -->
+      <div class="painel" id="painel-guardar" role="tabpanel" aria-labelledby="tab-guardar" hidden>
+        <form id="form-guardar" novalidate>
+          <div class="campo">
+            <label for="rendimento">Quanto faturas por mês (sem IVA)</label>
+            <div class="entrada"><input id="rendimento" name="rendimento" inputmode="decimal" autocomplete="off" value="1500" aria-describedby="ajuda-rend"><span aria-hidden="true">€</span></div>
+            <p class="ajuda" id="ajuda-rend">Uma média chega. Serve para saber quanto pôr de lado.</p>
+          </div>
+          <div class="campo">
+            <fieldset>
+              <legend>O que fazes</legend>
+              <div class="opcoes">
+                <label><input type="radio" name="tipo" value="servicos" checked><span>Serviços<br><small>TVDE, entregas, freelancer…</small></span></label>
+                <label><input type="radio" name="tipo" value="vendas"><span>Vendas<br><small>produzes ou vendes bens</small></span></label>
+              </div>
+            </fieldset>
+          </div>
+          <p class="ajuda">Segurança Social: <span data-regra="ss_taxa" data-formato="pct1">21,4%</span> sobre <span data-regra="ss_base_servicos" data-formato="pct0">70</span>% do rendimento (serviços) ou <span data-regra="ss_base_vendas" data-formato="pct0">20</span>% (vendas). IRS no regime simplificado: coeficiente <span data-regra="irs_coef_servicos" data-formato="num2">0,75</span> nos serviços, mínimo de existência <span data-regra="irs_minimo_existencia" data-formato="moeda0">12.880 €</span>, escalões de 2026.</p>
+        </form>
+        <div class="resultado" aria-live="polite" id="res-guardar">
+          <div class="linha"><span>Segurança Social por mês</span><span id="g-ss">149,80 €</span></div>
+          <div class="linha"><span>IRS por mês (estimativa)</span><span id="g-irs">0,00 €</span></div>
+          <div class="linha total"><span>Guarda todos os meses</span><span id="g-total">149,80 €</span></div>
+          <div class="linha total teu"><span>Fica mesmo para ti</span><span id="g-teu">1.350,20 €</span></div>
+          <p class="aviso verde" id="g-ss-nota">Se abriste atividade há menos de <span data-regra="ss_isencao_meses">12</span> meses, ainda não pagas Segurança Social. Mas o prazo acaba — e ninguém avisa.</p>
+          <p class="aviso" id="g-irs-nota" hidden></p>
+          <p class="aviso" id="g-esc-nota" hidden>Os escalões de IRS de 2026 ainda estão por confirmar (Orçamento do Estado). O valor é aproximado.</p>
+        </div>
+      </div>
+
+      <div class="rodape-calc">
+        <span class="fonte" id="fonte-regras"><i></i>valores 2026 · a carregar…</span>
+        <span>Informação geral. Não substitui o teu contabilista.</span>
+      </div>
+    </div>
+
+    <div class="cta-bloco revela" style="text-align:center">
+      <a class="btn btn-verde" href="#descarregar">Guarda os teus recibos na app e recebe os avisos</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" aria-labelledby="t-como">
+  <div class="container">
+    <div class="intro revela">
+      <span class="etiqueta">Como funciona</span>
+      <h2 id="t-como">Três passos. Cinco minutos. Depois é só olhar para o semáforo.</h2>
+    </div>
+    <div class="passos">
+      <article class="passo revela">
+        <h3>Dizes o que fazes</h3>
+        <p>TVDE, entregas, serviços, freelancer. Quando abriste atividade e se tens carro. Uma pergunta por ecrã, sem formulários compridos.</p>
+      </article>
+      <article class="passo revela">
+        <h3>O Em Dia monta o teu calendário</h3>
+        <p>Segurança Social, IVA, IRS, inspeção, IUC e seguro — com as datas certas para ti e o valor aproximado de cada uma.</p>
+      </article>
+      <article class="passo revela">
+        <h3>Avisa-te antes, tu marcas «já paguei»</h3>
+        <p>Um aviso por prazo, na véspera útil. Verde é estás em dia, laranja é vai vencer, vermelho é já passou — com o passo concreto para resolver.</p>
+      </article>
+    </div>
+    <div class="cta-bloco revela">
+      <a class="btn btn-verde" href="#descarregar">Começar o mês grátis</a>
+    </div>
+  </div>
+</section>
+
+<!-- CAPTURAS -->
+<section class="capturas" id="capturas" aria-labelledby="t-capturas">
+  <div class="container">
+    <div class="intro revela">
+      <span class="etiqueta">A app por dentro</span>
+      <h2 id="t-capturas">Capturas reais. Sem maquetes.</h2>
+      <p>Letras grandes, uma ideia por ecrã, e o número mais importante é sempre o maior.</p>
+    </div>
+    <div class="tira revela">
+      <figure class="tele"><div class="moldura"><img src="/assets/img/painel_verde.webp" alt="Painel da app: cartão verde «Está tudo em dia», próximo prazo, guardar para o IRS 238,45 € por mês e Vigia do IVA em 6.000 € de 15.000 €" width="780" height="1688" loading="lazy" decoding="async"></div><figcaption>Painel: estás em dia?</figcaption></figure>
+      <figure class="tele"><div class="moldura"><img src="/assets/img/recibos.webp" alt="Ecrã Recibos: calculadora do recibo verde com o que recebes na conta" width="780" height="1688" loading="lazy" decoding="async"></div><figcaption>Recibos e calculadora</figcaption></figure>
+      <figure class="tele"><div class="moldura"><img src="/assets/img/calendario.webp" alt="Calendário: «Este mês pagas 4 coisas: 663,30 €», dias marcados e lista com Segurança Social e multa" width="780" height="1688" loading="lazy" decoding="async"></div><figcaption>Calendário de prazos</figcaption></figure>
+      <figure class="tele"><div class="moldura"><img src="/assets/img/recibos_irs.webp" alt="Ecrã Quanto guardar para o IRS com o valor mensal a pôr de lado" width="780" height="1688" loading="lazy" decoding="async"></div><figcaption>Quanto guardar</figcaption></figure>
+      <figure class="tele"><div class="moldura"><img src="/assets/img/carro.webp" alt="Ecrã O carro: seguro faltam 20 dias, inspeção faltam 40 dias, IUC 58,40 €, carta de condução e revisão" width="780" height="1688" loading="lazy" decoding="async"></div><figcaption>O carro: seguro, inspeção, IUC</figcaption></figure>
+      <figure class="tele"><div class="moldura"><img src="/assets/img/painel_laranja.webp" alt="Painel em laranja: tens 1 coisa a vencer em poucos dias" width="780" height="1688" loading="lazy" decoding="async"></div><figcaption>Aviso: vai vencer</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇOS -->
+<section id="precos" aria-labelledby="t-precos">
+  <div class="container">
+    <div class="intro revela">
+      <span class="etiqueta">Preços</span>
+      <h2 id="t-precos">Começa com tudo aberto durante <span data-regra="trial_dias">30</span> dias. Sem cartão.</h2>
+      <p>Depois escolhes. Menos do que um café por mês para não levares um susto de centenas de euros.</p>
+    </div>
+    <div class="planos">
+      <article class="plano revela">
+        <span class="selo">Grátis</span>
+        <div class="preco">0 € <small>para sempre</small></div>
+        <p class="anual">Depois do mês grátis</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Painel «estás em dia?» com semáforo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calculadora de recibo verde</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calendário de obrigações</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>3 avisos e 5 perguntas ao assistente por mês, 1 carro</li>
+        </ul>
+        <a class="btn btn-contorno" href="#descarregar">Começar grátis</a>
+      </article>
+      <article class="plano destaque revela">
+        <span class="selo">Pro · o mais escolhido</span>
+        <div class="preco"><span data-regra="preco_pro_mensal" data-formato="moeda">3,49 €</span> <small>por mês</small></div>
+        <p class="anual">ou <span data-regra="preco_pro_anual" data-formato="moeda">29,90 €</span> por ano (poupas 2 meses)</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tudo do Grátis, sem limites de avisos e perguntas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lê o extrato da Uber, Bolt ou Glovo por foto</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Guarda as fotos dos comprovativos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Exporta PDF/CSV para o contabilista · Reforma e direitos</li>
+        </ul>
+        <a class="btn btn-verde" href="#descarregar">Experimentar o Pro grátis</a>
+      </article>
+      <article class="plano revela">
+        <span class="selo">Família / Frota</span>
+        <div class="preco"><span data-regra="preco_familia_mensal" data-formato="moeda">5,99 €</span> <small>por mês</small></div>
+        <p class="anual">ou <span data-regra="preco_familia_anual" data-formato="moeda">49,90 €</span> por ano</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tudo do Pro</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Até 5 pessoas na mesma conta</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Até 5 carros com lembretes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Para casais, famílias e pequenas frotas TVDE</li>
+        </ul>
+        <a class="btn btn-contorno" href="#descarregar">Começar grátis</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq" aria-labelledby="t-faq">
+  <div class="container">
+    <div class="intro revela">
+      <span class="etiqueta">Perguntas</span>
+      <h2 id="t-faq">O que as pessoas perguntam antes de instalar.</h2>
+    </div>
+    <div class="revela">
+      <details><summary>A app Em Dia é grátis?</summary><div class="resposta">Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis (painel, calculadora e calendário) ou passar ao Pro por 3,49 € por mês ou 29,90 € por ano.</div></details>
+      <details><summary>Tenho iPhone. Posso usar o Em Dia?</summary><div class="resposta">Sim. Abre <a href="https://app-em-dia.pages.dev">app-em-dia.pages.dev</a> no Safari e toca em «Partilhar» e depois em «Adicionar ao ecrã principal». Fica como uma app, com os mesmos dados que no Android e no computador.</div></details>
+      <details><summary>A calculadora de recibo verde está certa?</summary><div class="resposta">Usa os números oficiais de 2026: retenção na fonte de 23% (ou 25% por opção, ou dispensa), IVA de 23% ou isenção do artigo 53.º do CIVA. Os valores vêm de uma tabela com a fonte oficial de cada número. É informação geral e não substitui o teu contabilista.</div></details>
+      <details><summary>O que é a retenção na fonte?</summary><div class="resposta">É a parte do recibo (23% por norma) que o teu cliente entrega às Finanças por ti. Não é dinheiro perdido: é um adiantamento do teu IRS. Por isso no recibo de 1.000 € recebes 770 € na conta.</div></details>
+      <details><summary>Estou isento de IVA. O que escrevo no recibo?</summary><div class="resposta">Escreves a menção obrigatória: «IVA - regime de isenção [artigo 53.º do CIVA]», código M10. A calculadora mostra-ta pronta a copiar. A isenção vale até 15.000 € de faturação por ano.</div></details>
+      <details><summary>Os meus dados estão seguros?</summary><div class="resposta">Os dados ficam num servidor na Europa (Paris), só tu os vês, a app não usa localização em segundo plano e podes apagar a conta quando quiseres. Lê a <a href="/privacidade.html">política de privacidade</a>.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- DESCARREGAR -->
+<section class="descarregar" id="descarregar" aria-labelledby="t-desc">
+  <div class="container">
+    <span class="etiqueta" style="color:#A7F3D0">Instala em 1 minuto</span>
+    <h2 id="t-desc">Confirma se estás em dia. Hoje.</h2>
+    <p>Android pela Play Store. iPhone e computador pelo browser, sem instalar nada. É a mesma conta nos dois.</p>
+    <div class="botoes">
+      <a class="btn btn-branco" href="https://play.google.com/store/apps/details?id=pt.emdia.app" data-cta="play">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16A34A" d="M3.6 2.4c-.4.4-.6 1-.6 1.7v15.8c0 .7.2 1.3.6 1.7l.1.1 8.9-8.9v-.2L3.7 2.3l-.1.1z"/><path fill="#F97316" d="M15.5 15.8l-3-3v-.2l3-3 .1.1 3.5 2c1 .6 1 1.5 0 2.1l-3.5 2-.1 0z"/><path fill="#DC2626" d="M15.6 15.7L12.6 12.7 3.6 21.7c.3.3.9.4 1.5 0l10.5-6z"/><path fill="#15803D" d="M15.6 9.6L5.1 3.6c-.6-.4-1.2-.3-1.5 0l9 9 3-3z"/></svg>
+        Descarregar na Play Store
+      </a>
+      <a class="btn btn-branco" href="https://app-em-dia.pages.dev" data-cta="web">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        Usar no iPhone/computador
+      </a>
+    </div>
+    <p class="nota">Grátis 30 dias com tudo aberto · sem cartão · feito em Portugal, em português simples.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div>
+      <a class="marca" href="#"><img src="/assets/img/apple-touch-icon.png" alt="" width="36" height="36">Em Dia</a>
+      <p style="margin-top:12px">Assistente do trabalhador independente a recibos verdes, e do carro, em Portugal. Para quem anda na estrada, faz entregas, trabalha por conta própria ou chegou há pouco.</p>
+      <p class="aviso-legal" style="margin-top:16px"><strong>Informação geral, não substitui contabilista.</strong> Os números vêm de fontes oficiais e são atualizados todos os anos, mas a tua situação pode ter regras próprias.</p>
+    </div>
+    <div>
+      <h3>A app</h3>
+      <ul>
+        <li><a href="#calculadora">Calculadora de recibo verde</a></li>
+        <li><a href="#precos">Preços</a></li>
+        <li><a href="#faq">Perguntas frequentes</a></li>
+        <li><a href="https://app-em-dia.pages.dev">Abrir a app no browser</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Legal e contacto</h3>
+      <ul>
+        <li><a href="/privacidade.html">Política de privacidade</a></li>
+        <li>Contacto: dentro da app, em «Mais → Ajuda» (respondemos por lá)</li>
+        <li>Servidor na União Europeia (Paris)</li>
+      </ul>
+    </div>
+    <div class="fim">
+      <span>© 2026 Em Dia · Guarda, Portugal</span>
+      <span>Não somos a Segurança Social nem a Autoridade Tributária.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/calc.js" defer></script>
+<script>
+(function () {
+  'use strict';
+  document.body.classList.remove('sem-js');
+
+  var SUPABASE_URL = 'https://tgdmgtmknbwhcqoxtjbs.supabase.co';
+  // Chave ANÓNIMA, pública por desenho (RLS protege os dados; a tabela regras_legais é de leitura pública).
+  var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnZG1ndG1rbmJ3aGNxb3h0amJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2MTkyOTIsImV4cCI6MjEwNDE5NTI5Mn0.XFzQgX1jj6sVhAQNDPLtwJze61WxnEWkN56hYwD5wCM';
+  var ANO = 2026;
+
+  var regras = {};        // chave → valor (num, txt ou json)
+  var escaloes = null;    // null = usa o seed embebido no calc.js
+  var verificadoEm = null;
+
+  function $(id) { return document.getElementById(id); }
+  function pronto(fn) { if (window.EmDiaCalc) fn(); else window.addEventListener('load', fn); }
+
+  // ---- movimento: só se a pessoa não pediu para reduzir ----
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var video = $('video-heroi');
+  function aplicarMovimento() {
+    if (reduz.matches) {
+      if (video) { video.pause(); video.removeAttribute('autoplay'); }
+      document.querySelectorAll('.revela').forEach(function (el) { el.classList.add('visto'); });
+    } else if (video && video.paused) {
+      var p = video.play(); if (p && p.catch) p.catch(function () {});
+    }
+  }
+  aplicarMovimento();
+  if (reduz.addEventListener) reduz.addEventListener('change', aplicarMovimento);
+
+  if (!reduz.matches && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    document.querySelectorAll('.revela').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.revela').forEach(function (el) { el.classList.add('visto'); });
+  }
+
+  var topo = $('topo');
+  window.addEventListener('scroll', function () { topo.classList.toggle('desceu', window.scrollY > 8); }, { passive: true });
+
+  // ---- separadores ----
+  var tabs = [$('tab-recibo'), $('tab-guardar')];
+  function abrirTab(i) {
+    tabs.forEach(function (t, j) {
+      var sel = i === j;
+      t.setAttribute('aria-selected', sel ? 'true' : 'false');
+      t.tabIndex = sel ? 0 : -1;
+      $(t.getAttribute('aria-controls')).hidden = !sel;
+    });
+    tabs[i].focus({ preventScroll: true });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { abrirTab(i); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); abrirTab((i + 1) % 2); }
+    });
+  });
+
+  // ---- regras em runtime ----
+  function formatar(el, valor) {
+    var C = window.EmDiaCalc, f = el.getAttribute('data-formato');
+    if (valor == null) return;
+    if (f === 'moeda') el.textContent = C.moeda(Number(valor));
+    else if (f === 'moeda0') el.textContent = C.moeda(Number(valor)).replace(',00 €', ' €');
+    else if (f === 'pct0') el.textContent = String(Math.round(Number(valor)));
+    else if (f === 'pct1') el.textContent = C.pct(Number(valor), 1);
+    else if (f === 'num2') el.textContent = Number(valor).toFixed(2).replace('.', ',');
+    else el.textContent = String(valor);
+  }
+  function aplicarRegrasNoTexto() {
+    document.querySelectorAll('[data-regra]').forEach(function (el) {
+      var chave = el.getAttribute('data-regra');
+      var v = regras[chave]; if (v === undefined) v = window.EmDiaCalc.REGRAS_SEED[chave];
+      formatar(el, v);
+    });
+  }
+  function dataPt(iso) {
+    if (!iso) return null;
+    var p = String(iso).slice(0, 10).split('-');
+    return p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : null;
+  }
+  function marcarFonte(ok) {
+    var el = $('fonte-regras');
+    el.classList.toggle('offline', !ok);
+    el.innerHTML = '<i></i>' + (ok
+      ? 'valores ' + ANO + ' · atualizados ' + (dataPt(verificadoEm) || 'hoje') + ' · fonte oficial'
+      : 'valores ' + ANO + ' · tabela guardada no site (sem rede)');
+  }
+  function carregarRegras() {
+    var cab = { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON, Accept: 'application/json' };
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 6000);
+    var opts = { headers: cab, signal: ctl ? ctl.signal : undefined };
+    return Promise.all([
+      fetch(SUPABASE_URL + '/rest/v1/regras_legais?select=chave,valor_num,valor_txt,valor_json,verificado_em', opts).then(function (r) { if (!r.ok) throw new Error('regras ' + r.status); return r.json(); }),
+      fetch(SUPABASE_URL + '/rest/v1/irs_escaloes?select=*&ano=eq.' + ANO + '&order=ordem', opts).then(function (r) { if (!r.ok) throw new Error('escaloes ' + r.status); return r.json(); })
+    ]).then(function (res) {
+      clearTimeout(timer);
+      var linhas = res[0], esc = res[1];
+      if (!Array.isArray(linhas) || !linhas.length) throw new Error('regras vazias');
+      linhas.forEach(function (l) {
+        regras[l.chave] = l.valor_num != null ? Number(l.valor_num) : (l.valor_txt != null ? l.valor_txt : l.valor_json);
+        if (l.verificado_em && (!verificadoEm || l.verificado_em > verificadoEm)) verificadoEm = l.verificado_em;
+      });
+      if (Array.isArray(esc) && esc.length) {
+        escaloes = esc.map(function (e) {
+          return { ano: Number(e.ano), ordem: Number(e.ordem), ate: e.ate == null ? null : Number(e.ate), taxa: Number(e.taxa), parcela_abater: Number(e.parcela_abater), confianca: e.confianca || 'oficial' };
+        });
+      }
+      marcarFonte(true);
+    }).catch(function () {
+      clearTimeout(timer);
+      regras = {}; escaloes = null;
+      marcarFonte(false);
+    }).then(function () { aplicarRegrasNoTexto(); calcularRecibo(); calcularGuardar(); });
+  }
+
+  // ---- calculadora 1: recibo ----
+  function valorRadio(form, nome) { var el = form.querySelector('input[name="' + nome + '"]:checked'); return el ? el.value : null; }
+  function calcularRecibo() {
+    var C = window.EmDiaCalc, form = $('form-recibo');
+    var v = C.lerNumero($('valor').value);
+    if (v == null || v < 0) v = 0;
+    var r = C.calcularRecibo(v, valorRadio(form, 'retencao'), valorRadio(form, 'iva') === 'isento', regras);
+    $('r-valor').textContent = C.moeda(r.valorSemIva);
+    $('r-iva-pct').textContent = C.pct(r.taxaIvaPct, 0);
+    $('r-iva').textContent = C.moeda(r.iva);
+    $('r-total').textContent = C.moeda(r.totalFatura);
+    $('r-ret-pct').textContent = C.pct(r.taxaRetencaoPct, 0);
+    $('r-ret').textContent = (r.retencao > 0 ? '− ' : '') + C.moeda(r.retencao);
+    $('r-conta').textContent = C.moeda(r.recebesNaConta);
+    $('r-teu').textContent = C.moeda(r.ficaTeu);
+    $('r-mencao').hidden = !r.isentoIva;
+    if (r.mencaoIsencao) $('r-mencao-txt').textContent = r.mencaoIsencao;
+    var nota = $('r-nota');
+    if (r.retencao === 0) nota.textContent = 'Sem retenção recebes tudo agora — mas o IRS vem na mesma no ano seguinte. Guarda uma parte.';
+    else if (!r.isentoIva) nota.textContent = 'O IVA (' + C.moeda(r.iva) + ') entra na tua conta mas não é teu: entregas às Finanças no trimestre. A retenção é um adiantamento do teu IRS.';
+    else nota.textContent = 'A retenção não é dinheiro perdido: é um adiantamento do teu IRS.';
+  }
+  $('form-recibo').addEventListener('input', calcularRecibo);
+  $('form-recibo').addEventListener('change', calcularRecibo);
+  $('form-recibo').addEventListener('submit', function (e) { e.preventDefault(); calcularRecibo(); });
+  $('btn-copiar').addEventListener('click', function () {
+    var t = $('r-mencao-txt').textContent, b = this;
+    function feito() { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = 'Copiar a frase'; }, 1800); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(feito, feito);
+    else { var s = window.getSelection(), rg = document.createRange(); rg.selectNodeContents($('r-mencao-txt')); s.removeAllRanges(); s.addRange(rg); try { document.execCommand('copy'); } catch (x) {} feito(); }
+  });
+
+  // ---- calculadora 2: quanto guardar ----
+  function calcularGuardar() {
+    var C = window.EmDiaCalc, form = $('form-guardar');
+    var v = C.lerNumero($('rendimento').value);
+    if (v == null || v < 0) v = 0;
+    var tipo = valorRadio(form, 'tipo');
+    var g = C.quantoGuardar(v, tipo, ANO, regras, escaloes || undefined);
+    $('g-ss').textContent = C.moeda(g.ss.contribuicaoMensal) + (g.ss.bateuNoMinimo ? ' (mínimo)' : g.ss.bateuNoMaximo ? ' (teto)' : '');
+    $('g-irs').textContent = C.moeda(g.irs.guardarPorMes);
+    $('g-total').textContent = C.moeda(g.guardarPorMes);
+    $('g-teu').textContent = C.moeda(g.ficaTeuPorMes);
+    var ni = $('g-irs-nota');
+    if (g.irs.abaixoMinimoExistencia && v > 0) { ni.hidden = false; ni.textContent = 'Com este rendimento ficas abaixo do mínimo de existência (' + C.moeda(C.REGRAS_SEED.irs_minimo_existencia && regras.irs_minimo_existencia || C.REGRAS_SEED.irs_minimo_existencia).replace(',00', '') + ' por ano): a estimativa de IRS é 0 €. Mesmo assim tens de entregar a declaração.'; }
+    else if (g.irs.justificarDespesas) { ni.hidden = false; ni.textContent = 'Acima de ' + C.moeda(regras.irs_despesas_justificar_limite || C.REGRAS_SEED.irs_despesas_justificar_limite).replace(',00', '') + ' por ano tens de justificar 15% com despesas com NIF. Fala com o contabilista. Pagamentos por conta: 3 × ' + C.moeda(g.irs.pagamentoPorContaCada) + '.'; }
+    else if (g.irs.impostoEstimado > 0) { ni.hidden = false; ni.textContent = 'IRS estimado no ano: ' + C.moeda(g.irs.impostoEstimado) + ' (taxa real ' + C.pct(g.irs.taxaEfetivaPct, 1) + '). Pagamentos por conta: 3 × ' + C.moeda(g.irs.pagamentoPorContaCada) + ' a 20 de julho, setembro e dezembro.'; }
+    else ni.hidden = true;
+    $('g-esc-nota').hidden = g.irs.escaloesConfirmados || g.irs.impostoEstimado === 0;
+  }
+  $('form-guardar').addEventListener('input', calcularGuardar);
+  $('form-guardar').addEventListener('change', calcularGuardar);
+  $('form-guardar').addEventListener('submit', function (e) { e.preventDefault(); calcularGuardar(); });
+
+  pronto(function () { aplicarRegrasNoTexto(); calcularRecibo(); calcularGuardar(); carregarRegras(); });
+})();
+</script>
+</body>
+</html>

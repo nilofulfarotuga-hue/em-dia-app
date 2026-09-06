@@ -98,7 +98,7 @@
   "planoAbreFoto": "Ler extratos por foto (Uber, Bolt, Glovo)",
   "planoAbreComprovativos": "Guardar as fotos dos comprovativos",
   "planoAbreCarros": "Vários carros",
-  "planoAbreExportar": "Exportar para o contabilista (PDF/CSV)",
+  "planoAbreExportar": "Exportar para o contabilista (PDF ou folha de cálculo)",
   "planoAbreReforma": "Reforma e direitos completo",
   "planoFamiliaAbre": "Tudo o que o Pro tem, para até {n} pessoas ou carros",
   "@planoFamiliaAbre": {"placeholders": {"n": {"type": "int"}}},

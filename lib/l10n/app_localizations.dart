@@ -345,7 +345,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbTvde.
   ///
   /// In pt, this message translates to:
-  /// **'Motorista TVDE'**
+  /// **'Motorista TVDE (Uber, Bolt)'**
   String get onbTvde;
 
   /// No description provided for @onbEstafeta.
@@ -3633,7 +3633,7 @@ abstract class AppLocalizations {
   /// No description provided for @planoAbreExportar.
   ///
   /// In pt, this message translates to:
-  /// **'Exportar para o contabilista (PDF/CSV)'**
+  /// **'Exportar para o contabilista (PDF ou folha de cálculo)'**
   String get planoAbreExportar;
 
   /// No description provided for @planoAbreReforma.
@@ -3953,6 +3953,1290 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Ou escreve para {email}'**
   String suporteEmailRodape(String email);
+
+  /// No description provided for @admNavVisaoGeral.
+  ///
+  /// In pt, this message translates to:
+  /// **'Visão geral'**
+  String get admNavVisaoGeral;
+
+  /// No description provided for @admNavUsuarios.
+  ///
+  /// In pt, this message translates to:
+  /// **'Usuários'**
+  String get admNavUsuarios;
+
+  /// No description provided for @admNavRegras.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regras legais'**
+  String get admNavRegras;
+
+  /// No description provided for @admNavTickets.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tickets'**
+  String get admNavTickets;
+
+  /// No description provided for @admNavIa.
+  ///
+  /// In pt, this message translates to:
+  /// **'IA'**
+  String get admNavIa;
+
+  /// No description provided for @admNavAvisos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avisos'**
+  String get admNavAvisos;
+
+  /// No description provided for @admNavAuditoria.
+  ///
+  /// In pt, this message translates to:
+  /// **'Auditoria'**
+  String get admNavAuditoria;
+
+  /// No description provided for @admNaoAdmin.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta conta não é administradora.'**
+  String get admNaoAdmin;
+
+  /// No description provided for @admErroLer.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui ler os dados: {erro}'**
+  String admErroLer(String erro);
+
+  /// No description provided for @admTentarDeNovo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tentar de novo'**
+  String get admTentarDeNovo;
+
+  /// No description provided for @admVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nada por aqui ainda.'**
+  String get admVazio;
+
+  /// No description provided for @admErroTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Deu erro'**
+  String get admErroTitulo;
+
+  /// No description provided for @admFechar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fechar'**
+  String get admFechar;
+
+  /// No description provided for @admConfirmar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Confirmar'**
+  String get admConfirmar;
+
+  /// No description provided for @admCopiar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Copiar'**
+  String get admCopiar;
+
+  /// No description provided for @admCopiado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Copiado.'**
+  String get admCopiado;
+
+  /// No description provided for @admAtualizar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Atualizar'**
+  String get admAtualizar;
+
+  /// No description provided for @admSalvar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Salvar'**
+  String get admSalvar;
+
+  /// No description provided for @admSalvo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Salvo e registrado na auditoria.'**
+  String get admSalvo;
+
+  /// No description provided for @admTodos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Todos'**
+  String get admTodos;
+
+  /// No description provided for @admSim.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sim'**
+  String get admSim;
+
+  /// No description provided for @admNao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não'**
+  String get admNao;
+
+  /// No description provided for @admVgTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Visão geral'**
+  String get admVgTitulo;
+
+  /// No description provided for @admVgSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Números de agora, direto das tabelas (RPC admin_resumo). Nada é calculado no navegador.'**
+  String get admVgSub;
+
+  /// No description provided for @admVgUsuarios.
+  ///
+  /// In pt, this message translates to:
+  /// **'Usuários'**
+  String get admVgUsuarios;
+
+  /// No description provided for @admVgAtivos7.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} ativos nos últimos 7 dias'**
+  String admVgAtivos7(int n);
+
+  /// No description provided for @admVgTrial.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em trial'**
+  String get admVgTrial;
+
+  /// No description provided for @admVgFree.
+  ///
+  /// In pt, this message translates to:
+  /// **'Free'**
+  String get admVgFree;
+
+  /// No description provided for @admVgPro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pro'**
+  String get admVgPro;
+
+  /// No description provided for @admVgFamilia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Família'**
+  String get admVgFamilia;
+
+  /// No description provided for @admVgReceita.
+  ///
+  /// In pt, this message translates to:
+  /// **'Receita estimada / mês'**
+  String get admVgReceita;
+
+  /// No description provided for @admVgReceitaSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} assinaturas ativas × preço em regras_legais'**
+  String admVgReceitaSub(int n);
+
+  /// No description provided for @admVgTickets.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tickets abertos'**
+  String get admVgTickets;
+
+  /// No description provided for @admVgTicketsSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} escalados para humano'**
+  String admVgTicketsSub(int n);
+
+  /// No description provided for @admVgCustoHoje.
+  ///
+  /// In pt, this message translates to:
+  /// **'Custo IA hoje'**
+  String get admVgCustoHoje;
+
+  /// No description provided for @admVgCustoSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Alarme acima de {valor} por dia'**
+  String admVgCustoSub(String valor);
+
+  /// No description provided for @admVgCusto7.
+  ///
+  /// In pt, this message translates to:
+  /// **'Custo IA — 7 dias'**
+  String get admVgCusto7;
+
+  /// No description provided for @admVgCusto7Sub.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} conversas'**
+  String admVgCusto7Sub(int n);
+
+  /// No description provided for @admVgPassadas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Obrigações passadas'**
+  String get admVgPassadas;
+
+  /// No description provided for @admVgPassadasSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prazos vencidos sem marcar pago, em todos os usuários'**
+  String get admVgPassadasSub;
+
+  /// No description provided for @admVgAlarme.
+  ///
+  /// In pt, this message translates to:
+  /// **'ALARME: o custo de IA de hoje ({custo}) passou do limite ({limite}, regra ia_custo_alarme_dia_eur). Confira o modelo e o limite de perguntas em Regras legais → Cadeados por plano.'**
+  String admVgAlarme(String custo, String limite);
+
+  /// No description provided for @admVgTabDia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dia'**
+  String get admVgTabDia;
+
+  /// No description provided for @admVgTabConversas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conversas'**
+  String get admVgTabConversas;
+
+  /// No description provided for @admVgTabCusto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Custo (€)'**
+  String get admVgTabCusto;
+
+  /// No description provided for @admVgPushHoje.
+  ///
+  /// In pt, this message translates to:
+  /// **'Push de hoje por resultado'**
+  String get admVgPushHoje;
+
+  /// No description provided for @admVgPushVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhum push enviado hoje.'**
+  String get admVgPushVazio;
+
+  /// No description provided for @admVgResultado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Resultado'**
+  String get admVgResultado;
+
+  /// No description provided for @admVgQuantidade.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quantidade'**
+  String get admVgQuantidade;
+
+  /// No description provided for @admUsTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Usuários'**
+  String get admUsTitulo;
+
+  /// No description provided for @admUsSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'profiles + plano efetivo (view v_admin_usuarios). Clique numa linha para ver o detalhe e agir.'**
+  String get admUsSub;
+
+  /// No description provided for @admUsPesquisa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Buscar por e-mail ou nome (Enter para buscar)'**
+  String get admUsPesquisa;
+
+  /// No description provided for @admUsExportar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Exportar CSV'**
+  String get admUsExportar;
+
+  /// No description provided for @admUsCsvTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'CSV dos usuários ({n})'**
+  String admUsCsvTitulo(int n);
+
+  /// No description provided for @admUsCsvNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Copie e cole num arquivo .csv (separador ;). O download direto pelo navegador fica para uma próxima versão.'**
+  String get admUsCsvNota;
+
+  /// No description provided for @admUsTabela.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} usuários'**
+  String admUsTabela(int n);
+
+  /// No description provided for @admColEmail.
+  ///
+  /// In pt, this message translates to:
+  /// **'E-mail'**
+  String get admColEmail;
+
+  /// No description provided for @admColNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nome'**
+  String get admColNome;
+
+  /// No description provided for @admColAtividade.
+  ///
+  /// In pt, this message translates to:
+  /// **'Atividade'**
+  String get admColAtividade;
+
+  /// No description provided for @admColPlano.
+  ///
+  /// In pt, this message translates to:
+  /// **'Plano efetivo'**
+  String get admColPlano;
+
+  /// No description provided for @admColTrialAte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Trial até'**
+  String get admColTrialAte;
+
+  /// No description provided for @admColUltimoAcesso.
+  ///
+  /// In pt, this message translates to:
+  /// **'Último acesso'**
+  String get admColUltimoAcesso;
+
+  /// No description provided for @admColEstado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estado'**
+  String get admColEstado;
+
+  /// No description provided for @admColCriadoEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Criado em'**
+  String get admColCriadoEm;
+
+  /// No description provided for @admUsBanido.
+  ///
+  /// In pt, this message translates to:
+  /// **'banido'**
+  String get admUsBanido;
+
+  /// No description provided for @admUsAtivo.
+  ///
+  /// In pt, this message translates to:
+  /// **'ativo'**
+  String get admUsAtivo;
+
+  /// No description provided for @admUsDetalhe.
+  ///
+  /// In pt, this message translates to:
+  /// **'Usuário'**
+  String get admUsDetalhe;
+
+  /// No description provided for @admUsAcoes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ações'**
+  String get admUsAcoes;
+
+  /// No description provided for @admUsPlanoAtual.
+  ///
+  /// In pt, this message translates to:
+  /// **'Plano manual (profiles.plano): {plano} · plano efetivo: {efetivo}'**
+  String admUsPlanoAtual(String plano, String efetivo);
+
+  /// No description provided for @admUsBanir.
+  ///
+  /// In pt, this message translates to:
+  /// **'Banir'**
+  String get admUsBanir;
+
+  /// No description provided for @admUsReativar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Reativar'**
+  String get admUsReativar;
+
+  /// No description provided for @admUsBanirConfirma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Banir {email}? O usuário perde o acesso ao app até você reativar.'**
+  String admUsBanirConfirma(String email);
+
+  /// No description provided for @admUsAlterarPlano.
+  ///
+  /// In pt, this message translates to:
+  /// **'Alterar plano manual'**
+  String get admUsAlterarPlano;
+
+  /// No description provided for @admUsPlanoManualNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'profiles.plano vale só quando não há trial ativo nem assinatura ativa na Google Play.'**
+  String get admUsPlanoManualNota;
+
+  /// No description provided for @admUsEstenderTrial.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estender trial'**
+  String get admUsEstenderTrial;
+
+  /// No description provided for @admUsEstenderDias.
+  ///
+  /// In pt, this message translates to:
+  /// **'+{n} dias'**
+  String admUsEstenderDias(int n);
+
+  /// No description provided for @admUsApagar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar conta'**
+  String get admUsApagar;
+
+  /// No description provided for @admUsApagarNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar do auth de verdade precisa da service role (servidor). Aqui só marca como banido e registra o pedido na auditoria — o servidor apaga depois.'**
+  String get admUsApagarNota;
+
+  /// No description provided for @admUsApagarConfirma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Marcar {email} como banido e registrar o pedido de apagar a conta?'**
+  String admUsApagarConfirma(String email);
+
+  /// No description provided for @admUsFeito.
+  ///
+  /// In pt, this message translates to:
+  /// **'Feito e registrado na auditoria.'**
+  String get admUsFeito;
+
+  /// No description provided for @admUsPerfil.
+  ///
+  /// In pt, this message translates to:
+  /// **'Perfil'**
+  String get admUsPerfil;
+
+  /// No description provided for @admUsObrigacoes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Obrigações ({n})'**
+  String admUsObrigacoes(int n);
+
+  /// No description provided for @admUsRendimentos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Rendimentos ({n})'**
+  String admUsRendimentos(int n);
+
+  /// No description provided for @admUsAssinaturas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Assinaturas ({n})'**
+  String admUsAssinaturas(int n);
+
+  /// No description provided for @admUsConversas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Últimas conversas com a IA ({n})'**
+  String admUsConversas(int n);
+
+  /// No description provided for @admRgTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regras legais'**
+  String get admRgTitulo;
+
+  /// No description provided for @admRgSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'A única fonte de números do app e da IA. Editar aqui muda o app na hora. Confira a fonte oficial antes de salvar.'**
+  String get admRgSub;
+
+  /// No description provided for @admRgAba1.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regras'**
+  String get admRgAba1;
+
+  /// No description provided for @admRgAba2.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escalões IRS'**
+  String get admRgAba2;
+
+  /// No description provided for @admRgAba3.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cadeados por plano'**
+  String get admRgAba3;
+
+  /// No description provided for @admRgPesquisa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Buscar chave ou descrição'**
+  String get admRgPesquisa;
+
+  /// No description provided for @admRgTabela.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} de {total} regras'**
+  String admRgTabela(int n, int total);
+
+  /// No description provided for @admRgAvisoIas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aviso em massa: o IAS mudou'**
+  String get admRgAvisoIas;
+
+  /// No description provided for @admRgAvisoIasTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O IAS mudou'**
+  String get admRgAvisoIasTitulo;
+
+  /// No description provided for @admRgAvisoIasCorpo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O IAS (o valor de referência da Segurança Social) mudou para {valor}. Os seus valores foram recalculados. Abra o app para conferir.'**
+  String admRgAvisoIasCorpo(String valor);
+
+  /// No description provided for @admRgAvisoTituloCampo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Título'**
+  String get admRgAvisoTituloCampo;
+
+  /// No description provided for @admRgAvisoCorpoCampo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Texto do aviso'**
+  String get admRgAvisoCorpoCampo;
+
+  /// No description provided for @admRgAvisoCriado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aviso em massa criado. O envio é feito pelo avisos-cron (tipo massa) às 09:00 de Lisboa.'**
+  String get admRgAvisoCriado;
+
+  /// No description provided for @admRgColChave.
+  ///
+  /// In pt, this message translates to:
+  /// **'Chave'**
+  String get admRgColChave;
+
+  /// No description provided for @admRgColDescricao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Descrição'**
+  String get admRgColDescricao;
+
+  /// No description provided for @admRgColValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor'**
+  String get admRgColValor;
+
+  /// No description provided for @admRgColUnidade.
+  ///
+  /// In pt, this message translates to:
+  /// **'Unidade'**
+  String get admRgColUnidade;
+
+  /// No description provided for @admRgColAno.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ano'**
+  String get admRgColAno;
+
+  /// No description provided for @admRgColConfianca.
+  ///
+  /// In pt, this message translates to:
+  /// **'Confiança'**
+  String get admRgColConfianca;
+
+  /// No description provided for @admRgColVerificado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Verificado em'**
+  String get admRgColVerificado;
+
+  /// No description provided for @admRgColFonte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fonte'**
+  String get admRgColFonte;
+
+  /// No description provided for @admRgEditar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar regra'**
+  String get admRgEditar;
+
+  /// No description provided for @admRgValorNum.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor numérico (valor_num)'**
+  String get admRgValorNum;
+
+  /// No description provided for @admRgValorTxt.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor em texto (valor_txt)'**
+  String get admRgValorTxt;
+
+  /// No description provided for @admRgValorJson.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor JSON (valor_json)'**
+  String get admRgValorJson;
+
+  /// No description provided for @admRgJsonInvalido.
+  ///
+  /// In pt, this message translates to:
+  /// **'O JSON não é válido. Confira as chaves e as vírgulas.'**
+  String get admRgJsonInvalido;
+
+  /// No description provided for @admRgFonteUrl.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fonte (URL oficial)'**
+  String get admRgFonteUrl;
+
+  /// No description provided for @admRgVerificadoEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Verificado em (aaaa-mm-dd)'**
+  String get admRgVerificadoEm;
+
+  /// No description provided for @admRgConfianca.
+  ///
+  /// In pt, this message translates to:
+  /// **'Confiança'**
+  String get admRgConfianca;
+
+  /// No description provided for @admRgEscOrdem.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ordem'**
+  String get admRgEscOrdem;
+
+  /// No description provided for @admRgEscAte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Até (€)'**
+  String get admRgEscAte;
+
+  /// No description provided for @admRgEscTaxa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Taxa'**
+  String get admRgEscTaxa;
+
+  /// No description provided for @admRgEscTaxaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Taxa (0,13 = 13%)'**
+  String get admRgEscTaxaAjuda;
+
+  /// No description provided for @admRgEscParcela.
+  ///
+  /// In pt, this message translates to:
+  /// **'Parcela a abater (€)'**
+  String get admRgEscParcela;
+
+  /// No description provided for @admRgEscSemLimite.
+  ///
+  /// In pt, this message translates to:
+  /// **'sem limite'**
+  String get admRgEscSemLimite;
+
+  /// No description provided for @admRgEscSemLimiteAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vazio = último escalão, sem limite'**
+  String get admRgEscSemLimiteAjuda;
+
+  /// No description provided for @admRgEscEditar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar escalão'**
+  String get admRgEscEditar;
+
+  /// No description provided for @admRgFlagChave.
+  ///
+  /// In pt, this message translates to:
+  /// **'Chave'**
+  String get admRgFlagChave;
+
+  /// No description provided for @admRgFlagDescricao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Descrição'**
+  String get admRgFlagDescricao;
+
+  /// No description provided for @admRgFlagFree.
+  ///
+  /// In pt, this message translates to:
+  /// **'Free'**
+  String get admRgFlagFree;
+
+  /// No description provided for @admRgFlagPro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pro'**
+  String get admRgFlagPro;
+
+  /// No description provided for @admRgFlagFamilia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Família'**
+  String get admRgFlagFamilia;
+
+  /// No description provided for @admRgFlagLimFree.
+  ///
+  /// In pt, this message translates to:
+  /// **'Limite free'**
+  String get admRgFlagLimFree;
+
+  /// No description provided for @admRgFlagLimPro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Limite pro'**
+  String get admRgFlagLimPro;
+
+  /// No description provided for @admRgFlagLimFamilia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Limite família'**
+  String get admRgFlagLimFamilia;
+
+  /// No description provided for @admRgFlagEditar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar cadeado'**
+  String get admRgFlagEditar;
+
+  /// No description provided for @admRgFlagLimiteAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vazio = sem limite'**
+  String get admRgFlagLimiteAjuda;
+
+  /// No description provided for @admTkTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tickets de suporte'**
+  String get admTkTitulo;
+
+  /// No description provided for @admTkSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'tickets_suporte. Clique numa linha para ver a descrição, os logs e a resposta da IA.'**
+  String get admTkSub;
+
+  /// No description provided for @admTkTabela.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} tickets'**
+  String admTkTabela(int n);
+
+  /// No description provided for @admTkEstadoAberto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aberto'**
+  String get admTkEstadoAberto;
+
+  /// No description provided for @admTkEstadoEmCurso.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em andamento'**
+  String get admTkEstadoEmCurso;
+
+  /// No description provided for @admTkEstadoFechado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fechado'**
+  String get admTkEstadoFechado;
+
+  /// No description provided for @admTkEscalados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Só escalados para humano'**
+  String get admTkEscalados;
+
+  /// No description provided for @admTkColQuando.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando'**
+  String get admTkColQuando;
+
+  /// No description provided for @admTkColTipo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tipo'**
+  String get admTkColTipo;
+
+  /// No description provided for @admTkColAssunto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Assunto'**
+  String get admTkColAssunto;
+
+  /// No description provided for @admTkColEstado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estado'**
+  String get admTkColEstado;
+
+  /// No description provided for @admTkColEscalar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Humano'**
+  String get admTkColEscalar;
+
+  /// No description provided for @admTkColUsuario.
+  ///
+  /// In pt, this message translates to:
+  /// **'Usuário'**
+  String get admTkColUsuario;
+
+  /// No description provided for @admTkDetalhe.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ticket {id}'**
+  String admTkDetalhe(String id);
+
+  /// No description provided for @admTkDescricao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Descrição'**
+  String get admTkDescricao;
+
+  /// No description provided for @admTkLogs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Logs'**
+  String get admTkLogs;
+
+  /// No description provided for @admTkRespostaIa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Resposta da IA'**
+  String get admTkRespostaIa;
+
+  /// No description provided for @admTkMotivo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Motivo da escalada'**
+  String get admTkMotivo;
+
+  /// No description provided for @admTkMudarEstado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mudar estado'**
+  String get admTkMudarEstado;
+
+  /// No description provided for @admTkEstadoMudado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estado atualizado e registrado na auditoria.'**
+  String get admTkEstadoMudado;
+
+  /// No description provided for @admTkParceiro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Contato do contador/advogado parceiro'**
+  String get admTkParceiro;
+
+  /// No description provided for @admTkParceiroAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fica em regras_legais (chave contacto_parceiro_contabilista). É o que o suporte mostra quando um ticket sobe para humano. A linha é criada se não existir.'**
+  String get admTkParceiroAjuda;
+
+  /// No description provided for @admTkParceiroCampo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nome, telefone, e-mail'**
+  String get admTkParceiroCampo;
+
+  /// No description provided for @admTkParceiroSalvo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Contato salvo e registrado na auditoria.'**
+  String get admTkParceiroSalvo;
+
+  /// No description provided for @admIaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'IA — perguntas e custo'**
+  String get admIaTitulo;
+
+  /// No description provided for @admIaSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'conversas_ia (RPC admin_ia_top_perguntas) e v_custo_ia_diario.'**
+  String get admIaSub;
+
+  /// No description provided for @admIaVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não há perguntas registradas.'**
+  String get admIaVazio;
+
+  /// No description provided for @admIaTop.
+  ///
+  /// In pt, this message translates to:
+  /// **'Perguntas mais feitas (top 30)'**
+  String get admIaTop;
+
+  /// No description provided for @admIaColPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pergunta'**
+  String get admIaColPergunta;
+
+  /// No description provided for @admIaColVezes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vezes'**
+  String get admIaColVezes;
+
+  /// No description provided for @admIaColFora.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fora das regras'**
+  String get admIaColFora;
+
+  /// No description provided for @admIaColBr.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em PT-BR'**
+  String get admIaColBr;
+
+  /// No description provided for @admIaColUltima.
+  ///
+  /// In pt, this message translates to:
+  /// **'Última vez'**
+  String get admIaColUltima;
+
+  /// No description provided for @admIaColVariante.
+  ///
+  /// In pt, this message translates to:
+  /// **'Variante'**
+  String get admIaColVariante;
+
+  /// No description provided for @admIaColResposta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Resposta'**
+  String get admIaColResposta;
+
+  /// No description provided for @admIaFora.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fora das regras ({n}) — candidatas a guia novo'**
+  String admIaFora(int n);
+
+  /// No description provided for @admIaForaVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhuma pergunta fora das regras. A IA só citou o que está na tabela.'**
+  String get admIaForaVazio;
+
+  /// No description provided for @admIaCriarGuia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Criar guia'**
+  String get admIaCriarGuia;
+
+  /// No description provided for @admIaGuiaConfirma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Criar um rascunho de guia (publicado = não) com esta pergunta como corpo? Depois você edita o texto.'**
+  String get admIaGuiaConfirma;
+
+  /// No description provided for @admIaGuiaCriado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Rascunho de guia criado: {slug} (publicado = não).'**
+  String admIaGuiaCriado(String slug);
+
+  /// No description provided for @admIaCusto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Custo por dia (últimos 30 dias)'**
+  String get admIaCusto;
+
+  /// No description provided for @admIaColDia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dia'**
+  String get admIaColDia;
+
+  /// No description provided for @admIaColConversas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conversas'**
+  String get admIaColConversas;
+
+  /// No description provided for @admIaColCusto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Custo (€)'**
+  String get admIaColCusto;
+
+  /// No description provided for @admAvTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avisos'**
+  String get admAvTitulo;
+
+  /// No description provided for @admAvSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Push enviados (eventos_push), avisos em massa (avisos_massa) e log dos testes E2E (e2e_log).'**
+  String get admAvSub;
+
+  /// No description provided for @admAvNovoMassa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Novo aviso em massa'**
+  String get admAvNovoMassa;
+
+  /// No description provided for @admAvMassaNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'O envio real é feito pelo avisos-cron (tipo massa) às 09:00 de Lisboa, no máximo 1 por usuário por dia. Aqui só cria.'**
+  String get admAvMassaNota;
+
+  /// No description provided for @admAvMassaVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Preencha o título e o texto do aviso.'**
+  String get admAvMassaVazio;
+
+  /// No description provided for @admAvMassaCriado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aviso em massa criado e registrado na auditoria.'**
+  String get admAvMassaCriado;
+
+  /// No description provided for @admAvMassaVazioLista.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhum aviso em massa criado ainda.'**
+  String get admAvMassaVazioLista;
+
+  /// No description provided for @admAvFiltroResultado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Resultado'**
+  String get admAvFiltroResultado;
+
+  /// No description provided for @admAvFiltroTipo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tipo'**
+  String get admAvFiltroTipo;
+
+  /// No description provided for @admAvPush.
+  ///
+  /// In pt, this message translates to:
+  /// **'Push — últimos {n}'**
+  String admAvPush(int n);
+
+  /// No description provided for @admAvMassa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avisos em massa'**
+  String get admAvMassa;
+
+  /// No description provided for @admAvE2e.
+  ///
+  /// In pt, this message translates to:
+  /// **'E2E log — últimos 100'**
+  String get admAvE2e;
+
+  /// No description provided for @admAvColDia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dia'**
+  String get admAvColDia;
+
+  /// No description provided for @admAvColTipo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tipo'**
+  String get admAvColTipo;
+
+  /// No description provided for @admAvColTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Título'**
+  String get admAvColTitulo;
+
+  /// No description provided for @admAvColCorpo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Corpo'**
+  String get admAvColCorpo;
+
+  /// No description provided for @admAvColResultado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Resultado'**
+  String get admAvColResultado;
+
+  /// No description provided for @admAvColEnviadoEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Enviado em'**
+  String get admAvColEnviadoEm;
+
+  /// No description provided for @admAvColErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro'**
+  String get admAvColErro;
+
+  /// No description provided for @admAvColCriadoEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Criado em'**
+  String get admAvColCriadoEm;
+
+  /// No description provided for @admAvColSegmento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segmento'**
+  String get admAvColSegmento;
+
+  /// No description provided for @admAvColEnviados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Enviados'**
+  String get admAvColEnviados;
+
+  /// No description provided for @admAvNaoEnviado.
+  ///
+  /// In pt, this message translates to:
+  /// **'ainda não'**
+  String get admAvNaoEnviado;
+
+  /// No description provided for @admAvColFluxo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fluxo'**
+  String get admAvColFluxo;
+
+  /// No description provided for @admAvColPasso.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passo'**
+  String get admAvColPasso;
+
+  /// No description provided for @admAvColEstado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estado'**
+  String get admAvColEstado;
+
+  /// No description provided for @admAvColDetalhe.
+  ///
+  /// In pt, this message translates to:
+  /// **'Detalhe'**
+  String get admAvColDetalhe;
+
+  /// No description provided for @admAvColDevice.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dispositivo'**
+  String get admAvColDevice;
+
+  /// No description provided for @admAuTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Auditoria'**
+  String get admAuTitulo;
+
+  /// No description provided for @admAuSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'admin_audit_log — últimas 300 ações de administrador. Clique para ver o antes e o depois.'**
+  String get admAuSub;
+
+  /// No description provided for @admAuFiltroAcao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Buscar ação (ex.: usuario_banir, regra_editar)'**
+  String get admAuFiltroAcao;
+
+  /// No description provided for @admAuTabela.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} ações'**
+  String admAuTabela(int n);
+
+  /// No description provided for @admAuDetalhe.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ação #{id}'**
+  String admAuDetalhe(String id);
+
+  /// No description provided for @admAuColQuando.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando'**
+  String get admAuColQuando;
+
+  /// No description provided for @admAuColAdmin.
+  ///
+  /// In pt, this message translates to:
+  /// **'Admin'**
+  String get admAuColAdmin;
+
+  /// No description provided for @admAuColAcao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ação'**
+  String get admAuColAcao;
+
+  /// No description provided for @admAuColAlvo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Alvo'**
+  String get admAuColAlvo;
+
+  /// No description provided for @admAuColAntes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Antes'**
+  String get admAuColAntes;
+
+  /// No description provided for @admAuColDepois.
+  ///
+  /// In pt, this message translates to:
+  /// **'Depois'**
+  String get admAuColDepois;
 }
 
 class _AppLocalizationsDelegate
