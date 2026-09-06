@@ -1,0 +1,46 @@
+{
+  "data": "20260906-184638",
+  "modelo": "gemini-flash-latest",
+  "fotos": 4,
+  "contagem": {
+    "verde": 2,
+    "amarelo": 2,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "A tela apresenta um design claro, bem alinhado e com linguagem simples e fácil de entender.",
+      "jargao": [],
+      "modelo": "gemini-3.6-flash",
+      "foto": "cofre_folha_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto cinzento claro apresenta um contraste muito fraco contra o fundo, dificultando a leitura por parte de um público com menor literacia digital ou dificuldades visuais.",
+      "jargao": [
+        "IVA"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "fala_trancado_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto explicativo no botão roxo está um bocadinho colado à margem esquerda.",
+      "jargao": [
+        "NIF",
+        "Pro"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "prova_trancada_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está bem organizado e legível, cumprindo todas as regras da app.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "radar_trancado_medio_pt.png"
+    }
+  ]
+}

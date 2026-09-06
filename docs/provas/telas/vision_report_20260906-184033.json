@@ -1,0 +1,190 @@
+{
+  "data": "20260906-184033",
+  "modelo": "gemini-flash-latest",
+  "fotos": 22,
+  "contagem": {
+    "verde": 14,
+    "amarelo": 7,
+    "vermelho": 1,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma mensagem clara e simples sobre o estado da funcionalidade.",
+      "jargao": [],
+      "modelo": "gemini-3.6-flash",
+      "foto": "caixa_desligada_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A ecrã está simples, limpo e com linguagem muito fácil de entender.",
+      "jargao": [],
+      "modelo": "gemini-3.6-flash",
+      "foto": "caixa_ligada_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um design muito limpo, excelente legibilidade e uma linguagem simples perfeitamente adaptada ao público-alvo.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash",
+      "foto": "cofre_chega_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface está limpa, com excelente contraste, linguagem muito acessível e botões fáceis de compreender para o público-alvo.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash",
+      "foto": "cofre_falta_muito_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está limpo, bem organizado e fácil de ler.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_falta_pouco_medio_pt.png"
+    },
+    {
+      "severity": "vermelho",
+      "finding": "O texto por cima está cortado e ilegível.",
+      "jargao": [
+        "Segurança Social",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_folha_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Usaste a palavra IVA sem explicar o que é para um menino de cinco anos.",
+      "jargao": [
+        "IVA",
+        "Segurança Social"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_com_resposta_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está limpo, bem alinhado e pronto para falar.",
+      "jargao": [
+        "IVA"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_parado_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está bem organizada e pronta a usar.",
+      "jargao": [
+        "IVA"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_trancado_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e pronto para tirar a folha de quanto ganhas.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "prova_com_dados_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto no botão roxo está muito colado às margens e pequeno.",
+      "jargao": [
+        "plano Pro"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "prova_trancada_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem contratos com prazos diferentes a vencer em simultâneo na mesma página.",
+      "jargao": [
+        "fidelização"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "radar_lista_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está bem organizado e explica o conceito de forma simples.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "radar_trancado_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O botão está cortado em baixo e há texto muito colado às margens.",
+      "jargao": [
+        "Retenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "vale_perde_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e percebe-se muito bem.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "vale_sobra_bem_resposta_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está bem organizado e explica de forma simples como calcular o valor líquido da corrida.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "vale_vazio_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto está um bocadinho colado às margens.",
+      "jargao": [
+        "Entidade",
+        "Referência"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "vida_detalhe_conta_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto do recibo verde está cortado no final.",
+      "jargao": [
+        "Recibo verde"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "vida_entra_cheio_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está todo bonitinho e pronto para usares.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "vida_nova_entrada_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais de um elemento laranja a avisar sobre contas atrasadas.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash-lite",
+      "foto": "vida_sai_cheio_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "vida_sobra_bom_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender, com um aviso claro sobre o dinheiro que falta.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "vida_sobra_mau_medio_pt.png"
+    }
+  ]
+}
