@@ -178,16 +178,23 @@ jobs:
           path: build/app/outputs/bundle/release/app-release.aab
           retention-days: 14
 
-      # SÓ internal + alpha. Produção é decisão humana depois da aprovação da Google.
+      # SÓ o track `internal`. Produção é decisão humana depois da aprovação da Google.
       # status: completed (draft ficaria parado à espera de um clique).
-      - name: Upload to Google Play (internal + alpha)
+      #
+      # CICATRIZ (2026-09-06, run 34027154027): com `tracks: internal,alpha` a Play
+      # devolveu `Only releases with status draft may be created on draft app`. Enquanto
+      # a app NUNCA foi publicada, ela está em rascunho e o teste FECHADO (alpha) só
+      # aceita releases em rascunho — o teste INTERNO aceita `completed` (provado pela
+      # API: versionCode 7 entrou em internal/completed na edição 09719747469275642030).
+      # Quando a app sair de rascunho (1.ª revisão aprovada), acrescenta-se `,alpha`.
+      - name: Upload to Google Play (internal)
         if: steps.opc.outputs.play == 'sim'
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
           packageName: pt.emdia.app
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
-          tracks: internal,alpha
+          tracks: internal
           status: completed
 
       - name: Aviso Play em falta
