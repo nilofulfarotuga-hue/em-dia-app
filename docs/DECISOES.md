@@ -188,3 +188,29 @@
 - **A armadilha que isto quase escondeu:** a consulta às regras só pedia três chaves, e as duas novas nunca chegavam à função. Os valores por omissão do código (1 e 3) davam o resultado certo à mesma — e o painel do Danilo não mandava nada, sem ninguém dar por isso. Regra que fica: **quem lê uma regra nova põe a chave na consulta, e prova que ela chegou.**
 - **Como se desfaz:** mudar os números na tabela. Não é preciso publicar app.
 
+## D35 — O vigia dos endereços do Estado compara com o MAPA DO SITE, nunca com o código HTTP
+- **O quê:** o vigia semanal descarrega o mapa do site das Finanças e vê se os nossos endereços continuam lá. Não faz um pedido a cada endereço a ver se responde.
+- **Porquê, e está provado:** os dois portais respondem "tudo bem" a caminhos inventados. A AT devolve **302 para o login** a `/recibos/portal/xxxx-nao-existe-zzz`, exactamente como ao endereço verdadeiro; a Segurança Social devolve **200** a `/ptss/pssd/menu/xpto-nao-existe`. Um vigia por código de resposta ficava verde para sempre num link morto — é o mesmo falso positivo do robô do Bora que devolveu 200 durante oito dias a falhar por dentro.
+- **As duas travas:** mapa com menos de 300 KB ou menos de 200 ligações não é o Estado a mudar, é o descarregamento a falhar. Nesse caso não se alarma e regista-se `saltado`. Um vigia que grita quando a rede falha ensina toda a gente a ignorá-lo.
+- **Como se desfaz:** `select cron.unschedule('em-dia-vigia-ligacoes')`.
+
+## D36 — Coordenada impossível fica a NULO, não se adivinha
+- **O quê:** quatro dos 223 centros de inspeção ficam sem coordenada. Três têm latitude 27 e 29 graus no **próprio PDF do IMT** (mar alto) e um vem num formato ilegível.
+- **Porquê:** dava para "arranjar" pelo código postal, ou pelo Nominatim. Mas mandar uma pessoa a um sítio que não existe é pior do que dizer-lhe que não sabemos onde é. A app mostra o centro com morada e sem botão de mapa.
+- **Como se desfaz:** geocodificar no script (`coord_origem = 'nominatim'`), a 1 pedido por segundo e nunca a partir da app.
+
+## D37 — O que não se pode provar não se escreve
+- **O quê:** o Bloco 5 pedia InvoiceXpress e Enable Banking. Ficaram sem código: só a decisão, a razão, e a lista do que falta.
+- **Porquê:** sem conta e sem chave, qualquer Edge Function que escrevesse era código que nunca correu. Um ficheiro que nunca correu não é trabalho feito — é dívida disfarçada de trabalho, e no dia em que alguém a ligasse ia descobrir os erros todos de uma vez. As tabelas e os interruptores das outras integrações fizeram-se porque **dava para as provar hoje** (o robô da DGEG correu em seco e contou 14.178 preços sem guardar nenhum).
+- **Como se desfaz:** com uma conta paga em qualquer dos dois, escreve-se e prova-se no mesmo dia.
+
+## D38 — Quem tira as fotografias não corrige os defeitos
+- **O quê:** os agentes que escreveram a fábrica de fotos das nove telas novas tinham ordem expressa de **não** tocar nas telas. Se vissem um defeito, escreviam-no no relatório e deixavam-no lá.
+- **Porquê:** um agente que corrige o que fotografa acaba a fotografar o que corrigiu, e o relatório passa a dizer que está tudo bem. Separado, saíram oito defeitos reais que **nenhum teste apanhava** — o cadeado a tapar um campo inteiro, a resposta do "vale a pena" fora do ecrã com o teclado aberto, o botão de ouvir fora do ecrã justamente para quem não lê.
+- **Como se desfaz:** não se desfaz. É a regra do maker/checker da casa, aplicada às fotos.
+
+## D39 — Um teste de segurança feito com a conta do dono não prova nada
+- **O quê:** a prova de que o telemóvel não estica o mês grátis nem se sobe de plano faz-se com uma conta **que não está na tabela `admins`**.
+- **Porquê:** à primeira tentativa o teste deu "PASSOU!" nas duas linhas e pareceu um buraco de segurança grave. Não era: a conta usada era administradora, e a trava deixa passar os admins — que é o que ela deve fazer. O defeito estava no teste. E deixou estrago (`trial_ate` em 2036, plano `familia`), que foi reposto.
+- **Como se aplica:** existe uma conta normal (`083cfbfc…`) criada só para isto. Usa-se essa, sempre.
+
