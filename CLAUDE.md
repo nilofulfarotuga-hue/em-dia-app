@@ -31,6 +31,7 @@ serviços, freelancers, imigrantes brasileiros). Clone melhorado do MEI Fácil/M
 10. **Design:** verde `#16A34A` em dia · laranja `#F97316` a vencer (1 por ecrã) · vermelho `#DC2626` passou · Inter explícito em todos os estilos · cantos 16. Ver `docs/DESIGN-SYSTEM.md`.
 11. **Prova ou não aconteceu:** cada bloco fecha com saída literal (SELECT, resposta HTTP, foto, run do CI) em `docs/provas/` e linha em `docs/MARCOS.md`. Golden tests em 3 tamanhos + teclado + PT/BR; juiz de visão (`tool/juiz/vision_judge.py`) sem vermelhos.
 12. **Dinheiro (Play Billing, preços, `assinaturas`, `validar-compra-play`):** preparar tudo, aplicar só com "vai" do Danilo.
+13. **Podes não estar sozinho nesta pasta.** O vigia da noite retoma a sessão sozinho e já houve duas a escrever ao mesmo tempo (2026-09-06: apagão de todos os dados de utilizador). Por isso: **nunca `git add -A`** — mete a stage só os ficheiros que TU tocaste (`git add <caminho>`), e olha para o `git status` antes de commitar. Antes de qualquer coisa destrutiva na base de dados (reset, re-aplicar migrações, apagar utilizadores), **pára e pergunta**: não há cópia de segurança destes dados.
 
 ## Comandos
 ```bash
