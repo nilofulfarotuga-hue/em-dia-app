@@ -134,3 +134,14 @@
 - **O quê:** antes de lançar uma retoma, o `EmDia-Retomar.ps1` aceita a sessão como viva por **qualquer** uma de duas: a tranca `docs/.sessao-viva` renovada há menos de 20 min, **ou** o transcript da sessão (`~/.claude/projects/*/<id>.jsonl`) escrito há menos de 20 min.
 - **Porquê:** a tranca só é renovada quando a sessão se lembra, e entre respostas passam-se facilmente 20 minutos. Bastou isso para o vigia lançar uma retoma por cima de uma sessão viva — duas a escrever no mesmo repositório e na mesma base de dados de produção. Nesse dia todos os dados de utilizador desapareceram. O transcript cresce sempre que a sessão trabalha, seja ela interactiva ou lançada pelo vigia: é a prova que não depende de ninguém se lembrar de nada.
 - **Como se desfaz:** tirar o bloco do transcript do passo 2 do script. Não se recomenda.
+
+## D25 — Os cadeados: onde me afastei da letra da ordem, e porquê
+- **O quê:** a regra pedida era "a partir do dia 31 fica o básico e o resto com cadeado". Três coisas ficaram abertas no plano grátis que, à letra, deviam estar fechadas: **escrever o que entra** (sem limite), **contas a pagar** (até 3) e **vale a pena esta corrida** (sem limite).
+- **Porquê:** escrever o que entra é o que faz as contas do IRS e da Segurança Social ficarem certas — com isso fechado, os números que o plano grátis mostra passam a estar errados, e um número errado é pior do que número nenhum. As contas a pagar até 3 chegam para a renda, a luz e o telemóvel, que é onde a pessoa percebe que a app serve; a quarta pede Pro. E o "vale a pena esta corrida" é a porta de entrada que traz gente da Google — está aberto no site, seria estranho estar fechado na app.
+- **O que ficou fechado, como pedido:** caixa de correio das faturas, prova de rendimento em PDF, radar da fidelização, falar com a app, ler extrato por foto. E ler documento por foto tem 5 por mês no grátis, tal como a ordem diz.
+- **Como se desfaz:** três `update` na tabela `feature_flags` (`entradas`, `saidas`, `vale_a_pena`) a pôr `free` a falso.
+
+## D26 — As leituras por foto não gravam nada sozinhas
+- **O quê:** a função `ler-documento` lê o documento e guarda a leitura em `leituras_ocr`, mas **não** cria a despesa nem o rendimento. Quem grava é a pessoa, depois de ver na app o que foi lido e poder corrigir.
+- **Porquê:** foi o Danilo que o pediu ("a pessoa vê o que foi lido e pode corrigir antes de guardar"), e é o que evita o pior caso: uma leitura errada entrar na contabilidade sem ninguém dar por ela. O campo do valor continua a ser o principal e escrito à mão; a câmara é um atalho, não o caminho.
+- **Como se desfaz:** fazer a função inserir logo em `entradas`/`saidas`. Não se recomenda.

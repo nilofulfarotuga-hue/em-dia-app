@@ -1,0 +1,50 @@
+{
+ "1-fatura-luz-com-referencia": {
+  "tipo": "fatura",
+  "entidade_nome_contem": "EDP",
+  "nif": "274819553",
+  "data_documento": "2026-08-14",
+  "valor_total": 60.9,
+  "entidade_pagamento": "10963",
+  "referencia_pagamento": "417903258",
+  "conta_para_irs": true
+ },
+ "2-fatura-telemovel-debito-direto": {
+  "tipo": "fatura",
+  "entidade_nome_contem": "MEO",
+  "nif": "274819553",
+  "data_documento": "2026-09-01",
+  "valor_total": 58.0,
+  "entidade_pagamento": null,
+  "referencia_pagamento": null,
+  "conta_para_irs": true
+ },
+ "3-talao-combustivel": {
+  "tipo": "combustivel",
+  "entidade_nome_contem": "GALP",
+  "nif": "274819553",
+  "data_documento": "2026-09-05",
+  "valor_total": 65.58,
+  "litros": 41.27,
+  "preco_litro": 1.589,
+  "conta_para_irs": true
+ },
+ "4-talao-compra-com-nif": {
+  "tipo": "talao",
+  "entidade_nome_contem": "CONTINENTE",
+  "nif": "274819553",
+  "data_documento": "2026-09-03",
+  "valor_total": 21.02,
+  "conta_para_irs": true
+ },
+ "5-fatura-agua-sem-nif": {
+  "tipo": "fatura",
+  "entidade_nome_contem": "GUARDA",
+  "nif": null,
+  "data_documento": "2026-08-28",
+  "valor_total": 18.01,
+  "entidade_pagamento": "21344",
+  "referencia_pagamento": "902118447",
+  "conta_para_irs": false
+ }
+}
