@@ -1,3 +1,5 @@
+> **ERRADO — ver `login-provado-2026-09-06.md`.** Os e-mails apareciam na Resend (delivered) e chegaram à caixa; o que falhava era a minha leitura dos registos, não o envio. Fica aqui só como cicatriz.
+
 # POR CONFIRMAR — o pedido de código responde 200 e o e-mail não aparece
 
 > Escrito no fecho da missão, 6 de setembro de 2026, 19h15. **Isto não está

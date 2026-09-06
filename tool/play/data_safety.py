@@ -76,6 +76,26 @@ GERAIS = {
     "PSL_DATA_COLLECTION_ENCRYPTED_IN_TRANSIT": "TRUE",
     # Mais → Definições → Apagar a conta (lib/screens/mais/definicoes_screen.dart).
     "PSL_DATA_COLLECTION_USER_REQUEST_DELETE": "TRUE",
+    # Perguntas que só existem na exportação da consola (2026-09-06), não no
+    # modelo público. A página tem a secção «Apagar a conta» com o caminho
+    # dentro da app e o e-mail para quem já não consegue entrar.
+    "PSL_ACCOUNT_DELETION_URL": "https://em-dia-site.pages.dev/privacidade#apagar-conta",
+    "PSL_DATA_DELETION_URL": "https://em-dia-site.pages.dev/privacidade#apagar-conta",
+    # Só se preenche quando o método de criação de conta é «outro»; não é.
+    "PSL_ACM_SPECIFY": "",
+    # PSL_HAS_OUTSIDE_APP_ACCOUNTS fica em branco: a API recusa-a com
+    # «You cannot answer PSL_HAS_OUTSIDE_APP_ACCOUNTS» (2026-09-06).
+    # Sem auditoria de segurança independente (MASA) — é honesto dizer que não.
+    "PSL_INDEPENDENTLY_VALIDATED": "FALSE",
+}
+
+# Escolhas únicas ou múltiplas fora dos tipos de dados: TRUE só nas certas.
+ESCOLHAS = {
+    # Entra-se com e-mail + código de 6 números (Supabase OTP) ou com a conta
+    # Google. Nunca há palavra-passe.
+    "PSL_SUPPORTED_ACCOUNT_CREATION_METHODS": {"PSL_ACM_USER_ID_OTHER_AUTH", "PSL_ACM_OAUTH"},
+    # Mais → Definições → Apagar a conta, e o e-mail na página de privacidade.
+    "PSL_SUPPORT_DATA_DELETION_BY_USER": {"DATA_DELETION_YES"},
 }
 
 # Cada tipo recolhido: (obrigatório?, fins da recolha, porquê está aqui).
@@ -132,6 +152,8 @@ def valor(pergunta: str, resposta: str):
     """O que fica na coluna «Response value» de cada linha do CSV."""
     if pergunta in GERAIS:
         return GERAIS[pergunta]
+    if pergunta in ESCOLHAS:
+        return "TRUE" if resposta in ESCOLHAS[pergunta] else ""
 
     # Escolha dos tipos de dados: TRUE só nos que recolhemos.
     if pergunta.startswith("PSL_DATA_TYPES_"):
