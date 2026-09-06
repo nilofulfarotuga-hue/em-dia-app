@@ -1,0 +1,114 @@
+{
+  "data": "20260906-041607",
+  "modelo": "gemini-flash-latest",
+  "fotos": 12,
+  "contagem": {
+    "verde": 6,
+    "amarelo": 2,
+    "vermelho": 4,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta as informações de forma clara, bem organizada e com linguagem acessível.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "calendario_detalhe_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã de detalhes apresenta uma estrutura clara, boas margens e ações bem visíveis.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "calendario_detalhe_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Ecrã limpo, bem organizado e com informação clara e legível.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "calendario_detalhe_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma hierarquia clara, bom espaçamento e instruções simples e bem explicadas.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "calendario_detalhe_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma disposição clara, legível e com boas margens e hierarquia visual.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "calendario_detalhe_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta as informações de pagamento e ações de forma clara, bem espaçada e legível.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "calendario_detalhe_pequeno_pt.png"
+    },
+    {
+      "severity": "vermelho",
+      "finding": "O botão flutuante verde está a sobrepor-se e a tapar o valor do último cartão.",
+      "jargao": [
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "calendario_grande_br.png"
+    },
+    {
+      "severity": "vermelho",
+      "finding": "O botão flutuante verde está posicionado por cima do valor a pagar no último cartão, tornando o texto ilegível.",
+      "jargao": [
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "calendario_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A imagem apresenta siglas e termos técnicos sem explicação simples, como IVA/IRS e contribuição.",
+      "jargao": [
+        "IVA/IRS",
+        "Contribuição"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "calendario_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O símbolo do euro (€) aparece quebrado na linha seguinte no valor principal e existem siglas como 'IVA/IRS' sem qualquer explicação.",
+      "jargao": [
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "calendario_medio_pt.png"
+    },
+    {
+      "severity": "vermelho",
+      "finding": "O botão verde flutuante está a sobrepor-se e a tapar o valor da multa no fundo do ecrã, tornando o texto ilegível.",
+      "jargao": [
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "calendario_pequeno_br.png"
+    },
+    {
+      "severity": "vermelho",
+      "finding": "O botão flutuante de adicionar (+) está sobreposto ao valor da multa no canto inferior direito, tornando o texto ilegível.",
+      "jargao": [
+        "IVA/IRS"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "calendario_pequeno_pt.png"
+    }
+  ]
+}

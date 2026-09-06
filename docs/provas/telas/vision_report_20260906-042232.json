@@ -1,0 +1,186 @@
+{
+  "data": "20260906-042232",
+  "modelo": "gemini-flash-latest",
+  "fotos": 20,
+  "contagem": {
+    "verde": 4,
+    "amarelo": 16,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã de erro de ligação está muito limpo, legível e apresenta uma mensagem simples com um botão claro para tentar novamente.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash",
+      "foto": "painel_erro_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um design limpo, organizado e com excelente contraste, facilitando a leitura dos prazos.",
+      "jargao": [
+        "IRS"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "painel_laranja_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais de um aviso a laranja no ecrã.",
+      "jargao": [
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais do que um cartão laranja a avisar de contas para pagar.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e limpo na tua aplicação.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais do que uma coisa cor de laranja no ecrã.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens mais do que um aviso a laranja no ecrã.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_laranja_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Os cartões estão todos vazios e sem nenhuma informação para ver.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_skeleton_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra 'estimativa' está sem explicação e o termo 'IRS' precisa de ser simplificado para crianças.",
+      "jargao": [
+        "estimativa",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_verde_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra 'estimativa' aparece sem explicar o que significa para quem não percebe de impostos.",
+      "jargao": [
+        "estimativa",
+        "IRS",
+        "IVA"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_verde_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo técnico 'estimativa' aparece sem uma explicação simples para o utilizador.",
+      "jargao": [
+        "estimativa"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_verde_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo técnico 'estimativa' aparece sem uma explicação simples para o utilizador.",
+      "jargao": [
+        "estimativa"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_verde_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está organizada e fácil de entender.",
+      "jargao": [
+        "IRS"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_verde_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra estimativa aparece sem uma explicação simples para quem não percebe de impostos.",
+      "jargao": [
+        "estimativa"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_verde_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A informação sobre o prazo vencido está repetida e confusa, e o termo IRS não está explicado para quem não percebe de impostos.",
+      "jargao": [
+        "IRS"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_vermelho_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A informação sobre o prazo está repetida e confusa, mostrando um aviso de atraso seguido de um cartão detalhado com a mesma dívida.",
+      "jargao": [
+        "IRS"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_vermelho_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O cartão verde indica que o prazo passou, mas a cor deveria ser vermelha para avisar que é urgente.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_vermelho_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A informação sobre o prazo está confusa e contraditória entre os cartões.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_vermelho_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O cartão verde indica um prazo vencido, o que é confuso para o utilizador.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_vermelho_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O cartão verde diz que o prazo passou, o que confunde com o cartão vermelho de alerta.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_vermelho_pequeno_pt.png"
+    }
+  ]
+}

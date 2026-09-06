@@ -172,3 +172,99 @@ HTTP 503  {"erro":"sem_gemini_api_key","mensagem":"O assistente ainda não está
 - Continua por provar (sem chave no Vault, confirmado por SQL): resposta real do Gemini, registo em `conversas_ia` com tokens/custo, ticket `guia_novo`, variante `br`.
 
 **Veredicto:** aprovado. Sem falha de execução, sem resultado errado, sem segredo em claro, sem número cravado.
+
+## Redeploy e verificação final (03:50)
+
+**Data:** 2026-09-06, 03:50–04:15 (hora de Lisboa). A chave `gemini_api_key` já está no Vault (`ler_segredo` devolve valor; não se copia).
+
+**Deploy (MCP `deploy_edge_function`, `verify_jwt: true`, entrypoint `ia-responder/index.ts`, ficheiros `ia-responder/index.ts` + `_shared/cors.ts` + `_shared/segredos.ts` + `_shared/contexto_ia.ts` + `_shared/gemini.ts`):**
+```
+{"slug":"ia-responder","status":"ACTIVE","version":2,"updated_at":1788663595486,"verify_jwt":true,
+ "ezbr_sha256":"7a9822ef24f653adba6f5c4275ebcfec69e8a5b69eff8cf9f0661851cb84a33c"}
+```
+Hash diferente da v1 (`f2167b4a…`): a v1 ainda tinha `'gemini-2.5-flash'`. `get_edge_function('ia-responder')` depois do deploy devolve em `_shared/gemini.ts`:
+```
+export function modeloGemini(): string {
+  // gemini-2.5-flash deixou de existir para contas novas (404 provado 2026-09-06 01:20);
+  // 'gemini-flash-latest' resolve para o Flash atual (3.8 em setembro de 2026).
+  return Deno.env.get('GEMINI_MODEL')?.trim() || 'gemini-flash-latest'
+}
+```
+
+**Chamadas** (Python `urllib`, `POST …/functions/v1/ia-responder`, `apikey` anon + `Authorization: Bearer <JWT de teste@emdia.pt>`; `feature_limite(uid,'ia_perguntas')` = `null` → sem limite, logo sem 402; `plano_efetivo` = `trial`).
+
+Pergunta 1 — **passou**:
+```
+### PERGUNTA: abri atividade em março, quando começo a pagar?
+HTTP 200
+{"resposta": "Na Segurança Social, tens direito a 12 meses (ss_isencao_meses) de isenção (tempo em que não precisas de pagar).\n\nComo abriste atividade em março de 2026, a isenção termina a 2027-03-01 (ss_isencao_meses). Por isso, só começas a pagar à Segurança Social em abril de 2027, entre o dia 10 (ss_pagamento_dia_inicio) e o dia 20 de abril de 2027 (ss_pagamento_dia_fim), com uma taxa de 21.4% (ss_taxa).\n\nMas tem atenção aos outros pagamentos que chegam mais cedo:\n- No IRS (o imposto sobre o dinheiro que ganhas), tens um pagamento por conta no valor de 65% (irs_pagamentos_conta_pct) calculado para pagar a 2026-09-20 (irs_pagamentos_conta_datas).\n- Tens também uma multa pendente até 2026-10-01 (multa_pagamento_voluntario_dias_uteis).\n\nPróximo passo: Faz o pagamento por conta de IRS até 2026-09-20 (irs_pagamentos_conta_datas).\nInformação geral, não substitui contabilista.",
+ "variante": "pt", "fora_das_regras": false, "usadas": 1, "limite": null}
+```
+Cita as chaves das regras (`ss_isencao_meses`, `ss_pagamento_dia_inicio`, `ss_pagamento_dia_fim`, `ss_taxa`, `irs_pagamentos_conta_pct`, `irs_pagamentos_conta_datas`, `multa_pagamento_voluntario_dias_uteis`), usa o perfil (abertura 2026-03-15) e as obrigações do utilizador, termina com `Próximo passo:` e com o rodapé fixo. Em PT-PT.
+
+SELECT em `conversas_ia` (a única conversa de hoje):
+```
+{"id":"cd4f13f6-f3e8-438f-856c-da8734d35225","teste":true,"modo":"chat","modelo":"gemini-flash-latest","tokens_entrada":6087,"tokens_saida":1814,"custo_tokens":0.005877,"fora_das_regras":false,"variante":"pt","pergunta":"abri atividade em março, quando começo a pagar?","criado_em":"2026-09-06T03:04:48.27218+00:00"}
+```
+`modelo` = `gemini-flash-latest`, `custo_tokens` = 0,005877 € > 0 (6087 × 0,28/1e6 + 1814 × 2,30/1e6; os 1814 de saída incluem os tokens de raciocínio do modelo).
+
+Perguntas 2 e 3 — **falharam por quota da Gemini** (saída literal; repetido 4× com 65 s de intervalo, sempre igual):
+```
+### PERGUNTA: passei os 15 mil, e agora?
+HTTP 503
+{"erro": "gemini_indisponivel", "detalhe": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. … Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, ", "mensagem": "O assistente está com muitos pedidos. Tenta daqui a um minuto."}
+
+### PERGUNTA: quando é a inspeção do meu carro de 2021?
+HTTP 503
+{"erro": "gemini_indisponivel", "detalhe": "HTTP 429: … generate_content_free_tier_requests, limit: 5, ", "mensagem": "O assistente está com muitos pedidos. Tenta daqui a um minuto."}
+```
+A função mapeia o 429 para 503 `gemini_indisponivel` como desenhado. Nenhuma linha foi gravada em `conversas_ia` para estas duas (só existe a da pergunta 1).
+
+**Diagnóstico da quota** (para saber se era por minuto ou por dia, sem tirar a chave do Vault: `net.http_post` a partir do Postgres com `public.ler_segredo('gemini_api_key')` no header; resposta lida em `net._http_response`, pedido 5, 03:10:00Z):
+```
+status_code: 429
+"quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+"quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+"quotaDimensions": {"model": "gemini-3.8-flash", "location": "global"},
+"quotaValue": "20"
+```
+Ou seja: `gemini-flash-latest` resolve hoje para `gemini-3.8-flash`, e o free tier dá **20 pedidos por dia** por modelo (o `limit: 5` da mensagem truncada é a quota por minuto). Os 20 de hoje já estavam gastos (sessões anteriores + a pergunta 1). Repõe à meia-noite do Pacífico (08:00 de Lisboa).
+
+**PARA O DANILO:** com o free tier (20 pedidos/dia) o assistente não aguenta nem os testes, quanto mais utilizadores. Para lançar é preciso ativar faturação no projeto Google AI Studio (o modelo é barato: a pergunta 1 custou 0,0059 €) — é um clique humano.
+
+## Roda de modelos (04:20)
+
+**Data:** 2026-09-06, 04:15–04:21 (hora de Lisboa). O coordenador alterou `_shared/gemini.ts`: em 429 (ou 404 "not found") a chamada passa ao modelo seguinte de `RODA_MODELOS` (`gemini-flash-latest`, `gemini-3.7-flash`, `gemini-3.6-flash`, `gemini-3.5-flash`, `gemini-flash-lite-latest`, `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemini-2.5-flash-lite`) — cada modelo tem a sua quota diária de 20 no free tier.
+
+**Deploy (mesmo processo, `verify_jwt: true`):**
+```
+{"slug":"ia-responder","status":"ACTIVE","version":3,"updated_at":1788664560365,"ezbr_sha256":"224347f6f30d1b19e80cfe0088d3fee69535721b9254d297986a9cacf068a7ca"}
+```
+`get_edge_function` (feito no `ler-extrato` v3, cujo `_shared/gemini.ts` é byte a byte o mesmo enviado aqui) devolve `export const RODA_MODELOS = [ 'gemini-flash-latest', 'gemini-3.7-flash', … ]` e o ciclo `for (const candidato of roda) { … if (resp.status === 429 || …) continue … }` — está no ar.
+
+**Q2 (literal, JWT do utilizador de teste):**
+```
+### IA Q2 | 04:19:37 | 8.3s | HTTP 200
+{"resposta": "Como passaste o limite de 15 000 € (iva_isencao_limite), vais ter de começar a cobrar IVA (um imposto que se junta ao preço do teu trabalho).\n\nDepende do valor total que atingiste:\n- **Se estás entre 15 000 € e 18 750 € (iva_isencao_perda_imediata):** continuas sem cobrar IVA até ao fim deste ano. Só começas a cobrar IVA a partir de janeiro do próximo ano.\n- **Se passaste logo os 18 750 € (iva_isencao_perda_imediata):** perdes a isenção no momento. O teu próximo recibo já tem de incluir IVA à taxa normal de 23% (iva_taxa_normal).\n\nTens de avisar as Finanças sobre esta mudança no prazo de 15 dias úteis (iva_isencao_comunicacao_dias_uteis), entregando uma declaração de alterações de atividade.\n\nPróximo passo: Envia a declaração de alterações no Portal das Finanças no prazo de 15 dias úteis (iva_isencao_comunicacao_dias_uteis).\nInformação geral, não substitui contabilista.",
+ "variante": "pt", "fora_das_regras": false, "usadas": 2, "limite": null}
+```
+Cita `iva_isencao_limite`, `iva_isencao_perda_imediata`, `iva_taxa_normal`, `iva_isencao_comunicacao_dias_uteis`; `Próximo passo:` + rodapé. Completa.
+
+**Q3 (literal):**
+```
+### IA Q3 | 04:19:49 | 12.4s | HTTP 200
+{"resposta": "a simple, child-friendly response:\n            - Os carros normais fazem a inspeção (ver se o carro está bom) aos 4, 6 e 8 anos (ipo_ligeiros_anos).\n            - O teu carro AA-11-BB foi matriculado a 28 de fevereiro de 2021.\n            - Por isso, a\nInformação geral, não substitui contabilista.",
+ "variante": "pt", "fora_das_regras": false, "usadas": 3, "limite": null}
+```
+Cita `ipo_ligeiros_anos` e usa o carro do perfil (AA-11-BB, 2021-02-28), mas **vem cortada** ("Por isso, a") e sem `Próximo passo:`; o rodapé foi acrescentado pelo código (`if (!resposta.includes(RODAPE_FIXO))`), não pelo modelo.
+
+**SELECT `conversas_ia` (as 4 conversas desta ronda, por ordem):**
+```
+{"id":"83f34ee2-…","modo":"chat","modelo":"gemini-3.7-flash","pergunta":"passei os 15 mil, e agora?","tokens_entrada":6088,"tokens_saida":1794,"custo_tokens":0.005831,"fim_resposta":"o_dias_uteis).\nInformação geral, não substitui contabilista.","criado_em":"2026-09-06T03:19:35Z"}
+{"id":"ff51eab8-…","modo":"chat","modelo":"gemini-3.6-flash","pergunta":"quando é a inspeção do meu carro de 2021","tokens_entrada":6092,"tokens_saida":2044,"custo_tokens":0.006407,"fim_resposta":" - Por isso, a\nInformação geral, não substitui contabilista.","criado_em":"2026-09-06T03:19:48Z"}
+{"id":"a3f7be2f-…","modo":"extrato","modelo":"gemini-3.6-flash","tokens_entrada":1368,"tokens_saida":336,"custo_tokens":0.001156,…}
+{"id":"5b6378a4-…","modo":"suporte","modelo":"gemini-3.6-flash","tokens_entrada":6157,"tokens_saida":2044,"custo_tokens":0.006425,"fim_resposta":"passas a pagar\nInformação geral, não substitui contabilista.",…}
+```
+`modelo` gravado é um modelo da roda (`gemini-3.7-flash` na Q2, `gemini-3.6-flash` nas seguintes), **não** o `gemini-3.8-flash` esgotado. A roda funciona.
+
+**Problema encontrado (não bloqueia a roda, mas é resultado errado para o utilizador):** Q3 e o suporte-auto têm `tokens_saida = 2044` ≈ `maxTokens: 2048` de `responderComIA` — o modelo esgotou o orçamento de saída (que inclui os tokens de raciocínio, `thoughtsTokenCount`) e a resposta chegou cortada (finishReason MAX_TOKENS). Como o código acrescenta o rodapé sempre que falta, o corte fica mascarado e passa por resposta completa (`fora_das_regras: false`). O `gemini-3.7-flash` (Q2, 1794 tokens) coube; o `gemini-3.6-flash` gasta mais a "pensar". Sugestão para o próximo passo: em `contexto_ia.ts` subir `maxTokens` (ex.: 4096) e/ou passar `thinkingConfig: { thinkingBudget: 512 }` em `generationConfig`; e tratar `finishReason === 'MAX_TOKENS'` como erro `resposta_cortada` em vez de colar o rodapé.

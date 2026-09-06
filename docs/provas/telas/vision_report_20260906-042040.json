@@ -1,0 +1,31 @@
+{
+  "data": "20260906-042040",
+  "modelo": "gemini-flash-latest",
+  "fotos": 2,
+  "contagem": {
+    "verde": 0,
+    "amarelo": 2,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã apresenta um visual limpo e organizado, mas utiliza a sigla 'IUC' sem qualquer explicação para o utilizador.",
+      "jargao": [
+        "IUC"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "painel_laranja_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A interface está muito clara e bem organizada, mas apresenta a sigla 'IUC' sem qualquer explicação para um público pouco digital.",
+      "jargao": [
+        "IUC"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "painel_laranja_medio_pt.png"
+    }
+  ]
+}

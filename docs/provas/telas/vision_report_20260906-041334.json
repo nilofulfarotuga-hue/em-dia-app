@@ -1,0 +1,289 @@
+{
+  "data": "20260906-041334",
+  "modelo": "gemini-flash-latest",
+  "fotos": 30,
+  "contagem": {
+    "verde": 11,
+    "amarelo": 18,
+    "vermelho": 1,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "Ecrã claro, bem estruturado e com passos fáceis de seguir.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "recibos_emitir_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta o guia passo a passo de forma limpa, legível e bem organizada.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "recibos_emitir_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta o guia passo a passo de forma limpa, organizada e perfeitamente legível.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "recibos_emitir_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A instrução apresenta um marcador de posição de imagem em falta e utiliza a sigla TVDE sem explicação.",
+      "jargao": [
+        "TVDE",
+        "NIF"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_emitir_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O segundo passo apresenta um estado vazio pobre com a indicação 'captura em breve'.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_emitir_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã contém uma imagem em falta com o aviso \"captura em breve\" e utiliza a sigla NIF sem explicação.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_emitir_pequeno_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma estrutura clara, intuitiva e bem organizada para a simulação do recibo verde.",
+      "jargao": [
+        "CIVA",
+        "M10"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã é claro, bem estruturado e utiliza uma linguagem simples e acessível.",
+      "jargao": [],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã está muito bem estruturado e limpo, mas apresenta termos técnicos como 'art. 53.º' e 'Bruto' sem qualquer explicação simples para o utilizador.",
+      "jargao": [
+        "art. 53.º",
+        "Bruto"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_grande_teclado_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã apresenta termos técnicos como 'art. 53.º' e 'Bruto' sem qualquer explicação simples para o utilizador.",
+      "jargao": [
+        "art. 53.º",
+        "Bruto"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_grande_teclado_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um design muito limpo, organizado e com excelente legibilidade e contraste.",
+      "jargao": [
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_irs_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma interface muito limpa, organizada e com excelente legibilidade, respeitando os cantos arredondados e as cores da marca.",
+      "jargao": [
+        "IVA",
+        "IRS",
+        "escalões"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_irs_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um design muito limpo, organizado e de fácil leitura, com excelente uso de espaçamento e cantos arredondados.",
+      "jargao": [
+        "faixas"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_irs_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um design muito limpo, legível e bem estruturado, cumprindo as diretrizes visuais e de cantos arredondados da marca.",
+      "jargao": [
+        "escalões"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_irs_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã utiliza jargão fiscal complexo como 'Pagamentos por conta' e termos desadequados ao português de Portugal como 'faixas' e 'você'.",
+      "jargao": [
+        "Pagamentos por conta",
+        "faixas"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_irs_pequeno_br.png"
+    },
+    {
+      "severity": "vermelho",
+      "finding": "O texto no topo está cortado e cortado pela metade.",
+      "jargao": [
+        "Pagamentos por conta"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_irs_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tem palavras difíceis sem explicação fácil e usa o 'você' em vez do 'tu'.",
+      "jargao": [
+        "IVA",
+        "Retenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está muito bonito e explicadinho.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O botão do IVA está cortado na parte inferior do ecrã.",
+      "jargao": [
+        "IVA",
+        "art. 53.º"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_medio_teclado_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O botão do IVA está cortado na parte inferior do ecrã.",
+      "jargao": [
+        "IVA",
+        "art. 53.º"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_medio_teclado_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto do rodapé está cortado na última linha e mistura pronomes do Brasil com Portugal.",
+      "jargao": [
+        "IVA",
+        "Retenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O botão do IVA com 23% está sem explicação e o jargão art. 53.º pode confundir.",
+      "jargao": [
+        "art. 53.º",
+        "Retenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã está legível, mas tem jargão técnico por explicar no IVA.",
+      "jargao": [
+        "art. 53.º"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_pequeno_teclado_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está muito bonito e limpo, pronto a usar.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_pequeno_teclado_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto no cartão do IRS tem termos difíceis como pagamentos por conta sem explicação.",
+      "jargao": [
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_ss_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tens palavras difíceis sem explicação e o IRS tem pagamentos por conta que podem confundir.",
+      "jargao": [
+        "isenção",
+        "estimativa",
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_ss_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Há termos técnicos sem explicação simples como pagamentos por conta.",
+      "jargao": [
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_ss_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem termos técnicos difíceis e há muita informação junta.",
+      "jargao": [
+        "isenção",
+        "estimativa",
+        "Pagamentos por conta"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_ss_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Há palavras difíceis sem explicação e texto colado no fundo.",
+      "jargao": [
+        "isenção",
+        "Pagamentos por conta"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_ss_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo isenção aparece sem explicação simples para quem não percebe de leis.",
+      "jargao": [
+        "isenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_ss_pequeno_pt.png"
+    }
+  ]
+}

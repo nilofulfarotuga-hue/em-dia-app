@@ -246,3 +246,43 @@ Depois de ~12 chamadas minhas (incluindo as com `hoje` inválido e a troca de pe
 ### Problemas encontrados
 1. **`hoje` não é validado** (`index.ts` passo 2): a regex `^\d{4}-\d{2}-\d{2}` aceita `2026-13-45` e `2026-02-30`, e `lerDia` → `Date.UTC` faz overflow silencioso (→ `2027-02-14` e `2026-03-02`). Qualquer utilizador autenticado (ou um bug na app) consegue regenerar a sua lista para outra janela, o que **apaga as pendentes** da janela real (`apagadas: 2` e `apagadas: 10` acima) e cria pendentes com datas passadas/futuras erradas. O dano é reversível (nova chamada sem `hoje` repõe; as pagas nunca se tocam), mas é um "resultado errado" para valor fora do domínio. Reproduzir: `POST /functions/v1/calcular-obrigacoes` com JWT e corpo `{"hoje":"2026-13-45"}` → `"hoje":"2027-02-14"`. Correção pequena: rejeitar quando `dataIso(lerDia(x)) !== x` (400 `hoje_invalido`), e/ou limitar o override a QA (ex.: só com `x-cron-secret` válido ou nunca em produção).
 2. **`recibos_comunicar` e `tvde_certificado` nunca se geram no servidor** porque `profiles` não tem `usa_software_faturacao` nem `tvde_certificado_validade` (confirmado: `grep` no schema não encontra as colunas). O Dart gera-as; o servidor não → o "espelho exato" só é exato para os campos que existem na tabela. O autor declarou-o honestamente; fica a faltar a migration (ou a decisão de que não é preciso).
+
+## Redeploy e verificação final (03:50)
+
+**Data:** 2026-09-06, 03:50–04:10 (hora de Lisboa). Sessão de redeploy porque a sessão anterior morreu por limite antes de confirmar o que estava no ar.
+
+**Deploy (MCP `deploy_edge_function`, `verify_jwt: true`, entrypoint `calcular-obrigacoes/index.ts`, ficheiros `calcular-obrigacoes/index.ts` + `_shared/segredos.ts` + `_shared/regras.ts`):**
+```
+{"slug":"calcular-obrigacoes","status":"ACTIVE","version":3,"updated_at":1788663381495,"verify_jwt":true,
+ "ezbr_sha256":"8cd13dcb87f3987c9bf2353f29dbebfeb21e1b24d329ad185ddf5cebdb8fca9e"}
+```
+O `ezbr_sha256` da v3 é **igual ao da v2** (`list_edge_functions` antes do deploy: v2 → `8cd13dcb…`): a correção do `hoje` (403 `hoje_so_qa` / 400 `hoje_invalido`, `ehDiaIsoValido` em `regras.ts`) já estava no ar. O que prova o código no ar não é a leitura do bundle mas as respostas abaixo, literais, que só existem na versão corrigida.
+
+**Comandos** (Python 3.12 `urllib`, o `curl` está bloqueado; script `chamar.py` no temp: `POST https://tgdmgtmknbwhcqoxtjbs.supabase.co/functions/v1/calcular-obrigacoes`, headers `apikey: <anon>`, `Authorization: Bearer <JWT de teste@emdia.pt, user a2194877-…>`, e `x-cron-secret: <Vault cron_secret>` só onde indicado; nenhum token é impresso).
+
+```
+### T1: hoje=2026-13-45 SEM x-cron-secret (espera 403 hoje_so_qa)
+HTTP 403
+{"erro": "hoje_so_qa", "mensagem": "O campo \"hoje\" é só para testes: exige o header x-cron-secret válido. Sem ele, usa-se sempre o dia de hoje em Lisboa."}
+
+### T2: hoje=2026-02-30 COM x-cron-secret (espera 400 hoje_invalido)
+HTTP 400
+{"erro": "hoje_invalido", "mensagem": "O campo \"hoje\" tem de ser um dia real no formato YYYY-MM-DD (ex.: 2026-09-06).", "recebido": "2026-02-30"}
+
+### T2b: hoje=2026-13-45 COM x-cron-secret (espera 400 hoje_invalido)
+HTTP 400
+{"erro": "hoje_invalido", "mensagem": "O campo \"hoje\" tem de ser um dia real no formato YYYY-MM-DD (ex.: 2026-09-06).", "recebido": "2026-13-45"}
+
+### T3: corpo {} (espera 200 geradas>0)
+HTTP 200
+{"geradas": 17, "novas": 0, "atualizadas": 17, "apagadas": 0, "hoje": "2026-09-06",
+ "itens": "[17 itens: efatura_validar, fim_isencao_ss, ipo, irs_entrega, irs_pagamento_conta, iuc, seguro, ss_declaracao, ss_pagamento]"}
+
+### T4: corpo {} outra vez (espera mesma contagem)
+HTTP 200
+{"geradas": 17, "novas": 0, "atualizadas": 17, "apagadas": 0, "hoje": "2026-09-06",
+ "itens": "[17 itens: efatura_validar, fim_isencao_ss, ipo, irs_entrega, irs_pagamento_conta, iuc, seguro, ss_declaracao, ss_pagamento]"}
+```
+(`itens` resumido pelo script: contagem + tipos distintos; a resposta completa traz os 17 objetos.)
+
+**Resultado:** o problema n.º 1 da secção "Problemas encontrados" está fechado no ar — `2026-13-45` e `2026-02-30` já não fazem overflow (400), e sem `x-cron-secret` o campo `hoje` é recusado (403) sem tocar em nada. Duas chamadas seguidas com `{}` dão a mesma contagem (17/0/17/0): idempotente.

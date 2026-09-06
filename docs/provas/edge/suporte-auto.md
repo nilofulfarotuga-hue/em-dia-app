@@ -148,3 +148,51 @@ Tudo coerente com as respostas HTTP: reembolso escalado fica `aberto` com `respo
 - `resend_api_key` não existe (SQL) → caminho do e-mail continua por provar, como o autor disse.
 
 **Veredicto:** aprovado.
+
+## Redeploy e verificação final (03:50)
+
+**Data:** 2026-09-06, 03:50–04:15 (hora de Lisboa).
+
+**Deploy (MCP `deploy_edge_function`, `verify_jwt: true`, entrypoint `suporte-auto/index.ts`, ficheiros `suporte-auto/index.ts` + `_shared/cors.ts` + `_shared/segredos.ts` + `_shared/contexto_ia.ts` + `_shared/gemini.ts`):**
+```
+{"slug":"suporte-auto","status":"ACTIVE","version":2,"updated_at":1788663859331,"verify_jwt":true,
+ "ezbr_sha256":"5025cb4769753e72e9ae7c6d37e68f36b4cbc065d8dd0c1349e6afb8c82e5b78"}
+```
+Hash diferente da v1 (`23aa57c5…`, que ainda tinha `'gemini-2.5-flash'`). O `_shared/gemini.ts` e o `_shared/contexto_ia.ts` enviados são os mesmos bytes que os do `ia-responder` v2, onde `get_edge_function` confirma `'gemini-flash-latest'`.
+
+**Chamada** (`POST …/functions/v1/suporte-auto`, JWT do utilizador de teste):
+```
+corpo: {"tipo":"duvida","assunto":"Não percebo o aviso da Segurança Social","descricao":"Recebi um aviso a dizer que a minha isenção acaba. O que tenho de fazer e quanto vou pagar por mês?"}
+HTTP 200
+{"ticket_id": "8236b120-9729-4f48-83d7-140fdb7ad1d5",
+ "resposta": "Registámos a tua dúvida. O assistente automático não está disponível agora, por isso uma pessoa da equipa vai responder-te.",
+ "escalado": false, "estado": "aberto", "email": "nao_aplicavel", "erro_ia": "gemini_indisponivel"}
+```
+SELECT do ticket:
+```
+{"id":"8236b120-9729-4f48-83d7-140fdb7ad1d5","teste":true,"tipo":"duvida","estado":"aberto","escalar_humano":false,"motivo_escala":null,"assunto":"Não percebo o aviso da Segurança Social","resposta_ia":null,"criado_em":"2026-09-06 03:10:41.291822+00"}
+```
+
+**Resultado:** a v2 arranca e faz o caminho completo (ticket criado, sem escala, resposta de recurso, `erro_ia`), mas a **resposta real da Gemini NÃO ficou gravada** (`resposta_ia: null`): a quota diária do free tier (`GenerateRequestsPerDayPerProjectPerModel-FreeTier`, 20/dia, modelo `gemini-3.8-flash`) estava esgotada — diagnóstico literal na prova do `ia-responder`. É o mesmo comportamento do Teste 4 da secção original, agora por quota e não por falta de chave. O ticket `8236b120-…` fica como evidência (utilizador de teste). Repetir depois das 08:00 de Lisboa ou depois de ativar faturação na Google.
+
+## Roda de modelos (04:20)
+
+**Deploy (`_shared/gemini.ts` com `RODA_MODELOS`, `verify_jwt: true`):**
+```
+{"slug":"suporte-auto","status":"ACTIVE","version":3,"updated_at":1788664744970,"ezbr_sha256":"40fcbf9755d5eceffb170cf8ac36a10d3ec7b3898aa847dd935bbaeab93d0dd5"}
+```
+`RODA_MODELOS` confirmado no ar por `get_edge_function` (ver prova do `ler-extrato`; mesmo ficheiro).
+
+**Chamada** (`tipo: duvida`, mesmo assunto/descrição de antes, JWT do utilizador de teste):
+```
+### SUPORTE-AUTO duvida | 04:20:07 | 13.0s | HTTP 200
+{"ticket_id": "06f894a7-6554-49ff-805f-b4f4db5fa891",
+ "resposta": "Quando começas a trabalhar a recibos verdes, tens direito a não pagar Segurança Social durante 12 meses (ss_isencao_meses). É um desconto para te ajudar no início!\n\nA tua isenção termina a 01-03-2027 (ss_isencao_meses). A partir dessa altura, passas a pagar\nInformação geral, não substitui contabilista.",
+ "escalado": false, "estado": "aberto", "email": "nao_aplicavel"}
+```
+SELECT do ticket e da conversa:
+```
+ticket: {"id":"06f894a7-6554-49ff-805f-b4f4db5fa891","tipo":"duvida","estado":"aberto","escalar_humano":false,"resposta_ia":"Quando começas a trabalhar a recibos verdes, tens direito a não pagar Segurança Social durante 12 meses (ss_isencao_meses). É um desconto para te ajudar no início!\n\nA tua isenção termina a 01-03-2027 (ss_isencao_meses). A partir dessa altura, passas a pagar\nInformação geral, não substitui contabilista."}
+conversa: {"id":"5b6378a4-219e-4629-8655-5019e883e1cf","modo":"suporte","modelo":"gemini-3.6-flash","tokens_entrada":6157,"tokens_saida":2044,"custo_tokens":0.006425,"fora_das_regras":false}
+```
+A `resposta_ia` real da Gemini ficou **gravada no ticket** (sem `erro_ia`), com `modelo` = `gemini-3.6-flash` (da roda). Cita `ss_isencao_meses` e usa a data de fim de isenção do perfil (2027-03-01). **Mas vem cortada** ("passas a pagar") e sem `Próximo passo:` — `tokens_saida` 2044 ≈ `maxTokens` 2048, o mesmo corte por MAX_TOKENS descrito na prova do `ia-responder`; o rodapé foi colado pelo código. A roda está provada; o orçamento de saída para modelos que "pensam" muito fica como problema aberto.

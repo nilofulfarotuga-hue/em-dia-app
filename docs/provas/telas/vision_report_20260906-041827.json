@@ -1,0 +1,295 @@
+{
+  "data": "20260906-041827",
+  "modelo": "gemini-flash-latest",
+  "fotos": 30,
+  "contagem": {
+    "verde": 18,
+    "amarelo": 11,
+    "vermelho": 1,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um guia passo a passo claro, organizado e fácil de ler.",
+      "jargao": [
+        "NIF",
+        "TVDE",
+        "IVA"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_emitir_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã apresenta uma imagem em falta com o texto 'captura em breve' no passo 2 e utiliza termos técnicos sem explicação simples.",
+      "jargao": [
+        "NIF",
+        "TVDE",
+        "IVA",
+        "retenção"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_emitir_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um guia passo a passo claro, bem estruturado e com bom contraste visual.",
+      "jargao": [
+        "NIF",
+        "TVDE"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_emitir_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A instrução contém uma imagem por preencher (\"captura em breve\") e utiliza a sigla TVDE sem explicação simples.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_emitir_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O segundo passo apresenta uma caixa com 'captura em breve' e contém termos técnicos que podem não ser claros para o utilizador.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_emitir_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O passo 2 inclui uma caixa com 'captura em breve', apresentando um estado vazio pobre.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_emitir_pequeno_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está muito claro, bem estruturado e fácil de entender para o utilizador.",
+      "jargao": [
+        "CIVA",
+        "M10"
+      ],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está muito claro, bem estruturado e apresenta explicações simples para todos os conceitos fiscais.",
+      "jargao": [],
+      "modelo": "gemini-3.6-flash",
+      "foto": "recibos_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um design limpo, excelente legibilidade e explicações simples para termos complexos como a retenção na fonte.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_grande_teclado_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela apresenta um design muito limpo, claro e com excelente uso de linguagem simples para explicar conceitos fiscais complexos.",
+      "jargao": [
+        "art. 53.º"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_grande_teclado_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta um excelente design visual, com espaçamento correto, tipografia clara e termos complexos devidamente explicados para o utilizador.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_irs_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma excelente organização visual e explicações simples para os conceitos mais complexos, cumprindo muito bem os requisitos de clareza.",
+      "jargao": [
+        "escalões"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "recibos_irs_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto no topo está cortado e ilegível.",
+      "jargao": [
+        "pagamentos por conta",
+        "imposto"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_irs_medio_br.png"
+    },
+    {
+      "severity": "vermelho",
+      "finding": "O texto do topo está cortado e ilegível.",
+      "jargao": [
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_irs_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tem palavras difíceis sem explicar bem o que são.",
+      "jargao": [
+        "pagamentos por conta",
+        "estimativa"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_irs_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis sem explicação e o contraste está fraco.",
+      "jargao": [
+        "escalões",
+        "estimativa",
+        "Adiantamentos",
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_irs_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Há jargão fiscal sem explicação e o ecrã tem elementos um pouco apertados.",
+      "jargao": [
+        "Retenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Esta página está muito boa e limpa, dá para perceber tudo direitinho.",
+      "jargao": [
+        "IVA",
+        "Retenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está muito bonito e fácil de usar, com explicações simples para os impostos.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_medio_teclado_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está direitinho e percebe-se tudo muito bem.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_medio_teclado_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A palavra retenção aparece em baixo sem explicação.",
+      "jargao": [
+        "Retenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo arrumado e percebe-se muito bem quanto vais receber.",
+      "jargao": [
+        "IVA",
+        "Retenção"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A parte de baixo ficou cortada e o jargão IVA pode confundir.",
+      "jargao": [
+        "IVA"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_pequeno_teclado_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem termos técnicos sem explicação simples e há corte de conteúdo no fundo.",
+      "jargao": [
+        "IVA",
+        "art. 53.º"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_pequeno_teclado_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender.",
+      "jargao": [
+        "IRS",
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_ss_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender.",
+      "jargao": [
+        "escalões",
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_ss_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela apresenta as informações de forma clara e organizada para o utilizador.",
+      "jargao": [
+        "isenção",
+        "IRS",
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_ss_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender, com explicações simples para os termos técnicos.",
+      "jargao": [
+        "IRS",
+        "pagamentos por conta"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_ss_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender.",
+      "jargao": [
+        "IRS",
+        "Segurança Social"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_ss_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender.",
+      "jargao": [
+        "IRS",
+        "isenção"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_ss_pequeno_pt.png"
+    }
+  ]
+}

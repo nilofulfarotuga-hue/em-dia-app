@@ -658,6 +658,852 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get euros => '€';
+
+  @override
+  String onbPergunta(int n, int total) {
+    return 'Pergunta $n de $total';
+  }
+
+  @override
+  String get onbMes => 'Mês';
+
+  @override
+  String get onbAno => 'Ano';
+
+  @override
+  String get onbOpcional => 'opcional';
+
+  @override
+  String onbIsentoAte(String data) {
+    return 'Estás isento de Segurança Social até $data';
+  }
+
+  @override
+  String onbDepoisPagas(String mes) {
+    return 'Depois pagas a partir de $mes';
+  }
+
+  @override
+  String onbIsencaoJaAcabou(String data) {
+    return 'A tua isenção do 1.º ano acabou em $data. Já pagas Segurança Social todos os meses — eu digo-te quanto e quando.';
+  }
+
+  @override
+  String onbIvaNormalExplica(String taxa) {
+    return 'Cobras IVA de $taxa nas faturas e entregas esse dinheiro às Finanças de 3 em 3 meses. Eu aviso-te das datas.';
+  }
+
+  @override
+  String get onbIvaIsentoExplica =>
+      'Não cobras IVA (ficas isento). Só tens de pôr a frase de isenção no recibo — eu dou-ta pronta a copiar.';
+
+  @override
+  String onbIucEm(String mes) {
+    return 'IUC (o imposto do carro) é em $mes';
+  }
+
+  @override
+  String onbProximaIpo(String data) {
+    return 'Próxima inspeção: $data';
+  }
+
+  @override
+  String get onbSimulacaoTitulo => 'A tua primeira simulação';
+
+  @override
+  String get onbSimulacaoAjuda =>
+      'Valores aproximados. Afinas depois em Recibos.';
+
+  @override
+  String onbSsPorMes(String valor) {
+    return 'Segurança Social ≈ $valor por mês';
+  }
+
+  @override
+  String onbSsIsentoAte(String data) {
+    return 'Segurança Social: isento até $data';
+  }
+
+  @override
+  String onbIrsPorMes(String valor) {
+    return 'IRS a guardar ≈ $valor por mês';
+  }
+
+  @override
+  String get onbIrsZero =>
+      'IRS: com este valor não pagas nada (ficas abaixo do mínimo que a lei não taxa)';
+
+  @override
+  String get onbEsteMes => 'Este mês';
+
+  @override
+  String get onbSemValor => 'sem pagamento';
+
+  @override
+  String onbItemLista(String nome, String valor, String dia) {
+    return '$nome ($valor, dia $dia)';
+  }
+
+  @override
+  String onbItemListaSemValor(String nome, String dia) {
+    return '$nome (dia $dia)';
+  }
+
+  @override
+  String onbDiaLimite(String dia) {
+    return 'até dia $dia';
+  }
+
+  @override
+  String get onbCalendarioErro =>
+      'Guardei o teu perfil, mas o calendário ainda não ficou pronto. Abre o Painel daqui a bocado e ele aparece.';
+
+  @override
+  String painelOla(String nome) {
+    return 'Olá, $nome';
+  }
+
+  @override
+  String get painelOlaSemNome => 'Olá!';
+
+  @override
+  String get painelPergunta => 'Estás em dia?';
+
+  @override
+  String painelEtiquetaTrial(String data) {
+    return 'Mês grátis até $data';
+  }
+
+  @override
+  String get painelEtiquetaFree => 'Plano grátis';
+
+  @override
+  String get painelEtiquetaPro => 'Pro';
+
+  @override
+  String get painelEtiquetaFamilia => 'Família';
+
+  @override
+  String get painelSemaforoVerdeSub => 'Nada a vencer nos próximos 5 dias.';
+
+  @override
+  String get painelSemaforoAmareloHojeUma => 'Tens 1 coisa a vencer hoje';
+
+  @override
+  String painelSemaforoAmareloHojeVarias(int n) {
+    return 'Tens $n coisas a vencer hoje';
+  }
+
+  @override
+  String get painelSemaforoAmareloAmanhaUma => 'Tens 1 coisa a vencer amanhã';
+
+  @override
+  String painelSemaforoAmareloAmanhaVarias(int n) {
+    return 'Tens $n coisas a vencer amanhã';
+  }
+
+  @override
+  String painelHeroiEmDias(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Em $dias dias',
+      one: 'Em 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String painelHeroiPassouHa(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Passou há $dias dias',
+      one: 'Passou há 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get painelHeroiSemPrazo => 'Sem prazos à vista';
+
+  @override
+  String get painelHeroiSemPrazoAjuda =>
+      'Quando houver, aparece aqui. Eu aviso-te antes.';
+
+  @override
+  String get painelNomeIuc => 'IUC (o imposto do carro)';
+
+  @override
+  String get painelNomeIva => 'IVA (o imposto da fatura)';
+
+  @override
+  String get painelNomeIrsConta => 'Pagamento por conta (adiantamento do IRS)';
+
+  @override
+  String painelAteDia(int dia) {
+    return 'até dia $dia';
+  }
+
+  @override
+  String get painelPago => 'Pago';
+
+  @override
+  String get painelIrsPorMes => 'por mês';
+
+  @override
+  String get painelIrsLinha =>
+      'Não é tudo teu: guarda isto todos os meses e o IRS não te apanha de surpresa.';
+
+  @override
+  String painelIrsZero(String valor) {
+    return 'Com o que ganhas não pagas IRS (ficas abaixo do mínimo de existência, $valor por ano).';
+  }
+
+  @override
+  String get painelIrsSemRendimento =>
+      'Diz-me quanto ganhas por mês (na aba Recibos) e eu digo-te quanto guardar.';
+
+  @override
+  String get painelIrsAproximado => 'valor aproximado';
+
+  @override
+  String painelVigiaFaltam(String valor) {
+    return 'Faltam $valor para o limite. Continua a registar.';
+  }
+
+  @override
+  String get painelPagoOk => 'Marcado como pago. Boa.';
+
+  @override
+  String get painelPagoErro =>
+      'Não consegui marcar como pago. Vê a ligação e tenta outra vez.';
+
+  @override
+  String get painelComprovativoPergunta =>
+      'Queres juntar a foto do comprovativo?';
+
+  @override
+  String get painelComprovativoAjuda =>
+      'Fica guardada aqui, para quando as Finanças ou a Segurança Social perguntarem.';
+
+  @override
+  String get painelAgoraNao => 'Agora não';
+
+  @override
+  String get painelComprovativoOk => 'Comprovativo guardado.';
+
+  @override
+  String get painelComprovativoErro =>
+      'Não consegui guardar a foto. Tenta outra vez.';
+
+  @override
+  String get painelCadeadoComprovativo =>
+      'Ativa o Pro para guardar as fotos dos comprovativos.';
+
+  @override
+  String painelComoPagarAte(String data) {
+    return 'Até $data';
+  }
+
+  @override
+  String get painelComoPagarSs =>
+      'Entra na Segurança Social Direta (app ou site), vai a Conta-corrente e depois a Pagamentos, e paga por Multibanco ou MB WAY. Prazo: entre o dia 10 e o dia 20.';
+
+  @override
+  String get painelComoPagarIva =>
+      'Entra no Portal das Finanças, vai a IVA e depois a Pagamentos, e paga com a referência Multibanco que lá aparece. Prazo: até ao dia 25.';
+
+  @override
+  String get painelComoPagarIrs =>
+      'Entra no Portal das Finanças, vai a IRS e depois a Pagamentos por conta, e paga com a referência Multibanco. Prazo: até ao dia 20.';
+
+  @override
+  String get painelComoPagarIuc =>
+      'Entra no Portal das Finanças, vai a IUC (o imposto do carro) e a Emitir documento de pagamento, e paga por Multibanco. Prazo: até ao fim do mês da matrícula.';
+
+  @override
+  String get painelComoPagarIpo =>
+      'Marca a inspeção num centro perto de ti (por telefone ou no site do centro) e leva o documento único do carro. Vai antes do dia limite.';
+
+  @override
+  String get painelComoPagarSeguro =>
+      'Compara preços antes de renovar. Paga à seguradora por referência Multibanco ou débito direto até à data de renovação.';
+
+  @override
+  String get painelComoPagarGenerico =>
+      'Confirma a data no Portal das Finanças ou na Segurança Social Direta e trata disto antes do dia limite. Se tiveres dúvidas, pergunta-me.';
+
+  @override
+  String get painelTentarOutraVez => 'Tentar outra vez';
+
+  @override
+  String get recibosTitulo => 'Recibos verdes';
+
+  @override
+  String get recibosSubtitulo =>
+      'Faz as contas, regista o que ganhas e vê o que é mesmo teu.';
+
+  @override
+  String get calcAjudaValor => 'Escreve o valor sem IVA. Ex.: 1000';
+
+  @override
+  String get calcSemValor => 'Escreve um valor e eu faço as contas.';
+
+  @override
+  String get calcRecebesNaConta => 'O que recebes na conta';
+
+  @override
+  String get calcFicaTeu => 'O que é mesmo teu';
+
+  @override
+  String get calcNaoETudoTeu =>
+      'O IVA e a retenção não são teus — vão para o Estado. Guarda só o que é mesmo teu.';
+
+  @override
+  String get calcDispensaAjuda =>
+      'A dispensa só vale se o cliente tiver contabilidade organizada — pergunta-lhe antes.';
+
+  @override
+  String get calcRetencaoDispensaCurta => 'Dispensa (0%)';
+
+  @override
+  String get calcIvaIsentoCurto => 'Isento (art. 53.º — não cobras IVA)';
+
+  @override
+  String get calcIvaNormalCurto => 'Cobras 23%';
+
+  @override
+  String get calcBrutoExplicado => 'Bruto (o valor escrito no recibo)';
+
+  @override
+  String get ssIsencaoExplica =>
+      'Isenção = no 1.º ano de atividade não pagas nada à Segurança Social.';
+
+  @override
+  String get rendUltimos => 'Os teus últimos meses';
+
+  @override
+  String rendTotalAno(String valor) {
+    return 'Este ano já registaste $valor';
+  }
+
+  @override
+  String get rendTipo => 'Tipo de rendimento';
+
+  @override
+  String get rendTipoServicos => 'Serviços (TVDE, entregas, cabelo, obras…)';
+
+  @override
+  String get rendTipoVendas => 'Venda de coisas';
+
+  @override
+  String get rendPlataforma => 'De onde veio';
+
+  @override
+  String get rendClienteDireto => 'Clientes diretos';
+
+  @override
+  String get rendPlataformaOutra => 'Outra';
+
+  @override
+  String get rendGuardado =>
+      'Guardado. Já contei com isto na Vigia do IVA, na Segurança Social e no IRS.';
+
+  @override
+  String get rendValorInvalido => 'Escreve um valor maior que zero.';
+
+  @override
+  String rendLidoDaFoto(String confianca) {
+    return 'Lido da foto ($confianca de certeza). Confirma antes de guardar.';
+  }
+
+  @override
+  String get rendFotoALer => 'A ler o extrato… demora uns segundos.';
+
+  @override
+  String get rendFotoCadeado =>
+      'Ler extratos por foto é do plano Pro. Regista à mão — demora 30 segundos.';
+
+  @override
+  String get rendFotoIndisponivel =>
+      'A leitura por foto está a descansar. Regista à mão por agora — demora 30 segundos.';
+
+  @override
+  String get rendFotoNaoLi =>
+      'Não consegui ler o mês ou o valor. Tenta uma foto mais nítida ou regista à mão.';
+
+  @override
+  String get rendOrigemFoto => 'lido da foto';
+
+  @override
+  String rendApagarPergunta(String mes) {
+    return 'Apagar o rendimento de $mes?';
+  }
+
+  @override
+  String get rendApagado => 'Apagado.';
+
+  @override
+  String vigiaIvaFalta(String valor) {
+    return 'Ainda podes faturar $valor este ano sem cobrar IVA.';
+  }
+
+  @override
+  String get vigiaIvaSemDados =>
+      'Regista os teus rendimentos e eu vigio o limite por ti.';
+
+  @override
+  String ssAvisoAntes(int dias, String valor) {
+    return 'Aviso-te $dias dias antes do fim, com o valor que vais passar a pagar: cerca de $valor por mês.';
+  }
+
+  @override
+  String get ssSemAtividade =>
+      'Sem atividade aberta não pagas Segurança Social nem IRS. Quando abrires, eu conto tudo.';
+
+  @override
+  String get ssSemDataAbertura =>
+      'Diz-me quando abriste atividade (no teu perfil) para eu contar a isenção do 1.º ano.';
+
+  @override
+  String get ssSemDados =>
+      'Regista os teus rendimentos para eu calcular o valor certo. Sem dados, conto com o mínimo.';
+
+  @override
+  String ssBaseTrimestre(String inicio, String fim, String valor) {
+    return 'Com base no que ganhaste de $inicio a $fim: $valor.';
+  }
+
+  @override
+  String ssBaseEstimativa(String valor) {
+    return 'Com base na tua estimativa de $valor por mês. Regista os rendimentos para ser mais certo.';
+  }
+
+  @override
+  String ssMinimo(String valor) {
+    return 'É o mínimo: $valor por mês, mesmo que ganhes pouco.';
+  }
+
+  @override
+  String get ssAjustarTitulo => 'Quanto queres pagar?';
+
+  @override
+  String get ssAjusteNormal => 'o valor normal';
+
+  @override
+  String ssAjusteMenos(int pct) {
+    return '$pct% a menos';
+  }
+
+  @override
+  String ssAjusteMais(int pct) {
+    return '$pct% a mais';
+  }
+
+  @override
+  String ssAjusteAtual(String ajuste) {
+    return 'Ajuste atual: $ajuste';
+  }
+
+  @override
+  String ssNovoValor(String valor) {
+    return 'Passas a pagar cerca de $valor por mês';
+  }
+
+  @override
+  String get ssAjusteGuardado =>
+      'Guardado. Vou contar com este ajuste nos avisos.';
+
+  @override
+  String get etiquetaEstimativa => 'estimativa';
+
+  @override
+  String irsBase(String valor) {
+    return 'Com base numa média de $valor por mês.';
+  }
+
+  @override
+  String get irsSemDados =>
+      'Regista os teus rendimentos (ou diz-me quanto ganhas por mês) e eu digo-te quanto guardar.';
+
+  @override
+  String get irsPagamentosContaTitulo =>
+      'Adiantamentos do IRS (as Finanças chamam-lhes pagamentos por conta)';
+
+  @override
+  String get irsPagamentosContaAjuda =>
+      'Só se tiveres imposto a pagar. Eu aviso-te 5 dias antes de cada um.';
+
+  @override
+  String irsEscaloesPorConfirmar(int ano) {
+    return 'escalões $ano por confirmar';
+  }
+
+  @override
+  String get irsEstimativaNota =>
+      'É uma estimativa para saberes quanto guardar — não é a declaração.';
+
+  @override
+  String get emitirTitulo => 'Como emitir o recibo';
+
+  @override
+  String get emitirSubtitulo =>
+      'Passo a passo no Portal das Finanças, com textos prontos a copiar.';
+
+  @override
+  String get emitirAbrirGuia => 'Ver o passo a passo';
+
+  @override
+  String get emitirPasso1 =>
+      'Entra no Portal das Finanças com o teu NIF e a tua senha.';
+
+  @override
+  String get emitirPasso2 =>
+      'Procura “Faturas e Recibos Verdes” e toca em “Emitir”.';
+
+  @override
+  String get emitirPasso3 =>
+      'Escolhe “Recibo” (ou “Fatura-Recibo” se o cliente pedir fatura).';
+
+  @override
+  String get emitirPasso4 =>
+      'Preenche o NIF do cliente. Se for uma plataforma (Uber, Bolt, Glovo), o NIF está no extrato ou no contrato.';
+
+  @override
+  String get emitirPasso5 =>
+      'Na descrição escreve o que fizeste. Podes copiar este texto:';
+
+  @override
+  String get emitirPasso6 =>
+      'Põe o valor sem IVA e escolhe a retenção que usaste na calculadora (23%, 25% ou dispensa).';
+
+  @override
+  String get emitirPasso7Isento =>
+      'No IVA escolhe o regime de isenção do artigo 53.º e copia esta frase para o motivo:';
+
+  @override
+  String get emitirPasso7Normal => 'No IVA escolhe a taxa normal (23%).';
+
+  @override
+  String get emitirPasso8 =>
+      'Confirma e emite. Guarda o PDF — no fim do mês regista aqui o que ganhaste.';
+
+  @override
+  String get emitirCapturaBreve => 'captura em breve';
+
+  @override
+  String get emitirAbrirPortal => 'Abrir o Portal das Finanças';
+
+  @override
+  String get emitirNaoAbriu =>
+      'Não consegui abrir o site. Escreve portaldasfinancas.gov.pt no navegador.';
+
+  @override
+  String get emitirDescricaoTvde =>
+      'Prestação de serviços de transporte de passageiros em veículo descaracterizado (TVDE)';
+
+  @override
+  String get emitirDescricaoEstafeta =>
+      'Prestação de serviços de entrega de refeições e encomendas';
+
+  @override
+  String get emitirDescricaoServicos => 'Prestação de serviços';
+
+  @override
+  String calResumo(int n, String valor) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Este mês pagas $n coisas: $valor',
+      one: 'Este mês pagas 1 coisa: $valor',
+      zero: 'Este mês não tens nada a pagar.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get calDiasSemana => 'seg,ter,qua,qui,sex,sáb,dom';
+
+  @override
+  String calDiaSelecionado(String data) {
+    return 'Só o dia $data';
+  }
+
+  @override
+  String get calLimparFiltro => 'Ver tudo';
+
+  @override
+  String get calFiltroTudo => 'Tudo';
+
+  @override
+  String get calFiltroSS => 'Segurança Social';
+
+  @override
+  String get calFiltroFiscal => 'IVA/IRS';
+
+  @override
+  String get calFiltroCarro => 'Carro';
+
+  @override
+  String get calFiltroOutros => 'Outros';
+
+  @override
+  String get calPassou => 'Passou';
+
+  @override
+  String get calEstaSemana => 'Esta semana';
+
+  @override
+  String get calEsteMes => 'Este mês';
+
+  @override
+  String get calMaisTarde => 'Mais tarde';
+
+  @override
+  String get calJaPagaste => 'Já pagaste';
+
+  @override
+  String calFaltamDias(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'faltam $n dias',
+      one: 'falta 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get calEhHoje => 'é hoje';
+
+  @override
+  String calPassouHa(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'passou há $n dias',
+      one: 'passou há 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get calPago => 'Pago';
+
+  @override
+  String get calSemValor => 'sem valor';
+
+  @override
+  String get calSemNesteFiltro => 'Nada marcado aqui.';
+
+  @override
+  String get calRecalcular => 'Refazer o calendário';
+
+  @override
+  String get calRecalculado => 'Calendário refeito.';
+
+  @override
+  String get calErro =>
+      'Não consegui carregar o calendário. Puxa para baixo para tentar outra vez.';
+
+  @override
+  String get calSemSessao => 'Entra na app para mexer no calendário.';
+
+  @override
+  String get calDataLimite => 'Data limite';
+
+  @override
+  String calAvisoEm(String data) {
+    return 'Aviso-te a $data';
+  }
+
+  @override
+  String get calAproximado => 'aproximado';
+
+  @override
+  String get calRegra => 'Porque aparece';
+
+  @override
+  String get calComoPagar => 'Como pagar';
+
+  @override
+  String calAbrirSite(String site) {
+    return 'Abrir $site';
+  }
+
+  @override
+  String get calSiteSS => 'a Segurança Social Direta';
+
+  @override
+  String get calSitePF => 'o Portal das Finanças';
+
+  @override
+  String get calSiteImt => 'o site do IMT';
+
+  @override
+  String get calSiteAima => 'o site da AIMA';
+
+  @override
+  String get calErroAbrirSite =>
+      'Não consegui abrir o site. Tenta no navegador.';
+
+  @override
+  String get calJaPaguei => 'Já paguei';
+
+  @override
+  String calPagoEm(String data) {
+    return 'Pagaste a $data. Boa!';
+  }
+
+  @override
+  String get calDesmarcar => 'Afinal não paguei';
+
+  @override
+  String get calMarcadaPaga => 'Marcado como pago.';
+
+  @override
+  String get calDesmarcada => 'Voltou a ficar por pagar.';
+
+  @override
+  String get calErroGuardar => 'Não consegui guardar. Tenta outra vez.';
+
+  @override
+  String get calCadeadoComprovativo => 'Ativa o Pro para guardar a foto.';
+
+  @override
+  String get calTirarFoto => 'Tirar foto agora';
+
+  @override
+  String get calEscolherGaleria => 'Escolher da galeria';
+
+  @override
+  String get calComprovativoGuardado =>
+      'Comprovativo guardado e marcado como pago.';
+
+  @override
+  String get calComoPagarSs =>
+      'Segurança Social Direta → Conta-corrente → Pagamentos → gera a referência Multibanco e paga na app do banco.';
+
+  @override
+  String get calComoPagarFiscal =>
+      'Portal das Finanças → Pagamentos → gera a referência Multibanco e paga na app do banco.';
+
+  @override
+  String get calComoPagarIuc =>
+      'Portal das Finanças → IUC → Pagar → escolhe a matrícula → emite a referência Multibanco.';
+
+  @override
+  String get calComoPagarIpo =>
+      'Marca no centro de inspeção mais perto de ti. Leva o DUA (documento do carro) e o seguro.';
+
+  @override
+  String get calComoPagarSeguro =>
+      'Pede 2 ou 3 simulações, compara e renova a que ficar mais barata.';
+
+  @override
+  String get calComoPagarMulta =>
+      'Usa a referência que vem na carta da notificação. Se pagares cedo, costuma ficar mais barato.';
+
+  @override
+  String get calComoPagarOutro =>
+      'Paga onde te disseram e depois marca aqui como pago.';
+
+  @override
+  String get calRegraSsDeclaracao => 'Declaração trimestral à Segurança Social';
+
+  @override
+  String get calRegraSsPagamento =>
+      'Pagamento mensal à Segurança Social (dia 10 a 20)';
+
+  @override
+  String get calRegraSsIsencao => 'Fim da isenção de Segurança Social';
+
+  @override
+  String get calRegraIvaDeclaracao => 'Declaração trimestral de IVA';
+
+  @override
+  String get calRegraIvaPagamento => 'Pagamento trimestral de IVA';
+
+  @override
+  String get calRegraIrsEntrega => 'Entrega do IRS (abril a junho)';
+
+  @override
+  String get calRegraEfatura => 'Validar faturas no e-fatura';
+
+  @override
+  String get calRegraIrsConta => 'Pagamentos por conta de IRS';
+
+  @override
+  String get calRegraRecibos => 'Comunicar faturas às Finanças';
+
+  @override
+  String get calRegraTvde => 'Certificado de motorista TVDE';
+
+  @override
+  String get calRegraResidencia => 'Autorização de residência';
+
+  @override
+  String get calRegraIuc => 'IUC: mês da matrícula do carro';
+
+  @override
+  String get calRegraIpo => 'Inspeção periódica do carro';
+
+  @override
+  String get calRegraSeguro => 'Renovação do seguro';
+
+  @override
+  String get calRegraCarta => 'Validade da carta de condução';
+
+  @override
+  String get calRegraManual => 'Adicionaste tu';
+
+  @override
+  String calRegraOutra(String chave) {
+    return 'Regra $chave';
+  }
+
+  @override
+  String get calAdicionar => 'Adicionar';
+
+  @override
+  String get calNovaTitulo => 'Adicionar uma obrigação';
+
+  @override
+  String get calNovaTipo => 'O que é?';
+
+  @override
+  String get calTipoMulta => 'Multa';
+
+  @override
+  String get calTipoPortagem => 'Portagem';
+
+  @override
+  String get calTipoOutro => 'Outra coisa';
+
+  @override
+  String get calNovaDescricao => 'O que tens de pagar';
+
+  @override
+  String get calNovaDescricaoDica => 'Ex.: multa de estacionamento na Guarda';
+
+  @override
+  String get calNovaData => 'Até quando?';
+
+  @override
+  String get calNovaEscolherData => 'Escolher a data';
+
+  @override
+  String get calNovaValor => 'Valor (se souberes)';
+
+  @override
+  String get calNovaFaltaDescricao => 'Escreve o que é.';
+
+  @override
+  String get calNovaFaltaData => 'Escolhe a data.';
+
+  @override
+  String get calNovaGuardada => 'Adicionado ao calendário.';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -1314,4 +2160,850 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get euros => '€';
+
+  @override
+  String onbPergunta(int n, int total) {
+    return 'Pergunta $n de $total';
+  }
+
+  @override
+  String get onbMes => 'Mês';
+
+  @override
+  String get onbAno => 'Ano';
+
+  @override
+  String get onbOpcional => 'opcional';
+
+  @override
+  String onbIsentoAte(String data) {
+    return 'Você está isento de Segurança Social até $data';
+  }
+
+  @override
+  String onbDepoisPagas(String mes) {
+    return 'Depois você paga a partir de $mes';
+  }
+
+  @override
+  String onbIsencaoJaAcabou(String data) {
+    return 'A sua isenção do 1.º ano acabou em $data. Você já paga Segurança Social todos os meses — eu te digo quanto e quando.';
+  }
+
+  @override
+  String onbIvaNormalExplica(String taxa) {
+    return 'Você cobra IVA de $taxa nas faturas e entrega esse dinheiro para as Finanças de 3 em 3 meses. Eu te aviso das datas.';
+  }
+
+  @override
+  String get onbIvaIsentoExplica =>
+      'Você não cobra IVA (fica isento). Só precisa colocar a frase de isenção no recibo — eu te dou pronta para copiar.';
+
+  @override
+  String onbIucEm(String mes) {
+    return 'IUC (o imposto do carro) é em $mes';
+  }
+
+  @override
+  String onbProximaIpo(String data) {
+    return 'Próxima inspeção: $data';
+  }
+
+  @override
+  String get onbSimulacaoTitulo => 'A sua primeira simulação';
+
+  @override
+  String get onbSimulacaoAjuda =>
+      'Valores aproximados. Você ajusta depois em Recibos.';
+
+  @override
+  String onbSsPorMes(String valor) {
+    return 'Segurança Social ≈ $valor por mês';
+  }
+
+  @override
+  String onbSsIsentoAte(String data) {
+    return 'Segurança Social: isento até $data';
+  }
+
+  @override
+  String onbIrsPorMes(String valor) {
+    return 'IRS para guardar ≈ $valor por mês';
+  }
+
+  @override
+  String get onbIrsZero =>
+      'IRS: com esse valor você não paga nada (fica abaixo do mínimo que a lei não taxa)';
+
+  @override
+  String get onbEsteMes => 'Este mês';
+
+  @override
+  String get onbSemValor => 'sem pagamento';
+
+  @override
+  String onbItemLista(String nome, String valor, String dia) {
+    return '$nome ($valor, dia $dia)';
+  }
+
+  @override
+  String onbItemListaSemValor(String nome, String dia) {
+    return '$nome (dia $dia)';
+  }
+
+  @override
+  String onbDiaLimite(String dia) {
+    return 'até o dia $dia';
+  }
+
+  @override
+  String get onbCalendarioErro =>
+      'Salvei o seu perfil, mas o calendário ainda não ficou pronto. Abra o Painel daqui a pouco e ele aparece.';
+
+  @override
+  String painelOla(String nome) {
+    return 'Olá, $nome';
+  }
+
+  @override
+  String get painelOlaSemNome => 'Olá!';
+
+  @override
+  String get painelPergunta => 'Você está em dia?';
+
+  @override
+  String painelEtiquetaTrial(String data) {
+    return 'Mês grátis até $data';
+  }
+
+  @override
+  String get painelEtiquetaFree => 'Plano grátis';
+
+  @override
+  String get painelEtiquetaPro => 'Pro';
+
+  @override
+  String get painelEtiquetaFamilia => 'Família';
+
+  @override
+  String get painelSemaforoVerdeSub => 'Nada vencendo nos próximos 5 dias.';
+
+  @override
+  String get painelSemaforoAmareloHojeUma => 'Você tem 1 coisa vencendo hoje';
+
+  @override
+  String painelSemaforoAmareloHojeVarias(int n) {
+    return 'Você tem $n coisas vencendo hoje';
+  }
+
+  @override
+  String get painelSemaforoAmareloAmanhaUma =>
+      'Você tem 1 coisa vencendo amanhã';
+
+  @override
+  String painelSemaforoAmareloAmanhaVarias(int n) {
+    return 'Você tem $n coisas vencendo amanhã';
+  }
+
+  @override
+  String painelHeroiEmDias(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Em $dias dias',
+      one: 'Em 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String painelHeroiPassouHa(int dias) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dias,
+      locale: localeName,
+      other: 'Passou há $dias dias',
+      one: 'Passou há 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get painelHeroiSemPrazo => 'Sem prazos à vista';
+
+  @override
+  String get painelHeroiSemPrazoAjuda =>
+      'Quando tiver, aparece aqui. Eu te aviso antes.';
+
+  @override
+  String get painelNomeIuc => 'IUC (o imposto do carro)';
+
+  @override
+  String get painelNomeIva => 'IVA (o imposto da nota)';
+
+  @override
+  String get painelNomeIrsConta => 'Pagamento por conta (adiantamento do IRS)';
+
+  @override
+  String painelAteDia(int dia) {
+    return 'até o dia $dia';
+  }
+
+  @override
+  String get painelPago => 'Pago';
+
+  @override
+  String get painelIrsPorMes => 'por mês';
+
+  @override
+  String get painelIrsLinha =>
+      'Não é tudo seu: guarde isso todo mês e o IRS não te pega de surpresa.';
+
+  @override
+  String painelIrsZero(String valor) {
+    return 'Com o que você ganha não paga IRS (fica abaixo do mínimo de existência, $valor por ano).';
+  }
+
+  @override
+  String get painelIrsSemRendimento =>
+      'Me diga quanto você ganha por mês (na aba Recibos) e eu te digo quanto guardar.';
+
+  @override
+  String get painelIrsAproximado => 'valor aproximado';
+
+  @override
+  String painelVigiaFaltam(String valor) {
+    return 'Faltam $valor para o limite. Continue registrando.';
+  }
+
+  @override
+  String get painelPagoOk => 'Marcado como pago. Boa.';
+
+  @override
+  String get painelPagoErro =>
+      'Não consegui marcar como pago. Veja a conexão e tente de novo.';
+
+  @override
+  String get painelComprovativoPergunta => 'Quer juntar a foto do comprovante?';
+
+  @override
+  String get painelComprovativoAjuda =>
+      'Fica guardada aqui, para quando as Finanças ou a Segurança Social perguntarem.';
+
+  @override
+  String get painelAgoraNao => 'Agora não';
+
+  @override
+  String get painelComprovativoOk => 'Comprovante guardado.';
+
+  @override
+  String get painelComprovativoErro =>
+      'Não consegui guardar a foto. Tente de novo.';
+
+  @override
+  String get painelCadeadoComprovativo =>
+      'Ative o Pro para guardar as fotos dos comprovantes.';
+
+  @override
+  String painelComoPagarAte(String data) {
+    return 'Até $data';
+  }
+
+  @override
+  String get painelComoPagarSs =>
+      'Entre na Segurança Social Direta (app ou site), vá em Conta-corrente e depois em Pagamentos, e pague por Multibanco ou MB WAY. Prazo: entre o dia 10 e o dia 20.';
+
+  @override
+  String get painelComoPagarIva =>
+      'Entre no Portal das Finanças, vá em IVA e depois em Pagamentos, e pague com a referência Multibanco que aparece lá. Prazo: até o dia 25.';
+
+  @override
+  String get painelComoPagarIrs =>
+      'Entre no Portal das Finanças, vá em IRS e depois em Pagamentos por conta, e pague com a referência Multibanco. Prazo: até o dia 20.';
+
+  @override
+  String get painelComoPagarIuc =>
+      'Entre no Portal das Finanças, vá em IUC (o imposto do carro) e em Emitir documento de pagamento, e pague por Multibanco. Prazo: até o fim do mês da matrícula.';
+
+  @override
+  String get painelComoPagarIpo =>
+      'Marque a inspeção num centro perto de você (por telefone ou no site do centro) e leve o documento único do carro. Vá antes do dia limite.';
+
+  @override
+  String get painelComoPagarSeguro =>
+      'Compare preços antes de renovar. Pague à seguradora por referência Multibanco ou débito direto até a data de renovação.';
+
+  @override
+  String get painelComoPagarGenerico =>
+      'Confirme a data no Portal das Finanças ou na Segurança Social Direta e resolva isso antes do dia limite. Se tiver dúvidas, me pergunte.';
+
+  @override
+  String get painelTentarOutraVez => 'Tentar de novo';
+
+  @override
+  String get recibosTitulo => 'Recibos verdes';
+
+  @override
+  String get recibosSubtitulo =>
+      'Faça as contas, registre o que você ganha e veja o que é mesmo seu.';
+
+  @override
+  String get calcAjudaValor => 'Escreva o valor sem IVA. Ex.: 1000';
+
+  @override
+  String get calcSemValor => 'Escreva um valor e eu faço as contas.';
+
+  @override
+  String get calcRecebesNaConta => 'O que você recebe na conta';
+
+  @override
+  String get calcFicaTeu => 'O que é mesmo seu';
+
+  @override
+  String get calcNaoETudoTeu =>
+      'O IVA e a retenção não são seus — vão para o Estado. Guarde só o que é mesmo seu.';
+
+  @override
+  String get calcDispensaAjuda =>
+      'A dispensa só vale se o cliente tiver contabilidade organizada — pergunte a ele antes.';
+
+  @override
+  String get calcRetencaoDispensaCurta => 'Dispensa (0%)';
+
+  @override
+  String get calcIvaIsentoCurto => 'Isento (art. 53.º — você não cobra IVA)';
+
+  @override
+  String get calcIvaNormalCurto => 'Você cobra 23%';
+
+  @override
+  String get calcBrutoExplicado => 'Bruto (o valor escrito no recibo)';
+
+  @override
+  String get ssIsencaoExplica =>
+      'Isenção = no 1.º ano de atividade você não paga nada à Segurança Social.';
+
+  @override
+  String get rendUltimos => 'Seus últimos meses';
+
+  @override
+  String rendTotalAno(String valor) {
+    return 'Este ano você já registrou $valor';
+  }
+
+  @override
+  String get rendTipo => 'Tipo de rendimento';
+
+  @override
+  String get rendTipoServicos => 'Serviços (TVDE, entregas, cabelo, obras…)';
+
+  @override
+  String get rendTipoVendas => 'Venda de coisas';
+
+  @override
+  String get rendPlataforma => 'De onde veio';
+
+  @override
+  String get rendClienteDireto => 'Clientes diretos';
+
+  @override
+  String get rendPlataformaOutra => 'Outra';
+
+  @override
+  String get rendGuardado =>
+      'Salvo. Já contei com isso na Vigia do IVA, na Segurança Social e no IRS.';
+
+  @override
+  String get rendValorInvalido => 'Escreva um valor maior que zero.';
+
+  @override
+  String rendLidoDaFoto(String confianca) {
+    return 'Lido da foto ($confianca de certeza). Confira antes de salvar.';
+  }
+
+  @override
+  String get rendFotoALer => 'Lendo o extrato… leva uns segundos.';
+
+  @override
+  String get rendFotoCadeado =>
+      'Ler extratos por foto é do plano Pro. Registre à mão — leva 30 segundos.';
+
+  @override
+  String get rendFotoIndisponivel =>
+      'A leitura por foto está descansando. Registre à mão por agora — leva 30 segundos.';
+
+  @override
+  String get rendFotoNaoLi =>
+      'Não consegui ler o mês ou o valor. Tente uma foto mais nítida ou registre à mão.';
+
+  @override
+  String get rendOrigemFoto => 'lido da foto';
+
+  @override
+  String rendApagarPergunta(String mes) {
+    return 'Apagar o rendimento de $mes?';
+  }
+
+  @override
+  String get rendApagado => 'Apagado.';
+
+  @override
+  String vigiaIvaFalta(String valor) {
+    return 'Você ainda pode faturar $valor este ano sem cobrar IVA.';
+  }
+
+  @override
+  String get vigiaIvaSemDados =>
+      'Registre seus rendimentos e eu vigio o limite para você.';
+
+  @override
+  String ssAvisoAntes(int dias, String valor) {
+    return 'Aviso você $dias dias antes do fim, com o valor que vai passar a pagar: cerca de $valor por mês.';
+  }
+
+  @override
+  String get ssSemAtividade =>
+      'Sem atividade aberta você não paga Segurança Social nem IRS. Quando abrir, eu conto tudo.';
+
+  @override
+  String get ssSemDataAbertura =>
+      'Me diga quando você abriu atividade (no seu perfil) para eu contar a isenção do 1.º ano.';
+
+  @override
+  String get ssSemDados =>
+      'Registre seus rendimentos para eu calcular o valor certo. Sem dados, conto com o mínimo.';
+
+  @override
+  String ssBaseTrimestre(String inicio, String fim, String valor) {
+    return 'Com base no que você ganhou de $inicio a $fim: $valor.';
+  }
+
+  @override
+  String ssBaseEstimativa(String valor) {
+    return 'Com base na sua estimativa de $valor por mês. Registre os rendimentos para ficar mais certo.';
+  }
+
+  @override
+  String ssMinimo(String valor) {
+    return 'É o mínimo: $valor por mês, mesmo que você ganhe pouco.';
+  }
+
+  @override
+  String get ssAjustarTitulo => 'Quanto você quer pagar?';
+
+  @override
+  String get ssAjusteNormal => 'o valor normal';
+
+  @override
+  String ssAjusteMenos(int pct) {
+    return '$pct% a menos';
+  }
+
+  @override
+  String ssAjusteMais(int pct) {
+    return '$pct% a mais';
+  }
+
+  @override
+  String ssAjusteAtual(String ajuste) {
+    return 'Ajuste atual: $ajuste';
+  }
+
+  @override
+  String ssNovoValor(String valor) {
+    return 'Você passa a pagar cerca de $valor por mês';
+  }
+
+  @override
+  String get ssAjusteGuardado =>
+      'Salvo. Vou contar com esse ajuste nos avisos.';
+
+  @override
+  String get etiquetaEstimativa => 'estimativa';
+
+  @override
+  String irsBase(String valor) {
+    return 'Com base numa média de $valor por mês.';
+  }
+
+  @override
+  String get irsSemDados =>
+      'Registre seus rendimentos (ou me diga quanto ganha por mês) e eu digo quanto guardar.';
+
+  @override
+  String get irsPagamentosContaTitulo =>
+      'Adiantamentos do IRS (as Finanças chamam de pagamentos por conta)';
+
+  @override
+  String get irsPagamentosContaAjuda =>
+      'Só se você tiver imposto a pagar. Eu aviso 5 dias antes de cada um.';
+
+  @override
+  String irsEscaloesPorConfirmar(int ano) {
+    return 'faixas $ano por confirmar';
+  }
+
+  @override
+  String get irsEstimativaNota =>
+      'É uma estimativa para você saber quanto guardar — não é a declaração.';
+
+  @override
+  String get emitirTitulo => 'Como emitir o recibo';
+
+  @override
+  String get emitirSubtitulo =>
+      'Passo a passo no Portal das Finanças, com textos prontos para copiar.';
+
+  @override
+  String get emitirAbrirGuia => 'Ver o passo a passo';
+
+  @override
+  String get emitirPasso1 =>
+      'Entre no Portal das Finanças com o seu NIF e a sua senha.';
+
+  @override
+  String get emitirPasso2 =>
+      'Procure “Faturas e Recibos Verdes” e toque em “Emitir”.';
+
+  @override
+  String get emitirPasso3 =>
+      'Escolha “Recibo” (ou “Fatura-Recibo” se o cliente pedir fatura).';
+
+  @override
+  String get emitirPasso4 =>
+      'Preencha o NIF do cliente. Se for uma plataforma (Uber, Bolt, Glovo), o NIF está no extrato ou no contrato.';
+
+  @override
+  String get emitirPasso5 =>
+      'Na descrição escreva o que você fez. Pode copiar este texto:';
+
+  @override
+  String get emitirPasso6 =>
+      'Coloque o valor sem IVA e escolha a retenção que usou na calculadora (23%, 25% ou dispensa).';
+
+  @override
+  String get emitirPasso7Isento =>
+      'No IVA escolha o regime de isenção do artigo 53.º e copie esta frase para o motivo:';
+
+  @override
+  String get emitirPasso7Normal => 'No IVA escolha a taxa normal (23%).';
+
+  @override
+  String get emitirPasso8 =>
+      'Confirme e emita. Guarde o PDF — no fim do mês registre aqui o que ganhou.';
+
+  @override
+  String get emitirCapturaBreve => 'captura em breve';
+
+  @override
+  String get emitirAbrirPortal => 'Abrir o Portal das Finanças';
+
+  @override
+  String get emitirNaoAbriu =>
+      'Não consegui abrir o site. Escreva portaldasfinancas.gov.pt no navegador.';
+
+  @override
+  String get emitirDescricaoTvde =>
+      'Prestação de serviços de transporte de passageiros em veículo descaracterizado (TVDE)';
+
+  @override
+  String get emitirDescricaoEstafeta =>
+      'Prestação de serviços de entrega de refeições e encomendas';
+
+  @override
+  String get emitirDescricaoServicos => 'Prestação de serviços';
+
+  @override
+  String calResumo(int n, String valor) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Este mês você paga $n coisas: $valor',
+      one: 'Este mês você paga 1 coisa: $valor',
+      zero: 'Este mês você não tem nada a pagar.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get calDiasSemana => 'seg,ter,qua,qui,sex,sáb,dom';
+
+  @override
+  String calDiaSelecionado(String data) {
+    return 'Só o dia $data';
+  }
+
+  @override
+  String get calLimparFiltro => 'Ver tudo';
+
+  @override
+  String get calFiltroTudo => 'Tudo';
+
+  @override
+  String get calFiltroSS => 'Segurança Social';
+
+  @override
+  String get calFiltroFiscal => 'IVA/IRS';
+
+  @override
+  String get calFiltroCarro => 'Carro';
+
+  @override
+  String get calFiltroOutros => 'Outros';
+
+  @override
+  String get calPassou => 'Passou';
+
+  @override
+  String get calEstaSemana => 'Esta semana';
+
+  @override
+  String get calEsteMes => 'Este mês';
+
+  @override
+  String get calMaisTarde => 'Mais tarde';
+
+  @override
+  String get calJaPagaste => 'Já pagou';
+
+  @override
+  String calFaltamDias(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'faltam $n dias',
+      one: 'falta 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get calEhHoje => 'é hoje';
+
+  @override
+  String calPassouHa(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'passou há $n dias',
+      one: 'passou há 1 dia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get calPago => 'Pago';
+
+  @override
+  String get calSemValor => 'sem valor';
+
+  @override
+  String get calSemNesteFiltro => 'Nada marcado aqui.';
+
+  @override
+  String get calRecalcular => 'Refazer o calendário';
+
+  @override
+  String get calRecalculado => 'Calendário refeito.';
+
+  @override
+  String get calErro =>
+      'Não consegui carregar o calendário. Puxe para baixo para tentar de novo.';
+
+  @override
+  String get calSemSessao => 'Entre no app para mexer no calendário.';
+
+  @override
+  String get calDataLimite => 'Data limite';
+
+  @override
+  String calAvisoEm(String data) {
+    return 'Te aviso em $data';
+  }
+
+  @override
+  String get calAproximado => 'aproximado';
+
+  @override
+  String get calRegra => 'Por que aparece';
+
+  @override
+  String get calComoPagar => 'Como pagar';
+
+  @override
+  String calAbrirSite(String site) {
+    return 'Abrir $site';
+  }
+
+  @override
+  String get calSiteSS => 'a Segurança Social Direta';
+
+  @override
+  String get calSitePF => 'o Portal das Finanças';
+
+  @override
+  String get calSiteImt => 'o site do IMT';
+
+  @override
+  String get calSiteAima => 'o site da AIMA';
+
+  @override
+  String get calErroAbrirSite =>
+      'Não consegui abrir o site. Tente no navegador.';
+
+  @override
+  String get calJaPaguei => 'Já paguei';
+
+  @override
+  String calPagoEm(String data) {
+    return 'Pago em $data. Boa!';
+  }
+
+  @override
+  String get calDesmarcar => 'Afinal não paguei';
+
+  @override
+  String get calMarcadaPaga => 'Marcado como pago.';
+
+  @override
+  String get calDesmarcada => 'Voltou a ficar pendente.';
+
+  @override
+  String get calErroGuardar => 'Não consegui salvar. Tente de novo.';
+
+  @override
+  String get calCadeadoComprovativo => 'Ative o Pro para guardar a foto.';
+
+  @override
+  String get calTirarFoto => 'Tirar foto agora';
+
+  @override
+  String get calEscolherGaleria => 'Escolher da galeria';
+
+  @override
+  String get calComprovativoGuardado =>
+      'Comprovante salvo e marcado como pago.';
+
+  @override
+  String get calComoPagarSs =>
+      'Segurança Social Direta → Conta-corrente → Pagamentos → gere a referência Multibanco e pague no app do banco.';
+
+  @override
+  String get calComoPagarFiscal =>
+      'Portal das Finanças → Pagamentos → gere a referência Multibanco e pague no app do banco.';
+
+  @override
+  String get calComoPagarIuc =>
+      'Portal das Finanças → IUC → Pagar → escolha a placa → emita a referência Multibanco.';
+
+  @override
+  String get calComoPagarIpo =>
+      'Marque no centro de inspeção mais perto de você. Leve o DUA (documento do carro) e o seguro.';
+
+  @override
+  String get calComoPagarSeguro =>
+      'Peça 2 ou 3 simulações, compare e renove a que ficar mais barata.';
+
+  @override
+  String get calComoPagarMulta =>
+      'Use a referência que vem na carta da notificação. Se pagar cedo, costuma ficar mais barato.';
+
+  @override
+  String get calComoPagarOutro =>
+      'Pague onde mandaram e depois marque aqui como pago.';
+
+  @override
+  String get calRegraSsDeclaracao => 'Declaração trimestral à Segurança Social';
+
+  @override
+  String get calRegraSsPagamento =>
+      'Pagamento mensal à Segurança Social (dia 10 a 20)';
+
+  @override
+  String get calRegraSsIsencao => 'Fim da isenção de Segurança Social';
+
+  @override
+  String get calRegraIvaDeclaracao => 'Declaração trimestral de IVA';
+
+  @override
+  String get calRegraIvaPagamento => 'Pagamento trimestral de IVA';
+
+  @override
+  String get calRegraIrsEntrega => 'Entrega do IRS (abril a junho)';
+
+  @override
+  String get calRegraEfatura => 'Validar notas no e-fatura';
+
+  @override
+  String get calRegraIrsConta => 'Pagamentos por conta de IRS';
+
+  @override
+  String get calRegraRecibos => 'Comunicar notas às Finanças';
+
+  @override
+  String get calRegraTvde => 'Certificado de motorista TVDE';
+
+  @override
+  String get calRegraResidencia => 'Autorização de residência';
+
+  @override
+  String get calRegraIuc => 'IUC: mês da placa do carro';
+
+  @override
+  String get calRegraIpo => 'Inspeção periódica do carro';
+
+  @override
+  String get calRegraSeguro => 'Renovação do seguro';
+
+  @override
+  String get calRegraCarta => 'Validade da carteira de motorista';
+
+  @override
+  String get calRegraManual => 'Você adicionou';
+
+  @override
+  String calRegraOutra(String chave) {
+    return 'Regra $chave';
+  }
+
+  @override
+  String get calAdicionar => 'Adicionar';
+
+  @override
+  String get calNovaTitulo => 'Adicionar uma obrigação';
+
+  @override
+  String get calNovaTipo => 'O que é?';
+
+  @override
+  String get calTipoMulta => 'Multa';
+
+  @override
+  String get calTipoPortagem => 'Pedágio';
+
+  @override
+  String get calTipoOutro => 'Outra coisa';
+
+  @override
+  String get calNovaDescricao => 'O que você tem de pagar';
+
+  @override
+  String get calNovaDescricaoDica => 'Ex.: multa de estacionamento na Guarda';
+
+  @override
+  String get calNovaData => 'Até quando?';
+
+  @override
+  String get calNovaEscolherData => 'Escolher a data';
+
+  @override
+  String get calNovaValor => 'Valor (se souber)';
+
+  @override
+  String get calNovaFaltaDescricao => 'Escreva o que é.';
+
+  @override
+  String get calNovaFaltaData => 'Escolha a data.';
+
+  @override
+  String get calNovaGuardada => 'Adicionado ao calendário.';
 }

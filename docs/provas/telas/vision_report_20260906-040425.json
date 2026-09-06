@@ -1,0 +1,229 @@
+{
+  "data": "20260906-040425",
+  "modelo": "gemini-flash-latest",
+  "fotos": 42,
+  "contagem": {
+    "verde": 6,
+    "amarelo": 0,
+    "vermelho": 0,
+    "erro": 36
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã inicial está limpo, bem alinhado e com boa legibilidade.",
+      "jargao": [],
+      "foto": "onboarding_p0_boasvindas_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Ecrã de boas-vindas limpo, claro e bem estruturado.",
+      "jargao": [],
+      "foto": "onboarding_p0_boasvindas_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Ecrã de boas-vindas limpo, legível e com boa hierarquia visual.",
+      "jargao": [],
+      "foto": "onboarding_p0_boasvindas_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Ecrã de boas-vindas limpo, claro e bem estruturado.",
+      "jargao": [],
+      "foto": "onboarding_p0_boasvindas_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p0_boasvindas_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Ecrã inicial de boas-vindas limpo, centrado e com botão de ação bem visível.",
+      "jargao": [],
+      "foto": "onboarding_p0_boasvindas_pequeno_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 503: {\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
+      "foto": "onboarding_p1_atividade_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã de seleção de atividade está claro, bem espaçado e com opções perfeitamente legíveis.",
+      "jargao": [],
+      "foto": "onboarding_p1_atividade_grande_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p1_atividade_medio_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p1_atividade_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p1_atividade_pequeno_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p1_atividade_pequeno_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p2_abertura_grande_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p2_abertura_grande_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p2_abertura_medio_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p2_abertura_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p2_abertura_pequeno_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p2_abertura_pequeno_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_grande_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_grande_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_grande_teclado_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_grande_teclado_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_medio_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_medio_teclado_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_medio_teclado_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_pequeno_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_pequeno_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_pequeno_teclado_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p4_carro_pequeno_teclado_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_grande_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_grande_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_grande_teclado_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_grande_teclado_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_medio_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_medio_teclado_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_medio_teclado_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_pequeno_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_pequeno_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_pequeno_teclado_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a",
+      "foto": "onboarding_p5_rendimento_pequeno_teclado_pt.png"
+    }
+  ]
+}

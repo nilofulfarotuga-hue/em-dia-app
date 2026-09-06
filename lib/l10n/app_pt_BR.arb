@@ -185,5 +185,496 @@
   "nao": "Não",
   "hoje": "Hoje",
   "amanha": "Amanhã",
-  "euros": "€"
+  "euros": "€",
+  "onbPergunta": "Pergunta {n} de {total}",
+  "@onbPergunta": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "onbMes": "Mês",
+  "onbAno": "Ano",
+  "onbOpcional": "opcional",
+  "onbIsentoAte": "Você está isento de Segurança Social até {data}",
+  "@onbIsentoAte": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "onbDepoisPagas": "Depois você paga a partir de {mes}",
+  "@onbDepoisPagas": {
+    "placeholders": {
+      "mes": {
+        "type": "String"
+      }
+    }
+  },
+  "onbIsencaoJaAcabou": "A sua isenção do 1.º ano acabou em {data}. Você já paga Segurança Social todos os meses — eu te digo quanto e quando.",
+  "@onbIsencaoJaAcabou": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "onbIvaNormalExplica": "Você cobra IVA de {taxa} nas faturas e entrega esse dinheiro para as Finanças de 3 em 3 meses. Eu te aviso das datas.",
+  "@onbIvaNormalExplica": {
+    "placeholders": {
+      "taxa": {
+        "type": "String"
+      }
+    }
+  },
+  "onbIvaIsentoExplica": "Você não cobra IVA (fica isento). Só precisa colocar a frase de isenção no recibo — eu te dou pronta para copiar.",
+  "onbIucEm": "IUC (o imposto do carro) é em {mes}",
+  "@onbIucEm": {
+    "placeholders": {
+      "mes": {
+        "type": "String"
+      }
+    }
+  },
+  "onbProximaIpo": "Próxima inspeção: {data}",
+  "@onbProximaIpo": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "onbSimulacaoTitulo": "A sua primeira simulação",
+  "onbSimulacaoAjuda": "Valores aproximados. Você ajusta depois em Recibos.",
+  "onbSsPorMes": "Segurança Social ≈ {valor} por mês",
+  "@onbSsPorMes": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "onbSsIsentoAte": "Segurança Social: isento até {data}",
+  "@onbSsIsentoAte": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "onbIrsPorMes": "IRS para guardar ≈ {valor} por mês",
+  "@onbIrsPorMes": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "onbIrsZero": "IRS: com esse valor você não paga nada (fica abaixo do mínimo que a lei não taxa)",
+  "onbEsteMes": "Este mês",
+  "onbSemValor": "sem pagamento",
+  "onbItemLista": "{nome} ({valor}, dia {dia})",
+  "@onbItemLista": {
+    "placeholders": {
+      "nome": {
+        "type": "String"
+      },
+      "valor": {
+        "type": "String"
+      },
+      "dia": {
+        "type": "String"
+      }
+    }
+  },
+  "onbItemListaSemValor": "{nome} (dia {dia})",
+  "@onbItemListaSemValor": {
+    "placeholders": {
+      "nome": {
+        "type": "String"
+      },
+      "dia": {
+        "type": "String"
+      }
+    }
+  },
+  "onbDiaLimite": "até o dia {dia}",
+  "@onbDiaLimite": {
+    "placeholders": {
+      "dia": {
+        "type": "String"
+      }
+    }
+  },
+  "onbCalendarioErro": "Salvei o seu perfil, mas o calendário ainda não ficou pronto. Abra o Painel daqui a pouco e ele aparece.",
+  "painelOla": "Olá, {nome}",
+  "painelOlaSemNome": "Olá!",
+  "painelPergunta": "Você está em dia?",
+  "painelEtiquetaTrial": "Mês grátis até {data}",
+  "painelEtiquetaFree": "Plano grátis",
+  "painelEtiquetaPro": "Pro",
+  "painelEtiquetaFamilia": "Família",
+  "painelSemaforoVerdeSub": "Nada vencendo nos próximos 5 dias.",
+  "painelSemaforoAmareloHojeUma": "Você tem 1 coisa vencendo hoje",
+  "painelSemaforoAmareloHojeVarias": "Você tem {n} coisas vencendo hoje",
+  "painelSemaforoAmareloAmanhaUma": "Você tem 1 coisa vencendo amanhã",
+  "painelSemaforoAmareloAmanhaVarias": "Você tem {n} coisas vencendo amanhã",
+  "painelHeroiEmDias": "{dias, plural, =1{Em 1 dia} other{Em {dias} dias}}",
+  "painelHeroiPassouHa": "{dias, plural, =1{Passou há 1 dia} other{Passou há {dias} dias}}",
+  "painelHeroiSemPrazo": "Sem prazos à vista",
+  "painelHeroiSemPrazoAjuda": "Quando tiver, aparece aqui. Eu te aviso antes.",
+  "painelNomeIuc": "IUC (o imposto do carro)",
+  "painelNomeIva": "IVA (o imposto da nota)",
+  "painelNomeIrsConta": "Pagamento por conta (adiantamento do IRS)",
+  "painelAteDia": "até o dia {dia}",
+  "painelPago": "Pago",
+  "painelIrsPorMes": "por mês",
+  "painelIrsLinha": "Não é tudo seu: guarde isso todo mês e o IRS não te pega de surpresa.",
+  "painelIrsZero": "Com o que você ganha não paga IRS (fica abaixo do mínimo de existência, {valor} por ano).",
+  "painelIrsSemRendimento": "Me diga quanto você ganha por mês (na aba Recibos) e eu te digo quanto guardar.",
+  "painelIrsAproximado": "valor aproximado",
+  "painelVigiaFaltam": "Faltam {valor} para o limite. Continue registrando.",
+  "painelPagoOk": "Marcado como pago. Boa.",
+  "painelPagoErro": "Não consegui marcar como pago. Veja a conexão e tente de novo.",
+  "painelComprovativoPergunta": "Quer juntar a foto do comprovante?",
+  "painelComprovativoAjuda": "Fica guardada aqui, para quando as Finanças ou a Segurança Social perguntarem.",
+  "painelAgoraNao": "Agora não",
+  "painelComprovativoOk": "Comprovante guardado.",
+  "painelComprovativoErro": "Não consegui guardar a foto. Tente de novo.",
+  "painelCadeadoComprovativo": "Ative o Pro para guardar as fotos dos comprovantes.",
+  "painelComoPagarAte": "Até {data}",
+  "painelComoPagarSs": "Entre na Segurança Social Direta (app ou site), vá em Conta-corrente e depois em Pagamentos, e pague por Multibanco ou MB WAY. Prazo: entre o dia 10 e o dia 20.",
+  "painelComoPagarIva": "Entre no Portal das Finanças, vá em IVA e depois em Pagamentos, e pague com a referência Multibanco que aparece lá. Prazo: até o dia 25.",
+  "painelComoPagarIrs": "Entre no Portal das Finanças, vá em IRS e depois em Pagamentos por conta, e pague com a referência Multibanco. Prazo: até o dia 20.",
+  "painelComoPagarIuc": "Entre no Portal das Finanças, vá em IUC (o imposto do carro) e em Emitir documento de pagamento, e pague por Multibanco. Prazo: até o fim do mês da matrícula.",
+  "painelComoPagarIpo": "Marque a inspeção num centro perto de você (por telefone ou no site do centro) e leve o documento único do carro. Vá antes do dia limite.",
+  "painelComoPagarSeguro": "Compare preços antes de renovar. Pague à seguradora por referência Multibanco ou débito direto até a data de renovação.",
+  "painelComoPagarGenerico": "Confirme a data no Portal das Finanças ou na Segurança Social Direta e resolva isso antes do dia limite. Se tiver dúvidas, me pergunte.",
+  "painelTentarOutraVez": "Tentar de novo",
+  "recibosTitulo": "Recibos verdes",
+  "recibosSubtitulo": "Faça as contas, registre o que você ganha e veja o que é mesmo seu.",
+  "calcAjudaValor": "Escreva o valor sem IVA. Ex.: 1000",
+  "calcSemValor": "Escreva um valor e eu faço as contas.",
+  "calcRecebesNaConta": "O que você recebe na conta",
+  "calcFicaTeu": "O que é mesmo seu",
+  "calcNaoETudoTeu": "O IVA e a retenção não são seus — vão para o Estado. Guarde só o que é mesmo seu.",
+  "calcDispensaAjuda": "A dispensa só vale se o cliente tiver contabilidade organizada — pergunte a ele antes.",
+  "calcRetencaoDispensaCurta": "Dispensa (0%)",
+  "calcIvaIsentoCurto": "Isento (art. 53.º — você não cobra IVA)",
+  "calcIvaNormalCurto": "Você cobra 23%",
+  "calcBrutoExplicado": "Bruto (o valor escrito no recibo)",
+  "ssIsencaoExplica": "Isenção = no 1.º ano de atividade você não paga nada à Segurança Social.",
+  "rendUltimos": "Seus últimos meses",
+  "rendTotalAno": "Este ano você já registrou {valor}",
+  "@rendTotalAno": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "rendTipo": "Tipo de rendimento",
+  "rendTipoServicos": "Serviços (TVDE, entregas, cabelo, obras…)",
+  "rendTipoVendas": "Venda de coisas",
+  "rendPlataforma": "De onde veio",
+  "rendClienteDireto": "Clientes diretos",
+  "rendPlataformaOutra": "Outra",
+  "rendGuardado": "Salvo. Já contei com isso na Vigia do IVA, na Segurança Social e no IRS.",
+  "rendValorInvalido": "Escreva um valor maior que zero.",
+  "rendLidoDaFoto": "Lido da foto ({confianca} de certeza). Confira antes de salvar.",
+  "@rendLidoDaFoto": {
+    "placeholders": {
+      "confianca": {
+        "type": "String"
+      }
+    }
+  },
+  "rendFotoALer": "Lendo o extrato… leva uns segundos.",
+  "rendFotoCadeado": "Ler extratos por foto é do plano Pro. Registre à mão — leva 30 segundos.",
+  "rendFotoIndisponivel": "A leitura por foto está descansando. Registre à mão por agora — leva 30 segundos.",
+  "rendFotoNaoLi": "Não consegui ler o mês ou o valor. Tente uma foto mais nítida ou registre à mão.",
+  "rendOrigemFoto": "lido da foto",
+  "rendApagarPergunta": "Apagar o rendimento de {mes}?",
+  "@rendApagarPergunta": {
+    "placeholders": {
+      "mes": {
+        "type": "String"
+      }
+    }
+  },
+  "rendApagado": "Apagado.",
+  "vigiaIvaFalta": "Você ainda pode faturar {valor} este ano sem cobrar IVA.",
+  "@vigiaIvaFalta": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "vigiaIvaSemDados": "Registre seus rendimentos e eu vigio o limite para você.",
+  "ssAvisoAntes": "Aviso você {dias} dias antes do fim, com o valor que vai passar a pagar: cerca de {valor} por mês.",
+  "@ssAvisoAntes": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      },
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ssSemAtividade": "Sem atividade aberta você não paga Segurança Social nem IRS. Quando abrir, eu conto tudo.",
+  "ssSemDataAbertura": "Me diga quando você abriu atividade (no seu perfil) para eu contar a isenção do 1.º ano.",
+  "ssSemDados": "Registre seus rendimentos para eu calcular o valor certo. Sem dados, conto com o mínimo.",
+  "ssBaseTrimestre": "Com base no que você ganhou de {inicio} a {fim}: {valor}.",
+  "@ssBaseTrimestre": {
+    "placeholders": {
+      "inicio": {
+        "type": "String"
+      },
+      "fim": {
+        "type": "String"
+      },
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ssBaseEstimativa": "Com base na sua estimativa de {valor} por mês. Registre os rendimentos para ficar mais certo.",
+  "@ssBaseEstimativa": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ssMinimo": "É o mínimo: {valor} por mês, mesmo que você ganhe pouco.",
+  "@ssMinimo": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ssAjustarTitulo": "Quanto você quer pagar?",
+  "ssAjusteNormal": "o valor normal",
+  "ssAjusteMenos": "{pct}% a menos",
+  "@ssAjusteMenos": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
+  "ssAjusteMais": "{pct}% a mais",
+  "@ssAjusteMais": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
+  "ssAjusteAtual": "Ajuste atual: {ajuste}",
+  "@ssAjusteAtual": {
+    "placeholders": {
+      "ajuste": {
+        "type": "String"
+      }
+    }
+  },
+  "ssNovoValor": "Você passa a pagar cerca de {valor} por mês",
+  "@ssNovoValor": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ssAjusteGuardado": "Salvo. Vou contar com esse ajuste nos avisos.",
+  "etiquetaEstimativa": "estimativa",
+  "irsBase": "Com base numa média de {valor} por mês.",
+  "@irsBase": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "irsSemDados": "Registre seus rendimentos (ou me diga quanto ganha por mês) e eu digo quanto guardar.",
+  "irsPagamentosContaTitulo": "Adiantamentos do IRS (as Finanças chamam de pagamentos por conta)",
+  "irsPagamentosContaAjuda": "Só se você tiver imposto a pagar. Eu aviso 5 dias antes de cada um.",
+  "irsEscaloesPorConfirmar": "faixas {ano} por confirmar",
+  "@irsEscaloesPorConfirmar": {
+    "placeholders": {
+      "ano": {
+        "type": "int"
+      }
+    }
+  },
+  "irsEstimativaNota": "É uma estimativa para você saber quanto guardar — não é a declaração.",
+  "emitirTitulo": "Como emitir o recibo",
+  "emitirSubtitulo": "Passo a passo no Portal das Finanças, com textos prontos para copiar.",
+  "emitirAbrirGuia": "Ver o passo a passo",
+  "emitirPasso1": "Entre no Portal das Finanças com o seu NIF e a sua senha.",
+  "emitirPasso2": "Procure “Faturas e Recibos Verdes” e toque em “Emitir”.",
+  "emitirPasso3": "Escolha “Recibo” (ou “Fatura-Recibo” se o cliente pedir fatura).",
+  "emitirPasso4": "Preencha o NIF do cliente. Se for uma plataforma (Uber, Bolt, Glovo), o NIF está no extrato ou no contrato.",
+  "emitirPasso5": "Na descrição escreva o que você fez. Pode copiar este texto:",
+  "emitirPasso6": "Coloque o valor sem IVA e escolha a retenção que usou na calculadora (23%, 25% ou dispensa).",
+  "emitirPasso7Isento": "No IVA escolha o regime de isenção do artigo 53.º e copie esta frase para o motivo:",
+  "emitirPasso7Normal": "No IVA escolha a taxa normal (23%).",
+  "emitirPasso8": "Confirme e emita. Guarde o PDF — no fim do mês registre aqui o que ganhou.",
+  "emitirCapturaBreve": "captura em breve",
+  "emitirAbrirPortal": "Abrir o Portal das Finanças",
+  "emitirNaoAbriu": "Não consegui abrir o site. Escreva portaldasfinancas.gov.pt no navegador.",
+  "emitirDescricaoTvde": "Prestação de serviços de transporte de passageiros em veículo descaracterizado (TVDE)",
+  "emitirDescricaoEstafeta": "Prestação de serviços de entrega de refeições e encomendas",
+  "emitirDescricaoServicos": "Prestação de serviços",
+  "calResumo": "{n, plural, =0{Este mês você não tem nada a pagar.} =1{Este mês você paga 1 coisa: {valor}} other{Este mês você paga {n} coisas: {valor}}}",
+  "@calResumo": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "calDiasSemana": "seg,ter,qua,qui,sex,sáb,dom",
+  "calDiaSelecionado": "Só o dia {data}",
+  "@calDiaSelecionado": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "calLimparFiltro": "Ver tudo",
+  "calFiltroTudo": "Tudo",
+  "calFiltroSS": "Segurança Social",
+  "calFiltroFiscal": "IVA/IRS",
+  "calFiltroCarro": "Carro",
+  "calFiltroOutros": "Outros",
+  "calPassou": "Passou",
+  "calEstaSemana": "Esta semana",
+  "calEsteMes": "Este mês",
+  "calMaisTarde": "Mais tarde",
+  "calJaPagaste": "Já pagou",
+  "calFaltamDias": "{n, plural, =1{falta 1 dia} other{faltam {n} dias}}",
+  "@calFaltamDias": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "calEhHoje": "é hoje",
+  "calPassouHa": "{n, plural, =1{passou há 1 dia} other{passou há {n} dias}}",
+  "@calPassouHa": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "calPago": "Pago",
+  "calSemValor": "sem valor",
+  "calSemNesteFiltro": "Nada marcado aqui.",
+  "calRecalcular": "Refazer o calendário",
+  "calRecalculado": "Calendário refeito.",
+  "calErro": "Não consegui carregar o calendário. Puxe para baixo para tentar de novo.",
+  "calSemSessao": "Entre no app para mexer no calendário.",
+  "calDataLimite": "Data limite",
+  "calAvisoEm": "Te aviso em {data}",
+  "@calAvisoEm": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "calAproximado": "aproximado",
+  "calRegra": "Por que aparece",
+  "calComoPagar": "Como pagar",
+  "calAbrirSite": "Abrir {site}",
+  "@calAbrirSite": {
+    "placeholders": {
+      "site": {
+        "type": "String"
+      }
+    }
+  },
+  "calSiteSS": "a Segurança Social Direta",
+  "calSitePF": "o Portal das Finanças",
+  "calSiteImt": "o site do IMT",
+  "calSiteAima": "o site da AIMA",
+  "calErroAbrirSite": "Não consegui abrir o site. Tente no navegador.",
+  "calJaPaguei": "Já paguei",
+  "calPagoEm": "Pago em {data}. Boa!",
+  "@calPagoEm": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "calDesmarcar": "Afinal não paguei",
+  "calMarcadaPaga": "Marcado como pago.",
+  "calDesmarcada": "Voltou a ficar pendente.",
+  "calErroGuardar": "Não consegui salvar. Tente de novo.",
+  "calCadeadoComprovativo": "Ative o Pro para guardar a foto.",
+  "calTirarFoto": "Tirar foto agora",
+  "calEscolherGaleria": "Escolher da galeria",
+  "calComprovativoGuardado": "Comprovante salvo e marcado como pago.",
+  "calComoPagarSs": "Segurança Social Direta → Conta-corrente → Pagamentos → gere a referência Multibanco e pague no app do banco.",
+  "calComoPagarFiscal": "Portal das Finanças → Pagamentos → gere a referência Multibanco e pague no app do banco.",
+  "calComoPagarIuc": "Portal das Finanças → IUC → Pagar → escolha a placa → emita a referência Multibanco.",
+  "calComoPagarIpo": "Marque no centro de inspeção mais perto de você. Leve o DUA (documento do carro) e o seguro.",
+  "calComoPagarSeguro": "Peça 2 ou 3 simulações, compare e renove a que ficar mais barata.",
+  "calComoPagarMulta": "Use a referência que vem na carta da notificação. Se pagar cedo, costuma ficar mais barato.",
+  "calComoPagarOutro": "Pague onde mandaram e depois marque aqui como pago.",
+  "calRegraSsDeclaracao": "Declaração trimestral à Segurança Social",
+  "calRegraSsPagamento": "Pagamento mensal à Segurança Social (dia 10 a 20)",
+  "calRegraSsIsencao": "Fim da isenção de Segurança Social",
+  "calRegraIvaDeclaracao": "Declaração trimestral de IVA",
+  "calRegraIvaPagamento": "Pagamento trimestral de IVA",
+  "calRegraIrsEntrega": "Entrega do IRS (abril a junho)",
+  "calRegraEfatura": "Validar notas no e-fatura",
+  "calRegraIrsConta": "Pagamentos por conta de IRS",
+  "calRegraRecibos": "Comunicar notas às Finanças",
+  "calRegraTvde": "Certificado de motorista TVDE",
+  "calRegraResidencia": "Autorização de residência",
+  "calRegraIuc": "IUC: mês da placa do carro",
+  "calRegraIpo": "Inspeção periódica do carro",
+  "calRegraSeguro": "Renovação do seguro",
+  "calRegraCarta": "Validade da carteira de motorista",
+  "calRegraManual": "Você adicionou",
+  "calRegraOutra": "Regra {chave}",
+  "@calRegraOutra": {
+    "placeholders": {
+      "chave": {
+        "type": "String"
+      }
+    }
+  },
+  "calAdicionar": "Adicionar",
+  "calNovaTitulo": "Adicionar uma obrigação",
+  "calNovaTipo": "O que é?",
+  "calTipoMulta": "Multa",
+  "calTipoPortagem": "Pedágio",
+  "calTipoOutro": "Outra coisa",
+  "calNovaDescricao": "O que você tem de pagar",
+  "calNovaDescricaoDica": "Ex.: multa de estacionamento na Guarda",
+  "calNovaData": "Até quando?",
+  "calNovaEscolherData": "Escolher a data",
+  "calNovaValor": "Valor (se souber)",
+  "calNovaFaltaDescricao": "Escreva o que é.",
+  "calNovaFaltaData": "Escolha a data.",
+  "calNovaGuardada": "Adicionado ao calendário."
 }

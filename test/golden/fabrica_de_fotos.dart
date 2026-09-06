@@ -99,12 +99,18 @@ Future<void> fotografaTela(
   if (antes != null) await antes(tester);
   await tester.pump(const Duration(milliseconds: 300));
 
-  final elemento = find.byType(MaterialApp).evaluate().first;
-  final ui.Image imagem = await captureImage(elemento);
-  final bytes = await imagem.toByteData(format: ui.ImageByteFormat.png);
+  // A codificação PNG e a escrita em disco são trabalho REAL (fora do relógio
+  // falso do flutter_test): sem runAsync o future nunca completa e o teste
+  // pendura até ao timeout (cicatriz 2026-09-06: 1 foto em 10 minutos, vazia).
   final sufixoLocale = locale.countryCode == 'BR' ? 'br' : 'pt';
-  final ficheiro = File('${_dirFotos()}/${nome}_$rotulo${teclado ? '_teclado' : ''}_$sufixoLocale.png');
-  await ficheiro.writeAsBytes(bytes!.buffer.asUint8List());
+  final caminho = '${_dirFotos()}/${nome}_$rotulo${teclado ? '_teclado' : ''}_$sufixoLocale.png';
+  await tester.runAsync(() async {
+    final elemento = find.byType(MaterialApp).evaluate().first;
+    final ui.Image imagem = await captureImage(elemento);
+    final bytes = await imagem.toByteData(format: ui.ImageByteFormat.png);
+    await File(caminho).writeAsBytes(bytes!.buffer.asUint8List());
+  });
+  expect(File(caminho).lengthSync(), greaterThan(1000), reason: 'foto vazia: $caminho');
 }
 
 /// A suíte completa de uma tela: 3 tamanhos × (sem/com teclado) × PT/BR.

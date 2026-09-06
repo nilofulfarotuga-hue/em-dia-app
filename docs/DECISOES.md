@@ -27,6 +27,17 @@
 - **Porquê:** a missão está marcada [MODELO: OPUS] e os textos legais/guias exigem rigor; a fila separada evita conflitos de git com a sessão local. Custo por corrida vazia é quase zero (lê a fila e sai).
 - **Como se desfaz:** https://claude.ai/code/routines/trig_01DwHNgzNGqmhr5rQaJgXU9q → pausar; ou trocar `model` para claude-sonnet-5.
 
+## D10 — Na sessão retomada pelo vigia NÃO há browser: o que precisa de clique fica para a sessão interativa
+- **O quê:** a retoma `claude --resume -p` (headless) não carrega as ferramentas do Chrome nem do painel de browser. Play Console, Firebase, domínio na Cloudflare, Gemini web/ChatGPT para imagens e TestSprite pelo browser ficam para quando a app do Claude Code voltar a estar aberta (basta escrever "continua" na janela de manhã). Tudo o que é código, base de dados, CI, textos, testes e imagens pela API continua esta noite.
+- **Porquê:** limitação técnica do modo `-p`; não é falta de autorização.
+- **Como se desfaz:** abrir a janela interativa da sessão `c51cb931…` e continuar — os marcos dizem onde ficou.
+- **Imagens (logo, artes):** geradas pela API Gemini (modelos de imagem disponíveis na chave nova: `gemini-3.1-flash-image`, `nano-banana-pro-preview`) em vez do Gemini web + ChatGPT; as 5 propostas ficam em `docs/marca/` na mesma; se de manhã se quiser a ronda pelo ChatGPT, faz-se na sessão interativa.
+
+## D9 — A rotina cloud passa a claude-sonnet-5 (o limite de 5 horas é partilhado)
+- **O quê:** às 01:40 a sessão local morreu por "session limit" e a corrida cloud das 01:52 morreu pela MESMA razão (`rate_limit: rejected (five_hour)` no log da rotina). O limite é da conta, não da sessão: cada corrida Opus na cloud gasta o orçamento que mantém a sessão local (a que faz o caminho crítico: telas, CI, Play) viva.
+- **Porquê:** proteger a noite. A fila da rotina são documentos/guias/posts — o Sonnet chega e gasta menos.
+- **Como se desfaz:** https://claude.ai/code/routines/trig_01DwHNgzNGqmhr5rQaJgXU9q → model claude-opus-5.
+
 ## D7 — Lógica das obrigações existe em Dart E em TypeScript, com os mesmos testes
 - **O quê:** `lib/regras/obrigacoes.dart` (pré-visualização no onboarding e testes) e `supabase/functions/_shared/regras.ts` (o servidor gera o calendário real). Os dois são validados pelos mesmos casos (`docs/casos-teste.md`, gerado de `test/unit/regras_test.dart`).
 - **Porquê:** o servidor tem de ser a fonte de verdade (o cron dos avisos lê a tabela), mas o onboarding precisa de mostrar "este mês tens N coisas" sem esperar pela rede. Uma só implementação obrigaria a chamar o servidor para tudo.

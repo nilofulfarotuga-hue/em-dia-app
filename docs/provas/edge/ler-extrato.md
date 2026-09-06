@@ -116,3 +116,45 @@ HTTP 402  {"cadeado":true,"mensagem":"Ler o extrato por foto faz parte do plano 
 **Por provar (sem chave, confirmado por SQL `ler_segredo('gemini_api_key') is null`):** leitura real de imagem, JSON validado, registo `modo='extrato'`.
 
 **Veredicto:** aprovado.
+
+## Redeploy e verificação final (03:50)
+
+**Data:** 2026-09-06, 03:50–04:15 (hora de Lisboa).
+
+**Deploy (MCP `deploy_edge_function`, `verify_jwt: true`, entrypoint `ler-extrato/index.ts`, ficheiros `ler-extrato/index.ts` + `_shared/cors.ts` + `_shared/segredos.ts` + `_shared/gemini.ts`):**
+```
+{"slug":"ler-extrato","status":"ACTIVE","version":2,"updated_at":1788663647916,"verify_jwt":true,
+ "ezbr_sha256":"88626f9de9bb149d94708bb7d3e87fc13625e0ed8e4076e3992357834f29d9e8"}
+```
+Antes do deploy, `get_edge_function('ler-extrato')` (v1, `60865d48…`) mostrava `return Deno.env.get('GEMINI_MODEL')?.trim() || 'gemini-2.5-flash'` — a correção **não** estava no ar. O `_shared/gemini.ts` enviado é byte a byte o mesmo que o do `ia-responder` v2 (confirmado por `get_edge_function` nesse: `'gemini-flash-latest'`).
+
+**Imagem:** PNG 400×200 gerado em Python com PIL 12.3.0 (7284 bytes), fundo branco, texto a preto em Arial 22: "Uber" / "Setembro 2026" / "Total 1.234,56 €". Enviado como `{"imagem_base64": <base64>, "mime": "image/png"}` com o JWT do utilizador de teste (`feature_permitida(uid,'ler_extrato_foto')` = `true`, plano `trial`).
+
+**Resposta (literal):**
+```
+HTTP 503
+{"erro":"gemini_indisponivel","detalhe":"HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. … Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, ","mensagem":"O assistente está com muitos pedidos. Tenta daqui a um minuto."}
+```
+A quota diária do free tier (20 pedidos/dia para `gemini-3.8-flash`, o modelo em que `gemini-flash-latest` resolve) estava esgotada — diagnóstico completo na prova do `ia-responder`. Nada foi gravado em `conversas_ia` em modo `extrato` (confirmado: a única conversa de hoje é a do chat).
+
+**Fica por provar** (igual à secção anterior, agora por quota e não por falta de chave): leitura real da imagem, JSON validado, registo `modo='extrato'`. Repetir depois das 08:00 de Lisboa, ou depois de ativar faturação na Google.
+
+## Roda de modelos (04:20)
+
+**Deploy (`_shared/gemini.ts` com `RODA_MODELOS`, `verify_jwt: true`):**
+```
+{"slug":"ler-extrato","status":"ACTIVE","version":3,"updated_at":1788664620634,"ezbr_sha256":"ea5ab64970ba7fa9c86ce0f1b425eab3b2aa0327f2b5f8dc8ea377c775432cc7"}
+```
+`get_edge_function('ler-extrato')` depois do deploy devolve em `_shared/gemini.ts` `export const RODA_MODELOS = [ 'gemini-flash-latest', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-flash-lite-latest', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-2.5-flash-lite' ]` e o ciclo de rotação em 429/404 — está no ar.
+
+**Chamada** (mesmo PNG 400×200 gerado com PIL, 7284 bytes: "Uber" / "Setembro 2026" / "Total 1.234,56 €", `mime: image/png`, JWT do utilizador de teste):
+```
+### LER-EXTRATO | 04:19:54 | 4.6s | HTTP 200
+{"plataforma": "uber", "mes": "2026-09", "valor_bruto": 1234.56, "confianca": 1,
+ "notas": "Total de ganhos brutos de 1234,56 € lido com clareza para o mês de setembro de 2026."}
+```
+Leu a plataforma, o mês e o valor exatos da imagem. SELECT `conversas_ia`:
+```
+{"id":"a3f7be2f-6a28-40f0-b8e0-f24642d42cbd","modo":"extrato","modelo":"gemini-3.6-flash","tokens_entrada":1368,"tokens_saida":336,"custo_tokens":0.001156,"fora_das_regras":false,"variante":"pt","fim_resposta":"1234,56 € lido com clareza para o mês de setembro de 2026.\"}","criado_em":"2026-09-06T03:19:53Z"}
+```
+`modelo` = `gemini-3.6-flash` (modelo da roda; o 3.8 e o 3.7 devolveram 429 e foram saltados). O registo em modo `extrato` com tokens e custo > 0 fica assim provado.

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 
 import '../models/carro.dart';
@@ -17,6 +19,16 @@ class ObrigacoesStore extends ChangeNotifier {
   List<ObrigacaoItem> get itens => _itens;
   bool get aCarregar => _aCarregar;
   String? get erro => _erro;
+
+  ObrigacoesStore();
+
+  /// Para testes e fotos (golden): itens já carregados, sem servidor.
+  /// Ordena por data-limite como o servidor faria.
+  ObrigacoesStore.paraTeste(List<ObrigacaoItem> itens, {bool aCarregar = false, String? erro})
+      : _itens = List.of(itens)..sort((a, b) => a.dataLimite.compareTo(b.dataLimite)) {
+    _aCarregar = aCarregar;
+    _erro = erro;
+  }
 
   Future<void> carregar(String userId) async {
     _aCarregar = true;
@@ -78,6 +90,38 @@ class ObrigacoesStore extends ChangeNotifier {
     }
   }
 
+  /// Obrigação escrita à mão pelo utilizador (multa, portagem, outra coisa).
+  /// `chave_unica = manual|<uuid>` para nunca chocar com as geradas pelo
+  /// servidor; `aviso_em` é a véspera útil (regra das datas, com feriados).
+  Future<bool> adicionarManual({
+    required String userId,
+    required String tipo,
+    required String descricao,
+    required DateTime data,
+    double? valor,
+    required Set<DateTime> feriados,
+  }) async {
+    final dia = soDia(data);
+    try {
+      await sb.from('obrigacoes').insert({
+        'user_id': userId,
+        'tipo': tipo,
+        'descricao': descricao,
+        'data_limite': dataPtIso(dia),
+        'aviso_em': dataPtIso(avisoEm(dia, feriados)),
+        'valor_estimado': valor,
+        'origem_regra': 'manual',
+        'chave_unica': 'manual|${_uuidV4()}',
+      });
+      await carregar(userId);
+      return true;
+    } catch (e) {
+      _erro = e.toString();
+      notifyListeners();
+      return false;
+    }
+  }
+
   // ---- leituras para o painel ----
   List<ObrigacaoItem> pendentes(DateTime hoje) => _itens.where((o) => o.pendente).toList();
   List<ObrigacaoItem> passadas(DateTime hoje) => _itens.where((o) => o.passou(hoje)).toList();
@@ -93,6 +137,16 @@ class ObrigacoesStore extends ChangeNotifier {
   }
 }
 
+/// UUID v4 sem pacote externo (só para a `chave_unica` das obrigações manuais).
+String _uuidV4() {
+  final r = Random.secure();
+  final b = List<int>.generate(16, (_) => r.nextInt(256));
+  b[6] = (b[6] & 0x0f) | 0x40; // versão 4
+  b[8] = (b[8] & 0x3f) | 0x80; // variante RFC 4122
+  final h = b.map((x) => x.toRadixString(16).padLeft(2, '0')).join();
+  return '${h.substring(0, 8)}-${h.substring(8, 12)}-${h.substring(12, 16)}-${h.substring(16, 20)}-${h.substring(20)}';
+}
+
 /// Rendimentos mensais (para a vigia do IVA, a SS e o IRS).
 class RendimentosStore extends ChangeNotifier {
   List<Rendimento> _itens = [];
@@ -100,6 +154,13 @@ class RendimentosStore extends ChangeNotifier {
 
   List<Rendimento> get itens => _itens;
   String? get erro => _erro;
+
+  RendimentosStore();
+
+  /// Para testes e fotos (golden): itens já carregados, sem servidor.
+  /// Ordena do mês mais recente para o mais antigo, como o servidor.
+  RendimentosStore.paraTeste(List<Rendimento> itens)
+      : _itens = List.of(itens)..sort((a, b) => b.mes.compareTo(a.mes));
 
   Future<void> carregar(String userId) async {
     try {

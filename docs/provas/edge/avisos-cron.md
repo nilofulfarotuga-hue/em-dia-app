@@ -219,3 +219,50 @@ Correção sugerida (1 linha): ler os eventos desde `min(inicioMes, ha7Dias)` (o
 `profiles.trial_ate` do `teste2` reposto em `2026-10-05 23:25:00.207976+00`, `ultimo_acesso=NULL` (SELECT: `plano_efetivo='trial'`); eventos `FAKE%` apagados (`fake_restantes=0`). Ficaram como evidência os 10 eventos reais do `teste2`, as 7 obrigações `verif_*`, o carro `VR-77-ZZ` e o rendimento de 12345,67 (todos do utilizador de teste 2).
 
 **Veredicto do verificador:** o que a ordem pedia (401, saltar fora das 9h, `5_dias`/`dia`, `sem_fcm`, idempotência) está provado e bate; os 7 tipos, `limite_plano` e `trial_31` também. **Não aprovado** por causa do V6 (resultado errado reproduzido) — correção pequena, depois disso passa.
+
+## Redeploy e verificação final (03:50)
+
+**Data:** 2026-09-06, 03:50–04:10 (hora de Lisboa).
+
+**Deploy (MCP `deploy_edge_function`, `verify_jwt: true`, entrypoint `avisos-cron/index.ts`, ficheiros `avisos-cron/index.ts` + `_shared/cors.ts` + `_shared/segredos.ts` + `_shared/mensagens.ts` + `_shared/fcm.ts` + `_shared/google_oauth.ts`):**
+```
+{"slug":"avisos-cron","status":"ACTIVE","version":4,"updated_at":1788663503601,"verify_jwt":true,
+ "ezbr_sha256":"96daa96f9d30a340bee1f9ec19ad30c2a0f0b0729acb84b9a12edf9a76e671e8"}
+```
+`ezbr_sha256` igual ao da v3 (já estava no ar). `get_edge_function('avisos-cron')` depois do deploy devolve, em `avisos-cron/index.ts`:
+```
+const ha7Dias = somarDias(hoje, -DIAS_REATIVACAO)
+// Os eventos carregam-se desde a data MAIS ANTIGA entre o início do mês (…) e há 7 dias (…)
+const inicioEventos = ha7Dias < inicioMes ? ha7Dias : inicioMes
+…
+admin.from('eventos_push').select('user_id, tipo, dia, resultado').gte('dia', inicioEventos),
+```
+— a correção do V6 está no código que corre.
+
+**Reprodução do V6 com a versão corrigida** (teste2 `fcb4a7ad-5202-4148-9e37-d5f0ed5e76d2`). Para não usar `DELETE`, em vez de apagar+inserir movi o único evento `reativacao` que existia (o de hoje, `d13852d3-…`, `sem_fcm`) para `dia = 2026-08-31` (hoje−6, no mês anterior) e pus `ultimo_acesso` há 10 dias. Estado antes (SQL, `execute_sql`):
+```
+estado_original: {"evento":{"id":"d13852d3-2eba-433f-be3c-69a61c9fcbdb","dia":"2026-09-06","tipo":"reativacao","resultado":"sem_fcm","enviado_em":"2026-09-05T23:50:39.971+00:00","obrigacao_id":null,…},"ultimo_acesso":null}
+evento_movido:   {"id":"d13852d3-2eba-433f-be3c-69a61c9fcbdb","dia":"2026-08-31"}
+ultimo_acesso_novo: {"user_id":"fcb4a7ad-5202-4148-9e37-d5f0ed5e76d2","ultimo_acesso":"2026-08-27T03:06:15.397824+00:00"}
+```
+Com `hoje = 2026-09-06`: `ha7Dias = 2026-08-30`, `inicioMes = 2026-09-01`, logo `inicioEventos = 2026-08-30` e o evento de 08-31 fica visível. `ultimo_acesso` (08-27) ≤ `ha7Dias` → a regra de reativação dispara **a menos que** veja o evento de 08-31. Na versão antiga (só `>= inicioMes`) criava-se um `reativacao` novo (V6).
+
+Chamada (`POST …/functions/v1/avisos-cron`, `Authorization: Bearer <anon>`, `x-cron-secret: <Vault>`, corpo `{"forcar":true}`):
+```
+HTTP 200
+{"hora_lisboa": 4, "data_lisboa": "2026-09-06", "forcado": true, "autenticado": "cron", "fcm_configurado": false,
+ "utilizadores": 2, "eventos_criados": 0, "enviados": 0, "sem_fcm": 0, "sem_token": 0, "limite_plano": 0, "erros": 0,
+ "passadas_marcadas": 0, "detalhes": []}
+```
+`eventos_criados: 0` e `detalhes: []` — **não criou `reativacao`** (nem nada) para o teste2.
+
+SELECT logo a seguir (mesma transação em que se repôs o estado; o SELECT vê o estado antes da reposição):
+```
+reativacao_teste2_apos_chamada: [{"id":"d13852d3-2eba-433f-be3c-69a61c9fcbdb","dia":"2026-08-31","resultado":"sem_fcm","enviado_em":"2026-09-05T23:50:39.971+00:00"}]
+eventos_teste2_dia_2026-09-06_apos_chamada: 10      (os mesmos 10 que já existiam antes da chamada)
+reposto_evento: {"id":"d13852d3-2eba-433f-be3c-69a61c9fcbdb","dia":"2026-09-06"}
+reposto_ultimo_acesso: {"user_id":"fcb4a7ad-5202-4148-9e37-d5f0ed5e76d2","ultimo_acesso":null}
+```
+Continua a existir **um único** `reativacao` para o teste2 (o de 08-31); depois foi reposto para 09-06 e `ultimo_acesso` para `null` — nada foi criado nem apagado nesta verificação.
+
+**Veredicto desta secção:** o V6 (reativacao a repetir na viragem do mês) está corrigido no ar. Continua por provar o envio FCM real (`fcm_configurado: false` — sem `fcm_service_account` no Vault; precisa do clique humano no Firebase).

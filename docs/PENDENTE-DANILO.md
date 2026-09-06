@@ -5,4 +5,13 @@
 
 - [ ] **Cópia de segurança da keystore** `C:\BoraLocal\_segredos\em-dia\em-dia-release.jks` + `keystore.env` para o Drive da equipa. Porquê: perder a keystore = perder a app na Play; a escolha do sítio é tua.
 - [ ] **Telemóvel Android por USB** — `adb devices` não mostra nenhum aparelho ligado (2026-09-05 23:20). Liga o cabo de manhã; a instalação pelo track interno e a prova do push ficam para esse momento.
+## Para a sessão interativa (EU faço; só preciso da janela aberta — não são cliques teus)
+- Supabase Auth: e-mail com **código de 6 números** (o template "Magic Link" tem de levar `{{ .Token }}`), SMTP do Resend (chave já existe) para não bater no limite de e-mails do Supabase, e Google Sign-In (cliente OAuth no projeto em-dia + SHA-1 da keystore `69:5F:69:EE:81:1F:76:70:29:5C:3B:C9:9C:02:FA:80:3C:74:C7:10`).
+- Play Console: criar a app, ficha, Data Safety, 4 produtos, testadores, track interno; service account da Play → secret `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON`.
+- Firebase: depois do teu clique nos Termos, app Android + `google-services.json` → secret; conta de serviço FCM → Vault `fcm_service_account`.
+- Domínio (emdia.pt / em-dia.pt / emdia.app) na Cloudflare; ronda de imagens no ChatGPT; TestSprite no site.
+
+## Cliques teus
+- [ ] **Ativar faturação da API Gemini no projeto Google Cloud `em-dia`** (aistudio.google.com → Faturação; é decisão de dinheiro, por isso é tua). Sem isso a chave nova tem 20 pedidos por dia POR MODELO (provado às 04:10: `GenerateRequestsPerDayPerProjectPerModel-FreeTier = 20`) — chega para testes com rotação de modelos, não chega para utilizadores reais. Custo medido: 1 resposta do assistente = 0,0059 €.
+- [ ] **De manhã: abrir a janela do Claude Code (sessão `em-dia`) e escrever "continua"** — a sessão retomada pelo vigia durante a noite não tem browser (ver D10). Tudo o que é Play Console (criar a app, ficha, Data Safety, 4 produtos, track interno), domínio na Cloudflare e ronda de imagens no ChatGPT só avança com a janela aberta. Não precisas de fazer mais nada além de a abrir.
 - [ ] **Firebase — aceitar os Termos do Firebase (1 clique + "Continuar")** — página já aberta no Chrome (separador "Criar projeto - Console do Firebase"), com o projeto Google Cloud `em-dia` selecionado. Só falta marcar "Aceito os Termos do Firebase" e clicar Continuar. Porquê: aceitar termos é ato da pessoa (regra A.2 da adenda). Depois disso eu faço o resto (app Android `pt.emdia.app`, google-services.json para o secret, conta de serviço para o FCM). Até lá, os avisos ficam registados na tabela `eventos_push` com resultado `sem_fcm` e a app funciona sem push.

@@ -34,6 +34,8 @@ dependencies:
 
   # Fotos dos comprovativos — Photo Picker do Android (não o seletor antigo)
   image_picker: ^1.1.2
+  image_picker_android: ^0.8.13 # para ligar o Photo Picker (ImagePickerAndroid.useAndroidPhotoPicker)
+  image_picker_platform_interface: ^2.11.0 # ImagePickerPlatform.instance (o getter do image_picker é só para testes)
 
   # Assinaturas (Google Play Billing)
   in_app_purchase: ^3.2.0

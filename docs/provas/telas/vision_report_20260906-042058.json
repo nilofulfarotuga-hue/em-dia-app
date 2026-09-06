@@ -1,0 +1,113 @@
+{
+  "data": "20260906-042058",
+  "modelo": "gemini-flash-latest",
+  "fotos": 12,
+  "contagem": {
+    "verde": 5,
+    "amarelo": 6,
+    "vermelho": 0,
+    "erro": 1
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma excelente organização visual, com contraste claro, botões bem definidos e cantos arredondados adequados para o utilizador.",
+      "jargao": [
+        "Conta-corrente"
+      ],
+      "modelo": "gemini-3.5-flash",
+      "foto": "calendario_detalhe_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto de ajuda em baixo tem demasiados passos difíceis de ler.",
+      "jargao": [
+        "Segurança Social Direta",
+        "Conta-corrente",
+        "referência Multibanco"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem termos difíceis e há mais do que um elemento laranja no ecrã.",
+      "jargao": [
+        "Conta-corrente",
+        "referência Multibanco"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está organizado, claro e sem problemas visuais de destaque.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto sobre como pagar é muito confuso para quem não percebe nada.",
+      "jargao": [
+        "Conta-corrente",
+        "Multibanco"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está limpa e muito fácil de entender para toda a gente.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_pequeno_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e muito limpo.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_grande_br.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "JSONDecodeError: Invalid \\uXXXX escape: line 1 column 51 (char 50)",
+      "foto": "calendario_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O calendário e as contas estão bem arrumados e fáceis de ver.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O botão 'Carro' está cortado na margem direita do ecrã.",
+      "jargao": [
+        "Contribuição"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto está um bocadinho colado à beirinha.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto secundário está demasiado colado às margens inferiores do cartão.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_pequeno_pt.png"
+    }
+  ]
+}

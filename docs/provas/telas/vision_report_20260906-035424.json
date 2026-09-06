@@ -1,0 +1,36 @@
+{
+  "data": "20260906-035424",
+  "modelo": "gemini-flash-latest",
+  "fotos": 4,
+  "contagem": {
+    "verde": 3,
+    "amarelo": 0,
+    "vermelho": 0,
+    "erro": 1
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã de início de sessão está limpo, legível e com os elementos bem alinhados.",
+      "jargao": [],
+      "foto": "login_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Ecrã de início de sessão limpo, legível e com instruções claras.",
+      "jargao": [],
+      "foto": "login_grande_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 503: {\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
+      "foto": "login_grande_teclado_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Ecrã de início de sessão simples, claro e bem estruturado.",
+      "jargao": [],
+      "foto": "login_grande_teclado_pt.png"
+    }
+  ]
+}

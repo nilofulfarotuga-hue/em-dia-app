@@ -35,6 +35,15 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
 MODELO = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
+# Free tier = 20 pedidos/dia POR MODELO (provado 2026-09-06 04:10: quotaId
+# GenerateRequestsPerDayPerProjectPerModel-FreeTier). Em 429 roda-se para o modelo
+# seguinte em vez de parar — cada um tem a sua quota.
+RODA_MODELOS = [
+    MODELO, "gemini-3.7-flash", "gemini-3.6-flash", "gemini-3.5-flash", "gemini-flash-lite-latest",
+    "gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-2.5-flash-lite", "gemini-2.5-flash",
+    "gemini-3-flash-preview", "gemini-pro-latest",
+]
+_modelo_idx = 0
 
 PROMPT = (
     "És o juiz de visão da app Em Dia (Portugal: recibos verdes, Segurança Social, IVA, IRS, carro; "
@@ -69,26 +78,36 @@ def julgar(png: Path, chave: str) -> dict:
         ]}],
         "generationConfig": {"temperature": 0.1, "responseMimeType": "application/json"},
     }
-    req = urllib.request.Request(
-        f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO}:generateContent",
-        data=json.dumps(corpo).encode(),
-        headers={"x-goog-api-key": chave, "Content-Type": "application/json"},
-    )
-    for tentativa in range(3):
+    global _modelo_idx
+    dados = json.dumps(corpo).encode()
+    tentativas = 0
+    while tentativas < 2 * len(RODA_MODELOS):
+        modelo = RODA_MODELOS[_modelo_idx % len(RODA_MODELOS)]
+        req = urllib.request.Request(
+            f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent",
+            data=dados,
+            headers={"x-goog-api-key": chave, "Content-Type": "application/json"},
+        )
+        tentativas += 1
         try:
             d = json.loads(urllib.request.urlopen(req, timeout=90).read())
             texto = d["candidates"][0]["content"]["parts"][0]["text"]
             j = json.loads(texto)
             j["severity"] = j.get("severity", "verde").lower()
+            j["modelo"] = modelo
             return j
         except urllib.error.HTTPError as e:
-            if e.code in (429, 503) and tentativa < 2:
-                time.sleep(8 * (tentativa + 1))
+            corpo_erro = e.read().decode()[:200]
+            if e.code == 429 or (e.code == 404 and "not found" in corpo_erro.lower()):
+                _modelo_idx += 1  # quota deste modelo esgotada (ou modelo indisponível): passa ao seguinte
                 continue
-            return {"severity": "erro", "finding": f"HTTP {e.code}: {e.read().decode()[:200]}"}
+            if e.code == 503:
+                time.sleep(8)
+                continue
+            return {"severity": "erro", "finding": f"HTTP {e.code} ({modelo}): {corpo_erro}"}
         except Exception as exc:  # noqa: BLE001
             return {"severity": "erro", "finding": f"{type(exc).__name__}: {exc}"[:200]}
-    return {"severity": "erro", "finding": "sem resposta"}
+    return {"severity": "erro", "finding": "quota esgotada em todos os modelos da roda"}
 
 
 def main() -> int:

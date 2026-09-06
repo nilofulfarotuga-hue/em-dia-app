@@ -14,6 +14,7 @@ export interface GeminiOk {
   modelo: string
   tokensEntrada: number
   tokensSaida: number
+  cortada?: boolean         // finishReason MAX_TOKENS: a resposta veio incompleta
 }
 
 export interface GeminiErro {
@@ -25,6 +26,12 @@ export interface GeminiErro {
 }
 
 export type GeminiResultado = GeminiOk | GeminiErro
+
+/** Roda de modelos para quando a quota diária de um esgota (429). */
+export const RODA_MODELOS = [
+  'gemini-flash-latest', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash',
+  'gemini-flash-lite-latest', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-2.5-flash-lite',
+]
 
 export function modeloGemini(): string {
   // gemini-2.5-flash deixou de existir para contas novas (404 provado 2026-09-06 01:20);
@@ -51,34 +58,51 @@ export async function chamarGemini(
     }
   }
 
-  const modelo = modeloGemini()
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent`
   const corpo: Record<string, unknown> = {
     systemInstruction: { parts: [{ text: opts.system }] },
     contents: [{ role: 'user', parts: opts.partes }],
     generationConfig: {
       temperature: 0.2,
-      maxOutputTokens: opts.maxTokens ?? 1024,
+      // Os Flash 3.x "pensam" antes de responder e o raciocínio conta para o teto: com 1024/2048
+      // a resposta chegava cortada a meio da frase (provado 04:25). 4096 + orçamento de raciocínio curto.
+      maxOutputTokens: opts.maxTokens ?? 4096,
+      thinkingConfig: { thinkingBudget: 512 },
       ...(opts.jsonMode ? { responseMimeType: 'application/json' } : {}),
     },
   }
 
-  let resp: Response
-  try {
-    resp = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': chave },
-      body: JSON.stringify(corpo),
-    })
-  } catch (e) {
-    return {
-      ok: false, status: 503, erro: 'gemini_indisponivel',
-      detalhe: String((e as Error)?.message ?? e),
-      mensagem: 'Não consegui falar com o assistente agora. Tenta daqui a pouco.',
+  // Free tier = 20 pedidos/dia POR MODELO (quotaId GenerateRequestsPerDayPerProjectPerModel-FreeTier,
+  // provado 2026-09-06 04:10). Em 429 passa-se ao modelo seguinte da roda em vez de falhar:
+  // cada modelo tem a sua quota. Com faturação ativa a roda quase nunca sai do primeiro.
+  const roda = [modeloGemini(), ...RODA_MODELOS.filter((m) => m !== modeloGemini())]
+  let modelo = roda[0]
+  let resp: Response | null = null
+  let textoBruto = ''
+  for (const candidato of roda) {
+    modelo = candidato
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent`
+    try {
+      resp = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': chave },
+        body: JSON.stringify(corpo),
+      })
+    } catch (e) {
+      return {
+        ok: false, status: 503, erro: 'gemini_indisponivel',
+        detalhe: String((e as Error)?.message ?? e),
+        mensagem: 'Não consegui falar com o assistente agora. Tenta daqui a pouco.',
+      }
     }
+    textoBruto = await resp.text()
+    if (resp.status === 429 || (resp.status === 404 && /not found|no longer available/i.test(textoBruto))) {
+      continue // quota deste modelo esgotada (ou modelo indisponível) → próximo da roda
+    }
+    break
   }
-
-  const textoBruto = await resp.text()
+  if (!resp) {
+    return { ok: false, status: 503, erro: 'gemini_indisponivel', mensagem: 'O assistente está com muitos pedidos. Tenta daqui a um minuto.' }
+  }
   if (resp.status === 403 || resp.status === 429) {
     return {
       ok: false, status: 503, erro: 'gemini_indisponivel',
@@ -107,9 +131,11 @@ export async function chamarGemini(
     return { ok: false, status: 502, erro: 'gemini_erro', detalhe: `resposta vazia (${motivo})`, mensagem: 'O assistente não conseguiu responder a isto. Tenta reformular.' }
   }
   const uso = dados?.usageMetadata ?? {}
+  const cortada = dados?.candidates?.[0]?.finishReason === 'MAX_TOKENS'
   return {
     ok: true,
-    texto,
+    texto: cortada ? `${texto}\n\n(A resposta ficou incompleta — pergunta outra vez, de forma mais curta.)` : texto,
+    cortada,
     modelo,
     tokensEntrada: Number(uso.promptTokenCount ?? 0),
     tokensSaida: Number(uso.candidatesTokenCount ?? 0) + Number(uso.thoughtsTokenCount ?? 0),

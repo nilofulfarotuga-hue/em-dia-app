@@ -1217,6 +1217,1338 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'€'**
   String get euros;
+
+  /// No description provided for @onbPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pergunta {n} de {total}'**
+  String onbPergunta(int n, int total);
+
+  /// No description provided for @onbMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mês'**
+  String get onbMes;
+
+  /// No description provided for @onbAno.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ano'**
+  String get onbAno;
+
+  /// No description provided for @onbOpcional.
+  ///
+  /// In pt, this message translates to:
+  /// **'opcional'**
+  String get onbOpcional;
+
+  /// No description provided for @onbIsentoAte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estás isento de Segurança Social até {data}'**
+  String onbIsentoAte(String data);
+
+  /// No description provided for @onbDepoisPagas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Depois pagas a partir de {mes}'**
+  String onbDepoisPagas(String mes);
+
+  /// No description provided for @onbIsencaoJaAcabou.
+  ///
+  /// In pt, this message translates to:
+  /// **'A tua isenção do 1.º ano acabou em {data}. Já pagas Segurança Social todos os meses — eu digo-te quanto e quando.'**
+  String onbIsencaoJaAcabou(String data);
+
+  /// No description provided for @onbIvaNormalExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cobras IVA de {taxa} nas faturas e entregas esse dinheiro às Finanças de 3 em 3 meses. Eu aviso-te das datas.'**
+  String onbIvaNormalExplica(String taxa);
+
+  /// No description provided for @onbIvaIsentoExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não cobras IVA (ficas isento). Só tens de pôr a frase de isenção no recibo — eu dou-ta pronta a copiar.'**
+  String get onbIvaIsentoExplica;
+
+  /// No description provided for @onbIucEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'IUC (o imposto do carro) é em {mes}'**
+  String onbIucEm(String mes);
+
+  /// No description provided for @onbProximaIpo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Próxima inspeção: {data}'**
+  String onbProximaIpo(String data);
+
+  /// No description provided for @onbSimulacaoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'A tua primeira simulação'**
+  String get onbSimulacaoTitulo;
+
+  /// No description provided for @onbSimulacaoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valores aproximados. Afinas depois em Recibos.'**
+  String get onbSimulacaoAjuda;
+
+  /// No description provided for @onbSsPorMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segurança Social ≈ {valor} por mês'**
+  String onbSsPorMes(String valor);
+
+  /// No description provided for @onbSsIsentoAte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segurança Social: isento até {data}'**
+  String onbSsIsentoAte(String data);
+
+  /// No description provided for @onbIrsPorMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'IRS a guardar ≈ {valor} por mês'**
+  String onbIrsPorMes(String valor);
+
+  /// No description provided for @onbIrsZero.
+  ///
+  /// In pt, this message translates to:
+  /// **'IRS: com este valor não pagas nada (ficas abaixo do mínimo que a lei não taxa)'**
+  String get onbIrsZero;
+
+  /// No description provided for @onbEsteMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este mês'**
+  String get onbEsteMes;
+
+  /// No description provided for @onbSemValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'sem pagamento'**
+  String get onbSemValor;
+
+  /// No description provided for @onbItemLista.
+  ///
+  /// In pt, this message translates to:
+  /// **'{nome} ({valor}, dia {dia})'**
+  String onbItemLista(String nome, String valor, String dia);
+
+  /// No description provided for @onbItemListaSemValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'{nome} (dia {dia})'**
+  String onbItemListaSemValor(String nome, String dia);
+
+  /// No description provided for @onbDiaLimite.
+  ///
+  /// In pt, this message translates to:
+  /// **'até dia {dia}'**
+  String onbDiaLimite(String dia);
+
+  /// No description provided for @onbCalendarioErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardei o teu perfil, mas o calendário ainda não ficou pronto. Abre o Painel daqui a bocado e ele aparece.'**
+  String get onbCalendarioErro;
+
+  /// No description provided for @painelOla.
+  ///
+  /// In pt, this message translates to:
+  /// **'Olá, {nome}'**
+  String painelOla(String nome);
+
+  /// No description provided for @painelOlaSemNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Olá!'**
+  String get painelOlaSemNome;
+
+  /// No description provided for @painelPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estás em dia?'**
+  String get painelPergunta;
+
+  /// No description provided for @painelEtiquetaTrial.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mês grátis até {data}'**
+  String painelEtiquetaTrial(String data);
+
+  /// No description provided for @painelEtiquetaFree.
+  ///
+  /// In pt, this message translates to:
+  /// **'Plano grátis'**
+  String get painelEtiquetaFree;
+
+  /// No description provided for @painelEtiquetaPro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pro'**
+  String get painelEtiquetaPro;
+
+  /// No description provided for @painelEtiquetaFamilia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Família'**
+  String get painelEtiquetaFamilia;
+
+  /// No description provided for @painelSemaforoVerdeSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nada a vencer nos próximos 5 dias.'**
+  String get painelSemaforoVerdeSub;
+
+  /// No description provided for @painelSemaforoAmareloHojeUma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens 1 coisa a vencer hoje'**
+  String get painelSemaforoAmareloHojeUma;
+
+  /// No description provided for @painelSemaforoAmareloHojeVarias.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens {n} coisas a vencer hoje'**
+  String painelSemaforoAmareloHojeVarias(int n);
+
+  /// No description provided for @painelSemaforoAmareloAmanhaUma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens 1 coisa a vencer amanhã'**
+  String get painelSemaforoAmareloAmanhaUma;
+
+  /// No description provided for @painelSemaforoAmareloAmanhaVarias.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens {n} coisas a vencer amanhã'**
+  String painelSemaforoAmareloAmanhaVarias(int n);
+
+  /// No description provided for @painelHeroiEmDias.
+  ///
+  /// In pt, this message translates to:
+  /// **'{dias, plural, =1{Em 1 dia} other{Em {dias} dias}}'**
+  String painelHeroiEmDias(int dias);
+
+  /// No description provided for @painelHeroiPassouHa.
+  ///
+  /// In pt, this message translates to:
+  /// **'{dias, plural, =1{Passou há 1 dia} other{Passou há {dias} dias}}'**
+  String painelHeroiPassouHa(int dias);
+
+  /// No description provided for @painelHeroiSemPrazo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sem prazos à vista'**
+  String get painelHeroiSemPrazo;
+
+  /// No description provided for @painelHeroiSemPrazoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando houver, aparece aqui. Eu aviso-te antes.'**
+  String get painelHeroiSemPrazoAjuda;
+
+  /// No description provided for @painelNomeIuc.
+  ///
+  /// In pt, this message translates to:
+  /// **'IUC (o imposto do carro)'**
+  String get painelNomeIuc;
+
+  /// No description provided for @painelNomeIva.
+  ///
+  /// In pt, this message translates to:
+  /// **'IVA (o imposto da fatura)'**
+  String get painelNomeIva;
+
+  /// No description provided for @painelNomeIrsConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagamento por conta (adiantamento do IRS)'**
+  String get painelNomeIrsConta;
+
+  /// No description provided for @painelAteDia.
+  ///
+  /// In pt, this message translates to:
+  /// **'até dia {dia}'**
+  String painelAteDia(int dia);
+
+  /// No description provided for @painelPago.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pago'**
+  String get painelPago;
+
+  /// No description provided for @painelIrsPorMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'por mês'**
+  String get painelIrsPorMes;
+
+  /// No description provided for @painelIrsLinha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não é tudo teu: guarda isto todos os meses e o IRS não te apanha de surpresa.'**
+  String get painelIrsLinha;
+
+  /// No description provided for @painelIrsZero.
+  ///
+  /// In pt, this message translates to:
+  /// **'Com o que ganhas não pagas IRS (ficas abaixo do mínimo de existência, {valor} por ano).'**
+  String painelIrsZero(String valor);
+
+  /// No description provided for @painelIrsSemRendimento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Diz-me quanto ganhas por mês (na aba Recibos) e eu digo-te quanto guardar.'**
+  String get painelIrsSemRendimento;
+
+  /// No description provided for @painelIrsAproximado.
+  ///
+  /// In pt, this message translates to:
+  /// **'valor aproximado'**
+  String get painelIrsAproximado;
+
+  /// No description provided for @painelVigiaFaltam.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faltam {valor} para o limite. Continua a registar.'**
+  String painelVigiaFaltam(String valor);
+
+  /// No description provided for @painelPagoOk.
+  ///
+  /// In pt, this message translates to:
+  /// **'Marcado como pago. Boa.'**
+  String get painelPagoOk;
+
+  /// No description provided for @painelPagoErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui marcar como pago. Vê a ligação e tenta outra vez.'**
+  String get painelPagoErro;
+
+  /// No description provided for @painelComprovativoPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Queres juntar a foto do comprovativo?'**
+  String get painelComprovativoPergunta;
+
+  /// No description provided for @painelComprovativoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fica guardada aqui, para quando as Finanças ou a Segurança Social perguntarem.'**
+  String get painelComprovativoAjuda;
+
+  /// No description provided for @painelAgoraNao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Agora não'**
+  String get painelAgoraNao;
+
+  /// No description provided for @painelComprovativoOk.
+  ///
+  /// In pt, this message translates to:
+  /// **'Comprovativo guardado.'**
+  String get painelComprovativoOk;
+
+  /// No description provided for @painelComprovativoErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui guardar a foto. Tenta outra vez.'**
+  String get painelComprovativoErro;
+
+  /// No description provided for @painelCadeadoComprovativo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ativa o Pro para guardar as fotos dos comprovativos.'**
+  String get painelCadeadoComprovativo;
+
+  /// No description provided for @painelComoPagarAte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Até {data}'**
+  String painelComoPagarAte(String data);
+
+  /// No description provided for @painelComoPagarSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra na Segurança Social Direta (app ou site), vai a Conta-corrente e depois a Pagamentos, e paga por Multibanco ou MB WAY. Prazo: entre o dia 10 e o dia 20.'**
+  String get painelComoPagarSs;
+
+  /// No description provided for @painelComoPagarIva.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra no Portal das Finanças, vai a IVA e depois a Pagamentos, e paga com a referência Multibanco que lá aparece. Prazo: até ao dia 25.'**
+  String get painelComoPagarIva;
+
+  /// No description provided for @painelComoPagarIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra no Portal das Finanças, vai a IRS e depois a Pagamentos por conta, e paga com a referência Multibanco. Prazo: até ao dia 20.'**
+  String get painelComoPagarIrs;
+
+  /// No description provided for @painelComoPagarIuc.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra no Portal das Finanças, vai a IUC (o imposto do carro) e a Emitir documento de pagamento, e paga por Multibanco. Prazo: até ao fim do mês da matrícula.'**
+  String get painelComoPagarIuc;
+
+  /// No description provided for @painelComoPagarIpo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Marca a inspeção num centro perto de ti (por telefone ou no site do centro) e leva o documento único do carro. Vai antes do dia limite.'**
+  String get painelComoPagarIpo;
+
+  /// No description provided for @painelComoPagarSeguro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Compara preços antes de renovar. Paga à seguradora por referência Multibanco ou débito direto até à data de renovação.'**
+  String get painelComoPagarSeguro;
+
+  /// No description provided for @painelComoPagarGenerico.
+  ///
+  /// In pt, this message translates to:
+  /// **'Confirma a data no Portal das Finanças ou na Segurança Social Direta e trata disto antes do dia limite. Se tiveres dúvidas, pergunta-me.'**
+  String get painelComoPagarGenerico;
+
+  /// No description provided for @painelTentarOutraVez.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tentar outra vez'**
+  String get painelTentarOutraVez;
+
+  /// No description provided for @recibosTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Recibos verdes'**
+  String get recibosTitulo;
+
+  /// No description provided for @recibosSubtitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Faz as contas, regista o que ganhas e vê o que é mesmo teu.'**
+  String get recibosSubtitulo;
+
+  /// No description provided for @calcAjudaValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o valor sem IVA. Ex.: 1000'**
+  String get calcAjudaValor;
+
+  /// No description provided for @calcSemValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve um valor e eu faço as contas.'**
+  String get calcSemValor;
+
+  /// No description provided for @calcRecebesNaConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que recebes na conta'**
+  String get calcRecebesNaConta;
+
+  /// No description provided for @calcFicaTeu.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que é mesmo teu'**
+  String get calcFicaTeu;
+
+  /// No description provided for @calcNaoETudoTeu.
+  ///
+  /// In pt, this message translates to:
+  /// **'O IVA e a retenção não são teus — vão para o Estado. Guarda só o que é mesmo teu.'**
+  String get calcNaoETudoTeu;
+
+  /// No description provided for @calcDispensaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'A dispensa só vale se o cliente tiver contabilidade organizada — pergunta-lhe antes.'**
+  String get calcDispensaAjuda;
+
+  /// No description provided for @calcRetencaoDispensaCurta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dispensa (0%)'**
+  String get calcRetencaoDispensaCurta;
+
+  /// No description provided for @calcIvaIsentoCurto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isento (art. 53.º — não cobras IVA)'**
+  String get calcIvaIsentoCurto;
+
+  /// No description provided for @calcIvaNormalCurto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cobras 23%'**
+  String get calcIvaNormalCurto;
+
+  /// No description provided for @calcBrutoExplicado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Bruto (o valor escrito no recibo)'**
+  String get calcBrutoExplicado;
+
+  /// No description provided for @ssIsencaoExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isenção = no 1.º ano de atividade não pagas nada à Segurança Social.'**
+  String get ssIsencaoExplica;
+
+  /// No description provided for @rendUltimos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Os teus últimos meses'**
+  String get rendUltimos;
+
+  /// No description provided for @rendTotalAno.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este ano já registaste {valor}'**
+  String rendTotalAno(String valor);
+
+  /// No description provided for @rendTipo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tipo de rendimento'**
+  String get rendTipo;
+
+  /// No description provided for @rendTipoServicos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Serviços (TVDE, entregas, cabelo, obras…)'**
+  String get rendTipoServicos;
+
+  /// No description provided for @rendTipoVendas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Venda de coisas'**
+  String get rendTipoVendas;
+
+  /// No description provided for @rendPlataforma.
+  ///
+  /// In pt, this message translates to:
+  /// **'De onde veio'**
+  String get rendPlataforma;
+
+  /// No description provided for @rendClienteDireto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Clientes diretos'**
+  String get rendClienteDireto;
+
+  /// No description provided for @rendPlataformaOutra.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outra'**
+  String get rendPlataformaOutra;
+
+  /// No description provided for @rendGuardado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardado. Já contei com isto na Vigia do IVA, na Segurança Social e no IRS.'**
+  String get rendGuardado;
+
+  /// No description provided for @rendValorInvalido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve um valor maior que zero.'**
+  String get rendValorInvalido;
+
+  /// No description provided for @rendLidoDaFoto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Lido da foto ({confianca} de certeza). Confirma antes de guardar.'**
+  String rendLidoDaFoto(String confianca);
+
+  /// No description provided for @rendFotoALer.
+  ///
+  /// In pt, this message translates to:
+  /// **'A ler o extrato… demora uns segundos.'**
+  String get rendFotoALer;
+
+  /// No description provided for @rendFotoCadeado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ler extratos por foto é do plano Pro. Regista à mão — demora 30 segundos.'**
+  String get rendFotoCadeado;
+
+  /// No description provided for @rendFotoIndisponivel.
+  ///
+  /// In pt, this message translates to:
+  /// **'A leitura por foto está a descansar. Regista à mão por agora — demora 30 segundos.'**
+  String get rendFotoIndisponivel;
+
+  /// No description provided for @rendFotoNaoLi.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui ler o mês ou o valor. Tenta uma foto mais nítida ou regista à mão.'**
+  String get rendFotoNaoLi;
+
+  /// No description provided for @rendOrigemFoto.
+  ///
+  /// In pt, this message translates to:
+  /// **'lido da foto'**
+  String get rendOrigemFoto;
+
+  /// No description provided for @rendApagarPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar o rendimento de {mes}?'**
+  String rendApagarPergunta(String mes);
+
+  /// No description provided for @rendApagado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagado.'**
+  String get rendApagado;
+
+  /// No description provided for @vigiaIvaFalta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda podes faturar {valor} este ano sem cobrar IVA.'**
+  String vigiaIvaFalta(String valor);
+
+  /// No description provided for @vigiaIvaSemDados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regista os teus rendimentos e eu vigio o limite por ti.'**
+  String get vigiaIvaSemDados;
+
+  /// No description provided for @ssAvisoAntes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aviso-te {dias} dias antes do fim, com o valor que vais passar a pagar: cerca de {valor} por mês.'**
+  String ssAvisoAntes(int dias, String valor);
+
+  /// No description provided for @ssSemAtividade.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sem atividade aberta não pagas Segurança Social nem IRS. Quando abrires, eu conto tudo.'**
+  String get ssSemAtividade;
+
+  /// No description provided for @ssSemDataAbertura.
+  ///
+  /// In pt, this message translates to:
+  /// **'Diz-me quando abriste atividade (no teu perfil) para eu contar a isenção do 1.º ano.'**
+  String get ssSemDataAbertura;
+
+  /// No description provided for @ssSemDados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regista os teus rendimentos para eu calcular o valor certo. Sem dados, conto com o mínimo.'**
+  String get ssSemDados;
+
+  /// No description provided for @ssBaseTrimestre.
+  ///
+  /// In pt, this message translates to:
+  /// **'Com base no que ganhaste de {inicio} a {fim}: {valor}.'**
+  String ssBaseTrimestre(String inicio, String fim, String valor);
+
+  /// No description provided for @ssBaseEstimativa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Com base na tua estimativa de {valor} por mês. Regista os rendimentos para ser mais certo.'**
+  String ssBaseEstimativa(String valor);
+
+  /// No description provided for @ssMinimo.
+  ///
+  /// In pt, this message translates to:
+  /// **'É o mínimo: {valor} por mês, mesmo que ganhes pouco.'**
+  String ssMinimo(String valor);
+
+  /// No description provided for @ssAjustarTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto queres pagar?'**
+  String get ssAjustarTitulo;
+
+  /// No description provided for @ssAjusteNormal.
+  ///
+  /// In pt, this message translates to:
+  /// **'o valor normal'**
+  String get ssAjusteNormal;
+
+  /// No description provided for @ssAjusteMenos.
+  ///
+  /// In pt, this message translates to:
+  /// **'{pct}% a menos'**
+  String ssAjusteMenos(int pct);
+
+  /// No description provided for @ssAjusteMais.
+  ///
+  /// In pt, this message translates to:
+  /// **'{pct}% a mais'**
+  String ssAjusteMais(int pct);
+
+  /// No description provided for @ssAjusteAtual.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ajuste atual: {ajuste}'**
+  String ssAjusteAtual(String ajuste);
+
+  /// No description provided for @ssNovoValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passas a pagar cerca de {valor} por mês'**
+  String ssNovoValor(String valor);
+
+  /// No description provided for @ssAjusteGuardado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardado. Vou contar com este ajuste nos avisos.'**
+  String get ssAjusteGuardado;
+
+  /// No description provided for @etiquetaEstimativa.
+  ///
+  /// In pt, this message translates to:
+  /// **'estimativa'**
+  String get etiquetaEstimativa;
+
+  /// No description provided for @irsBase.
+  ///
+  /// In pt, this message translates to:
+  /// **'Com base numa média de {valor} por mês.'**
+  String irsBase(String valor);
+
+  /// No description provided for @irsSemDados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regista os teus rendimentos (ou diz-me quanto ganhas por mês) e eu digo-te quanto guardar.'**
+  String get irsSemDados;
+
+  /// No description provided for @irsPagamentosContaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Adiantamentos do IRS (as Finanças chamam-lhes pagamentos por conta)'**
+  String get irsPagamentosContaTitulo;
+
+  /// No description provided for @irsPagamentosContaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Só se tiveres imposto a pagar. Eu aviso-te 5 dias antes de cada um.'**
+  String get irsPagamentosContaAjuda;
+
+  /// No description provided for @irsEscaloesPorConfirmar.
+  ///
+  /// In pt, this message translates to:
+  /// **'escalões {ano} por confirmar'**
+  String irsEscaloesPorConfirmar(int ano);
+
+  /// No description provided for @irsEstimativaNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'É uma estimativa para saberes quanto guardar — não é a declaração.'**
+  String get irsEstimativaNota;
+
+  /// No description provided for @emitirTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Como emitir o recibo'**
+  String get emitirTitulo;
+
+  /// No description provided for @emitirSubtitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passo a passo no Portal das Finanças, com textos prontos a copiar.'**
+  String get emitirSubtitulo;
+
+  /// No description provided for @emitirAbrirGuia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver o passo a passo'**
+  String get emitirAbrirGuia;
+
+  /// No description provided for @emitirPasso1.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra no Portal das Finanças com o teu NIF e a tua senha.'**
+  String get emitirPasso1;
+
+  /// No description provided for @emitirPasso2.
+  ///
+  /// In pt, this message translates to:
+  /// **'Procura “Faturas e Recibos Verdes” e toca em “Emitir”.'**
+  String get emitirPasso2;
+
+  /// No description provided for @emitirPasso3.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolhe “Recibo” (ou “Fatura-Recibo” se o cliente pedir fatura).'**
+  String get emitirPasso3;
+
+  /// No description provided for @emitirPasso4.
+  ///
+  /// In pt, this message translates to:
+  /// **'Preenche o NIF do cliente. Se for uma plataforma (Uber, Bolt, Glovo), o NIF está no extrato ou no contrato.'**
+  String get emitirPasso4;
+
+  /// No description provided for @emitirPasso5.
+  ///
+  /// In pt, this message translates to:
+  /// **'Na descrição escreve o que fizeste. Podes copiar este texto:'**
+  String get emitirPasso5;
+
+  /// No description provided for @emitirPasso6.
+  ///
+  /// In pt, this message translates to:
+  /// **'Põe o valor sem IVA e escolhe a retenção que usaste na calculadora (23%, 25% ou dispensa).'**
+  String get emitirPasso6;
+
+  /// No description provided for @emitirPasso7Isento.
+  ///
+  /// In pt, this message translates to:
+  /// **'No IVA escolhe o regime de isenção do artigo 53.º e copia esta frase para o motivo:'**
+  String get emitirPasso7Isento;
+
+  /// No description provided for @emitirPasso7Normal.
+  ///
+  /// In pt, this message translates to:
+  /// **'No IVA escolhe a taxa normal (23%).'**
+  String get emitirPasso7Normal;
+
+  /// No description provided for @emitirPasso8.
+  ///
+  /// In pt, this message translates to:
+  /// **'Confirma e emite. Guarda o PDF — no fim do mês regista aqui o que ganhaste.'**
+  String get emitirPasso8;
+
+  /// No description provided for @emitirCapturaBreve.
+  ///
+  /// In pt, this message translates to:
+  /// **'captura em breve'**
+  String get emitirCapturaBreve;
+
+  /// No description provided for @emitirAbrirPortal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir o Portal das Finanças'**
+  String get emitirAbrirPortal;
+
+  /// No description provided for @emitirNaoAbriu.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui abrir o site. Escreve portaldasfinancas.gov.pt no navegador.'**
+  String get emitirNaoAbriu;
+
+  /// No description provided for @emitirDescricaoTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prestação de serviços de transporte de passageiros em veículo descaracterizado (TVDE)'**
+  String get emitirDescricaoTvde;
+
+  /// No description provided for @emitirDescricaoEstafeta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prestação de serviços de entrega de refeições e encomendas'**
+  String get emitirDescricaoEstafeta;
+
+  /// No description provided for @emitirDescricaoServicos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prestação de serviços'**
+  String get emitirDescricaoServicos;
+
+  /// No description provided for @calResumo.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =0{Este mês não tens nada a pagar.} =1{Este mês pagas 1 coisa: {valor}} other{Este mês pagas {n} coisas: {valor}}}'**
+  String calResumo(int n, String valor);
+
+  /// No description provided for @calDiasSemana.
+  ///
+  /// In pt, this message translates to:
+  /// **'seg,ter,qua,qui,sex,sáb,dom'**
+  String get calDiasSemana;
+
+  /// No description provided for @calDiaSelecionado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Só o dia {data}'**
+  String calDiaSelecionado(String data);
+
+  /// No description provided for @calLimparFiltro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver tudo'**
+  String get calLimparFiltro;
+
+  /// No description provided for @calFiltroTudo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tudo'**
+  String get calFiltroTudo;
+
+  /// No description provided for @calFiltroSS.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segurança Social'**
+  String get calFiltroSS;
+
+  /// No description provided for @calFiltroFiscal.
+  ///
+  /// In pt, this message translates to:
+  /// **'IVA/IRS'**
+  String get calFiltroFiscal;
+
+  /// No description provided for @calFiltroCarro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carro'**
+  String get calFiltroCarro;
+
+  /// No description provided for @calFiltroOutros.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outros'**
+  String get calFiltroOutros;
+
+  /// No description provided for @calPassou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passou'**
+  String get calPassou;
+
+  /// No description provided for @calEstaSemana.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta semana'**
+  String get calEstaSemana;
+
+  /// No description provided for @calEsteMes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Este mês'**
+  String get calEsteMes;
+
+  /// No description provided for @calMaisTarde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mais tarde'**
+  String get calMaisTarde;
+
+  /// No description provided for @calJaPagaste.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já pagaste'**
+  String get calJaPagaste;
+
+  /// No description provided for @calFaltamDias.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =1{falta 1 dia} other{faltam {n} dias}}'**
+  String calFaltamDias(int n);
+
+  /// No description provided for @calEhHoje.
+  ///
+  /// In pt, this message translates to:
+  /// **'é hoje'**
+  String get calEhHoje;
+
+  /// No description provided for @calPassouHa.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =1{passou há 1 dia} other{passou há {n} dias}}'**
+  String calPassouHa(int n);
+
+  /// No description provided for @calPago.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pago'**
+  String get calPago;
+
+  /// No description provided for @calSemValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'sem valor'**
+  String get calSemValor;
+
+  /// No description provided for @calSemNesteFiltro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nada marcado aqui.'**
+  String get calSemNesteFiltro;
+
+  /// No description provided for @calRecalcular.
+  ///
+  /// In pt, this message translates to:
+  /// **'Refazer o calendário'**
+  String get calRecalcular;
+
+  /// No description provided for @calRecalculado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Calendário refeito.'**
+  String get calRecalculado;
+
+  /// No description provided for @calErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui carregar o calendário. Puxa para baixo para tentar outra vez.'**
+  String get calErro;
+
+  /// No description provided for @calSemSessao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entra na app para mexer no calendário.'**
+  String get calSemSessao;
+
+  /// No description provided for @calDataLimite.
+  ///
+  /// In pt, this message translates to:
+  /// **'Data limite'**
+  String get calDataLimite;
+
+  /// No description provided for @calAvisoEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aviso-te a {data}'**
+  String calAvisoEm(String data);
+
+  /// No description provided for @calAproximado.
+  ///
+  /// In pt, this message translates to:
+  /// **'aproximado'**
+  String get calAproximado;
+
+  /// No description provided for @calRegra.
+  ///
+  /// In pt, this message translates to:
+  /// **'Porque aparece'**
+  String get calRegra;
+
+  /// No description provided for @calComoPagar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Como pagar'**
+  String get calComoPagar;
+
+  /// No description provided for @calAbrirSite.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir {site}'**
+  String calAbrirSite(String site);
+
+  /// No description provided for @calSiteSS.
+  ///
+  /// In pt, this message translates to:
+  /// **'a Segurança Social Direta'**
+  String get calSiteSS;
+
+  /// No description provided for @calSitePF.
+  ///
+  /// In pt, this message translates to:
+  /// **'o Portal das Finanças'**
+  String get calSitePF;
+
+  /// No description provided for @calSiteImt.
+  ///
+  /// In pt, this message translates to:
+  /// **'o site do IMT'**
+  String get calSiteImt;
+
+  /// No description provided for @calSiteAima.
+  ///
+  /// In pt, this message translates to:
+  /// **'o site da AIMA'**
+  String get calSiteAima;
+
+  /// No description provided for @calErroAbrirSite.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui abrir o site. Tenta no navegador.'**
+  String get calErroAbrirSite;
+
+  /// No description provided for @calJaPaguei.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já paguei'**
+  String get calJaPaguei;
+
+  /// No description provided for @calPagoEm.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagaste a {data}. Boa!'**
+  String calPagoEm(String data);
+
+  /// No description provided for @calDesmarcar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Afinal não paguei'**
+  String get calDesmarcar;
+
+  /// No description provided for @calMarcadaPaga.
+  ///
+  /// In pt, this message translates to:
+  /// **'Marcado como pago.'**
+  String get calMarcadaPaga;
+
+  /// No description provided for @calDesmarcada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Voltou a ficar por pagar.'**
+  String get calDesmarcada;
+
+  /// No description provided for @calErroGuardar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui guardar. Tenta outra vez.'**
+  String get calErroGuardar;
+
+  /// No description provided for @calCadeadoComprovativo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ativa o Pro para guardar a foto.'**
+  String get calCadeadoComprovativo;
+
+  /// No description provided for @calTirarFoto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tirar foto agora'**
+  String get calTirarFoto;
+
+  /// No description provided for @calEscolherGaleria.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolher da galeria'**
+  String get calEscolherGaleria;
+
+  /// No description provided for @calComprovativoGuardado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Comprovativo guardado e marcado como pago.'**
+  String get calComprovativoGuardado;
+
+  /// No description provided for @calComoPagarSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segurança Social Direta → Conta-corrente → Pagamentos → gera a referência Multibanco e paga na app do banco.'**
+  String get calComoPagarSs;
+
+  /// No description provided for @calComoPagarFiscal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Portal das Finanças → Pagamentos → gera a referência Multibanco e paga na app do banco.'**
+  String get calComoPagarFiscal;
+
+  /// No description provided for @calComoPagarIuc.
+  ///
+  /// In pt, this message translates to:
+  /// **'Portal das Finanças → IUC → Pagar → escolhe a matrícula → emite a referência Multibanco.'**
+  String get calComoPagarIuc;
+
+  /// No description provided for @calComoPagarIpo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Marca no centro de inspeção mais perto de ti. Leva o DUA (documento do carro) e o seguro.'**
+  String get calComoPagarIpo;
+
+  /// No description provided for @calComoPagarSeguro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pede 2 ou 3 simulações, compara e renova a que ficar mais barata.'**
+  String get calComoPagarSeguro;
+
+  /// No description provided for @calComoPagarMulta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Usa a referência que vem na carta da notificação. Se pagares cedo, costuma ficar mais barato.'**
+  String get calComoPagarMulta;
+
+  /// No description provided for @calComoPagarOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Paga onde te disseram e depois marca aqui como pago.'**
+  String get calComoPagarOutro;
+
+  /// No description provided for @calRegraSsDeclaracao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Declaração trimestral à Segurança Social'**
+  String get calRegraSsDeclaracao;
+
+  /// No description provided for @calRegraSsPagamento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagamento mensal à Segurança Social (dia 10 a 20)'**
+  String get calRegraSsPagamento;
+
+  /// No description provided for @calRegraSsIsencao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fim da isenção de Segurança Social'**
+  String get calRegraSsIsencao;
+
+  /// No description provided for @calRegraIvaDeclaracao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Declaração trimestral de IVA'**
+  String get calRegraIvaDeclaracao;
+
+  /// No description provided for @calRegraIvaPagamento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagamento trimestral de IVA'**
+  String get calRegraIvaPagamento;
+
+  /// No description provided for @calRegraIrsEntrega.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrega do IRS (abril a junho)'**
+  String get calRegraIrsEntrega;
+
+  /// No description provided for @calRegraEfatura.
+  ///
+  /// In pt, this message translates to:
+  /// **'Validar faturas no e-fatura'**
+  String get calRegraEfatura;
+
+  /// No description provided for @calRegraIrsConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagamentos por conta de IRS'**
+  String get calRegraIrsConta;
+
+  /// No description provided for @calRegraRecibos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Comunicar faturas às Finanças'**
+  String get calRegraRecibos;
+
+  /// No description provided for @calRegraTvde.
+  ///
+  /// In pt, this message translates to:
+  /// **'Certificado de motorista TVDE'**
+  String get calRegraTvde;
+
+  /// No description provided for @calRegraResidencia.
+  ///
+  /// In pt, this message translates to:
+  /// **'Autorização de residência'**
+  String get calRegraResidencia;
+
+  /// No description provided for @calRegraIuc.
+  ///
+  /// In pt, this message translates to:
+  /// **'IUC: mês da matrícula do carro'**
+  String get calRegraIuc;
+
+  /// No description provided for @calRegraIpo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Inspeção periódica do carro'**
+  String get calRegraIpo;
+
+  /// No description provided for @calRegraSeguro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Renovação do seguro'**
+  String get calRegraSeguro;
+
+  /// No description provided for @calRegraCarta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Validade da carta de condução'**
+  String get calRegraCarta;
+
+  /// No description provided for @calRegraManual.
+  ///
+  /// In pt, this message translates to:
+  /// **'Adicionaste tu'**
+  String get calRegraManual;
+
+  /// No description provided for @calRegraOutra.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regra {chave}'**
+  String calRegraOutra(String chave);
+
+  /// No description provided for @calAdicionar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Adicionar'**
+  String get calAdicionar;
+
+  /// No description provided for @calNovaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Adicionar uma obrigação'**
+  String get calNovaTitulo;
+
+  /// No description provided for @calNovaTipo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que é?'**
+  String get calNovaTipo;
+
+  /// No description provided for @calTipoMulta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Multa'**
+  String get calTipoMulta;
+
+  /// No description provided for @calTipoPortagem.
+  ///
+  /// In pt, this message translates to:
+  /// **'Portagem'**
+  String get calTipoPortagem;
+
+  /// No description provided for @calTipoOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Outra coisa'**
+  String get calTipoOutro;
+
+  /// No description provided for @calNovaDescricao.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que tens de pagar'**
+  String get calNovaDescricao;
+
+  /// No description provided for @calNovaDescricaoDica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ex.: multa de estacionamento na Guarda'**
+  String get calNovaDescricaoDica;
+
+  /// No description provided for @calNovaData.
+  ///
+  /// In pt, this message translates to:
+  /// **'Até quando?'**
+  String get calNovaData;
+
+  /// No description provided for @calNovaEscolherData.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolher a data'**
+  String get calNovaEscolherData;
+
+  /// No description provided for @calNovaValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor (se souberes)'**
+  String get calNovaValor;
+
+  /// No description provided for @calNovaFaltaDescricao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o que é.'**
+  String get calNovaFaltaDescricao;
+
+  /// No description provided for @calNovaFaltaData.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolhe a data.'**
+  String get calNovaFaltaData;
+
+  /// No description provided for @calNovaGuardada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Adicionado ao calendário.'**
+  String get calNovaGuardada;
 }
 
 class _AppLocalizationsDelegate
