@@ -46,6 +46,12 @@ class _LoginScreenState extends State<LoginScreen> {
   /// senão ficava a mostrar um visto verde com um token já morto.
   int _desafioGeracao = 0;
 
+  /// A caixa visível do Turnstile rebentou (`onError`). Provado a 6 de
+  /// setembro de 2026 num browser que a Cloudflare recusa: a caixa não aparece
+  /// e o botão ficava cinzento para sempre. Com isto o botão volta a ligar-se,
+  /// o toque pede um token novo e a caixa renasce (geração nova).
+  bool _desafioFalhou = false;
+
   @override
   void dispose() {
     _espera?.cancel();
@@ -252,7 +258,11 @@ class _LoginScreenState extends State<LoginScreen> {
           if (mounted) setState(() => _tokenDesafio = null);
         },
         onError: (TurnstileException _) {
-          if (mounted) setState(() => _tokenDesafio = null);
+          if (!mounted) return;
+          setState(() {
+            _tokenDesafio = null;
+            _desafioFalhou = true;
+          });
         },
       ),
     ];
@@ -261,15 +271,20 @@ class _LoginScreenState extends State<LoginScreen> {
   /// `true` enquanto o desafio visível está no ecrã e ainda ninguém o
   /// resolveu: o botão espera pelo token.
   bool _faltaDesafio(SessaoStore s) =>
-      s.antiRoboLigado && s.precisaDesafio && _tokenDesafio == null;
+      s.antiRoboLigado &&
+      s.precisaDesafio &&
+      _tokenDesafio == null &&
+      !_desafioFalhou;
 
   /// Tira o token do ecrã e faz o desafio nascer de novo. Chama-se ANTES de
   /// cada pedido, porque o token só serve uma vez.
   String? _gastarDesafio() {
     final token = _tokenDesafio;
-    if (token != null) {
+    if (token != null || _desafioFalhou) {
+      // Token gasto, ou caixa rebentada: a próxima caixa nasce de novo.
       setState(() {
         _tokenDesafio = null;
+        _desafioFalhou = false;
         _desafioGeracao++;
       });
     }
