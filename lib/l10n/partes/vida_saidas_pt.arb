@@ -1,16 +1,28 @@
 {
   "@@locale": "pt",
-
   "saidasFaltaPagar": "Este mês falta pagar",
   "saidasTudoPago": "Este mês está tudo pago. Podes descansar.",
-  "saidasMaisSemValor": "E ainda há {n} contas que não sabem o valor.",
-  "@saidasMaisSemValor": {"placeholders": {"n": {"type": "int"}}},
+  "saidasMaisSemValor": "{n, plural, =1{E ainda há uma conta que não sabe o valor.} other{E ainda há {n} contas que não sabem o valor.}}",
+  "@saidasMaisSemValor": {
+    "description": "Quantas contas do mes nao tem valor escrito. Tem de ser plural do ICU: com n=1 dizia \"1 contas\".",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "saidasTemAtrasadas": "Tens contas com o dia já passado. Paga hoje e fica arrumado.",
   "saidasContasDoMes": "As contas deste mês",
   "saidasAtrasadasDeAntes": "Ficou para trás",
   "saidasSemContasMes": "Ainda não há contas para este mês.",
   "saidasDia": "Dia {dia}",
-  "@saidasDia": {"placeholders": {"dia": {"type": "int"}}},
+  "@saidasDia": {
+    "placeholders": {
+      "dia": {
+        "type": "int"
+      }
+    }
+  },
   "saidasValorPorSaber": "Valor por saber",
   "saidasEstadoPago": "Pago",
   "saidasEstadoSaltado": "Este mês não",
@@ -19,23 +31,33 @@
   "saidasNova": "Nova conta",
   "saidasSemContas": "Ainda não tens contas aqui. Junta a primeira: a renda, a luz, o telemóvel.",
   "saidasTodosOsMeses": "Todos os meses, dia {dia}",
-  "@saidasTodosOsMeses": {"placeholders": {"dia": {"type": "int"}}},
+  "@saidasTodosOsMeses": {
+    "placeholders": {
+      "dia": {
+        "type": "int"
+      }
+    }
+  },
   "saidasValorVaria": "O valor muda todos os meses",
   "saidasFidelizacaoAcaba": "O contrato acaba daqui a {dias} dias. É agora que mudas sem multa.",
-  "@saidasFidelizacaoAcaba": {"placeholders": {"dias": {"type": "int"}}},
+  "@saidasFidelizacaoAcaba": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
   "saidasSemSessao": "Entra na tua conta para veres as tuas contas.",
   "saidasErroGuardar": "Não consegui guardar. Tenta outra vez.",
   "saidasErroMarcar": "Não consegui marcar. Tenta outra vez.",
   "saidasContaGuardada": "Conta guardada.",
   "saidasContaCancelada": "Conta cancelada. O que já pagaste fica guardado.",
-
   "saidasGrupoCasa": "Casa",
   "saidasGrupoComunicacoes": "Telefone e internet",
   "saidasGrupoCarro": "Carro",
   "saidasGrupoFamilia": "Família",
   "saidasGrupoDinheiro": "Dinheiro",
   "saidasGrupoDiaAdia": "Dia a dia",
-
   "saidasCatRenda": "Renda",
   "saidasCatLuz": "Luz",
   "saidasCatAgua": "Água",
@@ -55,19 +77,23 @@
   "saidasCatAssinatura": "Assinatura",
   "saidasCatCompras": "Compras",
   "saidasCatOutro": "Outra coisa",
-
   "saidasMeioDebitoDireto": "Sai sozinho da conta",
   "saidasMeioReferenciaMb": "Referência Multibanco",
   "saidasMeioMbway": "MB WAY",
   "saidasMeioTransferencia": "Transferência",
   "saidasMeioDinheiro": "Dinheiro",
   "saidasMeioCartao": "Cartão",
-
   "saidasPagaAte": "Paga até",
   "saidasQuantoE": "Quanto é",
   "saidasComoSePaga": "Como se paga",
   "saidasDebitoNadaFazer": "Não tens de fazer nada. O dinheiro sai sozinho da tua conta no dia {dia}. Só tens de o ter lá nesse dia.",
-  "@saidasDebitoNadaFazer": {"placeholders": {"dia": {"type": "int"}}},
+  "@saidasDebitoNadaFazer": {
+    "placeholders": {
+      "dia": {
+        "type": "int"
+      }
+    }
+  },
   "saidasMbwayAbrir": "Abrir o MB WAY",
   "saidasMbwayComoPagar": "No MB WAY escolhe «Pagamentos» e escreve estes números.",
   "saidasMbwaySemApp": "Não consegui abrir o MB WAY. Se não tens essa app no telemóvel, paga num multibanco ou no site do teu banco com estes mesmos números.",
@@ -78,13 +104,18 @@
   "saidasAjudaCartao": "Esta pagas com o cartão.",
   "saidasJaEstaPago": "Já está pago",
   "saidasPagoEm": "Marcaste como pago a {data}",
-  "@saidasPagoEm": {"placeholders": {"data": {"type": "String"}}},
+  "@saidasPagoEm": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
   "saidasAfinalNaoPaguei": "Afinal não paguei",
   "saidasSaltarMes": "Este mês não pago esta",
   "saidasSaltada": "Disseste que este mês não pagas esta conta. Não entra nas contas do mês.",
   "saidasEscreveValor": "Quanto foi?",
   "saidasEscreveValorAjuda": "Esta conta muda todos os meses. Escreve quanto foi desta vez, para eu somar certo.",
-
   "saidasNovaTitulo": "Nova conta",
   "saidasEditarTitulo": "Mudar a conta",
   "saidasNome": "Que conta é esta?",

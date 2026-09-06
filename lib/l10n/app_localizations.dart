@@ -5583,8 +5583,14 @@ abstract class AppLocalizations {
   /// No description provided for @cofreNaoMexe.
   ///
   /// In pt, this message translates to:
-  /// **'Isto não mexe no teu dinheiro. Não há banco, não há transferência, não sai nem entra nada da tua conta. É só um caderno: tu escreves aqui o que já puseste de lado, e eu digo-te quanto devias ter.'**
+  /// **'Isto é um caderno: não mexe no teu dinheiro.'**
   String get cofreNaoMexe;
+
+  /// A explicacao comprida de que o cofre nao mexe em dinheiro. Fica no fim; em cima esta a versao de uma linha, senao os dois botoes caiam abaixo da dobra a 360 px.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não há banco, não há transferência, não sai nem entra nada da tua conta. Tu escreves aqui o que já puseste de lado, e eu digo-te quanto devias ter.'**
+  String get cofreNaoMexeLongo;
 
   /// No description provided for @cofreTens.
   ///
@@ -5721,7 +5727,7 @@ abstract class AppLocalizations {
   /// No description provided for @cofreBotaoTirar.
   ///
   /// In pt, this message translates to:
-  /// **'Tirei de lá'**
+  /// **'Tirei'**
   String get cofreBotaoTirar;
 
   /// No description provided for @cofreListaTitulo.
@@ -6593,6 +6599,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'{valor} por mês'**
   String radarPorMes(String valor);
+
+  /// So "por mes", por baixo do valor. O valor e a etiqueta em linhas separadas deixam o nome do contrato com a largura toda.
+  ///
+  /// In pt, this message translates to:
+  /// **'por mês'**
+  String get radarPorMesCurto;
 
   /// No description provided for @radarSemValor.
   ///
@@ -7844,10 +7856,10 @@ abstract class AppLocalizations {
   /// **'Este mês está tudo pago. Podes descansar.'**
   String get saidasTudoPago;
 
-  /// No description provided for @saidasMaisSemValor.
+  /// Quantas contas do mes nao tem valor escrito. Tem de ser plural do ICU: com n=1 dizia "1 contas".
   ///
   /// In pt, this message translates to:
-  /// **'E ainda há {n} contas que não sabem o valor.'**
+  /// **'{n, plural, =1{E ainda há uma conta que não sabe o valor.} other{E ainda há {n} contas que não sabem o valor.}}'**
   String saidasMaisSemValor(int n);
 
   /// No description provided for @saidasTemAtrasadas.

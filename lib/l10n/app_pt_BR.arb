@@ -1515,7 +1515,11 @@
   "carroFormOndeEstao": "Estes dois números estão no documento do carro (o certificado de matrícula).",
   "cofreTitulo": "O cofre do imposto",
   "cofreSemSessao": "Entre no app para ver o seu cofre.",
-  "cofreNaoMexe": "Isto não mexe no seu dinheiro. Não tem banco, não tem transferência, não sai nem entra nada da sua conta. É só um caderno: você escreve aqui o que já separou, e eu digo quanto você devia ter.",
+  "cofreNaoMexe": "Isto é um caderno: não mexe no seu dinheiro.",
+  "cofreNaoMexeLongo": "Não tem banco, não tem transferência, não sai nem entra nada da sua conta. Você escreve aqui o que já separou, e eu digo quanto você devia ter.",
+  "@cofreNaoMexeLongo": {
+    "description": "A explicacao comprida de que o cofre nao mexe em dinheiro. Fica no fim; em cima esta a versao de uma linha, senao os dois botoes caiam abaixo da dobra a 360 px."
+  },
   "cofreTens": "Você tem no cofre",
   "cofreDeviasTerNome": "Devia ter aqui",
   "cofreChega": "Dá certo. Sobra {valor} para você.",
@@ -1593,7 +1597,7 @@
     }
   },
   "cofreBotaoPor": "Separei",
-  "cofreBotaoTirar": "Tirei de lá",
+  "cofreBotaoTirar": "Tirei",
   "cofreListaTitulo": "O que você já anotou",
   "cofreVazio": "Você ainda não anotou nada. Quando separar dinheiro, escreva aqui quanto foi.",
   "cofreApagarPergunta": "Apagar {valor} de {data}?",
@@ -1786,8 +1790,8 @@
     }
   },
   "provaNomeCampo": "O seu nome completo",
-  "provaNifCampo": "NIF (o seu número de contribuinte português, como o CPF)",
-  "provaNifAjuda": "Pode deixar em branco. Com ele, a folha vale mais no banco.",
+  "provaNifCampo": "NIF (número de contribuinte)",
+  "provaNifAjuda": "Pode deixar em branco. É o número português, como o CPF daí. Com ele, a folha vale mais no banco.",
   "provaBotaoFazer": "Fazer a folha",
   "provaFeita": "Folha pronta. Escolha onde guardar ou para quem enviar.",
   "provaErro": "Não consegui fazer a folha. Tente de novo.",
@@ -1893,6 +1897,10 @@
     }
   },
   "radarPorMes": "{valor} por mês",
+  "radarPorMesCurto": "por mês",
+  "@radarPorMesCurto": {
+    "description": "So \"por mes\", por baixo do valor. O valor e a etiqueta em linhas separadas deixam o nome do contrato com a largura toda."
+  },
   "@radarPorMes": {
     "placeholders": {
       "valor": {
@@ -2287,8 +2295,9 @@
   "resumoTipoOutro": "Outro",
   "saidasFaltaPagar": "Este mês falta pagar",
   "saidasTudoPago": "Este mês está tudo pago. Pode descansar.",
-  "saidasMaisSemValor": "E ainda tem {n} contas que não sabem o valor.",
+  "saidasMaisSemValor": "{n, plural, =1{E ainda tem uma conta que não sabe o valor.} other{E ainda tem {n} contas que não sabem o valor.}}",
   "@saidasMaisSemValor": {
+    "description": "Quantas contas do mes nao tem valor escrito. Tem de ser plural do ICU: com n=1 dizia \"1 contas\".",
     "placeholders": {
       "n": {
         "type": "int"

@@ -53,8 +53,7 @@ class _SessaoComDono extends SessaoStore {
 /// a barra vermelha de "Sem ligação" por cima de números que estão certos.
 /// Aqui o `carregar` não faz nada — os números já vieram postos.
 class _ResumoParado extends ResumoStore {
-  _ResumoParado({ResumoMes? mes, ResumoAno? ano, bool aCarregar = false})
-      : super.paraTeste(mes: mes, ano: ano, aCarregar: aCarregar);
+  _ResumoParado({super.mes, super.ano, super.aCarregar}) : super.paraTeste();
   @override
   Future<void> carregar(String userId, {int? ano}) async {}
   @override

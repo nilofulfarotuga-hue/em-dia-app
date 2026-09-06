@@ -3253,8 +3253,11 @@ class AppLocalizationsPt extends AppLocalizations {
   String get cofreSemSessao => 'Entra na app para veres o teu cofre.';
 
   @override
-  String get cofreNaoMexe =>
-      'Isto não mexe no teu dinheiro. Não há banco, não há transferência, não sai nem entra nada da tua conta. É só um caderno: tu escreves aqui o que já puseste de lado, e eu digo-te quanto devias ter.';
+  String get cofreNaoMexe => 'Isto é um caderno: não mexe no teu dinheiro.';
+
+  @override
+  String get cofreNaoMexeLongo =>
+      'Não há banco, não há transferência, não sai nem entra nada da tua conta. Tu escreves aqui o que já puseste de lado, e eu digo-te quanto devias ter.';
 
   @override
   String get cofreTens => 'Tens no cofre';
@@ -3342,7 +3345,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get cofreBotaoPor => 'Pus de lado';
 
   @override
-  String get cofreBotaoTirar => 'Tirei de lá';
+  String get cofreBotaoTirar => 'Tirei';
 
   @override
   String get cofreListaTitulo => 'O que já apontaste';
@@ -3881,6 +3884,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String radarPorMes(String valor) {
     return '$valor por mês';
   }
+
+  @override
+  String get radarPorMesCurto => 'por mês';
 
   @override
   String get radarSemValor => 'Não escreveste o valor';
@@ -4626,7 +4632,13 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String saidasMaisSemValor(int n) {
-    return 'E ainda há $n contas que não sabem o valor.';
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'E ainda há $n contas que não sabem o valor.',
+      one: 'E ainda há uma conta que não sabe o valor.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -8214,8 +8226,11 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get cofreSemSessao => 'Entre no app para ver o seu cofre.';
 
   @override
-  String get cofreNaoMexe =>
-      'Isto não mexe no seu dinheiro. Não tem banco, não tem transferência, não sai nem entra nada da sua conta. É só um caderno: você escreve aqui o que já separou, e eu digo quanto você devia ter.';
+  String get cofreNaoMexe => 'Isto é um caderno: não mexe no seu dinheiro.';
+
+  @override
+  String get cofreNaoMexeLongo =>
+      'Não tem banco, não tem transferência, não sai nem entra nada da sua conta. Você escreve aqui o que já separou, e eu digo quanto você devia ter.';
 
   @override
   String get cofreTens => 'Você tem no cofre';
@@ -8303,7 +8318,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get cofreBotaoPor => 'Separei';
 
   @override
-  String get cofreBotaoTirar => 'Tirei de lá';
+  String get cofreBotaoTirar => 'Tirei';
 
   @override
   String get cofreListaTitulo => 'O que você já anotou';
@@ -8675,12 +8690,11 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get provaNomeCampo => 'O seu nome completo';
 
   @override
-  String get provaNifCampo =>
-      'NIF (o seu número de contribuinte português, como o CPF)';
+  String get provaNifCampo => 'NIF (número de contribuinte)';
 
   @override
   String get provaNifAjuda =>
-      'Pode deixar em branco. Com ele, a folha vale mais no banco.';
+      'Pode deixar em branco. É o número português, como o CPF daí. Com ele, a folha vale mais no banco.';
 
   @override
   String get provaBotaoFazer => 'Fazer a folha';
@@ -8842,6 +8856,9 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String radarPorMes(String valor) {
     return '$valor por mês';
   }
+
+  @override
+  String get radarPorMesCurto => 'por mês';
 
   @override
   String get radarSemValor => 'Você não escreveu o valor';
@@ -9586,7 +9603,13 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String saidasMaisSemValor(int n) {
-    return 'E ainda tem $n contas que não sabem o valor.';
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'E ainda tem $n contas que não sabem o valor.',
+      one: 'E ainda tem uma conta que não sabe o valor.',
+    );
+    return '$_temp0';
   }
 
   @override

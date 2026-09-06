@@ -1,6 +1,5 @@
 {
   "@@locale": "pt_BR",
-
   "provaNav": "Comprovante de renda",
   "provaTitulo": "Comprovante de renda",
   "provaSubtitulo": "A folha que você mostra para o senhorio, para o banco ou para quem pedir prova de quanto você ganha.",
@@ -9,7 +8,6 @@
   "@provaMeses": {
     "description": "Palavra embaixo do numero nos tres botoes do periodo (3, 6, 12). Sao todos plurais, por isso nao leva plural ICU."
   },
-
   "provaMediaRotulo": "O que entra por mês",
   "provaMediaAjuda": "Somei tudo e dividi por {n} meses.",
   "@provaMediaAjuda": {
@@ -31,11 +29,9 @@
       }
     }
   },
-
   "provaNomeCampo": "O seu nome completo",
-  "provaNifCampo": "NIF (o seu número de contribuinte português, como o CPF)",
-  "provaNifAjuda": "Pode deixar em branco. Com ele, a folha vale mais no banco.",
-
+  "provaNifCampo": "NIF (número de contribuinte)",
+  "provaNifAjuda": "Pode deixar em branco. É o número português, como o CPF daí. Com ele, a folha vale mais no banco.",
   "provaBotaoFazer": "Fazer a folha",
   "provaFeita": "Folha pronta. Escolha onde guardar ou para quem enviar.",
   "provaErro": "Não consegui fazer a folha. Tente de novo.",
@@ -44,7 +40,6 @@
   "@provaFicheiro": {
     "description": "Nome do arquivo PDF. Só letras minúsculas e traços: acentos e espaços viajam mal no WhatsApp e no e-mail."
   },
-
   "provaFaltam": "{n, plural, =1{Falta 1 mês de contas para essa folha ficar de pé. Continue escrevendo o que você ganha e logo ela fica pronta.} other{Faltam {n} meses de contas para essa folha ficar de pé. Continue escrevendo o que você ganha e logo ela fica pronta.}}",
   "@provaFaltam": {
     "placeholders": {
@@ -55,7 +50,6 @@
   },
   "provaVazio": "Você ainda não escreveu nada do que ganhou. Vá em Minha vida, escreva uma vez, e eu começo a contar.",
   "provaCadeadoLinha": "Isso é do plano Pro · Ative o Pro para fazer o seu comprovante de renda.",
-
   "provaPdfTitulo": "Comprovante de renda",
   "provaPdfNome": "Nome",
   "provaPdfNif": "NIF (número de contribuinte)",

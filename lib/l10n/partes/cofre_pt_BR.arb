@@ -1,56 +1,104 @@
 {
   "@@locale": "pt_BR",
-
   "cofreTitulo": "O cofre do imposto",
   "cofreSemSessao": "Entre no app para ver o seu cofre.",
-
-  "cofreNaoMexe": "Isto não mexe no seu dinheiro. Não tem banco, não tem transferência, não sai nem entra nada da sua conta. É só um caderno: você escreve aqui o que já separou, e eu digo quanto você devia ter.",
-
+  "cofreNaoMexe": "Isto é um caderno: não mexe no seu dinheiro.",
+  "cofreNaoMexeLongo": "Não tem banco, não tem transferência, não sai nem entra nada da sua conta. Você escreve aqui o que já separou, e eu digo quanto você devia ter.",
+  "@cofreNaoMexeLongo": {
+    "description": "A explicacao comprida de que o cofre nao mexe em dinheiro. Fica no fim; em cima esta a versao de uma linha, senao os dois botoes caiam abaixo da dobra a 360 px."
+  },
   "cofreTens": "Você tem no cofre",
   "cofreDeviasTerNome": "Devia ter aqui",
-
   "cofreChega": "Dá certo. Sobra {valor} para você.",
-  "@cofreChega": {"placeholders": {"valor": {"type": "String"}}},
+  "@cofreChega": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
   "cofreChegaAjuda": "Você já separou o que o Estado vai pedir. Deixe esse dinheiro quieto até a hora de pagar.",
-
   "cofreFaltaPouco": "Falta {valor}. Você está quase lá.",
-  "@cofreFaltaPouco": {"placeholders": {"valor": {"type": "String"}}},
+  "@cofreFaltaPouco": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
   "cofreFaltaPoucoAjuda": "Falta pouco. Da próxima vez que receber, separe esse pedacinho e você fica em dia.",
-
   "cofreFaltaMuito": "Faltam {valor}.",
-  "@cofreFaltaMuito": {"placeholders": {"valor": {"type": "String"}}},
+  "@cofreFaltaMuito": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
   "cofreFaltaMuitoAjuda": "Você ainda não separou o que o Estado vai pedir. Não é o fim do mundo: comece a guardar um pouco cada vez que receber.",
-
   "cofreSemContas": "Ainda não sei quanto você ganhou este ano.",
   "cofreSemContasAjuda": "Escreva o que já recebeu e eu digo quanto você devia ter separado para o Estado.",
   "cofreEscreverGanhei": "Escrever o que ganhei",
-
   "cofreComoContei": "Como cheguei nesse número",
   "cofreDoAno": "Você ganhou este ano",
   "cofreParteSs": "Segurança Social (dá aposentadoria e auxílio)",
   "cofreParteIrs": "IRS (o imposto sobre o que você ganha)",
   "cofreParteTotal": "A parte do Estado",
-
   "cofreIsentoSs": "Você está isento da Segurança Social até {data}. Só conto os meses depois disso.",
-  "@cofreIsentoSs": {"placeholders": {"data": {"type": "String"}}},
+  "@cofreIsentoSs": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
   "cofreMinimoSs": "A Segurança Social tem um mínimo de {valor} por mês, mesmo que você ganhe pouco.",
-  "@cofreMinimoSs": {"placeholders": {"valor": {"type": "String"}}},
+  "@cofreMinimoSs": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
   "cofreAproximado": "Os números do IRS de {ano} ainda não estão confirmados. Esta conta é aproximada — serve para você não ser pego de surpresa.",
-  "@cofreAproximado": {"placeholders": {"ano": {"type": "String"}}},
+  "@cofreAproximado": {
+    "placeholders": {
+      "ano": {
+        "type": "String"
+      }
+    }
+  },
   "cofreEstimativa": "Isto é uma estimativa (uma conta aproximada, feita com o que você escreveu). Não é a conta oficial das Finanças.",
-
   "cofreOuvir": "Você tem {saldo} no cofre do imposto. Devia ter {devia}. {fecho}",
-  "@cofreOuvir": {"placeholders": {"saldo": {"type": "String"}, "devia": {"type": "String"}, "fecho": {"type": "String"}}},
-
+  "@cofreOuvir": {
+    "placeholders": {
+      "saldo": {
+        "type": "String"
+      },
+      "devia": {
+        "type": "String"
+      },
+      "fecho": {
+        "type": "String"
+      }
+    }
+  },
   "cofreBotaoPor": "Separei",
-  "cofreBotaoTirar": "Tirei de lá",
-
+  "cofreBotaoTirar": "Tirei",
   "cofreListaTitulo": "O que você já anotou",
   "cofreVazio": "Você ainda não anotou nada. Quando separar dinheiro, escreva aqui quanto foi.",
   "cofreApagarPergunta": "Apagar {valor} de {data}?",
-  "@cofreApagarPergunta": {"placeholders": {"valor": {"type": "String"}, "data": {"type": "String"}}},
+  "@cofreApagarPergunta": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      },
+      "data": {
+        "type": "String"
+      }
+    }
+  },
   "cofreApagado": "Apaguei.",
-
   "cofreMotivoGuardei": "Guardei",
   "cofreMotivoGuardeiAjuda": "Separei dinheiro para o Estado.",
   "cofreMotivoPagueiSs": "Paguei a Segurança Social",
@@ -60,15 +108,26 @@
   "cofreMotivoPrecisei": "Precisei",
   "cofreMotivoPreciseiAjuda": "Tirei do cofre para outra coisa.",
   "cofreMotivoAcerto": "Acerto de contas",
-
   "cofreFolhaPor": "Separei",
   "cofreFolhaTirar": "Tirei de lá",
   "cofreQuanto": "Quanto foi",
   "cofrePorque": "Por quê?",
   "cofreVaiApontarPor": "Vou anotar que você separou {valor}.",
-  "@cofreVaiApontarPor": {"placeholders": {"valor": {"type": "String"}}},
+  "@cofreVaiApontarPor": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
   "cofreVaiApontarTirar": "Vou anotar que você tirou {valor} do cofre.",
-  "@cofreVaiApontarTirar": {"placeholders": {"valor": {"type": "String"}}},
+  "@cofreVaiApontarTirar": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
   "cofreTirasMaisDoQueTens": "Você está tirando mais do que anotou. Não tem problema — só confira o número.",
   "cofreFaltaValor": "Escreva quanto foi.",
   "cofreErroGuardar": "Não consegui anotar. Tente outra vez.",

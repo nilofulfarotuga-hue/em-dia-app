@@ -170,7 +170,13 @@ class _CofreScreenState extends State<CofreScreen> {
                 const SizedBox(height: 16),
               ],
 
-              // 1. O que isto é, antes de qualquer número.
+              // 1. O que isto é, antes de qualquer número — numa linha só.
+              //
+              // A frase comprida estava aqui e empurrava os dois botões para
+              // baixo da dobra a 360 px (a fábrica de fotos provou-o: o toque
+              // no botão falhou com "Found 0 widgets", porque numa ListView o
+              // que está abaixo da dobra nem chega a ser construído). A frase
+              // toda mudou-se para o fim, ao pé de "como é que eu contei".
               _NotaAzul(
                 l.cofreNaoMexe,
                 icone: Icons.menu_book_rounded,
@@ -211,6 +217,10 @@ class _CofreScreenState extends State<CofreScreen> {
               ),
 
               // 4. De onde saiu o número. Quem confia salta; quem desconfia lê.
+              const SizedBox(height: 16),
+              Text(l.cofreNaoMexeLongo,
+                  style: Theme.of(context).textTheme.bodyMedium!
+                      .copyWith(color: AppColors.textSecondary)),
               if (!conta.semRendimento) ...[
                 TituloSeccao(l.cofreComoContei),
                 _CartaoDaConta(

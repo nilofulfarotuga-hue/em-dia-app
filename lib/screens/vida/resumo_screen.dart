@@ -78,11 +78,13 @@ class _ResumoScreenState extends State<ResumoScreen> {
     final aCarregarPrimeira = store.aCarregar && !store.temDados;
     final erroSemDados = !store.aCarregar && store.erro != null && !store.temDados;
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l.resumoTitulo)),
-      body: RefreshIndicator(
-        onRefresh: _carregar,
-        child: ListView(
+    // Sem Scaffold nem AppBar proprios: esta tela vive DENTRO da aba "Sobra" da
+    // tela da vida, que ja tem barra de titulo e barra de separadores. Com os
+    // dois, ficavam ~150 px de cabecalhos empilhados antes do primeiro numero —
+    // apanhado pela fabrica de fotos em vida_sobra_bom_*.
+    return RefreshIndicator(
+      onRefresh: _carregar,
+      child: ListView(
           physics: const AlwaysScrollableScrollPhysics(),
           padding: paddingEcra,
           children: [
@@ -133,7 +135,6 @@ class _ResumoScreenState extends State<ResumoScreen> {
             ],
           ],
         ),
-      ),
     );
   }
 

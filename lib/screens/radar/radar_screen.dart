@@ -240,7 +240,12 @@ class _LinhaContrato extends StatelessWidget {
                             children: [
                               Text(contrato.nome,
                                   style: t.titleMedium,
-                                  maxLines: 1,
+                                  // Duas linhas: é o nome do contrato que diz
+                                  // a quem se tem de ligar. Com uma só, a
+                                  // linha em destaque saía "Internet e ..."
+                                  // nos telemóveis pequenos (fábrica de fotos,
+                                  // radar_lista_pequeno_br).
+                                  maxLines: 2,
                                   overflow: TextOverflow.ellipsis),
                               Text(contrato.fornecedor ?? l.radarSemFornecedor,
                                   style: t.bodySmall,
@@ -250,14 +255,28 @@ class _LinhaContrato extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        // O valor tem tecto de largura para não empurrar o
-                        // nome para fora: "1.234,56 € por mês" parte-se em
-                        // duas linhas em vez de partir o ecrã.
+                        // O valor e o "por mês" em DUAS linhas, não numa só.
+                        // Com "1.234,56 € por mês" tudo junto, o texto partia
+                        // onde calhava e roubava largura ao nome — e era o
+                        // nome que ficava com reticências, logo na linha que
+                        // exige acção. Assim o preço ocupa o que precisa e
+                        // nem um caracter a mais.
                         ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 104),
+                          constraints: const BoxConstraints(maxWidth: 92),
                           child: contrato.valorMensal != null
-                              ? Text(l.radarPorMes(moeda(contrato.valorMensal!)),
-                                  textAlign: TextAlign.end, style: t.titleMedium)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(moeda(contrato.valorMensal!),
+                                        textAlign: TextAlign.end,
+                                        maxLines: 1,
+                                        style: t.titleMedium),
+                                    Text(l.radarPorMesCurto,
+                                        textAlign: TextAlign.end,
+                                        style: t.bodySmall!
+                                            .copyWith(color: AppColors.textSecondary)),
+                                  ],
+                                )
                               : Text(l.radarSemValor,
                                   textAlign: TextAlign.end, style: t.bodySmall),
                         ),

@@ -187,8 +187,20 @@ class _ValeAPenaScreenState extends State<ValeAPenaScreen> {
                 ? l.vpFaltaConsumo
                 : null;
 
+    // Com o teclado aberto, a resposta ficava TODA abaixo da dobra a 360 e a
+    // 390 px: a pessoa escrevia os 18 € e os 12 km e não via número nenhum —
+    // e escrever com o teclado aberto é exactamente o que ela faz. Apanhado
+    // pela fábrica de fotos (vale_sobra_bem_pequeno_teclado_br).
+    //
+    // A barra em baixo só existe ENQUANTO o teclado está aberto: assim não
+    // repete o número quando ele já se vê no cartão.
+    final tecladoAberto = MediaQuery.of(context).viewInsets.bottom > 0;
+
     return Scaffold(
       appBar: AppBar(title: Text(l.vpTitulo)),
+      bottomNavigationBar: (conta != null && tecladoAberto)
+          ? _BarraResposta(conta: conta)
+          : null,
       body: ListView(
         padding: paddingEcra,
         children: [
@@ -430,7 +442,11 @@ class _CartaoResposta extends StatelessWidget {
 
   /// Zero escreve-se "0,00 €"; o resto leva o sinal de menos, para se ver que
   /// aquilo saiu do bolso.
-  String _menos(double valor) => valor == 0 ? moeda(0) : '− ${moeda(valor)}';
+  // O MESMO sinal de menos do resto do cartao. Estava aqui o menos tipografico
+  // (U+2212) e no numero grande o hifen do moeda(): lado a lado no mesmo cartao
+  // viam-se dois tracos de larguras diferentes (fabrica de fotos,
+  // vale_perde_pequeno_br).
+  String _menos(double valor) => valor == 0 ? moeda(0) : '-${moeda(valor)}';
 }
 
 /// Campo de número com rótulo, sufixo e ajuda. Aceita vírgula e ponto, porque
@@ -514,6 +530,55 @@ class _Pilula extends StatelessWidget {
                   ),
                 ),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A resposta em pequeno, colada ao teclado.
+///
+/// Não é um resumo bonito: é o número que a pessoa está a tentar ver enquanto
+/// escreve. Mesma cor e mesma palavra do cartão grande, para não parecerem
+/// duas contas diferentes.
+class _BarraResposta extends StatelessWidget {
+  final ContaDaCorrida conta;
+  const _BarraResposta({required this.conta});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
+    final t = Theme.of(context).textTheme;
+    final fundo = switch (conta.nivel) {
+      NivelSobra.bem => AppColors.emDiaClaro,
+      NivelSobra.pouco => AppColors.surface2,
+      NivelSobra.perde => AppColors.passouClaro,
+    };
+    final forte = switch (conta.nivel) {
+      NivelSobra.bem => AppColors.primaryDark,
+      NivelSobra.pouco => AppColors.textPrimary,
+      NivelSobra.perde => AppColors.passou,
+    };
+    return Material(
+      color: fundo,
+      child: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(l.vpFicaParaTi,
+                    style: t.titleSmall!.copyWith(color: forte),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis),
+              ),
+              const SizedBox(width: 10),
+              Text(moeda(conta.sobra),
+                  key: const Key('vp_sobra_barra'),
+                  style: t.headlineSmall!.copyWith(color: forte, fontWeight: FontWeight.w800)),
             ],
           ),
         ),

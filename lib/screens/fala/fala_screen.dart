@@ -445,6 +445,13 @@ class _Resposta extends StatelessWidget {
             ),
             const SizedBox(height: 14),
           ],
+          // O botao de ouvir vem ANTES do texto, e nao depois.
+          //
+          // Estava no fim do cartao, e a 360 px ficava fora do ecra — logo o
+          // botao que serve exactamente quem nao le era o unico que essa
+          // pessoa nao via (fabrica de fotos, fala_com_resposta_pequeno_br).
+          BotaoOuvir(etiqueta: _etiquetaResposta, texto: texto),
+          const SizedBox(height: 6),
           Text(
             texto,
             style: const TextStyle(
@@ -454,7 +461,7 @@ class _Resposta extends StatelessWidget {
               color: AppColors.textPrimary,
             ),
           ),
-          BotaoOuvir(etiqueta: _etiquetaResposta, texto: texto),
+          const SizedBox(height: 8),
         ],
       ),
     );

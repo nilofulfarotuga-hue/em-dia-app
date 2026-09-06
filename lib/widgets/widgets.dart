@@ -257,18 +257,36 @@ class Cadeado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!trancado) return child;
-    return Stack(
-      children: [
-        IgnorePointer(child: Opacity(opacity: 0.45, child: child)),
-        Positioned.fill(
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: AppTheme.cantos,
-              onTap: aoTocar,
-              child: Center(
+    // O crachá fica ACIMA do que está trancado, não por cima.
+    //
+    // Era um Stack com o crachá ao centro, e a fábrica de fotos apanhou o
+    // estrago em dois sítios ao mesmo tempo: na prova de rendimento tapava por
+    // completo o campo "O teu nome completo" (quem via o ecrã trancado julgava
+    // que só havia um campo), e no radar cortava ao meio a própria frase que
+    // vendia o Pro. Um cadeado que esconde aquilo que está a tentar vender não
+    // serve para nada.
+    // O `alturaFixa` decide como o filho se encaixa. Sem isto, um ecrã inteiro
+    // trancado (que por dentro usa Expanded) rebentava com "RenderFlex children
+    // have non-zero flex but incoming height constraints are unbounded": o
+    // Column com mainAxisSize.min passa altura infinita ao filho, e o Expanded
+    // lá dentro não sabe expandir dentro do infinito. Quando há altura, dá-se
+    // ao filho o resto do ecrã; quando não há (um cartão dentro de uma lista),
+    // encolhe-se à volta dele.
+    return LayoutBuilder(builder: (context, limites) {
+      final alturaFixa = limites.maxHeight.isFinite;
+      return Semantics(
+        button: aoTocar != null,
+        label: linha,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: alturaFixa ? MainAxisSize.max : MainAxisSize.min,
+          children: [
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: AppTheme.cantosPequenos,
+                onTap: aoTocar,
                 child: Container(
-                  margin: const EdgeInsets.all(12),
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                   decoration: BoxDecoration(
                     color: AppColors.cadeadoClaro,
@@ -280,7 +298,7 @@ class Cadeado extends StatelessWidget {
                     children: [
                       const Icon(Icons.lock_rounded, color: AppColors.cadeado, size: 20),
                       const SizedBox(width: 8),
-                      Flexible(
+                      Expanded(
                         child: Text(linha,
                             style: const TextStyle(
                                 fontFamily: AppTheme.fonte,
@@ -288,15 +306,23 @@ class Cadeado extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.cadeado)),
                       ),
+                      if (aoTocar != null)
+                        const Icon(Icons.chevron_right_rounded, color: AppColors.cadeado, size: 20),
                     ],
                   ),
                 ),
               ),
             ),
-          ),
+            const SizedBox(height: 10),
+            // Baço e sem toque: vê-se o que se ganha, não se mexe.
+            if (alturaFixa)
+              Expanded(child: IgnorePointer(child: Opacity(opacity: 0.45, child: child)))
+            else
+              IgnorePointer(child: Opacity(opacity: 0.45, child: child)),
+          ],
         ),
-      ],
-    );
+      );
+    });
   }
 }
 

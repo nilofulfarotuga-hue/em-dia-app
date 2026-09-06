@@ -372,6 +372,11 @@ class _CamposDaPessoa extends StatelessWidget {
           decoration: InputDecoration(
             labelText: l.provaNifCampo,
             helperText: l.provaNifAjuda,
+            // Sem isto, a ajuda fica numa linha só e o InputDecoration corta-a
+            // em silêncio: lia-se "Podes deixar em branco. Com ele, a folha
+            // vale mais..." e a parte que interessa nunca aparecia (fábrica de
+            // fotos, prova_com_dados_grande_pt).
+            helperMaxLines: 2,
           ),
         ),
       ],

@@ -1,43 +1,79 @@
 {
   "@@locale": "pt",
-
   "radarTitulo": "Fim da fidelização",
   "radarAtalho": "Fim da fidelização",
   "radarAtalhoAjuda": "Vê quando cada contrato te larga e liga a tempo.",
-
   "radarExplicacao": "Fidelização é o tempo em que ficas preso a um contrato (não podes sair sem pagar uma multa). O telemóvel, a internet e o ginásio costumam prender-te 24 meses. Quando esse tempo acaba, a empresa renova sozinha e sobe o preço, sem te dizer nada.",
   "radarOQueFazer": "O que fazer: umas duas semanas antes da data, liga à empresa e pede um preço melhor. Se não derem, muda para outra — a partir da data sais quando quiseres e não pagas multa nenhuma.",
   "radarJanela": "Aqui em baixo estão os contratos que acabam nos próximos {dias} dias e os que acabaram há pouco. Os que acabaram ainda dão para negociar.",
-  "@radarJanela": { "placeholders": { "dias": { "type": "int" } } },
+  "@radarJanela": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
   "radarJanelaSemNumero": "Aqui em baixo estão os contratos que estão quase a acabar e os que acabaram há pouco. Os que acabaram ainda dão para negociar.",
-
   "radarQuantos": "{n, plural, =1{1 contrato} other{{n} contratos}}",
-  "@radarQuantos": { "placeholders": { "n": { "type": "int" } } },
-
+  "@radarQuantos": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "radarFaltamDias": "{dias, plural, =1{Falta 1 dia} other{Faltam {dias} dias}}",
-  "@radarFaltamDias": { "placeholders": { "dias": { "type": "int" } } },
+  "@radarFaltamDias": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
   "radarAcabaHoje": "Acaba hoje",
   "radarAcabaAmanha": "Acaba amanhã",
   "radarAcabouOntem": "Acabou ontem",
   "radarAcabouHaDias": "{dias, plural, =1{Acabou há 1 dia} other{Acabou há {dias} dias}}",
-  "@radarAcabouHaDias": { "placeholders": { "dias": { "type": "int" } } },
-
+  "@radarAcabouHaDias": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
   "radarAcabaEm": "Acaba a {data}",
-  "@radarAcabaEm": { "placeholders": { "data": { "type": "String" } } },
+  "@radarAcabaEm": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
   "radarAcabouEm": "Acabou a {data}",
-  "@radarAcabouEm": { "placeholders": { "data": { "type": "String" } } },
-
+  "@radarAcabouEm": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
   "radarPorMes": "{valor} por mês",
-  "@radarPorMes": { "placeholders": { "valor": { "type": "String" } } },
+  "radarPorMesCurto": "por mês",
+  "@radarPorMesCurto": {
+    "description": "So \"por mes\", por baixo do valor. O valor e a etiqueta em linhas separadas deixam o nome do contrato com a largura toda."
+  },
+  "@radarPorMes": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
   "radarSemValor": "Não escreveste o valor",
   "radarSemFornecedor": "Não escreveste a empresa",
-
   "radarLigarAgora": "Liga a esta e pede um preço melhor.",
-
   "radarVazio": "Ainda não me disseste quando acaba nenhum contrato. Vai às tuas contas, abre uma (o telemóvel, a internet, o ginásio) e escreve a data em que a fidelização acaba — está na fatura ou no papel do contrato. A partir daí aviso-te a tempo de negociares.",
-
   "radarErro": "Não consegui ir buscar os teus contratos. Tenta outra vez daqui a bocado.",
-
   "radarCadeado": "Isto é do plano Pro — toca para ver",
   "radarCadeadoOQueGanhas": "Com o Pro aparece aqui a lista dos teus contratos presos, com a data em que cada um te larga e quantos dias faltam. Aviso-te a tempo de ligares e pedires um preço melhor."
 }

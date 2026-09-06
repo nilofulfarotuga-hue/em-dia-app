@@ -228,14 +228,15 @@ void main() {
     await conferirEmPortugues(tester, _valeComCarro,
         antes: escreveCorrida(pagam: '18', km: '12', minutos: '25', rolarAteAResposta: true));
     // "Para onde foi o dinheiro", parcela a parcela. O sinal de menos é o
-    // MENOS de verdade (U+2212), não o hífen — está escrito com o código para
-    // ninguém o trocar sem dar por isso.
+    // MESMO do resto do cartão: o hífen que o moeda() usa. Era o menos
+    // tipográfico (U+2212) e viam-se dois traços de larguras diferentes no
+    // mesmo cartão — corrigido a 2026-09-06 depois de a foto o mostrar.
     expect(find.text('Pagam-te'), findsOneWidget);
     expect(find.text('18,00 €'), findsOneWidget);
-    expect(find.text('− 1,65 €'), findsOneWidget); // combustível
-    expect(find.text('− 0,60 €'), findsOneWidget); // desgaste
-    expect(find.text('− 2,70 €'), findsOneWidget); // Segurança Social
-    expect(find.text('− 4,14 €'), findsOneWidget); // IRS retido na hora
+    expect(find.text('-1,65 €'), findsOneWidget); // combustível
+    expect(find.text('-0,60 €'), findsOneWidget); // desgaste
+    expect(find.text('-2,70 €'), findsOneWidget); // Segurança Social
+    expect(find.text('-4,14 €'), findsOneWidget); // IRS retido na hora
     // 8,91 € em 25 minutos = 21,38 € por hora.
     expect(find.text('São 21,38 € por hora'), findsOneWidget);
   });

@@ -1975,7 +1975,11 @@
   "carroFormOndeEstao": "Estes dois números estão no papel do carro (o certificado de matrícula, o antigo livrete).",
   "cofreTitulo": "O cofre do imposto",
   "cofreSemSessao": "Entra na app para veres o teu cofre.",
-  "cofreNaoMexe": "Isto não mexe no teu dinheiro. Não há banco, não há transferência, não sai nem entra nada da tua conta. É só um caderno: tu escreves aqui o que já puseste de lado, e eu digo-te quanto devias ter.",
+  "cofreNaoMexe": "Isto é um caderno: não mexe no teu dinheiro.",
+  "cofreNaoMexeLongo": "Não há banco, não há transferência, não sai nem entra nada da tua conta. Tu escreves aqui o que já puseste de lado, e eu digo-te quanto devias ter.",
+  "@cofreNaoMexeLongo": {
+    "description": "A explicacao comprida de que o cofre nao mexe em dinheiro. Fica no fim; em cima esta a versao de uma linha, senao os dois botoes caiam abaixo da dobra a 360 px."
+  },
   "cofreTens": "Tens no cofre",
   "cofreDeviasTerNome": "Devias ter aqui",
   "cofreChega": "Chega. Sobram-te {valor}.",
@@ -2053,7 +2057,7 @@
     }
   },
   "cofreBotaoPor": "Pus de lado",
-  "cofreBotaoTirar": "Tirei de lá",
+  "cofreBotaoTirar": "Tirei",
   "cofreListaTitulo": "O que já apontaste",
   "cofreVazio": "Ainda não apontaste nada. Quando puseres dinheiro de lado, escreve aqui quanto foi.",
   "cofreApagarPergunta": "Apagar {valor} de {data}?",
@@ -2353,6 +2357,10 @@
     }
   },
   "radarPorMes": "{valor} por mês",
+  "radarPorMesCurto": "por mês",
+  "@radarPorMesCurto": {
+    "description": "So \"por mes\", por baixo do valor. O valor e a etiqueta em linhas separadas deixam o nome do contrato com a largura toda."
+  },
   "@radarPorMes": {
     "placeholders": {
       "valor": {
@@ -2747,8 +2755,9 @@
   "resumoTipoOutro": "Outro",
   "saidasFaltaPagar": "Este mês falta pagar",
   "saidasTudoPago": "Este mês está tudo pago. Podes descansar.",
-  "saidasMaisSemValor": "E ainda há {n} contas que não sabem o valor.",
+  "saidasMaisSemValor": "{n, plural, =1{E ainda há uma conta que não sabe o valor.} other{E ainda há {n} contas que não sabem o valor.}}",
   "@saidasMaisSemValor": {
+    "description": "Quantas contas do mes nao tem valor escrito. Tem de ser plural do ICU: com n=1 dizia \"1 contas\".",
     "placeholders": {
       "n": {
         "type": "int"
