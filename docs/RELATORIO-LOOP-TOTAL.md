@@ -230,3 +230,19 @@ E uma regra que ficou escrita no `CLAUDE.md` e que vale mais do que qualquer
 destes números: **nunca `git add -A` nesta pasta.** Houve duas sessões a
 trabalhar ao mesmo tempo, e um `git add -A` levou trabalho por acabar de uma
 para dentro de um commit da outra.
+
+---
+
+## Reabertura (6 de setembro, 19h40 → 20h55) — "MISSAO-CONCLUIDA só vale quando uma pessoa consegue entrar"
+
+Uma linha por bloco: o que ficou feito, a prova, e o que falhou com a causa real.
+
+| # | Ordem | Ficou | Prova | O que não ficou, e porquê |
+|---|---|---|---|---|
+| 1 | Login sem e-mail | **Era leitura errada minha.** Os quatro e-mails estavam `delivered` na Resend e na caixa; o código entrou. Ferramenta `emails.py` só mostrava a cauda de falhas; conector do Gmail com índice parado. | `docs/provas/login-provado-2026-09-06.md` (Resend `225334cd…`, Gmail "7:24 PM", código 689238 aceite) | — |
+| 2 | Não eram pessoas | `robots.txt` + `noindex` + `X-Robots-Tag` (e97dc6a); Turnstile no pedido de código (app 6683646/2a63b8d) ligado ao Auth; **sem token 400 `captcha_failed`, com token 200 + e-mail entregue**; registo **aberto** e lista de convidados **apagada** (migração 0028). | `docs/provas/turnstile-2026-09-06.md` | O modo *invisible* foi experimentado e rejeitado (quem falha fica sem saída). A caixa visível não aparecia quando o invisível falhava — corrigido em 2a63b8d. |
+| 3 | 500 feio | A app mostra frase limpa para `email_que_nao_recebe`; `registo_fechado` já não existe. | `lib/stores/sessao_store.dart`, `lib/screens/login/login_screen.dart` | — |
+| 4 | Lista "para o Danilo" pelo agente de clique | Segurança dos Dados **enviada (HTTP 200)** com o CSV exportado da consola; página "Apagar a conta" publicada; revisor da Google criado no servidor (`revisor.google@boraguarda.com`, palavra-passe, único e-mail com esse campo, login por REST 200); minuta da DGEG preenchida + rascunho no Gmail; widget Turnstile; chaves nos secrets. | `docs/provas/play/data-safety-20260906-195929.md`, `docs/PENDENTE-DANILO.md` | **Perfil de pagamentos:** caixa aberta no ecrã (a Google não deixa trocar depois; o resto é bancário). **Domínio:** a compra é na conta nilofulfarotuga (onde estão as Pages); o Chrome está na boraappbora sem cartão. **DGEG:** assinatura. **InvoiceXpress/Enable Banking:** criar conta é ato da pessoa. **Instruções do revisor na Play:** a consola (AngularDart) não aceitou o meu clique em "Adicione detalhes". |
+| 5 | Prova final em vídeo | **Ecrã cinzento do guia morto** (16585f5, provado ao vivo). Vídeo de 59 s: onboarding 5 perguntas → simulação → guia → **painel**. | `docs/provas/entrada-2026-09-06/entrada-ate-ao-painel.mp4`, `docs/provas/prova-final-entrada-2026-09-06.md` | **O telemóvel.** Sem aparelho ligado nem emulador que caiba em 4 GB. Build na Play interna (2a63b8d). O e-mail/código não estão dentro do vídeo porque o Turnstile recusa browsers automáticos e desligar o captcha foi recusado pela camada de permissões. |
+
+**Estado:** missão ABERTA à espera da prova no telemóvel (linha de 20h55 em `docs/MARCOS.md`). Tudo o resto está fechado e provado.
