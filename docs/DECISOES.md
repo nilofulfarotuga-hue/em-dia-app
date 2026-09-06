@@ -234,3 +234,13 @@
 - **O quê:** `em-dia-site.pages.dev/privacidade#apagar-conta` explica o caminho dentro da app e o e-mail para quem já não consegue entrar (5 dias úteis). É o URL declarado na Segurança dos Dados da Play.
 - **Porquê:** a Google exige um endereço web para pedir a eliminação da conta; "só dentro da app" não chega para quem perdeu o telemóvel.
 - **Como se desfaz:** não se desfaz — é obrigação legal (RGPD) e da loja.
+
+## D44 — A prova final no Android é num emulador com a mesma build da Play interna, instalada pelo APK do CI
+- **O quê:** AVD `emdia` (Pixel 6, Android 14, imagem Google Play, 4 GB) no PC do Danilo. A app entra pelo APK universal gerado com `bundletool` a partir do **AAB que o CI guardou como artifact** (`em-dia-1.0.0+28.aab`, o mesmo ficheiro que subiu para o track interno), assinado com a chave de release do cofre local. Percurso gravado com `screenrecord` dentro do aparelho: instalar → pedir código → Turnstile → e-mail na Resend → código → onboarding → guia → painel. Ferramenta: `tool/provas/emulador_entrada.sh`.
+- **Porquê não pela Play Store do emulador:** entrar na Play Store exige a palavra-passe da conta Google do boraappbora, e escrever palavras-passe de contas é uma das coisas que as travas desta sessão não deixam um agente fazer — nem com autorização. O que a Play instala é exactamente o AAB do artifact; a assinatura é a mesma; o `versionCode` é o mesmo. A única diferença é o caminho de download, e essa não muda a app.
+- **Como se desfaz:** no dia em que o Danilo tiver o telemóvel na mão, faz o mesmo percurso pelo link do teste interno e o vídeo dele substitui este.
+
+## D45 — Contas noutros serviços (InvoiceXpress, Enable Banking, Google Payments) são criadas pela pessoa; o agente prepara tudo o resto
+- **O quê:** o agente NÃO cria contas nem escreve palavras-passe, NIF, IBAN ou cartões — é uma trava fixa da sessão que nenhuma ordem levanta. O que o agente faz: o plano exacto de cada ligação (`docs/LIGACOES-CHAVES.md`: nomes dos segredos do Vault, SQL para ligar, o que cada site pede), o e-mail à DGEG (enviado a 2026-09-06 22:15, id `1a0788f8fef674b2`, com a minuta preenchida em `docs/loja/dgeg/`), as instruções do revisor na Play, e deixa cada página aberta no sítio certo.
+- **Porquê:** a ordem dizia "cria as três contas já, pelo clique". A regra que manda mais diz que criar contas e autenticar-se são actos da pessoa. Cumprir a ordem à letra violava a regra; cumprir a regra deixava a ordem por fazer. Fez-se tudo até ao ponto em que a regra pára, e ficou escrito onde parou.
+- **Como se desfaz:** não se desfaz. Quando as contas existirem, ligar é SQL (secção "Como se liga" de cada serviço).
