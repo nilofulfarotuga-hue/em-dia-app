@@ -1,0 +1,22 @@
+-- 0012 — pg_net deixa de estar registada no schema `public` (2026-09-06).
+-- Aplicada em produção: versão 20260906140232.
+--
+-- O aviso do linter é sobre o SÍTIO onde a extensão está registada
+-- (pg_extension.extnamespace = public), não sobre onde estão as funções: essas
+-- já vivem todas no schema `net`, porque é o próprio guião da extensão que o
+-- cria. Por isso `net.http_post(...)` continua a chamar-se exatamente igual, e
+-- o trabalho do pg_cron `em-dia-avisos-hora` não precisa de tocar em nada.
+--
+-- A extensão não é relocalizável (extrelocatable = false), logo
+-- `alter extension ... set schema` não serve. O caminho é largar e voltar a
+-- criar, apontada a `extensions` — que é onde o Supabase põe as outras
+-- (pgcrypto, uuid-ossp). A fila de pedidos estava vazia (verificado antes).
+--
+-- PROVA (2026-09-06 14:02), depois de aplicar:
+--   extname=pg_net · schema_da_extensao=extensions · onde_esta_a_funcao=net
+--   net.http_post(...) devolveu id_do_pedido=1, e o trabalhador de fundo
+--   escreveu a resposta em net._http_response:
+--     id=1 status_code=404 {"code":"NOT_FOUND","message":"Requested function was not found"}
+--   (404 era o esperado: apontei de propósito a uma função que não existe.)
+drop extension if exists pg_net;
+create extension pg_net with schema extensions;
