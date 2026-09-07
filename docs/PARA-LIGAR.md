@@ -12,7 +12,7 @@ todas têm o interruptor identificado e a prova de que funcionam sem ele.
 
 ---
 
-## 1. Caixa de correio das faturas — falta o domínio
+## 1. Caixa de correio das faturas — falta ligar o subdomínio
 
 **O que faz:** cada pessoa ganha um endereço `<nome>-<8 letras>@contas.<domínio>`
 e reencaminha para lá as faturas que já lhe chegam por e-mail. Elas aparecem na
@@ -30,15 +30,19 @@ nos registos MX dela. Na conta há `boraguarda.com`, `guardafcsad.com` e
 `jaiagarwala.com` — nenhum é do Em Dia, e o primeiro é o que manda os códigos de
 entrada da app. Pôr-lhe um catch-all arriscava o login de toda a gente.
 
-**O que falta (Danilo):** comprar um domínio. A 6 de setembro de 2026,
-`em-dia.pt` estava livre; `emdia.pt` está registado por outra empresa desde
-26/12/2025. A Cloudflare Registrar não vende `.pt` — é num registador português
-(dns.pt, Amen, PTisp), cerca de 10 a 15 € por ano. **É um pagamento com cartão,
-por isso é teu.**
+**Decisão do Danilo (2026-09-07): não se compra domínio.** O Em Dia vive em
+subdomínios de `boraguarda.com`: site `emdia.boraguarda.com`, app
+`app.emdia.boraguarda.com`, painel `admin.emdia.boraguarda.com`, remetente
+`emdia@boraguarda.com`. (A 6 de setembro tinha-se visto que `em-dia.pt` estava
+livre e `emdia.pt` era de outra empresa; comprar deixou de ser plano.)
 
-**Depois disso, os quatro passos estão em
-`cloudflare/correio-faturas/LEIA-ME.md`** e o último é uma linha de SQL. A app
-acende sozinha, sem publicar versão nova.
+**O que falta:** a caixa das faturas fica num subdomínio dessa mesma zona — o
+nome exacto (ex.: `contas.emdia.boraguarda.com`) está **por confirmar** pelo
+Danilo, e é preciso confirmar que o Email Routing da Cloudflare aceita esse
+subdomínio nesta conta. Liga-se só a esse subdomínio, nunca com catch-all na
+raiz de `boraguarda.com`, para não tocar nos códigos de entrada. Os quatro
+passos estão em `cloudflare/correio-faturas/LEIA-ME.md` e o último é uma linha
+de SQL (`caixa_faturas_dominio`). A app acende sozinha, sem publicar versão nova.
 
 ---
 

@@ -34,7 +34,7 @@ import urllib.request
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 PAGINA = "https://www.imt-ip.pt/veiculos/pesquisa-centros-inspecao/"
-AGENTE = "EmDia/1.0 (+https://em-dia-site.pages.dev; app dos recibos verdes)"
+AGENTE = "EmDia/1.0 (+https://emdia.boraguarda.com; app dos recibos verdes)"
 SAIDA = "docs/dados/centros_inspecao.json"
 MINIMO = 180          # travao de queda: abaixo disto, o parser partiu
 

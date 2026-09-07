@@ -3,23 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Mudança de morada (2026-09-07): o site vive em emdia.boraguarda.com. O
+     em-dia-site.pages.dev continua a ser o projeto da Cloudflare Pages, mas quem
+     lá chegar é levado para o endereço novo, com caminho, pesquisa e #âncora. -->
+<script>
+(function(){if(location.hostname==='em-dia-site.pages.dev'){location.replace('https://emdia.boraguarda.com'+location.pathname+location.search+location.hash);}})();
+</script>
 <title>Em Dia — Calculadora de recibo verde grátis e avisos de Segurança Social, IVA, IRS e carro</title>
 <meta name="description" content="Calcula o teu recibo verde em segundos (retenção 23%, IVA 23% ou isento) e sabe quanto guardar para a Segurança Social e o IRS. A app Em Dia avisa-te antes de cada prazo. Grátis 30 dias, sem cartão.">
-<link rel="canonical" href="https://em-dia-site.pages.dev/">
+<link rel="canonical" href="https://emdia.boraguarda.com/">
 <meta name="theme-color" content="#16A34A">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:site_name" content="Em Dia">
 <meta property="og:title" content="Nunca mais levas multa da Segurança Social.">
 <meta property="og:description" content="Calculadora de recibo verde grátis + avisos de Segurança Social, IVA, IRS e do carro. Grátis 30 dias, sem cartão.">
-<meta property="og:url" content="https://em-dia-site.pages.dev/">
-<meta property="og:image" content="https://em-dia-site.pages.dev/assets/img/og.jpg">
+<meta property="og:url" content="https://emdia.boraguarda.com/">
+<meta property="og:image" content="https://emdia.boraguarda.com/assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Nunca mais levas multa da Segurança Social.">
 <meta name="twitter:description" content="Calculadora de recibo verde grátis + avisos de Segurança Social, IVA, IRS e do carro.">
-<meta name="twitter:image" content="https://em-dia-site.pages.dev/assets/img/og.jpg">
+<meta name="twitter:image" content="https://emdia.boraguarda.com/assets/img/og.jpg">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
@@ -29,8 +35,8 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Em Dia",
-  "url": "https://em-dia-site.pages.dev/",
-  "image": "https://em-dia-site.pages.dev/assets/img/og.jpg",
+  "url": "https://emdia.boraguarda.com/",
+  "image": "https://emdia.boraguarda.com/assets/img/og.jpg",
   "description": "Assistente do trabalhador independente a recibos verdes em Portugal: calculadora de recibo verde, avisos de Segurança Social, IVA e IRS, e lembretes do carro (inspeção, IUC, seguro).",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Android, Web",
@@ -51,7 +57,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     {"@type": "Question", "name": "A app Em Dia é grátis?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis (painel, calculadora e calendário) ou passar ao Pro por 3,49 € por mês ou 29,90 € por ano."}},
-    {"@type": "Question", "name": "Tenho iPhone. Posso usar o Em Dia?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Abre app-em-dia.pages.dev no Safari e toca em Partilhar e depois em Adicionar ao ecrã principal. Fica como uma app, com os mesmos dados que no Android e no computador."}},
+    {"@type": "Question", "name": "Tenho iPhone. Posso usar o Em Dia?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Abre app.emdia.boraguarda.com no Safari e toca em Partilhar e depois em Adicionar ao ecrã principal. Fica como uma app, com os mesmos dados que no Android e no computador."}},
     {"@type": "Question", "name": "A calculadora de recibo verde está certa?", "acceptedAnswer": {"@type": "Answer", "text": "Usa os números oficiais de 2026: retenção na fonte de 23% (ou 25% por opção, ou dispensa), IVA de 23% ou isenção do artigo 53.º do CIVA. Os valores vêm de uma tabela com a fonte oficial de cada número. É informação geral e não substitui o teu contabilista."}},
     {"@type": "Question", "name": "O que é a retenção na fonte?", "acceptedAnswer": {"@type": "Answer", "text": "É a parte do recibo (23% por norma) que o teu cliente entrega às Finanças por ti. Não é dinheiro perdido: é um adiantamento do teu IRS. Por isso no recibo de 1.000 € recebes 770 € na conta."}},
     {"@type": "Question", "name": "Estou isento de IVA. O que escrevo no recibo?", "acceptedAnswer": {"@type": "Answer", "text": "Escreves a menção obrigatória: IVA - regime de isenção [artigo 53.º do CIVA], código M10. A calculadora mostra-ta pronta a copiar. A isenção vale até 15.000 € de faturação por ano."}},
@@ -290,7 +296,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16A34A" d="M3.6 2.4c-.4.4-.6 1-.6 1.7v15.8c0 .7.2 1.3.6 1.7l.1.1 8.9-8.9v-.2L3.7 2.3l-.1.1z"/><path fill="#F97316" d="M15.5 15.8l-3-3v-.2l3-3 .1.1 3.5 2c1 .6 1 1.5 0 2.1l-3.5 2-.1 0z"/><path fill="#DC2626" d="M15.6 15.7L12.6 12.7 3.6 21.7c.3.3.9.4 1.5 0l10.5-6z"/><path fill="#15803D" d="M15.6 9.6L5.1 3.6c-.6-.4-1.2-.3-1.5 0l9 9 3-3z"/></svg>
         Descarregar na Play Store
       </a>
-      <a class="btn btn-branco" href="https://app-em-dia.pages.dev" data-cta="web">
+      <a class="btn btn-branco" href="https://app.emdia.boraguarda.com" data-cta="web">
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
         Usar no iPhone/computador
       </a>
@@ -543,7 +549,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
     </div>
     <div class="revela">
       <details><summary>A app Em Dia é grátis?</summary><div class="resposta">Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis (painel, calculadora e calendário) ou passar ao Pro por 3,49 € por mês ou 29,90 € por ano.</div></details>
-      <details><summary>Tenho iPhone. Posso usar o Em Dia?</summary><div class="resposta">Sim. Abre <a href="https://app-em-dia.pages.dev">app-em-dia.pages.dev</a> no Safari e toca em «Partilhar» e depois em «Adicionar ao ecrã principal». Fica como uma app, com os mesmos dados que no Android e no computador.</div></details>
+      <details><summary>Tenho iPhone. Posso usar o Em Dia?</summary><div class="resposta">Sim. Abre <a href="https://app.emdia.boraguarda.com">app.emdia.boraguarda.com</a> no Safari e toca em «Partilhar» e depois em «Adicionar ao ecrã principal». Fica como uma app, com os mesmos dados que no Android e no computador.</div></details>
       <details><summary>A calculadora de recibo verde está certa?</summary><div class="resposta">Usa os números oficiais de 2026: retenção na fonte de 23% (ou 25% por opção, ou dispensa), IVA de 23% ou isenção do artigo 53.º do CIVA. Os valores vêm de uma tabela com a fonte oficial de cada número. É informação geral e não substitui o teu contabilista.</div></details>
       <details><summary>O que é a retenção na fonte?</summary><div class="resposta">É a parte do recibo (23% por norma) que o teu cliente entrega às Finanças por ti. Não é dinheiro perdido: é um adiantamento do teu IRS. Por isso no recibo de 1.000 € recebes 770 € na conta.</div></details>
       <details><summary>Estou isento de IVA. O que escrevo no recibo?</summary><div class="resposta">Escreves a menção obrigatória: «IVA - regime de isenção [artigo 53.º do CIVA]», código M10. A calculadora mostra-ta pronta a copiar. A isenção vale até 15.000 € de faturação por ano.</div></details>
@@ -563,7 +569,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16A34A" d="M3.6 2.4c-.4.4-.6 1-.6 1.7v15.8c0 .7.2 1.3.6 1.7l.1.1 8.9-8.9v-.2L3.7 2.3l-.1.1z"/><path fill="#F97316" d="M15.5 15.8l-3-3v-.2l3-3 .1.1 3.5 2c1 .6 1 1.5 0 2.1l-3.5 2-.1 0z"/><path fill="#DC2626" d="M15.6 15.7L12.6 12.7 3.6 21.7c.3.3.9.4 1.5 0l10.5-6z"/><path fill="#15803D" d="M15.6 9.6L5.1 3.6c-.6-.4-1.2-.3-1.5 0l9 9 3-3z"/></svg>
         Descarregar na Play Store
       </a>
-      <a class="btn btn-branco" href="https://app-em-dia.pages.dev" data-cta="web">
+      <a class="btn btn-branco" href="https://app.emdia.boraguarda.com" data-cta="web">
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
         Usar no iPhone/computador
       </a>
@@ -587,7 +593,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
         <li><a href="#calculadora">Calculadora de recibo verde</a></li>
         <li><a href="#precos">Preços</a></li>
         <li><a href="#faq">Perguntas frequentes</a></li>
-        <li><a href="https://app-em-dia.pages.dev">Abrir a app no browser</a></li>
+        <li><a href="https://app.emdia.boraguarda.com">Abrir a app no browser</a></li>
       </ul>
     </div>
     <div>

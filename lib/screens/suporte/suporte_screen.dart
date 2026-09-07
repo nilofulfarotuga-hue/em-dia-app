@@ -22,7 +22,7 @@ import '../../widgets/widgets.dart';
 import '../ia/ia_screen.dart';
 
 const String _urlSubscricoesPlay = 'https://play.google.com/store/account/subscriptions';
-const String _emailSuporte = 'suporte@emdia.pt';
+const String _emailSuporte = 'emdia@boraguarda.com';
 
 /// Tela 8 — Ajuda. Três portas grandes ("Tenho uma dúvida" → IA em modo
 /// suporte · "Algo não funciona" → formulário com logs automáticos ·

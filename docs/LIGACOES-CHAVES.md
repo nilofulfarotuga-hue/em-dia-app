@@ -482,11 +482,12 @@ contrato + KYB + conta de faturação, com preço por pedido a
 2. Registar uma aplicação **Production** (não Sandbox — o objetivo é ver
    movimentos reais das tuas contas): nome «Em Dia», descrição curta, e-mail
    de proteção de dados `boraappbora@gmail.com`, política de privacidade
-   `https://em-dia-site.pages.dev/privacidade` (existe, HTTP 200), termos de
-   serviço → **não existe página de termos ainda** (`/termos` deu 404) —
+   `https://emdia.boraguarda.com/privacidade` (existe; a 6/9 deu HTTP 200 no
+   endereço antigo, que agora redireciona), termos de serviço → **não existe
+   página de termos ainda** (`/termos` deu 404) —
    **falta uma**, mesmo que em restrito não a verifiquem. URL de retorno
    (redirect): a decidir quando se escrever a função; sugestão
-   `https://app-em-dia.pages.dev/banco/retorno`.
+   `https://app.emdia.boraguarda.com/banco/retorno`.
 3. Deixar o browser gerar a chave. O ficheiro `<ID>.pem` cai em Transferências:
    mover **de imediato** para `C:\BoraLocal\_segredos\em-dia\enable-banking\`.
    Nunca para o repo.
@@ -517,7 +518,7 @@ select public.guardar_segredo('enable_banking_app_id',      '<uuid da aplicaçã
 select public.guardar_segredo('enable_banking_private_key', $pem$-----BEGIN PRIVATE KEY-----
 ...
 -----END PRIVATE KEY-----$pem$, 'Enable Banking — chave privada RSA da aplicação (gerada no painel, descarregada uma vez)');
-select public.guardar_segredo('enable_banking_redirect_url', 'https://app-em-dia.pages.dev/banco/retorno', 'Enable Banking — URL de retorno registado no painel');
+select public.guardar_segredo('enable_banking_redirect_url', 'https://app.emdia.boraguarda.com/banco/retorno', 'Enable Banking — URL de retorno registado no painel');
 ```
 
 **Prova das chaves antes de ligar seja o que for:** assinar um JWT com a chave
@@ -613,7 +614,7 @@ a aplicação.
 | https://enablebanking.com/docs/api/linked-accounts/ | 200 | modo restrito = contas próprias, até haver contrato |
 | https://enablebanking.com/docs/faq/ | 200 | preço por volume e mínimo mensal, contrato + KYB para produção pública, «are not checked» em modo restrito |
 | https://enablebanking.com/docs/api/reference/ | 200 | JWT RS256, `kid`, `iss`/`aud`, 86400 s, `api.enablebanking.com` |
-| https://em-dia-site.pages.dev/privacidade · /termos | 200 · 404 | há política de privacidade; não há termos |
+| https://em-dia-site.pages.dev/privacidade · /termos (morada de 6/9; hoje emdia.boraguarda.com) | 200 · 404 | há política de privacidade; não há termos |
 | Base `tgdmgtmknbwhcqoxtjbs` (SELECT) | — | flags a falso, 2 crons, 3 segredos no Vault, 0 preços guardados, 1 corrida em seco |
 | Gmail `boraappbora@gmail.com` (rascunhos) | — | rascunho para a DGEG existe, com `NIF [preencher]` |
 
@@ -647,7 +648,7 @@ dias»); o rascunho do Gmail `r9185747425691357001` (para
 citações); Enable Banking (painel, contas ligadas, FAQ, referência da API:
 RS256, `kid`, `iss`/`aud`, 86400 s, `GET /application`, `POST /auth`,
 `POST /sessions`, `GET /accounts/{id}/transactions`; `/apply-now` 404);
-`em-dia-site.pages.dev/privacidade` 200 e `/termos` 404;
+`em-dia-site.pages.dev/privacidade` 200 e `/termos` 404 (morada de 6/9; hoje `emdia.boraguarda.com`);
 `developers.invoicexpress.com` continua a dar `TLSV1_ALERT_UNRECOGNIZED_NAME`.
 
 **Corrigido no texto:**

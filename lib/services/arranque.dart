@@ -22,8 +22,10 @@ const String turnstileSiteKey = String.fromEnvironment('TURNSTILE_SITE_KEY');
 
 /// O domínio a que o widget do Turnstile está preso (lista de domínios do
 /// widget, na Cloudflare). No Android é obrigatório — o WebView escondido
-/// finge estar nesta página; na web é ignorado.
-const String turnstileBaseUrl = 'https://app-em-dia.pages.dev/';
+/// finge estar nesta página; na web é ignorado. Desde 2026-09-07 a app vive
+/// em app.emdia.boraguarda.com (o app-em-dia.pages.dev só redireciona); este
+/// domínio tem de constar na lista do widget, senão o Android fica sem token.
+const String turnstileBaseUrl = 'https://app.emdia.boraguarda.com/';
 
 /// O revisor da Google Play não tem caixa de e-mail para receber o código, e
 /// sem entrar a Google rejeita a app. Este e-mail (e só este) entra com

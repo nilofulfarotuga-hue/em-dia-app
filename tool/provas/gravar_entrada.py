@@ -33,7 +33,7 @@ import requests
 from playwright.sync_api import sync_playwright
 
 RAIZ = Path(__file__).resolve().parents[2]
-URL = "https://app-em-dia.pages.dev/"
+URL = "https://app.emdia.boraguarda.com/"
 RESEND_KEY = Path(r"C:\BoraLocal\_segredos\em-dia\resend.key").read_text(encoding="utf-8").strip()
 
 

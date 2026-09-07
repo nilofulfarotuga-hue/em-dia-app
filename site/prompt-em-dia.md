@@ -50,7 +50,7 @@ Números legais SÓ os de `supabase/migrations/20260905_0003_seed.sql` (tabela `
 2. **Herói** (100vh antes de 100svh): vídeo muted/autoplay/loop/playsinline/preload=metadata/poster;
    H1 "Nunca mais levas multa da Segurança Social."; sub "A app que te avisa antes de cada prazo: Segurança
    Social, IVA, IRS e o carro. Em português simples, sem letras miúdas."; 2 botões iguais (Play Store · iPhone/
-   computador → app-em-dia.pages.dev); nota "Grátis 30 dias com tudo aberto. Sem cartão."
+   computador → app.emdia.boraguarda.com); nota "Grátis 30 dias com tudo aberto. Sem cartão."
 3. **Os 4 sustos**: SS (dia 20; trimestral jan/abr/jul/out; 21,4% × 70%, mín. 20 €), IVA (15.000 €; 18.750 €
    perde já; 23%), IRS (20 jul/set/dez; coef. 0,75; entrega 1 abr–30 jun), Carro (IPO 4/6/8 anos depois anual;
    TVDE anual a confirmar; IUC mês da matrícula; avisos 30/7 e seguro 45 dias). CTA → calculadora.

@@ -17,6 +17,23 @@
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
+  <!-- Mudança de morada (2026-09-07): a app vive em app.emdia.boraguarda.com e o
+       painel em admin.emdia.boraguarda.com (subdomínios de boraguarda.com; sem
+       domínio próprio). Os *.pages.dev continuam a ser os projetos da Cloudflare
+       Pages, mas quem lá chegar é levado para o endereço novo, com o caminho, a
+       pesquisa e o #fragmento intactos. Corre antes de tudo o resto para não
+       carregar o Flutter à toa; a porta dos robôs (em baixo) fica como estava. -->
+  <script>
+    (function () {
+      var h = location.hostname;
+      var novo = h === 'app-em-dia.pages.dev' ? 'https://app.emdia.boraguarda.com'
+        : h === 'em-dia-admin.pages.dev' ? 'https://admin.emdia.boraguarda.com'
+        : '';
+      if (!novo) return;
+      window.__emDiaMudouDeMorada = true;
+      location.replace(novo + location.pathname + location.search + location.hash);
+    })();
+  </script>
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Em Dia — o assistente de quem trabalha a recibos verdes em Portugal.">
   <!-- A app nao e para ser indexada nem rastreada: a 6 de setembro de 2026 o
@@ -57,12 +74,14 @@
   -->
   <script>
     (function () {
+      // Já vai a caminho da morada nova (script no <head>): não carregar nada.
+      if (window.__emDiaMudouDeMorada) return;
       var ua = navigator.userAgent || '';
       var robo = /bot|crawl|spider|slurp|Google-InspectionTool|Google-Read-Aloud|Storebot|AdsBot|Mediapartners|FeedFetcher|HeadlessChrome|Lighthouse|PTST|Bytespider|facebookexternalhit|Applebot/i.test(ua)
         || (navigator.webdriver === true);
       if (robo) {
         document.addEventListener('DOMContentLoaded', function () {
-          document.body.innerHTML = '<main style="font-family:Inter,system-ui,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1.5rem;color:#0F172A"><h1 style="color:#16A34A">Em Dia</h1><p>Esta é a aplicação, só para pessoas. Para saber o que é o Em Dia, vê o site: <a href="https://em-dia-site.pages.dev/">em-dia-site.pages.dev</a>.</p></main>';
+          document.body.innerHTML = '<main style="font-family:Inter,system-ui,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1.5rem;color:#0F172A"><h1 style="color:#16A34A">Em Dia</h1><p>Esta é a aplicação, só para pessoas. Para saber o que é o Em Dia, vê o site: <a href="https://emdia.boraguarda.com/">emdia.boraguarda.com</a>.</p></main>';
         });
         return;
       }

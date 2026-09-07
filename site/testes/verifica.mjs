@@ -1,9 +1,9 @@
 // Verificador do site público Em Dia — Node ≥ 18, sem dependências.
-// Uso: node site/testes/verifica.mjs [URL base]   (por omissão https://em-dia-site.pages.dev)
+// Uso: node site/testes/verifica.mjs [URL base]   (por omissão https://emdia.boraguarda.com)
 // Imprime cada asserção e no fim "N asserções passaram / M falharam". Sai com código 1 se alguma falhar.
 import vm from 'node:vm';
 
-const BASE = (process.argv[2] || 'https://em-dia-site.pages.dev').replace(/\/$/, '');
+const BASE = (process.argv[2] || 'https://emdia.boraguarda.com').replace(/\/$/, '');
 const UA = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36' };
 
 let passaram = 0, falharam = 0;
@@ -29,7 +29,7 @@ ok(/recibo verde/i.test(titulo) && /Em Dia/.test(titulo), '<title> fala de recib
 ok(/<h1[^>]*>[\s\S]*?Nunca mais levas multa[\s\S]*?<\/h1>/.test(html), 'H1 «Nunca mais levas multa…»');
 ok(pag.bytes < 300 * 1024, 'HTML < 300 KB (sem o vídeo)', `${(pag.bytes / 1024).toFixed(1)} KB`);
 ok(/<meta name="description" content="[^"]{80,}"/.test(html), 'meta description com ≥ 80 caracteres');
-ok(/<link rel="canonical" href="https:\/\/em-dia-site\.pages\.dev\/">/.test(html), 'canonical');
+ok(/<link rel="canonical" href="https:\/\/emdia\.boraguarda\.com\/">/.test(html), 'canonical');
 ok(/property="og:image" content="https:\/\/[^"]+og\.jpg"/.test(html), 'og:image');
 ok(/rel="icon"/.test(html) && /apple-touch-icon/.test(html), 'favicon + apple-touch-icon');
 ok(!/fonts\.googleapis\.com|fonts\.gstatic\.com|cdn\.jsdelivr|unpkg\.com|cdnjs/.test(html), 'sem Google Fonts nem CDN externa');
@@ -37,7 +37,7 @@ ok(/@font-face\{font-family:Inter;src:url\(\/assets\/fonts\/Inter\.woff2\)/.test
 
 // 2. Dois botões com o MESMO texto/peso
 const play = html.match(/<a class="([^"]+)" href="https:\/\/play\.google\.com\/store\/apps\/details\?id=pt\.emdia\.app"[^>]*>[\s\S]*?Descarregar na Play Store[\s\S]*?<\/a>/g) || [];
-const web = html.match(/<a class="([^"]+)" href="https:\/\/app-em-dia\.pages\.dev"[^>]*>[\s\S]*?Usar no iPhone\/computador[\s\S]*?<\/a>/g) || [];
+const web = html.match(/<a class="([^"]+)" href="https:\/\/app\.emdia\.boraguarda\.com"[^>]*>[\s\S]*?Usar no iPhone\/computador[\s\S]*?<\/a>/g) || [];
 ok(play.length >= 1 && web.length >= 1, 'botões «Descarregar na Play Store» e «Usar no iPhone/computador» existem', `${play.length} + ${web.length}`);
 const classePlay = (play[0] || '').match(/class="([^"]+)"/)?.[1];
 const classeWeb = (web[0] || '').match(/class="([^"]+)"/)?.[1];
@@ -101,7 +101,7 @@ ok((html.match(/<details>/g) || []).length === 6, '6 <details> na FAQ visível')
 
 // 6. Ficheiros de apoio
 const sm = await get('/sitemap.xml');
-ok(sm.status === 200 && /<urlset/.test(sm.texto) && /em-dia-site\.pages\.dev\//.test(sm.texto), '/sitemap.xml 200 com urlset', `status ${sm.status}`);
+ok(sm.status === 200 && /<urlset/.test(sm.texto) && /emdia\.boraguarda\.com\//.test(sm.texto), '/sitemap.xml 200 com urlset', `status ${sm.status}`);
 const rb = await get('/robots.txt');
 ok(rb.status === 200 && /Sitemap:/.test(rb.texto), '/robots.txt 200 com Sitemap', `status ${rb.status}`);
 const nf = await get('/pagina-que-nao-existe-' + Date.now());

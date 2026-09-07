@@ -43,7 +43,7 @@ void main() {
     expect(find.text('Tenho uma dúvida'), findsOneWidget);
     expect(find.text('Algo não funciona'), findsOneWidget);
     expect(find.text('Reembolso ou cancelar'), findsOneWidget);
-    expect(find.textContaining('suporte@emdia.pt'), findsOneWidget);
+    expect(find.textContaining('emdia@boraguarda.com'), findsOneWidget);
   });
 
   testWidgets('suporte_vazio: sem pedidos ainda', (tester) async {

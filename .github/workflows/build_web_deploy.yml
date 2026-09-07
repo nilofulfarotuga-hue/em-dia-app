@@ -2,8 +2,11 @@ name: Build & Deploy Web (app + admin → Cloudflare Pages)
 
 # Paridade Android ↔ Web (regra do Bora): o que vai para a Play vai também para a web.
 # Dois destinos, um só build de código:
-#   lib/main.dart       → app-em-dia.pages.dev   (a app no iPhone/computador, mesmo login)
-#   lib/main_admin.dart → em-dia-admin.pages.dev (painel admin, PT-BR)
+#   lib/main.dart       → app.emdia.boraguarda.com   (a app no iPhone/computador, mesmo login)
+#   lib/main_admin.dart → admin.emdia.boraguarda.com (painel admin, PT-BR)
+# Desde 2026-09-07 a app e o painel vivem em subdomínios de boraguarda.com (sem domínio
+# próprio). Os projetos Pages continuam a chamar-se app-em-dia e em-dia-admin (é o
+# --project-name em baixo) e os *.pages.dev redirecionam para os subdomínios (web/index.html).
 
 on:
   push:
@@ -87,7 +90,7 @@ jobs:
         run: |
           if [ -n "$TOKEN" ]; then echo "tem=sim" >> "$GITHUB_OUTPUT"; else echo "tem=nao" >> "$GITHUB_OUTPUT"; fi
 
-      - name: Deploy app → app-em-dia.pages.dev
+      - name: Deploy app → app.emdia.boraguarda.com
         if: steps.cf.outputs.tem == 'sim'
         uses: cloudflare/wrangler-action@v3
         with:
@@ -95,7 +98,7 @@ jobs:
           accountId: 2cd0212b0f5e5c8284aa227f629c050a
           command: pages deploy build/web_app --project-name=app-em-dia --branch=main --commit-dirty=true
 
-      - name: Deploy admin → em-dia-admin.pages.dev
+      - name: Deploy admin → admin.emdia.boraguarda.com
         if: steps.cf.outputs.tem == 'sim'
         uses: cloudflare/wrangler-action@v3
         with:

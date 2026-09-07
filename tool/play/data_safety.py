@@ -79,8 +79,8 @@ GERAIS = {
     # Perguntas que só existem na exportação da consola (2026-09-06), não no
     # modelo público. A página tem a secção «Apagar a conta» com o caminho
     # dentro da app e o e-mail para quem já não consegue entrar.
-    "PSL_ACCOUNT_DELETION_URL": "https://em-dia-site.pages.dev/privacidade#apagar-conta",
-    "PSL_DATA_DELETION_URL": "https://em-dia-site.pages.dev/privacidade#apagar-conta",
+    "PSL_ACCOUNT_DELETION_URL": "https://emdia.boraguarda.com/privacidade#apagar-conta",
+    "PSL_DATA_DELETION_URL": "https://emdia.boraguarda.com/privacidade#apagar-conta",
     # Só se preenche quando o método de criação de conta é «outro»; não é.
     "PSL_ACM_SPECIFY": "",
     # PSL_HAS_OUTSIDE_APP_ACCOUNTS fica em branco: a API recusa-a com

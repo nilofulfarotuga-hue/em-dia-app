@@ -44,5 +44,5 @@ try {
 
 if ($Verificar) {
   Start-Sleep -Seconds 8   # o Pages demora uns segundos a servir a versão nova (regra 8.4 da skill)
-  node (Join-Path $Site 'testes\verifica.mjs') "https://$Projeto.pages.dev"
+  node (Join-Path $Site 'testes\verifica.mjs') 'https://emdia.boraguarda.com'   # morada do site (Worker frente-emdia -> projeto Pages $Projeto)
 }

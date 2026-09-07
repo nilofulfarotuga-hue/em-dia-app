@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /testes/
 
-Sitemap: https://em-dia-site.pages.dev/sitemap.xml
+Sitemap: https://emdia.boraguarda.com/sitemap.xml

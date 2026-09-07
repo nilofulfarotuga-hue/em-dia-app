@@ -24,7 +24,7 @@ de entrada da app — pôr-lhe um catch-all era arriscar o login de toda a gente
 por causa de uma funcionalidade nova. Não se faz.
 
 Comprar o domínio é um clique do Danilo (é dinheiro e cartão): está em
-`docs/PENDENTE-DANILO.md`. `em-dia.pt` estava livre a 6 de setembro de 2026.
+`docs/PENDENTE-DANILO.md`. a decisão de 7 de setembro (D46) é `faturas.boraguarda.com`, um subdomínio de `boraguarda.com`; precisa do Email Routing da zona.
 
 ## Os quatro passos, no dia em que o domínio existir
 
@@ -46,7 +46,7 @@ npx wrangler deploy
 
 ```sql
 update regras_legais
-   set valor_txt = 'contas.em-dia.pt', verificado_em = current_date
+   set valor_txt = 'faturas.boraguarda.com', verificado_em = current_date
  where chave = 'caixa_faturas_dominio';
 ```
 
