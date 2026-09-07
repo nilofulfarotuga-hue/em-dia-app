@@ -7,10 +7,10 @@ utilizador novo arrancar do zero. Está feito e provado em `docs/provas/bloco1-l
 **Não é preciso repor nada** — repor traz de volta os dados de teste e desfaz os arranjos de
 segurança de hoje. Ficam as tuas duas contas, prontas a fazer o onboarding de raiz.
 
-## 🔴 O que sobra para o Danilo — três linhas, cada uma com a página já aberta no Chrome (22h55, 6 de setembro)
+## 🔴 O que sobra para o Danilo — três linhas (a terceira nasceu da decisão do subdomínio: o correio precisa de um direito que não tenho), cada uma com a página já aberta no Chrome (22h55, 6 de setembro)
 
 - [ ] **Play, perfil de pagamentos:** separador "Perfil de pagamentos" — está tudo preenchido (perfil individual em teu nome, Em Dia, software informático, boraappbora@gmail.com, extrato "EM DIA", site). Falta carregar em **"Enviar"** (aceita o Contrato de Distribuição e os Termos do Google Payments — é assinatura tua) e, a seguir, **NIF e IBAN**.
-- [ ] **Domínio `em-dia.app` (≈ 14 $/ano):** separador "Cloudflare — Faça login" → "Entrar com outro perfil" com a conta **nilofulfarotuga@gmail.com** (é onde estão as Pages e o boraguarda.com; a sessão não entra em contas nem escreve palavras-passe) → Domain Registration → `em-dia.app` → pagar com o cartão que lá estiver. Depois eu aponto app, admin, site e a caixa das faturas (`cloudflare/correio-faturas/LEIA-ME.md`).
+- [ ] **Caixa de correio das faturas (`faturas.boraguarda.com`):** precisa do Email Routing da Cloudflare na zona `boraguarda.com`, e nenhum token que tenho o liga (403). Ou ligas tu no painel da conta nilofulfarotuga (Email → Email Routing → ativar, e depois eu faço as regras e o Worker), ou crias um token com **Zone DNS Edit + Email Routing Edit** e guardas em `C:\BoraLocal\_segredos\em-dia\cloudflare-dns.env` — com ele eu faço tudo, incluindo trocar o Worker dos endereços por CNAME.
 - [ ] **Assinaturas e contas:** (1) DGEG — o pedido já foi por e-mail (id `1a0788f8fef674b2`); responde a esse e-mail com a minuta `docs/loja/dgeg/minuta-partilha-informacao-em-dia.docx` assinada e rubricada (falta só o NIF); (2) **InvoiceXpress** (`https://web.invoicexpress.com/signup`, conta grátis — página aberta) e **Enable Banking** (`https://enablebanking.com/cp/`, registo do painel) — criar a conta é acto teu; as chaves depois ligam-se por SQL em `docs/LIGACOES-CHAVES.md`.
 
 **Já não são teus (feitos hoje):** instruções do revisor na Play (guardadas), revisor criado, Segurança dos Dados (200), Turnstile, registo aberto, página "Apagar a conta", e-mail à DGEG, prova no emulador Android em vídeo.

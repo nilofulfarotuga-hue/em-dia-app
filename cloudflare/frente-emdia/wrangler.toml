@@ -1,0 +1,16 @@
+name = "frente-emdia"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = false
+
+[[routes]]
+pattern = "emdia.boraguarda.com"
+custom_domain = true
+
+[[routes]]
+pattern = "app.emdia.boraguarda.com"
+custom_domain = true
+
+[[routes]]
+pattern = "admin.emdia.boraguarda.com"
+custom_domain = true

@@ -8,11 +8,11 @@ PSL_SUPPORTED_ACCOUNT_CREATION_METHODS,PSL_ACM_OAUTH,TRUE,MULTIPLE_CHOICE,Qual d
 PSL_SUPPORTED_ACCOUNT_CREATION_METHODS,PSL_ACM_OTHER,,MULTIPLE_CHOICE,Qual dos seguintes métodos de criação de contas é compatível com a sua app? Selecione todas as opções aplicáveis/Outro
 PSL_SUPPORTED_ACCOUNT_CREATION_METHODS,PSL_ACM_NONE,,MULTIPLE_CHOICE,Qual dos seguintes métodos de criação de contas é compatível com a sua app? Selecione todas as opções aplicáveis/A minha app não permite que os utilizadores criem uma conta
 PSL_ACM_SPECIFY,,,MAYBE_REQUIRED,Descreva o método de criação da conta suportado pela sua app
-PSL_ACCOUNT_DELETION_URL,,https://em-dia-site.pages.dev/privacidade#apagar-conta,MAYBE_REQUIRED,Adicione um link que os utilizadores podem usar para pedir a eliminação da respetiva conta e dos dados associados 
+PSL_ACCOUNT_DELETION_URL,,https://emdia.boraguarda.com/privacidade#apagar-conta,MAYBE_REQUIRED,Adicione um link que os utilizadores podem usar para pedir a eliminação da respetiva conta e dos dados associados 
 PSL_SUPPORT_DATA_DELETION_BY_USER,DATA_DELETION_YES,TRUE,SINGLE_CHOICE,Disponibiliza uma forma de os utilizadores solicitarem a eliminação dos respetivos dados?/Sim
 PSL_SUPPORT_DATA_DELETION_BY_USER,DATA_DELETION_NO,,SINGLE_CHOICE,Disponibiliza uma forma de os utilizadores solicitarem a eliminação dos respetivos dados?/Não
 PSL_SUPPORT_DATA_DELETION_BY_USER,DATA_DELETION_NO_AUTO_DELETED,,SINGLE_CHOICE,"Disponibiliza uma forma de os utilizadores solicitarem a eliminação dos respetivos dados?/Não, mas os dados do utilizador são eliminados automaticamente no prazo de 90 dias"
-PSL_DATA_DELETION_URL,,https://em-dia-site.pages.dev/privacidade#apagar-conta,MAYBE_REQUIRED,URL de eliminação de dados
+PSL_DATA_DELETION_URL,,https://emdia.boraguarda.com/privacidade#apagar-conta,MAYBE_REQUIRED,URL de eliminação de dados
 PSL_DATA_COLLECTION_COMPLIES_FAMILY_POLICY,,,OPTIONAL,"Responda a esta pergunta apenas se tiver indicado que a faixa etária de segmentação da sua app inclui crianças ou se tiver optado pelo programa Concebido para Famílias. Se uma das condições acima for verdadeira, tem de seguir a Política para Famílias do Google Play (https://support.google.com/googleplay/android-developer/answer/9893335). Quer informar os utilizadores acerca deste compromisso na Secção Segurança dos dados na sua Ficha da loja?"
 PSL_INDEPENDENTLY_VALIDATED,,FALSE,OPTIONAL,"A sua app concluiu com êxito uma verificação de segurança independente, de acordo com o framework de Avaliação da segurança para aplicações para dispositivos móveis (MASA)? Responda ""sim"" apenas se a verificação estiver em conformidade."
 PSL_UPI_BADGE_OPT_IN,,,OPTIONAL,Quer apresentar este emblema na sua Ficha da loja?

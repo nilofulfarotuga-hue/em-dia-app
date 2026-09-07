@@ -291,3 +291,32 @@ que sobram estão em `docs/PENDENTE-DANILO.md`, cada uma com a página já abert
 
 Uma correcção ao que escrevi de manhã: os e-mails de código nunca deixaram de chegar. O
 que falhou foi a minha leitura dos registos.
+
+---
+
+## Subdomínios de boraguarda.com (7 de setembro, 00h00 → 01h00) — sem domínio comprado
+
+Decisão tua: nada de comprar domínio; o Em Dia vive em `boraguarda.com`. Nenhum dos dois
+tokens (o do `bora-site/.env`, da conta nilofulfarotuga; o do servidor do Bora, da conta
+boraappbora) escreve DNS ou Email Routing — os dois dão 403. O que o primeiro tem é
+Workers, e um Worker com "custom domains" cria o DNS e o certificado sozinho. Foi por aí:
+`cloudflare/frente-emdia` serve `emdia.boraguarda.com` (site), `app.emdia.boraguarda.com`
+(app) e `admin.emdia.boraguarda.com` (painel) a partir dos projetos Pages, devolvendo tudo
+tal e qual (o `noindex` da app passa). Os três respondem 200 com TLS 1.3 e certificado
+Cloudflare para `boraguarda.com`. Os domínios personalizados também ficaram registados nas
+Pages, à espera de CNAME para o dia em que houver token com DNS.
+
+O resto acompanhou: o widget Turnstile aceita `boraguarda.com` (todos os subdomínios); o
+Auth do Supabase tem Site URL, redirects e remetente `emdia@boraguarda.com` novos; a ficha
+da Play tem site `https://emdia.boraguarda.com` e e-mail de apoio `boraappbora@gmail.com`
+(edição submetida pela API); a Segurança dos Dados foi reenviada com o URL de apagar conta
+novo (HTTP 200); no repositório um agente trocou todas as referências (app, site, textos,
+ferramentas) e pôs os `*.pages.dev` a redirecionar para os endereços novos, e um segundo
+agente verificou com contexto limpo.
+
+Ficou à espera de um direito que não tenho: a caixa de correio das faturas em
+`faturas.boraguarda.com` precisa do Email Routing da zona — é uma linha em
+`docs/PENDENTE-DANILO.md` (ligar no painel, ou um token com DNS + Email Routing, e eu
+faço o resto). O URL da política de privacidade na Play (campo da consola, sem API) só
+muda com o separador visível, e o Chrome esteve ocupado contigo no Gmail; fica feito
+assim que o separador estiver livre.
