@@ -49,3 +49,10 @@ Nota honesta: o resolvedor do PC (router 192.168.1.1) demorou mais de uma hora a
 os registos novos de `app.` e `admin.` — 1.1.1.1, 8.8.8.8 e 9.9.9.9 já os davam. Até lá,
 o Chrome mostrava "não foi possível encontrar o endereço IP" depois do redirect; as
 provas HTTP e TLS acima foram feitas pelos IPs da Cloudflare com o nome certo.
+
+## A app no endereço novo, com Turnstile e remetente novo (00h39)
+
+- Num Chrome a sério, `https://app.emdia.boraguarda.com/` carrega o Flutter (`flt-glass-pane` presente, título "Em Dia"); `https://admin.emdia.boraguarda.com/` idem ("Em Dia — Admin"). No painel do Claude Code, abrir `app-em-dia.pages.dev/?prova=redirect` acabou em `app.emdia.boraguarda.com/?prova=redirect` com o Flutter a correr.
+- **Turnstile no endereço novo:** em `app.emdia.boraguarda.com/robots.txt` (Chrome a sério), `turnstile.render` deu token em **4,7 s** com o widget já a aceitar `boraguarda.com`; `POST /auth/v1/otp` com esse token → **200** (00:39:22Z).
+- **Remetente novo:** a Resend mostra os dois e-mails desse teste **de `"Em Dia" <emdia@boraguarda.com>`**, `delivered` (`5885fb16…` 00:39:20Z, `2e79bb45…` 00:37:22Z) para `boraappbora+morada@gmail.com`.
+- Capturas em `docs/provas/subdominios-2026-09-07/` (site e privacidade com WebKit; a app e o painel em Flutter não pintam o canvas num WebKit sem ecrã — o cadeado deles está na tabela de certificados acima e na leitura `flutter: true` no Chrome).
