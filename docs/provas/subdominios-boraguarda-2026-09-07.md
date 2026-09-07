@@ -35,3 +35,17 @@ e o certificado sozinha. Foi por aí.
 
 - **Caixa de correio das faturas** (`faturas.boraguarda.com`): Email Routing (403 nos dois tokens). Linha em `docs/PENDENTE-DANILO.md`.
 - **CNAME "a sério"** nas Pages: quando houver token com Zone DNS Edit, apagam-se o Worker e os três registos e apontam-se CNAME aos projetos.
+
+## O redirect dos pages.dev, provado num Chrome a sério (01h30)
+
+`https://app-em-dia.pages.dev/?prova=redirect` aberto no Chrome do Danilo → o
+separador passou a `https://app.emdia.boraguarda.com/?prova=redirect` (o script do
+`<head>` disparou antes de carregar o Flutter). O HTML publicado dos três `*.pages.dev`
+traz o script (verificado por HTTP: `app-em-dia` e `em-dia-admin` com a marca
+`__emDiaMudouDeMorada`; `em-dia-site` com `emdia.boraguarda.com`). CI `64ac508` verde
+nos três workflows.
+
+Nota honesta: o resolvedor do PC (router 192.168.1.1) demorou mais de uma hora a ver
+os registos novos de `app.` e `admin.` — 1.1.1.1, 8.8.8.8 e 9.9.9.9 já os davam. Até lá,
+o Chrome mostrava "não foi possível encontrar o endereço IP" depois do redirect; as
+provas HTTP e TLS acima foram feitas pelos IPs da Cloudflare com o nome certo.
