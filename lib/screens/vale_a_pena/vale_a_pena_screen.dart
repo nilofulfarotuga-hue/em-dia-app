@@ -197,7 +197,7 @@ class _ValeAPenaScreenState extends State<ValeAPenaScreen> {
     final tecladoAberto = MediaQuery.of(context).viewInsets.bottom > 0;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.vpTitulo)),
+      appBar: AppBar(title: Text(l.vpTitulo), actions: const [BotaoPalavras(termos: ['irs', 'ss', 'retencao', 'tvde'])]),
       bottomNavigationBar: (conta != null && tecladoAberto)
           ? _BarraResposta(conta: conta)
           : null,

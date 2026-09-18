@@ -198,7 +198,7 @@ class _FalaScreenState extends State<FalaScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(title: Text(l.falaTitulo)),
+      appBar: AppBar(title: Text(l.falaTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.fala)]),
       body: SafeArea(
         child: Cadeado(
           trancado: trancado,

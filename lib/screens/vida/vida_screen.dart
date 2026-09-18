@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../regras/regras.dart';
 import '../../stores/sessao_store.dart';
+import '../../widgets/widgets.dart';
 import 'entradas_screen.dart';
 import 'nova_entrada.dart';
 import 'resumo_screen.dart';
@@ -31,6 +32,7 @@ class VidaScreen extends StatelessWidget {
         builder: (context) => Scaffold(
           appBar: AppBar(
             title: Text(l.vidaTitulo),
+            actions: const [BotaoPalavras(termos: ['cofre', 'imposto', 'recibos_verdes', 'ss', 'irs', 'iva'])],
             bottom: TabBar(
               tabs: [
                 Tab(key: const Key('aba_entra'), text: l.vidaAbaEntra),

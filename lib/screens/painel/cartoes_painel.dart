@@ -259,6 +259,7 @@ class SkeletonPainel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        LinhaACarregar(AppLocalizations.of(context).aCarregarFrase),
         _bloco(150),
         const SizedBox(height: 12),
         _bloco(210),

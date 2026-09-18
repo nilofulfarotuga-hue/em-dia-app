@@ -38,27 +38,28 @@ class MaisScreen extends StatelessWidget {
         .push(MaterialPageRoute<void>(builder: (_) => const PlanoScreen()));
 
     final acessos = <_Acesso>[
-      _Acesso('vale_a_pena', Icons.calculate_rounded, l.vpTitulo, (_) => const ValeAPenaScreen()),
-      _Acesso('fala', Icons.mic_rounded, l.falaTitulo,
+      _Acesso('vale_a_pena', Icons.calculate_rounded, l.vpTitulo, l.maisSubValeAPena, (_) => const ValeAPenaScreen()),
+      _Acesso('fala', Icons.mic_rounded, l.falaTitulo, l.maisSubFala,
           (ctx) => FalaScreen(aoAbrirPlano: () => abrirPlano(ctx))),
-      _Acesso('cofre', Icons.savings_outlined, l.cofreTitulo, (_) => const CofreScreen()),
-      _Acesso('prova', Icons.description_rounded, l.provaTitulo, (_) => const ProvaRendimentoScreen()),
-      _Acesso('radar', Icons.link_off_rounded, l.radarAtalho, (_) => const RadarScreen()),
-      _Acesso('reforma', Icons.savings_rounded, l.maisReforma, (_) => const ReformaScreen()),
-      _Acesso('guias', Icons.menu_book_rounded, l.maisGuias, (_) => const GuiasScreen()),
+      _Acesso('cofre', Icons.savings_outlined, l.cofreTitulo, l.maisSubCofre, (_) => const CofreScreen()),
+      _Acesso('prova', Icons.description_rounded, l.provaTitulo, l.maisSubProva, (_) => const ProvaRendimentoScreen()),
+      _Acesso('radar', Icons.link_off_rounded, l.radarAtalho, l.maisSubRadar, (_) => const RadarScreen()),
+      _Acesso('reforma', Icons.savings_rounded, l.maisReforma, l.maisSubReforma, (_) => const ReformaScreen()),
+      _Acesso('guias', Icons.menu_book_rounded, l.maisGuias, l.maisSubGuias, (_) => const GuiasScreen()),
       _Acesso(
         'ia',
         Icons.chat_bubble_rounded,
         l.maisPergunta,
+        l.maisSubPergunta,
         // O assistente pede o plano quando bate no limite do grátis.
         (ctx) => IaScreen(aoAbrirPlano: () => abrirPlano(ctx)),
       ),
-      _Acesso('ajuda', Icons.support_agent_rounded, l.maisAjuda, (_) => const SuporteScreen()),
-      _Acesso('plano', Icons.workspace_premium_rounded, l.maisPlano, (_) => const PlanoScreen()),
-      _Acesso('definicoes', Icons.settings_rounded, l.maisDefinicoes, (_) => const DefinicoesScreen()),
+      _Acesso('ajuda', Icons.support_agent_rounded, l.maisAjuda, l.maisSubAjuda, (_) => const SuporteScreen()),
+      _Acesso('plano', Icons.workspace_premium_rounded, l.maisPlano, l.maisSubPlano, (_) => const PlanoScreen()),
+      _Acesso('definicoes', Icons.settings_rounded, l.maisDefinicoes, l.maisSubDefinicoes, (_) => const DefinicoesScreen()),
       // «Ver um exemplo» (B2f) — escondido quando já se está dentro do exemplo.
       if (context.read<SessaoStore>() is! SessaoExemplo)
-        _Acesso('exemplo', Icons.visibility_rounded, l.maisExemplo, (_) => const ExemploScreen()),
+        _Acesso('exemplo', Icons.visibility_rounded, l.maisExemplo, l.maisSubExemplo, (_) => const ExemploScreen()),
     ];
     return Scaffold(
       appBar: AppBar(title: Text(l.navMais)),
@@ -68,7 +69,8 @@ class MaisScreen extends StatelessWidget {
           Row(
             children: [
               Expanded(child: Text(l.maisSubtitulo, style: t.bodyMedium!.copyWith(color: AppColors.textSecondary))),
-              BotaoOuvir(etiqueta: 'mais-lista', texto: '${l.maisSubtitulo} ${acessos.map((a) => a.titulo).join(', ')}.', soIcone: true),
+              BotaoOuvir(etiqueta: 'mais-lista', texto: '${l.maisSubtitulo} ${acessos.map((a) => '${a.titulo}: ${a.sub}').join(' ')}', soIcone: true),
+              BotaoPalavras(termos: PalavrasDoEcra.mais),
             ],
           ),
           const SizedBox(height: 12),
@@ -79,7 +81,7 @@ class MaisScreen extends StatelessWidget {
               crossAxisCount: 2,
               mainAxisSpacing: 12,
               crossAxisSpacing: 12,
-              mainAxisExtent: 150,
+              mainAxisExtent: 176,
             ),
             itemCount: acessos.length,
             itemBuilder: (_, i) => _Tile(acesso: acessos[i]),
@@ -94,12 +96,18 @@ class _Acesso {
   final String chave;
   final IconData icone;
   final String titulo;
+
+  /// Uma linha, em palavras simples, a dizer para que serve (B4: o juiz de
+  /// simplicidade chumbou «Prova de rendimento», «Fim da fidelização» e
+  /// «Reforma e direitos» sozinhos — nomes abstratos sem o benefício).
+  final String sub;
   final Widget Function(BuildContext) abrir;
-  const _Acesso(this.chave, this.icone, this.titulo, this.abrir);
+  const _Acesso(this.chave, this.icone, this.titulo, this.sub, this.abrir);
 }
 
-/// Um tile da grelha: círculo verde-claro com o ícone + título (até 3 linhas,
-/// nunca estoura: a altura é fixa e o texto é flexível).
+/// Um tile da grelha: círculo verde-claro com o ícone + título (até 2 linhas)
+/// + uma linha simples a dizer para que serve (até 2 linhas). Nunca estoura: a
+/// altura é fixa e os textos cortam com reticências.
 class _Tile extends StatelessWidget {
   final _Acesso acesso;
   const _Tile({required this.acesso});
@@ -120,8 +128,10 @@ class _Tile extends StatelessWidget {
             child: Icon(acesso.icone, color: AppColors.primaryDark, size: 26),
           ),
           const SizedBox(height: 12),
+          Text(acesso.titulo, style: t.titleMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
+          const SizedBox(height: 4),
           Flexible(
-            child: Text(acesso.titulo, style: t.titleMedium, maxLines: 3, overflow: TextOverflow.ellipsis),
+            child: Text(acesso.sub, style: t.bodySmall!.copyWith(color: AppColors.textSecondary), maxLines: 2, overflow: TextOverflow.ellipsis),
           ),
         ],
       ),

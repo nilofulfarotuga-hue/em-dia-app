@@ -85,7 +85,7 @@ class _RadarScreenState extends State<RadarScreen> {
     final destaque = radar.indiceDestaque;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.radarTitulo)),
+      appBar: AppBar(title: Text(l.radarTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.radar)]),
       body: RefreshIndicator(
         onRefresh: _atualizar,
         child: ListView(
@@ -107,8 +107,11 @@ class _RadarScreenState extends State<RadarScreen> {
                   ),
                 ),
               )
-            else if (radar.erro != null && radar.contratos.isEmpty)
-              Aviso(l.radarErro, tom: Semaforo.vermelho)
+            else if (radar.erro != null && radar.contratos.isEmpty) ...[
+              Aviso(l.radarErro, tom: Semaforo.vermelho),
+              const SizedBox(height: 12),
+              BotaoGrande(key: const Key('radar_tentar'), texto: l.tentarOutraVez, secundario: true, aoTocar: _atualizar),
+            ]
             else if (radar.aCarregar && radar.contratos.isEmpty)
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 32),

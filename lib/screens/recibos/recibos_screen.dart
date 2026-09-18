@@ -46,20 +46,20 @@ class RecibosScreen extends StatelessWidget {
     // calendário, pasta do contabilista) — os recibos verdes não se aplicam.
     if (perfil != null && perfil.temEmpresa) {
       return Scaffold(
-        appBar: AppBar(title: Text(l.recibosTituloEmpresa)),
+        appBar: AppBar(title: Text(l.recibosTituloEmpresa), actions: const [BotaoPalavras(termos: PalavrasDoEcra.empresa)]),
         body: ListView(padding: paddingEcra, children: [EmpresaSeccao(hoje: h), const SizedBox(height: 16)]),
       );
     }
     // Quem só tem CONTRATO vê o recibo de vencimento e o resto do contrato.
     if (perfil != null && perfil.temContrato && !perfil.temRecibosVerdes) {
       return Scaffold(
-        appBar: AppBar(title: Text(l.recibosTituloContrato)),
+        appBar: AppBar(title: Text(l.recibosTituloContrato), actions: const [BotaoPalavras(termos: PalavrasDoEcra.contrato)]),
         body: ListView(padding: paddingEcra, children: [ContratoSeccao(hoje: h), const SizedBox(height: 16)]),
       );
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.recibosTitulo)),
+      appBar: AppBar(title: Text(l.recibosTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.recibos)]),
       body: ListView(
         padding: paddingEcra,
         children: [

@@ -155,6 +155,7 @@ class _CalendarioScreenState extends State<CalendarioScreen> {
       appBar: AppBar(
         title: Text(l.calTitulo),
         actions: [
+          const BotaoPalavras(termos: PalavrasDoEcra.calendario),
           // "+" no topo (Rocket Money): nunca tapa o valor de uma linha.
           Padding(
             padding: const EdgeInsets.only(right: 8),

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/app_colors.dart';
+import '../../config/app_theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../../regras/regras.dart';
 import '../../services/arranque.dart';
 import '../../stores/dados_store.dart';
 import '../../stores/perfil_store.dart';
 import '../../widgets/widgets.dart';
+import '../calendario/detalhe_obrigacao.dart';
 import 'contrato_seccao.dart' show BotaoLigacao;
 import 'recibos_widgets.dart';
 
@@ -64,17 +66,23 @@ class EmpresaSeccao extends StatelessWidget {
                 Text(l.empresaCalendarioVazio, style: t.bodyMedium)
               else
                 for (final o in proximas)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Row(
-                      children: [
-                        SizedBox(width: 56, child: Text(dataPt(o.prazoEfetivo).substring(0, 5), style: t.titleSmall)),
-                        Expanded(child: Text(o.descricao, style: t.bodyMedium, maxLines: 2, overflow: TextOverflow.ellipsis)),
-                      ],
+                  InkWell(
+                    key: Key('empresa_obrigacao_${o.tipo}_${o.dataLimite.month}'),
+                    borderRadius: AppTheme.cantosPequenos,
+                    onTap: () => mostrarDetalheObrigacao(context, obrigacao: o, hoje: hoje),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 56, child: Text(dataPt(o.prazoEfetivo).substring(0, 5), style: t.titleSmall)),
+                          Expanded(child: Text(o.descricao, style: t.bodyMedium, maxLines: 2, overflow: TextOverflow.ellipsis)),
+                          const Icon(Icons.chevron_right_rounded, color: AppColors.textSecondary),
+                        ],
+                      ),
                     ),
                   ),
               const SizedBox(height: 6),
-              Text(l.empresaCalendarioNota, style: t.bodySmall!.copyWith(color: AppColors.textSecondary)),
+              Text(proximas.isEmpty ? l.empresaCalendarioNota : '${l.empresaCalendarioToca} ${l.empresaCalendarioNota}', style: t.bodySmall!.copyWith(color: AppColors.textSecondary)),
               BotaoLigacao(texto: l.empresaAbrirAgenda, url: 'https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/calendario_fiscal/Pages/Quadro_res_Decl_2026.aspx'),
             ],
           ),

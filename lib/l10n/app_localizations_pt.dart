@@ -700,6 +700,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get aCarregar => 'A carregar…';
 
   @override
+  String get aCarregarFrase =>
+      'A carregar as tuas contas… só demora um segundo.';
+
+  @override
   String get guardar => 'Guardar';
 
   @override
@@ -1997,6 +2001,42 @@ class AppLocalizationsPt extends AppLocalizations {
   String get maisDefinicoes => 'Definições';
 
   @override
+  String get maisSubValeAPena => 'Esta corrida compensa ou não?';
+
+  @override
+  String get maisSubFala => 'Pergunta com a tua voz.';
+
+  @override
+  String get maisSubCofre => 'Guarda o dinheiro do imposto.';
+
+  @override
+  String get maisSubProva => 'Um papel que diz quanto ganhas.';
+
+  @override
+  String get maisSubRadar => 'Quando podes trocar de operadora.';
+
+  @override
+  String get maisSubReforma => 'O que a Segurança Social te dá um dia.';
+
+  @override
+  String get maisSubGuias => 'Passo a passo, em palavras simples.';
+
+  @override
+  String get maisSubPergunta => 'Escreve a tua dúvida.';
+
+  @override
+  String get maisSubAjuda => 'Fala connosco.';
+
+  @override
+  String get maisSubPlano => 'O que é grátis e o que é Pro.';
+
+  @override
+  String get maisSubDefinicoes => 'Conta, língua, sair.';
+
+  @override
+  String get maisSubExemplo => 'Vê a app cheia, sem escrever nada.';
+
+  @override
   String get defsTitulo => 'Definições';
 
   @override
@@ -3232,7 +3272,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get caixaAbrirFalhou => 'Não consegui abrir este documento.';
 
   @override
-  String get caixaFazerConta => 'Fazer conta com esta';
+  String get caixaFazerConta => 'Registar como despesa';
 
   @override
   String get caixaALer => 'A ler a fatura…';
@@ -3484,6 +3524,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get cofreBotaoTirar => 'Tirei';
 
   @override
+  String get cofreBotoesAjuda =>
+      '«Separei» = pus dinheiro de lado para o imposto. «Tirei» = fui buscar dinheiro ao cofre.';
+
+  @override
   String get cofreListaTitulo => 'O que já apontaste';
 
   @override
@@ -3684,6 +3728,306 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get falaLimite => 'Acabaram as perguntas deste mês.';
+
+  @override
+  String get glossTitulo => 'Palavras difíceis';
+
+  @override
+  String get glossAjuda =>
+      'O que estas palavras querem dizer, em palavras simples.';
+
+  @override
+  String get glossFechar => 'Fechar';
+
+  @override
+  String get glossBotao => 'O que é isto?';
+
+  @override
+  String get glossIrsNome => 'IRS';
+
+  @override
+  String get glossIrsTexto =>
+      'O imposto sobre o que ganhaste no ano. Em abril entregas a declaração e acerta-se: ou recebes de volta, ou pagas o que falta.';
+
+  @override
+  String get glossIvaNome => 'IVA';
+
+  @override
+  String get glossIvaTexto =>
+      'Um imposto que vai dentro do preço das coisas. Quem passa recibos pode ter de o cobrar e entregar ao Estado — ou estar isento (não cobrar).';
+
+  @override
+  String get glossSsNome => 'Segurança Social';
+
+  @override
+  String get glossSsTexto =>
+      'O desconto de todos os meses que te dá direito a baixa, desemprego e reforma. Quem trabalha por conta própria paga-o sozinho, até ao dia 20.';
+
+  @override
+  String get glossSsDiretaNome => 'Segurança Social Direta';
+
+  @override
+  String get glossSsDiretaTexto =>
+      'O site da Segurança Social onde entras com a tua senha para ver o que deves e pagar.';
+
+  @override
+  String get glossTvdeNome => 'TVDE';
+
+  @override
+  String get glossTvdeTexto =>
+      'Os carros de plataforma, tipo Uber e Bolt. É uma atividade com regras próprias e um curso obrigatório.';
+
+  @override
+  String get glossIucNome => 'IUC';
+
+  @override
+  String get glossIucTexto =>
+      'O imposto do carro, que se paga uma vez por ano, no mês da matrícula.';
+
+  @override
+  String get glossNifNome => 'NIF';
+
+  @override
+  String get glossNifTexto =>
+      'O teu número de contribuinte: 9 números que as Finanças te deram. Dizes o NIF quando pedes fatura.';
+
+  @override
+  String get glossNissNome => 'NISS (número da Segurança Social)';
+
+  @override
+  String get glossNissTexto =>
+      'O teu número na Segurança Social. Está no cartão de cidadão e nas cartas da Segurança Social.';
+
+  @override
+  String get glossNipcNome => 'NIPC';
+
+  @override
+  String get glossNipcTexto =>
+      'O número de contribuinte de uma empresa (é o NIF, mas da empresa).';
+
+  @override
+  String get glossCaeNome => 'CAE (código de atividade)';
+
+  @override
+  String get glossCaeTexto =>
+      'O código da tua atividade nas Finanças. Diz o que fazes: TVDE, entregas, limpezas… Está no papel do início de atividade.';
+
+  @override
+  String get glossRetencaoNome => 'Retenção na fonte';
+
+  @override
+  String get glossRetencaoTexto =>
+      'Quando quem te paga fica com uma parte (por norma 25 %) e entrega-a às Finanças por ti, como adiantamento do IRS.';
+
+  @override
+  String get glossAnexoBNome => 'Anexo B';
+
+  @override
+  String get glossAnexoBTexto =>
+      'A folha da declaração de IRS onde vai o que ganhaste a recibos verdes.';
+
+  @override
+  String get glossAnexoANome => 'Anexo A';
+
+  @override
+  String get glossAnexoATexto =>
+      'A folha da declaração de IRS onde vai o teu salário de contrato.';
+
+  @override
+  String get glossArt53Nome => 'Artigo 53.º';
+
+  @override
+  String get glossArt53Texto =>
+      'A regra que te deixa não cobrar IVA se ganhares pouco por ano (o limite está no ecrã onde aparece).';
+
+  @override
+  String get glossMultibancoNome => 'Referência Multibanco';
+
+  @override
+  String get glossMultibancoTexto =>
+      'Três números (entidade, referência, valor) para pagares numa caixa Multibanco ou na app do banco.';
+
+  @override
+  String get glossContaCorrenteNome => 'Conta-corrente';
+
+  @override
+  String get glossContaCorrenteTexto =>
+      'A lista, no site da Segurança Social ou das Finanças, do que já pagaste e do que ainda deves.';
+
+  @override
+  String get glossDgegNome => 'DGEG';
+
+  @override
+  String get glossDgegTexto =>
+      'O serviço do Estado que dá o cartão de gasóleo profissional. Devolve parte do imposto do combustível a quem tem TVDE.';
+
+  @override
+  String get glossImtNome => 'IMT';
+
+  @override
+  String get glossImtTexto =>
+      'O instituto dos transportes. É quem dá a licença TVDE ao motorista e ao carro.';
+
+  @override
+  String get glossIefpNome => 'IEFP';
+
+  @override
+  String get glossIefpTexto =>
+      'O centro de emprego. Quem fica sem trabalho inscreve-se lá para ter o subsídio.';
+
+  @override
+  String get glossProNome => 'Pro';
+
+  @override
+  String get glossProTexto =>
+      'A parte paga da app. O que é grátis fica grátis; o Pro abre o resto (mostra-se um cadeado onde é Pro).';
+
+  @override
+  String get glossEniNome => 'ENI';
+
+  @override
+  String get glossEniTexto =>
+      'Empresário em nome individual: a empresa és tu, com o teu NIF. Pagas IRS sobre o lucro.';
+
+  @override
+  String get glossLdaNome => 'Lda.';
+
+  @override
+  String get glossLdaTexto =>
+      'Sociedade por quotas: uma empresa que é outra «pessoa», com NIPC. Paga IRC e tu recebes salário dela.';
+
+  @override
+  String get glossIrcNome => 'IRC';
+
+  @override
+  String get glossIrcTexto =>
+      'O imposto das empresas (sociedades) sobre o lucro. As pessoas pagam IRS; as empresas pagam IRC.';
+
+  @override
+  String get glossTrimestreNome => 'Trimestre';
+
+  @override
+  String get glossTrimestreTexto =>
+      'Três meses. O 1.º vai de janeiro a março, o 2.º de abril a junho, e assim por diante.';
+
+  @override
+  String get glossContabilidadeNome => 'Contabilidade';
+
+  @override
+  String get glossContabilidadeTexto =>
+      'As contas do teu trabalho: o que entrou, o que saiu e o que ficou. A app faz o grosso; o contabilista faz o resto.';
+
+  @override
+  String get glossDmrNome => 'DMR';
+
+  @override
+  String get glossDmrTexto =>
+      'Declaração Mensal de Remunerações: a lista dos salários que a empresa pagou, entregue às Finanças até ao dia 10.';
+
+  @override
+  String get glossSaftNome => 'SAF-T';
+
+  @override
+  String get glossSaftTexto =>
+      'Um ficheiro com todas as faturas do mês, que o programa de faturação manda às Finanças até ao dia 5.';
+
+  @override
+  String get glossIesNome => 'IES';
+
+  @override
+  String get glossIesTexto =>
+      'A declaração anual das contas da empresa, entregue em julho.';
+
+  @override
+  String get glossEfaturaNome => 'e-fatura';
+
+  @override
+  String get glossEfaturaTexto =>
+      'O site das Finanças onde aparecem as faturas com o teu NIF. Em fevereiro confirmas as que ficaram «pendentes».';
+
+  @override
+  String get glossRecibosVerdesNome => 'Recibos verdes';
+
+  @override
+  String get glossRecibosVerdesTexto =>
+      'Trabalhar por conta própria e passar um recibo por cada trabalho, no site das Finanças. O nome vem da cor antiga do papel.';
+
+  @override
+  String get glossIasNome => 'IAS';
+
+  @override
+  String get glossIasTexto =>
+      'Um valor de referência do Estado, atualizado todos os anos. Muitos limites são «tantas vezes o IAS».';
+
+  @override
+  String get glossPortalFinancasNome => 'Portal das Finanças';
+
+  @override
+  String get glossPortalFinancasTexto =>
+      'O site das Finanças. Entras com o NIF e a senha; é lá que se passa o recibo e se entrega o IRS.';
+
+  @override
+  String get glossSubsidioNatalNome => 'Subsídio de Natal';
+
+  @override
+  String get glossSubsidioNatalTexto =>
+      'Um salário extra que o patrão paga até 15 de dezembro. É o «13.º mês».';
+
+  @override
+  String get glossProporcionalNome => 'Proporcional';
+
+  @override
+  String get glossProporcionalTexto =>
+      'À medida dos meses que trabalhaste. Meio ano de trabalho, metade do subsídio.';
+
+  @override
+  String get glossFidelizacaoNome => 'Fidelização';
+
+  @override
+  String get glossFidelizacaoTexto =>
+      'O tempo em que estás preso a um contrato (telemóvel, internet, ginásio). Quando acaba, podes sair ou pedir preço melhor.';
+
+  @override
+  String get glossProvaRendimentoNome => 'Prova de rendimento';
+
+  @override
+  String get glossProvaRendimentoTexto =>
+      'Um papel que diz quanto ganhas. Pedem-no para alugar casa, pedir crédito ou tratar da autorização de residência.';
+
+  @override
+  String get glossImpostoNome => 'Imposto';
+
+  @override
+  String get glossImpostoTexto =>
+      'O dinheiro que se paga ao Estado. Aqui, quase sempre é a Segurança Social, o IRS ou o IVA.';
+
+  @override
+  String get glossCofreNome => 'Cofre';
+
+  @override
+  String get glossCofreTexto =>
+      'Dinheiro que pões de lado, todos os meses, para não te faltar quando chega o imposto.';
+
+  @override
+  String get glossHorasExtraNome => 'Horas extra';
+
+  @override
+  String get glossHorasExtraTexto =>
+      'As horas a mais do teu horário normal. Pagam-se mais caras do que a hora normal.';
+
+  @override
+  String get glossReformaNome => 'Reforma';
+
+  @override
+  String get glossReformaTexto =>
+      'O dinheiro que a Segurança Social te paga todos os meses quando deixares de trabalhar por idade.';
+
+  @override
+  String get glossIsencaoNome => 'Isenção';
+
+  @override
+  String get glossIsencaoTexto =>
+      'Não ter de pagar. «Isento de IVA» é não cobrar IVA; «isento de Segurança Social» é não pagar nos primeiros 12 meses.';
 
   @override
   String get guiaIniSaltar => 'Saltar';
@@ -4684,6 +5028,10 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get empresaCalendarioNota =>
       'Datas da agenda fiscal da AT (2026). Ao fim de semana passam ao dia útil seguinte.';
+
+  @override
+  String get empresaCalendarioToca =>
+      'Toca numa data para ver como se paga e onde.';
 
   @override
   String get empresaAbrirAgenda => 'Abrir a agenda fiscal da AT';
@@ -6540,6 +6888,9 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get aCarregar => 'Carregando…';
 
   @override
+  String get aCarregarFrase => 'Carregando as suas contas… é só um segundo.';
+
+  @override
   String get guardar => 'Salvar';
 
   @override
@@ -7838,6 +8189,42 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get maisDefinicoes => 'Configurações';
 
   @override
+  String get maisSubValeAPena => 'Essa corrida compensa ou não?';
+
+  @override
+  String get maisSubFala => 'Pergunte com a sua voz.';
+
+  @override
+  String get maisSubCofre => 'Guarde o dinheiro do imposto.';
+
+  @override
+  String get maisSubProva => 'Um papel que diz quanto você ganha.';
+
+  @override
+  String get maisSubRadar => 'Quando você pode trocar de operadora.';
+
+  @override
+  String get maisSubReforma => 'O que a Segurança Social te dá um dia.';
+
+  @override
+  String get maisSubGuias => 'Passo a passo, em palavras simples.';
+
+  @override
+  String get maisSubPergunta => 'Escreva a sua dúvida.';
+
+  @override
+  String get maisSubAjuda => 'Fale com a gente.';
+
+  @override
+  String get maisSubPlano => 'O que é grátis e o que é Pro.';
+
+  @override
+  String get maisSubDefinicoes => 'Conta, idioma, sair.';
+
+  @override
+  String get maisSubExemplo => 'Veja o app cheio, sem escrever nada.';
+
+  @override
   String get defsTitulo => 'Configurações';
 
   @override
@@ -9075,7 +9462,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get caixaAbrirFalhou => 'Não consegui abrir este documento.';
 
   @override
-  String get caixaFazerConta => 'Fazer conta com esta';
+  String get caixaFazerConta => 'Registrar como despesa';
 
   @override
   String get caixaALer => 'Lendo a fatura…';
@@ -9327,6 +9714,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get cofreBotaoTirar => 'Tirei';
 
   @override
+  String get cofreBotoesAjuda =>
+      '«Separei» = guardei dinheiro para o imposto. «Tirei» = peguei dinheiro do cofre.';
+
+  @override
   String get cofreListaTitulo => 'O que você já anotou';
 
   @override
@@ -9526,6 +9917,306 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get falaLimite => 'Acabaram as perguntas deste mês.';
+
+  @override
+  String get glossTitulo => 'Palavras difíceis';
+
+  @override
+  String get glossAjuda =>
+      'O que essas palavras querem dizer, em palavras simples.';
+
+  @override
+  String get glossFechar => 'Fechar';
+
+  @override
+  String get glossBotao => 'O que é isso?';
+
+  @override
+  String get glossIrsNome => 'IRS';
+
+  @override
+  String get glossIrsTexto =>
+      'O imposto sobre o que você ganhou no ano. Em abril você entrega a declaração e acerta: ou recebe de volta, ou paga o que falta.';
+
+  @override
+  String get glossIvaNome => 'IVA';
+
+  @override
+  String get glossIvaTexto =>
+      'Um imposto que vai dentro do preço das coisas. Quem emite recibo pode ter de cobrar e entregar ao Estado — ou estar isento (não cobrar).';
+
+  @override
+  String get glossSsNome => 'Segurança Social';
+
+  @override
+  String get glossSsTexto =>
+      'O desconto de todo mês que dá direito a auxílio-doença, desemprego e aposentadoria. Quem trabalha por conta própria paga sozinho, até o dia 20.';
+
+  @override
+  String get glossSsDiretaNome => 'Segurança Social Direta';
+
+  @override
+  String get glossSsDiretaTexto =>
+      'O site da Segurança Social onde você entra com a sua senha para ver o que deve e pagar.';
+
+  @override
+  String get glossTvdeNome => 'TVDE';
+
+  @override
+  String get glossTvdeTexto =>
+      'Os carros de aplicativo, tipo Uber e Bolt. É uma atividade com regras próprias e um curso obrigatório.';
+
+  @override
+  String get glossIucNome => 'IUC';
+
+  @override
+  String get glossIucTexto =>
+      'O imposto do carro, pago uma vez por ano, no mês da placa (matrícula).';
+
+  @override
+  String get glossNifNome => 'NIF';
+
+  @override
+  String get glossNifTexto =>
+      'O seu número de contribuinte: 9 números que as Finanças deram para você. Você diz o NIF quando pede nota fiscal (fatura).';
+
+  @override
+  String get glossNissNome => 'NISS (número da Segurança Social)';
+
+  @override
+  String get glossNissTexto =>
+      'O seu número na Segurança Social. Está no cartão de cidadão e nas cartas da Segurança Social.';
+
+  @override
+  String get glossNipcNome => 'NIPC';
+
+  @override
+  String get glossNipcTexto =>
+      'O número de contribuinte de uma empresa (é o NIF, mas da empresa).';
+
+  @override
+  String get glossCaeNome => 'CAE (código de atividade)';
+
+  @override
+  String get glossCaeTexto =>
+      'O código da sua atividade nas Finanças. Diz o que você faz: TVDE, entregas, limpeza… Está no papel do início de atividade.';
+
+  @override
+  String get glossRetencaoNome => 'Retenção na fonte';
+
+  @override
+  String get glossRetencaoTexto =>
+      'Quando quem paga fica com uma parte (normalmente 25 %) e entrega às Finanças por você, como adiantamento do IRS.';
+
+  @override
+  String get glossAnexoBNome => 'Anexo B';
+
+  @override
+  String get glossAnexoBTexto =>
+      'A folha da declaração de IRS onde vai o que você ganhou como autônomo (recibos verdes).';
+
+  @override
+  String get glossAnexoANome => 'Anexo A';
+
+  @override
+  String get glossAnexoATexto =>
+      'A folha da declaração de IRS onde vai o seu salário de contrato.';
+
+  @override
+  String get glossArt53Nome => 'Artigo 53.º';
+
+  @override
+  String get glossArt53Texto =>
+      'A regra que deixa você não cobrar IVA se ganhar pouco por ano (o limite aparece na tela onde ele é citado).';
+
+  @override
+  String get glossMultibancoNome => 'Referência Multibanco';
+
+  @override
+  String get glossMultibancoTexto =>
+      'Três números (entidade, referência, valor) para você pagar no caixa eletrônico Multibanco ou no app do banco.';
+
+  @override
+  String get glossContaCorrenteNome => 'Conta-corrente';
+
+  @override
+  String get glossContaCorrenteTexto =>
+      'A lista, no site da Segurança Social ou das Finanças, do que você já pagou e do que ainda deve.';
+
+  @override
+  String get glossDgegNome => 'DGEG';
+
+  @override
+  String get glossDgegTexto =>
+      'O órgão do Estado que dá o cartão de diesel profissional. Devolve parte do imposto do combustível para quem tem TVDE.';
+
+  @override
+  String get glossImtNome => 'IMT';
+
+  @override
+  String get glossImtTexto =>
+      'O instituto dos transportes. É quem dá a licença TVDE para o motorista e para o carro.';
+
+  @override
+  String get glossIefpNome => 'IEFP';
+
+  @override
+  String get glossIefpTexto =>
+      'O centro de emprego. Quem fica sem trabalho se inscreve lá para ter o seguro-desemprego (subsídio).';
+
+  @override
+  String get glossProNome => 'Pro';
+
+  @override
+  String get glossProTexto =>
+      'A parte paga do app. O que é grátis continua grátis; o Pro abre o resto (aparece um cadeado onde é Pro).';
+
+  @override
+  String get glossEniNome => 'ENI';
+
+  @override
+  String get glossEniTexto =>
+      'Empresário em nome individual: a empresa é você, com o seu NIF. Você paga IRS sobre o lucro.';
+
+  @override
+  String get glossLdaNome => 'Lda.';
+
+  @override
+  String get glossLdaTexto =>
+      'Sociedade limitada: uma empresa que é outra «pessoa», com NIPC. Paga IRC e você recebe salário dela.';
+
+  @override
+  String get glossIrcNome => 'IRC';
+
+  @override
+  String get glossIrcTexto =>
+      'O imposto das empresas (sociedades) sobre o lucro. As pessoas pagam IRS; as empresas pagam IRC.';
+
+  @override
+  String get glossTrimestreNome => 'Trimestre';
+
+  @override
+  String get glossTrimestreTexto =>
+      'Três meses. O 1.º vai de janeiro a março, o 2.º de abril a junho, e assim por diante.';
+
+  @override
+  String get glossContabilidadeNome => 'Contabilidade';
+
+  @override
+  String get glossContabilidadeTexto =>
+      'As contas do seu trabalho: o que entrou, o que saiu e o que sobrou. O app faz o grosso; o contador faz o resto.';
+
+  @override
+  String get glossDmrNome => 'DMR';
+
+  @override
+  String get glossDmrTexto =>
+      'Declaração Mensal de Remunerações: a lista dos salários que a empresa pagou, entregue às Finanças até o dia 10.';
+
+  @override
+  String get glossSaftNome => 'SAF-T';
+
+  @override
+  String get glossSaftTexto =>
+      'Um arquivo com todas as notas fiscais do mês, que o programa de faturamento manda às Finanças até o dia 5.';
+
+  @override
+  String get glossIesNome => 'IES';
+
+  @override
+  String get glossIesTexto =>
+      'A declaração anual das contas da empresa, entregue em julho.';
+
+  @override
+  String get glossEfaturaNome => 'e-fatura';
+
+  @override
+  String get glossEfaturaTexto =>
+      'O site das Finanças onde aparecem as notas com o seu NIF. Em fevereiro você confirma as que ficaram «pendentes».';
+
+  @override
+  String get glossRecibosVerdesNome => 'Recibos verdes';
+
+  @override
+  String get glossRecibosVerdesTexto =>
+      'Trabalhar como autônomo e emitir um recibo por cada serviço, no site das Finanças. O nome vem da cor antiga do papel.';
+
+  @override
+  String get glossIasNome => 'IAS';
+
+  @override
+  String get glossIasTexto =>
+      'Um valor de referência do Estado, atualizado todo ano. Muitos limites são «tantas vezes o IAS».';
+
+  @override
+  String get glossPortalFinancasNome => 'Portal das Finanças';
+
+  @override
+  String get glossPortalFinancasTexto =>
+      'O site das Finanças. Você entra com o NIF e a senha; é lá que se emite o recibo e se entrega o IRS.';
+
+  @override
+  String get glossSubsidioNatalNome => 'Subsídio de Natal';
+
+  @override
+  String get glossSubsidioNatalTexto =>
+      'Um salário extra que o patrão paga até 15 de dezembro. É o «13.º».';
+
+  @override
+  String get glossProporcionalNome => 'Proporcional';
+
+  @override
+  String get glossProporcionalTexto =>
+      'Na medida dos meses que você trabalhou. Meio ano de trabalho, metade do subsídio.';
+
+  @override
+  String get glossFidelizacaoNome => 'Fidelização';
+
+  @override
+  String get glossFidelizacaoTexto =>
+      'O tempo em que você fica preso a um contrato (celular, internet, academia). Quando acaba, pode sair ou pedir um preço melhor.';
+
+  @override
+  String get glossProvaRendimentoNome => 'Prova de renda';
+
+  @override
+  String get glossProvaRendimentoTexto =>
+      'Um papel que diz quanto você ganha. Pedem para alugar casa, pedir crédito ou tratar da autorização de residência.';
+
+  @override
+  String get glossImpostoNome => 'Imposto';
+
+  @override
+  String get glossImpostoTexto =>
+      'O dinheiro que se paga ao Estado. Aqui, quase sempre é a Segurança Social, o IRS ou o IVA.';
+
+  @override
+  String get glossCofreNome => 'Cofre';
+
+  @override
+  String get glossCofreTexto =>
+      'Dinheiro que você separa, todo mês, para não faltar quando chega o imposto.';
+
+  @override
+  String get glossHorasExtraNome => 'Horas extras';
+
+  @override
+  String get glossHorasExtraTexto =>
+      'As horas além do seu horário normal. São pagas mais caras que a hora normal.';
+
+  @override
+  String get glossReformaNome => 'Aposentadoria';
+
+  @override
+  String get glossReformaTexto =>
+      'O dinheiro que a Segurança Social paga todo mês quando você parar de trabalhar por idade.';
+
+  @override
+  String get glossIsencaoNome => 'Isenção';
+
+  @override
+  String get glossIsencaoTexto =>
+      'Não precisar pagar. «Isento de IVA» é não cobrar IVA; «isento de Segurança Social» é não pagar nos primeiros 12 meses.';
 
   @override
   String get guiaIniSaltar => 'Pular';
@@ -10530,6 +11221,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get empresaCalendarioNota =>
       'Datas da agenda fiscal da AT (2026). No fim de semana passam ao dia útil seguinte.';
+
+  @override
+  String get empresaCalendarioToca =>
+      'Toque numa data para ver como se paga e onde.';
 
   @override
   String get empresaAbrirAgenda => 'Abrir a agenda fiscal da AT';

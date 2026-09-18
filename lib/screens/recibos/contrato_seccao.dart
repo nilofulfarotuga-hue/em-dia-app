@@ -233,7 +233,7 @@ class _ReciboVencimentoScreenState extends State<ReciboVencimentoScreen> {
     final e = estimarIrsContrato(brutoMensal: bruto, irsRetidoMensal: retido, ano: widget.hoje.year, r: r);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.contratoReciboTitulo)),
+      appBar: AppBar(title: Text(l.contratoReciboTitulo), actions: const [BotaoPalavras(termos: ['irs', 'ss', 'retencao', 'anexo_a', 'ias'])]),
       body: ListView(
         padding: paddingEcra,
         children: [
@@ -358,7 +358,7 @@ class _DesempregoScreenState extends State<DesempregoScreen> {
     final d = estimarDesemprego(diasDeDescontosEm24Meses: _meses * 30, salarioBrutoMensal: salario, dataDesemprego: widget.hoje, r: r);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.contratoDesempregoTitulo)),
+      appBar: AppBar(title: Text(l.contratoDesempregoTitulo), actions: const [BotaoPalavras(termos: ['ss', 'ss_direta', 'iefp', 'ias'])]),
       body: ListView(
         padding: paddingEcra,
         children: [
@@ -466,7 +466,7 @@ class _HorasExtraScreenState extends State<HorasExtraScreen> {
     final ferias = r.n('ferias_dias_uteis').toInt();
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.contratoHorasExtraTitulo)),
+      appBar: AppBar(title: Text(l.contratoHorasExtraTitulo), actions: const [BotaoPalavras(termos: ['horas_extra', 'subsidio_natal', 'proporcional'])]),
       body: ListView(
         padding: paddingEcra,
         children: [

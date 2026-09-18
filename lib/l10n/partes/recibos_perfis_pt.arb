@@ -81,6 +81,7 @@
   "empresaCalendarioTitulo": "O que vem a seguir",
   "empresaCalendarioVazio": "Ainda não há datas: a agenda enche-se assim que o calendário for feito.",
   "empresaCalendarioNota": "Datas da agenda fiscal da AT (2026). Ao fim de semana passam ao dia útil seguinte.",
+  "empresaCalendarioToca": "Toca numa data para ver como se paga e onde.",
   "empresaAbrirAgenda": "Abrir a agenda fiscal da AT",
   "pastaTitulo": "Pasta do contabilista",
   "pastaTexto": "Todo o dia 1 a app junta o mês anterior — o que entrou, o que saiu, o extrato, as faturas e os recibos — e envia por e-mail ao contabilista. Ele deixa de te pedir papéis.",

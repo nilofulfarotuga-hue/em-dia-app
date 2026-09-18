@@ -1,0 +1,344 @@
+{
+  "data": "20260918-143054",
+  "modo": "simplicidade",
+  "modelo": "gemini-flash-latest",
+  "fotos": 27,
+  "contagem": {
+    "verde": 3,
+    "amarelo": 24,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma lista de faturas e avisos recebidos por e-mail, organizados por estados como «Por ver» ou «Não deu». A seguir, a pessoa tentaria clicar em «Registar como despesa» na fatura pendente para a guardar. O que a travaria seria a dúvida sobre a diferença entre «Já não preciso» e «Apagar de vez», bem como o significado exato de «Já é conta».",
+      "palavras_dificeis": [],
+      "melhoria": "Clarificar a diferença entre as opções «Já não preciso» e «Apagar de vez» para evitar hesitações.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.6-flash",
+      "foto": "caixa_faturas_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "Um utilizador leigo vê um calendário com pagamentos do mês e uma lista com valores pendentes como a Segurança Social e uma multa. Provavelmente tentaria carregar no botão verde \"Adicionar\" para registar um novo gasto ou no dia 14 do calendário para ver detalhes. No entanto, a sigla \"IVA/IRS\" e o termo \"Segurança Social\" podem gerar confusão sobre onde deve clicar para pagar. A grande dúvida seria se a aplicação efetua o pagamento real ou se serve apenas como lembrete.",
+      "palavras_dificeis": [
+        "IVA",
+        "IRS",
+        "Segurança Social"
+      ],
+      "melhoria": "Adicionar uma breve explicação a indicar se a aplicação serve apenas para lembretes ou se permite efetuar os pagamentos diretamente.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um resumo das despesas do carro, como portagens e seguros associados ao seu NIF. Provavelmente tentaria carregar no botão verde \"Adicionar\" para registar uma nova despesa ou consultar os locais perto de si. No entanto, termos técnicos como \"IRS\" e \"DGEG\" podem gerar confusão sobre se estas despesas são registadas automaticamente ou se exigem ação manual.",
+      "palavras_dificeis": [
+        "NIF",
+        "IRS",
+        "DGEG",
+        "IMT"
+      ],
+      "melhoria": "Adicionar uma breve explicação inicial a indicar se as faturas com NIF entram aqui de forma automática.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_despesas_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê os dados do seu automóvel e uma lista de lembretes sobre despesas e prazos, como o seguro e a inspeção. Provavelmente tentaria carregar num dos lembretes para ver mais detalhes ou pagar, mas o ecrã não indica claramente se são botões interativos. O que mais o travaria é a sigla 'TVDE' e o termo 'IUC', que não são explicados de forma simples para leigos.",
+      "palavras_dificeis": [
+        "TVDE",
+        "IUC"
+      ],
+      "melhoria": "Adicionar botões explícitos de ação em cada lembrete, como 'Pagar' ou 'Ver detalhes', para orientar o utilizador.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um ecrã de carregamento com a mensagem de que as contas estão a ser processadas. Como a aplicação está apenas a carregar, a pessoa tentaria esperar que os dados aparecessem. O que a travaria seria o ecrã ficar bloqueado nesta animação cinzenta sem avançar.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar um botão para re Tentar ou cancelar caso o carregamento demore demasiado tempo.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_a_carregar_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "Um utilizador leigo vê um valor total guardado e percebe que o Estado lhe vai pedir dinheiro em outubro. Ficaria confuso com o conceito de 'caderno' e sem saber ao certo se deve carregar nos botões 'Separei' ou 'Tirei'. O que mais o travaria seria a dúvida sobre se esta acção mexe no dinheiro real do banco.",
+      "palavras_dificeis": [
+        "Segurança Social",
+        "IRS",
+        "contabilidade"
+      ],
+      "melhoria": "Adicionar uma breve instrução no topo a indicar claramente qual deve ser a primeira acção do utilizador.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_chega_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um saldo de zero euros e um botão claro para \"Escrever o que ganhei\". Ficaria confuso com os conceitos de \"Segurança Social\" e \"IRS\" explicados mais abaixo, sem saber exatamente o valor a colocar. Provavelmente tentaria clicar no botão principal para iniciar o registo dos seus ganhos.",
+      "palavras_dificeis": [
+        "IRS",
+        "Segurança Social",
+        "contabilidade"
+      ],
+      "melhoria": "Adicionar um pequeno exemplo prático de quanto reter por cada ganho para ajudar quem não percebe de impostos.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_vazio_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma resposta clara a uma dúvida sobre pagamentos pendentes, com valores e prazos indicados. A seguir, tentaria procurar um botão direto para efetuar o pagamento ou obter referências multibanco. No entanto, a ausência de uma ação imediata ou de um botão para pagar pode deixá-lo confuso sobre como avançar.",
+      "palavras_dificeis": [
+        "IVA",
+        "Segurança Social",
+        "trimestre"
+      ],
+      "melhoria": "Adicionar um botão de ação rápida por baixo do texto, como \"Ver referências para pagamento\".",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_com_resposta_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma lista de guias curtos em áudio sobre temas fiscais básicos. Provavelmente tentaria carregar no guia que melhor se aplica à sua dúvida imediata para ouvir a explicação. No entanto, a quantidade de termos técnicos sem contexto visual prévio pode deixá-lo confuso sobre qual escolher.",
+      "palavras_dificeis": [
+        "CAE",
+        "IVA",
+        "art. 53.º",
+        "Retenção na fonte",
+        "anexo B",
+        "mínimo de existência",
+        "TVDE"
+      ],
+      "melhoria": "Adicionar uma pergunta inicial no topo como 'Qual é a tua dúvida hoje?' para guiar o utilizador diretamente para o guia certo.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "guias_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê os valores calculados para as horas extra, férias e subsídios com base no seu salário. Como é apenas um ecrã informativo, tentaria procurar um botão para avançar ou interagir, mas não há ações óbvias. A referência a artigos legais no fundo e conceitos como \"proporcional\" podem gerar alguma confusão a quem não percebe do assunto.",
+      "palavras_dificeis": [
+        "proporcional",
+        "art. 238.º"
+      ],
+      "melhoria": "Adicionar uma breve explicação em linguagem simples sobre o que significa um subsídio ser proporcional.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "horas_extra_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma conversa onde a aplicação explica quanto deve poupar para os impostos com base num rendimento simulado. Ficaria a saber que deve guardar cerca de 10% numa conta à parte todos os meses. No entanto, a sigla 'IRS' e a gestão prática dessa poupança podem gerar alguma confusão a quem nunca lidou com obrigações fiscais.",
+      "palavras_dificeis": [
+        "IRS",
+        "Segurança Social",
+        "IVA"
+      ],
+      "melhoria": "Adicionar um botão direto para simular a criação automática dessa pouparça numa conta separada.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um menu com várias opções em cartões, como o cofre do imposto ou provas de rendimento, com uma linguagem simples mas algo vaga. Provavelmente tentaria carregar no cartão que lhe parece mais útil para a sua dúvida imediata. No entanto, o subtítulo genérico \"Tudo o resto está aqui\" e a falta de uma barra de pesquisa direta podem deixá-lo confuso sobre onde encontrar algo específico.",
+      "palavras_dificeis": [
+        "fidelização",
+        "Segurança Social"
+      ],
+      "melhoria": "Adicionar uma barra de pesquisa no topo para que o utilizador possa escrever o que procura em vez de navegar por todos os cartões.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "mais_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma pergunta sobre o tipo de empresa com duas opções, tendo uma delas selecionada, e o botão 'Continuar' em baixo. Provavelmente escolheria a opção correta e carregaria no botão para avançar para a pergunta seguinte. No entanto, o termo técnico da opção selecionada pode gerar dúvida se não souber o que significa.",
+      "palavras_dificeis": [
+        "ENI",
+        "NIF",
+        "Lda.",
+        "unipessoal",
+        "NIPC"
+      ],
+      "melhoria": "Adicionar exemplos práticos mais claros debaixo de cada opção para ajudar quem não conhece estes termos fiscais.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_empresa_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma pergunta clara sobre a data de abertura de atividade e caixas para selecionar o mês e o ano. A seguir, tentaria escolher a sua data e carregar no botão verde «Continuar». No entanto, a referência automática ao «Portal das Finanças» e conceitos como «abrir atividade» podem confundir quem nunca mexeu nestes temas.",
+      "palavras_dificeis": [
+        "Portal das Finanças",
+        "abriste atividade",
+        "Segurança Social"
+      ],
+      "melhoria": "Adicionar um pequeno exemplo visual ou link de ajuda a indicar onde encontrar a data exata no documento oficial.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "onboarding_p2_abertura_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma mensagem a indicar que as contas estão a carregar, acompanhada de espaços vazios que sugerem que vai aparecer informação em breve. Ficaria à espera que o ecrã se preenchesse sozinho sem ter de fazer nada. No entanto, a falta de indicação sobre o que fazer se o carregamento demorar demasiado ou falhar pode gerar alguma dúvida.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar um ícone de carregamento animado mais explícito para confirmar que a aplicação não está bloqueada.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "painel_skeleton_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um glossário simples com termos fiscais explicados de forma acessível e com botões de áudio para ouvir. A seguir, pode ler as definições para esclarecer dúvidas ou ouvir a explicação caso prefira. O que o poderia travar seria apenas a quantidade de texto para ler.",
+      "palavras_dificeis": [
+        "CAE",
+        "IVA",
+        "IRS"
+      ],
+      "melhoria": "Adicionar uma barra de pesquisa no topo para encontrar termos rapidamente.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "palavras_dificeis_guias_pequeno_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um glossário amigável que explica termos complexos de forma simples com opções de áudio. Provavelmente tentaria explorar a lista ou ouvir as definições para esclarecer dúvidas. No entanto, a falta de indicação clara sobre como voltar ao menu anterior pode causar alguma confusão.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar um botão evidente para fechar o ecrã e regressar ao menu anterior.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "palavras_dificeis_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador percebe que está num ecrã de subscrição e que tem um período experimental ativo. A pessoa tentaria carregar no botão verde para continuar, mas poderia hesitar por não saber se será cobrada imediatamente ou se o plano gratuito é suficiente para as suas necessidades. A falta de clareza sobre o que acontece exatamente quando o período gratuito termina gera insegurança.",
+      "palavras_dificeis": [
+        "Pro",
+        "extratos",
+        "folha de cálculo",
+        "Reforma"
+      ],
+      "melhoria": "Adicionar uma pequena nota explicativa sobre o que acontece ao plano gratuito após o período experimental para reduzir o receio de cobranças inesperadas.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "plano_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador percebe que precisa de um documento para provar rendimentos, mas sente-se bloqueado porque a app indica que não há dados registados. A instrução para ir a 'Dinheiro' é clara, mas o utilizador pode não saber onde encontrar esse separador na navegação da app. A falta de um botão direto para inserir rendimentos neste ecrã aumenta a frustração.",
+      "palavras_dificeis": [
+        "NIF"
+      ],
+      "melhoria": "Adicionar um botão 'Ir para Dinheiro' diretamente no centro do ecrã para facilitar a navegação imediata.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "prova_vazia_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador percebe que a aplicação está a tentar carregar os seus contratos, mas que ocorreu um erro técnico. A instrução é clara: basta carregar no botão 'Tentar outra vez' para repetir a ligação. O que pode travar o utilizador é a incerteza sobre se o problema é da aplicação ou da sua própria ligação à internet.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar uma pequena mensagem a sugerir verificar a ligação à internet caso o erro persista após várias tentativas.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "radar_erro_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê informações sobre o seu vencimento, benefícios fiscais e dicas de faturação. A pessoa entenderia que deve clicar nos links externos para resolver pendências, mas sentir-se-ia perdida sobre o que fazer dentro da própria aplicação, já que esta funciona mais como um guia informativo do que como uma ferramenta de ação direta. A falta de um botão de ação claro para gerir o seu perfil ou documentos dentro da app causaria hesitação.",
+      "palavras_dificeis": [
+        "IRS",
+        "NIF",
+        "IVA",
+        "e-fatura"
+      ],
+      "melhoria": "Adicionar um botão de ação principal ou um checklist de tarefas pendentes para guiar o utilizador sobre o que deve fazer na app em vez de apenas o enviar para sites externos.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_contrato_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma lista de obrigações fiscais com datas e uma explicação sobre a sua empresa. Provavelmente tocaria numa das datas para saber como proceder, mas sentir-se-ia confuso sobre como executar as tarefas técnicas, como a 'Declaração Mensal de Remunerações'. O que trava o utilizador é a falta de botões de ação direta para resolver cada tarefa dentro da própria aplicação.",
+      "palavras_dificeis": [
+        "NIPC",
+        "IRC",
+        "IVA",
+        "Declaração Mensal de Remunerações",
+        "AT"
+      ],
+      "melhoria": "Adicionar um botão de 'Como fazer' ou 'Resolver' dentro de cada item da lista que abra um guia passo-a-passo simples ou um link direto para o portal das Finanças.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_empresa_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador percebe que deve inserir o valor ganho, mas pode sentir-se confuso sobre qual das opções de retenção e IVA escolher, por falta de conhecimento fiscal. A pessoa tentaria preencher o valor, mas travaria ao ter de decidir entre as percentagens de retenção ou o regime de IVA. Falta uma indicação clara de como saber qual a opção correta para a sua situação específica.",
+      "palavras_dificeis": [
+        "IVA",
+        "Retenção na fonte",
+        "art. 53.º"
+      ],
+      "melhoria": "Adicionar um pequeno botão de ajuda ou 'tooltip' junto a cada opção que explique, em linguagem simples, em que casos se deve escolher cada uma.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "recibos_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê uma simulação da sua futura reforma e dos direitos associados, como a baixa por doença. A pessoa percebe que pode ajustar o tempo de descontos com os botões de mais e menos para ver diferentes cenários. O que pode travar o utilizador é a incerteza sobre se estes valores são automáticos ou se precisa de inserir dados manualmente.",
+      "palavras_dificeis": [
+        "estimativa simples",
+        "carreira"
+      ],
+      "melhoria": "Adicionar um botão ou texto explicativo que indique claramente se os dados estão a ser importados automaticamente da Segurança Social ou se precisam de ser configurados.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "reforma_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador percebe que está a calcular o lucro de uma viagem, mas pode sentir-se confuso sobre o que fazer a seguir, pois não existe um botão de ação claro ou uma conclusão óbvia. A falta de um botão de 'Guardar' ou 'Concluir' visível no ecrã deixaria o utilizador sem saber se a informação foi registada. O tom informal ajuda, mas a complexidade dos conceitos financeiros pode gerar insegurança.",
+      "palavras_dificeis": [
+        "IRS",
+        "Retenção"
+      ],
+      "melhoria": "Adicionar um botão de ação claro no fundo do ecrã, como 'Guardar esta corrida' ou 'Nova corrida'.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "vale_perde_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador percebe que a aplicação está a tentar carregar dados financeiros, mas não sabe se precisa de configurar algo ou apenas esperar. A pessoa aguardaria pelo fim do carregamento, mas ficaria confusa se o ecrã não mudasse após alguns segundos. O que a trava é a falta de uma indicação clara sobre o que fazer caso o carregamento falhe ou se for a primeira vez que utiliza a app.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar uma mensagem de ajuda ou um botão de 'Configurar contas' caso o carregamento demore mais do que o esperado.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "vida_sobra_carregar_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador percebe que está em défice financeiro e que precisa de agir. Teria de clicar em 'Entra' ou 'Sai' para registar movimentos, mas a interface não indica claramente onde adicionar novas despesas ou receitas. A falta de um botão de ação direta (como um '+') cria incerteza sobre como corrigir os valores apresentados.",
+      "palavras_dificeis": [
+        "Falta pagar ao Estado",
+        "Cofre do imposto"
+      ],
+      "melhoria": "Adicionar um botão de ação flutuante com um sinal '+' para permitir adicionar rapidamente uma nova receita ou despesa.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "vida_sobra_mau_medio_pt.png"
+    }
+  ]
+}

@@ -139,7 +139,7 @@ class _CofreScreenState extends State<CofreScreen> {
     final erroSemDados = !store.aCarregar && store.erro != null && !store.temDados;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.cofreTitulo)),
+      appBar: AppBar(title: Text(l.cofreTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.cofre)]),
       body: RefreshIndicator(
         onRefresh: _carregar,
         child: ListView(
@@ -236,6 +236,12 @@ class _CofreScreenState extends State<CofreScreen> {
                   ),
                 ],
               ),
+
+              // B4: o juiz de simplicidade não percebia quando usar cada botão.
+              const SizedBox(height: 8),
+              Text(l.cofreBotoesAjuda,
+                  key: const Key('cofre_botoes_ajuda'),
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColors.textSecondary)),
 
               // 4. De onde saiu o número. Quem confia salta; quem desconfia lê.
               const SizedBox(height: 16),
@@ -604,6 +610,7 @@ class _Esqueleto extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        LinhaACarregar(AppLocalizations.of(context).aCarregarFrase),
         bloco(72),
         const SizedBox(height: 12),
         bloco(180),

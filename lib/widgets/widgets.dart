@@ -4,6 +4,7 @@ library;
 
 export 'botao_ouvir.dart';
 export 'campo_valor.dart';
+export 'palavras_dificeis.dart';
 
 import 'package:flutter/material.dart';
 
@@ -405,3 +406,32 @@ class Aviso extends StatelessWidget {
 
 /// Padding padrão dos ecrãs.
 const EdgeInsets paddingEcra = EdgeInsets.fromLTRB(20, 12, 20, 24);
+
+/// A linha que diz, por palavras, que o ecrã está a carregar — em cima de
+/// qualquer esqueleto cinzento (B4, 2026-09-18).
+///
+/// O juiz de simplicidade viu o esqueleto do painel e do cofre e disse
+/// «ecrã vazio, sem instrução: a pessoa não sabe se está a carregar ou se tem
+/// de fazer algo». Os blocos cinzentos ficam (o ecrã não salta quando os
+/// números chegam), mas passa a haver uma frase a dizer o que se passa. Sem
+/// roda a girar — regra da casa («nunca spinner a meio»), e uma animação
+/// infinita prende o `pumpAndSettle` dos testes.
+class LinhaACarregar extends StatelessWidget {
+  final String texto;
+  const LinhaACarregar(this.texto, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Row(
+        children: [
+          const Icon(Icons.hourglass_top_rounded, size: 18, color: AppColors.primary),
+          const SizedBox(width: 10),
+          Expanded(child: Text(texto, style: t.bodyMedium!.copyWith(color: AppColors.textSecondary))),
+        ],
+      ),
+    );
+  }
+}

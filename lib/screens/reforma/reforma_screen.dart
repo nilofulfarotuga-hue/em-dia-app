@@ -77,7 +77,7 @@ class _ReformaScreenState extends State<ReformaScreen> {
     ].join('. ');
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.reformaTitulo)),
+      appBar: AppBar(title: Text(l.reformaTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.reforma)]),
       body: ListView(
         padding: paddingEcra,
         children: [

@@ -94,7 +94,7 @@ class _PlanoScreenState extends State<PlanoScreen> {
     final famAno = regras.n('preco_familia_anual');
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.planoTitulo)),
+      appBar: AppBar(title: Text(l.planoTitulo), actions: const [BotaoPalavras(termos: ['pro', 'contabilidade', 'prova_rendimento'])]),
       body: ListView(
         padding: paddingEcra,
         children: [

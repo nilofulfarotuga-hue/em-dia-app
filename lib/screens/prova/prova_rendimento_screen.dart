@@ -108,7 +108,7 @@ class _ProvaRendimentoScreenState extends State<ProvaRendimentoScreen> {
     ].join('. ');
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.provaTitulo)),
+      appBar: AppBar(title: Text(l.provaTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.prova)]),
       body: ListView(
         padding: paddingEcra,
         children: [

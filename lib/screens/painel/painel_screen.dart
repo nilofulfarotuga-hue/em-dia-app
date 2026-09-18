@@ -179,6 +179,9 @@ class _PainelScreenState extends State<PainelScreen> {
                   textAlign: TextAlign.center,
                   style: t.bodyMedium!.copyWith(color: AppColors.textSecondary),
                 ),
+                // «O que é isto?» no fim e não no cabeçalho: ao lado do nome e
+                // da etiqueta do plano cortava o nome («Olá, D…»).
+                const Center(child: BotaoPalavras(termos: PalavrasDoEcra.painel, comTexto: true)),
               ],
             ],
           ),

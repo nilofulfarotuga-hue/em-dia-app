@@ -1,0 +1,974 @@
+{
+  "data": "20260918-115212",
+  "modo": "simplicidade",
+  "modelo": "gemini-flash-latest",
+  "fotos": 111,
+  "contagem": {
+    "verde": 29,
+    "amarelo": 30,
+    "vermelho": 3,
+    "erro": 49
+  },
+  "resultados": [
+    {
+      "severity": "erro",
+      "finding": "TimeoutError: The read operation timed out",
+      "foto": "caixa_desligada_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "TimeoutError: The read operation timed out",
+      "foto": "caixa_faturas_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um e-mail personalizado para onde deve reencaminhar as suas faturas e uma lista com os documentos recebidos, como a fatura da EDP pendente. A seguir, ele saberia que pode copiar o endereço para enviar faturas ou clicar em 'Fazer conta com esta' para processar o documento. O que o poderia travar ligeiramente é a dúvida sobre se 'fazer conta' significa registar a despesa para impostos ou efetuar o pagamento da mesma.",
+      "palavras_dificeis": [
+        "Fazer conta"
+      ],
+      "melhoria": "Substituir 'Fazer conta com esta' por um termo mais preciso como 'Registar despesa' ou 'Associar à atividade'.",
+      "severity": "verde",
+      "modelo": "gemini-3.5-flash",
+      "foto": "caixa_ligada_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um endereço de e-mail próprio para onde deve reencaminhar as suas faturas de despesas. A seguir, tentaria copiar esse endereço para o colar no seu programa de correio eletrónico habitual. No entanto, a necessidade de sair da aplicação para ir ao e-mail reencaminhar uma fatura pode causar alguma confusão inicial sobre o que fazer a seguir.",
+      "palavras_dificeis": [
+        "reencaminha-a"
+      ],
+      "melhoria": "Adicionar um botão direto para partilhar o endereço por e-mail ou WhatsApp.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "caixa_vazia_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um aviso sobre o pagamento da Segurança Social e o respetivo valor estimado. Provavelmente tentaria carregar no botão verde para abrir o site externo ou para marcar como pago. No entanto, o texto com setas a explicar como pagar em 'Segurança Social Direta' é demasiado complexo para quem nunca lidou com impostos.",
+      "palavras_dificeis": [
+        "Segurança Social Direta",
+        "Conta-corrente",
+        "Multibanco"
+      ],
+      "melhoria": "Adicionar um botão direto para gerar a referência ou simplificar os passos de pagamento com imagens.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um resumo mensal de pagamentos com um calendário e lista de despesas. Provavelmente tentaria carregar no botão 'Adicionar' ou nos filtros para gerir as contas. No entanto, a confusão sobre o que exatamente significam termos como 'IVA/IRS' ou como pagar a 'Multa' diretamente na aplicação pode causar hesitação.",
+      "palavras_dificeis": [
+        "IVA",
+        "IRS"
+      ],
+      "melhoria": "Adicionar um botão de ação rápida para pagar ou marcar como pago diretamente em cada item da lista.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um resumo dos seus gastos com o carro e combustíveis, parecendo intuitivo carregar no botão verde de adicionar para inserir novos dados. No entanto, termos técnicos e siglas podem gerar alguma confusão sobre o impacto fiscal exato de cada registo. A principal dúvida seria perceber se o preenchimento destes dados é obrigatório para a sua atividade e como afeta os impostos.",
+      "palavras_dificeis": [
+        "TVDE",
+        "NIF",
+        "IRS"
+      ],
+      "melhoria": "Adicionar uma breve frase explicativa no topo a indicar para que servem estes registos na contabilidade.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê o resumo do seu carro atual e os lembretes de despesas importantes como o seguro e a inspeção. Provavelmente tentaria clicar em \"Adicionar carro\" para perceber como funciona, mas seria travado pela restrição do plano grátis que exige pagamento para avançar. Ficaria confuso sem saber se deve pagar o Pro ou onde gerir os avisos que já aparecem.",
+      "palavras_dificeis": [
+        "TVDE",
+        "IUC",
+        "Pro"
+      ],
+      "melhoria": "Adicionar um botão direto para atualizar o plano ou explicar melhor o que limita a versão gratuita.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_cadeado_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um resumo das despesas do carro associadas ao seu NIF e portagens por pagar. Provavelmente tentaria carregar em 'Adicionar' ou 'Ver perto de mim' para gerir o carro. No entanto, a confusão entre despesas guardadas para o IRS e portagens por pagar pode travar um leigo sem conhecimentos fiscais.",
+      "palavras_dificeis": [
+        "NIF",
+        "IRS",
+        "DGEG",
+        "IMT"
+      ],
+      "melhoria": "Explicar numa frase simples o que significa guardar faturas para o IRS neste contexto.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_despesas_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um resumo com os dados do seu automóvel e vários lembretes sobre despesas e prazos importantes, como o seguro e a inspeção. Provavelmente tentaria clicar num dos lembretes para ver mais detalhes ou atualizar o estado. No entanto, a sigla IUC e o termo TVDE podem gerar confusão, e não é evidente onde deve clicar para pagar ou registar estas ações.",
+      "palavras_dificeis": [
+        "TVDE",
+        "IUC"
+      ],
+      "melhoria": "Adicionar botões de ação claros em cada lembrete, como 'Marcar como pago' ou 'Ver detalhes'.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê uma explicação clara sobre como encontrar combustível mais barato perto de si, podendo escolher entre usar a localização atual ou escrever o concelho. A seguir, carregaria no botão verde para ativar a localização ou introduziria o nome na caixa de texto. O que o poderia travar ligeiramente seria a quantidade de texto inicial, mas as opções de ação são muito diretas.",
+      "palavras_dificeis": [
+        "DGEG"
+      ],
+      "melhoria": "Tornar o texto introdutório mais curto para focar imediatamente a atenção nos botões de ação.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_perto_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um pedido para indicar a localização para encontrar combustível mais barato e centros de inspeção. O próximo passo intuitivo é clicar no botão verde para usar a localização atual ou escrever o concelho na caixa de texto. A explicação simples e direta evita qualquer confusão, mesmo para quem não está habituado a estas aplicações.",
+      "palavras_dificeis": [
+        "concelho"
+      ],
+      "melhoria": "Adicionar um exemplo prático na caixa de texto, como por exemplo 'Ex: Lisboa'.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_perto_sem_permissao_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um ecrã para partilhar a localização e encontrar combustível e inspeções perto de si. A seguir, o mais provável é carregar no botão verde para usar a localização automática ou escrever o concelho na caixa de texto. O texto longo pode inicialmente confundir alguém menos habituado, mas as instruções são claras.",
+      "palavras_dificeis": [
+        "concelho"
+      ],
+      "melhoria": "Reduzir a quantidade de texto explicativo para tornar o ecrã mais limpo e direto.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_perto_vazio_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê que ainda não tem nenhum veículo registado na aplicação e que pode associar um facilmente. Para avançar, bastaria carregar no botão verde bem evidente para adicionar o carro. O que poderia causar alguma confusão ou travagem são as siglas técnicas DGEG e IMT mencionadas no cartão inferior, caso o utilizador não saiba o que significam.",
+      "palavras_dificeis": [
+        "DGEG",
+        "IMT"
+      ],
+      "melhoria": "Explicar brevemente o significado de DGEG e IMT ou remover as siglas para tornar o texto mais acessível a leigos.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_vazio_medio_pt.png"
+    },
+    {
+      "percebe": "nao",
+      "resposta": "O ecrã mostra apenas um título enigmático e blocos vazios, sem qualquer dado ou instrução para o utilizador. Alguém sem conhecimentos fiscais ficaria completamente perdido sem saber o que fazer a seguir. O que a travaria é a total ausência de explicações, botões de ação ou informações visíveis no ecrã.",
+      "palavras_dificeis": [
+        "imposto"
+      ],
+      "melhoria": "Adicionar uma breve explicação sobre o propósito do ecrã e um botão claro a indicar a próxima ação.",
+      "severity": "vermelho",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_a_carregar_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "Um utilizador leigo vê um resumo dos seus ganhos e impostos estimados, juntamente com um histórico de valores guardados ou retirados. Provavelmente tentaria carregar nos botões verdes de 'Separei' ou 'Tirei' para registar uma nova operação financeira. No entanto, a confusão sobre o que significa exatamente 'O cofre do imposto' e a falta de instrução clara sobre se deve inserir o valor total poupado ou apenas o último montante poderiam travá-lo.",
+      "palavras_dificeis": [
+        "IRS",
+        "Segurança Social"
+      ],
+      "melhoria": "Adicionar uma breve explicação por baixo dos botões a indicar claramente o que acontece ao carregar neles.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_caderno_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê o montante total guardado para impostos e uma indicação clara de que tem dinheiro suficiente. Ficaria na dúvida sobre o que fazer a seguir, pois os botões 'Separei' e 'Tirei' são pouco intuitivos para quem não domina a aplicação. O que o travaria seria perceber se tem de fazer alguma ação manual nestes botões ou se o valor é atualizado automaticamente.",
+      "palavras_dificeis": [
+        "Segurança Social",
+        "IRS"
+      ],
+      "melhoria": "Adicionar uma breve explicação por baixo dos botões 'Separei' e 'Tirei' a indicar quando devem ser utilizados.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_chega_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê uma mensagem clara a informar que não há ligação à internet. A ação seguinte é óbvia: carregar no botão verde para tentar novamente. O que o travaria seria apenas persistir o problema de falha de rede no telemóvel.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar um ícone ou indicação visual para verificar o Wi-Fi ou dados móveis.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_erro_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "Um utilizador leigo percebe que tem dinheiro guardado e em falta, mas confunde-se com a metáfora do 'cofre' e a falta de ações claras. Provavelmente tentaria carregar nos botões 'Separei' ou 'Tirei' sem saber bem o que significam na prática. O que o travaria é a dúvida sobre se tem de fazer alguma transferência bancária real ou se isto é apenas um registo manual.",
+      "palavras_dificeis": [
+        "Segurança Social",
+        "IRS"
+      ],
+      "melhoria": "Adicionar um botão explicativo com a indicação exata de quanto deve guardar da próxima vez que receber.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_falta_muito_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê o valor guardado para os impostos e percebe que lhe falta juntar mais um bocado. Ficaria confuso com o significado exato de termos como 'Segurança Social' e 'IRS' misturados com conceitos informais. Para avançar, tentaria carregar nos botões em baixo para registar o dinheiro que já separou.",
+      "palavras_dificeis": [
+        "Segurança Social",
+        "IRS",
+        "contabilidade"
+      ],
+      "melhoria": "Adicionar uma explicação curta sobre o que significam 'Segurança Social' e 'IRS' para quem nunca lidou com impostos.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_falta_pouco_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um formulário para registar dinheiro guardado ou retirado e indicará o valor e o motivo nas opções abaixo. A seguir, tentaria preencher o campo do dinheiro e carregar em «Guardar» no fundo do ecrã. O que o travaria é não saber exatamente que valor colocar ali nem se isto afeta diretamente as suas contas reais com o Estado.",
+      "palavras_dificeis": [
+        "IRS",
+        "Segurança Social"
+      ],
+      "melhoria": "Adicionar um exemplo prático no campo vazio para indicar que valor deve ser inserido.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_folha_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê o título \"O cofre do imposto\" e uma caixa azul a pedir para entrar na app para ver o cofre. Para avançar, tentaria carregar nessa caixa azul por parecer um botão clicável. No entanto, a incerteza sobre se já tem sessão iniciada ou onde deve clicar exatamente para fazer login poderá causar alguma hesitação.",
+      "palavras_dificeis": [
+        "cofre"
+      ],
+      "melhoria": "Transformar a caixa azul num botão bem visível com o texto \"Entrar na aplicação\".",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_sem_sessao_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um saldo de zero euros e percebe que deve clicar no botão verde para indicar quanto ganhou. A seguir, tentaria escrever o valor dos seus rendimentos para calcular o imposto. No entanto, a confusão entre o cofre virtual e os botões de \"Separei\" e \"Tirei\" pode travá-lo, pois não é evidente se tem de registar o dinheiro manualmente.",
+      "palavras_dificeis": [
+        "IRS",
+        "Segurança Social",
+        "contabilidade"
+      ],
+      "melhoria": "Adicionar uma breve instrução passo a passo a explicar a diferença entre indicar o que ganhou e mexer no dinheiro do cofre.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "cofre_vazio_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um ecrã de erro a indicar um problema de ligação à internet que impediu a abertura da conta. A seguir, tentaria carregar no botão verde para tentar novamente ou sairia da aplicação. Nada o travaria, pois as instruções são claras e acessíveis.",
+      "palavras_dificeis": [],
+      "melhoria": "",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "conta-nao-abriu_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "Uma pessoa leiga vê claramente que tem direito ao subsídio de desemprego e qual será o valor estimado. A seguir, tentaria seguir os três passos indicados e usaria os botões de atalho para abrir os sites externos. No entanto, a referência a códigos burocráticos pode gerar alguma hesitação inicial.",
+      "palavras_dificeis": [
+        "IEFP",
+        "modelo RP5044"
+      ],
+      "melhoria": "Adicionar uma breve explicação ou exemplo do que é o modelo RP5044 para facilitar a compreensão.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "desemprego_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê os dados do seu automóvel e vários lembretes sobre prazos importantes, como a inspeção e o seguro. Provavelmente tentaria clicar num dos lembretes para ver mais detalhes ou atualizar a informação. No entanto, a sigla 'TVDE' e termos fiscais como 'IUC' podem gerar confusão sobre onde pagar ou o que fazer exatamente.",
+      "palavras_dificeis": [
+        "TVDE",
+        "IUC"
+      ],
+      "melhoria": "Adicionar um botão direto em cada lembrete para 'Marcar no calendário' ou 'Saber como pagar'.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "exemplo_carro_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "Uma pessoa que nunca usou a aplicação vê claramente que tem de pagar a Segurança Social e o respetivo valor. O utilizador saberia carregar em \"Ver como pagar\" para avançar com o pagamento ou em \"Já paguei\" se já o tivesse feito. O que poderia gerar alguma dúvida inicial seria saber onde obter os dados de pagamento exatos, mas a instrução principal está muito clara.",
+      "palavras_dificeis": [
+        "Segurança Social",
+        "IRS"
+      ],
+      "melhoria": "Adicionar um pequeno texto explicativo a indicar que ao clicar em \"Ver como pagar\" aparecem as referências para o multibanco.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "exemplo_painel_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "Uma pessoa leiga vê claramente o dinheiro que ganhou este mês dividido por registos individuais, como viagens da Uber ou Bolt. O botão verde grande convida intuitivamente a registar novos ganhos caso seja necessário. O que a poderia travar era não saber se estes valores entram automaticamente ou se tem de os colocar sempre à mão.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar um pequeno texto a explicar se os ganhos foram importados automaticamente ou inseridos manualmente.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "exemplo_vida_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um assistente por voz onde colocou uma questão sobre pagamentos e percebe que pode falar para obter uma resposta. O que faria a seguir seria continuar a falar ou largar o dedo para enviar a mensagem de voz. O que o poderia travar é a dúvida sobre se deve manter o dedo no botão verde enquanto fala.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar uma instrução visual a indicar se deve manter o dedo premido ou apenas tocar uma vez.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_a_ouvir_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O ecrã mostra um assistente de voz a processar um pedido com instruções claras para falar ou escrever. Uma pessoa sem experiência saberia que pode tocar no microfone para falar ou escolher a opção de escrever. O único fator que poderia gerar dúvida é o tempo de espera gerado pelo estado 'a pensar na resposta'.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar uma animação mais clara de que o sistema está apenas a processar o áudio para evitar a sensação de bloqueio.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_a_pensar_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma resposta clara sobre quanto dinheiro deve guardar para impostos, com valores e prazos indicados. A seguir, continuaria a usar o microfone para colocar novas dúvidas ou tocaria em \"Prefiro escrever\" se preferisse texto. No entanto, a ausência de indicações concretas sobre onde pagar estes valores ou como proceder exatamente pode deixá-lo confuso.",
+      "palavras_dificeis": [
+        "IVA",
+        "Segurança Social",
+        "trimestre"
+      ],
+      "melhoria": "Adicionar botões de ação rápida logo abaixo da resposta, como \"Como pagar?\" ou \"Adicionar lembrete\".",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_com_resposta_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um assistente de voz onde pode fazer perguntas diretamente ou escolher exemplos sugeridos. O que o faria avançar seria carregar numa das perguntas pré-definidas ou escrever no campo de texto para obter respostas. A única pequena barreira é perceber que o microfone está desligado, mas o texto explicativo resolve essa dúvida.",
+      "palavras_dificeis": [
+        "IVA"
+      ],
+      "melhoria": "Adicionar um botão direto para ligar o microfone nas definições dentro do próprio ecrã.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_escrita_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um ecrã de assistente de voz com um aviso de que esgotou as perguntas mensais e um botão para ver um plano pago. A seguir, tentaria carregar no microfone para falar, mas ficaria confuso sobre se ainda pode fazer perguntas devido ao bloqueio. O que o travaria é a incerteza sobre se o botão do microfone funciona após esgotar o limite.",
+      "palavras_dificeis": [
+        "plano Pro"
+      ],
+      "melhoria": "Tornar o botão do microfone cinzento e inativo quando acabarem as perguntas, indicando claramente que é preciso atualizar o plano.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_limite_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O ecrã apresenta um assistente por voz onde o utilizador pode fazer perguntas oralmente ou escolher exemplos sugeridos. Para começar, a pessoa vê instruções claras para carregar no botão verde com o microfone e falar naturalmente. O que poderia gerar alguma dúvida inicial seria saber se o assistente compreende linguagem simples do dia a dia.",
+      "palavras_dificeis": [
+        "IVA"
+      ],
+      "melhoria": "Adicionar uma breve animação ou indicação visual a apontar diretamente para o botão do microfone para atrair imediatamente o olhar.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_parado_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um assistente de voz com instruções para carregar no microfone e falar, além de sugestões de perguntas. A pessoa tentaria carregar no botão verde ou escrever, mas o aviso azul indica que o microfone está desligado. O que travaria o utilizador seria perceber como voltar a ligar o microfone nas definições do telemóvel.",
+      "palavras_dificeis": [
+        "IVA"
+      ],
+      "melhoria": "Adicionar um botão direto para abrir as definições do telemóvel e ligar o microfone.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_sem_microfone_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um assistente de voz para tirar dúvidas e um aviso vermelho a indicar falta de ligação à internet. TENTARIA carregar no botão verde do microfone para falar, mas ficaria retido pelo erro de ligação que impede o funcionamento da app.",
+      "palavras_dificeis": [
+        "IVA"
+      ],
+      "melhoria": "Adicionar um botão claro para tentar ligar novamente a internet e explicar como resolver o erro de rede.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_sem_rede_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um assistente de voz para fazer perguntas sobre impostos e despesas. Para avançar, teria de carregar no botão do microfone ou escolher uma das perguntas sugeridas em baixo. No entanto, o aviso inicial a bloquear o acesso à funcionalidade principal gera logo confusão e travagem imediata.",
+      "palavras_dificeis": [
+        "Pro",
+        "IVA"
+      ],
+      "melhoria": "Tornar o botão de ativação do Pro mais claro ou explicar o que é necessário fazer para desbloquear o assistente de voz.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "fala_trancado_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê o título de um guia sobre como abrir atividade, mas logo a baixo descobre que o conteúdo ainda não está escrito. Tentaria ler as instruções para avançar com o processo, mas ficaria bloqueado por não haver informação disponível. O que o trava é precisamente a mensagem a indicar que o guia está em breve.",
+      "palavras_dificeis": [
+        "CAE",
+        "TVDE"
+      ],
+      "melhoria": "Adicionar uma estimativa de tempo para a disponibilidade do guia ou um botão para voltar atrás.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "guias_breve_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê um guia passo a passo para pagar a Segurança Social, explicando que precisa de ir ao site externo e gerar uma referência Multibanco. A seguir, tentaria abrir o site indicado para seguir os passos, mas o texto exige sair da aplicação atual. O que o travaria é a necessidade de alternar entre a app e o site externo da Segurança Social para concluir a tarefa.",
+      "palavras_dificeis": [
+        "NISS",
+        "Conta-corrente",
+        "referência Multibanco"
+      ],
+      "melhoria": "Adicionar um botão direto para abrir o portal da Segurança Social no navegador do telemóvel.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "guias_detalhe_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma lista de pequenos guias informativos sobre impostos e recibos verdes. Provavelmente tentaria carregar no primeiro guia para começar a aprender. No entanto, termos técnicos e siglas no meio dos títulos podem gerar confusão e travar a leitura.",
+      "palavras_dificeis": [
+        "CAE",
+        "IVA",
+        "art. 53.º",
+        "Retenção na fonte",
+        "IRS",
+        "anexo B",
+        "TVDE"
+      ],
+      "melhoria": "Adicionar uma breve frase de boas-vindas a explicar qual o primeiro guia que o utilizador deve ler consoante a sua situação.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "guias_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê o cálculo detalhado das suas horas extra, dias de férias e subsídios com base num salário de 1.200 euros. Como se trata de um ecrã meramente informativo, a pessoa tentaria tocar no interruptor sobre as 100 horas extra para ver se o valor muda. No entanto, a referência a artigos legais complexos no final pode causar alguma confusão a quem não percebe de leis.",
+      "palavras_dificeis": [
+        "art. 238.º",
+        "subsídio de Natal",
+        "proporcional"
+      ],
+      "melhoria": "Adicionar uma breve explicação em linguagem simples sobre o impacto prático de ativar o botão das 100 horas extra.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "horas_extra_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê respostas explicativas sobre impostos com conselhos práticos, mas depara-se com um bloqueio por ter esgotado as perguntas gratuitas. A seguir, tentaria escrever na barra inferior, mas perceberia que está inativa. O que a travaria é o limite do plano grátis que impede de continuar a conversa sem pagar.",
+      "palavras_dificeis": [
+        "SS",
+        "IRS",
+        "Pro"
+      ],
+      "melhoria": "Tornar a caixa de texto inferior claramente desativada com um aviso direto para carregar em 'Ver o plano Pro'.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_limite_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê explicações simples sobre isenções fiscais e uma estimativa de quanto deve poupar para o IRS. Como próximo passo, tentaria colocar o dinheiro numa conta à parte conforme sugerido. No entanto, termos técnicos podem gerar dúvidas sobre como proceder exatamente na prática.",
+      "palavras_dificeis": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "melhoria": "Adicionar um botão direto para simular a criação dessa poupança ou calcular o valor exato com base nos rendimentos reais.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê uma conversa em formato de chat onde a aplicação responde diretamente a uma dúvida sobre o início de pagamentos à Segurança Social. Como a app já indica o próximo passo, a pessoa apenas continuaria a ler ou a fazer novas perguntas na caixa de texto. No entanto, a utilização de siglas e termos técnicos pode gerar alguma confusão sobre o que fazer exatamente na Autoridade Tributária.",
+      "palavras_dificeis": [
+        "Segurança Social",
+        "IVA",
+        "SS"
+      ],
+      "melhoria": "Adicionar botões de ação rápida abaixo da resposta com os próximos passos recomendados para o utilizador.",
+      "severity": "amarelo",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_pensar_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um assistente de perguntas e respostas sobre impostos, recibos e carros, acompanhado de exemplos prontos a clicar. O próximo passo intuitivo é tocar numa das sugestões ou escrever uma dúvida na barra inferior. O que poderia travar alguém é a dúvida se o assistente compreende linguagem simples ou se vai responder com termos fiscais complicados.",
+      "palavras_dificeis": [
+        "IVA",
+        "Segurança Social"
+      ],
+      "melhoria": "Adicionar uma breve instrução no topo a incentivar o utilizador a escrever a sua própria questão por palavras simples.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "ia_vazio_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um ecrã para introduzir um código numérico enviado por e-mail para validar a sua conta. A seguir, iria ao seu e-mail ver o código, voltava à aplicação para o digitar nas caixas e carregava no botão 'Confirmar'. O que o poderia travar era não encontrar o e-mail e ter de esperar o tempo indicado para pedir um novo.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar um botão direto para abrir a aplicação de e-mail do telemóvel.",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "login-codigo_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um ecrã limpo com instruções simples para iniciar sessão apenas com o endereço de correio eletrónico. A ação seguinte é natural: basta digitar o e-mail no campo indicado e carregar no botão verde para receber o código. A clareza da linguagem evita qualquer tipo de bloqueio ou confusão inicial.",
+      "palavras_dificeis": [],
+      "melhoria": "",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "login_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê um ecrã de definições simples para escolher a variante do português e gerir a conta. Para continuar, basta tocar na opção de idioma desejada ou no botão para sair. A clareza das opções evita qualquer confusão, mesmo para quem não está habituado a aplicações.",
+      "palavras_dificeis": [],
+      "melhoria": "",
+      "severity": "verde",
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "mais_definicoes_medio_pt.png"
+    },
+    {
+      "percebe": "nao",
+      "resposta": "O utilizador vê um conjunto de botões com nomes abstratos que não indicam claramente a sua função prática ou o benefício imediato. Alguém sem conhecimentos fiscais não saberia qual destas opções escolher para resolver um problema específico, como emitir um recibo ou verificar impostos. A falta de contexto ou de uma hierarquia de tarefas travaria o utilizador, deixando-o confuso sobre por onde começar.",
+      "palavras_dificeis": [
+        "Prova de rendimento",
+        "Fim da fidelização",
+        "Reforma e direitos"
+      ],
+      "melhoria": "Adicionar uma breve descrição ou subtítulo abaixo de cada título que explique a utilidade prática de cada opção.",
+      "severity": "vermelho",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "mais_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador vê duas opções para classificar a sua atividade profissional e percebe que deve selecionar uma antes de carregar em 'Continuar'. No entanto, a falta de conhecimento sobre termos técnicos pode gerar insegurança sobre qual a opção correta para o seu caso específico. O que trava a pessoa é o medo de escolher a categoria errada e ter problemas com as Finanças.",
+      "palavras_dificeis": [
+        "ENI",
+        "NIF",
+        "Lda.",
+        "NIPC"
+      ],
+      "melhoria": "Adicionar um pequeno botão de ajuda ou 'i' junto a cada opção que explique de forma simples o que significa cada uma.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_empresa_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê uma pergunta direta sobre a periodicidade do IVA com uma recomendação clara de qual opção escolher. A pessoa selecionaria a opção sugerida e carregaria no botão 'Continuar' para avançar. O que poderia travar o utilizador é a dúvida sobre se a escolha terá consequências fiscais graves caso não seja a correta.",
+      "palavras_dificeis": [
+        "IVA"
+      ],
+      "melhoria": "Adicionar uma breve explicação sobre o que é o IVA ou um link para 'Saber mais' para reduzir a ansiedade do utilizador.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_iva_periodo_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê uma pergunta simples sobre a sua data de nascimento para verificar a elegibilidade para um benefício fiscal. A ação óbvia é confirmar o ano e carregar no botão 'Continuar' na base do ecrã. O que pode travar a pessoa é a incerteza sobre o que é exatamente o 'IRS Jovem' e se a aplicação está a calcular algo automaticamente ou apenas a recolher dados.",
+      "palavras_dificeis": [
+        "IRS",
+        "IRS Jovem"
+      ],
+      "melhoria": "Adicionar um pequeno ícone de ajuda ou um link 'Saber mais' junto à explicação do IRS Jovem para esclarecer o conceito sem sair do fluxo.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_nascimento_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê uma mensagem de boas-vindas que explica o propósito da aplicação e o que esperar a seguir. A ação a tomar é clara: carregar no botão verde 'Começar' para iniciar o processo de configuração. O que poderia travar a pessoa é a ansiedade perante siglas fiscais que não compreende, mesmo que o botão seja óbvio.",
+      "palavras_dificeis": [
+        "IVA",
+        "IRS"
+      ],
+      "melhoria": "Adicionar uma pequena frase de apoio como 'Não te preocupes, vamos ajudar-te com cada passo' para reduzir a ansiedade fiscal.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p0_boasvindas_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador percebe que está a selecionar a sua ocupação profissional para configurar a conta. A pessoa escolheria a opção que melhor descreve o seu trabalho e carregaria no botão 'Continuar' no fundo do ecrã. O que poderia causar hesitação é a sigla 'TVDE', caso o utilizador não saiba que se refere a transporte individual de passageiros.",
+      "palavras_dificeis": [
+        "TVDE"
+      ],
+      "melhoria": "Adicionar uma pequena descrição ou exemplo por baixo de 'Motorista TVDE' para esclarecer que se trata de transporte de passageiros.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p1_atividade_medio_pt.png"
+    },
+    {
+      "percebe": "quase",
+      "resposta": "O utilizador percebe que deve selecionar a data de início da sua atividade profissional através dos menus pendentes. Após ajustar a data, a pessoa carregaria no botão 'Continuar' para avançar. O que trava o utilizador é a incerteza sobre onde encontrar essa data específica no Portal das Finanças e o medo de errar num campo que parece ter implicações fiscais.",
+      "palavras_dificeis": [
+        "Portal das Finanças",
+        "Segurança Social"
+      ],
+      "melhoria": "Adicionar um pequeno botão ou link de ajuda que mostre um exemplo visual de onde encontrar a data de início de atividade no documento das Finanças.",
+      "severity": "amarelo",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p2_abertura_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador percebe que está a configurar os dados do seu carro para a aplicação fazer cálculos automáticos. A pessoa preencheria os campos com as datas solicitadas e carregaria no botão 'Continuar'. O que poderia travar o utilizador é a dúvida sobre o que é o IUC ou a incerteza sobre a data exata da última inspeção.",
+      "palavras_dificeis": [
+        "IUC"
+      ],
+      "melhoria": "Adicionar uma pequena nota explicativa ou um ícone de ajuda junto à sigla IUC para esclarecer que se trata do Imposto Único de Circulação.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p4_carro_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador percebe que deve indicar o seu rendimento mensal aproximado para obter uma simulação. Ao ver os resultados imediatos sobre Segurança Social e IRS, sente-se encorajado a carregar no botão 'Continuar'. O que pode travar a pessoa é a incerteza sobre se o valor deve ser bruto ou líquido, algo que não está especificado.",
+      "palavras_dificeis": [
+        "IRS",
+        "Segurança Social"
+      ],
+      "melhoria": "Adicionar uma pequena nota a esclarecer se o valor a inserir deve ser o rendimento bruto ou líquido.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_p5_rendimento_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê uma pergunta direta sobre o seu salário bruto e uma caixa de texto onde pode inserir o valor ou escolher uma das opções sugeridas. A pessoa perceberia que deve confirmar o valor e carregar no botão 'Continuar' para avançar. O que poderia travar o utilizador é a dúvida sobre se deve incluir subsídios ou prémios no valor mensal.",
+      "palavras_dificeis": [
+        "bruto"
+      ],
+      "melhoria": "Adicionar um pequeno texto de ajuda ou um ícone de informação a explicar se o valor deve incluir subsídios de alimentação ou outros complementos.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_salario_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê uma lista clara de situações profissionais e entende que deve selecionar a que melhor descreve o seu caso. A ação seguinte é clicar na opção correta e carregar no botão 'Continuar' no fundo do ecrã. O que pode travar alguém é a sigla 'TVDE', que pode não ser reconhecida por quem não trabalha no setor dos transportes.",
+      "palavras_dificeis": [
+        "TVDE"
+      ],
+      "melhoria": "Adicionar uma pequena explicação ou o significado completo da sigla TVDE (Transporte Individual e Remunerado de Passageiros em Veículos Descaracterizados a partir de Plataforma Eletrónica) num pequeno texto de ajuda.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "onboarding_trabalho_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador percebe que a aplicação não está a conseguir ligar à internet e que a solução imediata é carregar no botão para tentar novamente. O que o poderia travar é a dúvida sobre se o problema é do seu telemóvel ou da própria aplicação, gerando insegurança sobre se deve verificar o Wi-Fi ou apenas insistir.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar uma pequena sugestão visual ou texto a indicar que deve verificar a ligação à internet do telemóvel.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_erro_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê claramente que tem um pagamento pendente da Segurança Social e um botão direto para saber como o efetuar. A pessoa carregaria em 'Ver como pagar' para obter as referências multibanco. O que poderia causar hesitação é a falta de contexto sobre o que é o 'IUC' mencionado no cartão laranja, apesar da explicação breve abaixo.",
+      "palavras_dificeis": [
+        "IUC"
+      ],
+      "melhoria": "Adicionar um pequeno ícone de ajuda ou um texto explicativo mais detalhado sobre o que acontece ao clicar em 'Já paguei' para evitar receio de erro.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_laranja_medio_pt.png"
+    },
+    {
+      "percebe": "nao",
+      "resposta": "O utilizador vê apenas um ecrã vazio com uma saudação, sem qualquer instrução ou botão de ação. A pessoa sentir-se-ia perdida, sem saber se a aplicação está a carregar ou se precisa de configurar algo. A falta de um botão de 'Adicionar' ou 'Começar' trava completamente qualquer tentativa de utilização.",
+      "palavras_dificeis": [],
+      "melhoria": "Adicionar um botão de ação claro, como 'Adicionar o meu primeiro recibo' ou 'Configurar perfil', no centro do ecrã vazio.",
+      "severity": "vermelho",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_skeleton_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê uma mensagem tranquilizadora de que não tem pagamentos pendentes e uma instrução clara para registar os seus rendimentos mensais. A pessoa sentir-se-ia confortável a carregar no botão verde para inserir o valor ganho, pois a linguagem é simples e direta. O que poderia travar o utilizador é a dúvida sobre se deve inserir o valor bruto ou líquido, algo que não está especificado.",
+      "palavras_dificeis": [
+        "IRS"
+      ],
+      "melhoria": "Adicionar uma pequena nota explicativa no botão ou abaixo dele a esclarecer se o valor a inserir deve ser o rendimento bruto ou líquido.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_verde_medio_pt.png"
+    },
+    {
+      "percebe": "sim",
+      "resposta": "O utilizador vê claramente que tem uma dívida urgente à Segurança Social e um pagamento futuro de seguro. A pessoa carregaria no botão 'Ver como pagar' para resolver a pendência imediata. O que poderia travar alguém menos experiente é o medo de clicar num botão e efetuar um pagamento automático sem querer.",
+      "palavras_dificeis": [
+        "Segurança Social"
+      ],
+      "melhoria": "Adicionar uma pequena frase explicativa abaixo de 'Ver como pagar' indicando que o botão apenas mostra os dados para pagamento e não retira dinheiro da conta.",
+      "severity": "verde",
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "painel_vermelho_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "painel_vermelho_segunda_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "plano_gratis_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "plano_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "prova_com_dados_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "prova_sem_dados_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "prova_trancada_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "prova_vazia_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "radar_erro_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "radar_lista_fim_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "radar_lista_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "radar_trancado_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "radar_vazio_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibo_vencimento_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibos_cartao_fatura_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibos_contrato_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibos_emitir_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibos_empresa_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibos_irs_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibos_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibos_passar_fatura_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibos_sem_fatura_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "recibos_ss_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "reforma_cadeado_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "reforma_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "suporte_bug_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "suporte_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "suporte_reembolso_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "suporte_vazio_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vale_falta_carro_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vale_perde_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vale_sobra_bem_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vale_sobra_bem_resposta_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vale_vazio_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_detalhe_conta_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_entra_cheio_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_entra_erro_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_entra_vazio_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_importar_extrato_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_nova_entrada_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_recorrentes_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_recorrentes_vazio_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_sai_cheio_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_sai_vazio_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_sobra_bom_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_sobra_carregar_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_sobra_mau_medio_pt.png"
+    },
+    {
+      "severity": "erro",
+      "finding": "HTTP 404 (gemini-2.5-flash-lite): {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest ",
+      "foto": "vida_sobra_vazio_medio_pt.png"
+    }
+  ]
+}

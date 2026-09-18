@@ -1278,6 +1278,12 @@ abstract class AppLocalizations {
   /// **'A carregar…'**
   String get aCarregar;
 
+  /// No description provided for @aCarregarFrase.
+  ///
+  /// In pt, this message translates to:
+  /// **'A carregar as tuas contas… só demora um segundo.'**
+  String get aCarregarFrase;
+
   /// No description provided for @guardar.
   ///
   /// In pt, this message translates to:
@@ -3365,6 +3371,78 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Definições'**
   String get maisDefinicoes;
+
+  /// No description provided for @maisSubValeAPena.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta corrida compensa ou não?'**
+  String get maisSubValeAPena;
+
+  /// No description provided for @maisSubFala.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pergunta com a tua voz.'**
+  String get maisSubFala;
+
+  /// No description provided for @maisSubCofre.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guarda o dinheiro do imposto.'**
+  String get maisSubCofre;
+
+  /// No description provided for @maisSubProva.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um papel que diz quanto ganhas.'**
+  String get maisSubProva;
+
+  /// No description provided for @maisSubRadar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando podes trocar de operadora.'**
+  String get maisSubRadar;
+
+  /// No description provided for @maisSubReforma.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que a Segurança Social te dá um dia.'**
+  String get maisSubReforma;
+
+  /// No description provided for @maisSubGuias.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passo a passo, em palavras simples.'**
+  String get maisSubGuias;
+
+  /// No description provided for @maisSubPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve a tua dúvida.'**
+  String get maisSubPergunta;
+
+  /// No description provided for @maisSubAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fala connosco.'**
+  String get maisSubAjuda;
+
+  /// No description provided for @maisSubPlano.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que é grátis e o que é Pro.'**
+  String get maisSubPlano;
+
+  /// No description provided for @maisSubDefinicoes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conta, língua, sair.'**
+  String get maisSubDefinicoes;
+
+  /// No description provided for @maisSubExemplo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vê a app cheia, sem escrever nada.'**
+  String get maisSubExemplo;
 
   /// No description provided for @defsTitulo.
   ///
@@ -5523,7 +5601,7 @@ abstract class AppLocalizations {
   /// No description provided for @caixaFazerConta.
   ///
   /// In pt, this message translates to:
-  /// **'Fazer conta com esta'**
+  /// **'Registar como despesa'**
   String get caixaFazerConta;
 
   /// No description provided for @caixaALer.
@@ -5946,6 +6024,12 @@ abstract class AppLocalizations {
   /// **'Tirei'**
   String get cofreBotaoTirar;
 
+  /// No description provided for @cofreBotoesAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'«Separei» = pus dinheiro de lado para o imposto. «Tirei» = fui buscar dinheiro ao cofre.'**
+  String get cofreBotoesAjuda;
+
   /// No description provided for @cofreListaTitulo.
   ///
   /// In pt, this message translates to:
@@ -6287,6 +6371,522 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Acabaram as perguntas deste mês.'**
   String get falaLimite;
+
+  /// No description provided for @glossTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Palavras difíceis'**
+  String get glossTitulo;
+
+  /// No description provided for @glossAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que estas palavras querem dizer, em palavras simples.'**
+  String get glossAjuda;
+
+  /// No description provided for @glossFechar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fechar'**
+  String get glossFechar;
+
+  /// No description provided for @glossBotao.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que é isto?'**
+  String get glossBotao;
+
+  /// No description provided for @glossIrsNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'IRS'**
+  String get glossIrsNome;
+
+  /// No description provided for @glossIrsTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O imposto sobre o que ganhaste no ano. Em abril entregas a declaração e acerta-se: ou recebes de volta, ou pagas o que falta.'**
+  String get glossIrsTexto;
+
+  /// No description provided for @glossIvaNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'IVA'**
+  String get glossIvaNome;
+
+  /// No description provided for @glossIvaTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um imposto que vai dentro do preço das coisas. Quem passa recibos pode ter de o cobrar e entregar ao Estado — ou estar isento (não cobrar).'**
+  String get glossIvaTexto;
+
+  /// No description provided for @glossSsNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segurança Social'**
+  String get glossSsNome;
+
+  /// No description provided for @glossSsTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O desconto de todos os meses que te dá direito a baixa, desemprego e reforma. Quem trabalha por conta própria paga-o sozinho, até ao dia 20.'**
+  String get glossSsTexto;
+
+  /// No description provided for @glossSsDiretaNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segurança Social Direta'**
+  String get glossSsDiretaNome;
+
+  /// No description provided for @glossSsDiretaTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O site da Segurança Social onde entras com a tua senha para ver o que deves e pagar.'**
+  String get glossSsDiretaTexto;
+
+  /// No description provided for @glossTvdeNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'TVDE'**
+  String get glossTvdeNome;
+
+  /// No description provided for @glossTvdeTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Os carros de plataforma, tipo Uber e Bolt. É uma atividade com regras próprias e um curso obrigatório.'**
+  String get glossTvdeTexto;
+
+  /// No description provided for @glossIucNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'IUC'**
+  String get glossIucNome;
+
+  /// No description provided for @glossIucTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O imposto do carro, que se paga uma vez por ano, no mês da matrícula.'**
+  String get glossIucTexto;
+
+  /// No description provided for @glossNifNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'NIF'**
+  String get glossNifNome;
+
+  /// No description provided for @glossNifTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu número de contribuinte: 9 números que as Finanças te deram. Dizes o NIF quando pedes fatura.'**
+  String get glossNifTexto;
+
+  /// No description provided for @glossNissNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'NISS (número da Segurança Social)'**
+  String get glossNissNome;
+
+  /// No description provided for @glossNissTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu número na Segurança Social. Está no cartão de cidadão e nas cartas da Segurança Social.'**
+  String get glossNissTexto;
+
+  /// No description provided for @glossNipcNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'NIPC'**
+  String get glossNipcNome;
+
+  /// No description provided for @glossNipcTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O número de contribuinte de uma empresa (é o NIF, mas da empresa).'**
+  String get glossNipcTexto;
+
+  /// No description provided for @glossCaeNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'CAE (código de atividade)'**
+  String get glossCaeNome;
+
+  /// No description provided for @glossCaeTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O código da tua atividade nas Finanças. Diz o que fazes: TVDE, entregas, limpezas… Está no papel do início de atividade.'**
+  String get glossCaeTexto;
+
+  /// No description provided for @glossRetencaoNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Retenção na fonte'**
+  String get glossRetencaoNome;
+
+  /// No description provided for @glossRetencaoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando quem te paga fica com uma parte (por norma 25 %) e entrega-a às Finanças por ti, como adiantamento do IRS.'**
+  String get glossRetencaoTexto;
+
+  /// No description provided for @glossAnexoBNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Anexo B'**
+  String get glossAnexoBNome;
+
+  /// No description provided for @glossAnexoBTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'A folha da declaração de IRS onde vai o que ganhaste a recibos verdes.'**
+  String get glossAnexoBTexto;
+
+  /// No description provided for @glossAnexoANome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Anexo A'**
+  String get glossAnexoANome;
+
+  /// No description provided for @glossAnexoATexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'A folha da declaração de IRS onde vai o teu salário de contrato.'**
+  String get glossAnexoATexto;
+
+  /// No description provided for @glossArt53Nome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Artigo 53.º'**
+  String get glossArt53Nome;
+
+  /// No description provided for @glossArt53Texto.
+  ///
+  /// In pt, this message translates to:
+  /// **'A regra que te deixa não cobrar IVA se ganhares pouco por ano (o limite está no ecrã onde aparece).'**
+  String get glossArt53Texto;
+
+  /// No description provided for @glossMultibancoNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Referência Multibanco'**
+  String get glossMultibancoNome;
+
+  /// No description provided for @glossMultibancoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Três números (entidade, referência, valor) para pagares numa caixa Multibanco ou na app do banco.'**
+  String get glossMultibancoTexto;
+
+  /// No description provided for @glossContaCorrenteNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conta-corrente'**
+  String get glossContaCorrenteNome;
+
+  /// No description provided for @glossContaCorrenteTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'A lista, no site da Segurança Social ou das Finanças, do que já pagaste e do que ainda deves.'**
+  String get glossContaCorrenteTexto;
+
+  /// No description provided for @glossDgegNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'DGEG'**
+  String get glossDgegNome;
+
+  /// No description provided for @glossDgegTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O serviço do Estado que dá o cartão de gasóleo profissional. Devolve parte do imposto do combustível a quem tem TVDE.'**
+  String get glossDgegTexto;
+
+  /// No description provided for @glossImtNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'IMT'**
+  String get glossImtNome;
+
+  /// No description provided for @glossImtTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O instituto dos transportes. É quem dá a licença TVDE ao motorista e ao carro.'**
+  String get glossImtTexto;
+
+  /// No description provided for @glossIefpNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'IEFP'**
+  String get glossIefpNome;
+
+  /// No description provided for @glossIefpTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O centro de emprego. Quem fica sem trabalho inscreve-se lá para ter o subsídio.'**
+  String get glossIefpTexto;
+
+  /// No description provided for @glossProNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pro'**
+  String get glossProNome;
+
+  /// No description provided for @glossProTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'A parte paga da app. O que é grátis fica grátis; o Pro abre o resto (mostra-se um cadeado onde é Pro).'**
+  String get glossProTexto;
+
+  /// No description provided for @glossEniNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'ENI'**
+  String get glossEniNome;
+
+  /// No description provided for @glossEniTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Empresário em nome individual: a empresa és tu, com o teu NIF. Pagas IRS sobre o lucro.'**
+  String get glossEniTexto;
+
+  /// No description provided for @glossLdaNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Lda.'**
+  String get glossLdaNome;
+
+  /// No description provided for @glossLdaTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sociedade por quotas: uma empresa que é outra «pessoa», com NIPC. Paga IRC e tu recebes salário dela.'**
+  String get glossLdaTexto;
+
+  /// No description provided for @glossIrcNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'IRC'**
+  String get glossIrcNome;
+
+  /// No description provided for @glossIrcTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O imposto das empresas (sociedades) sobre o lucro. As pessoas pagam IRS; as empresas pagam IRC.'**
+  String get glossIrcTexto;
+
+  /// No description provided for @glossTrimestreNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Trimestre'**
+  String get glossTrimestreNome;
+
+  /// No description provided for @glossTrimestreTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Três meses. O 1.º vai de janeiro a março, o 2.º de abril a junho, e assim por diante.'**
+  String get glossTrimestreTexto;
+
+  /// No description provided for @glossContabilidadeNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Contabilidade'**
+  String get glossContabilidadeNome;
+
+  /// No description provided for @glossContabilidadeTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'As contas do teu trabalho: o que entrou, o que saiu e o que ficou. A app faz o grosso; o contabilista faz o resto.'**
+  String get glossContabilidadeTexto;
+
+  /// No description provided for @glossDmrNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'DMR'**
+  String get glossDmrNome;
+
+  /// No description provided for @glossDmrTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Declaração Mensal de Remunerações: a lista dos salários que a empresa pagou, entregue às Finanças até ao dia 10.'**
+  String get glossDmrTexto;
+
+  /// No description provided for @glossSaftNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'SAF-T'**
+  String get glossSaftNome;
+
+  /// No description provided for @glossSaftTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um ficheiro com todas as faturas do mês, que o programa de faturação manda às Finanças até ao dia 5.'**
+  String get glossSaftTexto;
+
+  /// No description provided for @glossIesNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'IES'**
+  String get glossIesNome;
+
+  /// No description provided for @glossIesTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'A declaração anual das contas da empresa, entregue em julho.'**
+  String get glossIesTexto;
+
+  /// No description provided for @glossEfaturaNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'e-fatura'**
+  String get glossEfaturaNome;
+
+  /// No description provided for @glossEfaturaTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O site das Finanças onde aparecem as faturas com o teu NIF. Em fevereiro confirmas as que ficaram «pendentes».'**
+  String get glossEfaturaTexto;
+
+  /// No description provided for @glossRecibosVerdesNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Recibos verdes'**
+  String get glossRecibosVerdesNome;
+
+  /// No description provided for @glossRecibosVerdesTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Trabalhar por conta própria e passar um recibo por cada trabalho, no site das Finanças. O nome vem da cor antiga do papel.'**
+  String get glossRecibosVerdesTexto;
+
+  /// No description provided for @glossIasNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'IAS'**
+  String get glossIasNome;
+
+  /// No description provided for @glossIasTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um valor de referência do Estado, atualizado todos os anos. Muitos limites são «tantas vezes o IAS».'**
+  String get glossIasTexto;
+
+  /// No description provided for @glossPortalFinancasNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Portal das Finanças'**
+  String get glossPortalFinancasNome;
+
+  /// No description provided for @glossPortalFinancasTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O site das Finanças. Entras com o NIF e a senha; é lá que se passa o recibo e se entrega o IRS.'**
+  String get glossPortalFinancasTexto;
+
+  /// No description provided for @glossSubsidioNatalNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Subsídio de Natal'**
+  String get glossSubsidioNatalNome;
+
+  /// No description provided for @glossSubsidioNatalTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um salário extra que o patrão paga até 15 de dezembro. É o «13.º mês».'**
+  String get glossSubsidioNatalTexto;
+
+  /// No description provided for @glossProporcionalNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Proporcional'**
+  String get glossProporcionalNome;
+
+  /// No description provided for @glossProporcionalTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'À medida dos meses que trabalhaste. Meio ano de trabalho, metade do subsídio.'**
+  String get glossProporcionalTexto;
+
+  /// No description provided for @glossFidelizacaoNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fidelização'**
+  String get glossFidelizacaoNome;
+
+  /// No description provided for @glossFidelizacaoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O tempo em que estás preso a um contrato (telemóvel, internet, ginásio). Quando acaba, podes sair ou pedir preço melhor.'**
+  String get glossFidelizacaoTexto;
+
+  /// No description provided for @glossProvaRendimentoNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prova de rendimento'**
+  String get glossProvaRendimentoNome;
+
+  /// No description provided for @glossProvaRendimentoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um papel que diz quanto ganhas. Pedem-no para alugar casa, pedir crédito ou tratar da autorização de residência.'**
+  String get glossProvaRendimentoTexto;
+
+  /// No description provided for @glossImpostoNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Imposto'**
+  String get glossImpostoNome;
+
+  /// No description provided for @glossImpostoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O dinheiro que se paga ao Estado. Aqui, quase sempre é a Segurança Social, o IRS ou o IVA.'**
+  String get glossImpostoTexto;
+
+  /// No description provided for @glossCofreNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cofre'**
+  String get glossCofreNome;
+
+  /// No description provided for @glossCofreTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Dinheiro que pões de lado, todos os meses, para não te faltar quando chega o imposto.'**
+  String get glossCofreTexto;
+
+  /// No description provided for @glossHorasExtraNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Horas extra'**
+  String get glossHorasExtraNome;
+
+  /// No description provided for @glossHorasExtraTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'As horas a mais do teu horário normal. Pagam-se mais caras do que a hora normal.'**
+  String get glossHorasExtraTexto;
+
+  /// No description provided for @glossReformaNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Reforma'**
+  String get glossReformaNome;
+
+  /// No description provided for @glossReformaTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O dinheiro que a Segurança Social te paga todos os meses quando deixares de trabalhar por idade.'**
+  String get glossReformaTexto;
+
+  /// No description provided for @glossIsencaoNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isenção'**
+  String get glossIsencaoNome;
+
+  /// No description provided for @glossIsencaoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não ter de pagar. «Isento de IVA» é não cobrar IVA; «isento de Segurança Social» é não pagar nos primeiros 12 meses.'**
+  String get glossIsencaoTexto;
 
   /// No description provided for @guiaIniSaltar.
   ///
@@ -7906,6 +8506,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Datas da agenda fiscal da AT (2026). Ao fim de semana passam ao dia útil seguinte.'**
   String get empresaCalendarioNota;
+
+  /// No description provided for @empresaCalendarioToca.
+  ///
+  /// In pt, this message translates to:
+  /// **'Toca numa data para ver como se paga e onde.'**
+  String get empresaCalendarioToca;
 
   /// No description provided for @empresaAbrirAgenda.
   ///

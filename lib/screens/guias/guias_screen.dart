@@ -54,7 +54,7 @@ class _Lista extends StatelessWidget {
     final t = Theme.of(context).textTheme;
     final aCarregar = store.aCarregar && store.itens.isEmpty;
     return Scaffold(
-      appBar: AppBar(title: Text(l.guiasTitulo)),
+      appBar: AppBar(title: Text(l.guiasTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.guias)]),
       body: ListView(
         padding: paddingEcra,
         children: [

@@ -488,6 +488,7 @@ class _Esqueleto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        LinhaACarregar(AppLocalizations.of(context).aCarregarFrase),
         _bloco(24),
         const SizedBox(height: 12),
         _bloco(160),

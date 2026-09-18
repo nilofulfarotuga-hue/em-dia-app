@@ -85,6 +85,7 @@
   },
   "cofreBotaoPor": "Separei",
   "cofreBotaoTirar": "Tirei",
+  "cofreBotoesAjuda": "«Separei» = pus dinheiro de lado para o imposto. «Tirei» = fui buscar dinheiro ao cofre.",
   "cofreListaTitulo": "O que já apontaste",
   "cofreVazio": "Ainda não apontaste nada. Quando puseres dinheiro de lado, escreve aqui quanto foi.",
   "cofreApagarPergunta": "Apagar {valor} de {data}?",

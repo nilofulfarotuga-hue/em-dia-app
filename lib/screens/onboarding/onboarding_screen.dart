@@ -596,7 +596,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   /// O título de cada pergunta, com o botão «Ouvir» (B4: em todos os ecrãs)
   /// e a frase «Podes mudar depois» quando a ajuda não a diz já.
-  Widget _titulo(TextTheme t, String texto, {String? ajuda}) {
+  Widget _titulo(TextTheme t, String texto, {String? ajuda, List<String> termos = const []}) {
     final l = AppLocalizations.of(context);
     final ajudaFinal = ajuda == null
         ? l.onbPodesMudarDepois
@@ -609,6 +609,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             Expanded(child: Text(texto, style: t.headlineLarge)),
             BotaoOuvir(etiqueta: 'onb-${_passo.name}', texto: '$texto $ajudaFinal', soIcone: true),
+            if (termos.isNotEmpty) BotaoPalavras(termos: termos),
           ],
         ),
         const SizedBox(height: 8),
@@ -660,7 +661,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       (TipoTrabalho.empresa, l.onbTrabalhoEmpresa, l.onbTrabalhoEmpresaAjuda, Icons.storefront_rounded),
     ];
     return [
-      _titulo(t, l.onbTrabalhasComo, ajuda: l.onbPodesMudarDepois),
+      _titulo(t, l.onbTrabalhasComo, ajuda: l.onbPodesMudarDepois, termos: const ['recibos_verdes', 'eni', 'lda']),
       for (final (tipo, texto, ajuda, icone) in opcoes) ...[
         BotaoEscolha(
           texto: texto,
@@ -765,7 +766,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   // ---- empresa: ENI ou sociedade ----
   List<Widget> _empresa(AppLocalizations l, TextTheme t) => [
-        _titulo(t, l.onbEmpresaTitulo, ajuda: l.onbEmpresaAjuda),
+        _titulo(t, l.onbEmpresaTitulo, ajuda: l.onbEmpresaAjuda, termos: PalavrasDoEcra.onboardingEmpresa),
         BotaoEscolha(
           texto: l.onbEmpresaEni,
           ajuda: l.onbEmpresaEniAjuda,
@@ -791,7 +792,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   // ---- empresa: IVA mensal ou trimestral ----
   List<Widget> _ivaPeriodoPasso(AppLocalizations l, TextTheme t) => [
-        _titulo(t, l.onbIvaPeriodoTitulo, ajuda: l.onbIvaPeriodoAjuda),
+        _titulo(t, l.onbIvaPeriodoTitulo, ajuda: l.onbIvaPeriodoAjuda, termos: PalavrasDoEcra.onboardingIvaPeriodo),
         BotaoEscolha(
           texto: l.onbIvaTrimestral,
           icone: Icons.calendar_view_month_rounded,
@@ -815,7 +816,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   // ---- empresa: contabilista (pasta mensal) ----
   List<Widget> _contabilistaPasso(AppLocalizations l, TextTheme t) => [
-        _titulo(t, l.onbContabilistaTitulo, ajuda: l.onbContabilistaAjuda),
+        _titulo(t, l.onbContabilistaTitulo, ajuda: l.onbContabilistaAjuda, termos: const ['contabilidade']),
         TextField(
           controller: _contabilista,
           keyboardType: TextInputType.emailAddress,
@@ -846,7 +847,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       (TipoAtividade.soCarro, l.onbSoCarro, Icons.directions_car_rounded),
     ];
     return [
-      _titulo(t, l.onbOQueFazes),
+      _titulo(t, l.onbOQueFazes, termos: PalavrasDoEcra.onboardingAtividade),
       for (final (tipo, texto, icone) in opcoes) ...[
         BotaoEscolha(
           texto: texto,
@@ -877,7 +878,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       }
     }
     return [
-      _titulo(t, l.onbQuandoAbriste, ajuda: l.onbQuandoAbristeAjuda),
+      _titulo(t, l.onbQuandoAbriste, ajuda: l.onbQuandoAbristeAjuda, termos: PalavrasDoEcra.onboardingAbertura),
       Row(
         children: [
           Expanded(
@@ -912,7 +913,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   // ---- 3. IVA ----
   List<Widget> _iva(AppLocalizations l, TextTheme t, RegrasLegais r) => [
-        _titulo(t, l.onbFaturouMais15k, ajuda: l.onbFaturouMais15kAjuda),
+        _titulo(t, l.onbFaturouMais15k, ajuda: l.onbFaturouMais15kAjuda, termos: PalavrasDoEcra.onboardingIva),
         BotaoEscolha(
           texto: l.onbSim,
           icone: Icons.trending_up_rounded,
@@ -956,7 +957,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     }
     final rotulo = t.titleSmall!.copyWith(color: AppColors.textSecondary);
     return [
-      _titulo(t, l.onbTensCarro),
+      _titulo(t, l.onbTensCarro, termos: const ['iuc', 'tvde']),
       Row(
         children: [
           Expanded(
@@ -1109,7 +1110,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       linhas.add(irs.guardarPorMes > 0 ? l.onbIrsPorMes(moeda(irs.guardarPorMes)) : l.onbIrsZero);
     }
     return [
-      _titulo(t, l.onbQuantoGanhas, ajuda: l.onbQuantoGanhasAjuda),
+      _titulo(t, l.onbQuantoGanhas, ajuda: l.onbQuantoGanhasAjuda, termos: const ['ss', 'irs', 'imposto']),
       TextField(
         controller: _rendimento,
         keyboardType: const TextInputType.numberWithOptions(decimal: true),

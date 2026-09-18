@@ -335,3 +335,23 @@
 - **O quê:** `somarDias(d, n) = DateTime(y, m, d + n)` em `lib/regras/datas.dart`; todos os `add/subtract(Duration(days:))` das regras foram trocados.
 - **Porquê:** o teste dos perfis apanhou 25/10/2026 (fim da hora de verão) a dar «26/10 às 23:00»: um dia de 25 horas. Já tinha acontecido num teste a 18/09 de manhã; agora está na biblioteca e coberto (P08).
 - **Como se desfaz:** não se desfaz.
+
+## D64 — «O que é isto?»: um botão por ecrã com as palavras difíceis desse ecrã, em vez de parênteses em cada frase
+- **O quê (2026-09-18):** `BotaoPalavras(termos: [...])` (`lib/widgets/palavras_dificeis.dart`) na AppBar ou ao lado do título de 20 ecrãs (painel, agenda, dinheiro, cofre, carro, recibos nos três perfis, guias, fala, pergunta, prova, radar, reforma, plano, vale a pena, Mais, 9 passos do onboarding). Abre uma folha com as palavras desse ecrã (IRS, Segurança Social, IVA, TVDE, IUC, NIF, ENI, NIPC…) explicadas em linguagem de criança de 5 anos, cada uma com o botão Ouvir. Glossário de 41 palavras em `lib/l10n/partes/glossario_*.arb` (PT-PT por «tu», PT-BR por «você»); `PalavrasDoEcra` diz que palavras cada ecrã pede e o teste S01 garante que existem todas.
+- **Porquê:** o juiz de simplicidade (Gemini, «uma pessoa que nunca usou uma app destas percebe o que fazer aqui?») deu 60 «quase» em 111 ecrãs e o motivo repetia-se: IRS 17×, Segurança Social 14×, IVA 13×, TVDE 8×, IUC 5×… sem explicação. A regra 1 do CLAUDE.md pede «jargão só com explicação entre parênteses», mas pôr parênteses em cada frase de cada ecrã tornava o texto ilegível. Um botão fixo no mesmo canto em todos os ecrãs é uma coisa só para aprender.
+- **Como se desfaz:** apagar os `actions: const [BotaoPalavras(...)]` e o ficheiro; os textos ficam.
+
+## D65 — Todo o esqueleto diz por palavras que está a carregar
+- **O quê:** `LinhaACarregar(l.aCarregarFrase)` («A carregar as tuas contas… só demora um segundo.») em cima dos blocos cinzentos do painel, do cofre e do Dinheiro.
+- **Porquê:** o juiz deu **vermelho** ao painel e ao cofre a carregar: «ecrã vazio, sem instrução — a pessoa não sabe se está a carregar ou se tem de fazer algo». Os blocos ficam (o ecrã não salta quando os números chegam), mas passa a haver uma frase e uma roda pequena.
+- **Como se desfaz:** tirar a linha dos três esqueletos.
+
+## D66 — Cada acesso do Mais tem uma linha a dizer para que serve
+- **O quê:** a grelha do Mais passa a título + uma linha simples («Prova de rendimento — Um papel que diz quanto ganhas», «Fim da fidelização — Quando podes trocar de operadora», «Reforma e direitos — O que a Segurança Social te dá um dia»). Altura do tile 150 → 176; título até 2 linhas, linha até 2.
+- **Porquê:** vermelho do juiz: «botões com nomes abstratos que não indicam a função prática; alguém sem conhecimentos fiscais não saberia qual escolher». As três palavras que ele apontou eram exatamente os três nomes sem benefício.
+- **Como se desfaz:** apagar o campo `sub` de `_Acesso` e voltar a 150.
+
+## D67 — O juiz de simplicidade roda em qualquer 404 e retoma só os erros
+- **O quê:** `tool/juiz/vision_judge.py`: `gemini-2.5-flash-lite` fora da roda (a API devolve 404 «no longer available to new users», que não é «not found» — 47 fotos ficaram em erro); qualquer 404, 429 ou timeout passa ao modelo seguinte; `--retomar <json>` julga só as fotos que ficaram em erro e escreve um relatório novo com todas (111 fotos, 0 erros: `docs/provas/telas/simplicidade_20260918-140719.md`).
+- **Porquê:** 49 de 111 fotos sem veredito não é um relatório; e repetir as 62 boas gastava a quota do dia (20 pedidos/dia/modelo).
+- **Como se desfaz:** não se desfaz.

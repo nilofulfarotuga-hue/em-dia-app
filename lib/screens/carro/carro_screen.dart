@@ -98,7 +98,7 @@ class _CarroScreenState extends State<CarroScreen> {
 
     if (carros.isEmpty) {
       return Scaffold(
-        appBar: AppBar(title: Text(l.carroTitulo)),
+        appBar: AppBar(title: Text(l.carroTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.carro)]),
         body: RefreshIndicator(
           onRefresh: _atualizar,
           child: ListView(
@@ -132,7 +132,7 @@ class _CarroScreenState extends State<CarroScreen> {
     final diasUteisMulta = r.n('multa_pagamento_voluntario_dias_uteis').toInt();
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.carroTitulo)),
+      appBar: AppBar(title: Text(l.carroTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.carro)]),
       body: RefreshIndicator(
         onRefresh: _atualizar,
         child: ListView(

@@ -168,7 +168,7 @@ class _IaScreenState extends State<IaScreen> {
         final chips = [l.iaChip1, l.iaChip2, l.iaChip3, l.iaChip4];
         return Scaffold(
           backgroundColor: AppColors.background,
-          appBar: AppBar(title: Text(suporte ? l.iaSuporteTitulo : l.iaTitulo)),
+          appBar: AppBar(title: Text(suporte ? l.iaSuporteTitulo : l.iaTitulo), actions: const [BotaoPalavras(termos: PalavrasDoEcra.ia)]),
           body: SafeArea(
             child: Column(
               children: [

@@ -18,6 +18,10 @@ inventa vereditos. Relatório SEMPRE em docs/provas/telas/vision_report_<ts>.jso
 e .md (o juiz nunca falha em silêncio).
 
 Uso: python tool/juiz/vision_judge.py [--dir test/golden/_fotos] [--filtro login] [--max 60]
+     [--modo simplicidade]  pergunta «uma pessoa que nunca usou uma app destas
+                            percebe o que fazer aqui?» e guarda a resposta literal
+     [--retomar <json>]     julga só as fotos que ficaram em erro nesse relatório
+     [--fotos a.png,b.png]  julga só essas fotos
 Saída: 0 = tudo verde/amarelo · 2 = há vermelhos
 """
 from __future__ import annotations
@@ -40,9 +44,11 @@ MODELO = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
 # seguinte em vez de parar — cada um tem a sua quota.
 RODA_MODELOS = [
     MODELO, "gemini-3.7-flash", "gemini-3.6-flash", "gemini-3.5-flash", "gemini-flash-lite-latest",
-    "gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-2.5-flash-lite", "gemini-2.5-flash",
+    "gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-2.5-flash",
     "gemini-3-flash-preview", "gemini-pro-latest",
 ]
+# gemini-2.5-flash-lite saiu da roda a 2026-09-18: a API devolve 404 «no longer
+# available to new users» (47 fotos ficaram em erro no juiz de simplicidade).
 _modelo_idx = 0
 
 PROMPT = (
@@ -137,6 +143,7 @@ def julgar(png: Path, chave: str, modo: str = "visao") -> dict:
     global _modelo_idx
     dados = json.dumps(corpo).encode()
     tentativas = 0
+    ultimo_erro = ""
     while tentativas < 2 * len(RODA_MODELOS):
         modelo = RODA_MODELOS[_modelo_idx % len(RODA_MODELOS)]
         req = urllib.request.Request(
@@ -157,8 +164,11 @@ def julgar(png: Path, chave: str, modo: str = "visao") -> dict:
             return j
         except urllib.error.HTTPError as e:
             corpo_erro = e.read().decode()[:200]
-            if e.code == 429 or (e.code == 404 and "not found" in corpo_erro.lower()):
-                _modelo_idx += 1  # quota deste modelo esgotada (ou modelo indisponível): passa ao seguinte
+            if e.code in (429, 404):
+                # 429 = quota deste modelo esgotada; 404 = modelo indisponível («not
+                # found» ou «no longer available to new users», 2026-09-18). Em
+                # ambos passa-se ao seguinte da roda — a foto não fica por julgar.
+                _modelo_idx += 1
                 continue
             if e.code in (500, 503):
                 # «This model is currently experiencing high demand». Insistir no
@@ -168,9 +178,15 @@ def julgar(png: Path, chave: str, modo: str = "visao") -> dict:
                 _modelo_idx += 1
                 continue
             return {"severity": "erro", "finding": f"HTTP {e.code} ({modelo}): {corpo_erro}"}
+        except (TimeoutError, urllib.error.URLError, OSError) as exc:
+            # Rede a falhar ou modelo lento demais (2 fotos ficaram em «read
+            # operation timed out» a 2026-09-18): tenta o seguinte da roda.
+            ultimo_erro = f"{type(exc).__name__}: {exc}"[:200]
+            _modelo_idx += 1
+            continue
         except Exception as exc:  # noqa: BLE001
             return {"severity": "erro", "finding": f"{type(exc).__name__}: {exc}"[:200]}
-    return {"severity": "erro", "finding": "quota esgotada em todos os modelos da roda"}
+    return {"severity": "erro", "finding": f"quota esgotada em todos os modelos da roda ({ultimo_erro})"}
 
 
 def main() -> int:
@@ -179,8 +195,22 @@ def main() -> int:
     ap.add_argument("--filtro", default="")
     ap.add_argument("--max", type=int, default=80)
     ap.add_argument("--modo", default="visao", choices=["visao", "simplicidade"])
+    ap.add_argument("--retomar", default="", help="JSON de um relatório anterior: julga só as fotos que ficaram em erro e junta ao resto")
+    ap.add_argument("--fotos", default="", help="nomes de fotos separados por vírgula (sem pasta): julga só essas")
     a = ap.parse_args()
     fotos = sorted(p for p in Path(a.dir).glob("*.png") if a.filtro in p.name)[: a.max]
+    if a.fotos:
+        pedidas = {n.strip() for n in a.fotos.split(",") if n.strip()}
+        fotos = sorted(p for p in Path(a.dir).glob("*.png") if p.name in pedidas)
+    anteriores = []
+    if a.retomar:
+        # Retoma: as fotos já julgadas ficam como estão; só as que deram erro voltam
+        # ao juiz. O relatório novo traz todas, para a prova ser uma só.
+        rel_ant = json.loads(Path(a.retomar).read_text(encoding="utf-8"))
+        anteriores = [r for r in rel_ant["resultados"] if r["severity"] != "erro"]
+        em_erro = {r["foto"] for r in rel_ant["resultados"] if r["severity"] == "erro"}
+        fotos = sorted(p for p in Path(a.dir).glob("*.png") if p.name in em_erro)
+        a.modo = rel_ant.get("modo", a.modo)
     ts = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
     saida = RAIZ / "docs" / "provas" / "telas"
     saida.mkdir(parents=True, exist_ok=True)
@@ -194,14 +224,16 @@ def main() -> int:
             r["foto"] = p.name
             resultados.append(r)
             print(f"[{i}/{len(fotos)}] {r['severity']:8s} {p.name} — {r.get('finding','')[:110]}")
+    if anteriores:
+        resultados = sorted(anteriores + resultados, key=lambda r: r["foto"])
     contagem = {s: sum(1 for r in resultados if r["severity"] == s) for s in ("verde", "amarelo", "vermelho", "erro")}
     prefixo = "simplicidade" if a.modo == "simplicidade" else "vision_report"
-    rel = {"data": ts, "modo": a.modo, "modelo": MODELO, "fotos": len(fotos), "contagem": contagem, "resultados": resultados}
+    rel = {"data": ts, "modo": a.modo, "modelo": MODELO, "fotos": len(resultados), "contagem": contagem, "resultados": resultados}
     (saida / f"{prefixo}_{ts}.json").write_text(json.dumps(rel, ensure_ascii=False, indent=2), encoding="utf-8")
     if a.modo == "simplicidade":
         md = [f"# Juiz de simplicidade — {ts}", "",
               "Pergunta feita ao Gemini por cada ecrã: **«Uma pessoa que nunca usou uma app destas percebe o que fazer aqui?»** "
-              f"— resposta literal guardada. Fotos: {len(fotos)} · {contagem} (verde = sim, amarelo = quase, vermelho = não).", ""]
+              f"— resposta literal guardada. Fotos: {len(resultados)} · {contagem} (verde = sim, amarelo = quase, vermelho = não).", ""]
         for r in resultados:
             md += [f"## {r['foto']} — {r.get('percebe', r['severity'])}", f"{r.get('resposta', r.get('finding', ''))}", ""]
             if r.get("palavras_dificeis"):
