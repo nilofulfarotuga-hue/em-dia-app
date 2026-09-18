@@ -3309,6 +3309,83 @@ class AppLocalizationsPt extends AppLocalizations {
       'Estes dois números estão no papel do carro (o certificado de matrícula, o antigo livrete).';
 
   @override
+  String get pertoTitulo => 'Perto de mim';
+
+  @override
+  String get pertoExplica =>
+      'O combustível mais barato num raio de 10 km e os centros de inspeção mais perto. Diz-me onde estás: pela localização do telemóvel (só agora, só quando carregas) ou escrevendo o concelho.';
+
+  @override
+  String get pertoUsarLocal => 'Usar a minha localização';
+
+  @override
+  String get pertoAtualizarLocal => 'Atualizar a minha localização';
+
+  @override
+  String get pertoConcelho => 'Ou escreve o concelho (ex.: Guarda)';
+
+  @override
+  String get pertoProcurar => 'Procurar';
+
+  @override
+  String get pertoPrivacidade =>
+      'A tua localização serve só para esta lista e não fica guardada em lado nenhum.';
+
+  @override
+  String get pertoErroPermissao =>
+      'Sem permissão para a localização. Não faz mal: escreve o concelho aqui em baixo.';
+
+  @override
+  String get pertoErroGps =>
+      'Não consegui saber onde estás (GPS desligado ou sem sinal). Escreve o concelho aqui em baixo.';
+
+  @override
+  String get pertoErroConcelho =>
+      'Não encontrei postos com esse nome de concelho. Confirma a escrita (ex.: «Guarda», «Vila Real»).';
+
+  @override
+  String pertoAPartirDe(String concelho) {
+    return 'A partir do centro de $concelho';
+  }
+
+  @override
+  String get pertoCombustivelTitulo => 'Combustível mais barato (10 km)';
+
+  @override
+  String get pertoPorLitro => 'por litro';
+
+  @override
+  String get pertoMaisBarato => 'mais barato';
+
+  @override
+  String get pertoSemPostos =>
+      'Não há postos com este combustível a menos de 10 km. Experimenta outro combustível ou outro concelho.';
+
+  @override
+  String get pertoFonteDgeg =>
+      'Fonte: DGEG, precoscombustiveis.dgeg.gov.pt (dados abertos, atualizados todos os dias). Os preços são os que os postos comunicam à DGEG; confirma na bomba.';
+
+  @override
+  String get pertoCentrosTitulo => 'Centros de inspeção mais perto';
+
+  @override
+  String get pertoSemCentros => 'Não encontrei centros de inspeção perto.';
+
+  @override
+  String get pertoFonteImt =>
+      'Fonte: IMT, lista dos centros de inspeção (CITV). Toca num centro para abrir o caminho no mapa.';
+
+  @override
+  String get carroPertoTitulo => 'Perto de mim';
+
+  @override
+  String get carroPertoTexto =>
+      'Combustível mais barato num raio de 10 km (DGEG) e centros de inspeção mais perto (IMT).';
+
+  @override
+  String get carroPertoBotao => 'Ver perto de mim';
+
+  @override
   String get cofreTitulo => 'O cofre do imposto';
 
   @override
@@ -8556,6 +8633,83 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get carroFormOndeEstao =>
       'Estes dois números estão no documento do carro (o certificado de matrícula).';
+
+  @override
+  String get pertoTitulo => 'Perto de mim';
+
+  @override
+  String get pertoExplica =>
+      'O combustível mais barato num raio de 10 km e os centros de inspeção mais perto. Me diga onde você está: pela localização do celular (só agora, só quando você toca) ou escrevendo o concelho.';
+
+  @override
+  String get pertoUsarLocal => 'Usar a minha localização';
+
+  @override
+  String get pertoAtualizarLocal => 'Atualizar a minha localização';
+
+  @override
+  String get pertoConcelho => 'Ou escreva o concelho (ex.: Guarda)';
+
+  @override
+  String get pertoProcurar => 'Procurar';
+
+  @override
+  String get pertoPrivacidade =>
+      'A sua localização serve só para esta lista e não fica guardada em lugar nenhum.';
+
+  @override
+  String get pertoErroPermissao =>
+      'Sem permissão para a localização. Tudo bem: escreva o concelho aqui embaixo.';
+
+  @override
+  String get pertoErroGps =>
+      'Não consegui saber onde você está (GPS desligado ou sem sinal). Escreva o concelho aqui embaixo.';
+
+  @override
+  String get pertoErroConcelho =>
+      'Não encontrei postos com esse nome de concelho. Confira a escrita (ex.: «Guarda», «Vila Real»).';
+
+  @override
+  String pertoAPartirDe(String concelho) {
+    return 'A partir do centro de $concelho';
+  }
+
+  @override
+  String get pertoCombustivelTitulo => 'Combustível mais barato (10 km)';
+
+  @override
+  String get pertoPorLitro => 'por litro';
+
+  @override
+  String get pertoMaisBarato => 'mais barato';
+
+  @override
+  String get pertoSemPostos =>
+      'Não há postos com este combustível a menos de 10 km. Tente outro combustível ou outro concelho.';
+
+  @override
+  String get pertoFonteDgeg =>
+      'Fonte: DGEG, precoscombustiveis.dgeg.gov.pt (dados abertos, atualizados todos os dias). Os preços são os que os postos comunicam à DGEG; confira na bomba.';
+
+  @override
+  String get pertoCentrosTitulo => 'Centros de inspeção mais perto';
+
+  @override
+  String get pertoSemCentros => 'Não encontrei centros de inspeção perto.';
+
+  @override
+  String get pertoFonteImt =>
+      'Fonte: IMT, lista dos centros de inspeção (CITV). Toque num centro para abrir o caminho no mapa.';
+
+  @override
+  String get carroPertoTitulo => 'Perto de mim';
+
+  @override
+  String get carroPertoTexto =>
+      'Combustível mais barato num raio de 10 km (DGEG) e centros de inspeção mais perto (IMT).';
+
+  @override
+  String get carroPertoBotao => 'Ver perto de mim';
 
   @override
   String get cofreTitulo => 'O cofre do imposto';

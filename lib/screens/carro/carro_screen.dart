@@ -15,6 +15,7 @@ import 'formulario_carro.dart';
 import 'lembretes_carro.dart';
 import 'nova_despesa.dart';
 import 'novo_abastecimento.dart';
+import 'perto_screen.dart';
 import 'widgets_carro.dart';
 
 /// Tela 4 — O Carro (estrutura do Drivvo, adaptada a Portugal):
@@ -112,7 +113,7 @@ class _CarroScreenState extends State<CarroScreen> {
                 acao: BotaoGrande(texto: l.carroAdicionar, icone: Icons.add_rounded, aoTocar: _adicionarCarro),
               ),
               const SizedBox(height: 24),
-              _EmBreve(l: l),
+              const _CartaoPerto(),
             ],
           ),
         ),
@@ -192,7 +193,7 @@ class _CarroScreenState extends State<CarroScreen> {
 
             // ---- em breve ----
             const SizedBox(height: 14),
-            _EmBreve(l: l),
+            const _CartaoPerto(),
           ],
         ),
       ),
@@ -527,41 +528,36 @@ class _CartaoMultas extends StatelessWidget {
   }
 }
 
-/// Fase 2 (dados abertos): centros de inspeção perto e combustível mais
-/// barato. Um cartão "Em breve" com uma linha de explicação cada.
-class _EmBreve extends StatelessWidget {
-  final AppLocalizations l;
-  const _EmBreve({required this.l});
+/// «Perto de mim» (B2e, 2026-09-18): o que era «Em breve» passou a real —
+/// combustível mais barato num raio de 10 km (DGEG, dados abertos) e centros
+/// de inspeção mais perto (IMT). Abre o ecrã `PertoScreen`.
+class _CartaoPerto extends StatelessWidget {
+  const _CartaoPerto();
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final t = Theme.of(context).textTheme;
-    Widget linha(IconData icone, String titulo, String texto) => Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icone, color: AppColors.textSubtle, size: 24),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(titulo, style: t.titleSmall!.copyWith(color: AppColors.textSecondary)),
-                  Text(texto, style: t.bodySmall),
-                ],
-              ),
-            ),
-          ],
-        );
     return Cartao(
-      cor: AppColors.surface2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Etiqueta(l.carroEmBreve, cor: AppColors.divider, corTexto: AppColors.textSecondary, icone: Icons.schedule_rounded),
+          Row(
+            children: [
+              const Icon(Icons.local_gas_station_rounded, color: AppColors.primaryDark),
+              const SizedBox(width: 10),
+              Expanded(child: Text(l.carroPertoTitulo, style: t.titleMedium)),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(l.carroPertoTexto, style: t.bodyMedium!.copyWith(color: AppColors.textSecondary)),
           const SizedBox(height: 12),
-          linha(Icons.map_rounded, l.carroCentrosInspecao, l.carroCentrosInspecaoLinha),
-          const SizedBox(height: 12),
-          linha(Icons.local_gas_station_outlined, l.carroCombustivelBarato, l.carroCombustivelBaratoLinha),
+          BotaoGrande(
+            texto: l.carroPertoBotao,
+            icone: Icons.near_me_rounded,
+            secundario: true,
+            aoTocar: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PertoScreen())),
+          ),
         ],
       ),
     );

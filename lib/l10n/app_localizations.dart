@@ -5658,6 +5658,138 @@ abstract class AppLocalizations {
   /// **'Estes dois números estão no papel do carro (o certificado de matrícula, o antigo livrete).'**
   String get carroFormOndeEstao;
 
+  /// No description provided for @pertoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Perto de mim'**
+  String get pertoTitulo;
+
+  /// No description provided for @pertoExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'O combustível mais barato num raio de 10 km e os centros de inspeção mais perto. Diz-me onde estás: pela localização do telemóvel (só agora, só quando carregas) ou escrevendo o concelho.'**
+  String get pertoExplica;
+
+  /// No description provided for @pertoUsarLocal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Usar a minha localização'**
+  String get pertoUsarLocal;
+
+  /// No description provided for @pertoAtualizarLocal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Atualizar a minha localização'**
+  String get pertoAtualizarLocal;
+
+  /// No description provided for @pertoConcelho.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ou escreve o concelho (ex.: Guarda)'**
+  String get pertoConcelho;
+
+  /// No description provided for @pertoProcurar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Procurar'**
+  String get pertoProcurar;
+
+  /// No description provided for @pertoPrivacidade.
+  ///
+  /// In pt, this message translates to:
+  /// **'A tua localização serve só para esta lista e não fica guardada em lado nenhum.'**
+  String get pertoPrivacidade;
+
+  /// No description provided for @pertoErroPermissao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sem permissão para a localização. Não faz mal: escreve o concelho aqui em baixo.'**
+  String get pertoErroPermissao;
+
+  /// No description provided for @pertoErroGps.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui saber onde estás (GPS desligado ou sem sinal). Escreve o concelho aqui em baixo.'**
+  String get pertoErroGps;
+
+  /// No description provided for @pertoErroConcelho.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não encontrei postos com esse nome de concelho. Confirma a escrita (ex.: «Guarda», «Vila Real»).'**
+  String get pertoErroConcelho;
+
+  /// No description provided for @pertoAPartirDe.
+  ///
+  /// In pt, this message translates to:
+  /// **'A partir do centro de {concelho}'**
+  String pertoAPartirDe(String concelho);
+
+  /// No description provided for @pertoCombustivelTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Combustível mais barato (10 km)'**
+  String get pertoCombustivelTitulo;
+
+  /// No description provided for @pertoPorLitro.
+  ///
+  /// In pt, this message translates to:
+  /// **'por litro'**
+  String get pertoPorLitro;
+
+  /// No description provided for @pertoMaisBarato.
+  ///
+  /// In pt, this message translates to:
+  /// **'mais barato'**
+  String get pertoMaisBarato;
+
+  /// No description provided for @pertoSemPostos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não há postos com este combustível a menos de 10 km. Experimenta outro combustível ou outro concelho.'**
+  String get pertoSemPostos;
+
+  /// No description provided for @pertoFonteDgeg.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fonte: DGEG, precoscombustiveis.dgeg.gov.pt (dados abertos, atualizados todos os dias). Os preços são os que os postos comunicam à DGEG; confirma na bomba.'**
+  String get pertoFonteDgeg;
+
+  /// No description provided for @pertoCentrosTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Centros de inspeção mais perto'**
+  String get pertoCentrosTitulo;
+
+  /// No description provided for @pertoSemCentros.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não encontrei centros de inspeção perto.'**
+  String get pertoSemCentros;
+
+  /// No description provided for @pertoFonteImt.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fonte: IMT, lista dos centros de inspeção (CITV). Toca num centro para abrir o caminho no mapa.'**
+  String get pertoFonteImt;
+
+  /// No description provided for @carroPertoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Perto de mim'**
+  String get carroPertoTitulo;
+
+  /// No description provided for @carroPertoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Combustível mais barato num raio de 10 km (DGEG) e centros de inspeção mais perto (IMT).'**
+  String get carroPertoTexto;
+
+  /// No description provided for @carroPertoBotao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver perto de mim'**
+  String get carroPertoBotao;
+
   /// No description provided for @cofreTitulo.
   ///
   /// In pt, this message translates to:

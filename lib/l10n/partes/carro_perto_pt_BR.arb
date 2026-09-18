@@ -1,0 +1,32 @@
+{
+  "@@locale": "pt_BR",
+  "pertoTitulo": "Perto de mim",
+  "pertoExplica": "O combustível mais barato num raio de 10 km e os centros de inspeção mais perto. Me diga onde você está: pela localização do celular (só agora, só quando você toca) ou escrevendo o concelho.",
+  "pertoUsarLocal": "Usar a minha localização",
+  "pertoAtualizarLocal": "Atualizar a minha localização",
+  "pertoConcelho": "Ou escreva o concelho (ex.: Guarda)",
+  "pertoProcurar": "Procurar",
+  "pertoPrivacidade": "A sua localização serve só para esta lista e não fica guardada em lugar nenhum.",
+  "pertoErroPermissao": "Sem permissão para a localização. Tudo bem: escreva o concelho aqui embaixo.",
+  "pertoErroGps": "Não consegui saber onde você está (GPS desligado ou sem sinal). Escreva o concelho aqui embaixo.",
+  "pertoErroConcelho": "Não encontrei postos com esse nome de concelho. Confira a escrita (ex.: «Guarda», «Vila Real»).",
+  "pertoAPartirDe": "A partir do centro de {concelho}",
+  "@pertoAPartirDe": {
+    "placeholders": {
+      "concelho": {
+        "type": "String"
+      }
+    }
+  },
+  "pertoCombustivelTitulo": "Combustível mais barato (10 km)",
+  "pertoPorLitro": "por litro",
+  "pertoMaisBarato": "mais barato",
+  "pertoSemPostos": "Não há postos com este combustível a menos de 10 km. Tente outro combustível ou outro concelho.",
+  "pertoFonteDgeg": "Fonte: DGEG, precoscombustiveis.dgeg.gov.pt (dados abertos, atualizados todos os dias). Os preços são os que os postos comunicam à DGEG; confira na bomba.",
+  "pertoCentrosTitulo": "Centros de inspeção mais perto",
+  "pertoSemCentros": "Não encontrei centros de inspeção perto.",
+  "pertoFonteImt": "Fonte: IMT, lista dos centros de inspeção (CITV). Toque num centro para abrir o caminho no mapa.",
+  "carroPertoTitulo": "Perto de mim",
+  "carroPertoTexto": "Combustível mais barato num raio de 10 km (DGEG) e centros de inspeção mais perto (IMT).",
+  "carroPertoBotao": "Ver perto de mim"
+}

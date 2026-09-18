@@ -18,6 +18,7 @@ import 'stores/entradas_store.dart';
 import 'stores/caixa_store.dart';
 import 'stores/cofre_store.dart';
 import 'stores/perfil_store.dart';
+import 'stores/perto_store.dart';
 import 'stores/resumo_store.dart';
 import 'stores/saidas_store.dart';
 import 'stores/radar_store.dart';
@@ -53,6 +54,7 @@ class EmDiaApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => RadarStore()),
         ChangeNotifierProvider(create: (_) => CarrosStore()),
         ChangeNotifierProvider(create: (_) => BancoStore()),
+        ChangeNotifierProvider(create: (_) => PertoStore()),
       ],
       child: Consumer<PerfilStore>(
         builder: (context, perfilStore, _) {

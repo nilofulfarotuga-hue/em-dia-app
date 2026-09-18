@@ -2033,6 +2033,35 @@
   "carroFormCilindrada": "Cilindrada (o tamanho do motor, em cc)",
   "carroFormCo2": "CO2 (o gás que o carro deita, em g/km)",
   "carroFormOndeEstao": "Estes dois números estão no papel do carro (o certificado de matrícula, o antigo livrete).",
+  "pertoTitulo": "Perto de mim",
+  "pertoExplica": "O combustível mais barato num raio de 10 km e os centros de inspeção mais perto. Diz-me onde estás: pela localização do telemóvel (só agora, só quando carregas) ou escrevendo o concelho.",
+  "pertoUsarLocal": "Usar a minha localização",
+  "pertoAtualizarLocal": "Atualizar a minha localização",
+  "pertoConcelho": "Ou escreve o concelho (ex.: Guarda)",
+  "pertoProcurar": "Procurar",
+  "pertoPrivacidade": "A tua localização serve só para esta lista e não fica guardada em lado nenhum.",
+  "pertoErroPermissao": "Sem permissão para a localização. Não faz mal: escreve o concelho aqui em baixo.",
+  "pertoErroGps": "Não consegui saber onde estás (GPS desligado ou sem sinal). Escreve o concelho aqui em baixo.",
+  "pertoErroConcelho": "Não encontrei postos com esse nome de concelho. Confirma a escrita (ex.: «Guarda», «Vila Real»).",
+  "pertoAPartirDe": "A partir do centro de {concelho}",
+  "@pertoAPartirDe": {
+    "placeholders": {
+      "concelho": {
+        "type": "String"
+      }
+    }
+  },
+  "pertoCombustivelTitulo": "Combustível mais barato (10 km)",
+  "pertoPorLitro": "por litro",
+  "pertoMaisBarato": "mais barato",
+  "pertoSemPostos": "Não há postos com este combustível a menos de 10 km. Experimenta outro combustível ou outro concelho.",
+  "pertoFonteDgeg": "Fonte: DGEG, precoscombustiveis.dgeg.gov.pt (dados abertos, atualizados todos os dias). Os preços são os que os postos comunicam à DGEG; confirma na bomba.",
+  "pertoCentrosTitulo": "Centros de inspeção mais perto",
+  "pertoSemCentros": "Não encontrei centros de inspeção perto.",
+  "pertoFonteImt": "Fonte: IMT, lista dos centros de inspeção (CITV). Toca num centro para abrir o caminho no mapa.",
+  "carroPertoTitulo": "Perto de mim",
+  "carroPertoTexto": "Combustível mais barato num raio de 10 km (DGEG) e centros de inspeção mais perto (IMT).",
+  "carroPertoBotao": "Ver perto de mim",
   "cofreTitulo": "O cofre do imposto",
   "cofreSemSessao": "Entra na app para veres o teu cofre.",
   "cofreNaoMexe": "Isto é um caderno: não mexe no teu dinheiro.",

@@ -21,6 +21,7 @@ import 'package:em_dia/stores/dados_store.dart';
 import 'package:em_dia/stores/entradas_store.dart';
 import 'package:em_dia/services/fala.dart';
 import 'package:em_dia/stores/perfil_store.dart';
+import 'package:em_dia/stores/perto_store.dart';
 import 'package:em_dia/stores/radar_store.dart';
 import 'package:em_dia/stores/regras_store.dart';
 import 'package:em_dia/stores/resumo_store.dart';
@@ -156,6 +157,7 @@ Widget embrulhaStores({
   bool caixaLigada = false,
   List<MovimentoBanco> movimentosBanco = const [],
   List<OperadorCancelar> operadores = const [],
+  PertoStore? perto,
 }) =>
     MultiProvider(
       providers: [
@@ -188,6 +190,7 @@ Widget embrulhaStores({
         ChangeNotifierProvider<BancoStore>(
           create: (_) => BancoStore.paraTeste(movimentosBanco, operadores: operadores),
         ),
+        ChangeNotifierProvider<PertoStore>(create: (_) => perto ?? PertoStore.paraTeste()),
       ],
       child: tela,
     );
