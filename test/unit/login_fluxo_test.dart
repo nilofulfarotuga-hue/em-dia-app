@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:em_dia/config/app_theme.dart';
 import 'package:em_dia/l10n/app_localizations.dart';
 import 'package:em_dia/screens/login/login_screen.dart';
+import 'package:em_dia/services/fala.dart';
+import 'package:em_dia/stores/perfil_store.dart';
 import 'package:em_dia/stores/sessao_store.dart';
 
 /// O fluxo de entrar, testado à unha.
@@ -18,8 +20,13 @@ void main() {
   Future<SessaoFalsa> abre(WidgetTester tester, {Locale locale = const Locale('pt')}) async {
     final s = SessaoFalsa();
     await tester.pumpWidget(
-      ChangeNotifierProvider<SessaoStore>.value(
-        value: s,
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<SessaoStore>.value(value: s),
+          // O botão «Ouvir» (B4) precisa da voz e do perfil, como na app a sério.
+          ChangeNotifierProvider<Fala>.value(value: Fala.instancia),
+          ChangeNotifierProvider<PerfilStore>(create: (_) => PerfilStore()),
+        ],
         child: MaterialApp(
           theme: AppTheme.claro,
           locale: locale,

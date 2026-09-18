@@ -14,13 +14,18 @@ import '../../models/obrigacao.dart';
 enum GrupoObrigacao { tudo, ss, fiscal, carro, outros }
 
 GrupoObrigacao grupoDoTipo(String tipo) => switch (tipo) {
-      'ss_declaracao' || 'ss_pagamento' || 'fim_isencao_ss' => GrupoObrigacao.ss,
+      'ss_declaracao' || 'ss_pagamento' || 'fim_isencao_ss' || 'ss_empresa' || 'dmr' => GrupoObrigacao.ss,
       'iva_declaracao' ||
       'iva_pagamento' ||
       'irs_entrega' ||
       'irs_pagamento_conta' ||
       'efatura_validar' ||
-      'recibos_comunicar' =>
+      'recibos_comunicar' ||
+      'saft' ||
+      'irc_modelo22' ||
+      'irc_pagamento_conta' ||
+      'ies' ||
+      'faturas_nif' =>
         GrupoObrigacao.fiscal,
       'iuc' || 'ipo' || 'seguro' || 'carta' || 'revisao' || 'troca_carta' || 'tvde_licenca' => GrupoObrigacao.carro,
       _ => GrupoObrigacao.outros,
@@ -50,6 +55,12 @@ IconData iconeDoTipo(String tipo) => switch (tipo) {
       'tvde_certificado' || 'tvde_licenca' => Icons.local_taxi_rounded,
       'multa' => Icons.gavel_rounded,
       'portagem' => Icons.toll_rounded,
+      // B3 — contrato e empresa
+      'subsidio_natal' => Icons.card_giftcard_rounded,
+      'faturas_nif' => Icons.receipt_rounded,
+      'dmr' || 'ss_empresa' => Icons.groups_rounded,
+      'saft' => Icons.upload_file_rounded,
+      'irc_modelo22' || 'irc_pagamento_conta' || 'ies' => Icons.apartment_rounded,
       _ => Icons.event_note_rounded,
     };
 
@@ -95,7 +106,7 @@ String comoPagarDe(AppLocalizations l, ObrigacaoItem o) {
 
 /// Site onde se trata (para o botão "Abrir…"); null se não há site certo.
 ({Uri url, String nome})? siteDoTipo(AppLocalizations l, String tipo) => switch (tipo) {
-      'ss_declaracao' || 'ss_pagamento' || 'fim_isencao_ss' => (
+      'ss_declaracao' || 'ss_pagamento' || 'fim_isencao_ss' || 'ss_empresa' => (
           url: Uri.parse('https://app.seg-social.pt/sso/login'),
           nome: l.calSiteSS,
         ),
@@ -103,10 +114,18 @@ String comoPagarDe(AppLocalizations l, ObrigacaoItem o) {
       'iva_pagamento' ||
       'irs_entrega' ||
       'irs_pagamento_conta' ||
-      'efatura_validar' ||
       'recibos_comunicar' ||
-      'iuc' =>
+      'iuc' ||
+      'dmr' ||
+      'saft' ||
+      'irc_modelo22' ||
+      'irc_pagamento_conta' ||
+      'ies' =>
         (url: Uri.parse('https://www.portaldasfinancas.gov.pt'), nome: l.calSitePF),
+      // A página CERTA das faturas, não a entrada do portal.
+      'efatura_validar' || 'faturas_nif' => (url: Uri.parse('https://faturas.portaldasfinancas.gov.pt/'), nome: l.calSitePF),
+      // O subsídio de Natal não se pede a lado nenhum: quem manda é o Código do Trabalho (ACT).
+      'subsidio_natal' => (url: Uri.parse('https://www.act.gov.pt/'), nome: 'ACT'),
       'tvde_certificado' || 'tvde_licenca' || 'carta' || 'troca_carta' => (
           url: Uri.parse('https://www.imt-ip.pt'),
           nome: l.calSiteImt,
@@ -135,6 +154,16 @@ String? nomeDaRegra(AppLocalizations l, String? chave) {
     'seguro_aviso_dias' => l.calRegraSeguro,
     'carta_validade' => l.calRegraCarta,
     'manual' => l.calRegraManual,
+    // B3 — as regras novas, com o nome da fonte (docs/REGRAS-PT-2026.md)
+    'subsidio_natal_ate' => 'Código do Trabalho, art. 263.º',
+    'deducoes_irs' => 'Código do IRS, art. 78.º-A a F',
+    'dmr_dia' => 'Agenda fiscal da AT (DMR até dia 10)',
+    'saft_dia' => 'Agenda fiscal da AT (faturas até dia 5)',
+    'ss_empregador_pagamento_dia_fim' => 'Código Contributivo, art. 43.º (até dia 25)',
+    'iva_mensal_declaracao_dia' => 'CIVA art. 41.º (mensal, dia 20)',
+    'irc_modelo22_data' => 'CIRC art. 120.º (31 de maio)',
+    'ies_data' => 'Agenda fiscal da AT (IES, 15 de julho)',
+    'irc_pagamentos_conta_datas' => 'Agenda fiscal da AT (PPC de IRC)',
     _ => l.calRegraOutra(chave.replaceAll('_', ' ')),
   };
 }

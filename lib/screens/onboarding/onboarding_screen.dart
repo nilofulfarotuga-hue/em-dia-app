@@ -594,17 +594,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         PassoOnboarding.fim => _fim(l, t, r),
       };
 
-  Widget _titulo(TextTheme t, String texto, {String? ajuda}) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(texto, style: t.headlineLarge),
-          if (ajuda != null) ...[
-            const SizedBox(height: 8),
-            Text(ajuda, style: t.bodyMedium!.copyWith(color: AppColors.textSecondary)),
+  /// O título de cada pergunta, com o botão «Ouvir» (B4: em todos os ecrãs)
+  /// e a frase «Podes mudar depois» quando a ajuda não a diz já.
+  Widget _titulo(TextTheme t, String texto, {String? ajuda}) {
+    final l = AppLocalizations.of(context);
+    final ajudaFinal = ajuda == null
+        ? l.onbPodesMudarDepois
+        : (ajuda.contains('mudar') || ajuda.contains('saltar') || ajuda.contains('pular') ? ajuda : '$ajuda ${l.onbPodesMudarDepois}');
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: Text(texto, style: t.headlineLarge)),
+            BotaoOuvir(etiqueta: 'onb-${_passo.name}', texto: '$texto $ajudaFinal', soIcone: true),
           ],
-          const SizedBox(height: 20),
-        ],
-      );
+        ),
+        const SizedBox(height: 8),
+        Text(ajudaFinal, style: t.bodyMedium!.copyWith(color: AppColors.textSecondary)),
+        const SizedBox(height: 20),
+      ],
+    );
+  }
 
   /// Cartão verde com o que o Em Dia já deduziu.
   Widget _deducao(TextTheme t, List<String> linhas) => Cartao(

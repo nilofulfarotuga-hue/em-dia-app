@@ -149,7 +149,11 @@ class _CartaoFaturasNif extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CabecalhoCartao(icone: Icons.receipt_long_rounded, titulo: l.contratoFaturasTitulo),
+          CabecalhoCartao(
+            icone: Icons.receipt_long_rounded,
+            titulo: l.contratoFaturasTitulo,
+            direita: BotaoOuvir(etiqueta: 'faturas-nif', texto: '${l.contratoFaturasTexto} ${l.contratoFaturasPrazo}', soIcone: true),
+          ),
           const SizedBox(height: 6),
           Text(l.contratoFaturasTexto, style: t.bodyMedium),
           const SizedBox(height: 10),
@@ -233,7 +237,19 @@ class _ReciboVencimentoScreenState extends State<ReciboVencimentoScreen> {
       body: ListView(
         padding: paddingEcra,
         children: [
-          Text(l.reciboExplica, style: t.bodyLarge),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Text(l.reciboExplica, style: t.bodyLarge)),
+              BotaoOuvir(
+                etiqueta: 'recibo-explica',
+                texto: bruto > 0
+                    ? '${l.reciboExplica} ${l.reciboLinhaLiquido}: ${moeda(rv.liquido)}. ${e.reembolso ? l.reciboAnoReembolso(moeda(e.diferenca)) : l.reciboAnoAcerto(moeda(-e.diferenca))}.'
+                    : l.reciboExplica,
+                soIcone: true,
+              ),
+            ],
+          ),
           const SizedBox(height: 16),
           TextField(
             controller: _bruto,
@@ -346,7 +362,17 @@ class _DesempregoScreenState extends State<DesempregoScreen> {
       body: ListView(
         padding: paddingEcra,
         children: [
-          Text(l.desempregoExplica, style: t.bodyLarge),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Text(l.desempregoExplica, style: t.bodyLarge)),
+              BotaoOuvir(
+                etiqueta: 'desemprego-explica',
+                texto: '${l.desempregoExplica} ${d.temDireito ? l.desempregoTemDireito : l.desempregoFaltam(d.diasQueFaltam)} ${l.desempregoPedirAte(dataPt(d.pedirAte))}',
+                soIcone: true,
+              ),
+            ],
+          ),
           const SizedBox(height: 16),
           Text(l.desempregoMesesPergunta, style: t.titleMedium),
           Slider(
@@ -444,7 +470,17 @@ class _HorasExtraScreenState extends State<HorasExtraScreen> {
       body: ListView(
         padding: paddingEcra,
         children: [
-          Text(l.horasExplica(moeda(salario, casas: 0), moeda(h.base)), style: t.bodyLarge),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Text(l.horasExplica(moeda(salario, casas: 0), moeda(h.base)), style: t.bodyLarge)),
+              BotaoOuvir(
+                etiqueta: 'horas-explica',
+                texto: '${l.horasExplica(moeda(salario, casas: 0), moeda(h.base))} ${l.horasPrimeira}: ${moeda(h.primeiraHora)}. ${l.horasSeguintes}: ${moeda(h.horaSeguinte)}. ${l.horasFimSemana}: ${moeda(h.descansoOuFeriado)}.',
+                soIcone: true,
+              ),
+            ],
+          ),
           const SizedBox(height: 12),
           Material(
             color: Colors.transparent,

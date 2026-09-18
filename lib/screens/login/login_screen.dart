@@ -101,7 +101,13 @@ class _LoginScreenState extends State<LoginScreen> {
     final revisor = s.ehRevisor(_email.text);
     final bloqueado = s.aTrabalhar || _faltaDesafio(s);
     return [
-      Text(l.loginTitulo, style: t.headlineSmall),
+      Row(
+        children: [
+          Expanded(child: Text(l.loginTitulo, style: t.headlineSmall)),
+          if (!widget.modoAdmin)
+            BotaoOuvir(etiqueta: 'login-ajuda', texto: '${l.loginTitulo}. ${revisor ? l.loginAjudaPalavraPasse : l.loginAjuda}', soIcone: true),
+        ],
+      ),
       const SizedBox(height: 6),
       Text(revisor ? l.loginAjudaPalavraPasse : l.loginAjuda,
           style: t.bodyMedium!.copyWith(color: AppColors.textSecondary)),

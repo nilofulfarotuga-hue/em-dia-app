@@ -3,7 +3,11 @@
 // de 2026 e com o Código do Trabalho (docs/REGRAS-PT-2026.md).
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter/material.dart';
+
+import 'package:em_dia/models/obrigacao.dart';
 import 'package:em_dia/regras/regras.dart';
+import 'package:em_dia/screens/calendario/tipos_obrigacao.dart';
 
 void main() {
   final r = RegrasLegais.padrao2026();
@@ -117,6 +121,26 @@ void main() {
     });
     test('P11 o IRS pessoal continua a existir para quem tem sociedade', () {
       expect(dos(gerar(p), 'irs_entrega').first.descricao, contains('IRS pessoal'));
+    });
+  });
+
+  group('Todos os tipos gerados têm nome, ícone, grupo e caminho na app', () {
+    test('P13 nenhum tipo novo cai no «Obrigação» genérico nem fica sem página certa', () {
+      final perfis = [
+        const PerfilObrigacoes(tipoAtividade: TipoAtividade.semAtividade, tipoTrabalho: TipoTrabalho.contrato, salarioBrutoMensal: 1000),
+        const PerfilObrigacoes(tipoAtividade: TipoAtividade.semAtividade, tipoTrabalho: TipoTrabalho.empresa, empresaTipo: 'sociedade', ivaPeriodicidade: 'mensal'),
+        PerfilObrigacoes(tipoAtividade: TipoAtividade.tvde, dataAbertura: DateTime(2025, 6, 1), rendimentoMensalEstimado: 1200, regimeIva: RegimeIva.normal),
+      ];
+      for (final p in perfis) {
+        for (final o in gerar(p)) {
+          final item = ObrigacaoItem.deGerada(o, 'u');
+          expect(item.nomeCurto, isNot('Obrigação'), reason: 'tipo sem nome curto: ${o.tipo}');
+          expect(iconeDoTipo(o.tipo), isNot(Icons.event_note_rounded), reason: 'tipo sem ícone: ${o.tipo}');
+          if (o.tipo != 'subsidio_natal') { // o Natal é «outros» de propósito: não é SS, fiscal nem carro
+            expect(grupoDoTipo(o.tipo), isNot(GrupoObrigacao.outros), reason: 'tipo fora dos grupos: ${o.tipo}');
+          }
+        }
+      }
     });
   });
 

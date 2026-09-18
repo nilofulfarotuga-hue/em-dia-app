@@ -88,7 +88,23 @@ NOTA_ESTADO = (
 )
 
 
-def prompt_para(nome: str) -> str:
+# B4 (2026-09-18): a pergunta do Danilo, tal e qual, com a resposta guardada em texto.
+PROMPT_SIMPLICIDADE = (
+    "Olha para esta captura de ecrã da app Em Dia (Portugal; recibos verdes, contrato, empresa, carro; "
+    "público que nunca usou uma app destas e não percebe de impostos). Responde à pergunta: "
+    "«Uma pessoa que nunca usou uma app destas percebe o que fazer aqui?» "
+    "Responde SÓ com JSON: {\"percebe\": \"sim|quase|nao\", \"resposta\": \"<2 a 4 frases em PT-PT, "
+    "a explicar o que essa pessoa vê, o que faria a seguir e o que a travaria>\", "
+    "\"palavras_dificeis\": [\"<palavra ou sigla sem explicação no ecrã>\"], "
+    "\"melhoria\": \"<1 frase com a mudança mais útil, ou vazio se nada>\"}. "
+    "Ignora a barra de estado. Dados de exemplo são normais. Ecrãs de erro ou vazios são de propósito: "
+    "a pergunta é se dizem o que fazer a seguir."
+)
+
+
+def prompt_para(nome: str, modo: str = "visao") -> str:
+    if modo == "simplicidade":
+        return PROMPT_SIMPLICIDADE
     if nome.startswith("admin_"):
         base = PROMPT_ADMIN
     else:
@@ -110,10 +126,10 @@ def _chave() -> str | None:
     return None
 
 
-def julgar(png: Path, chave: str) -> dict:
+def julgar(png: Path, chave: str, modo: str = "visao") -> dict:
     corpo = {
         "contents": [{"parts": [
-            {"text": prompt_para(png.name)},
+            {"text": prompt_para(png.name, modo)},
             {"inline_data": {"mime_type": "image/png", "data": base64.b64encode(png.read_bytes()).decode()}},
         ]}],
         "generationConfig": {"temperature": 0.1, "responseMimeType": "application/json"},
@@ -133,7 +149,10 @@ def julgar(png: Path, chave: str) -> dict:
             d = json.loads(urllib.request.urlopen(req, timeout=90).read())
             texto = d["candidates"][0]["content"]["parts"][0]["text"]
             j = json.loads(texto)
-            j["severity"] = j.get("severity", "verde").lower()
+            if modo == "simplicidade":
+                j["severity"] = {"sim": "verde", "quase": "amarelo", "nao": "vermelho"}.get(str(j.get("percebe", "")).lower(), "amarelo")
+            else:
+                j["severity"] = j.get("severity", "verde").lower()
             j["modelo"] = modelo
             return j
         except urllib.error.HTTPError as e:
@@ -159,6 +178,7 @@ def main() -> int:
     ap.add_argument("--dir", default=str(RAIZ / "test" / "golden" / "_fotos"))
     ap.add_argument("--filtro", default="")
     ap.add_argument("--max", type=int, default=80)
+    ap.add_argument("--modo", default="visao", choices=["visao", "simplicidade"])
     a = ap.parse_args()
     fotos = sorted(p for p in Path(a.dir).glob("*.png") if a.filtro in p.name)[: a.max]
     ts = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -170,18 +190,31 @@ def main() -> int:
         print("AVISO: sem GEMINI_API_KEY — o juiz não inventa vereditos. Nada julgado.")
     else:
         for i, p in enumerate(fotos, 1):
-            r = julgar(p, chave)
+            r = julgar(p, chave, a.modo)
             r["foto"] = p.name
             resultados.append(r)
             print(f"[{i}/{len(fotos)}] {r['severity']:8s} {p.name} — {r.get('finding','')[:110]}")
     contagem = {s: sum(1 for r in resultados if r["severity"] == s) for s in ("verde", "amarelo", "vermelho", "erro")}
-    rel = {"data": ts, "modelo": MODELO, "fotos": len(fotos), "contagem": contagem, "resultados": resultados}
-    (saida / f"vision_report_{ts}.json").write_text(json.dumps(rel, ensure_ascii=False, indent=2), encoding="utf-8")
-    md = [f"# Juiz de visão — {ts}", "", f"Modelo: {MODELO} · fotos: {len(fotos)} · {contagem}", "",
-          "| Foto | Veredito | Achado |", "|---|---|---|"]
-    md += [f"| {r['foto']} | {r['severity']} | {r.get('finding','').replace('|','/')} |" for r in resultados]
-    (saida / f"vision_report_{ts}.md").write_text("\n".join(md) + "\n", encoding="utf-8")
-    print(f"relatório: {saida / f'vision_report_{ts}.md'} · {contagem}")
+    prefixo = "simplicidade" if a.modo == "simplicidade" else "vision_report"
+    rel = {"data": ts, "modo": a.modo, "modelo": MODELO, "fotos": len(fotos), "contagem": contagem, "resultados": resultados}
+    (saida / f"{prefixo}_{ts}.json").write_text(json.dumps(rel, ensure_ascii=False, indent=2), encoding="utf-8")
+    if a.modo == "simplicidade":
+        md = [f"# Juiz de simplicidade — {ts}", "",
+              "Pergunta feita ao Gemini por cada ecrã: **«Uma pessoa que nunca usou uma app destas percebe o que fazer aqui?»** "
+              f"— resposta literal guardada. Fotos: {len(fotos)} · {contagem} (verde = sim, amarelo = quase, vermelho = não).", ""]
+        for r in resultados:
+            md += [f"## {r['foto']} — {r.get('percebe', r['severity'])}", f"{r.get('resposta', r.get('finding', ''))}", ""]
+            if r.get("palavras_dificeis"):
+                md += [f"- Palavras difíceis: {', '.join(str(x) for x in r['palavras_dificeis'])}"]
+            if r.get("melhoria"):
+                md += [f"- Melhoria: {r['melhoria']}"]
+            md += [f"- Modelo: {r.get('modelo', '')}", ""]
+    else:
+        md = [f"# Juiz de visão — {ts}", "", f"Modelo: {MODELO} · fotos: {len(fotos)} · {contagem}", "",
+              "| Foto | Veredito | Achado |", "|---|---|---|"]
+        md += [f"| {r['foto']} | {r['severity']} | {r.get('finding','').replace('|','/')} |" for r in resultados]
+    (saida / f"{prefixo}_{ts}.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+    print(f"relatório: {saida / f'{prefixo}_{ts}.md'} · {contagem}")
     return 2 if contagem["vermelho"] else 0
 
 

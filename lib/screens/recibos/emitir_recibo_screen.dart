@@ -113,7 +113,13 @@ class _EmitirReciboScreenState extends State<EmitirReciboScreen> {
       body: ListView(
         padding: paddingEcra,
         children: [
-          Text(l.faturaExplica, style: t.bodyLarge),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Text(l.faturaExplica, style: t.bodyLarge)),
+              BotaoOuvir(etiqueta: 'fatura-explica', texto: '${l.faturaExplica} ${isento ? l.faturaIsento : l.faturaComIva}', soIcone: true),
+            ],
+          ),
           const SizedBox(height: 16),
           if (_feito) ...[
             Aviso(

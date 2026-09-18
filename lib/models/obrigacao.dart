@@ -74,12 +74,22 @@ class ObrigacaoItem {
         'multa' => 'Multa',
         'portagem' => 'Portagem',
         'fim_isencao_ss' => 'Fim da isenção',
+        // B3 — contrato e empresa
+        'subsidio_natal' => 'Subsídio de Natal',
+        'faturas_nif' => 'Pede fatura com NIF',
+        'dmr' => 'Declaração de salários (DMR)',
+        'saft' => 'Comunicar faturas (SAF-T)',
+        'ss_empresa' => 'Segurança Social da empresa',
+        'irc_modelo22' => 'IRC (Modelo 22)',
+        'irc_pagamento_conta' => 'Pagamento por conta (IRC)',
+        'ies' => 'IES',
         _ => 'Obrigação',
       };
 
   /// É "dinheiro a sair" (para o cartão "Este mês pagas")?
   bool get ehPagamento => const {
         'ss_pagamento', 'iva_pagamento', 'irs_pagamento_conta', 'iuc', 'ipo', 'seguro', 'multa', 'portagem',
+        'ss_empresa', 'irc_pagamento_conta',
       }.contains(tipo);
 
   factory ObrigacaoItem.fromMap(Map<String, dynamic> m) => ObrigacaoItem(

@@ -39,6 +39,11 @@ class EmpresaSeccao extends StatelessWidget {
               CabecalhoCartao(
                 icone: sociedade ? Icons.apartment_rounded : Icons.person_rounded,
                 titulo: sociedade ? l.empresaSociedadeTitulo : l.empresaEniTitulo,
+                direita: BotaoOuvir(
+                  etiqueta: 'empresa-tipo',
+                  texto: '${sociedade ? l.empresaSociedadeTexto : l.empresaEniTexto} ${l.empresaNaoSubstitui}',
+                  soIcone: true,
+                ),
               ),
               const SizedBox(height: 8),
               Text(sociedade ? l.empresaSociedadeTexto : l.empresaEniTexto, style: t.bodyMedium),

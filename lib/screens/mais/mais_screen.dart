@@ -65,7 +65,12 @@ class MaisScreen extends StatelessWidget {
       body: ListView(
         padding: paddingEcra,
         children: [
-          Text(l.maisSubtitulo, style: t.bodyMedium!.copyWith(color: AppColors.textSecondary)),
+          Row(
+            children: [
+              Expanded(child: Text(l.maisSubtitulo, style: t.bodyMedium!.copyWith(color: AppColors.textSecondary))),
+              BotaoOuvir(etiqueta: 'mais-lista', texto: '${l.maisSubtitulo} ${acessos.map((a) => a.titulo).join(', ')}.', soIcone: true),
+            ],
+          ),
           const SizedBox(height: 12),
           GridView.builder(
             shrinkWrap: true,

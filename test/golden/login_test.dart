@@ -5,6 +5,7 @@ import 'package:em_dia/screens/login/login_screen.dart';
 import 'package:em_dia/stores/sessao_store.dart';
 import 'package:provider/provider.dart';
 
+import '_apoio.dart';
 import 'fabrica_de_fotos.dart';
 
 /// Login por código de e-mail — a primeira tela que qualquer pessoa vê.
@@ -20,10 +21,12 @@ void main() {
       tester,
       nome: 'login',
       comTeclado: true,
-      tela: () => ChangeNotifierProvider<SessaoStore>(
+      // comStores dá a Fala e o PerfilStore que o botão «Ouvir» (B4) precisa;
+      // a sessão de dentro manda sobre a de fora.
+      tela: () => comStores(ChangeNotifierProvider<SessaoStore>(
         create: (_) => SessaoStoreFalso(),
         child: const LoginScreen(),
-      ),
+      )),
     );
     expect(find.byType(TextField), findsOneWidget);
     expect(find.byType(ElevatedButton), findsOneWidget);
@@ -34,10 +37,10 @@ void main() {
       tester,
       nome: 'login-codigo',
       comTeclado: true,
-      tela: () => ChangeNotifierProvider<SessaoStore>(
+      tela: () => comStores(ChangeNotifierProvider<SessaoStore>(
         create: (_) => SessaoStoreNoCodigo(),
         child: const LoginScreen(),
-      ),
+      )),
     );
     // A saída ("Escrevi o e-mail errado") tem de estar sempre no ecrã, senão
     // quem escreve o e-mail errado fica preso — foi o que aconteceu a

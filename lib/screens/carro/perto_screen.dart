@@ -57,7 +57,13 @@ class _PertoScreenState extends State<PertoScreen> {
       body: ListView(
         padding: paddingEcra,
         children: [
-          Text(l.pertoExplica, style: t.bodyLarge),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Text(l.pertoExplica, style: t.bodyLarge)),
+              BotaoOuvir(etiqueta: 'perto-explica', texto: '${l.pertoExplica} ${l.pertoPrivacidade}', soIcone: true),
+            ],
+          ),
           const SizedBox(height: 12),
           BotaoGrande(
             texto: perto.origem == OrigemLocal.gps ? l.pertoAtualizarLocal : l.pertoUsarLocal,
