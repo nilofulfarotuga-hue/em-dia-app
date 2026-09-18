@@ -250,3 +250,58 @@
 - **Porquê:** o domínio novo custava dinheiro e um login noutra conta Cloudflare; `boraguarda.com` já está na conta `nilofulfarotuga@gmail.com`, com token, Pages e Resend a funcionar. Um subdomínio é grátis, sai hoje, e o cadeado vem da Cloudflare.
 - **Como se fez / limites dos tokens:** o token de `bora-site/.env` regista domínios personalizados nas Pages (feito: 3, ficam "pending — CNAME record not set") e tem direitos de Workers, mas **não escreve DNS nem Email Routing** (403); o token do servidor do Bora (`/opt/motor-bora/.env`) é da conta do boraappbora e também não. Por isso os três endereços são servidos por um **Worker com "custom domains"** (`cloudflare/frente-emdia/`): a Cloudflare cria o DNS e o certificado sozinha com os direitos de Workers, e o Worker vai buscar cada página ao projeto Pages certo e devolve-a tal e qual. Quando existir um token com Zone DNS Edit, troca-se por CNAME e apaga-se o Worker. O widget Turnstile (conta boraappbora, sessão do Chrome) passou a aceitar `boraguarda.com`, que cobre todos os subdomínios. **A caixa das faturas fica à espera**: precisa de Email Routing, que só a conta `nilofulfarotuga` no painel (ou um token com Email Routing Edit) pode ligar.
 - **Como se desfaz:** apagar os três domínios personalizados nas Pages e os três CNAME; o resto (Auth, Play, textos) volta a `*.pages.dev`, que nunca deixou de servir.
+
+## D47 — Os prazos do Estado que caem a fim-de-semana ou feriado passam ao dia útil seguinte; o aviso continua na véspera útil
+- **O quê (2026-09-18):** `obrigacoes.prazo_efetivo` (SS, IVA, IRS, e-fatura, recibos, IUC) = `dia_util_seguinte_ou_igual(data_limite)`; a app mostra «Dia 20 é domingo: tens até segunda, dia 21»; o aviso (`aviso_em`) continua a sair na véspera útil da data legal. Inspeção, seguro, carta e residência não mudam (não são prazos do Estado).
+- **Porquê:** confirmado na fonte: AT «Nos meses que terminam em fim de semana ou feriado, a obrigação pode ser cumprida até ao dia útil seguinte» (calendário fiscal 2026) e Guia Prático da SS (pagamento de contribuições). A app dizia «passou» num domingo em que a lei ainda dava dois dias.
+- **Como se desfaz:** `update obrigacoes set prazo_efetivo = data_limite` e apagar `tiposComPrazoDoEstado`; a coluna fica.
+
+## D48 — Porta de QA nas Edge Functions: `x-cron-secret` certo + `user_id` no corpo, em vez de contornar o CAPTCHA
+- **O quê:** `calcular-obrigacoes` e `emitir-recibo` aceitam um `user_id` no corpo quando o `x-cron-secret` do Vault vem certo. Sem ele, só JWT. Serve para provar as funções com a conta de teste `boraappbora+emulador@gmail.com` sem login por API.
+- **Porquê:** o login por API está atrás do Turnstile («captcha protection: request disallowed») e a regra é fixa: não se completam CAPTCHAs. A alternativa era dizer «deve funcionar» — proibido.
+- **Como se desfaz:** apagar o bloco «porta de QA» nas duas funções; o segredo do cron continua a servir só o cron.
+
+## D49 — O semáforo grande só aparece com uma segunda coisa por fazer; a boas-vindas não anuncia números
+- **O quê:** o painel mostra o herói (a próxima obrigação) sempre; o semáforo laranja/vermelho só quando há mais alguma coisa a vencer/passada além do herói (não se repete a mesma informação em dois cartões); «Olá, Maria» sem contagem no cumprimento.
+- **Porquê:** provado pela Claude.ai a 17/09: o mesmo prazo aparecia duas vezes no ecrã e assustava sem acrescentar.
+- **Como se desfaz:** `mostraSemaforo => true` em `painel_screen.dart`.
+
+## D50 — Preços da DGEG ligados para toda a gente, com a fonte à vista; o pedido formal continua a andar
+- **O quê:** `feature_flags.precos_combustivel` a true nos três planos; ecrã «Perto de mim» escreve «Fonte: DGEG, precoscombustiveis.dgeg.gov.pt (dados abertos, atualizados todos os dias)». Cron diário 05:10 UTC. Sync real: 3 133 postos, 14 157 preços.
+- **Porquê:** a API é pública, sem chave, e a condição da D40 (grátis para todos, fonte à vista) cumpre-se. O pedido de «Partilha de Informação» já foi enviado (e-mail `1a0788f8fef674b2`) e a minuta assinada fica em PENDENTE-DANILO — não trava o uso.
+- **Como se desfaz:** `update feature_flags set free=false, pro=false, familia=false where chave='precos_combustivel'` e `select cron.unschedule('em-dia-precos-combustivel-dia')`.
+
+## D51 — Localização só em primeiro plano e só quando a pessoa toca; nunca fica guardada
+- **O quê:** `ACCESS_COARSE_LOCATION` + `ACCESS_FINE_LOCATION` no manifesto; `geolocator` com `LocationAccuracy.low`, 20 s de limite, chamado só pelo botão «Usar a minha localização»; a alternativa é escrever o concelho. Nada de `ACCESS_BACKGROUND_LOCATION` (foi o que a Google rejeitou ao Bora).
+- **Porquê:** «Perto de mim» precisa de saber onde a pessoa está; a regra 9 do CLAUDE.md proíbe localização em segundo plano; a Segurança dos Dados na Play passa a declarar «Localização aproximada, em primeiro plano, não partilhada» (clique do Danilo).
+- **Como se desfaz:** tirar as duas permissões e o botão; o campo do concelho chega.
+
+## D52 — Cofre do imposto automático, ligado por omissão, com interruptor no cofre
+- **O quê:** por cada rendimento gravado com «conta para o IRS», a app aponta no cofre a fatia SS (21,4 % × 70 %, fora da isenção do 1.º ano) + IRS (taxa efetiva do rendimento anual estimado), ligada à entrada (`entrada_id`, nota `auto`); `profiles.cofre_automatico` (true) desliga-o. É contabilidade dentro da app, nunca dinheiro a sair.
+- **Porquê:** quem não percebe nada disto não sabe quanto pôr de lado; a app sabe. Desligável porque há quem prefira apontar à mão.
+- **Como se desfaz:** default false na coluna; os movimentos `auto` já apontados ficam (ou `delete from cofre_movimentos where nota='auto'`).
+
+## D53 — Extrato do banco só por ficheiro (CSV/XLSX) que a pessoa escolhe; Enable Banking fica de fora por agora
+- **O quê:** importação no telemóvel (`file_selector`), leitura toda no aparelho, guarda em `movimentos_banco` sem repetidos (`user_id+chave`); PDF de extrato **não** é suportado (diz-se ao utilizador em vez de adivinhar). Enable Banking: verificado a 18/09 — sandbox grátis, produção só com «contractual formalities» e sem preço público (`/pricing` → 404).
+- **Porquê:** zero euros novos, D23 (nada de SMS/Gmail/banco por dentro), e o ficheiro cobre o que a app precisa: o que se repete e o que entrou.
+- **Como se desfaz:** quando houver contrato e preço, a ligação entra pela mesma `BancoStore.guardar` (a estrutura é a de um extrato).
+
+## D54 — «Vê como fica»: um exemplo inteiro com a Maria, sem servidor e sem gravar
+- **O quê:** `lib/exemplo/` monta uma pessoa inventada (TVDE, 1.200 €/mês, carro, 6 meses, contas, cofre, extrato) e embrulha a `ShellScreen` em stores de exemplo com uma faixa laranja fixa «Isto é um exemplo… Sair». As obrigações do exemplo saem do **mesmo gerador** das contas reais (`gerarObrigacoes`) para o exemplo nunca contar uma história diferente da lei. Gravar dentro do exemplo mostra «Num exemplo nada fica guardado» e segue. Entradas: login (antes de criar conta) e Mais.
+- **Porquê:** a app é para quem não percebe nada disto — vê primeiro, decide depois; e a Claude.ai pediu «vê como fica» sem «em breve».
+- **Como se desfaz:** tirar o `BotaoVerComoFica` do login e o acesso em Mais; a pasta `lib/exemplo/` pode ficar para as fotos.
+
+## D55 — Fatura-recibo certificada pela InvoiceXpress: código pronto, interruptor desligado até haver conta
+- **O quê:** Edge Function `emitir-recibo` (cria `invoice_receipt`, fecha, vai buscar o PDF, regista em `recibos_emitidos` antes de falar lá fora; isenção M10 quando o perfil está no art. 53.º), flag `faturacao_certificada` a false nos três planos = desligada para todos, trial incluído (`PlanoStore.ligadaParaAlguem`). O ecrã «Passar fatura-recibo» só aparece com o interruptor ligado; nunca diz «em breve».
+- **Porquê:** criar a conta InvoiceXpress é acto do Danilo (D45); o código e a prova (200/403/401) já estão. Chama-se «fatura-recibo certificada» e não «recibo verde»: é o documento equivalente emitido por programa certificado, não o recibo do portal.
+- **Como se desfaz:** `update feature_flags set free=false, pro=false, familia=false where chave='faturacao_certificada'` (já está) — e a função responde `desligada`.
+
+## D56 — Abas de uma palavra: «Dinheiro» (título «O meu dinheiro») e «Agenda»
+- **O quê:** `vidaNav` «A minha vida» → «Dinheiro», `vidaTitulo` → «O meu dinheiro»; `navCalendario`/`calTitulo` «Calendário» → «Agenda». PT e BR.
+- **Porquê:** nas fotos do exemplo (390 px) «A minha vida» e «Calendário» partiam em duas linhas e o ícone dessa aba ficava mais alto do que os outros. Uma palavra cabe em todos os tamanhos e é mais simples de dizer em voz alta.
+- **Como se desfaz:** repor as quatro chaves nos `.arb` de `00_comum` e `vida_entradas`.
+
+## D57 — A prova de rendimento cabe SEMPRE numa folha
+- **O quê:** `prova_rendimento.dart` com espaços de 14 pt e linhas de 6 pt; o teste `prova_pdf_test.dart` gera o PDF a sério e falha se sair mais de uma página ou sem a Inter embebida.
+- **Porquê:** com 12 meses saía uma segunda página só com «De onde vem» — no banco, uma folha quase vazia parece erro.
+- **Como se desfaz:** não se desfaz; se um dia houver mais linhas, o teste avisa.

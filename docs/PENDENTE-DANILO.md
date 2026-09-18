@@ -1,5 +1,16 @@
 # PENDENTE-DANILO — só o que precisa mesmo da pessoa
 
+## 🔴 Missão em-dia-tudo (18/09/2026) — uma sentada só, no fim; cada linha é UM clique teu
+> Tudo o resto desta missão foi decidido e feito sem ti (docs/DECISOES.md D47–D57). Estas ficam porque a regra
+> diz que criar contas, assinar e declarar são actos teus. Nenhuma trava a app: sem elas o botão não aparece.
+
+- [ ] **InvoiceXpress (fatura-recibo de dentro da app):** cria a conta em `https://web.invoicexpress.com/signup` (grátis para começar), vai a *Conta → API* e copia o **nome da conta** e a **chave API**. Depois, no SQL do Supabase (projeto em-dia):
+  `select vault.create_secret('<NOME-DA-CONTA>', 'invoicexpress_account'); select vault.create_secret('<CHAVE>', 'invoicexpress_api_key');`
+  e liga o interruptor: `update feature_flags set pro = true, familia = true where chave = 'faturacao_certificada';` (ou no admin). A partir daí o cartão «Passar a fatura-recibo daqui» aparece em Recibos (plano Pro). Antes de ligar para clientes reais: uma fatura de 1 € a ti próprio, para ver o PDF.
+- [ ] **Play → Segurança dos Dados:** acrescentar **«Localização aproximada — recolhida, não partilhada, opcional, só em primeiro plano, para mostrar postos e centros perto»** (o «Perto de mim» pede a localização só quando tocas no botão e não a guarda). É uma declaração tua; a app já está assim.
+- [ ] **DGEG (continua da vez passada):** responder ao e-mail `1a0788f8fef674b2` com a minuta `docs/loja/dgeg/minuta-partilha-informacao-em-dia.docx` assinada. Os preços já estão ligados com a fonte à vista (D50); isto só regulariza.
+
+
 ## ⚪ Sobre o "apagão de dados" das 13:56 — não foi apagão, não é preciso decidir nada
 Outra sessão (lançada pelo vigia) viu os dados de utilizador desaparecer e registou-o como incidente.
 Foi ordem tua: o BLOCO 1 da missão LOOP TOTAL manda apagar todos os dados de teste para um
