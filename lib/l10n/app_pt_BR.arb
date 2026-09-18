@@ -1820,6 +1820,55 @@
   "guiaIniGanhosTexto": "Toda vez que você receber dinheiro, anote aqui. Leva poucos segundos. Quanto mais você anotar, mais certas ficam as minhas contas e os meus avisos.",
   "guiaIniPerguntaTitulo": "Me pergunte o que quiser",
   "guiaIniPerguntaTexto": "Ficou com dúvida? Escreva como se estivesse falando com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite.",
+  "onbTrabalhasComo": "Você trabalha como?",
+  "onbPodesMudarDepois": "Você pode mudar depois, nas Configurações.",
+  "onbTrabalhoIndependente": "Recibos verdes",
+  "onbTrabalhoIndependenteAjuda": "Trabalho por conta própria: TVDE, entregas, serviços, freelancer.",
+  "onbTrabalhoContrato": "Contrato",
+  "onbTrabalhoContratoAjuda": "Recebo salário de um patrão.",
+  "onbTrabalhoAmbos": "Os dois",
+  "onbTrabalhoAmbosAjuda": "Tenho contrato e também emito recibos.",
+  "onbTrabalhoEmpresa": "Tenho uma empresa",
+  "onbTrabalhoEmpresaAjuda": "Em nome individual ou sociedade, com ou sem empregados.",
+  "onbSalarioTitulo": "Quanto você ganha por mês, antes dos descontos?",
+  "onbSalarioAjuda": "É o número de cima do recibo (o bruto). Você pode mudar depois.",
+  "onbSalarioSs": "A Segurança Social fica com {valor} por mês ({pct} %).",
+  "@onbSalarioSs": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      },
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "onbSalario14": "Num ano são {valor}: 12 meses + férias + Natal.",
+  "@onbSalario14": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "onbNascimentoTitulo": "Em que ano você nasceu?",
+  "onbNascimentoAjuda": "Só para saber se você tem direito ao IRS Jovem (até os 35 anos). Pode pular.",
+  "onbIrsJovemSim": "Você tem direito ao IRS Jovem: até 100 % de desconto no IRS, 10 anos.",
+  "onbIrsJovemNao": "Você já não entra no IRS Jovem (é até os 35 anos). Tudo bem: o app cuida do resto.",
+  "onbEmpresaTitulo": "A sua empresa é…",
+  "onbEmpresaAjuda": "Está no papel das Finanças de quando você abriu. Pode mudar depois.",
+  "onbEmpresaEni": "Em nome individual (ENI)",
+  "onbEmpresaEniAjuda": "É você, com o seu NIF.",
+  "onbEmpresaSociedade": "Uma sociedade",
+  "onbEmpresaSociedadeAjuda": "Lda. ou unipessoal, com NIPC próprio.",
+  "onbIvaPeriodoTitulo": "O IVA é entregue de quanto em quanto tempo?",
+  "onbIvaPeriodoAjuda": "Se não sabe, escolha «de 3 em 3 meses» — a maioria é assim. O contador confirma.",
+  "onbIvaTrimestral": "De 3 em 3 meses",
+  "onbIvaMensal": "Todos os meses",
+  "onbContabilistaTitulo": "Você tem contador?",
+  "onbContabilistaAjuda": "Escreva o e-mail e, todo dia 1, o app manda a pasta do mês: o que entrou, o que saiu, o extrato e as faturas. Pode pular.",
+  "onbContabilistaEmail": "E-mail do contador",
+  "onbContabilistaNota": "O app não substitui o contador. Poupa as horas dele juntando papéis — e as suas ligações.",
   "painelAcaoEtiqueta": "O que fazer agora",
   "painelAcaoPagaSs": "Pague a Segurança Social",
   "painelAcaoEntregaSs": "Entregue a declaração da Segurança Social",
@@ -2140,6 +2189,200 @@
   "oficioDescricaoFreelancer": "Prestação de serviços",
   "oficioDescricaoOutro": "Prestação de serviços",
   "oficioDescricaoGeral": "Prestação de serviços",
+  "recibosTituloContrato": "Meu trabalho",
+  "recibosTituloEmpresa": "Minha empresa",
+  "contratoReciboTitulo": "Meu recibo de vencimento",
+  "contratoReciboSub": "Bruto, descontos, líquido — e o IRS do ano.",
+  "contratoReciboSubComSalario": "{salario} por mês: veja os descontos e o IRS do ano.",
+  "@contratoReciboSubComSalario": {
+    "placeholders": {
+      "salario": {
+        "type": "String"
+      }
+    }
+  },
+  "contratoIrsJovemTitulo": "Você tem direito ao IRS Jovem",
+  "contratoIrsJovemTexto": "Até os 35 anos, nos 10 primeiros anos ganhando dinheiro, você paga menos IRS: 100 % de desconto no 1.º ano, 75 % do 2.º ao 4.º, 50 % do 5.º ao 7.º, 25 % do 8.º ao 10.º (até {limite} por ano). Marque a opção na declaração de IRS, em abril.",
+  "@contratoIrsJovemTexto": {
+    "placeholders": {
+      "limite": {
+        "type": "String"
+      }
+    }
+  },
+  "contratoAbrirPagina": "Abrir a página das Finanças",
+  "contratoFaturasTitulo": "Peça fatura com NIF",
+  "contratoFaturasTexto": "Sempre que pagar, diga o seu NIF. Em abril, parte volta no IRS:",
+  "contratoDeducaoLinha": "{pct} % até {max}",
+  "@contratoDeducaoLinha": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "contratoDeducaoSaude": "Saúde e farmácia",
+  "contratoDeducaoEducacao": "Escola, creche, livros",
+  "contratoDeducaoRendas": "Aluguel da casa",
+  "contratoDeducaoIva": "Oficina, cabeleireiro, restaurantes, academia (IVA)",
+  "contratoDeducaoGerais": "Todo o resto (supermercado, roupa…)",
+  "contratoFaturasPrazo": "Em fevereiro confirme as faturas «pendentes» no e-fatura — até 25 de fevereiro. O app lembra você.",
+  "contratoAbrirEfatura": "Abrir o e-fatura",
+  "contratoDesempregoTitulo": "Fiquei sem trabalho: o que fazer",
+  "contratoDesempregoSub": "Subsídio de desemprego: se você tem direito, quanto, e até quando pedir.",
+  "contratoHorasExtraTitulo": "Horas extras, férias e subsídios",
+  "contratoHorasExtraSub": "Quanto vale uma hora extra com o seu salário; 22 dias de férias; 14 meses.",
+  "reciboExplica": "Escreva os dois números do recibo. O app explica cada linha e diz se o IRS que estão descontando chega para o ano.",
+  "reciboBruto": "Salário bruto (o número de cima)",
+  "reciboIrsRetido": "IRS retido (a linha «IRS» ou «retenção»)",
+  "reciboLinhaBruto": "Bruto",
+  "reciboLinhaBrutoAjuda": "O que o patrão paga por você, antes dos descontos.",
+  "reciboLinhaSs": "Segurança Social ({pct} %)",
+  "@reciboLinhaSs": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "reciboLinhaSsAjuda": "A sua parte para a aposentadoria, a baixa e o desemprego. O patrão põe mais 23,75 % por fora.",
+  "reciboLinhaIrs": "IRS retido",
+  "reciboLinhaIrsAjuda": "Um adiantamento do imposto do ano. Acerta-se em abril.",
+  "reciboLinhaLiquido": "Líquido (entra na conta)",
+  "reciboAnoReembolso": "Em abril você deve receber cerca de {valor}",
+  "@reciboAnoReembolso": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "reciboAnoAcerto": "Em abril você pode ter de pagar cerca de {valor}",
+  "@reciboAnoAcerto": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "reciboAnoTexto": "Num ano você ganha {bruto} (14 meses). O IRS desse valor é cerca de {imposto}; retidos ficam {retido}.",
+  "@reciboAnoTexto": {
+    "placeholders": {
+      "bruto": {
+        "type": "String"
+      },
+      "imposto": {
+        "type": "String"
+      },
+      "retido": {
+        "type": "String"
+      }
+    }
+  },
+  "reciboAnoNota": "É uma estimativa sem as suas deduções (saúde, escola, filhos) — essas só melhoram o resultado.",
+  "reciboFonte": "Regras: Segurança Social 11 % (Taxas Contributivas do ISS), dedução de 8,54 × IAS e escalões do CIRS art. 25.º e 68.º (2026).",
+  "desempregoExplica": "Se você ficar sem trabalho, tem 90 dias para pedir o subsídio. O app faz a conta com o seu salário.",
+  "desempregoMesesPergunta": "Quantos meses você descontou nos últimos 2 anos?",
+  "desempregoMeses": "{n} meses (cerca de {n} × 30 dias)",
+  "@desempregoMeses": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "desempregoTemDireito": "Você tem direito ao subsídio de desemprego.",
+  "desempregoFaltam": "Ainda faltam {dias} dias de descontos (precisa de 360 em 24 meses). Pergunte pelo subsídio social de desemprego.",
+  "@desempregoFaltam": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
+  "desempregoValor": "Cerca de {valor} por mês (65 % do seu salário de {salario}), dentro dos limites de 2026.",
+  "@desempregoValor": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      },
+      "salario": {
+        "type": "String"
+      }
+    }
+  },
+  "desempregoPedirAte": "Se você ficasse sem trabalho hoje, teria de pedir até {data}.",
+  "@desempregoPedirAte": {
+    "placeholders": {
+      "data": {
+        "type": "String"
+      }
+    }
+  },
+  "desempregoPassosTitulo": "Os 3 passos",
+  "desempregoPasso1": "Inscreva-se no centro de emprego (IEFP) assim que puder.",
+  "desempregoPasso2": "Peça o subsídio na Segurança Social Direta, em até 90 dias.",
+  "desempregoPasso3": "Junte o modelo RP5044 (o patrão preenche) e o contrato.",
+  "desempregoAbrirSs": "Abrir a Segurança Social Direta",
+  "desempregoAbrirIefp": "Abrir o IEFP",
+  "desempregoFonte": "Regras do Guia Prático do Subsídio de Desemprego (ISS, 2026): 360 dias em 24 meses, 90 dias para pedir, 65 % da remuneração, mínimo 617,70 € e máximo 1.342,83 €.",
+  "horasExplica": "Com {salario} por mês, a sua hora normal vale {hora}. A hora extra é paga com acréscimo:",
+  "@horasExplica": {
+    "placeholders": {
+      "salario": {
+        "type": "String"
+      },
+      "hora": {
+        "type": "String"
+      }
+    }
+  },
+  "horasMaisDe100": "Já fiz mais de 100 horas extras este ano",
+  "horasPrimeira": "1.ª hora extra do dia",
+  "horasSeguintes": "Horas seguintes",
+  "horasFimSemana": "No fim de semana ou feriado",
+  "feriasTitulo": "Férias e subsídios",
+  "feriasTexto": "Você tem direito a {dias} dias úteis de férias por ano. O subsídio de férias (um mês) é pago antes das férias.",
+  "@feriasTexto": {
+    "placeholders": {
+      "dias": {
+        "type": "int"
+      }
+    }
+  },
+  "subsidiosTexto": "O subsídio de Natal (um mês) chega até 15 de dezembro. No ano em que você entra ou sai, é proporcional.",
+  "horasFonte": "Código do Trabalho, art. 238.º (férias), 263.º e 264.º (subsídios), 268.º (horas extras) e 271.º (hora normal).",
+  "empresaEniTitulo": "Sua empresa: em nome individual",
+  "empresaEniTexto": "É você, com o seu NIF. Paga IRS sobre o lucro e responde pelas dívidas com o que é seu. Simples de abrir e fechar.",
+  "empresaSociedadeTitulo": "Sua empresa: sociedade",
+  "empresaSociedadeTexto": "A empresa é outra pessoa (com NIPC). Paga IRC sobre o lucro, você recebe salário de gerente e as dívidas ficam na empresa.",
+  "empresaNaoSubstitui": "O app não substitui o contador: mostra o calendário e junta os papéis para ele.",
+  "empresaCalendarioTitulo": "O que vem a seguir",
+  "empresaCalendarioVazio": "Ainda não há datas: a agenda se enche assim que o calendário for feito.",
+  "empresaCalendarioNota": "Datas da agenda fiscal da AT (2026). No fim de semana passam ao dia útil seguinte.",
+  "empresaAbrirAgenda": "Abrir a agenda fiscal da AT",
+  "pastaTitulo": "Pasta do contador",
+  "pastaTexto": "Todo dia 1 o app junta o mês anterior — o que entrou, o que saiu, o extrato, as faturas e os recibos — e envia por e-mail ao contador. Ele para de pedir papéis.",
+  "pastaLigar": "Enviar todo dia 1",
+  "pastaLigarAjuda": "Salve o e-mail e ligue. Você pode desligar quando quiser.",
+  "pastaEnviarAgora": "Enviar já a do mês passado",
+  "pastaAEnviar": "Enviando…",
+  "pastaEnviada": "Enviada para {email} ({n} linhas).",
+  "@pastaEnviada": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "pastaFalhou": "Não consegui enviar agora. Tente daqui a pouco.",
+  "pastaEmailInvalido": "Escreva um e-mail válido do contador.",
   "sufixoLitros": "L",
   "@sufixoLitros": {
     "description": "Sufixo do campo dos litros no formulário do abastecimento. Estava escrito à mão no Dart."

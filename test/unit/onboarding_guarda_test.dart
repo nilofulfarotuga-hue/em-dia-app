@@ -75,6 +75,10 @@ void main() {
     // 1. Boas-vindas
     await toca(tester, find.text('Começar'));
 
+    // 1b. Trabalhas como? — recibos verdes (B3)
+    expect(find.text('Trabalhas como?'), findsOneWidget);
+    await toca(tester, find.text('Recibos verdes'));
+
     // 2. O que fazes? — motorista
     expect(find.text('O que fazes?'), findsOneWidget);
     await toca(tester, find.text('Motorista TVDE (Uber, Bolt)'));
@@ -124,6 +128,8 @@ void main() {
   testWidgets('O02 sem escolher ofício não se passa da primeira pergunta', (tester) async {
     await abre(tester);
     await toca(tester, find.text('Começar'));
+    expect(find.text('Trabalhas como?'), findsOneWidget);
+    await toca(tester, find.text('Recibos verdes'));
     expect(find.text('O que fazes?'), findsOneWidget);
 
     final botao = tester.widget<ElevatedButton>(
@@ -140,6 +146,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final espia = await abre(tester);
     await toca(tester, find.text('Começar'));
+    await toca(tester, find.text('Recibos verdes'));                        // Trabalhas como? (B3)
     await toca(tester, find.text('Motorista TVDE (Uber, Bolt)'));          // 1.ª pergunta respondida
     await toca(tester, find.text('Mês'));
     await toca(tester, find.text('março').last);
@@ -165,7 +172,7 @@ void main() {
     await tester.pumpWidget(const SizedBox());
     await abre(tester, reabrir: espia);
     expect(find.text('Tens carro?'), findsOneWidget, reason: 'tem de retomar na 4.ª pergunta');
-    expect(find.text('Pergunta 4 de 5'), findsOneWidget);
+    expect(find.text('Pergunta 5 de 6'), findsOneWidget); // B3: «Trabalhas como?» é a 1.ª pergunta
     // E ao voltar atrás, as respostas estão lá.
     await toca(tester, find.text('Voltar'));
     expect(find.text('No ano passado faturaste mais de 15.000 €?'), findsOneWidget);
@@ -175,6 +182,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final espia = await abre(tester);
     await toca(tester, find.text('Começar'));
+    await toca(tester, find.text('Recibos verdes'));
     await toca(tester, find.text('Motorista TVDE (Uber, Bolt)'));
     await toca(tester, find.text('Mês'));
     await toca(tester, find.text('março').last);
@@ -200,6 +208,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final espia = await abre(tester);
     await toca(tester, find.text('Começar'));
+    await toca(tester, find.text('Recibos verdes'));
     // A última opção está fora do ecrã na lista: primeiro rola até ela.
     await tester.scrollUntilVisible(find.text('Só quero o carro'), 200, scrollable: find.byType(Scrollable).first);
     await tester.pumpAndSettle();

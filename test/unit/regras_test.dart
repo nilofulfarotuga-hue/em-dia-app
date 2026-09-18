@@ -155,11 +155,13 @@ void main() {
       final p = calcularIrs(rendimentoBrutoAnual: 100000, tipo: TipoRendimento.servicos, ano: 2025, r: r);
       expect(p.impostoEstimado, 25355.56);
     });
-    test('C25 2026: escalões POR CONFIRMAR ficam marcados; 24.000 € → 2.861,42 €', () {
+    test('C25 2026: escalões confirmados no CIRS art. 68.º (Lei 73-A/2025); 24.000 € → 2.861,47 €', () {
+      // 24.000 × 0,75 = 18.000 coletável → 4.º escalão (17.838–23.089): 18.000 × 24,1 % − 1.476,53 = 2.861,47.
+      // Até 18/09/2026 o limite do 2.º escalão estava a 12.588 (é 12.587) e a parcela dava 1.476,58 → 2.861,42.
       final p = calcularIrs(rendimentoBrutoAnual: 24000, tipo: TipoRendimento.servicos, ano: 2026, r: r);
-      expect(p.escaloesConfirmados, isFalse);
+      expect(p.escaloesConfirmados, isTrue);
       expect(p.anoEscaloes, 2026);
-      expect(p.impostoEstimado, 2861.42);
+      expect(p.impostoEstimado, 2861.47);
     });
     test('C26 datas: PPC 20 jul/set/dez; entrega até 30 jun; e-fatura até 25 fev', () {
       expect(datasPagamentosPorConta(2026, r), [DateTime(2026, 7, 20), DateTime(2026, 9, 20), DateTime(2026, 12, 20)]);

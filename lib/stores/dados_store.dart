@@ -165,13 +165,18 @@ class ObrigacoesStore extends ChangeNotifier {
 
   List<ObrigacaoItem> pendentes(DateTime hoje) => _porData(_itens.where((o) => o.pendente));
 
+  /// Os lembretes (subsídio de Natal, faturas com NIF — B3) ficam fora do
+  /// «passou», do «a vencer» e da «próxima»: não são dinheiro a sair nem
+  /// prazo que se falhe, e não podem pôr o semáforo vermelho.
+  bool _conta(ObrigacaoItem o) => !tiposLembrete.contains(o.tipo);
+
   /// Prazos que já passaram e continuam por pagar. O primeiro é o mais antigo,
   /// que é o mais urgente.
-  List<ObrigacaoItem> passadas(DateTime hoje) => _porData(_itens.where((o) => o.passou(hoje)));
+  List<ObrigacaoItem> passadas(DateTime hoje) => _porData(_itens.where((o) => _conta(o) && o.passou(hoje)));
 
   /// Ainda não passaram mas vencem dentro de [dias] (5 por omissão).
   List<ObrigacaoItem> aVencer(DateTime hoje, {int dias = 5}) => _porData(
-        _itens.where((o) => o.pendente && !o.passou(hoje) && o.diasParaPrazo(hoje) <= dias),
+        _itens.where((o) => _conta(o) && o.pendente && !o.passou(hoje) && o.diasParaPrazo(hoje) <= dias),
       );
   List<ObrigacaoItem> doMes(DateTime hoje) => _porData(
         _itens.where((o) => o.dataLimite.year == hoje.year && o.dataLimite.month == hoje.month),
@@ -181,7 +186,7 @@ class ObrigacoesStore extends ChangeNotifier {
   /// assim continua certa mesmo que a lista venha do servidor ao contrário
   /// (ver a cicatriz do `.order` no topo deste ficheiro).
   ObrigacaoItem? proxima(DateTime hoje) {
-    final p = _itens.where((o) => o.pendente && !o.passou(hoje));
+    final p = _itens.where((o) => _conta(o) && o.pendente && !o.passou(hoje));
     if (p.isEmpty) return null;
     return p.reduce((a, b) => a.dataLimite.isAfter(b.dataLimite) ? b : a);
   }

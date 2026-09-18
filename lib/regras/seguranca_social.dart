@@ -88,7 +88,7 @@ DateTime fimIsencaoSS(DateTime dataAbertura, RegrasLegais r) {
 
 /// Último dia coberto pela isenção (para o texto "estás isento até…").
 DateTime ultimoDiaIsencaoSS(DateTime dataAbertura, RegrasLegais r) =>
-    fimIsencaoSS(dataAbertura, r).subtract(const Duration(days: 1));
+    somarDias(fimIsencaoSS(dataAbertura, r), -1);
 
 int mesesDeIsencaoRestantes(DateTime dataAbertura, DateTime hoje, RegrasLegais r) {
   final fim = fimIsencaoSS(dataAbertura, r);

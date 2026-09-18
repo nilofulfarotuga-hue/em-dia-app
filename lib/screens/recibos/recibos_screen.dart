@@ -11,6 +11,8 @@ import '../../stores/regras_store.dart';
 import '../../widgets/widgets.dart';
 import 'calculadora_recibo.dart';
 import 'como_emitir_screen.dart';
+import 'contrato_seccao.dart';
+import 'empresa_seccao.dart';
 import 'emitir_recibo_screen.dart';
 import 'irs_card.dart';
 import 'recibos_widgets.dart';
@@ -40,11 +42,33 @@ class RecibosScreen extends StatelessWidget {
         perfil.tipoAtividade == TipoAtividade.soCarro;
     final isento = perfil?.regimeIva != RegimeIva.normal;
 
+    // B3: quem tem EMPRESA vê o separador da empresa (ENI/sociedade,
+    // calendário, pasta do contabilista) — os recibos verdes não se aplicam.
+    if (perfil != null && perfil.temEmpresa) {
+      return Scaffold(
+        appBar: AppBar(title: Text(l.recibosTituloEmpresa)),
+        body: ListView(padding: paddingEcra, children: [EmpresaSeccao(hoje: h), const SizedBox(height: 16)]),
+      );
+    }
+    // Quem só tem CONTRATO vê o recibo de vencimento e o resto do contrato.
+    if (perfil != null && perfil.temContrato && !perfil.temRecibosVerdes) {
+      return Scaffold(
+        appBar: AppBar(title: Text(l.recibosTituloContrato)),
+        body: ListView(padding: paddingEcra, children: [ContratoSeccao(hoje: h), const SizedBox(height: 16)]),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(title: Text(l.recibosTitulo)),
       body: ListView(
         padding: paddingEcra,
         children: [
+          // «Os dois» (contrato + recibos verdes): primeiro o contrato, depois
+          // os recibos verdes de sempre.
+          if (perfil != null && perfil.temContrato) ...[
+            ContratoSeccao(hoje: h),
+            const SizedBox(height: 12),
+          ],
           // A tela deixou de ser só de motorista: a explicação, a ajuda e o
           // exemplo do cliente mudam com o ofício que ele escolheu no início.
           Cartao(

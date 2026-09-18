@@ -35,6 +35,15 @@ class Perfil {
   /// Ligado por omissão; a pessoa desliga no cofre.
   final bool cofreAutomatico;
 
+  // B3 — «Trabalhas como?» e o que cada resposta traz consigo.
+  final TipoTrabalho tipoTrabalho;
+  final double? salarioBrutoMensal; // contrato
+  final DateTime? dataNascimento; // IRS Jovem
+  final String? empresaTipo; // 'eni' | 'sociedade'
+  final String? ivaPeriodicidade; // 'mensal' | 'trimestral'
+  final String? contabilistaEmail;
+  final bool pastaContabilistaAtiva;
+
   const Perfil({
     required this.userId,
     this.nome,
@@ -59,6 +68,13 @@ class Perfil {
     required this.criadoEm,
     this.onboardingRascunho,
     this.cofreAutomatico = true,
+    this.tipoTrabalho = TipoTrabalho.independente,
+    this.salarioBrutoMensal,
+    this.dataNascimento,
+    this.empresaTipo,
+    this.ivaPeriodicidade,
+    this.contabilistaEmail,
+    this.pastaContabilistaAtiva = false,
   });
 
   bool get emTrial => trialAte.isAfter(DateTime.now());
@@ -74,7 +90,22 @@ class Perfil {
         ajusteSsPct: ajusteSsPct,
         imigrante: imigrante,
         residenciaRenovaEm: residenciaRenovaEm,
+        tipoTrabalho: tipoTrabalho,
+        salarioBrutoMensal: salarioBrutoMensal,
+        empresaTipo: empresaTipo,
+        ivaPeriodicidade: ivaPeriodicidade,
       );
+
+  bool get temContrato => tipoTrabalho == TipoTrabalho.contrato || tipoTrabalho == TipoTrabalho.ambos;
+  bool get temEmpresa => tipoTrabalho == TipoTrabalho.empresa;
+  bool get temRecibosVerdes => tipoTrabalho == TipoTrabalho.independente || tipoTrabalho == TipoTrabalho.ambos;
+
+  /// Idade a 31 de dezembro de [ano] (para o IRS Jovem); null sem data de nascimento.
+  int? idadeEm31Dez(int ano) {
+    final n = dataNascimento;
+    if (n == null) return null;
+    return ano - n.year;
+  }
 
   static TipoAtividade _tipo(String? s) => switch (s) {
         'tvde' => TipoAtividade.tvde,
@@ -122,6 +153,13 @@ class Perfil {
         criadoEm: DateTime.parse(m['criado_em'] as String).toLocal(),
         onboardingRascunho: m['onboarding_rascunho'] is Map ? Map<String, dynamic>.from(m['onboarding_rascunho'] as Map) : null,
         cofreAutomatico: (m['cofre_automatico'] as bool?) ?? true,
+        tipoTrabalho: tipoTrabalhoDe(m['tipo_trabalho'] as String?),
+        salarioBrutoMensal: _num(m['salario_bruto_mensal']),
+        dataNascimento: _data(m['data_nascimento']),
+        empresaTipo: m['empresa_tipo'] as String?,
+        ivaPeriodicidade: m['iva_periodicidade'] as String?,
+        contabilistaEmail: m['contabilista_email'] as String?,
+        pastaContabilistaAtiva: (m['pasta_contabilista_ativa'] as bool?) ?? false,
       );
 
   /// Só os campos que o utilizador pode escrever.
@@ -142,6 +180,13 @@ class Perfil {
         'imigrante': imigrante,
         'residencia_renova_em': residenciaRenovaEm == null ? null : dataPtIso(residenciaRenovaEm!),
         'cofre_automatico': cofreAutomatico,
+        'tipo_trabalho': tipoTrabalho.name,
+        'salario_bruto_mensal': salarioBrutoMensal,
+        'data_nascimento': dataNascimento == null ? null : dataPtIso(dataNascimento!),
+        'empresa_tipo': empresaTipo,
+        'iva_periodicidade': ivaPeriodicidade,
+        'contabilista_email': contabilistaEmail,
+        'pasta_contabilista_ativa': pastaContabilistaAtiva,
       };
 
   Perfil copyWith({
@@ -164,6 +209,14 @@ class Perfil {
     Map<String, dynamic>? onboardingRascunho,
     bool limparRascunho = false,
     bool? cofreAutomatico,
+    TipoTrabalho? tipoTrabalho,
+    double? salarioBrutoMensal,
+    DateTime? dataNascimento,
+    String? empresaTipo,
+    String? ivaPeriodicidade,
+    String? contabilistaEmail,
+    bool limparContabilista = false,
+    bool? pastaContabilistaAtiva,
   }) =>
       Perfil(
         userId: userId,
@@ -189,6 +242,13 @@ class Perfil {
         criadoEm: criadoEm,
         onboardingRascunho: limparRascunho ? null : (onboardingRascunho ?? this.onboardingRascunho),
         cofreAutomatico: cofreAutomatico ?? this.cofreAutomatico,
+        tipoTrabalho: tipoTrabalho ?? this.tipoTrabalho,
+        salarioBrutoMensal: salarioBrutoMensal ?? this.salarioBrutoMensal,
+        dataNascimento: dataNascimento ?? this.dataNascimento,
+        empresaTipo: empresaTipo ?? this.empresaTipo,
+        ivaPeriodicidade: ivaPeriodicidade ?? this.ivaPeriodicidade,
+        contabilistaEmail: limparContabilista ? null : (contabilistaEmail ?? this.contabilistaEmail),
+        pastaContabilistaAtiva: pastaContabilistaAtiva ?? this.pastaContabilistaAtiva,
       );
 }
 

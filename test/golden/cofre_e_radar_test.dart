@@ -96,9 +96,9 @@ Perfil perfilDoCofre() => perfilTeste(
 /// 24.000 € de serviços em 2026 dão, com as regras do espelho local:
 ///   Segurança Social  24000/4 → 6000/trimestre → 1400 €/mês × 21,4% = 299,60
 ///                     × 12 meses = 3.595,20 €
-///   IRS               24000 × 0,75 = 18.000 € → escalão 4 (24,1 %) − 1.476,58
-///                     = 2.861,42 €
-///   devias ter        6.456,62 €   (10 % disso = 645,66 €, a régua do laranja)
+///   IRS               24000 × 0,75 = 18.000 € → escalão 4 (24,1 %) − 1.476,53
+///                     = 2.861,47 € (escalões 2026 confirmados no CIRS art. 68.º a 18/09/2026)
+///   devias ter        6.456,67 €   (10 % disso = 645,67 €, a régua do laranja)
 const double rendimentoDoAno = 24000;
 
 CofreMovimento _mov(String id, DateTime data, double valor,
@@ -106,7 +106,7 @@ CofreMovimento _mov(String id, DateTime data, double valor,
     CofreMovimento(
         id: id, userId: userIdTeste, data: data, valor: valor, motivo: motivo, nota: nota);
 
-/// 6.800 € no cofre: mais do que os 6.456,62 € da conta → sobram 343,38 €.
+/// 6.800 € no cofre: mais do que os 6.456,67 € da conta → sobram 343,33 €.
 List<CofreMovimento> cofreQueChega() => [
       _mov('m1', DateTime(2026, 3, 15), 1800),
       _mov('m2', DateTime(2026, 5, 20), 2200),
@@ -253,13 +253,13 @@ void main() {
   // Cofre
   // -------------------------------------------------------------------------
 
-  testWidgets('cofre chega — 6.800 € para 6.456,62 € de conta (verde)', (tester) async {
+  testWidgets('cofre chega — 6.800 € para 6.456,67 € de conta (verde)', (tester) async {
     await fotografaSuite(tester,
         nome: 'cofre_chega', tela: () => _cofre(movimentos: cofreQueChega()));
     expect(find.byKey(const Key('cofre_cartao')), findsOneWidget);
     expect(find.byKey(const Key('cofre_saldo')), findsOneWidget);
     expect(find.text('6.800,00 €'), findsOneWidget); // o número grande
-    expect(find.text('6.456,62 €'), findsWidgets); // o "devias ter"
+    expect(find.text('6.456,67 €'), findsWidgets); // o "devias ter"
     // Verde: nem uma caixa laranja no ecrã.
     expect(_quantosLaranjas(tester), 0, reason: 'o estado "chega" não pode ter laranja nenhum');
     expect(find.byWidgetPredicate((w) => w is Aviso && w.tom == Semaforo.verde), findsOneWidget);
@@ -275,7 +275,7 @@ void main() {
     expect(find.byWidgetPredicate((w) => w is Aviso && w.tom == Semaforo.vermelho), findsNothing);
   });
 
-  testWidgets('cofre falta muito — 1.500 € para 6.456,62 € (vermelho)', (tester) async {
+  testWidgets('cofre falta muito — 1.500 € para 6.456,67 € (vermelho)', (tester) async {
     await fotografaSuite(tester,
         nome: 'cofre_falta_muito', tela: () => _cofre(movimentos: cofreQueFaltaMuito()));
     expect(find.text('1.500,00 €'), findsOneWidget);

@@ -87,6 +87,10 @@ function regrasDeTeste2026(): RegrasLegais {
     j('irs_pagamentos_conta_datas', ['07-20', '09-20', '12-20']), t('irs_entrega_inicio', '04-01'), t('irs_entrega_fim', '06-30'),
     t('efatura_validar_ate', '02-25'), r('irs_despesas_justificar_limite', 27360, 'aproximado'), r('irs_despesas_justificar_pct', 15),
     r('recibos_comunicar_dia', 5),
+    // B3 (2026-09-18): contrato e empresa
+    r('ss_empregador_pagamento_dia_fim', 25), t('subsidio_natal_ate', '12-15'), r('dmr_dia', 10), r('saft_dia', 5),
+    r('iva_mensal_declaracao_dia', 20), t('irc_modelo22_data', '05-31'), t('ies_data', '07-15'),
+    j('irc_pagamentos_conta_datas', ['07-31', '09-30', '12-15']),
     t('iuc_regra', 'mes_da_matricula'), j('iuc_tabela', iucTabela, 'aproximado'), j('ipo_ligeiros_anos', [4, 6, 8]),
     t('ipo_apos_8_anos', 'anual'), t('ipo_tvde', 'anual'), j('ipo_avisos_dias', [30, 7]), r('seguro_aviso_dias', 45),
     j('carta_validade', { ate_60: 15, '60_a_70': 5, mais_70: 2 }), r('multa_pagamento_voluntario_dias_uteis', 15),
@@ -393,4 +397,60 @@ Deno.test('C48 dia ISO válido: aceita dias reais; recusa mês 13, 30 de feverei
   eq(ehDiaIsoValido('2026-09-06T00:00:00Z'), false, 'só se aceita YYYY-MM-DD');
   eq(ehDiaIsoValido('06-09-2026'), false);
   eq(ehDiaIsoValido(''), false);
+});
+
+// ---------------- B3: três perfis (espelho de test/unit/perfis_test.dart) ----------------
+const hojeB3 = dia(2026, 9, 18);
+const mesDe = (d: Date) => d.getUTCMonth() + 1;
+const tiposDe = (obs: ReturnType<typeof gerarObrigacoes>) => new Set(obs.map((o) => o.tipo));
+const dos = (obs: ReturnType<typeof gerarObrigacoes>, tipo: string) => obs.filter((o) => o.tipo === tipo);
+
+Deno.test('P01 contrato: IRS, e-fatura, subsídio de Natal e faturas_nif; sem SS/IVA de independente', () => {
+  const p = perfil({ tipoAtividade: 'sem_atividade', tipoTrabalho: 'contrato', salarioBrutoMensal: 1200 });
+  const obs = gerarObrigacoes(p, [], hojeB3, r);
+  const t = tiposDe(obs);
+  for (const x of ['irs_entrega', 'efatura_validar', 'subsidio_natal', 'faturas_nif']) eq(t.has(x), true, x);
+  for (const x of ['ss_declaracao', 'ss_pagamento', 'iva_declaracao', 'irs_pagamento_conta']) eq(t.has(x), false, x);
+  const natal = dos(obs, 'subsidio_natal');
+  eq(natal.length, 1);
+  eq(iso(natal[0].dataLimite), '2026-12-15');
+  eq(natal[0].valorEstimado, 1200);
+  eq(dos(obs, 'faturas_nif').length, 12);
+  eq(dos(obs, 'irs_entrega')[0].descricao.includes('anexo A'), true);
+});
+
+Deno.test('P06/P07 empresa ENI trimestral: SAF-T 5 (out → 6, feriado), DMR 10 (out → 12), SS 25 (out → 26); sem IRC/IES', () => {
+  const p = perfil({ tipoAtividade: 'sem_atividade', tipoTrabalho: 'empresa', empresaTipo: 'eni', ivaPeriodicidade: 'trimestral' });
+  const obs = gerarObrigacoes(p, [], hojeB3, r);
+  const t = tiposDe(obs);
+  for (const x of ['iva_declaracao', 'iva_pagamento', 'saft', 'dmr', 'ss_empresa', 'irs_entrega']) eq(t.has(x), true, x);
+  for (const x of ['irc_modelo22', 'ies', 'irc_pagamento_conta']) eq(t.has(x), false, x);
+  eq(dos(obs, 'saft').length, 12);
+  eq(dos(obs, 'iva_declaracao').length, 4);
+  const saftOut = dos(obs, 'saft').find((o) => mesDe(o.dataLimite) === 10)!;
+  eq(iso(saftOut.dataLimite), '2026-10-05');
+  eq(iso(saftOut.prazoEfetivo), '2026-10-06');
+  const dmrOut = dos(obs, 'dmr').find((o) => mesDe(o.dataLimite) === 10)!;
+  eq(iso(dmrOut.prazoEfetivo), '2026-10-12');
+  const ssOut = dos(obs, 'ss_empresa').find((o) => mesDe(o.dataLimite) === 10)!;
+  eq(iso(ssOut.prazoEfetivo), '2026-10-26');
+});
+
+Deno.test('P09/P10 sociedade mensal: IVA de setembro a 20 de novembro; Modelo 22 31/05; IES 15/07; PPC IRC 30/09, 15/12, 31/07', () => {
+  const p = perfil({ tipoAtividade: 'sem_atividade', tipoTrabalho: 'empresa', empresaTipo: 'sociedade', ivaPeriodicidade: 'mensal' });
+  const obs = gerarObrigacoes(p, [], hojeB3, r);
+  const set = dos(obs, 'iva_declaracao').find((o) => o.descricao.includes('setembro de 2026'))!;
+  eq(iso(set.dataLimite), '2026-11-20');
+  eq(dos(obs, 'iva_declaracao').length, 12);
+  eq(iso(dos(obs, 'irc_modelo22')[0].dataLimite), '2027-05-31');
+  eq(iso(dos(obs, 'ies')[0].dataLimite), '2027-07-15');
+  eq(dos(obs, 'irc_pagamento_conta').map((o) => iso(o.dataLimite)).join(','), '2026-09-30,2026-12-15,2027-07-31');
+  eq(dos(obs, 'irs_entrega')[0].descricao.includes('IRS pessoal'), true);
+});
+
+Deno.test('P12 recibos verdes não mudou: sem subsídio de Natal, faturas_nif, DMR, SAF-T', () => {
+  const p = perfil({ tipoAtividade: 'tvde', dataAbertura: dia(2025, 6, 1), rendimentoMensalEstimado: 1200 });
+  const t = tiposDe(gerarObrigacoes(p, [], hojeB3, r));
+  for (const x of ['subsidio_natal', 'faturas_nif', 'dmr', 'saft', 'ss_empresa', 'irc_modelo22']) eq(t.has(x), false, x);
+  for (const x of ['ss_declaracao', 'ss_pagamento', 'irs_entrega', 'efatura_validar']) eq(t.has(x), true, x);
 });

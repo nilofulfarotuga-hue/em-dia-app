@@ -15,9 +15,14 @@ import '../../stores/perfil_store.dart';
 import '../../stores/regras_store.dart';
 import '../../stores/sessao_store.dart';
 import '../../widgets/widgets.dart';
+import '../recibos/recibos_widgets.dart';
 
 /// Os passos do onboarding (a ordem é a do ecrã).
-enum PassoOnboarding { boasVindas, atividade, abertura, iva, carro, rendimento, fim }
+/// B3 (2026-09-18): a primeira pergunta passou a ser «Trabalhas como?». O
+/// caminho depois disso depende da resposta: recibos verdes vê atividade,
+/// abertura, IVA e rendimento; contrato vê salário e ano de nascimento (IRS
+/// Jovem); empresa vê ENI/sociedade, IVA mensal/trimestral e contabilista.
+enum PassoOnboarding { boasVindas, trabalho, atividade, abertura, iva, empresa, ivaPeriodo, salario, nascimento, carro, rendimento, contabilista, fim }
 
 /// O que o onboarding recolhe. Também serve para pré-encher o ecrã nas fotos
 /// (golden) sem servidor.
@@ -35,6 +40,12 @@ class DadosOnboarding {
   final int? anoUltimaIpo;
   final String categoriaCarro; // proprio | alugado_frota
   final double? rendimentoMensal;
+  final TipoTrabalho? tipoTrabalho;
+  final double? salarioMensal;
+  final int? anoNascimento;
+  final String? empresaTipo;
+  final String? ivaPeriodo;
+  final String contabilistaEmail;
 
   const DadosOnboarding({
     this.tipoAtividade,
@@ -50,6 +61,12 @@ class DadosOnboarding {
     this.anoUltimaIpo,
     this.categoriaCarro = 'proprio',
     this.rendimentoMensal,
+    this.tipoTrabalho,
+    this.salarioMensal,
+    this.anoNascimento,
+    this.empresaTipo,
+    this.ivaPeriodo,
+    this.contabilistaEmail = '',
   });
 }
 
@@ -91,6 +108,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final _rendimento = TextEditingController();
   double? _rendimentoMensal;
 
+  // B3
+  TipoTrabalho? _tipoTrabalho;
+  final _salario = TextEditingController();
+  double? _salarioMensal;
+  int? _anoNascimento;
+  String? _empresaTipo; // eni | sociedade
+  String? _ivaPeriodo; // mensal | trimestral
+  final _contabilista = TextEditingController();
+
   bool _aTrabalhar = false;
   String? _erro;
 
@@ -117,6 +143,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     _categoriaCarro = e.categoriaCarro;
     _rendimentoMensal = e.rendimentoMensal;
     if (e.rendimentoMensal != null) _rendimento.text = moeda(e.rendimentoMensal!, comSimbolo: false, casas: 0);
+    // B3: nas fotos o tipo de trabalho vem no exemplo; sem exemplo é o
+    // rascunho que manda; e quando o passo inicial salta a pergunta
+    // «Trabalhas como?» fica «recibos verdes», o caminho antigo.
+    _tipoTrabalho = e.tipoTrabalho ?? (widget.passoInicial > PassoOnboarding.trabalho.index ? TipoTrabalho.independente : null);
+    _salarioMensal = e.salarioMensal;
+    if (e.salarioMensal != null) _salario.text = moeda(e.salarioMensal!, comSimbolo: false, casas: 0);
+    _anoNascimento = e.anoNascimento;
+    _empresaTipo = e.empresaTipo;
+    _ivaPeriodo = e.ivaPeriodo;
+    _contabilista.text = e.contabilistaEmail;
     final i = widget.passoInicial.clamp(0, PassoOnboarding.values.length - 1);
     _passo = PassoOnboarding.values[i];
     // Retomar onde ficou: primeiro o rascunho que o servidor já trouxe com o
@@ -133,6 +169,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     _guardarDepois?.cancel();
     _matricula.dispose();
     _rendimento.dispose();
+    _salario.dispose();
+    _contabilista.dispose();
     super.dispose();
   }
 
@@ -155,6 +193,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         'anoUltimaIpo': _anoUltimaIpo,
         'categoriaCarro': _categoriaCarro,
         'rendimentoMensal': _rendimentoMensal,
+        'tipoTrabalho': _tipoTrabalho?.name,
+        'salarioMensal': _salarioMensal,
+        'anoNascimento': _anoNascimento,
+        'empresaTipo': _empresaTipo,
+        'ivaPeriodo': _ivaPeriodo,
+        'contabilistaEmail': _contabilista.text,
       };
 
   void _aplicarRascunho(Map<String, dynamic> m) {
@@ -175,6 +219,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     _categoriaCarro = (m['categoriaCarro'] ?? 'proprio').toString();
     _rendimentoMensal = m['rendimentoMensal'] == null ? null : double.tryParse(m['rendimentoMensal'].toString());
     _rendimento.text = _rendimentoMensal == null ? '' : moeda(_rendimentoMensal!, comSimbolo: false, casas: 0);
+    final tt = m['tipoTrabalho']?.toString();
+    _tipoTrabalho = tt == null ? null : TipoTrabalho.values.where((x) => x.name == tt).firstOrNull;
+    _salarioMensal = m['salarioMensal'] == null ? null : double.tryParse(m['salarioMensal'].toString());
+    _salario.text = _salarioMensal == null ? '' : moeda(_salarioMensal!, comSimbolo: false, casas: 0);
+    _anoNascimento = inteiro(m['anoNascimento']);
+    _empresaTipo = m['empresaTipo']?.toString();
+    _ivaPeriodo = m['ivaPeriodo']?.toString();
+    _contabilista.text = (m['contabilistaEmail'] ?? '').toString();
     final passo = m['passo']?.toString();
     final p = PassoOnboarding.values.where((x) => x.name == passo).firstOrNull;
     // Nunca se retoma no "fim" nem em passo que este perfil não vê.
@@ -209,7 +261,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   /// Os passos que este utilizador vê (depende do que faz).
   List<PassoOnboarding> get _visiveis {
     final t = _tipo;
+    final tt = _tipoTrabalho;
+    final recibos = tt == null || tt == TipoTrabalho.independente || tt == TipoTrabalho.ambos;
+    final contrato = tt == TipoTrabalho.contrato || tt == TipoTrabalho.ambos;
+    final empresa = tt == TipoTrabalho.empresa;
     return PassoOnboarding.values.where((p) {
+      switch (p) {
+        case PassoOnboarding.atividade:
+        case PassoOnboarding.rendimento:
+          if (!recibos) return false;
+        case PassoOnboarding.abertura:
+        case PassoOnboarding.iva:
+          if (!recibos) return false;
+        case PassoOnboarding.salario:
+        case PassoOnboarding.nascimento:
+          return contrato;
+        case PassoOnboarding.empresa:
+        case PassoOnboarding.ivaPeriodo:
+        case PassoOnboarding.contabilista:
+          return empresa;
+        default:
+          break;
+      }
       if (t == TipoAtividade.soCarro &&
           (p == PassoOnboarding.abertura || p == PassoOnboarding.iva || p == PassoOnboarding.rendimento)) {
         return false;
@@ -245,6 +318,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   bool get _podeAvancar => switch (_passo) {
         PassoOnboarding.boasVindas => true,
+        PassoOnboarding.trabalho => _tipoTrabalho != null,
+        PassoOnboarding.salario => (_salarioMensal ?? 0) > 0,
+        PassoOnboarding.nascimento => true, // pode saltar
+        PassoOnboarding.empresa => _empresaTipo != null,
+        PassoOnboarding.ivaPeriodo => _ivaPeriodo != null,
+        PassoOnboarding.contabilista => _contabilista.text.trim().isEmpty || _emailValido(_contabilista.text),
         PassoOnboarding.atividade => _tipo != null,
         PassoOnboarding.abertura => _dataAbertura != null,
         PassoOnboarding.iva => _faturouMais15k != null,
@@ -279,14 +358,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   RegimeIva get _regimeIva => _faturouMais15k == true ? RegimeIva.normal : RegimeIva.isento53;
 
+  bool get _recibosVerdes =>
+      _tipoTrabalho == null || _tipoTrabalho == TipoTrabalho.independente || _tipoTrabalho == TipoTrabalho.ambos;
+
   bool get _temAtividade =>
-      _tipo != null && _tipo != TipoAtividade.soCarro && _tipo != TipoAtividade.semAtividade;
+      _recibosVerdes && _tipo != null && _tipo != TipoAtividade.soCarro && _tipo != TipoAtividade.semAtividade;
+
+  static bool _emailValido(String s) => RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]{2,}$').hasMatch(s.trim());
 
   PerfilObrigacoes get _perfilObrigacoes => PerfilObrigacoes(
         tipoAtividade: _tipo ?? TipoAtividade.semAtividade,
         dataAbertura: _temAtividade ? _dataAbertura : null,
         regimeIva: _regimeIva,
         rendimentoMensalEstimado: _rendimentoMensal,
+        tipoTrabalho: _tipoTrabalho ?? TipoTrabalho.independente,
+        salarioBrutoMensal: _salarioMensal,
+        empresaTipo: _empresaTipo,
+        ivaPeriodicidade: _ivaPeriodo,
       );
 
   CarroObrigacoes? get _carroObrigacoes {
@@ -340,13 +428,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     });
 
     // 1. O perfil (ainda sem concluir — a Edge Function lê-o do servidor).
+    final emailContabilista = _contabilista.text.trim();
     final base = perfil.copyWith(
-      tipoAtividade: _tipo,
+      tipoAtividade: _tipo ?? TipoAtividade.semAtividade,
       dataAbertura: _temAtividade ? _dataAbertura : null,
       limparDataAbertura: !_temAtividade,
       regimeIva: _regimeIva,
       faturouMais15kAnoAnterior: _faturouMais15k ?? false,
       rendimentoMensalEstimado: _rendimentoMensal,
+      tipoTrabalho: _tipoTrabalho ?? TipoTrabalho.independente,
+      salarioBrutoMensal: _salarioMensal,
+      dataNascimento: _anoNascimento == null ? null : DateTime(_anoNascimento!, 1, 1),
+      empresaTipo: _empresaTipo,
+      ivaPeriodicidade: _ivaPeriodo,
+      contabilistaEmail: emailContabilista.isEmpty ? null : emailContabilista,
+      limparContabilista: emailContabilista.isEmpty,
+      pastaContabilistaAtiva: emailContabilista.isNotEmpty,
     );
     final ok1 = await perfilStore.guardar(base);
     if (!ok1) {
@@ -439,7 +536,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 440),
+                  // A chave muda com o passo: cada pergunta nasce com a lista no
+                  // topo. Sem isto, quem escolhia a última opção de uma pergunta
+                  // via a seguinte já rolada para baixo, sem título (18/09/2026).
                   child: ListView(
+                    key: ValueKey(_passo),
                     padding: paddingEcra,
                     children: _conteudo(l, t, r),
                   ),
@@ -465,6 +566,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final texto = switch (_passo) {
       PassoOnboarding.boasVindas => l.onbComecar,
       PassoOnboarding.fim => l.onbEntrarNaApp,
+      PassoOnboarding.nascimento when _anoNascimento == null => l.onbSaltar,
+      PassoOnboarding.contabilista when _contabilista.text.trim().isEmpty => l.onbSaltar,
       _ => l.onbContinuar,
     };
     return BotaoGrande(
@@ -477,6 +580,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   List<Widget> _conteudo(AppLocalizations l, TextTheme t, RegrasLegais r) => switch (_passo) {
         PassoOnboarding.boasVindas => _boasVindas(l, t),
+        PassoOnboarding.trabalho => _trabalho(l, t),
+        PassoOnboarding.salario => _salarioPasso(l, t, r),
+        PassoOnboarding.nascimento => _nascimento(l, t, r),
+        PassoOnboarding.empresa => _empresa(l, t),
+        PassoOnboarding.ivaPeriodo => _ivaPeriodoPasso(l, t),
+        PassoOnboarding.contabilista => _contabilistaPasso(l, t),
         PassoOnboarding.atividade => _atividade(l, t),
         PassoOnboarding.abertura => _abertura(l, t, r),
         PassoOnboarding.iva => _iva(l, t, r),
@@ -528,6 +637,185 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Text(l.appNome, textAlign: TextAlign.center, style: t.headlineLarge),
         const SizedBox(height: 20),
         Text(l.boasVindas, textAlign: TextAlign.center, style: t.bodyLarge),
+      ];
+
+  // ---- 1. trabalhas como? (B3) ----
+  List<Widget> _trabalho(AppLocalizations l, TextTheme t) {
+    final opcoes = <(TipoTrabalho, String, String, IconData)>[
+      (TipoTrabalho.independente, l.onbTrabalhoIndependente, l.onbTrabalhoIndependenteAjuda, Icons.receipt_long_rounded),
+      (TipoTrabalho.contrato, l.onbTrabalhoContrato, l.onbTrabalhoContratoAjuda, Icons.badge_rounded),
+      (TipoTrabalho.ambos, l.onbTrabalhoAmbos, l.onbTrabalhoAmbosAjuda, Icons.call_split_rounded),
+      (TipoTrabalho.empresa, l.onbTrabalhoEmpresa, l.onbTrabalhoEmpresaAjuda, Icons.storefront_rounded),
+    ];
+    return [
+      _titulo(t, l.onbTrabalhasComo, ajuda: l.onbPodesMudarDepois),
+      for (final (tipo, texto, ajuda, icone) in opcoes) ...[
+        BotaoEscolha(
+          texto: texto,
+          ajuda: ajuda,
+          icone: icone,
+          selecionado: _tipoTrabalho == tipo,
+          aoTocar: () {
+            setState(() {
+              _tipoTrabalho = tipo;
+              // Contrato e empresa não têm ofício de recibos verdes.
+              if (tipo == TipoTrabalho.contrato || tipo == TipoTrabalho.empresa) _tipo = null;
+            });
+            _avancar();
+          },
+        ),
+        const SizedBox(height: 12),
+      ],
+    ];
+  }
+
+  // ---- contrato: quanto ganhas (bruto) ----
+  List<Widget> _salarioPasso(AppLocalizations l, TextTheme t, RegrasLegais r) {
+    final v = _salarioMensal;
+    final linhas = <String>[];
+    if (v != null && v > 0) {
+      final rv = lerReciboVencimento(bruto: v, irsRetido: 0, r: r);
+      linhas.add(l.onbSalarioSs(moeda(rv.ssTrabalhador), moeda(rv.pctSs, comSimbolo: false, casas: 0)));
+      linhas.add(l.onbSalario14(moeda(v * 14, casas: 0)));
+    }
+    return [
+      _titulo(t, l.onbSalarioTitulo, ajuda: l.onbSalarioAjuda),
+      TextField(
+        controller: _salario,
+        keyboardType: const TextInputType.numberWithOptions(decimal: true),
+        style: t.headlineMedium,
+        decoration: InputDecoration(
+          hintText: '0',
+          suffixText: '${l.euros} ${l.onbPorMes}',
+          suffixStyle: t.titleMedium!.copyWith(color: AppColors.textSecondary),
+        ),
+        onChanged: (s) {
+          setState(() => _salarioMensal = lerNumero(s));
+          _guardarRascunhoDepois();
+        },
+      ),
+      const SizedBox(height: 12),
+      Row(
+        children: [
+          for (final (k, valor) in [r.n('smn').round(), 1100, 1500, 2000].indexed) ...[
+            if (k > 0) const SizedBox(width: 6),
+            Expanded(
+              child: ChoiceChip(
+                label: SizedBox(
+                  width: double.infinity,
+                  child: Text(moeda(valor, casas: 0), textAlign: TextAlign.center, maxLines: 1),
+                ),
+                selected: v == valor,
+                showCheckmark: false,
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 12),
+                labelPadding: const EdgeInsets.symmetric(horizontal: 2),
+                onSelected: (_) => setState(() {
+                  _salarioMensal = valor.toDouble();
+                  _salario.text = '$valor';
+                }),
+              ),
+            ),
+          ],
+        ],
+      ),
+      if (linhas.isNotEmpty) ...[
+        const SizedBox(height: 20),
+        _deducao(t, linhas),
+      ],
+    ];
+  }
+
+  // ---- contrato: ano de nascimento (IRS Jovem) ----
+  List<Widget> _nascimento(AppLocalizations l, TextTheme t, RegrasLegais r) {
+    final anos = [for (var a = _hoje.year - 16; a >= _hoje.year - 80; a--) a];
+    final linhas = <String>[];
+    if (_anoNascimento != null) {
+      final j = irsJovem(idadeEm31Dez: _hoje.year - _anoNascimento!, anoDeRendimentos: 1, r: r);
+      linhas.add(j.elegivel ? l.onbIrsJovemSim : l.onbIrsJovemNao);
+    }
+    return [
+      _titulo(t, l.onbNascimentoTitulo, ajuda: l.onbNascimentoAjuda),
+      DropdownButtonFormField<int>(
+        initialValue: _anoNascimento,
+        decoration: InputDecoration(labelText: l.onbAno),
+        items: [for (final a in anos) DropdownMenuItem(value: a, child: Text('$a'))],
+        onChanged: (v) {
+          setState(() => _anoNascimento = v);
+          unawaited(_guardarRascunho());
+        },
+      ),
+      if (linhas.isNotEmpty) ...[
+        const SizedBox(height: 20),
+        _deducao(t, linhas),
+      ],
+    ];
+  }
+
+  // ---- empresa: ENI ou sociedade ----
+  List<Widget> _empresa(AppLocalizations l, TextTheme t) => [
+        _titulo(t, l.onbEmpresaTitulo, ajuda: l.onbEmpresaAjuda),
+        BotaoEscolha(
+          texto: l.onbEmpresaEni,
+          ajuda: l.onbEmpresaEniAjuda,
+          icone: Icons.person_rounded,
+          selecionado: _empresaTipo == 'eni',
+          aoTocar: () {
+            setState(() => _empresaTipo = 'eni');
+            _avancar();
+          },
+        ),
+        const SizedBox(height: 12),
+        BotaoEscolha(
+          texto: l.onbEmpresaSociedade,
+          ajuda: l.onbEmpresaSociedadeAjuda,
+          icone: Icons.apartment_rounded,
+          selecionado: _empresaTipo == 'sociedade',
+          aoTocar: () {
+            setState(() => _empresaTipo = 'sociedade');
+            _avancar();
+          },
+        ),
+      ];
+
+  // ---- empresa: IVA mensal ou trimestral ----
+  List<Widget> _ivaPeriodoPasso(AppLocalizations l, TextTheme t) => [
+        _titulo(t, l.onbIvaPeriodoTitulo, ajuda: l.onbIvaPeriodoAjuda),
+        BotaoEscolha(
+          texto: l.onbIvaTrimestral,
+          icone: Icons.calendar_view_month_rounded,
+          selecionado: _ivaPeriodo == 'trimestral',
+          aoTocar: () {
+            setState(() => _ivaPeriodo = 'trimestral');
+            _avancar();
+          },
+        ),
+        const SizedBox(height: 12),
+        BotaoEscolha(
+          texto: l.onbIvaMensal,
+          icone: Icons.calendar_today_rounded,
+          selecionado: _ivaPeriodo == 'mensal',
+          aoTocar: () {
+            setState(() => _ivaPeriodo = 'mensal');
+            _avancar();
+          },
+        ),
+      ];
+
+  // ---- empresa: contabilista (pasta mensal) ----
+  List<Widget> _contabilistaPasso(AppLocalizations l, TextTheme t) => [
+        _titulo(t, l.onbContabilistaTitulo, ajuda: l.onbContabilistaAjuda),
+        TextField(
+          controller: _contabilista,
+          keyboardType: TextInputType.emailAddress,
+          autocorrect: false,
+          decoration: InputDecoration(labelText: l.onbContabilistaEmail, prefixIcon: const Icon(Icons.mail_outline_rounded)),
+          onChanged: (_) {
+            setState(() {});
+            _guardarRascunhoDepois();
+          },
+        ),
+        const SizedBox(height: 12),
+        NotaInfo(l.onbContabilistaNota),
       ];
 
   // ---- 1. o que fazes ----

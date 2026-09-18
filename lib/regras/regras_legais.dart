@@ -228,6 +228,40 @@ class RegrasLegais {
       r('preco_familia_anual', 49.90, 'Família anual'),
       r('ia_custo_alarme_dia_eur', 0.50, 'Alarme custo IA'),
       r('push_hora_lisboa', 9, 'Hora dos avisos', unidade: 'hora'),
+      // ---- B3 (2026-09-18): contrato, empresa e IRS de toda a gente. Fontes em docs/REGRAS-PT-2026.md.
+      r('smn', 920, 'Salário mínimo nacional 2026 (Guia Prático SS, 2026)'),
+      r('ss_trabalhador_taxa', 11, 'Contribuição do trabalhador por conta de outrem (SS «Taxas Contributivas»)', unidade: 'pct'),
+      r('ss_empregador_taxa', 23.75, 'Contribuição da entidade empregadora (SS «Taxas Contributivas»)', unidade: 'pct'),
+      r('ss_moe_taxa', 34.75, 'Gerentes/administradores (MOE): 23,75 % + 11 % (SS «Taxas Contributivas»)', unidade: 'pct'),
+      r('irs_deducao_especifica_ias', 8.54, 'Dedução específica da categoria A = 8,54 × IAS (CIRS art. 25.º, Lei 45-A/2024)', unidade: 'multiplo_ias'),
+      t('subsidio_natal_ate', '12-15', 'Subsídio de Natal pago até 15 de dezembro (CT art. 263.º)'),
+      r('ferias_dias_uteis', 22, 'Férias: 22 dias úteis por ano (CT art. 238.º)', unidade: 'dias_uteis'),
+      j('horas_extra_pct', {
+        'ate_100h': {'primeira': 25, 'seguintes': 37.5, 'descanso_ou_feriado': 50},
+        'mais_100h': {'primeira': 50, 'seguintes': 75, 'descanso_ou_feriado': 100},
+      }, 'Acréscimos do trabalho suplementar (CT art. 268.º, Lei 13/2023)'),
+      j('irs_jovem', {
+        'idade_max': 35, 'anos': 10, 'limite_ias': 55,
+        'pct_por_ano': [100, 75, 75, 75, 50, 50, 50, 25, 25, 25],
+      }, 'IRS Jovem (CIRS art. 12.º-B, Lei 45-A/2024): isenção por ano de rendimentos, limite 55 × IAS'),
+      j('deducoes_irs', {
+        'saude': {'pct': 15, 'max': 1000},
+        'educacao': {'pct': 30, 'max': 800},
+        'rendas': {'pct': 15, 'max': 800},
+        'iva_faturas': {'pct': 15, 'max': 250},
+        'gerais_familiares': {'pct': 35, 'max': 250},
+        'dependente': 600,
+      }, 'Deduções à coleta (CIRS art. 78.º-A a 78.º-F)'),
+      j('desemprego', {
+        'prazo_garantia_dias': 360, 'janela_meses': 24, 'pedir_ate_dias': 90,
+        'pct_rr': 65, 'min_eur': 617.70, 'max_eur': 1342.83,
+      }, 'Subsídio de desemprego 2026 (Guia Prático do ISS)'),
+      r('dmr_dia', 10, 'Declaração Mensal de Remunerações até ao dia 10 (AT, agenda 2026)', unidade: 'dia_do_mes'),
+      r('saft_dia', 5, 'Comunicação das faturas (SAF-T) até ao dia 5 (AT, agenda 2026)', unidade: 'dia_do_mes'),
+      r('iva_mensal_declaracao_dia', 20, 'IVA regime mensal: declaração até ao dia 20 do 2.º mês seguinte (AT, agenda 2026)', unidade: 'dia_do_mes'),
+      t('irc_modelo22_data', '05-31', 'Modelo 22 até 31 de maio (CIRC art. 120.º; em 2026 a AT prorrogou para 30/06)'),
+      t('ies_data', '07-15', 'IES até 15 de julho (AT, agenda 2026)'),
+      j('irc_pagamentos_conta_datas', ['07-31', '09-30', '12-15'], 'Pagamentos por conta de IRC (AT, pagamentos 2026)'),
     ];
 
     const escaloes = <EscalaoIrs>[
@@ -240,15 +274,18 @@ class RegrasLegais {
       EscalaoIrs(ano: 2025, ordem: 7, ate: 44987, taxa: 0.431, parcelaAbater: 7419.63),
       EscalaoIrs(ano: 2025, ordem: 8, ate: 83696, taxa: 0.446, parcelaAbater: 8094.44),
       EscalaoIrs(ano: 2025, ordem: 9, ate: null, taxa: 0.48, parcelaAbater: 10940.10),
-      EscalaoIrs(ano: 2026, ordem: 1, ate: 8342, taxa: 0.125, parcelaAbater: 0, confianca: 'por_confirmar'),
-      EscalaoIrs(ano: 2026, ordem: 2, ate: 12588, taxa: 0.157, parcelaAbater: 266.94, confianca: 'por_confirmar'),
-      EscalaoIrs(ano: 2026, ordem: 3, ate: 17838, taxa: 0.212, parcelaAbater: 959.28, confianca: 'por_confirmar'),
-      EscalaoIrs(ano: 2026, ordem: 4, ate: 23088, taxa: 0.241, parcelaAbater: 1476.58, confianca: 'por_confirmar'),
-      EscalaoIrs(ano: 2026, ordem: 5, ate: 29397, taxa: 0.311, parcelaAbater: 3092.74, confianca: 'por_confirmar'),
-      EscalaoIrs(ano: 2026, ordem: 6, ate: 43090, taxa: 0.349, parcelaAbater: 4209.83, confianca: 'por_confirmar'),
-      EscalaoIrs(ano: 2026, ordem: 7, ate: 46567, taxa: 0.431, parcelaAbater: 7743.21, confianca: 'por_confirmar'),
-      EscalaoIrs(ano: 2026, ordem: 8, ate: 86634, taxa: 0.446, parcelaAbater: 8441.72, confianca: 'por_confirmar'),
-      EscalaoIrs(ano: 2026, ordem: 9, ate: null, taxa: 0.48, parcelaAbater: 11387.28, confianca: 'por_confirmar'),
+      // 2026 confirmados a 18/09/2026 no CIRS art. 68.º (redação da Lei 73-A/2025, OE 2026):
+      // limites 8 342 / 12 587 / 17 838 / 23 089 / 29 397 / 43 090 / 46 566 / 86 634.
+      // A parcela a abater é calculada: p(i) = p(i-1) + limite(i-1) × (taxa(i) − taxa(i-1)).
+      EscalaoIrs(ano: 2026, ordem: 1, ate: 8342, taxa: 0.125, parcelaAbater: 0),
+      EscalaoIrs(ano: 2026, ordem: 2, ate: 12587, taxa: 0.157, parcelaAbater: 266.94),
+      EscalaoIrs(ano: 2026, ordem: 3, ate: 17838, taxa: 0.212, parcelaAbater: 959.23),
+      EscalaoIrs(ano: 2026, ordem: 4, ate: 23089, taxa: 0.241, parcelaAbater: 1476.53),
+      EscalaoIrs(ano: 2026, ordem: 5, ate: 29397, taxa: 0.311, parcelaAbater: 3092.76),
+      EscalaoIrs(ano: 2026, ordem: 6, ate: 43090, taxa: 0.349, parcelaAbater: 4209.85),
+      EscalaoIrs(ano: 2026, ordem: 7, ate: 46566, taxa: 0.431, parcelaAbater: 7743.23),
+      EscalaoIrs(ano: 2026, ordem: 8, ate: 86634, taxa: 0.446, parcelaAbater: 8441.72),
+      EscalaoIrs(ano: 2026, ordem: 9, ate: null, taxa: 0.48, parcelaAbater: 11387.28),
     ];
 
     final feriados = <DateTime>[

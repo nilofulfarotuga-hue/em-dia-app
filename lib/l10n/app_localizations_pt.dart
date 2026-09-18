@@ -3721,6 +3721,118 @@ class AppLocalizationsPt extends AppLocalizations {
       'Tens uma dúvida? Escreve-a como se falasses com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite.';
 
   @override
+  String get onbTrabalhasComo => 'Trabalhas como?';
+
+  @override
+  String get onbPodesMudarDepois => 'Podes mudar depois, nas Definições.';
+
+  @override
+  String get onbTrabalhoIndependente => 'Recibos verdes';
+
+  @override
+  String get onbTrabalhoIndependenteAjuda =>
+      'Trabalho por conta própria: TVDE, entregas, serviços, freelancer.';
+
+  @override
+  String get onbTrabalhoContrato => 'Contrato';
+
+  @override
+  String get onbTrabalhoContratoAjuda => 'Recebo salário de um patrão.';
+
+  @override
+  String get onbTrabalhoAmbos => 'Os dois';
+
+  @override
+  String get onbTrabalhoAmbosAjuda => 'Tenho contrato e também passo recibos.';
+
+  @override
+  String get onbTrabalhoEmpresa => 'Tenho uma empresa';
+
+  @override
+  String get onbTrabalhoEmpresaAjuda =>
+      'Em nome individual ou sociedade, com ou sem empregados.';
+
+  @override
+  String get onbSalarioTitulo => 'Quanto ganhas por mês, antes dos descontos?';
+
+  @override
+  String get onbSalarioAjuda =>
+      'É o número de cima do recibo (o bruto). Podes mudar depois.';
+
+  @override
+  String onbSalarioSs(String valor, String pct) {
+    return 'A Segurança Social fica com $valor por mês ($pct %).';
+  }
+
+  @override
+  String onbSalario14(String valor) {
+    return 'Num ano são $valor: 12 meses + férias + Natal.';
+  }
+
+  @override
+  String get onbNascimentoTitulo => 'Em que ano nasceste?';
+
+  @override
+  String get onbNascimentoAjuda =>
+      'Só para saber se tens direito ao IRS Jovem (até aos 35 anos). Podes saltar.';
+
+  @override
+  String get onbIrsJovemSim =>
+      'Tens direito ao IRS Jovem: até 100 % de desconto no IRS, 10 anos.';
+
+  @override
+  String get onbIrsJovemNao =>
+      'Já não entras no IRS Jovem (é até aos 35 anos). Tudo bem: a app trata do resto.';
+
+  @override
+  String get onbEmpresaTitulo => 'A tua empresa é…';
+
+  @override
+  String get onbEmpresaAjuda =>
+      'Está no papel das Finanças de quando abriste. Podes mudar depois.';
+
+  @override
+  String get onbEmpresaEni => 'Em nome individual (ENI)';
+
+  @override
+  String get onbEmpresaEniAjuda => 'És tu, com o teu NIF.';
+
+  @override
+  String get onbEmpresaSociedade => 'Uma sociedade';
+
+  @override
+  String get onbEmpresaSociedadeAjuda =>
+      'Lda. ou unipessoal, com NIPC próprio.';
+
+  @override
+  String get onbIvaPeriodoTitulo =>
+      'O IVA entrega-se de quanto em quanto tempo?';
+
+  @override
+  String get onbIvaPeriodoAjuda =>
+      'Se não sabes, escolhe «de 3 em 3 meses» — a maioria é assim. O contabilista confirma.';
+
+  @override
+  String get onbIvaTrimestral => 'De 3 em 3 meses';
+
+  @override
+  String get onbIvaMensal => 'Todos os meses';
+
+  @override
+  String get onbContabilistaTitulo => 'Tens contabilista?';
+
+  @override
+  String get onbContabilistaAjuda =>
+      'Escreve o e-mail e, todo o dia 1, a app manda-lhe a pasta do mês: o que entrou, o que saiu, o extrato e as faturas. Podes saltar.';
+
+  @override
+  String get onbContabilistaEmail => 'E-mail do contabilista';
+
+  @override
+  String get onbContabilistaNota =>
+      'A app não substitui o contabilista. Poupa-lhe as horas de juntar papéis — e a ti as chamadas.';
+
+  @override
   String get painelAcaoEtiqueta => 'O que fazer agora';
 
   @override
@@ -4318,6 +4430,294 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get oficioDescricaoGeral => 'Prestação de serviços';
+
+  @override
+  String get recibosTituloContrato => 'O meu trabalho';
+
+  @override
+  String get recibosTituloEmpresa => 'A minha empresa';
+
+  @override
+  String get contratoReciboTitulo => 'O meu recibo de vencimento';
+
+  @override
+  String get contratoReciboSub => 'Bruto, descontos, líquido — e o IRS do ano.';
+
+  @override
+  String contratoReciboSubComSalario(String salario) {
+    return '$salario por mês: vê os descontos e o IRS do ano.';
+  }
+
+  @override
+  String get contratoIrsJovemTitulo => 'Tens direito ao IRS Jovem';
+
+  @override
+  String contratoIrsJovemTexto(String limite) {
+    return 'Até aos 35 anos, nos 10 primeiros anos a ganhar dinheiro, pagas menos IRS: 100 % de desconto no 1.º ano, 75 % do 2.º ao 4.º, 50 % do 5.º ao 7.º, 25 % do 8.º ao 10.º (até $limite por ano). Marca a opção na declaração de IRS, em abril.';
+  }
+
+  @override
+  String get contratoAbrirPagina => 'Abrir a página das Finanças';
+
+  @override
+  String get contratoFaturasTitulo => 'Pede fatura com NIF';
+
+  @override
+  String get contratoFaturasTexto =>
+      'Sempre que pagares, diz o teu NIF. Em abril, parte volta no IRS:';
+
+  @override
+  String contratoDeducaoLinha(String pct, String max) {
+    return '$pct % até $max';
+  }
+
+  @override
+  String get contratoDeducaoSaude => 'Saúde e farmácia';
+
+  @override
+  String get contratoDeducaoEducacao => 'Escola, creche, livros';
+
+  @override
+  String get contratoDeducaoRendas => 'Renda da casa';
+
+  @override
+  String get contratoDeducaoIva =>
+      'Oficina, cabeleireiro, restaurantes, ginásio (IVA)';
+
+  @override
+  String get contratoDeducaoGerais => 'Tudo o resto (supermercado, roupa…)';
+
+  @override
+  String get contratoFaturasPrazo =>
+      'Em fevereiro confirma as faturas «pendentes» no e-fatura — até 25 de fevereiro. A app lembra-te.';
+
+  @override
+  String get contratoAbrirEfatura => 'Abrir o e-fatura';
+
+  @override
+  String get contratoDesempregoTitulo => 'Fiquei sem trabalho: o que fazer';
+
+  @override
+  String get contratoDesempregoSub =>
+      'Subsídio de desemprego: se tens direito, quanto, e até quando pedir.';
+
+  @override
+  String get contratoHorasExtraTitulo => 'Horas extra, férias e subsídios';
+
+  @override
+  String get contratoHorasExtraSub =>
+      'Quanto vale uma hora extra com o teu salário; 22 dias de férias; 14 meses.';
+
+  @override
+  String get reciboExplica =>
+      'Escreve os dois números do recibo. A app explica cada linha e diz-te se o IRS que te estão a descontar chega para o ano.';
+
+  @override
+  String get reciboBruto => 'Salário bruto (o número de cima)';
+
+  @override
+  String get reciboIrsRetido => 'IRS retido (a linha «IRS» ou «retenção»)';
+
+  @override
+  String get reciboLinhaBruto => 'Bruto';
+
+  @override
+  String get reciboLinhaBrutoAjuda =>
+      'O que o patrão paga por ti, antes dos descontos.';
+
+  @override
+  String reciboLinhaSs(String pct) {
+    return 'Segurança Social ($pct %)';
+  }
+
+  @override
+  String get reciboLinhaSsAjuda =>
+      'A tua parte para a reforma, a baixa e o desemprego. O patrão põe mais 23,75 % por fora.';
+
+  @override
+  String get reciboLinhaIrs => 'IRS retido';
+
+  @override
+  String get reciboLinhaIrsAjuda =>
+      'Um adiantamento do imposto do ano. Acerta-se em abril.';
+
+  @override
+  String get reciboLinhaLiquido => 'Líquido (entra na conta)';
+
+  @override
+  String reciboAnoReembolso(String valor) {
+    return 'Em abril deves receber cerca de $valor';
+  }
+
+  @override
+  String reciboAnoAcerto(String valor) {
+    return 'Em abril podes ter de pagar cerca de $valor';
+  }
+
+  @override
+  String reciboAnoTexto(String bruto, String imposto, String retido) {
+    return 'Num ano ganhas $bruto (14 meses). O IRS desse valor é cerca de $imposto; retido ficam $retido.';
+  }
+
+  @override
+  String get reciboAnoNota =>
+      'É uma estimativa sem as tuas deduções (saúde, escola, filhos) — essas só melhoram o resultado.';
+
+  @override
+  String get reciboFonte =>
+      'Regras: Segurança Social 11 % (Taxas Contributivas do ISS), dedução de 8,54 × IAS e escalões do CIRS art. 25.º e 68.º (2026).';
+
+  @override
+  String get desempregoExplica =>
+      'Se ficares sem trabalho, tens 90 dias para pedir o subsídio. A app faz a conta com o teu salário.';
+
+  @override
+  String get desempregoMesesPergunta =>
+      'Quantos meses descontaste nos últimos 2 anos?';
+
+  @override
+  String desempregoMeses(int n) {
+    return '$n meses (cerca de $n × 30 dias)';
+  }
+
+  @override
+  String get desempregoTemDireito => 'Tens direito ao subsídio de desemprego.';
+
+  @override
+  String desempregoFaltam(int dias) {
+    return 'Ainda faltam $dias dias de descontos (precisas de 360 em 24 meses). Pergunta pelo subsídio social de desemprego.';
+  }
+
+  @override
+  String desempregoValor(String valor, String salario) {
+    return 'Cerca de $valor por mês (65 % do teu salário de $salario), dentro dos limites de 2026.';
+  }
+
+  @override
+  String desempregoPedirAte(String data) {
+    return 'Se ficasses sem trabalho hoje, tinhas de pedir até $data.';
+  }
+
+  @override
+  String get desempregoPassosTitulo => 'Os 3 passos';
+
+  @override
+  String get desempregoPasso1 =>
+      'Inscreve-te no centro de emprego (IEFP) logo que possas.';
+
+  @override
+  String get desempregoPasso2 =>
+      'Pede o subsídio na Segurança Social Direta, até 90 dias depois.';
+
+  @override
+  String get desempregoPasso3 =>
+      'Junta o modelo RP5044 (o patrão preenche) e o contrato.';
+
+  @override
+  String get desempregoAbrirSs => 'Abrir a Segurança Social Direta';
+
+  @override
+  String get desempregoAbrirIefp => 'Abrir o IEFP';
+
+  @override
+  String get desempregoFonte =>
+      'Regras do Guia Prático do Subsídio de Desemprego (ISS, 2026): 360 dias em 24 meses, 90 dias para pedir, 65 % da remuneração, mínimo 617,70 € e máximo 1.342,83 €.';
+
+  @override
+  String horasExplica(String salario, String hora) {
+    return 'Com $salario por mês, a tua hora normal vale $hora. A hora extra paga-se com acréscimo:';
+  }
+
+  @override
+  String get horasMaisDe100 => 'Já fiz mais de 100 horas extra este ano';
+
+  @override
+  String get horasPrimeira => '1.ª hora extra do dia';
+
+  @override
+  String get horasSeguintes => 'Horas seguintes';
+
+  @override
+  String get horasFimSemana => 'Ao fim de semana ou feriado';
+
+  @override
+  String get feriasTitulo => 'Férias e subsídios';
+
+  @override
+  String feriasTexto(int dias) {
+    return 'Tens direito a $dias dias úteis de férias por ano. O subsídio de férias (um mês) paga-se antes das férias.';
+  }
+
+  @override
+  String get subsidiosTexto =>
+      'O subsídio de Natal (um mês) chega até 15 de dezembro. No ano em que entras ou sais, é proporcional.';
+
+  @override
+  String get horasFonte =>
+      'Código do Trabalho, art. 238.º (férias), 263.º e 264.º (subsídios), 268.º (horas extra) e 271.º (hora normal).';
+
+  @override
+  String get empresaEniTitulo => 'A tua empresa: em nome individual';
+
+  @override
+  String get empresaEniTexto =>
+      'És tu, com o teu NIF. Pagas IRS sobre o lucro e respondes pelas dívidas com o que é teu. Simples de abrir e fechar.';
+
+  @override
+  String get empresaSociedadeTitulo => 'A tua empresa: sociedade';
+
+  @override
+  String get empresaSociedadeTexto =>
+      'A empresa é outra pessoa (com NIPC). Paga IRC sobre o lucro, tu recebes salário de gerente e as dívidas ficam na empresa.';
+
+  @override
+  String get empresaNaoSubstitui =>
+      'A app não substitui o contabilista: mostra o calendário e junta-lhe os papéis.';
+
+  @override
+  String get empresaCalendarioTitulo => 'O que vem a seguir';
+
+  @override
+  String get empresaCalendarioVazio =>
+      'Ainda não há datas: a agenda enche-se assim que o calendário for feito.';
+
+  @override
+  String get empresaCalendarioNota =>
+      'Datas da agenda fiscal da AT (2026). Ao fim de semana passam ao dia útil seguinte.';
+
+  @override
+  String get empresaAbrirAgenda => 'Abrir a agenda fiscal da AT';
+
+  @override
+  String get pastaTitulo => 'Pasta do contabilista';
+
+  @override
+  String get pastaTexto =>
+      'Todo o dia 1 a app junta o mês anterior — o que entrou, o que saiu, o extrato, as faturas e os recibos — e envia por e-mail ao contabilista. Ele deixa de te pedir papéis.';
+
+  @override
+  String get pastaLigar => 'Enviar todo o dia 1';
+
+  @override
+  String get pastaLigarAjuda =>
+      'Guarda o e-mail e liga. Podes desligar quando quiseres.';
+
+  @override
+  String get pastaEnviarAgora => 'Enviar já a do mês passado';
+
+  @override
+  String get pastaAEnviar => 'A enviar…';
+
+  @override
+  String pastaEnviada(String email, int n) {
+    return 'Enviada para $email ($n linhas).';
+  }
+
+  @override
+  String get pastaFalhou => 'Não consegui enviar agora. Tenta daqui a pouco.';
+
+  @override
+  String get pastaEmailInvalido => 'Escreve um e-mail válido do contabilista.';
 
   @override
   String get sufixoLitros => 'L';
@@ -9163,6 +9563,120 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
       'Ficou com dúvida? Escreva como se estivesse falando com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite.';
 
   @override
+  String get onbTrabalhasComo => 'Você trabalha como?';
+
+  @override
+  String get onbPodesMudarDepois =>
+      'Você pode mudar depois, nas Configurações.';
+
+  @override
+  String get onbTrabalhoIndependente => 'Recibos verdes';
+
+  @override
+  String get onbTrabalhoIndependenteAjuda =>
+      'Trabalho por conta própria: TVDE, entregas, serviços, freelancer.';
+
+  @override
+  String get onbTrabalhoContrato => 'Contrato';
+
+  @override
+  String get onbTrabalhoContratoAjuda => 'Recebo salário de um patrão.';
+
+  @override
+  String get onbTrabalhoAmbos => 'Os dois';
+
+  @override
+  String get onbTrabalhoAmbosAjuda => 'Tenho contrato e também emito recibos.';
+
+  @override
+  String get onbTrabalhoEmpresa => 'Tenho uma empresa';
+
+  @override
+  String get onbTrabalhoEmpresaAjuda =>
+      'Em nome individual ou sociedade, com ou sem empregados.';
+
+  @override
+  String get onbSalarioTitulo =>
+      'Quanto você ganha por mês, antes dos descontos?';
+
+  @override
+  String get onbSalarioAjuda =>
+      'É o número de cima do recibo (o bruto). Você pode mudar depois.';
+
+  @override
+  String onbSalarioSs(String valor, String pct) {
+    return 'A Segurança Social fica com $valor por mês ($pct %).';
+  }
+
+  @override
+  String onbSalario14(String valor) {
+    return 'Num ano são $valor: 12 meses + férias + Natal.';
+  }
+
+  @override
+  String get onbNascimentoTitulo => 'Em que ano você nasceu?';
+
+  @override
+  String get onbNascimentoAjuda =>
+      'Só para saber se você tem direito ao IRS Jovem (até os 35 anos). Pode pular.';
+
+  @override
+  String get onbIrsJovemSim =>
+      'Você tem direito ao IRS Jovem: até 100 % de desconto no IRS, 10 anos.';
+
+  @override
+  String get onbIrsJovemNao =>
+      'Você já não entra no IRS Jovem (é até os 35 anos). Tudo bem: o app cuida do resto.';
+
+  @override
+  String get onbEmpresaTitulo => 'A sua empresa é…';
+
+  @override
+  String get onbEmpresaAjuda =>
+      'Está no papel das Finanças de quando você abriu. Pode mudar depois.';
+
+  @override
+  String get onbEmpresaEni => 'Em nome individual (ENI)';
+
+  @override
+  String get onbEmpresaEniAjuda => 'É você, com o seu NIF.';
+
+  @override
+  String get onbEmpresaSociedade => 'Uma sociedade';
+
+  @override
+  String get onbEmpresaSociedadeAjuda =>
+      'Lda. ou unipessoal, com NIPC próprio.';
+
+  @override
+  String get onbIvaPeriodoTitulo =>
+      'O IVA é entregue de quanto em quanto tempo?';
+
+  @override
+  String get onbIvaPeriodoAjuda =>
+      'Se não sabe, escolha «de 3 em 3 meses» — a maioria é assim. O contador confirma.';
+
+  @override
+  String get onbIvaTrimestral => 'De 3 em 3 meses';
+
+  @override
+  String get onbIvaMensal => 'Todos os meses';
+
+  @override
+  String get onbContabilistaTitulo => 'Você tem contador?';
+
+  @override
+  String get onbContabilistaAjuda =>
+      'Escreva o e-mail e, todo dia 1, o app manda a pasta do mês: o que entrou, o que saiu, o extrato e as faturas. Pode pular.';
+
+  @override
+  String get onbContabilistaEmail => 'E-mail do contador';
+
+  @override
+  String get onbContabilistaNota =>
+      'O app não substitui o contador. Poupa as horas dele juntando papéis — e as suas ligações.';
+
+  @override
   String get painelAcaoEtiqueta => 'O que fazer agora';
 
   @override
@@ -9761,6 +10275,295 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get oficioDescricaoGeral => 'Prestação de serviços';
+
+  @override
+  String get recibosTituloContrato => 'Meu trabalho';
+
+  @override
+  String get recibosTituloEmpresa => 'Minha empresa';
+
+  @override
+  String get contratoReciboTitulo => 'Meu recibo de vencimento';
+
+  @override
+  String get contratoReciboSub => 'Bruto, descontos, líquido — e o IRS do ano.';
+
+  @override
+  String contratoReciboSubComSalario(String salario) {
+    return '$salario por mês: veja os descontos e o IRS do ano.';
+  }
+
+  @override
+  String get contratoIrsJovemTitulo => 'Você tem direito ao IRS Jovem';
+
+  @override
+  String contratoIrsJovemTexto(String limite) {
+    return 'Até os 35 anos, nos 10 primeiros anos ganhando dinheiro, você paga menos IRS: 100 % de desconto no 1.º ano, 75 % do 2.º ao 4.º, 50 % do 5.º ao 7.º, 25 % do 8.º ao 10.º (até $limite por ano). Marque a opção na declaração de IRS, em abril.';
+  }
+
+  @override
+  String get contratoAbrirPagina => 'Abrir a página das Finanças';
+
+  @override
+  String get contratoFaturasTitulo => 'Peça fatura com NIF';
+
+  @override
+  String get contratoFaturasTexto =>
+      'Sempre que pagar, diga o seu NIF. Em abril, parte volta no IRS:';
+
+  @override
+  String contratoDeducaoLinha(String pct, String max) {
+    return '$pct % até $max';
+  }
+
+  @override
+  String get contratoDeducaoSaude => 'Saúde e farmácia';
+
+  @override
+  String get contratoDeducaoEducacao => 'Escola, creche, livros';
+
+  @override
+  String get contratoDeducaoRendas => 'Aluguel da casa';
+
+  @override
+  String get contratoDeducaoIva =>
+      'Oficina, cabeleireiro, restaurantes, academia (IVA)';
+
+  @override
+  String get contratoDeducaoGerais => 'Todo o resto (supermercado, roupa…)';
+
+  @override
+  String get contratoFaturasPrazo =>
+      'Em fevereiro confirme as faturas «pendentes» no e-fatura — até 25 de fevereiro. O app lembra você.';
+
+  @override
+  String get contratoAbrirEfatura => 'Abrir o e-fatura';
+
+  @override
+  String get contratoDesempregoTitulo => 'Fiquei sem trabalho: o que fazer';
+
+  @override
+  String get contratoDesempregoSub =>
+      'Subsídio de desemprego: se você tem direito, quanto, e até quando pedir.';
+
+  @override
+  String get contratoHorasExtraTitulo => 'Horas extras, férias e subsídios';
+
+  @override
+  String get contratoHorasExtraSub =>
+      'Quanto vale uma hora extra com o seu salário; 22 dias de férias; 14 meses.';
+
+  @override
+  String get reciboExplica =>
+      'Escreva os dois números do recibo. O app explica cada linha e diz se o IRS que estão descontando chega para o ano.';
+
+  @override
+  String get reciboBruto => 'Salário bruto (o número de cima)';
+
+  @override
+  String get reciboIrsRetido => 'IRS retido (a linha «IRS» ou «retenção»)';
+
+  @override
+  String get reciboLinhaBruto => 'Bruto';
+
+  @override
+  String get reciboLinhaBrutoAjuda =>
+      'O que o patrão paga por você, antes dos descontos.';
+
+  @override
+  String reciboLinhaSs(String pct) {
+    return 'Segurança Social ($pct %)';
+  }
+
+  @override
+  String get reciboLinhaSsAjuda =>
+      'A sua parte para a aposentadoria, a baixa e o desemprego. O patrão põe mais 23,75 % por fora.';
+
+  @override
+  String get reciboLinhaIrs => 'IRS retido';
+
+  @override
+  String get reciboLinhaIrsAjuda =>
+      'Um adiantamento do imposto do ano. Acerta-se em abril.';
+
+  @override
+  String get reciboLinhaLiquido => 'Líquido (entra na conta)';
+
+  @override
+  String reciboAnoReembolso(String valor) {
+    return 'Em abril você deve receber cerca de $valor';
+  }
+
+  @override
+  String reciboAnoAcerto(String valor) {
+    return 'Em abril você pode ter de pagar cerca de $valor';
+  }
+
+  @override
+  String reciboAnoTexto(String bruto, String imposto, String retido) {
+    return 'Num ano você ganha $bruto (14 meses). O IRS desse valor é cerca de $imposto; retidos ficam $retido.';
+  }
+
+  @override
+  String get reciboAnoNota =>
+      'É uma estimativa sem as suas deduções (saúde, escola, filhos) — essas só melhoram o resultado.';
+
+  @override
+  String get reciboFonte =>
+      'Regras: Segurança Social 11 % (Taxas Contributivas do ISS), dedução de 8,54 × IAS e escalões do CIRS art. 25.º e 68.º (2026).';
+
+  @override
+  String get desempregoExplica =>
+      'Se você ficar sem trabalho, tem 90 dias para pedir o subsídio. O app faz a conta com o seu salário.';
+
+  @override
+  String get desempregoMesesPergunta =>
+      'Quantos meses você descontou nos últimos 2 anos?';
+
+  @override
+  String desempregoMeses(int n) {
+    return '$n meses (cerca de $n × 30 dias)';
+  }
+
+  @override
+  String get desempregoTemDireito =>
+      'Você tem direito ao subsídio de desemprego.';
+
+  @override
+  String desempregoFaltam(int dias) {
+    return 'Ainda faltam $dias dias de descontos (precisa de 360 em 24 meses). Pergunte pelo subsídio social de desemprego.';
+  }
+
+  @override
+  String desempregoValor(String valor, String salario) {
+    return 'Cerca de $valor por mês (65 % do seu salário de $salario), dentro dos limites de 2026.';
+  }
+
+  @override
+  String desempregoPedirAte(String data) {
+    return 'Se você ficasse sem trabalho hoje, teria de pedir até $data.';
+  }
+
+  @override
+  String get desempregoPassosTitulo => 'Os 3 passos';
+
+  @override
+  String get desempregoPasso1 =>
+      'Inscreva-se no centro de emprego (IEFP) assim que puder.';
+
+  @override
+  String get desempregoPasso2 =>
+      'Peça o subsídio na Segurança Social Direta, em até 90 dias.';
+
+  @override
+  String get desempregoPasso3 =>
+      'Junte o modelo RP5044 (o patrão preenche) e o contrato.';
+
+  @override
+  String get desempregoAbrirSs => 'Abrir a Segurança Social Direta';
+
+  @override
+  String get desempregoAbrirIefp => 'Abrir o IEFP';
+
+  @override
+  String get desempregoFonte =>
+      'Regras do Guia Prático do Subsídio de Desemprego (ISS, 2026): 360 dias em 24 meses, 90 dias para pedir, 65 % da remuneração, mínimo 617,70 € e máximo 1.342,83 €.';
+
+  @override
+  String horasExplica(String salario, String hora) {
+    return 'Com $salario por mês, a sua hora normal vale $hora. A hora extra é paga com acréscimo:';
+  }
+
+  @override
+  String get horasMaisDe100 => 'Já fiz mais de 100 horas extras este ano';
+
+  @override
+  String get horasPrimeira => '1.ª hora extra do dia';
+
+  @override
+  String get horasSeguintes => 'Horas seguintes';
+
+  @override
+  String get horasFimSemana => 'No fim de semana ou feriado';
+
+  @override
+  String get feriasTitulo => 'Férias e subsídios';
+
+  @override
+  String feriasTexto(int dias) {
+    return 'Você tem direito a $dias dias úteis de férias por ano. O subsídio de férias (um mês) é pago antes das férias.';
+  }
+
+  @override
+  String get subsidiosTexto =>
+      'O subsídio de Natal (um mês) chega até 15 de dezembro. No ano em que você entra ou sai, é proporcional.';
+
+  @override
+  String get horasFonte =>
+      'Código do Trabalho, art. 238.º (férias), 263.º e 264.º (subsídios), 268.º (horas extras) e 271.º (hora normal).';
+
+  @override
+  String get empresaEniTitulo => 'Sua empresa: em nome individual';
+
+  @override
+  String get empresaEniTexto =>
+      'É você, com o seu NIF. Paga IRS sobre o lucro e responde pelas dívidas com o que é seu. Simples de abrir e fechar.';
+
+  @override
+  String get empresaSociedadeTitulo => 'Sua empresa: sociedade';
+
+  @override
+  String get empresaSociedadeTexto =>
+      'A empresa é outra pessoa (com NIPC). Paga IRC sobre o lucro, você recebe salário de gerente e as dívidas ficam na empresa.';
+
+  @override
+  String get empresaNaoSubstitui =>
+      'O app não substitui o contador: mostra o calendário e junta os papéis para ele.';
+
+  @override
+  String get empresaCalendarioTitulo => 'O que vem a seguir';
+
+  @override
+  String get empresaCalendarioVazio =>
+      'Ainda não há datas: a agenda se enche assim que o calendário for feito.';
+
+  @override
+  String get empresaCalendarioNota =>
+      'Datas da agenda fiscal da AT (2026). No fim de semana passam ao dia útil seguinte.';
+
+  @override
+  String get empresaAbrirAgenda => 'Abrir a agenda fiscal da AT';
+
+  @override
+  String get pastaTitulo => 'Pasta do contador';
+
+  @override
+  String get pastaTexto =>
+      'Todo dia 1 o app junta o mês anterior — o que entrou, o que saiu, o extrato, as faturas e os recibos — e envia por e-mail ao contador. Ele para de pedir papéis.';
+
+  @override
+  String get pastaLigar => 'Enviar todo dia 1';
+
+  @override
+  String get pastaLigarAjuda =>
+      'Salve o e-mail e ligue. Você pode desligar quando quiser.';
+
+  @override
+  String get pastaEnviarAgora => 'Enviar já a do mês passado';
+
+  @override
+  String get pastaAEnviar => 'Enviando…';
+
+  @override
+  String pastaEnviada(String email, int n) {
+    return 'Enviada para $email ($n linhas).';
+  }
+
+  @override
+  String get pastaFalhou => 'Não consegui enviar agora. Tente daqui a pouco.';
+
+  @override
+  String get pastaEmailInvalido => 'Escreva um e-mail válido do contador.';
 
   @override
   String get sufixoLitros => 'L';

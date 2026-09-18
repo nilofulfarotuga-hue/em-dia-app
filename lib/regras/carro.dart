@@ -80,7 +80,7 @@ List<int> avisosIpo(RegrasLegais r) =>
 
 /// Data em que se avisa do seguro: 45 dias antes de renovar.
 DateTime avisoSeguro(DateTime renovaEm, RegrasLegais r) =>
-    renovaEm.subtract(Duration(days: r.n('seguro_aviso_dias').toInt()));
+    somarDias(soDia(renovaEm), -r.n('seguro_aviso_dias').toInt());
 
 /// Validade da carta (anos) pela idade: 15 até aos 60, 5 até aos 70, depois 2.
 int anosValidadeCarta(int idade, RegrasLegais r) {

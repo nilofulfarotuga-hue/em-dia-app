@@ -50,6 +50,13 @@ DateTime adicionarAnos(DateTime d, int anos) => adicionarMeses(d, anos * 12);
 bool ehFimDeSemana(DateTime d) =>
     d.weekday == DateTime.saturday || d.weekday == DateTime.sunday;
 
+/// Soma dias de CALENDÁRIO sem passar por `Duration`: nas mudanças de hora
+/// (último domingo de março e de outubro) um dia tem 23 ou 25 horas e
+/// `add(Duration(days: 1))` cai às 23:00 do dia errado. Apanhado a
+/// 18/09/2026: o prazo de 25/10/2026 (domingo, fim da hora de verão) dava
+/// «26/10 às 23:00» em vez de 26/10.
+DateTime somarDias(DateTime d, int dias) => DateTime(d.year, d.month, d.day + dias);
+
 bool ehDiaUtil(DateTime d, Set<DateTime> feriados) =>
     !ehFimDeSemana(d) && !feriados.contains(soDia(d));
 
@@ -57,7 +64,7 @@ bool ehDiaUtil(DateTime d, Set<DateTime> feriados) =>
 DateTime diaUtilAnteriorOuIgual(DateTime d, Set<DateTime> feriados) {
   var x = soDia(d);
   while (!ehDiaUtil(x, feriados)) {
-    x = x.subtract(const Duration(days: 1));
+    x = somarDias(x, -1);
   }
   return x;
 }
@@ -70,7 +77,7 @@ DateTime avisoEm(DateTime prazo, Set<DateTime> feriados) =>
 DateTime diaUtilSeguinteOuIgual(DateTime d, Set<DateTime> feriados) {
   var x = soDia(d);
   while (!ehDiaUtil(x, feriados)) {
-    x = x.add(const Duration(days: 1));
+    x = somarDias(x, 1);
   }
   return x;
 }
@@ -99,7 +106,7 @@ DateTime somarDiasUteis(DateTime d, int dias, Set<DateTime> feriados) {
   var x = soDia(d);
   var restam = dias;
   while (restam > 0) {
-    x = x.add(const Duration(days: 1));
+    x = somarDias(x, 1);
     if (ehDiaUtil(x, feriados)) restam--;
   }
   return x;

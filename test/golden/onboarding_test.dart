@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:em_dia/regras/regras.dart';
 import 'package:em_dia/screens/onboarding/onboarding_screen.dart';
+import 'package:em_dia/widgets/widgets.dart';
 
 import '_apoio.dart';
 import 'fabrica_de_fotos.dart';
@@ -34,7 +35,7 @@ void main() {
     await fotografaSuite(
       tester,
       nome: 'onboarding_p1_atividade',
-      tela: () => tela(1, const DadosOnboarding(tipoAtividade: TipoAtividade.tvde)),
+      tela: () => tela(PassoOnboarding.atividade.index, const DadosOnboarding(tipoAtividade: TipoAtividade.tvde)),
     );
     expect(find.byIcon(Icons.check_circle_rounded), findsOneWidget);
   });
@@ -44,7 +45,7 @@ void main() {
       tester,
       nome: 'onboarding_p2_abertura',
       tela: () => tela(
-        2,
+        PassoOnboarding.abertura.index,
         const DadosOnboarding(tipoAtividade: TipoAtividade.tvde, mesAbertura: 3, anoAbertura: 2026),
       ),
     );
@@ -57,7 +58,7 @@ void main() {
       nome: 'onboarding_p4_carro',
       comTeclado: true,
       tela: () => tela(
-        4,
+        PassoOnboarding.carro.index,
         const DadosOnboarding(
           tipoAtividade: TipoAtividade.tvde,
           mesAbertura: 3,
@@ -83,7 +84,7 @@ void main() {
       nome: 'onboarding_p5_rendimento',
       comTeclado: true,
       tela: () => tela(
-        5,
+        PassoOnboarding.rendimento.index,
         const DadosOnboarding(
           tipoAtividade: TipoAtividade.tvde,
           mesAbertura: 3,
@@ -96,5 +97,71 @@ void main() {
     );
     expect(find.byType(TextField), findsOneWidget);
     expect(find.byType(ChoiceChip), findsNWidgets(4));
+  });
+
+  // ---- B3 (2026-09-18): «Trabalhas como?» e os caminhos do contrato e da empresa ----
+
+  testWidgets('onboarding — trabalhas como? (contrato escolhido)', (tester) async {
+    await fotografaSuite(
+      tester,
+      nome: 'onboarding_trabalho',
+      tela: () => tela(PassoOnboarding.trabalho.index, const DadosOnboarding(tipoTrabalho: TipoTrabalho.contrato)),
+    );
+    expect(find.textContaining('trabalha'), findsOneWidget); // PT «Trabalhas como?» / BR «Você trabalha como?»
+    expect(find.byType(BotaoEscolha), findsNWidgets(4));
+  });
+
+  testWidgets('onboarding — contrato: quanto ganhas (1.200 € → SS 132,00)', (tester) async {
+    await fotografaSuite(
+      tester,
+      nome: 'onboarding_salario',
+      comTeclado: true,
+      tela: () => tela(PassoOnboarding.salario.index, const DadosOnboarding(tipoTrabalho: TipoTrabalho.contrato, salarioMensal: 1200)),
+    );
+    expect(find.textContaining('132,00'), findsOneWidget);
+    expect(find.byType(ChoiceChip), findsNWidgets(4));
+  });
+
+  testWidgets('onboarding — contrato: ano de nascimento (IRS Jovem)', (tester) async {
+    await fotografaTela(
+      tester,
+      nome: 'onboarding_nascimento',
+      tamanho: tamanhos[1],
+      tela: () => tela(PassoOnboarding.nascimento.index, const DadosOnboarding(tipoTrabalho: TipoTrabalho.contrato, salarioMensal: 1200, anoNascimento: 1998)),
+    );
+    expect(find.textContaining('IRS Jovem'), findsWidgets);
+  });
+
+  testWidgets('onboarding — empresa: ENI ou sociedade, IVA e contabilista', (tester) async {
+    await fotografaTela(
+      tester,
+      nome: 'onboarding_empresa',
+      tamanho: tamanhos[1],
+      tela: () => tela(PassoOnboarding.empresa.index, const DadosOnboarding(tipoTrabalho: TipoTrabalho.empresa, empresaTipo: 'sociedade')),
+    );
+    expect(find.byType(BotaoEscolha), findsNWidgets(2));
+  });
+
+  // Cada passo no seu testWidgets: dois pumpWidget do mesmo OnboardingScreen no
+  // mesmo teste reaproveitam o State (e o passo) do primeiro.
+  testWidgets('onboarding — empresa: IVA mensal ou trimestral', (tester) async {
+    await fotografaTela(
+      tester,
+      nome: 'onboarding_iva_periodo',
+      tamanho: tamanhos[1],
+      tela: () => tela(PassoOnboarding.ivaPeriodo.index, const DadosOnboarding(tipoTrabalho: TipoTrabalho.empresa, empresaTipo: 'sociedade', ivaPeriodo: 'trimestral')),
+    );
+    expect(find.text('De 3 em 3 meses'), findsOneWidget);
+  });
+
+  testWidgets('onboarding — empresa: contabilista (pasta mensal)', (tester) async {
+    await fotografaTela(
+      tester,
+      nome: 'onboarding_contabilista',
+      tamanho: tamanhos[1],
+      teclado: true,
+      tela: () => tela(PassoOnboarding.contabilista.index, const DadosOnboarding(tipoTrabalho: TipoTrabalho.empresa, empresaTipo: 'sociedade', ivaPeriodo: 'trimestral', contabilistaEmail: 'contas@exemplo.pt')),
+    );
+    expect(find.text('contas@exemplo.pt'), findsOneWidget);
   });
 }

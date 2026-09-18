@@ -6348,6 +6348,198 @@ abstract class AppLocalizations {
   /// **'Tens uma dúvida? Escreve-a como se falasses com um amigo. Eu respondo em português simples, a qualquer hora do dia ou da noite.'**
   String get guiaIniPerguntaTexto;
 
+  /// No description provided for @onbTrabalhasComo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Trabalhas como?'**
+  String get onbTrabalhasComo;
+
+  /// No description provided for @onbPodesMudarDepois.
+  ///
+  /// In pt, this message translates to:
+  /// **'Podes mudar depois, nas Definições.'**
+  String get onbPodesMudarDepois;
+
+  /// No description provided for @onbTrabalhoIndependente.
+  ///
+  /// In pt, this message translates to:
+  /// **'Recibos verdes'**
+  String get onbTrabalhoIndependente;
+
+  /// No description provided for @onbTrabalhoIndependenteAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Trabalho por conta própria: TVDE, entregas, serviços, freelancer.'**
+  String get onbTrabalhoIndependenteAjuda;
+
+  /// No description provided for @onbTrabalhoContrato.
+  ///
+  /// In pt, this message translates to:
+  /// **'Contrato'**
+  String get onbTrabalhoContrato;
+
+  /// No description provided for @onbTrabalhoContratoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Recebo salário de um patrão.'**
+  String get onbTrabalhoContratoAjuda;
+
+  /// No description provided for @onbTrabalhoAmbos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Os dois'**
+  String get onbTrabalhoAmbos;
+
+  /// No description provided for @onbTrabalhoAmbosAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tenho contrato e também passo recibos.'**
+  String get onbTrabalhoAmbosAjuda;
+
+  /// No description provided for @onbTrabalhoEmpresa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tenho uma empresa'**
+  String get onbTrabalhoEmpresa;
+
+  /// No description provided for @onbTrabalhoEmpresaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em nome individual ou sociedade, com ou sem empregados.'**
+  String get onbTrabalhoEmpresaAjuda;
+
+  /// No description provided for @onbSalarioTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto ganhas por mês, antes dos descontos?'**
+  String get onbSalarioTitulo;
+
+  /// No description provided for @onbSalarioAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'É o número de cima do recibo (o bruto). Podes mudar depois.'**
+  String get onbSalarioAjuda;
+
+  /// No description provided for @onbSalarioSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'A Segurança Social fica com {valor} por mês ({pct} %).'**
+  String onbSalarioSs(String valor, String pct);
+
+  /// No description provided for @onbSalario14.
+  ///
+  /// In pt, this message translates to:
+  /// **'Num ano são {valor}: 12 meses + férias + Natal.'**
+  String onbSalario14(String valor);
+
+  /// No description provided for @onbNascimentoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em que ano nasceste?'**
+  String get onbNascimentoTitulo;
+
+  /// No description provided for @onbNascimentoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Só para saber se tens direito ao IRS Jovem (até aos 35 anos). Podes saltar.'**
+  String get onbNascimentoAjuda;
+
+  /// No description provided for @onbIrsJovemSim.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens direito ao IRS Jovem: até 100 % de desconto no IRS, 10 anos.'**
+  String get onbIrsJovemSim;
+
+  /// No description provided for @onbIrsJovemNao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já não entras no IRS Jovem (é até aos 35 anos). Tudo bem: a app trata do resto.'**
+  String get onbIrsJovemNao;
+
+  /// No description provided for @onbEmpresaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'A tua empresa é…'**
+  String get onbEmpresaTitulo;
+
+  /// No description provided for @onbEmpresaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Está no papel das Finanças de quando abriste. Podes mudar depois.'**
+  String get onbEmpresaAjuda;
+
+  /// No description provided for @onbEmpresaEni.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em nome individual (ENI)'**
+  String get onbEmpresaEni;
+
+  /// No description provided for @onbEmpresaEniAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'És tu, com o teu NIF.'**
+  String get onbEmpresaEniAjuda;
+
+  /// No description provided for @onbEmpresaSociedade.
+  ///
+  /// In pt, this message translates to:
+  /// **'Uma sociedade'**
+  String get onbEmpresaSociedade;
+
+  /// No description provided for @onbEmpresaSociedadeAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Lda. ou unipessoal, com NIPC próprio.'**
+  String get onbEmpresaSociedadeAjuda;
+
+  /// No description provided for @onbIvaPeriodoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O IVA entrega-se de quanto em quanto tempo?'**
+  String get onbIvaPeriodoTitulo;
+
+  /// No description provided for @onbIvaPeriodoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se não sabes, escolhe «de 3 em 3 meses» — a maioria é assim. O contabilista confirma.'**
+  String get onbIvaPeriodoAjuda;
+
+  /// No description provided for @onbIvaTrimestral.
+  ///
+  /// In pt, this message translates to:
+  /// **'De 3 em 3 meses'**
+  String get onbIvaTrimestral;
+
+  /// No description provided for @onbIvaMensal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Todos os meses'**
+  String get onbIvaMensal;
+
+  /// No description provided for @onbContabilistaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens contabilista?'**
+  String get onbContabilistaTitulo;
+
+  /// No description provided for @onbContabilistaAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o e-mail e, todo o dia 1, a app manda-lhe a pasta do mês: o que entrou, o que saiu, o extrato e as faturas. Podes saltar.'**
+  String get onbContabilistaAjuda;
+
+  /// No description provided for @onbContabilistaEmail.
+  ///
+  /// In pt, this message translates to:
+  /// **'E-mail do contabilista'**
+  String get onbContabilistaEmail;
+
+  /// No description provided for @onbContabilistaNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'A app não substitui o contabilista. Poupa-lhe as horas de juntar papéis — e a ti as chamadas.'**
+  String get onbContabilistaNota;
+
   /// No description provided for @painelAcaoEtiqueta.
   ///
   /// In pt, this message translates to:
@@ -7306,6 +7498,474 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Prestação de serviços'**
   String get oficioDescricaoGeral;
+
+  /// No description provided for @recibosTituloContrato.
+  ///
+  /// In pt, this message translates to:
+  /// **'O meu trabalho'**
+  String get recibosTituloContrato;
+
+  /// No description provided for @recibosTituloEmpresa.
+  ///
+  /// In pt, this message translates to:
+  /// **'A minha empresa'**
+  String get recibosTituloEmpresa;
+
+  /// No description provided for @contratoReciboTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O meu recibo de vencimento'**
+  String get contratoReciboTitulo;
+
+  /// No description provided for @contratoReciboSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Bruto, descontos, líquido — e o IRS do ano.'**
+  String get contratoReciboSub;
+
+  /// No description provided for @contratoReciboSubComSalario.
+  ///
+  /// In pt, this message translates to:
+  /// **'{salario} por mês: vê os descontos e o IRS do ano.'**
+  String contratoReciboSubComSalario(String salario);
+
+  /// No description provided for @contratoIrsJovemTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens direito ao IRS Jovem'**
+  String get contratoIrsJovemTitulo;
+
+  /// No description provided for @contratoIrsJovemTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Até aos 35 anos, nos 10 primeiros anos a ganhar dinheiro, pagas menos IRS: 100 % de desconto no 1.º ano, 75 % do 2.º ao 4.º, 50 % do 5.º ao 7.º, 25 % do 8.º ao 10.º (até {limite} por ano). Marca a opção na declaração de IRS, em abril.'**
+  String contratoIrsJovemTexto(String limite);
+
+  /// No description provided for @contratoAbrirPagina.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir a página das Finanças'**
+  String get contratoAbrirPagina;
+
+  /// No description provided for @contratoFaturasTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pede fatura com NIF'**
+  String get contratoFaturasTitulo;
+
+  /// No description provided for @contratoFaturasTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sempre que pagares, diz o teu NIF. Em abril, parte volta no IRS:'**
+  String get contratoFaturasTexto;
+
+  /// No description provided for @contratoDeducaoLinha.
+  ///
+  /// In pt, this message translates to:
+  /// **'{pct} % até {max}'**
+  String contratoDeducaoLinha(String pct, String max);
+
+  /// No description provided for @contratoDeducaoSaude.
+  ///
+  /// In pt, this message translates to:
+  /// **'Saúde e farmácia'**
+  String get contratoDeducaoSaude;
+
+  /// No description provided for @contratoDeducaoEducacao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escola, creche, livros'**
+  String get contratoDeducaoEducacao;
+
+  /// No description provided for @contratoDeducaoRendas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Renda da casa'**
+  String get contratoDeducaoRendas;
+
+  /// No description provided for @contratoDeducaoIva.
+  ///
+  /// In pt, this message translates to:
+  /// **'Oficina, cabeleireiro, restaurantes, ginásio (IVA)'**
+  String get contratoDeducaoIva;
+
+  /// No description provided for @contratoDeducaoGerais.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tudo o resto (supermercado, roupa…)'**
+  String get contratoDeducaoGerais;
+
+  /// No description provided for @contratoFaturasPrazo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em fevereiro confirma as faturas «pendentes» no e-fatura — até 25 de fevereiro. A app lembra-te.'**
+  String get contratoFaturasPrazo;
+
+  /// No description provided for @contratoAbrirEfatura.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir o e-fatura'**
+  String get contratoAbrirEfatura;
+
+  /// No description provided for @contratoDesempregoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fiquei sem trabalho: o que fazer'**
+  String get contratoDesempregoTitulo;
+
+  /// No description provided for @contratoDesempregoSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Subsídio de desemprego: se tens direito, quanto, e até quando pedir.'**
+  String get contratoDesempregoSub;
+
+  /// No description provided for @contratoHorasExtraTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Horas extra, férias e subsídios'**
+  String get contratoHorasExtraTitulo;
+
+  /// No description provided for @contratoHorasExtraSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto vale uma hora extra com o teu salário; 22 dias de férias; 14 meses.'**
+  String get contratoHorasExtraSub;
+
+  /// No description provided for @reciboExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve os dois números do recibo. A app explica cada linha e diz-te se o IRS que te estão a descontar chega para o ano.'**
+  String get reciboExplica;
+
+  /// No description provided for @reciboBruto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Salário bruto (o número de cima)'**
+  String get reciboBruto;
+
+  /// No description provided for @reciboIrsRetido.
+  ///
+  /// In pt, this message translates to:
+  /// **'IRS retido (a linha «IRS» ou «retenção»)'**
+  String get reciboIrsRetido;
+
+  /// No description provided for @reciboLinhaBruto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Bruto'**
+  String get reciboLinhaBruto;
+
+  /// No description provided for @reciboLinhaBrutoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que o patrão paga por ti, antes dos descontos.'**
+  String get reciboLinhaBrutoAjuda;
+
+  /// No description provided for @reciboLinhaSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Segurança Social ({pct} %)'**
+  String reciboLinhaSs(String pct);
+
+  /// No description provided for @reciboLinhaSsAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'A tua parte para a reforma, a baixa e o desemprego. O patrão põe mais 23,75 % por fora.'**
+  String get reciboLinhaSsAjuda;
+
+  /// No description provided for @reciboLinhaIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'IRS retido'**
+  String get reciboLinhaIrs;
+
+  /// No description provided for @reciboLinhaIrsAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Um adiantamento do imposto do ano. Acerta-se em abril.'**
+  String get reciboLinhaIrsAjuda;
+
+  /// No description provided for @reciboLinhaLiquido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Líquido (entra na conta)'**
+  String get reciboLinhaLiquido;
+
+  /// No description provided for @reciboAnoReembolso.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em abril deves receber cerca de {valor}'**
+  String reciboAnoReembolso(String valor);
+
+  /// No description provided for @reciboAnoAcerto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em abril podes ter de pagar cerca de {valor}'**
+  String reciboAnoAcerto(String valor);
+
+  /// No description provided for @reciboAnoTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Num ano ganhas {bruto} (14 meses). O IRS desse valor é cerca de {imposto}; retido ficam {retido}.'**
+  String reciboAnoTexto(String bruto, String imposto, String retido);
+
+  /// No description provided for @reciboAnoNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'É uma estimativa sem as tuas deduções (saúde, escola, filhos) — essas só melhoram o resultado.'**
+  String get reciboAnoNota;
+
+  /// No description provided for @reciboFonte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regras: Segurança Social 11 % (Taxas Contributivas do ISS), dedução de 8,54 × IAS e escalões do CIRS art. 25.º e 68.º (2026).'**
+  String get reciboFonte;
+
+  /// No description provided for @desempregoExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se ficares sem trabalho, tens 90 dias para pedir o subsídio. A app faz a conta com o teu salário.'**
+  String get desempregoExplica;
+
+  /// No description provided for @desempregoMesesPergunta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quantos meses descontaste nos últimos 2 anos?'**
+  String get desempregoMesesPergunta;
+
+  /// No description provided for @desempregoMeses.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} meses (cerca de {n} × 30 dias)'**
+  String desempregoMeses(int n);
+
+  /// No description provided for @desempregoTemDireito.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens direito ao subsídio de desemprego.'**
+  String get desempregoTemDireito;
+
+  /// No description provided for @desempregoFaltam.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda faltam {dias} dias de descontos (precisas de 360 em 24 meses). Pergunta pelo subsídio social de desemprego.'**
+  String desempregoFaltam(int dias);
+
+  /// No description provided for @desempregoValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cerca de {valor} por mês (65 % do teu salário de {salario}), dentro dos limites de 2026.'**
+  String desempregoValor(String valor, String salario);
+
+  /// No description provided for @desempregoPedirAte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se ficasses sem trabalho hoje, tinhas de pedir até {data}.'**
+  String desempregoPedirAte(String data);
+
+  /// No description provided for @desempregoPassosTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Os 3 passos'**
+  String get desempregoPassosTitulo;
+
+  /// No description provided for @desempregoPasso1.
+  ///
+  /// In pt, this message translates to:
+  /// **'Inscreve-te no centro de emprego (IEFP) logo que possas.'**
+  String get desempregoPasso1;
+
+  /// No description provided for @desempregoPasso2.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pede o subsídio na Segurança Social Direta, até 90 dias depois.'**
+  String get desempregoPasso2;
+
+  /// No description provided for @desempregoPasso3.
+  ///
+  /// In pt, this message translates to:
+  /// **'Junta o modelo RP5044 (o patrão preenche) e o contrato.'**
+  String get desempregoPasso3;
+
+  /// No description provided for @desempregoAbrirSs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir a Segurança Social Direta'**
+  String get desempregoAbrirSs;
+
+  /// No description provided for @desempregoAbrirIefp.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir o IEFP'**
+  String get desempregoAbrirIefp;
+
+  /// No description provided for @desempregoFonte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regras do Guia Prático do Subsídio de Desemprego (ISS, 2026): 360 dias em 24 meses, 90 dias para pedir, 65 % da remuneração, mínimo 617,70 € e máximo 1.342,83 €.'**
+  String get desempregoFonte;
+
+  /// No description provided for @horasExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Com {salario} por mês, a tua hora normal vale {hora}. A hora extra paga-se com acréscimo:'**
+  String horasExplica(String salario, String hora);
+
+  /// No description provided for @horasMaisDe100.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já fiz mais de 100 horas extra este ano'**
+  String get horasMaisDe100;
+
+  /// No description provided for @horasPrimeira.
+  ///
+  /// In pt, this message translates to:
+  /// **'1.ª hora extra do dia'**
+  String get horasPrimeira;
+
+  /// No description provided for @horasSeguintes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Horas seguintes'**
+  String get horasSeguintes;
+
+  /// No description provided for @horasFimSemana.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ao fim de semana ou feriado'**
+  String get horasFimSemana;
+
+  /// No description provided for @feriasTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Férias e subsídios'**
+  String get feriasTitulo;
+
+  /// No description provided for @feriasTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tens direito a {dias} dias úteis de férias por ano. O subsídio de férias (um mês) paga-se antes das férias.'**
+  String feriasTexto(int dias);
+
+  /// No description provided for @subsidiosTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'O subsídio de Natal (um mês) chega até 15 de dezembro. No ano em que entras ou sais, é proporcional.'**
+  String get subsidiosTexto;
+
+  /// No description provided for @horasFonte.
+  ///
+  /// In pt, this message translates to:
+  /// **'Código do Trabalho, art. 238.º (férias), 263.º e 264.º (subsídios), 268.º (horas extra) e 271.º (hora normal).'**
+  String get horasFonte;
+
+  /// No description provided for @empresaEniTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'A tua empresa: em nome individual'**
+  String get empresaEniTitulo;
+
+  /// No description provided for @empresaEniTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'És tu, com o teu NIF. Pagas IRS sobre o lucro e respondes pelas dívidas com o que é teu. Simples de abrir e fechar.'**
+  String get empresaEniTexto;
+
+  /// No description provided for @empresaSociedadeTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'A tua empresa: sociedade'**
+  String get empresaSociedadeTitulo;
+
+  /// No description provided for @empresaSociedadeTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'A empresa é outra pessoa (com NIPC). Paga IRC sobre o lucro, tu recebes salário de gerente e as dívidas ficam na empresa.'**
+  String get empresaSociedadeTexto;
+
+  /// No description provided for @empresaNaoSubstitui.
+  ///
+  /// In pt, this message translates to:
+  /// **'A app não substitui o contabilista: mostra o calendário e junta-lhe os papéis.'**
+  String get empresaNaoSubstitui;
+
+  /// No description provided for @empresaCalendarioTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que vem a seguir'**
+  String get empresaCalendarioTitulo;
+
+  /// No description provided for @empresaCalendarioVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não há datas: a agenda enche-se assim que o calendário for feito.'**
+  String get empresaCalendarioVazio;
+
+  /// No description provided for @empresaCalendarioNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Datas da agenda fiscal da AT (2026). Ao fim de semana passam ao dia útil seguinte.'**
+  String get empresaCalendarioNota;
+
+  /// No description provided for @empresaAbrirAgenda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir a agenda fiscal da AT'**
+  String get empresaAbrirAgenda;
+
+  /// No description provided for @pastaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pasta do contabilista'**
+  String get pastaTitulo;
+
+  /// No description provided for @pastaTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Todo o dia 1 a app junta o mês anterior — o que entrou, o que saiu, o extrato, as faturas e os recibos — e envia por e-mail ao contabilista. Ele deixa de te pedir papéis.'**
+  String get pastaTexto;
+
+  /// No description provided for @pastaLigar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Enviar todo o dia 1'**
+  String get pastaLigar;
+
+  /// No description provided for @pastaLigarAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guarda o e-mail e liga. Podes desligar quando quiseres.'**
+  String get pastaLigarAjuda;
+
+  /// No description provided for @pastaEnviarAgora.
+  ///
+  /// In pt, this message translates to:
+  /// **'Enviar já a do mês passado'**
+  String get pastaEnviarAgora;
+
+  /// No description provided for @pastaAEnviar.
+  ///
+  /// In pt, this message translates to:
+  /// **'A enviar…'**
+  String get pastaAEnviar;
+
+  /// No description provided for @pastaEnviada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Enviada para {email} ({n} linhas).'**
+  String pastaEnviada(String email, int n);
+
+  /// No description provided for @pastaFalhou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui enviar agora. Tenta daqui a pouco.'**
+  String get pastaFalhou;
+
+  /// No description provided for @pastaEmailInvalido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve um e-mail válido do contabilista.'**
+  String get pastaEmailInvalido;
 
   /// Sufixo do campo dos litros no formulário do abastecimento. Estava escrito à mão no Dart.
   ///

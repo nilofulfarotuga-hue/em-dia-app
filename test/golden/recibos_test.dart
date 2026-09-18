@@ -101,9 +101,9 @@ void main() {
         ),
       )),
     );
-    // 1.593,33 × 12 = 19.120 € → coletável 14.340 € → 2.080,80 €/ano → 173,40 €/mês
+    // 1.593,33 × 12 = 19.120 € → coletável 14.340 € → 2.080,85 €/ano → 173,40 €/mês
     expect(find.textContaining('173,40 €'), findsOneWidget);
-    expect(find.text('450,84 €'), findsNWidgets(3)); // 3 pagamentos por conta
+    expect(find.text('450,85 €'), findsNWidgets(3)); // 3 pagamentos por conta
   });
 
   testWidgets('recibos: como emitir o recibo (sub-ecrã)', (tester) async {

@@ -45,6 +45,14 @@ void main() {
     test('P07 o aviso continua na véspera útil do dia legal (sexta 18 para o domingo 20)', () {
       expect(avisoEm(DateTime(2026, 9, 20), f), DateTime(2026, 9, 18));
     });
+    test('P08 mudança de hora: 25/10/2026 (domingo, fim da hora de verão) → segunda 26/10 às 00:00, não às 23:00', () {
+      // Apanhado a 18/09/2026 pelo teste dos perfis: `add(Duration(days: 1))` num dia de 25 horas caía às 23:00.
+      final d = prazoEfetivo(DateTime(2026, 10, 25), f);
+      expect(d, DateTime(2026, 10, 26));
+      expect(d.hour, 0);
+      expect(somarDias(DateTime(2026, 3, 29), 1), DateTime(2026, 3, 30)); // início da hora de verão
+      expect(somarDias(DateTime(2026, 10, 26), -1), DateTime(2026, 10, 25));
+    });
   });
 
   group('Feriados 2026 e 2027 pelo Código do Trabalho, art. 234.º', () {

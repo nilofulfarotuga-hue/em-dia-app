@@ -138,7 +138,11 @@ export const prazoEfetivo = (prazo: Date, feriados: Feriados): Date => diaUtilSe
 export const TIPOS_COM_PRAZO_DO_ESTADO = new Set([
   'ss_declaracao', 'ss_pagamento', 'iva_declaracao', 'iva_pagamento', 'irs_entrega',
   'irs_pagamento_conta', 'efatura_validar', 'recibos_comunicar', 'iuc',
+  'dmr', 'saft', 'irc_modelo22', 'irc_pagamento_conta', 'ies', 'ss_empresa',
 ]);
+
+/** Lembretes (B3): aparecem na agenda mas nunca são «o que fazer agora» nem contam para o semáforo. */
+export const TIPOS_LEMBRETE = new Set(['subsidio_natal', 'faturas_nif']);
 
 /** Soma N dias úteis (multas: 15 dias úteis de pagamento voluntário). */
 export function somarDiasUteis(d: Date, dias: number, feriados: Feriados): Date {
@@ -635,6 +639,8 @@ export function estimarIuc(
 export type TipoAtividade = 'tvde' | 'estafeta' | 'servicos' | 'freelancer' | 'sem_atividade' | 'so_carro';
 export type RegimeIva = 'isento_53' | 'normal';
 
+export type TipoTrabalho = 'independente' | 'contrato' | 'ambos' | 'empresa';
+
 export interface PerfilObrigacoes {
   tipoAtividade: TipoAtividade;
   dataAbertura: Date | null;
@@ -646,6 +652,11 @@ export interface PerfilObrigacoes {
   imigrante: boolean;
   residenciaRenovaEm: Date | null;
   tvdeCertificadoValidade: Date | null;
+  // B3 — três perfis (espelho de lib/regras/obrigacoes.dart)
+  tipoTrabalho: TipoTrabalho;
+  salarioBrutoMensal: number | null;
+  empresaTipo: 'eni' | 'sociedade' | null;
+  ivaPeriodicidade: 'mensal' | 'trimestral' | null;
 }
 
 export function perfil(p: Partial<PerfilObrigacoes> & { tipoAtividade: TipoAtividade }): PerfilObrigacoes {
@@ -657,6 +668,10 @@ export function perfil(p: Partial<PerfilObrigacoes> & { tipoAtividade: TipoAtivi
     ajusteSsPct: 0,
     usaSoftwareFaturacao: false,
     imigrante: false,
+    tipoTrabalho: 'independente',
+    salarioBrutoMensal: null,
+    empresaTipo: null,
+    ivaPeriodicidade: null,
     residenciaRenovaEm: null,
     tvdeCertificadoValidade: null,
     ...p,
@@ -664,8 +679,13 @@ export function perfil(p: Partial<PerfilObrigacoes> & { tipoAtividade: TipoAtivi
 }
 
 export function temAtividade(p: PerfilObrigacoes): boolean {
-  return p.tipoAtividade !== 'sem_atividade' && p.tipoAtividade !== 'so_carro' && p.dataAbertura !== null;
+  const recibos = p.tipoTrabalho === 'independente' || p.tipoTrabalho === 'ambos';
+  return recibos && p.tipoAtividade !== 'sem_atividade' && p.tipoAtividade !== 'so_carro' && p.dataAbertura !== null;
 }
+export const temContrato = (p: PerfilObrigacoes): boolean => p.tipoTrabalho === 'contrato' || p.tipoTrabalho === 'ambos';
+export const temEmpresa = (p: PerfilObrigacoes): boolean => p.tipoTrabalho === 'empresa';
+export const ehSociedade = (p: PerfilObrigacoes): boolean => temEmpresa(p) && p.empresaTipo === 'sociedade';
+export const entregaIrs = (p: PerfilObrigacoes): boolean => temAtividade(p) || temContrato(p) || temEmpresa(p);
 
 export interface CarroObrigacoes {
   id: string;
@@ -762,6 +782,82 @@ export function gerarObrigacoes(
 
   const dentro = (d: Date): boolean => !antes(d, desde) && !depois(d, fim);
 
+  // ---------------- IVA (helpers partilhados pelo independente e pela empresa) ----------------
+  // Trimestral: T1 (jan–mar) → maio; T2 → SETEMBRO (CIVA art. 41.º n.º 10, DL 49/2025); T3 → novembro; T4 → fevereiro.
+  const ivaTrimestral = () => {
+    const diaDecl = Math.trunc(r.n('iva_declaracao_trimestral_dia'));
+    const diaPag = Math.trunc(r.n('iva_pagamento_dia'));
+    const mesT2 = Math.trunc(r.n('iva_trimestre2_mes'));
+    for (let a = ano(desde) - 1; a <= ano(fim); a++) {
+      for (const t of [1, 2, 3, 4]) {
+        const mesDecl = t === 2 ? mesT2 : t * 3 + 2; // 5, 9, 11, 14→2 do ano seguinte
+        const anoDecl = mesDecl > 12 ? a + 1 : a;
+        const m = mesDecl > 12 ? mesDecl - 12 : mesDecl;
+        const decl = dia(anoDecl, m, diaDecl);
+        const pag = dia(anoDecl, m, diaPag);
+        if (dentro(decl)) {
+          out.push(o({
+            tipo: 'iva_declaracao',
+            descricao: `Declaração de IVA do ${t}.º trimestre de ${a}.`,
+            prazo: decl,
+            regra: 'iva_declaracao_trimestral_dia',
+            comoPagar: 'Portal das Finanças → IVA → Entregar declaração periódica (ou o contabilista faz).',
+          }));
+        }
+        if (dentro(pag)) {
+          out.push(o({
+            tipo: 'iva_pagamento',
+            descricao: `Pagar o IVA do ${t}.º trimestre de ${a}.`,
+            prazo: pag,
+            regra: 'iva_pagamento_dia',
+            comoPagar: 'Depois de entregar a declaração, o Portal das Finanças dá a referência de pagamento. Paga na app do banco.',
+          }));
+        }
+      }
+    }
+  };
+  // Mensal (empresas): declaração do mês M até ao dia 20 do 2.º mês seguinte e pagamento até ao dia 25.
+  const ivaMensal = () => {
+    const diaDecl = Math.trunc(r.n('iva_mensal_declaracao_dia'));
+    const diaPag = Math.trunc(r.n('iva_pagamento_dia'));
+    let mesRef = adicionarMeses(dia(ano(desde), mes(desde), 1), -3);
+    while (!depois(mesRef, fim)) {
+      const alvo = adicionarMeses(mesRef, 2);
+      const decl = dia(ano(alvo), mes(alvo), diaDecl);
+      const pag = dia(ano(alvo), mes(alvo), diaPag);
+      if (dentro(decl)) {
+        out.push(o({
+          tipo: 'iva_declaracao',
+          descricao: `Declaração de IVA de ${nomeMes(mes(mesRef))} de ${ano(mesRef)} (regime mensal).`,
+          prazo: decl,
+          regra: 'iva_mensal_declaracao_dia',
+          comoPagar: 'Portal das Finanças → IVA → Entregar declaração periódica (normalmente é o contabilista que entrega).',
+        }));
+      }
+      if (dentro(pag)) {
+        out.push(o({
+          tipo: 'iva_pagamento',
+          descricao: `Pagar o IVA de ${nomeMes(mes(mesRef))} de ${ano(mesRef)}.`,
+          prazo: pag,
+          regra: 'iva_pagamento_dia',
+          comoPagar: 'Depois da declaração, o Portal das Finanças dá a referência. Paga na app do banco.',
+        }));
+      }
+      mesRef = adicionarMeses(mesRef, 1);
+    }
+  };
+  // Todos os meses, no dia `d`, com a descrição pelo mês anterior.
+  const mensal = (x: { tipo: string; dia: number; regra: string; descricao: (mesAnterior: Date) => string; comoPagar: string; valor?: number | null }) => {
+    let c = dia(ano(desde), mes(desde), 1);
+    while (!depois(c, fim)) {
+      const prazo = dia(ano(c), mes(c), x.dia);
+      if (dentro(prazo)) {
+        out.push(o({ tipo: x.tipo, descricao: x.descricao(adicionarMeses(c, -1)), prazo, regra: x.regra, comoPagar: x.comoPagar, valor: x.valor ?? null }));
+      }
+      c = adicionarMeses(c, 1);
+    }
+  };
+
   // ---------------- Segurança Social ----------------
   if (temAtividade(p)) {
     const abertura = p.dataAbertura!;
@@ -825,66 +921,10 @@ export function gerarObrigacoes(
     }
 
     // ---------------- IVA (regime normal, trimestral) ----------------
-    if (p.regimeIva === 'normal') {
-      const diaDecl = Math.trunc(r.n('iva_declaracao_trimestral_dia'));
-      const diaPag = Math.trunc(r.n('iva_pagamento_dia'));
-      // trimestres: T1 (jan–mar) → maio; T2 → SETEMBRO; T3 → novembro; T4 → fevereiro.
-      // O T2 não é agosto: CIVA art. 41.º n.º 10 (redação do DL 49/2025) manda entregar
-      // a declaração do 2.º trimestre «até 20 de setembro»; a AT põe o pagamento a 25 de
-      // setembro (quadro de pagamentos 2026). Regra `iva_trimestre2_mes` na tabela.
-      const mesT2 = Math.trunc(r.n('iva_trimestre2_mes'));
-      for (let a = ano(desde) - 1; a <= ano(fim); a++) {
-        for (const t of [1, 2, 3, 4]) {
-          const mesDecl = t === 2 ? mesT2 : t * 3 + 2; // 5, 9, 11, 14→2 do ano seguinte
-          const anoDecl = mesDecl > 12 ? a + 1 : a;
-          const m = mesDecl > 12 ? mesDecl - 12 : mesDecl;
-          const decl = dia(anoDecl, m, diaDecl);
-          const pag = dia(anoDecl, m, diaPag);
-          if (dentro(decl)) {
-            out.push(o({
-              tipo: 'iva_declaracao',
-              descricao: `Declaração de IVA do ${t}.º trimestre de ${a}.`,
-              prazo: decl,
-              regra: 'iva_declaracao_trimestral_dia',
-              comoPagar: 'Portal das Finanças → IVA → Entregar declaração periódica (ou o contabilista faz).',
-            }));
-          }
-          if (dentro(pag)) {
-            out.push(o({
-              tipo: 'iva_pagamento',
-              descricao: `Pagar o IVA do ${t}.º trimestre de ${a}.`,
-              prazo: pag,
-              regra: 'iva_pagamento_dia',
-              comoPagar: 'Depois de entregar a declaração, o Portal das Finanças dá a referência de pagamento. Paga na app do banco.',
-            }));
-          }
-        }
-      }
-    }
+    if (p.regimeIva === 'normal') ivaTrimestral();
 
-    // ---------------- IRS ----------------
+    // ---------------- IRS: pagamentos por conta (só faz sentido com estimativa de imposto) ----------------
     for (let a = ano(desde); a <= ano(fim); a++) {
-      const entrega = prazoEntregaIrs(a, r);
-      if (dentro(entrega)) {
-        out.push(o({
-          tipo: 'irs_entrega',
-          descricao: `Entregar a declaração de IRS do ano ${a - 1} (anexo B).`,
-          prazo: entrega,
-          regra: 'irs_entrega_fim',
-          comoPagar: 'Portal das Finanças → IRS → Entregar declaração. Começa a 1 de abril. Se tiveres dúvidas, um contabilista faz por pouco dinheiro.',
-        }));
-      }
-      const efatura = prazoValidarEfatura(a, r);
-      if (dentro(efatura)) {
-        out.push(o({
-          tipo: 'efatura_validar',
-          descricao: `Validar as faturas no e-fatura (as despesas com NIF de ${a - 1}).`,
-          prazo: efatura,
-          regra: 'efatura_validar_ate',
-          comoPagar: 'faturas.portaldasfinancas.gov.pt → Faturas → Consumidor → valida as que estão pendentes.',
-        }));
-      }
-      // pagamentos por conta (só faz sentido com estimativa de imposto)
       if (p.rendimentoMensalEstimado !== null) {
         const prov = calcularIrs(p.rendimentoMensalEstimado * 12, p.tipoRendimento, a, r);
         if (prov.pagamentoPorContaCada > 0) {
@@ -919,6 +959,138 @@ export function gerarObrigacoes(
           }));
         }
         c = adicionarMeses(c, 1);
+      }
+    }
+  }
+
+  // ---------------- IRS anual: entrega e e-fatura (recibos verdes, contrato e empresa) ----------------
+  if (entregaIrs(p)) {
+    for (let a = ano(desde); a <= ano(fim); a++) {
+      const entrega = prazoEntregaIrs(a, r);
+      if (dentro(entrega)) {
+        const anexo = temAtividade(p) && temContrato(p)
+          ? 'anexos A e B'
+          : temContrato(p)
+          ? 'anexo A'
+          : ehSociedade(p)
+          ? 'o teu IRS pessoal'
+          : 'anexo B';
+        out.push(o({
+          tipo: 'irs_entrega',
+          descricao: `Entregar a declaração de IRS do ano ${a - 1} (${anexo}).`,
+          prazo: entrega,
+          regra: 'irs_entrega_fim',
+          comoPagar: 'Portal das Finanças → IRS → Entregar declaração. Começa a 1 de abril. Se tiveres dúvidas, um contabilista faz por pouco dinheiro.',
+        }));
+      }
+      const efatura = prazoValidarEfatura(a, r);
+      if (dentro(efatura)) {
+        out.push(o({
+          tipo: 'efatura_validar',
+          descricao: `Validar as faturas no e-fatura (as despesas com NIF de ${a - 1}).`,
+          prazo: efatura,
+          regra: 'efatura_validar_ate',
+          comoPagar: 'faturas.portaldasfinancas.gov.pt → Faturas → Consumidor → valida as que estão pendentes.',
+        }));
+      }
+    }
+  }
+
+  // ---------------- Contrato (trabalho por conta de outrem) ----------------
+  if (temContrato(p)) {
+    const [mN, dN] = r.txt('subsidio_natal_ate').split('-').map(Number);
+    for (let a = ano(desde); a <= ano(fim); a++) {
+      const d = dia(a, mN, dN);
+      if (dentro(d)) {
+        out.push(o({
+          tipo: 'subsidio_natal',
+          descricao: 'Recebes o subsídio de Natal (um mês de salário) até 15 de dezembro.',
+          prazo: d,
+          valor: p.salarioBrutoMensal,
+          regra: 'subsidio_natal_ate',
+          comoPagar: 'Não pagas nada — é para RECEBER. Se não vier até dia 15, fala com a entidade patronal; se não resolver, com a ACT (act.gov.pt).',
+        }));
+      }
+    }
+    let c = dia(ano(desde), mes(desde), 1);
+    while (!depois(c, fim)) {
+      const prazo = dia(ano(c), mes(c), ultimoDiaDoMes(ano(c), mes(c)));
+      if (dentro(prazo)) {
+        out.push(o({
+          tipo: 'faturas_nif',
+          descricao: 'Pediste fatura com NIF este mês? Saúde, escola, casa, oficina, restaurantes: vale desconto no IRS.',
+          prazo,
+          regra: 'deducoes_irs',
+          comoPagar: 'Nada a pagar. É só um hábito: sempre que pagares, diz o teu NIF. Em fevereiro vês tudo em faturas.portaldasfinancas.gov.pt.',
+        }));
+      }
+      c = adicionarMeses(c, 1);
+    }
+  }
+
+  // ---------------- Empresa (ENI ou sociedade) — só CALENDÁRIO, com fonte ----------------
+  if (temEmpresa(p)) {
+    if (p.ivaPeriodicidade === 'mensal') ivaMensal();
+    else ivaTrimestral();
+    mensal({
+      tipo: 'saft',
+      dia: Math.trunc(r.n('saft_dia')),
+      regra: 'saft_dia',
+      descricao: (m) => `Comunicar às Finanças as faturas de ${nomeMes(mes(m))} (ficheiro SAF-T).`,
+      comoPagar: 'O programa de faturação envia o SAF-T; confirma no Portal das Finanças → e-fatura → Comunicação. Normalmente o contabilista trata.',
+    });
+    mensal({
+      tipo: 'dmr',
+      dia: Math.trunc(r.n('dmr_dia')),
+      regra: 'dmr_dia',
+      descricao: (m) => `Declaração Mensal de Remunerações (salários de ${nomeMes(mes(m))}) às Finanças e à Segurança Social.`,
+      comoPagar: 'Portal das Finanças → DMR (e a DRI na Segurança Social Direta). Se tens contabilista, é ele que entrega.',
+    });
+    mensal({
+      tipo: 'ss_empresa',
+      dia: Math.trunc(r.n('ss_empregador_pagamento_dia_fim')),
+      regra: 'ss_empregador_pagamento_dia_fim',
+      descricao: (m) => `Pagar à Segurança Social as contribuições dos salários de ${nomeMes(mes(m))} (trabalhadores e gerência).`,
+      comoPagar: 'Segurança Social Direta → Conta-corrente → Pagamentos. Entre o dia 1 e o dia 25 do mês seguinte.',
+    });
+    if (ehSociedade(p)) {
+      const [m22, d22] = r.txt('irc_modelo22_data').split('-').map(Number);
+      const [mIes, dIes] = r.txt('ies_data').split('-').map(Number);
+      const pcs = (r.json('irc_pagamentos_conta_datas') as string[]) ?? [];
+      for (let a = ano(desde); a <= ano(fim); a++) {
+        const dm22 = dia(a, m22, d22);
+        if (dentro(dm22)) {
+          out.push(o({
+            tipo: 'irc_modelo22',
+            descricao: `Modelo 22 (IRC) da empresa, do ano ${a - 1}, e pagar o imposto que faltar.`,
+            prazo: dm22,
+            regra: 'irc_modelo22_data',
+            comoPagar: 'É o contabilista que entrega (Portal das Finanças → IRC → Modelo 22). Confirma com ele em abril.',
+          }));
+        }
+        const di = dia(a, mIes, dIes);
+        if (dentro(di)) {
+          out.push(o({
+            tipo: 'ies',
+            descricao: `IES (Informação Empresarial Simplificada) do ano ${a - 1}.`,
+            prazo: di,
+            regra: 'ies_data',
+            comoPagar: 'É o contabilista que entrega no Portal das Finanças. Tem custo de registo (taxa da conservatória) — confirma com ele.',
+          }));
+        }
+        for (const mmdd of pcs) {
+          const [mp, dp] = mmdd.split('-').map(Number);
+          const dPc = dia(a, mp, dp);
+          if (dentro(dPc)) {
+            out.push(o({
+              tipo: 'irc_pagamento_conta',
+              descricao: `Pagamento por conta de IRC (${nomeMes(mes(dPc))}).`,
+              prazo: dPc,
+              regra: 'irc_pagamentos_conta_datas',
+              comoPagar: 'Só se a empresa teve IRC a pagar no ano anterior. O contabilista diz-te o valor; paga-se no Portal das Finanças.',
+            }));
+          }
+        }
       }
     }
   }
@@ -1029,6 +1201,10 @@ export function perfilDeLinha(p: Record<string, any>): PerfilObrigacoes {
     imigrante: Boolean(p.imigrante ?? false),
     residenciaRenovaEm: p.residencia_renova_em ? lerDia(String(p.residencia_renova_em)) : null,
     tvdeCertificadoValidade: p.tvde_certificado_validade ? lerDia(String(p.tvde_certificado_validade)) : null,
+    tipoTrabalho: (['independente', 'contrato', 'ambos', 'empresa'].includes(String(p.tipo_trabalho)) ? p.tipo_trabalho : 'independente') as TipoTrabalho,
+    salarioBrutoMensal: p.salario_bruto_mensal === null || p.salario_bruto_mensal === undefined ? null : Number(p.salario_bruto_mensal),
+    empresaTipo: p.empresa_tipo === 'eni' || p.empresa_tipo === 'sociedade' ? p.empresa_tipo : null,
+    ivaPeriodicidade: p.iva_periodicidade === 'mensal' || p.iva_periodicidade === 'trimestral' ? p.iva_periodicidade : null,
   });
 }
 
