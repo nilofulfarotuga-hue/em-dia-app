@@ -34,8 +34,8 @@ $env:CLAUDE_CONFIG_DIR = 'C:\Users\danil\.claude'
 L ("arranque (origem: {0})" -f $(if ($args.Count -gt 0) { $args -join ' ' } else { 'agendador' }))
 
 # 1. missão concluída → desligar-se
-if ((Test-Path $Marcos) -and (Select-String -Path $Marcos -Pattern '^MISSAO-CONCLUIDA em-dia-tudo-2026-09-17' -Quiet)) {
-  L 'MISSAO-CONCLUIDA em-dia-tudo-2026-09-17 encontrada: apago a tarefa EmDia-Retomar e saio'
+if ((Test-Path $Marcos) -and (Select-String -Path $Marcos -Pattern '^MISSAO-CONCLUIDA em-dia-vender-2026-09-18' -Quiet)) {
+  L 'MISSAO-CONCLUIDA em-dia-vender-2026-09-18 encontrada: apago a tarefa EmDia-Retomar e saio'
   try { Unregister-ScheduledTask -TaskName 'EmDia-Retomar' -Confirm:$false -ErrorAction Stop; L 'tarefa apagada' } catch { L ("nao consegui apagar a tarefa: " + $_.Exception.Message) }
   exit 0
 }
@@ -126,7 +126,7 @@ $pull = (git pull --rebase --autostash origin main 2>&1 | Out-String).Trim()
 L ("git pull: " + ($pull -replace "`r?`n", ' | '))
 
 # 6. lançar a retoma
-$prompt = 'Le docs/MARCOS.md (seccao em-dia-tudo-2026-09-17) e continua do PROXIMO. Modo noite: nunca pares a espera de resposta; regista marcos em docs/MARCOS.md; renova docs/.sessao-viva. Sem browser nesta retoma.'
+$prompt = 'Le docs/MARCOS.md (seccao em-dia-vender-2026-09-18) e continua do PROXIMO. Modo noite: nunca pares a espera de resposta; regista marcos em docs/MARCOS.md; renova docs/.sessao-viva. Sem browser nesta retoma.'
 $carimbo = Get-Date -Format 'yyyyMMdd-HHmmss'
 $saida = Join-Path $Docs ("vigia-retoma-{0}.log" -f $carimbo)
 $erro  = Join-Path $Docs ("vigia-retoma-{0}.err" -f $carimbo)

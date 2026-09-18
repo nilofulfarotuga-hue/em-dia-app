@@ -15,7 +15,7 @@ $LogB       = Join-Path $Repo 'docs\batimento.log'
 
 "[{0}] batimento arrancou pid={1}" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $PID | Out-File -Append -Encoding utf8 $LogB
 while ($true) {
-  if ((Test-Path $Marcos) -and (Select-String -Path $Marcos -Pattern '^MISSAO-CONCLUIDA em-dia-tudo-2026-09-17' -Quiet)) {
+  if ((Test-Path $Marcos) -and (Select-String -Path $Marcos -Pattern '^MISSAO-CONCLUIDA em-dia-vender-2026-09-18' -Quiet)) {
     "[{0}] MISSAO-CONCLUIDA: batimento termina" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') | Out-File -Append -Encoding utf8 $LogB
     break
   }
