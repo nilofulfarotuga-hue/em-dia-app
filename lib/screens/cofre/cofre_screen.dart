@@ -189,6 +189,27 @@ class _CofreScreenState extends State<CofreScreen> {
                 saldo: saldo,
                 conta: conta,
                 aoEscreverPrimeira: widget.aoEscreverPrimeira,
+                proximoMes: nomeMes(adicionarMeses(_hoje, 1).month),
+              ),
+              const SizedBox(height: 12),
+              // B2d (2026-09-18): o cofre automático — por cada rendimento que
+              // entra, a fatia para o Estado fica apontada sozinha. Aqui é onde
+              // se desliga.
+              Cartao(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                // O ListTile pinta a tinta no Material mais próximo: sem este,
+                // o cartão (que tem cor) escondia-a e o Flutter avisava.
+                child: Material(
+                  color: Colors.transparent,
+                  child: SwitchListTile(
+                    key: const Key('cofre_automatico'),
+                    value: perfil?.cofreAutomatico ?? true,
+                    onChanged: perfil == null ? null : (v) => context.read<PerfilStore>().guardar(perfil.copyWith(cofreAutomatico: v)),
+                    title: Text(l.cofreAutoTitulo, style: Theme.of(context).textTheme.titleSmall),
+                    subtitle: Text(l.cofreAutoAjuda, style: Theme.of(context).textTheme.bodySmall),
+                    activeThumbColor: AppColors.primary,
+                  ),
+                ),
               ),
 
               // 3. Os dois botões, à vista sem rolar o ecrã.
@@ -266,10 +287,14 @@ class _CartaoDoCofre extends StatelessWidget {
   final double saldo;
   final ContaDoCofre conta;
   final VoidCallback? aoEscreverPrimeira;
+
+  /// O mês do próximo pagamento à Segurança Social («… que vais precisar em outubro»).
+  final String proximoMes;
   const _CartaoDoCofre({
     required this.saldo,
     required this.conta,
     this.aoEscreverPrimeira,
+    required this.proximoMes,
   });
 
   @override
@@ -336,7 +361,13 @@ class _CartaoDoCofre extends StatelessWidget {
         children: [
           _Saldo(saldo: saldo),
           const SizedBox(height: 8),
-          LinhaValor(l.cofreDeviasTerNome, moeda(conta.total)),
+          // «Já tens X guardado dos Y que vais precisar em [mês]» (B2d).
+          Text(
+            conta.temIsencaoSs && conta.mesesDeSs == 0
+                ? l.cofreJaTensIrs(moeda(saldo), moeda(conta.total))
+                : l.cofreJaTens(moeda(saldo), moeda(conta.total), proximoMes),
+            style: t.titleSmall,
+          ),
           const SizedBox(height: 8),
           // A ÚNICA cor forte do ecrã. É aqui que mora o laranja, quando ele
           // aparece — e é por isso que mais nada neste ecrã pode ser laranja.

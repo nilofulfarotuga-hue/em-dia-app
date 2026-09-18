@@ -4,6 +4,7 @@
 library;
 
 export 'carro.dart';
+export 'cofre_automatico.dart';
 export 'datas.dart';
 export 'formatos.dart';
 export 'irs.dart';

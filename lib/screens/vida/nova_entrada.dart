@@ -10,6 +10,8 @@ import '../../services/fala.dart';
 import '../../services/leitor_documento.dart';
 import '../../stores/entradas_store.dart';
 import '../../stores/perfil_store.dart';
+import '../../stores/cofre_store.dart';
+import '../../stores/regras_store.dart';
 import '../../widgets/widgets.dart';
 import '../carro/widgets_carro.dart' show CampoData, Interruptor;
 import '../recibos/recibos_widgets.dart' show ChipEscolha, NotaInfo;
@@ -26,6 +28,9 @@ Future<bool?> mostrarNovaEntrada(
 }) {
   final entradas = context.read<EntradasStore>();
   final perfil = context.read<PerfilStore>();
+  // O cofre automático precisa do cofre e das regras (B2d).
+  final cofre = context.read<CofreStore>();
+  final regras = context.read<RegrasStore>();
   return showModalBottomSheet<bool>(
     context: context,
     isScrollControlled: true,
@@ -35,6 +40,8 @@ Future<bool?> mostrarNovaEntrada(
       providers: [
         ChangeNotifierProvider<EntradasStore>.value(value: entradas),
         ChangeNotifierProvider<PerfilStore>.value(value: perfil),
+        ChangeNotifierProvider<CofreStore>.value(value: cofre),
+        ChangeNotifierProvider<RegrasStore>.value(value: regras),
         // A voz é uma só em toda a app (o botão de ouvir a explicação do IRS).
         ChangeNotifierProvider<Fala>.value(value: Fala.instancia),
       ],
@@ -115,7 +122,7 @@ class _NovaEntradaState extends State<NovaEntrada> {
     });
     final descricao = _descricao.text.trim();
     final km = int.tryParse(_km.text.trim().replaceAll(' ', ''));
-    final ok = await context.read<EntradasStore>().guardar(Entrada(
+    final gravada = await context.read<EntradasStore>().guardarEDevolver(Entrada(
           id: '',
           userId: widget.userId,
           data: _data,
@@ -129,13 +136,35 @@ class _NovaEntradaState extends State<NovaEntrada> {
           leituraOcrId: _leituraId,
         ));
     if (!mounted) return;
-    if (!ok) {
+    if (gravada == null) {
       setState(() {
         _aGuardar = false;
         _erro = l.vidaErroGuardar;
       });
       return;
     }
+    // Cofre automático (B2d): a fatia para o Estado fica logo apontada.
+    // Só para rendimento novo que conta para o IRS e com o interruptor ligado.
+    final perfil = context.read<PerfilStore>().perfil;
+    if (gravada.contaParaIrs && (perfil?.cofreAutomatico ?? true)) {
+      final cofre = context.read<CofreStore>();
+      final regras = context.read<RegrasStore>().regras;
+      final guardou = await cofre.reservarPorEntrada(
+        userId: widget.userId,
+        entradaId: gravada.id,
+        valor: gravada.valor,
+        data: gravada.data,
+        tipo: perfil?.tipoRendimento ?? TipoRendimento.servicos,
+        rendimentoAnualEstimado: perfil?.rendimentoMensalEstimado == null ? null : perfil!.rendimentoMensalEstimado! * 12,
+        dataAbertura: perfil?.dataAbertura,
+        regras: regras,
+      );
+      if (!mounted) return;
+      if (guardou > 0) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l.cofreAutoGuardei(moeda(guardou)))));
+      }
+    }
+    if (!mounted) return;
     Navigator.of(context).pop(true);
   }
 

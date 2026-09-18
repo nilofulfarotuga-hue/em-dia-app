@@ -2168,6 +2168,41 @@
   "@cofreBotaoPor": {
     "description": "Botao de por dinheiro de lado. UMA palavra: \"Pus de lado\" partia em duas linhas dentro do botao a 390 px (fabrica de fotos, cofre_folha_medio_pt)."
   },
+  "cofreJaTens": "Já tens {saldo} guardado dos {total} que vais precisar este ano (o próximo pagamento à Segurança Social é em {mes}).",
+  "@cofreJaTens": {
+    "placeholders": {
+      "saldo": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      },
+      "mes": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreJaTensIrs": "Já tens {saldo} guardado dos {total} que vais precisar para o IRS do ano que vem.",
+  "@cofreJaTensIrs": {
+    "placeholders": {
+      "saldo": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "cofreAutoTitulo": "Guardar sozinho a fatia do imposto",
+  "cofreAutoAjuda": "Por cada rendimento que escreves, aponto aqui a parte para a Segurança Social e o IRS. Nunca mexo em dinheiro — é só contabilidade.",
+  "cofreAutoGuardei": "Pus de lado {valor} para o Estado (cofre).",
+  "@cofreAutoGuardei": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
   "falaTitulo": "Fala comigo",
   "falaSubtitulo": "Não precisas de escrever nada. Carrega no botão, fala como falas com uma pessoa, e eu respondo por escrito e em voz alta.",
   "falaCarregaEFala": "Carrega no botão e fala. Larga quando acabares.",
@@ -2628,6 +2663,128 @@
   "refValor": "Valor",
   "refCopiar": "Copiar",
   "refCopiado": "Copiado. Cola no multibanco ou na app do banco.",
+  "importarTitulo": "Importar o extrato do banco",
+  "importarExplica": "Vai à app do teu banco, exporta os movimentos (CSV ou Excel) e escolhe aqui o ficheiro. Eu leio o que entrou e o que saiu, ponho cada coisa na gaveta certa e descubro o que se repete todos os meses.",
+  "importarComoExportar": "Todos os bancos deixam exportar: na app ou no site, em Movimentos, procura «Exportar» ou «Guardar como CSV/Excel». Nada sai do teu telemóvel sem carregares em Guardar.",
+  "importarEscolher": "Escolher o ficheiro do banco",
+  "importarEscolherOutro": "Escolher outro ficheiro",
+  "importarErroAbrir": "Não consegui abrir o ficheiro. Tenta outra vez.",
+  "importarErroVazio": "Não encontrei movimentos neste ficheiro.",
+  "importarErroPdf": "O PDF não dá para ler aqui. No banco, exporta em CSV ou Excel (todos deixam) e escolhe esse ficheiro.",
+  "importarErroCabecalho": "Não reconheci as colunas deste ficheiro (procuro Data, Descrição e Valor ou Débito/Crédito). Exporta outra vez em CSV ou Excel a partir do banco.",
+  "importarErroExcel": "Não consegui ler este Excel. Tenta exportar em CSV.",
+  "importarOQueLi": "O que li em {ficheiro}",
+  "@importarOQueLi": {
+    "placeholders": {
+      "ficheiro": {
+        "type": "String"
+      }
+    }
+  },
+  "importarFicheiro": "o ficheiro",
+  "importarLinhasLidas": "Movimentos lidos",
+  "importarEntrou": "Entrou",
+  "importarSaiu": "Saiu",
+  "importarBanco": "Banco",
+  "importarRepetem": "{n, plural, =1{1 coisa que se repete} other{{n} coisas que se repetem}}",
+  "@importarRepetem": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "importarIgnoradas": "Linhas que não percebi",
+  "importarPrivacidade": "O ficheiro fica no teu telemóvel. Só guardo cada linha já arrumada.",
+  "importarGuardarBotao": "{n, plural, =1{Guardar 1 movimento} other{Guardar {n} movimentos}}",
+  "@importarGuardarBotao": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "importarMovimentos": "Movimento a movimento",
+  "importarMaisLinhas": "… e mais {n}. Guardo todos.",
+  "@importarMaisLinhas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "importarRepeteSe": "repete-se",
+  "importarGuardado": "Guardei {novas} movimentos novos ({repetidas} já cá estavam).",
+  "@importarGuardado": {
+    "placeholders": {
+      "novas": {
+        "type": "int"
+      },
+      "repetidas": {
+        "type": "int"
+      }
+    }
+  },
+  "importarGuardadoNada": "Já tinha todos estes movimentos ({repetidas}). Nada novo.",
+  "@importarGuardadoNada": {
+    "placeholders": {
+      "repetidas": {
+        "type": "int"
+      }
+    }
+  },
+  "importarCatRendimento": "Trabalho",
+  "importarCatEntrada": "Entrou",
+  "recorrentesTitulo": "Coisas que se repetem",
+  "recorrentesVerBotao": "Ver o que se repete todos os meses",
+  "recorrentesVazio": "Ainda não importaste nenhum extrato. É com ele que descubro o que pagas todos os meses sem dares conta.",
+  "recorrentesNenhuma": "Não encontrei nada que se repita.",
+  "recorrentesTotal": "Pagas {valor} por mês em coisas que se repetem",
+  "@recorrentesTotal": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "recorrentesExplica": "É o mesmo nome, mais ou menos o mesmo valor, em meses diferentes: assinaturas, telemóvel, ginásio, débitos diretos. Vê o que ainda usas — e o que podes cancelar.",
+  "recorrentesVezes": "{vezes} vezes, por volta do dia {dia}",
+  "@recorrentesVezes": {
+    "placeholders": {
+      "vezes": {
+        "type": "int"
+      },
+      "dia": {
+        "type": "int"
+      }
+    }
+  },
+  "recorrentesComoCancelar": "Como cancelar",
+  "recorrentesAvisar": "Avisa-me antes",
+  "recorrentesJaEhConta": "Já te aviso",
+  "recorrentesContaCriada": "Feito: passa a ser uma conta tua e aviso-te um dia antes de sair.",
+  "recorrentesNotaConta": "Criada a partir do extrato do banco.",
+  "recorrentesSemOperador": "Não conheço este serviço. Procura na fatura ou no site a área de cliente e pede o cancelamento por escrito; guarda a resposta.",
+  "recorrentesAbrirPagina": "Abrir a página de {nome}",
+  "@recorrentesAbrirPagina": {
+    "placeholders": {
+      "nome": {
+        "type": "String"
+      }
+    }
+  },
+  "recorrentesTelefone": "Ou liga: {telefone}",
+  "@recorrentesTelefone": {
+    "placeholders": {
+      "telefone": {
+        "type": "String"
+      }
+    }
+  },
+  "sobraImportarTitulo": "O dinheiro entra sozinho",
+  "sobraImportarTexto": "Importa o extrato do banco e eu descubro o que entrou, o que saiu e o que se repete.",
+  "sobraImportarBotao": "Importar extrato",
+  "sobraRecorrentesBotao": "Coisas que se repetem",
   "vidaNav": "A minha vida",
   "vidaTitulo": "A minha vida",
   "vidaAbaEntra": "Entra",

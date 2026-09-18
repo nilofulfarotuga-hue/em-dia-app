@@ -5958,6 +5958,36 @@ abstract class AppLocalizations {
   /// **'Apontado.'**
   String get cofreGuardado;
 
+  /// No description provided for @cofreJaTens.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já tens {saldo} guardado dos {total} que vais precisar este ano (o próximo pagamento à Segurança Social é em {mes}).'**
+  String cofreJaTens(String saldo, String total, String mes);
+
+  /// No description provided for @cofreJaTensIrs.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já tens {saldo} guardado dos {total} que vais precisar para o IRS do ano que vem.'**
+  String cofreJaTensIrs(String saldo, String total);
+
+  /// No description provided for @cofreAutoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardar sozinho a fatia do imposto'**
+  String get cofreAutoTitulo;
+
+  /// No description provided for @cofreAutoAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Por cada rendimento que escreves, aponto aqui a parte para a Segurança Social e o IRS. Nunca mexo em dinheiro — é só contabilidade.'**
+  String get cofreAutoAjuda;
+
+  /// No description provided for @cofreAutoGuardei.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pus de lado {valor} para o Estado (cofre).'**
+  String cofreAutoGuardei(String valor);
+
   /// No description provided for @falaTitulo.
   ///
   /// In pt, this message translates to:
@@ -7373,6 +7403,282 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Copiado. Cola no multibanco ou na app do banco.'**
   String get refCopiado;
+
+  /// No description provided for @importarTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Importar o extrato do banco'**
+  String get importarTitulo;
+
+  /// No description provided for @importarExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vai à app do teu banco, exporta os movimentos (CSV ou Excel) e escolhe aqui o ficheiro. Eu leio o que entrou e o que saiu, ponho cada coisa na gaveta certa e descubro o que se repete todos os meses.'**
+  String get importarExplica;
+
+  /// No description provided for @importarComoExportar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Todos os bancos deixam exportar: na app ou no site, em Movimentos, procura «Exportar» ou «Guardar como CSV/Excel». Nada sai do teu telemóvel sem carregares em Guardar.'**
+  String get importarComoExportar;
+
+  /// No description provided for @importarEscolher.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolher o ficheiro do banco'**
+  String get importarEscolher;
+
+  /// No description provided for @importarEscolherOutro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolher outro ficheiro'**
+  String get importarEscolherOutro;
+
+  /// No description provided for @importarErroAbrir.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui abrir o ficheiro. Tenta outra vez.'**
+  String get importarErroAbrir;
+
+  /// No description provided for @importarErroVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não encontrei movimentos neste ficheiro.'**
+  String get importarErroVazio;
+
+  /// No description provided for @importarErroPdf.
+  ///
+  /// In pt, this message translates to:
+  /// **'O PDF não dá para ler aqui. No banco, exporta em CSV ou Excel (todos deixam) e escolhe esse ficheiro.'**
+  String get importarErroPdf;
+
+  /// No description provided for @importarErroCabecalho.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não reconheci as colunas deste ficheiro (procuro Data, Descrição e Valor ou Débito/Crédito). Exporta outra vez em CSV ou Excel a partir do banco.'**
+  String get importarErroCabecalho;
+
+  /// No description provided for @importarErroExcel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui ler este Excel. Tenta exportar em CSV.'**
+  String get importarErroExcel;
+
+  /// No description provided for @importarOQueLi.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que li em {ficheiro}'**
+  String importarOQueLi(String ficheiro);
+
+  /// No description provided for @importarFicheiro.
+  ///
+  /// In pt, this message translates to:
+  /// **'o ficheiro'**
+  String get importarFicheiro;
+
+  /// No description provided for @importarLinhasLidas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Movimentos lidos'**
+  String get importarLinhasLidas;
+
+  /// No description provided for @importarEntrou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrou'**
+  String get importarEntrou;
+
+  /// No description provided for @importarSaiu.
+  ///
+  /// In pt, this message translates to:
+  /// **'Saiu'**
+  String get importarSaiu;
+
+  /// No description provided for @importarBanco.
+  ///
+  /// In pt, this message translates to:
+  /// **'Banco'**
+  String get importarBanco;
+
+  /// No description provided for @importarRepetem.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =1{1 coisa que se repete} other{{n} coisas que se repetem}}'**
+  String importarRepetem(int n);
+
+  /// No description provided for @importarIgnoradas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Linhas que não percebi'**
+  String get importarIgnoradas;
+
+  /// No description provided for @importarPrivacidade.
+  ///
+  /// In pt, this message translates to:
+  /// **'O ficheiro fica no teu telemóvel. Só guardo cada linha já arrumada.'**
+  String get importarPrivacidade;
+
+  /// No description provided for @importarGuardarBotao.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n, plural, =1{Guardar 1 movimento} other{Guardar {n} movimentos}}'**
+  String importarGuardarBotao(int n);
+
+  /// No description provided for @importarMovimentos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Movimento a movimento'**
+  String get importarMovimentos;
+
+  /// No description provided for @importarMaisLinhas.
+  ///
+  /// In pt, this message translates to:
+  /// **'… e mais {n}. Guardo todos.'**
+  String importarMaisLinhas(int n);
+
+  /// No description provided for @importarRepeteSe.
+  ///
+  /// In pt, this message translates to:
+  /// **'repete-se'**
+  String get importarRepeteSe;
+
+  /// No description provided for @importarGuardado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Guardei {novas} movimentos novos ({repetidas} já cá estavam).'**
+  String importarGuardado(int novas, int repetidas);
+
+  /// No description provided for @importarGuardadoNada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já tinha todos estes movimentos ({repetidas}). Nada novo.'**
+  String importarGuardadoNada(int repetidas);
+
+  /// No description provided for @importarCatRendimento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Trabalho'**
+  String get importarCatRendimento;
+
+  /// No description provided for @importarCatEntrada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrou'**
+  String get importarCatEntrada;
+
+  /// No description provided for @recorrentesTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Coisas que se repetem'**
+  String get recorrentesTitulo;
+
+  /// No description provided for @recorrentesVerBotao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver o que se repete todos os meses'**
+  String get recorrentesVerBotao;
+
+  /// No description provided for @recorrentesVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não importaste nenhum extrato. É com ele que descubro o que pagas todos os meses sem dares conta.'**
+  String get recorrentesVazio;
+
+  /// No description provided for @recorrentesNenhuma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não encontrei nada que se repita.'**
+  String get recorrentesNenhuma;
+
+  /// No description provided for @recorrentesTotal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagas {valor} por mês em coisas que se repetem'**
+  String recorrentesTotal(String valor);
+
+  /// No description provided for @recorrentesExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'É o mesmo nome, mais ou menos o mesmo valor, em meses diferentes: assinaturas, telemóvel, ginásio, débitos diretos. Vê o que ainda usas — e o que podes cancelar.'**
+  String get recorrentesExplica;
+
+  /// No description provided for @recorrentesVezes.
+  ///
+  /// In pt, this message translates to:
+  /// **'{vezes} vezes, por volta do dia {dia}'**
+  String recorrentesVezes(int vezes, int dia);
+
+  /// No description provided for @recorrentesComoCancelar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Como cancelar'**
+  String get recorrentesComoCancelar;
+
+  /// No description provided for @recorrentesAvisar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avisa-me antes'**
+  String get recorrentesAvisar;
+
+  /// No description provided for @recorrentesJaEhConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já te aviso'**
+  String get recorrentesJaEhConta;
+
+  /// No description provided for @recorrentesContaCriada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Feito: passa a ser uma conta tua e aviso-te um dia antes de sair.'**
+  String get recorrentesContaCriada;
+
+  /// No description provided for @recorrentesNotaConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Criada a partir do extrato do banco.'**
+  String get recorrentesNotaConta;
+
+  /// No description provided for @recorrentesSemOperador.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não conheço este serviço. Procura na fatura ou no site a área de cliente e pede o cancelamento por escrito; guarda a resposta.'**
+  String get recorrentesSemOperador;
+
+  /// No description provided for @recorrentesAbrirPagina.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir a página de {nome}'**
+  String recorrentesAbrirPagina(String nome);
+
+  /// No description provided for @recorrentesTelefone.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ou liga: {telefone}'**
+  String recorrentesTelefone(String telefone);
+
+  /// No description provided for @sobraImportarTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O dinheiro entra sozinho'**
+  String get sobraImportarTitulo;
+
+  /// No description provided for @sobraImportarTexto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Importa o extrato do banco e eu descubro o que entrou, o que saiu e o que se repete.'**
+  String get sobraImportarTexto;
+
+  /// No description provided for @sobraImportarBotao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Importar extrato'**
+  String get sobraImportarBotao;
+
+  /// No description provided for @sobraRecorrentesBotao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Coisas que se repetem'**
+  String get sobraRecorrentesBotao;
 
   /// No description provided for @vidaNav.
   ///

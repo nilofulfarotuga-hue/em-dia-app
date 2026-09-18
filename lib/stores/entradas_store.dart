@@ -61,15 +61,19 @@ class EntradasStore extends ChangeNotifier {
     await carregar(userId);
   }
 
-  Future<bool> guardar(Entrada e) async {
+  Future<bool> guardar(Entrada e) async => (await guardarEDevolver(e)) != null;
+
+  /// Grava e devolve a entrada como ficou no servidor (com o id): é dele que
+  /// o cofre automático precisa para ligar a fatia guardada a este rendimento.
+  Future<Entrada? > guardarEDevolver(Entrada e) async {
     try {
-      await sb.from('entradas').upsert(e.toMap());
+      final m = await sb.from('entradas').upsert(e.toMap()).select().single();
       await carregar(e.userId);
-      return true;
+      return Entrada.fromMap(Map<String, dynamic>.from(m));
     } catch (erro) {
       _erro = erro.toString();
       notifyListeners();
-      return false;
+      return null;
     }
   }
 

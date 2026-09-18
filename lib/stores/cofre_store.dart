@@ -125,6 +125,41 @@ class CofreStore extends ChangeNotifier {
 
   /// Aponta um movimento novo. Devolve `false` se o servidor recusar — e nesse
   /// caso nada fica na lista, para o número de cima não mentir.
+  /// O cofre automático (B2d): por cada rendimento gravado, aponta sozinho a
+  /// fatia para o Estado (SS + IRS estimado), ligada à entrada. Não repete se
+  /// já houver uma linha para essa entrada. Devolve o que apontou (0 = nada).
+  Future<double> reservarPorEntrada({
+    required String userId,
+    required String entradaId,
+    required double valor,
+    required DateTime data,
+    required TipoRendimento tipo,
+    double? rendimentoAnualEstimado,
+    DateTime? dataAbertura,
+    required RegrasLegais regras,
+  }) async {
+    if (_movimentos.any((m) => m.entradaId == entradaId)) return 0;
+    final fatia = fatiaParaOCofre(
+      valor: valor,
+      data: data,
+      tipo: tipo,
+      rendimentoAnualEstimado: rendimentoAnualEstimado,
+      dataAbertura: dataAbertura,
+      regras: regras,
+    );
+    if (fatia.total <= 0) return 0;
+    final ok = await apontar(CofreMovimento(
+      id: '',
+      userId: userId,
+      data: data,
+      valor: fatia.total,
+      motivo: 'guardar',
+      entradaId: entradaId,
+      nota: 'auto',
+    ));
+    return ok ? fatia.total : 0;
+  }
+
   Future<bool> apontar(CofreMovimento m) async {
     try {
       // `insert` e não `upsert`: cada anotação é uma linha nova. O `toMap`

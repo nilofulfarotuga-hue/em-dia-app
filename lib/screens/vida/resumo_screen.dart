@@ -9,6 +9,8 @@ import '../../regras/regras.dart';
 import '../../stores/resumo_store.dart';
 import '../../stores/sessao_store.dart';
 import '../../widgets/widgets.dart';
+import 'importar_extrato_screen.dart';
+import 'recorrentes_screen.dart';
 
 /// Tela "Como está o meu mês" — o resumo do mês e do ano.
 ///
@@ -109,6 +111,8 @@ class _ResumoScreenState extends State<ResumoScreen> {
                         aoTocar: widget.aoEscreverPrimeira,
                       ),
               ),
+              const SizedBox(height: 16),
+              _CartaoBanco(),
             ] else ...[
               // Houve rede antes e falhou agora: mostra-se o aviso mas
               // guardam-se os números de há um minuto. Ecrã preso, nunca.
@@ -119,6 +123,10 @@ class _ResumoScreenState extends State<ResumoScreen> {
                 const SizedBox(height: 16),
               ],
               if (store.mes != null) ..._blocoMes(l, store.mes!),
+              const SizedBox(height: 8),
+              // B2a/B2c (2026-09-18): o dinheiro entra sozinho — importar o
+              // extrato do banco e ver o que se repete todos os meses.
+              _CartaoBanco(),
               const SizedBox(height: 8),
               TituloSeccao(
                 l.resumoAnoSeccao,
@@ -506,6 +514,52 @@ class _EsqueletoAno extends StatelessWidget {
         const SizedBox(height: 12),
         _Esqueleto._bloco(220),
       ],
+    );
+  }
+}
+
+/// «O dinheiro entra sozinho»: o convite para importar o extrato do banco e o
+/// atalho para as coisas que se repetem (B2a e B2c, 2026-09-18).
+class _CartaoBanco extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
+    final t = Theme.of(context).textTheme;
+    return Cartao(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.account_balance_rounded, color: AppColors.primaryDark),
+              const SizedBox(width: 10),
+              Expanded(child: Text(l.sobraImportarTitulo, style: t.titleMedium)),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(l.sobraImportarTexto, style: t.bodyMedium!.copyWith(color: AppColors.textSecondary)),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: FilledButton.tonalIcon(
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ImportarExtratoScreen())),
+                  icon: const Icon(Icons.upload_file_rounded, size: 20),
+                  label: Text(l.sobraImportarBotao),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const RecorrentesScreen())),
+                  icon: const Icon(Icons.repeat_rounded, size: 20),
+                  label: Text(l.sobraRecorrentesBotao),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

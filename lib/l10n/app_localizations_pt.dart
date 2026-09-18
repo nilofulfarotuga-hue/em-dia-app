@@ -3490,6 +3490,28 @@ class AppLocalizationsPt extends AppLocalizations {
   String get cofreGuardado => 'Apontado.';
 
   @override
+  String cofreJaTens(String saldo, String total, String mes) {
+    return 'Já tens $saldo guardado dos $total que vais precisar este ano (o próximo pagamento à Segurança Social é em $mes).';
+  }
+
+  @override
+  String cofreJaTensIrs(String saldo, String total) {
+    return 'Já tens $saldo guardado dos $total que vais precisar para o IRS do ano que vem.';
+  }
+
+  @override
+  String get cofreAutoTitulo => 'Guardar sozinho a fatia do imposto';
+
+  @override
+  String get cofreAutoAjuda =>
+      'Por cada rendimento que escreves, aponto aqui a parte para a Segurança Social e o IRS. Nunca mexo em dinheiro — é só contabilidade.';
+
+  @override
+  String cofreAutoGuardei(String valor) {
+    return 'Pus de lado $valor para o Estado (cofre).';
+  }
+
+  @override
   String get falaTitulo => 'Fala comigo';
 
   @override
@@ -4357,6 +4379,188 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get refCopiado => 'Copiado. Cola no multibanco ou na app do banco.';
+
+  @override
+  String get importarTitulo => 'Importar o extrato do banco';
+
+  @override
+  String get importarExplica =>
+      'Vai à app do teu banco, exporta os movimentos (CSV ou Excel) e escolhe aqui o ficheiro. Eu leio o que entrou e o que saiu, ponho cada coisa na gaveta certa e descubro o que se repete todos os meses.';
+
+  @override
+  String get importarComoExportar =>
+      'Todos os bancos deixam exportar: na app ou no site, em Movimentos, procura «Exportar» ou «Guardar como CSV/Excel». Nada sai do teu telemóvel sem carregares em Guardar.';
+
+  @override
+  String get importarEscolher => 'Escolher o ficheiro do banco';
+
+  @override
+  String get importarEscolherOutro => 'Escolher outro ficheiro';
+
+  @override
+  String get importarErroAbrir =>
+      'Não consegui abrir o ficheiro. Tenta outra vez.';
+
+  @override
+  String get importarErroVazio => 'Não encontrei movimentos neste ficheiro.';
+
+  @override
+  String get importarErroPdf =>
+      'O PDF não dá para ler aqui. No banco, exporta em CSV ou Excel (todos deixam) e escolhe esse ficheiro.';
+
+  @override
+  String get importarErroCabecalho =>
+      'Não reconheci as colunas deste ficheiro (procuro Data, Descrição e Valor ou Débito/Crédito). Exporta outra vez em CSV ou Excel a partir do banco.';
+
+  @override
+  String get importarErroExcel =>
+      'Não consegui ler este Excel. Tenta exportar em CSV.';
+
+  @override
+  String importarOQueLi(String ficheiro) {
+    return 'O que li em $ficheiro';
+  }
+
+  @override
+  String get importarFicheiro => 'o ficheiro';
+
+  @override
+  String get importarLinhasLidas => 'Movimentos lidos';
+
+  @override
+  String get importarEntrou => 'Entrou';
+
+  @override
+  String get importarSaiu => 'Saiu';
+
+  @override
+  String get importarBanco => 'Banco';
+
+  @override
+  String importarRepetem(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n coisas que se repetem',
+      one: '1 coisa que se repete',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get importarIgnoradas => 'Linhas que não percebi';
+
+  @override
+  String get importarPrivacidade =>
+      'O ficheiro fica no teu telemóvel. Só guardo cada linha já arrumada.';
+
+  @override
+  String importarGuardarBotao(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Guardar $n movimentos',
+      one: 'Guardar 1 movimento',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get importarMovimentos => 'Movimento a movimento';
+
+  @override
+  String importarMaisLinhas(int n) {
+    return '… e mais $n. Guardo todos.';
+  }
+
+  @override
+  String get importarRepeteSe => 'repete-se';
+
+  @override
+  String importarGuardado(int novas, int repetidas) {
+    return 'Guardei $novas movimentos novos ($repetidas já cá estavam).';
+  }
+
+  @override
+  String importarGuardadoNada(int repetidas) {
+    return 'Já tinha todos estes movimentos ($repetidas). Nada novo.';
+  }
+
+  @override
+  String get importarCatRendimento => 'Trabalho';
+
+  @override
+  String get importarCatEntrada => 'Entrou';
+
+  @override
+  String get recorrentesTitulo => 'Coisas que se repetem';
+
+  @override
+  String get recorrentesVerBotao => 'Ver o que se repete todos os meses';
+
+  @override
+  String get recorrentesVazio =>
+      'Ainda não importaste nenhum extrato. É com ele que descubro o que pagas todos os meses sem dares conta.';
+
+  @override
+  String get recorrentesNenhuma => 'Não encontrei nada que se repita.';
+
+  @override
+  String recorrentesTotal(String valor) {
+    return 'Pagas $valor por mês em coisas que se repetem';
+  }
+
+  @override
+  String get recorrentesExplica =>
+      'É o mesmo nome, mais ou menos o mesmo valor, em meses diferentes: assinaturas, telemóvel, ginásio, débitos diretos. Vê o que ainda usas — e o que podes cancelar.';
+
+  @override
+  String recorrentesVezes(int vezes, int dia) {
+    return '$vezes vezes, por volta do dia $dia';
+  }
+
+  @override
+  String get recorrentesComoCancelar => 'Como cancelar';
+
+  @override
+  String get recorrentesAvisar => 'Avisa-me antes';
+
+  @override
+  String get recorrentesJaEhConta => 'Já te aviso';
+
+  @override
+  String get recorrentesContaCriada =>
+      'Feito: passa a ser uma conta tua e aviso-te um dia antes de sair.';
+
+  @override
+  String get recorrentesNotaConta => 'Criada a partir do extrato do banco.';
+
+  @override
+  String get recorrentesSemOperador =>
+      'Não conheço este serviço. Procura na fatura ou no site a área de cliente e pede o cancelamento por escrito; guarda a resposta.';
+
+  @override
+  String recorrentesAbrirPagina(String nome) {
+    return 'Abrir a página de $nome';
+  }
+
+  @override
+  String recorrentesTelefone(String telefone) {
+    return 'Ou liga: $telefone';
+  }
+
+  @override
+  String get sobraImportarTitulo => 'O dinheiro entra sozinho';
+
+  @override
+  String get sobraImportarTexto =>
+      'Importa o extrato do banco e eu descubro o que entrou, o que saiu e o que se repete.';
+
+  @override
+  String get sobraImportarBotao => 'Importar extrato';
+
+  @override
+  String get sobraRecorrentesBotao => 'Coisas que se repetem';
 
   @override
   String get vidaNav => 'A minha vida';
@@ -8534,6 +8738,28 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get cofreGuardado => 'Anotado.';
 
   @override
+  String cofreJaTens(String saldo, String total, String mes) {
+    return 'Você já tem $saldo guardado dos $total que vai precisar este ano (o próximo pagamento à Segurança Social é em $mes).';
+  }
+
+  @override
+  String cofreJaTensIrs(String saldo, String total) {
+    return 'Você já tem $saldo guardado dos $total que vai precisar para o IRS do ano que vem.';
+  }
+
+  @override
+  String get cofreAutoTitulo => 'Guardar sozinho a fatia do imposto';
+
+  @override
+  String get cofreAutoAjuda =>
+      'Por cada rendimento que você escreve, anoto aqui a parte para a Segurança Social e o IRS. Nunca mexo em dinheiro — é só contabilidade.';
+
+  @override
+  String cofreAutoGuardei(String valor) {
+    return 'Separei $valor para o Estado (cofre).';
+  }
+
+  @override
   String get falaTitulo => 'Fala comigo';
 
   @override
@@ -9401,6 +9627,188 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get refCopiado => 'Copiado. Cole no multibanco ou no app do banco.';
+
+  @override
+  String get importarTitulo => 'Importar o extrato do banco';
+
+  @override
+  String get importarExplica =>
+      'Vá no app do seu banco, exporte os movimentos (CSV ou Excel) e escolha aqui o arquivo. Eu leio o que entrou e o que saiu, coloco cada coisa na gaveta certa e descubro o que se repete todo mês.';
+
+  @override
+  String get importarComoExportar =>
+      'Todos os bancos deixam exportar: no app ou no site, em Movimentos, procure «Exportar» ou «Salvar como CSV/Excel». Nada sai do seu celular sem você tocar em Salvar.';
+
+  @override
+  String get importarEscolher => 'Escolher o arquivo do banco';
+
+  @override
+  String get importarEscolherOutro => 'Escolher outro arquivo';
+
+  @override
+  String get importarErroAbrir =>
+      'Não consegui abrir o arquivo. Tente de novo.';
+
+  @override
+  String get importarErroVazio => 'Não encontrei movimentos neste arquivo.';
+
+  @override
+  String get importarErroPdf =>
+      'O PDF não dá para ler aqui. No banco, exporte em CSV ou Excel (todos deixam) e escolha esse arquivo.';
+
+  @override
+  String get importarErroCabecalho =>
+      'Não reconheci as colunas deste arquivo (procuro Data, Descrição e Valor ou Débito/Crédito). Exporte de novo em CSV ou Excel a partir do banco.';
+
+  @override
+  String get importarErroExcel =>
+      'Não consegui ler este Excel. Tente exportar em CSV.';
+
+  @override
+  String importarOQueLi(String ficheiro) {
+    return 'O que li em $ficheiro';
+  }
+
+  @override
+  String get importarFicheiro => 'o arquivo';
+
+  @override
+  String get importarLinhasLidas => 'Movimentos lidos';
+
+  @override
+  String get importarEntrou => 'Entrou';
+
+  @override
+  String get importarSaiu => 'Saiu';
+
+  @override
+  String get importarBanco => 'Banco';
+
+  @override
+  String importarRepetem(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n coisas que se repetem',
+      one: '1 coisa que se repete',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get importarIgnoradas => 'Linhas que não entendi';
+
+  @override
+  String get importarPrivacidade =>
+      'O arquivo fica no seu celular. Só guardo cada linha já arrumada.';
+
+  @override
+  String importarGuardarBotao(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Salvar $n movimentos',
+      one: 'Salvar 1 movimento',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get importarMovimentos => 'Movimento a movimento';
+
+  @override
+  String importarMaisLinhas(int n) {
+    return '… e mais $n. Salvo todos.';
+  }
+
+  @override
+  String get importarRepeteSe => 'se repete';
+
+  @override
+  String importarGuardado(int novas, int repetidas) {
+    return 'Salvei $novas movimentos novos ($repetidas já estavam aqui).';
+  }
+
+  @override
+  String importarGuardadoNada(int repetidas) {
+    return 'Já tinha todos esses movimentos ($repetidas). Nada novo.';
+  }
+
+  @override
+  String get importarCatRendimento => 'Trabalho';
+
+  @override
+  String get importarCatEntrada => 'Entrou';
+
+  @override
+  String get recorrentesTitulo => 'Coisas que se repetem';
+
+  @override
+  String get recorrentesVerBotao => 'Ver o que se repete todo mês';
+
+  @override
+  String get recorrentesVazio =>
+      'Você ainda não importou nenhum extrato. É com ele que descubro o que você paga todo mês sem perceber.';
+
+  @override
+  String get recorrentesNenhuma => 'Não encontrei nada que se repita.';
+
+  @override
+  String recorrentesTotal(String valor) {
+    return 'Você paga $valor por mês em coisas que se repetem';
+  }
+
+  @override
+  String get recorrentesExplica =>
+      'É o mesmo nome, mais ou menos o mesmo valor, em meses diferentes: assinaturas, celular, academia, débitos automáticos. Veja o que ainda usa — e o que pode cancelar.';
+
+  @override
+  String recorrentesVezes(int vezes, int dia) {
+    return '$vezes vezes, por volta do dia $dia';
+  }
+
+  @override
+  String get recorrentesComoCancelar => 'Como cancelar';
+
+  @override
+  String get recorrentesAvisar => 'Me avise antes';
+
+  @override
+  String get recorrentesJaEhConta => 'Já aviso você';
+
+  @override
+  String get recorrentesContaCriada =>
+      'Pronto: passa a ser uma conta sua e aviso você um dia antes de sair.';
+
+  @override
+  String get recorrentesNotaConta => 'Criada a partir do extrato do banco.';
+
+  @override
+  String get recorrentesSemOperador =>
+      'Não conheço este serviço. Procure na fatura ou no site a área de cliente e peça o cancelamento por escrito; guarde a resposta.';
+
+  @override
+  String recorrentesAbrirPagina(String nome) {
+    return 'Abrir a página de $nome';
+  }
+
+  @override
+  String recorrentesTelefone(String telefone) {
+    return 'Ou ligue: $telefone';
+  }
+
+  @override
+  String get sobraImportarTitulo => 'O dinheiro entra sozinho';
+
+  @override
+  String get sobraImportarTexto =>
+      'Importe o extrato do banco e eu descubro o que entrou, o que saiu e o que se repete.';
+
+  @override
+  String get sobraImportarBotao => 'Importar extrato';
+
+  @override
+  String get sobraRecorrentesBotao => 'Coisas que se repetem';
 
   @override
   String get vidaNav => 'Minha vida';

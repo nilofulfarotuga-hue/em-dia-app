@@ -31,6 +31,10 @@ class Perfil {
   /// `toUpdate`, para um guardar do perfil não apagar o rascunho.
   final Map<String, dynamic>? onboardingRascunho;
 
+  /// O cofre guarda sozinho a fatia do imposto de cada rendimento (B2d).
+  /// Ligado por omissão; a pessoa desliga no cofre.
+  final bool cofreAutomatico;
+
   const Perfil({
     required this.userId,
     this.nome,
@@ -54,6 +58,7 @@ class Perfil {
     this.banido = false,
     required this.criadoEm,
     this.onboardingRascunho,
+    this.cofreAutomatico = true,
   });
 
   bool get emTrial => trialAte.isAfter(DateTime.now());
@@ -116,6 +121,7 @@ class Perfil {
         banido: (m['banido'] as bool?) ?? false,
         criadoEm: DateTime.parse(m['criado_em'] as String).toLocal(),
         onboardingRascunho: m['onboarding_rascunho'] is Map ? Map<String, dynamic>.from(m['onboarding_rascunho'] as Map) : null,
+        cofreAutomatico: (m['cofre_automatico'] as bool?) ?? true,
       );
 
   /// Só os campos que o utilizador pode escrever.
@@ -135,6 +141,7 @@ class Perfil {
         'viu_guia_inicio': viuGuiaInicio,
         'imigrante': imigrante,
         'residencia_renova_em': residenciaRenovaEm == null ? null : dataPtIso(residenciaRenovaEm!),
+        'cofre_automatico': cofreAutomatico,
       };
 
   Perfil copyWith({
@@ -156,6 +163,7 @@ class Perfil {
     DateTime? residenciaRenovaEm,
     Map<String, dynamic>? onboardingRascunho,
     bool limparRascunho = false,
+    bool? cofreAutomatico,
   }) =>
       Perfil(
         userId: userId,
@@ -180,6 +188,7 @@ class Perfil {
         banido: banido,
         criadoEm: criadoEm,
         onboardingRascunho: limparRascunho ? null : (onboardingRascunho ?? this.onboardingRascunho),
+        cofreAutomatico: cofreAutomatico ?? this.cofreAutomatico,
       );
 }
 

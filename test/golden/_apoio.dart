@@ -8,11 +8,13 @@ import 'package:em_dia/models/cofre_movimento.dart';
 import 'package:em_dia/models/entrada.dart';
 import 'package:em_dia/models/fatura_recebida.dart';
 import 'package:em_dia/models/fidelizacao.dart';
+import 'package:em_dia/models/movimento_banco.dart';
 import 'package:em_dia/models/obrigacao.dart';
 import 'package:em_dia/models/perfil.dart';
 import 'package:em_dia/models/rendimento.dart';
 import 'package:em_dia/models/saida.dart';
 import 'package:em_dia/regras/regras.dart';
+import 'package:em_dia/stores/banco_store.dart';
 import 'package:em_dia/stores/caixa_store.dart';
 import 'package:em_dia/stores/cofre_store.dart';
 import 'package:em_dia/stores/dados_store.dart';
@@ -152,6 +154,8 @@ Widget embrulhaStores({
   List<FaturaRecebida> faturas = const [],
   String? caixaEndereco,
   bool caixaLigada = false,
+  List<MovimentoBanco> movimentosBanco = const [],
+  List<OperadorCancelar> operadores = const [],
 }) =>
     MultiProvider(
       providers: [
@@ -180,6 +184,9 @@ Widget embrulhaStores({
         ChangeNotifierProvider<CaixaStore>(
           create: (_) => CaixaStore.paraTeste(
             endereco: caixaEndereco, ligada: caixaLigada, faturas: faturas),
+        ),
+        ChangeNotifierProvider<BancoStore>(
+          create: (_) => BancoStore.paraTeste(movimentosBanco, operadores: operadores),
         ),
       ],
       child: tela,

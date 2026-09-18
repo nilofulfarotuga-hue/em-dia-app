@@ -120,8 +120,31 @@ void main() {
     expect(find.byType(CartaoHeroi), findsOneWidget);
     await rolarAte(tester, find.byType(CartaoEsteMes));
     expect(find.text('Passou há 2 dias'), findsOneWidget); // na linha de "Este mês paga"
-    // A última foto da suíte é PT-BR: verifica o estado, não o texto.
+    // Desde 2026-09-18 (defeito 6 da missão em-dia-tudo): o semáforo grande só
+    // aparece quando há uma SEGUNDA coisa além da que está no cartão de ação.
+    // Aqui a única passada já está no cartão de ação e o seguro está a 12 dias
+    // (não é «a vencer»): repetir «tens 1 prazo passado» por baixo era dizer a
+    // mesma coisa duas vezes.
+    expect(find.byType(SemaforoGrande), findsNothing);
+  });
+
+  testWidgets('painel vermelho com uma segunda coisa — o semáforo fala da segunda', (tester) async {
+    await fotografaTela(
+      tester,
+      nome: 'painel_vermelho_segunda',
+      tamanho: tamanhos[1],
+      tela: () => embrulhaStores(
+        tela: PainelScreen(hoje: hoje),
+        perfil: perfilTeste(nome: 'Maria', tipoAtividade: TipoAtividade.estafeta, rendimentoMensalEstimado: 900),
+        plano: 'free',
+        obrigacoes: [
+          obrigacaoTeste(id: 'o1', tipo: 'ss_pagamento', dataLimite: hoje.subtract(const Duration(days: 2)), valor: 149.80),
+          obrigacaoTeste(id: 'o2', tipo: 'iuc', dataLimite: hoje.add(const Duration(days: 3)), valor: 120),
+        ],
+      ),
+    );
     expect(find.byWidgetPredicate((w) => w is SemaforoGrande && w.estado == Semaforo.vermelho), findsOneWidget);
+    expect(find.text('Além desta, tens mais 1 coisa a vencer em 3 dias'), findsOneWidget);
   });
 
   testWidgets('painel a carregar — esqueleto', (tester) async {
