@@ -305,3 +305,33 @@
 - **O quê:** `prova_rendimento.dart` com espaços de 14 pt e linhas de 6 pt; o teste `prova_pdf_test.dart` gera o PDF a sério e falha se sair mais de uma página ou sem a Inter embebida.
 - **Porquê:** com 12 meses saía uma segunda página só com «De onde vem» — no banco, uma folha quase vazia parece erro.
 - **Como se desfaz:** não se desfaz; se um dia houver mais linhas, o teste avisa.
+
+## D58 — Três perfis com uma pergunta à cabeça: «Trabalhas como?»
+- **O quê (2026-09-18):** `profiles.tipo_trabalho` ∈ independente | contrato | ambos | empresa, respondido na 1.ª pergunta do onboarding. Contrato traz salário bruto e ano de nascimento; empresa traz ENI/sociedade, IVA mensal/trimestral e contabilista. O gerador de obrigações (Dart e TS, espelhos) dá a cada perfil só o que lhe toca; quem só tem contrato nunca vê Segurança Social de independente nem IVA.
+- **Porquê:** «tudo o que um português precisar» — a app deixou de ser só de recibos verdes. Uma pergunta simples abre o caminho certo; o resto deduz-se.
+- **Como se desfaz:** `tipo_trabalho` a `independente` para todos e esconder a pergunta (`PassoOnboarding.trabalho` fora de `_visiveis`); o gerador volta ao comportamento antigo.
+
+## D59 — Lembretes não são obrigações: subsídio de Natal e «pede fatura com NIF» ficam fora do herói e do semáforo
+- **O quê:** `tiposLembrete = {subsidio_natal, faturas_nif}`. Aparecem na agenda e nas listas, mas `passadas`, `aVencer` e `proxima` ignoram-nos; o semáforo nunca fica laranja/vermelho por causa deles.
+- **Porquê:** o subsídio de Natal é para RECEBER e as faturas com NIF são um hábito. Um lembrete a pôr o painel vermelho assustava sem razão.
+- **Como se desfaz:** esvaziar o conjunto.
+
+## D60 — Empresa é só calendário e pasta; a app não substitui o contabilista
+- **O quê:** para quem tem empresa a app mostra as datas (IVA, SAF-T, DMR, SS, Modelo 22, IES, PPC) com a fonte à vista e junta a pasta do mês ao contabilista todo o dia 1 (CSV à portuguesa: `;`, vírgula decimal, BOM). Não calcula IRC, não faz contabilidade, não emite SAF-T.
+- **Porquê:** foi o que o Danilo pediu para o Bora a 06/08 («junta os papéis e manda ao contabilista»); calcular IRC sem contabilidade organizada seria inventar. Modelo 22 fica com a data da lei (31/05) e a nota de que a AT prorroga alguns anos (2026: 30/06).
+- **Como se desfaz:** `pasta_contabilista_ativa=false` por perfil; `cron.unschedule('em-dia-pasta-contabilista-mes')`.
+
+## D61 — Escalões de IRS 2026 corrigidos à lei e a parcela a abater é calculada, não copiada
+- **O quê:** limites 8 342 / **12 587** / 17 838 / **23 089** / 29 397 / 43 090 / **46 566** / 86 634 (CIRS art. 68.º, Lei 73-A/2025) — a tabela tinha três a 1 € da lei e `por_confirmar`. Parcela p(i) = p(i−1) + limite(i−1) × (taxa(i) − taxa(i−1)). Confiança `oficial` na tabela e no espelho Dart.
+- **Porquê:** a diferença era de cêntimos (2 861,42 → 2 861,47) mas «por_confirmar» era falso desde que a lei saiu; a app não pode dizer «aproximado» quando a fonte existe.
+- **Como se desfaz:** não se desfaz; em janeiro repete-se a verificação (docs/REGRAS-PT-2026.md §6).
+
+## D62 — Nada de tabelas de retenção transcritas: a pessoa escreve o IRS que o recibo mostra
+- **O quê:** o ecrã do recibo pede o bruto e o «IRS retido» do próprio recibo e estima o IRS anual pelos escalões (acerto/reembolso). As tabelas de retenção 2026 da AT ficam como fonte em REGRAS-PT-2026, não como código.
+- **Porquê:** as tabelas têm dezenas de linhas por situação familiar e mudam a meio do ano; copiá-las era a receita para um número errado no recibo de alguém. O recibo já traz o valor certo.
+- **Como se desfaz:** se um dia se quiser estimar a retenção sem recibo, entra por regra na tabela, com fonte.
+
+## D63 — Datas somam-se por calendário, nunca por `Duration`
+- **O quê:** `somarDias(d, n) = DateTime(y, m, d + n)` em `lib/regras/datas.dart`; todos os `add/subtract(Duration(days:))` das regras foram trocados.
+- **Porquê:** o teste dos perfis apanhou 25/10/2026 (fim da hora de verão) a dar «26/10 às 23:00»: um dia de 25 horas. Já tinha acontecido num teste a 18/09 de manhã; agora está na biblioteca e coberto (P08).
+- **Como se desfaz:** não se desfaz.
