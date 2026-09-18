@@ -97,15 +97,17 @@ flutter:
       fonts:
         - asset: assets/fonts/Inter-VariableFont.ttf
 
+# Ícone da marca (B6, 2026-09-18): proposta 1 do tool/marca/desenhar.py (calendário
+# com visto verde, 26 pts no juiz — docs/marca/pontuacoes.json). Gerar com
+# `python tool/marca/desenhar.py icones --n 1` e depois `dart run flutter_launcher_icons`.
+# A web NÃO passa por aqui: web/manifest.json e web/icons/* são escritos à mão e
+# pelo desenhar.py (o gerador apagava o nome, a língua e a descrição do manifest).
 flutter_launcher_icons:
   android: true
   ios: false
-  image_path: "assets/branding/icone.png"
+  image_path: "assets/branding/icon.png"
   adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: "assets/branding/icone_adaptativo.png"
+  adaptive_icon_foreground: "assets/branding/icon_foreground.png"
   min_sdk_android: 21
   web:
-    generate: true
-    image_path: "assets/branding/icone.png"
-    background_color: "#F0FDF4"
-    theme_color: "#16A34A"
+    generate: false

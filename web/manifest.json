@@ -1,12 +1,17 @@
 {
-    "name": "em_dia",
-    "short_name": "em_dia",
-    "start_url": ".",
+    "id": "/",
+    "name": "Em Dia",
+    "short_name": "Em Dia",
+    "description": "O assistente de quem trabalha por conta própria em Portugal: Segurança Social, IVA, IRS e o carro, sem esquecer nada.",
+    "lang": "pt-PT",
+    "dir": "ltr",
+    "start_url": "/",
+    "scope": "/",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#F6F7F4",
+    "theme_color": "#16A34A",
     "orientation": "portrait-primary",
+    "categories": ["finance", "productivity"],
     "prefer_related_applications": false,
     "icons": [
         {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-PT">
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -35,7 +35,13 @@
     })();
   </script>
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Em Dia — o assistente de quem trabalha a recibos verdes em Portugal.">
+  <meta name="description" content="Em Dia — o assistente de quem trabalha por conta própria em Portugal: Segurança Social, IVA, IRS e o carro.">
+  <!-- PWA (B6, 2026-09-18): cor da marca na barra do browser/instalada; o
+       manifest.json tem o nome, a língua e os ícones; o sw.js (registado no
+       flutter_bootstrap.js depois do primeiro ecrã) guarda a app para abrir
+       sem rede. -->
+  <meta name="theme-color" content="#16A34A">
+  <meta name="color-scheme" content="light">
   <!-- A app nao e para ser indexada nem rastreada: a 6 de setembro de 2026 o
        Googlebot rastreou esta pagina, submeteu o formulario de entrada com
        enderecos inventados e tentou codigos. Ver web/robots.txt e web/_headers. -->
@@ -44,9 +50,10 @@
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Em Dia">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/Icon-512.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>

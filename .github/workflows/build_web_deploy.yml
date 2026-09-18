@@ -71,6 +71,10 @@ jobs:
             printf '{"commit":"%s","branch":"%s","data":"%s","run":"%s"}\n' \
               "$GITHUB_SHA" "$GITHUB_REF_NAME" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$GITHUB_RUN_NUMBER" > "$d/versao.json"
             cat "$d/versao.json"
+            # O sw.js leva o mesmo commit em __VERSAO__: worker novo a cada deploy,
+            # cache nova, a antiga apagada ao ativar (B6, PWA).
+            sed -i "s/__VERSAO__/${GITHUB_SHA:0:12}/" "$d/sw.js"
+            grep -c "${GITHUB_SHA:0:12}" "$d/sw.js"
           done
 
       - name: Upload builds como artifact

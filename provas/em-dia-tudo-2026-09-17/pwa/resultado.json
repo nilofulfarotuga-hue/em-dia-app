@@ -1,0 +1,83 @@
+{
+  "quando": "2026-09-18 14:53:29",
+  "base": "http://localhost:8791",
+  "falhas": [],
+  "html_lang": "pt-PT",
+  "theme_color": "#16A34A",
+  "ttff_com_rede_ms": 2259,
+  "com_rede_canvas": true,
+  "manifest": {
+    "name": "Em Dia",
+    "short_name": "Em Dia",
+    "lang": "pt-PT",
+    "theme_color": "#16A34A",
+    "background_color": "#F6F7F4",
+    "display": "standalone",
+    "start_url": "/"
+  },
+  "manifest_icones": [
+    "192x192",
+    "512x512",
+    "192x192 maskable",
+    "512x512 maskable"
+  ],
+  "semantica_nos": 24,
+  "semantica_com_rotulo": 5,
+  "sw_registado_ms": 6,
+  "sw_pediu_guardar_ms": 7,
+  "sw_guardou_ms": 122,
+  "sw_guardou": {
+    "tipo": "guardado",
+    "quantos": 7,
+    "total": 9,
+    "versao": "__VERSAO__"
+  },
+  "cache_nomes": [
+    "em-dia-__VERSAO__"
+  ],
+  "cache_total": 13,
+  "cache_tem": {
+    "main.dart.js": true,
+    "flutter_bootstrap.js": true,
+    "canvaskit": true,
+    "inter": true,
+    "assets": 4
+  },
+  "sem_rede_carregou": true,
+  "ttff_sem_rede_ms": 819,
+  "sem_rede_flutter_view": true,
+  "sem_rede_canvas": true,
+  "resize": [
+    {
+      "para": "390x844",
+      "acompanhou": true,
+      "ms": 0,
+      "empurroes_do_vigia": 0
+    },
+    {
+      "para": "1100x700",
+      "acompanhou": true,
+      "ms": 78,
+      "empurroes_do_vigia": 0
+    },
+    {
+      "para": "700x900",
+      "acompanhou": true,
+      "ms": 37,
+      "empurroes_do_vigia": 0
+    },
+    {
+      "para": "360x780",
+      "acompanhou": true,
+      "ms": 70,
+      "empurroes_do_vigia": 0
+    },
+    {
+      "para": "1280x800",
+      "acompanhou": true,
+      "ms": 92,
+      "empurroes_do_vigia": 0
+    }
+  ],
+  "consola_erros": []
+}
