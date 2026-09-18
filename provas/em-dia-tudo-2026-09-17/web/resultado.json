@@ -1,0 +1,152 @@
+{
+  "quando": "2026-09-18 23:02:02",
+  "url": "https://app.emdia.boraguarda.com",
+  "conta": {
+    "estado": "turnstile_pediu_caixa",
+    "nota": "O Turnstile mostrou a caixa «Verify you are human». Não se clica em CAPTCHAs (regra): a entrada com conta fica para o Danilo/Chrome a sério."
+  },
+  "ecras": [
+    {
+      "ecra": "entrada",
+      "foto": "01-entrada.png",
+      "semantica_nos": 24,
+      "botoes": 3,
+      "campos": 1
+    },
+    {
+      "ecra": "entrada-email-escrito",
+      "foto": "02-entrada-email-escrito.png",
+      "semantica_nos": 24,
+      "botoes": 3,
+      "campos": 1
+    },
+    {
+      "ecra": "depois-de-pedir-turnstile_pediu_caixa",
+      "foto": "03-depois-de-pedir-turnstile_pediu_caixa.png",
+      "semantica_nos": 29,
+      "botoes": 3,
+      "campos": 1
+    },
+    {
+      "ecra": "exemplo-painel",
+      "foto": "04-exemplo-painel.png",
+      "semantica_nos": 33,
+      "botoes": 12,
+      "campos": 0
+    },
+    {
+      "ecra": "exemplo-recibos",
+      "foto": "05-exemplo-recibos.png",
+      "semantica_nos": 35,
+      "botoes": 14,
+      "campos": 1
+    },
+    {
+      "ecra": "exemplo-dinheiro",
+      "foto": "06-exemplo-dinheiro.png",
+      "semantica_nos": 59,
+      "botoes": 21,
+      "campos": 0
+    },
+    {
+      "ecra": "exemplo-agenda",
+      "foto": "07-exemplo-agenda.png",
+      "semantica_nos": 65,
+      "botoes": 48,
+      "campos": 0
+    },
+    {
+      "ecra": "exemplo-carro",
+      "foto": "08-exemplo-carro.png",
+      "semantica_nos": 61,
+      "botoes": 47,
+      "campos": 0
+    },
+    {
+      "ecra": "exemplo-mais",
+      "foto": "09-exemplo-mais.png",
+      "semantica_nos": 36,
+      "botoes": 19,
+      "campos": 0
+    },
+    {
+      "ecra": "mais-vale-a-pena",
+      "foto": "10-mais-vale-a-pena.png",
+      "semantica_nos": 30,
+      "botoes": 2,
+      "campos": 6
+    },
+    {
+      "ecra": "mais-fala",
+      "foto": "11-mais-fala.png",
+      "semantica_nos": 27,
+      "botoes": 7,
+      "campos": 0
+    },
+    {
+      "ecra": "mais-cofre",
+      "foto": "12-mais-cofre.png",
+      "semantica_nos": 28,
+      "botoes": 6,
+      "campos": 0
+    },
+    {
+      "ecra": "mais-prova",
+      "foto": "13-mais-prova.png",
+      "semantica_nos": 27,
+      "botoes": 7,
+      "campos": 2
+    },
+    {
+      "ecra": "mais-radar",
+      "foto": "14-mais-radar.png",
+      "semantica_nos": 18,
+      "botoes": 3,
+      "campos": 0
+    },
+    {
+      "ecra": "mais-reforma",
+      "foto": "15-mais-reforma.png",
+      "semantica_nos": 20,
+      "botoes": 4,
+      "campos": 0
+    },
+    {
+      "ecra": "mais-guias",
+      "foto": "16-mais-guias.png",
+      "semantica_nos": 23,
+      "botoes": 12,
+      "campos": 0
+    },
+    {
+      "ecra": "mais-pergunta",
+      "foto": "17-mais-pergunta.png",
+      "semantica_nos": 20,
+      "botoes": 7,
+      "campos": 1
+    },
+    {
+      "ecra": "mais-ajuda",
+      "foto": "18-mais-ajuda.png",
+      "semantica_nos": 23,
+      "botoes": 4,
+      "campos": 0
+    },
+    {
+      "ecra": "mais-plano",
+      "foto": "19-mais-plano.png",
+      "semantica_nos": 31,
+      "botoes": 8,
+      "campos": 0
+    },
+    {
+      "ecra": "mais-definicoes",
+      "foto": "20-mais-definicoes.png",
+      "semantica_nos": 31,
+      "botoes": 7,
+      "campos": 0
+    }
+  ],
+  "falhas": [],
+  "ttff_ms": 2995
+}

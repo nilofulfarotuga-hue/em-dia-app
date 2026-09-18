@@ -30,6 +30,11 @@ jobs:
       - name: Fábrica de fotos (3 tamanhos + teclado, PT-PT e PT-BR) — estouro = falha
         run: flutter test test/golden -r expanded
 
+      # B8: o percurso por todos os ecrãs (4 caminhos do onboarding + a app toda
+      # pelo modo exemplo + contrato/empresa/entrada/admin) — na VM, sem aparelho.
+      - name: Percurso por todos os ecrãs (test/integracao)
+        run: flutter test test/integracao -r expanded
+
       - name: Publicar fotos das telas
         if: always()
         uses: actions/upload-artifact@v4

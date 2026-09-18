@@ -29,19 +29,22 @@ class PaginaAdmin extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(24, 20, 24, 32),
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            // Título à esquerda, ações à direita; numa janela estreita as ações
+            // passam para a linha de baixo em vez de estourar (apanhado pelo
+            // percurso de todos os ecrãs num telemóvel, B8 2026-09-18).
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.start,
+              alignment: WrapAlignment.spaceBetween,
+              runSpacing: 8,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(titulo, style: t.headlineMedium),
-                      if (subtitulo != null) ...[const SizedBox(height: 4), Text(subtitulo!, style: t.bodySmall)],
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(titulo, style: t.headlineMedium),
+                    if (subtitulo != null) ...[const SizedBox(height: 4), Text(subtitulo!, style: t.bodySmall)],
+                  ],
                 ),
-                for (final a in acoes) Padding(padding: const EdgeInsets.only(left: 8), child: a),
+                Wrap(spacing: 8, runSpacing: 8, children: acoes),
               ],
             ),
             const SizedBox(height: 16),

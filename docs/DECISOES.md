@@ -375,3 +375,13 @@
 - **O quê:** `admin_assinaturas` (todas as assinaturas com e-mail e plano efetivo) e `admin_erros` (OCR sem valor/pouca confiança/corrigido, extratos que não importaram, e-mails de fatura que não deram, recibos recusados — numa lista só, com o detalhe em JSON). Secções «Assinaturas» e «Erros de leitura» no menu; CSV com download a sério na web (`package:web`, `lib/admin/util/descarregar.dart`, com a caixa de copiar como reserva fora da web).
 - **Porquê:** o Bloco 7 pedia assinaturas, erros de OCR/importação e exportar; a tabela de assinaturas só se via por pessoa, e os erros não se viam em lado nenhum — sem os ver não se corrige a leitura.
 - **Como se desfaz:** tirar as duas entradas do `AdminShell`; as RPC ficam.
+
+## D72 — Os testes de ponta a ponta correm sem servidor, com as stores do exemplo e das fotos
+- **O quê (2026-09-18):** `test/integracao/percurso_todos_os_ecras.dart` (corpo partilhado) percorre os 4 caminhos do onboarding com toques a sério nas opções e a app inteira pelo modo exemplo (6 abas, folhas, 12 acessos do Mais) + contrato, empresa, entrada e as 9 secções do admin — **78 ecrãs/estados**. Corre na VM (`flutter test test/integracao`, no CI em `olho_golden.yml`) e no AVD `emdia` (`integration_test/todos_os_ecras_test.dart`, com gravação de ecrã dentro do aparelho).
+- **Porquê:** o que se prova aqui é que cada ecrã ABRE e mostra o que promete; com servidor a sério o teste dependeria da rede, do Turnstile e de dados que mudam. As regras de negócio já têm os testes unitários (179) e os Deno (39).
+- **Como se desfaz:** apagar a pasta e a linha do workflow.
+
+## D73 — CAPTCHA não se clica: a conta de teste na web é criada pela pessoa, uma vez, com o browser visível
+- **O quê:** `tool/provas/web_percorrer.py` percorre a app publicada com a semântica ligada (Playwright «como pessoa»). Ao pedir o código, o Turnstile invisível **falha** num browser automático e mostra a caixa «Confirme que é humano» — o script para aí, regista-o, e percorre tudo pelo modo exemplo (20 ecrãs, com nós de semântica contados). `--entrar` abre um Chromium visível para o Danilo passar a caixa e o código UMA vez; a sessão fica em `_segredos/em-dia/sessao-teste.json` e as corridas seguintes entram com a conta.
+- **Porquê:** a regra da casa (e a do Danilo na missão) é não completar CAPTCHAs; o Turnstile a recusar um Chromium automático é o comportamento certo (foi para isso que se pôs, D46/D45). Guardar a sessão é o que o Chrome do Danilo já faz.
+- **Como se desfaz:** apagar o ficheiro da sessão.
