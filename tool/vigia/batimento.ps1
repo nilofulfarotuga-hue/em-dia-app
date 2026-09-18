@@ -19,11 +19,19 @@ while ($true) {
     "[{0}] MISSAO-CONCLUIDA: batimento termina" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') | Out-File -Append -Encoding utf8 $LogB
     break
   }
+  $viva = $false
   if (Test-Path $Transcript) {
     $idade = (Get-Date) - (Get-Item $Transcript).LastWriteTime
-    if ($idade.TotalMinutes -lt 10) {
-      (Get-Date).ToString('o') | Out-File -Encoding ascii $Tranca
-    }
+    if ($idade.TotalMinutes -lt 10) { $viva = $true }
   }
+  # (2026-09-18) sessão à espera de uma build ou teste do repo também é sessão viva:
+  # o transcript fica quieto durante um Gradle de horas e o vigia lançava outra por cima.
+  if (-not $viva) {
+    $build = Get-CimInstance Win32_Process -ErrorAction SilentlyContinue |
+      Where-Object { $_.CommandLine -and $_.CommandLine -match 'em_dia' -and $_.Name -match '^(java|dart|dartvm|flutter_tester|adb|emulator|qemu-system)' } |
+      Select-Object -First 1
+    if ($build) { $viva = $true }
+  }
+  if ($viva) { (Get-Date).ToString('o') | Out-File -Encoding ascii $Tranca }
   Start-Sleep -Seconds 120
 }

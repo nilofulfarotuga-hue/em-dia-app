@@ -83,6 +83,19 @@ if (-not $vivo) {
     L 'sem transcript: a sessão parou (ou nunca existiu)'
   }
 }
+# c) (2026-09-18) uma build ou um teste DESTE repo a correr: o Gradle da primeira
+#    build demorou 6,4 h e nesse tempo nem a tranca nem o transcript mexeram; o
+#    vigia julgou a sessão morta e lançou uma segunda por cima da viva (as duas
+#    escreveram nos mesmos ficheiros). Sessão à espera de uma build é sessão viva.
+if (-not $vivo) {
+  $aTrabalhar = Get-CimInstance Win32_Process -ErrorAction SilentlyContinue |
+    Where-Object { $_.CommandLine -and $_.CommandLine -match 'em_dia' -and $_.Name -match '^(java|dart|dartvm|flutter_tester|adb|emulator|qemu-system|node)' } |
+    Select-Object -First 1
+  if ($aTrabalhar) {
+    L ("sessão viva por uma build/teste do repo a correr ({0} pid {1}), saio" -f $aTrabalhar.Name, $aTrabalhar.ProcessId)
+    $vivo = $true
+  }
+}
 if ($vivo) { exit 0 }
 
 # 3. retoma anterior ainda a correr?
