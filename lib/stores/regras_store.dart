@@ -68,6 +68,16 @@ class PlanoStore extends ChangeNotifier {
     }
   }
 
+  /// A funcionalidade está LIGADA no servidor para alguém? Uma flag com os
+  /// três planos a `false` está desligada para toda a gente — trial incluído.
+  /// É o interruptor geral de coisas que dependem de uma conta externa (ex.:
+  /// `faturacao_certificada` com a InvoiceXpress): sem conta, ninguém a vê.
+  bool ligadaParaAlguem(String chave) {
+    final f = _flags[chave];
+    if (f == null) return false;
+    return f['free'] == true || f['pro'] == true || f['familia'] == true;
+  }
+
   /// A funcionalidade está aberta neste plano? (trial = tudo aberto)
   bool permitida(String chave) {
     if (_planoEfetivo == 'trial') return true;

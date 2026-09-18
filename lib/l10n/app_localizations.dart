@@ -2178,12 +2178,6 @@ abstract class AppLocalizations {
   /// **'Confirma e emite. Guarda o PDF — no fim do mês regista aqui o que ganhaste.'**
   String get emitirPasso8;
 
-  /// No description provided for @emitirCapturaBreve.
-  ///
-  /// In pt, this message translates to:
-  /// **'captura em breve'**
-  String get emitirCapturaBreve;
-
   /// No description provided for @emitirAbrirPortal.
   ///
   /// In pt, this message translates to:
@@ -6946,6 +6940,180 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Com o Pro aparece aqui a lista dos teus contratos presos, com a data em que cada um te larga e quantos dias faltam. Aviso-te a tempo de ligares e pedires um preço melhor.'**
   String get radarCadeadoOQueGanhas;
+
+  /// No description provided for @faturaTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passar fatura-recibo'**
+  String get faturaTitulo;
+
+  /// No description provided for @faturaCartaoTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passar a fatura-recibo daqui'**
+  String get faturaCartaoTitulo;
+
+  /// No description provided for @faturaCartaoSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Certificada, com número e PDF, sem ir ao portal.'**
+  String get faturaCartaoSub;
+
+  /// No description provided for @faturaExplica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve a quem foi o trabalho e quanto custou. A fatura-recibo sai certificada (vale como o recibo verde do portal) e fica aqui com o PDF.'**
+  String get faturaExplica;
+
+  /// No description provided for @faturaClienteNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Para quem foi o trabalho (nome)'**
+  String get faturaClienteNome;
+
+  /// No description provided for @faturaClienteNif.
+  ///
+  /// In pt, this message translates to:
+  /// **'NIF do cliente (se souberes)'**
+  String get faturaClienteNif;
+
+  /// No description provided for @faturaDescricao.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que fizeste'**
+  String get faturaDescricao;
+
+  /// No description provided for @faturaValor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quanto cobras (€)'**
+  String get faturaValor;
+
+  /// No description provided for @faturaRetencao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Com retenção de IRS (o cliente fica com {pct} % e entrega-os por ti)'**
+  String faturaRetencao(String pct);
+
+  /// No description provided for @faturaIsento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vai sem IVA: estás no regime de isenção (artigo 53.º).'**
+  String get faturaIsento;
+
+  /// No description provided for @faturaComIva.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vai com IVA à taxa normal: não estás no regime de isenção.'**
+  String get faturaComIva;
+
+  /// No description provided for @faturaEmitir.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passar a fatura-recibo'**
+  String get faturaEmitir;
+
+  /// No description provided for @faturaAEmitir.
+  ///
+  /// In pt, this message translates to:
+  /// **'A passar…'**
+  String get faturaAEmitir;
+
+  /// No description provided for @faturaFeita.
+  ///
+  /// In pt, this message translates to:
+  /// **'Feito! Fatura-recibo {numero}.'**
+  String faturaFeita(String numero);
+
+  /// No description provided for @faturaFeitaSemNumero.
+  ///
+  /// In pt, this message translates to:
+  /// **'Feito! A fatura-recibo foi passada.'**
+  String get faturaFeitaSemNumero;
+
+  /// No description provided for @faturaAbrirPdf.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abrir o PDF'**
+  String get faturaAbrirPdf;
+
+  /// No description provided for @faturaSemPdf.
+  ///
+  /// In pt, this message translates to:
+  /// **'O PDF ainda está a ser feito. Daqui a pouco aparece na lista.'**
+  String get faturaSemPdf;
+
+  /// No description provided for @faturaFaltaNome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o nome de quem te pagou.'**
+  String get faturaFaltaNome;
+
+  /// No description provided for @faturaFaltaDescricao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o que fizeste.'**
+  String get faturaFaltaDescricao;
+
+  /// No description provided for @faturaValorInvalido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve um valor maior do que zero.'**
+  String get faturaValorInvalido;
+
+  /// No description provided for @faturaNifInvalido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esse NIF não está certo. Vê os 9 números.'**
+  String get faturaNifInvalido;
+
+  /// No description provided for @faturaErroDesligada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto ainda não está ligado para a tua conta.'**
+  String get faturaErroDesligada;
+
+  /// No description provided for @faturaErroSemConta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não há ligação ao programa de faturação. Fica para breve, sem fazeres nada.'**
+  String get faturaErroSemConta;
+
+  /// No description provided for @faturaErroPlano.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto faz parte do plano Pro.'**
+  String get faturaErroPlano;
+
+  /// No description provided for @faturaErroRecusou.
+  ///
+  /// In pt, this message translates to:
+  /// **'O programa de faturação não aceitou. Tenta outra vez daqui a pouco.'**
+  String get faturaErroRecusou;
+
+  /// No description provided for @faturaUltimas.
+  ///
+  /// In pt, this message translates to:
+  /// **'As últimas que passaste'**
+  String get faturaUltimas;
+
+  /// No description provided for @faturaEstadoEmitida.
+  ///
+  /// In pt, this message translates to:
+  /// **'passada'**
+  String get faturaEstadoEmitida;
+
+  /// No description provided for @faturaEstadoErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'não passou'**
+  String get faturaEstadoErro;
+
+  /// No description provided for @faturaEstadoAEmitir.
+  ///
+  /// In pt, this message translates to:
+  /// **'a passar'**
+  String get faturaEstadoAEmitir;
 
   /// No description provided for @oficioServicos.
   ///

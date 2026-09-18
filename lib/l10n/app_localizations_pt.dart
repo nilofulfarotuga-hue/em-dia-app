@@ -1294,9 +1294,6 @@ class AppLocalizationsPt extends AppLocalizations {
       'Confirma e emite. Guarda o PDF — no fim do mês regista aqui o que ganhaste.';
 
   @override
-  String get emitirCapturaBreve => 'captura em breve';
-
-  @override
   String get emitirAbrirPortal => 'Abrir o Portal das Finanças';
 
   @override
@@ -4105,6 +4102,105 @@ class AppLocalizationsPt extends AppLocalizations {
       'Com o Pro aparece aqui a lista dos teus contratos presos, com a data em que cada um te larga e quantos dias faltam. Aviso-te a tempo de ligares e pedires um preço melhor.';
 
   @override
+  String get faturaTitulo => 'Passar fatura-recibo';
+
+  @override
+  String get faturaCartaoTitulo => 'Passar a fatura-recibo daqui';
+
+  @override
+  String get faturaCartaoSub =>
+      'Certificada, com número e PDF, sem ir ao portal.';
+
+  @override
+  String get faturaExplica =>
+      'Escreve a quem foi o trabalho e quanto custou. A fatura-recibo sai certificada (vale como o recibo verde do portal) e fica aqui com o PDF.';
+
+  @override
+  String get faturaClienteNome => 'Para quem foi o trabalho (nome)';
+
+  @override
+  String get faturaClienteNif => 'NIF do cliente (se souberes)';
+
+  @override
+  String get faturaDescricao => 'O que fizeste';
+
+  @override
+  String get faturaValor => 'Quanto cobras (€)';
+
+  @override
+  String faturaRetencao(String pct) {
+    return 'Com retenção de IRS (o cliente fica com $pct % e entrega-os por ti)';
+  }
+
+  @override
+  String get faturaIsento =>
+      'Vai sem IVA: estás no regime de isenção (artigo 53.º).';
+
+  @override
+  String get faturaComIva =>
+      'Vai com IVA à taxa normal: não estás no regime de isenção.';
+
+  @override
+  String get faturaEmitir => 'Passar a fatura-recibo';
+
+  @override
+  String get faturaAEmitir => 'A passar…';
+
+  @override
+  String faturaFeita(String numero) {
+    return 'Feito! Fatura-recibo $numero.';
+  }
+
+  @override
+  String get faturaFeitaSemNumero => 'Feito! A fatura-recibo foi passada.';
+
+  @override
+  String get faturaAbrirPdf => 'Abrir o PDF';
+
+  @override
+  String get faturaSemPdf =>
+      'O PDF ainda está a ser feito. Daqui a pouco aparece na lista.';
+
+  @override
+  String get faturaFaltaNome => 'Escreve o nome de quem te pagou.';
+
+  @override
+  String get faturaFaltaDescricao => 'Escreve o que fizeste.';
+
+  @override
+  String get faturaValorInvalido => 'Escreve um valor maior do que zero.';
+
+  @override
+  String get faturaNifInvalido => 'Esse NIF não está certo. Vê os 9 números.';
+
+  @override
+  String get faturaErroDesligada =>
+      'Isto ainda não está ligado para a tua conta.';
+
+  @override
+  String get faturaErroSemConta =>
+      'Ainda não há ligação ao programa de faturação. Fica para breve, sem fazeres nada.';
+
+  @override
+  String get faturaErroPlano => 'Isto faz parte do plano Pro.';
+
+  @override
+  String get faturaErroRecusou =>
+      'O programa de faturação não aceitou. Tenta outra vez daqui a pouco.';
+
+  @override
+  String get faturaUltimas => 'As últimas que passaste';
+
+  @override
+  String get faturaEstadoEmitida => 'passada';
+
+  @override
+  String get faturaEstadoErro => 'não passou';
+
+  @override
+  String get faturaEstadoAEmitir => 'a passar';
+
+  @override
   String get oficioServicos => 'Serviços (cabelo, unhas, limpeza…)';
 
   @override
@@ -6636,9 +6732,6 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get emitirPasso8 =>
       'Confirme e emita. Guarde o PDF — no fim do mês registre aqui o que ganhou.';
-
-  @override
-  String get emitirCapturaBreve => 'captura em breve';
 
   @override
   String get emitirAbrirPortal => 'Abrir o Portal das Finanças';
@@ -9449,6 +9542,106 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get radarCadeadoOQueGanhas =>
       'Com o Pro aparece aqui a lista dos seus contratos presos, com a data em que cada um solta você e quantos dias faltam. Eu aviso a tempo de você ligar e pedir um preço melhor.';
+
+  @override
+  String get faturaTitulo => 'Emitir fatura-recibo';
+
+  @override
+  String get faturaCartaoTitulo => 'Emitir a fatura-recibo por aqui';
+
+  @override
+  String get faturaCartaoSub =>
+      'Certificada, com número e PDF, sem ir ao portal.';
+
+  @override
+  String get faturaExplica =>
+      'Escreva para quem foi o trabalho e quanto custou. A fatura-recibo sai certificada (vale como o recibo verde do portal) e fica aqui com o PDF.';
+
+  @override
+  String get faturaClienteNome => 'Para quem foi o trabalho (nome)';
+
+  @override
+  String get faturaClienteNif => 'NIF do cliente (se souber)';
+
+  @override
+  String get faturaDescricao => 'O que você fez';
+
+  @override
+  String get faturaValor => 'Quanto você cobra (€)';
+
+  @override
+  String faturaRetencao(String pct) {
+    return 'Com retenção de IRS (o cliente fica com $pct % e entrega por você)';
+  }
+
+  @override
+  String get faturaIsento =>
+      'Vai sem IVA: você está no regime de isenção (artigo 53.º).';
+
+  @override
+  String get faturaComIva =>
+      'Vai com IVA à taxa normal: você não está no regime de isenção.';
+
+  @override
+  String get faturaEmitir => 'Emitir a fatura-recibo';
+
+  @override
+  String get faturaAEmitir => 'Emitindo…';
+
+  @override
+  String faturaFeita(String numero) {
+    return 'Pronto! Fatura-recibo $numero.';
+  }
+
+  @override
+  String get faturaFeitaSemNumero => 'Pronto! A fatura-recibo foi emitida.';
+
+  @override
+  String get faturaAbrirPdf => 'Abrir o PDF';
+
+  @override
+  String get faturaSemPdf =>
+      'O PDF ainda está sendo feito. Daqui a pouco aparece na lista.';
+
+  @override
+  String get faturaFaltaNome => 'Escreva o nome de quem pagou você.';
+
+  @override
+  String get faturaFaltaDescricao => 'Escreva o que você fez.';
+
+  @override
+  String get faturaValorInvalido => 'Escreva um valor maior que zero.';
+
+  @override
+  String get faturaNifInvalido =>
+      'Esse NIF não está certo. Confira os 9 números.';
+
+  @override
+  String get faturaErroDesligada =>
+      'Isto ainda não está ligado para a sua conta.';
+
+  @override
+  String get faturaErroSemConta =>
+      'Ainda não há ligação com o programa de faturação. Fica para breve, sem você fazer nada.';
+
+  @override
+  String get faturaErroPlano => 'Isto faz parte do plano Pro.';
+
+  @override
+  String get faturaErroRecusou =>
+      'O programa de faturação não aceitou. Tente de novo daqui a pouco.';
+
+  @override
+  String get faturaUltimas => 'As últimas que você emitiu';
+
+  @override
+  String get faturaEstadoEmitida => 'emitida';
+
+  @override
+  String get faturaEstadoErro => 'não saiu';
+
+  @override
+  String get faturaEstadoAEmitir => 'emitindo';
 
   @override
   String get oficioServicos => 'Serviços (cabelo, unhas, limpeza…)';

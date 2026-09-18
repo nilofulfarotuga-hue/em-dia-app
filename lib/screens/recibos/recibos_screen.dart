@@ -11,8 +11,10 @@ import '../../stores/regras_store.dart';
 import '../../widgets/widgets.dart';
 import 'calculadora_recibo.dart';
 import 'como_emitir_screen.dart';
+import 'emitir_recibo_screen.dart';
 import 'irs_card.dart';
 import 'recibos_widgets.dart';
+import 'recibos_emitir_card.dart';
 import 'rendimentos_seccao.dart';
 import 'seguranca_social_card.dart';
 import 'vigia_iva_card.dart';
@@ -119,6 +121,15 @@ class RecibosScreen extends StatelessWidget {
               ],
             ),
           ),
+          // Passar a fatura-recibo daqui (B2b): só quando o interruptor
+          // `faturacao_certificada` está ligado no servidor e o plano deixa.
+          if (context.watch<PlanoStore>().ligadaParaAlguem('faturacao_certificada') &&
+              context.watch<PlanoStore>().permitida('faturacao_certificada')) ...[
+            const SizedBox(height: 12),
+            CartaoPassarFatura(
+              aoTocar: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const EmitirReciboScreen())),
+            ),
+          ],
           const SizedBox(height: 16),
         ],
       ),

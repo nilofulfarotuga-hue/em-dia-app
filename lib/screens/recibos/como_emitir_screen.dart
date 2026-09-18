@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../config/app_colors.dart';
-import '../../config/app_theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/widgets.dart';
 import 'recibos_widgets.dart';
@@ -10,8 +9,8 @@ import 'recibos_widgets.dart';
 const String _urlPortal = 'https://www.portaldasfinancas.gov.pt';
 
 /// "Como emitir o recibo": passos numerados no Portal das Finanças, textos
-/// prontos a copiar e botão que abre o portal. As capturas reais ficam para
-/// o bloco 6 — por agora um lugar marcado "captura em breve".
+/// prontos a copiar e botão que abre o portal. Sem capturas do portal: o
+/// portal muda de cara e uma imagem velha engana mais do que ajuda (18/09/2026).
 class ComoEmitirScreen extends StatelessWidget {
   final bool isentoIva;
   final String descricaoSugerida;
@@ -34,12 +33,12 @@ class ComoEmitirScreen extends StatelessWidget {
     final t = Theme.of(context).textTheme;
     final passos = <_Passo>[
       _Passo(l.emitirPasso1),
-      _Passo(l.emitirPasso2, captura: true),
+      _Passo(l.emitirPasso2),
       _Passo(l.emitirPasso3),
       _Passo(l.emitirPasso4, nota: exemploCliente),
       _Passo(l.emitirPasso5, copiar: descricaoSugerida),
       _Passo(l.emitirPasso6),
-      if (isentoIva) _Passo(l.emitirPasso7Isento, copiar: mencaoIsencao, captura: true) else _Passo(l.emitirPasso7Normal),
+      if (isentoIva) _Passo(l.emitirPasso7Isento, copiar: mencaoIsencao) else _Passo(l.emitirPasso7Normal),
       _Passo(l.emitirPasso8),
     ];
     // O passo a passo inteiro numa só voz: quem está a fazer o recibo no
@@ -87,11 +86,10 @@ class ComoEmitirScreen extends StatelessWidget {
 class _Passo {
   final String texto;
   final String? copiar;
-  final bool captura;
 
   /// Frase extra que muda com o ofício (ex.: quem é o cliente).
   final String? nota;
-  const _Passo(this.texto, {this.copiar, this.captura = false, this.nota});
+  const _Passo(this.texto, {this.copiar, this.nota});
 }
 
 class _CartaoPasso extends StatelessWidget {
@@ -101,7 +99,6 @@ class _CartaoPasso extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context);
     final t = Theme.of(context).textTheme;
     return Cartao(
       child: Row(
@@ -130,26 +127,6 @@ class _CartaoPasso extends StatelessWidget {
                 if (passo.copiar != null) ...[
                   const SizedBox(height: 10),
                   CaixaCopiar(texto: passo.copiar!),
-                ],
-                if (passo.captura) ...[
-                  const SizedBox(height: 10),
-                  Container(
-                    height: 110,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: AppColors.surface2,
-                      borderRadius: AppTheme.cantosPequenos,
-                      border: Border.all(color: AppColors.divider),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.image_outlined, size: 32, color: AppColors.textSubtle),
-                        const SizedBox(height: 6),
-                        Text(l.emitirCapturaBreve, style: t.bodySmall),
-                      ],
-                    ),
-                  ),
                 ],
               ],
             ),

@@ -601,7 +601,6 @@
   "emitirPasso7Isento": "No IVA escolha o regime de isenção do artigo 53.º e copie esta frase para o motivo:",
   "emitirPasso7Normal": "No IVA escolha a taxa normal (23%).",
   "emitirPasso8": "Confirme e emita. Guarde o PDF — no fim do mês registre aqui o que ganhou.",
-  "emitirCapturaBreve": "captura em breve",
   "emitirAbrirPortal": "Abrir o Portal das Finanças",
   "emitirNaoAbriu": "Não consegui abrir o site. Escreva portaldasfinancas.gov.pt no navegador.",
   "emitirDescricaoTvde": "Prestação de serviços de transporte de passageiros em veículo descaracterizado (TVDE)",
@@ -2066,6 +2065,49 @@
   "radarErro": "Não consegui buscar os seus contratos. Tente de novo daqui a pouco.",
   "radarCadeado": "Isso é do plano Pro — toque para ver",
   "radarCadeadoOQueGanhas": "Com o Pro aparece aqui a lista dos seus contratos presos, com a data em que cada um solta você e quantos dias faltam. Eu aviso a tempo de você ligar e pedir um preço melhor.",
+  "faturaTitulo": "Emitir fatura-recibo",
+  "faturaCartaoTitulo": "Emitir a fatura-recibo por aqui",
+  "faturaCartaoSub": "Certificada, com número e PDF, sem ir ao portal.",
+  "faturaExplica": "Escreva para quem foi o trabalho e quanto custou. A fatura-recibo sai certificada (vale como o recibo verde do portal) e fica aqui com o PDF.",
+  "faturaClienteNome": "Para quem foi o trabalho (nome)",
+  "faturaClienteNif": "NIF do cliente (se souber)",
+  "faturaDescricao": "O que você fez",
+  "faturaValor": "Quanto você cobra (€)",
+  "faturaRetencao": "Com retenção de IRS (o cliente fica com {pct} % e entrega por você)",
+  "@faturaRetencao": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "faturaIsento": "Vai sem IVA: você está no regime de isenção (artigo 53.º).",
+  "faturaComIva": "Vai com IVA à taxa normal: você não está no regime de isenção.",
+  "faturaEmitir": "Emitir a fatura-recibo",
+  "faturaAEmitir": "Emitindo…",
+  "faturaFeita": "Pronto! Fatura-recibo {numero}.",
+  "@faturaFeita": {
+    "placeholders": {
+      "numero": {
+        "type": "String"
+      }
+    }
+  },
+  "faturaFeitaSemNumero": "Pronto! A fatura-recibo foi emitida.",
+  "faturaAbrirPdf": "Abrir o PDF",
+  "faturaSemPdf": "O PDF ainda está sendo feito. Daqui a pouco aparece na lista.",
+  "faturaFaltaNome": "Escreva o nome de quem pagou você.",
+  "faturaFaltaDescricao": "Escreva o que você fez.",
+  "faturaValorInvalido": "Escreva um valor maior que zero.",
+  "faturaNifInvalido": "Esse NIF não está certo. Confira os 9 números.",
+  "faturaErroDesligada": "Isto ainda não está ligado para a sua conta.",
+  "faturaErroSemConta": "Ainda não há ligação com o programa de faturação. Fica para breve, sem você fazer nada.",
+  "faturaErroPlano": "Isto faz parte do plano Pro.",
+  "faturaErroRecusou": "O programa de faturação não aceitou. Tente de novo daqui a pouco.",
+  "faturaUltimas": "As últimas que você emitiu",
+  "faturaEstadoEmitida": "emitida",
+  "faturaEstadoErro": "não saiu",
+  "faturaEstadoAEmitir": "emitindo",
   "oficioServicos": "Serviços (cabelo, unhas, limpeza…)",
   "oficioObras": "Obras e construção",
   "oficioOutro": "Outra coisa",
