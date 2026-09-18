@@ -63,6 +63,7 @@ dependencies:
   # Utilidades
   shared_preferences: ^2.3.2
   url_launcher: ^6.3.0
+  web: ^1.1.1 # download de CSV no painel admin (lib/admin/util/descarregar_web.dart)
   # «Perto de mim» (postos mais baratos e centros de inspeção): localização SÓ em
   # primeiro plano e só quando a pessoa carrega no botão — nunca em segundo plano
   # (foi o que a Google rejeitou ao Bora). Sem permissão, escreve-se o concelho.

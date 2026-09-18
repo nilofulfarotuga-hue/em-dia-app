@@ -190,6 +190,8 @@ class DadosTeste {
   final List<Linha> avisosMassa;
   final List<Linha> e2eLog;
   final List<Linha> auditoria;
+  final List<Linha> assinaturas; // B7: admin_assinaturas
+  final List<Linha> erros; // B7: admin_erros
   final String? contactoParceiro;
   final String? erro;
 
@@ -208,6 +210,8 @@ class DadosTeste {
     this.avisosMassa = const [],
     this.e2eLog = const [],
     this.auditoria = const [],
+    this.assinaturas = const [],
+    this.erros = const [],
     this.contactoParceiro,
     this.erro,
   });
@@ -223,6 +227,8 @@ class AdminDados {
   late final List<Linha> _tickets;
   late final List<Linha> _avisosMassa;
   late final List<Linha> _auditoria;
+  late final List<Linha> _assinaturas;
+  late final List<Linha> _erros;
   String? _contactoParceiro;
 
   /// Modo real: fala com o Supabase.
@@ -238,6 +244,8 @@ class AdminDados {
     _tickets = t.tickets.map((m) => Map<String, dynamic>.from(m)).toList();
     _avisosMassa = t.avisosMassa.map((m) => Map<String, dynamic>.from(m)).toList();
     _auditoria = t.auditoria.map((m) => Map<String, dynamic>.from(m)).toList();
+    _assinaturas = t.assinaturas.map((m) => Map<String, dynamic>.from(m)).toList();
+    _erros = t.erros.map((m) => Map<String, dynamic>.from(m)).toList();
     _contactoParceiro = t.contactoParceiro;
   }
 
@@ -359,10 +367,39 @@ class AdminDados {
   Future<void> estenderTrial(UsuarioAdmin u, DateTime ate) =>
       _atualizarPerfil(u, 'usuario_trial', {'trial_ate': ate.toUtc().toIso8601String()});
 
-  /// Apagar a conta de verdade (auth.users) precisa da service role — fica
-  /// marcado como banido e registado; o servidor apaga depois.
-  Future<void> pedirApagarConta(UsuarioAdmin u) =>
-      _atualizarPerfil(u, 'usuario_apagar_pedido', {'banido': true});
+  /// Apagar a conta a sério (B7): primeiro a simulação — quantas linhas e
+  /// ficheiros vão embora — e só depois, com motivo, a Edge Function
+  /// `admin-apagar-conta` (service role: Storage + auth.users, que arrasta o
+  /// resto por ON DELETE CASCADE e regista em admin_audit_log).
+  Future<Linha> simularApagarConta(UsuarioAdmin u) async {
+    if (emTeste) {
+      _falhaSePedido();
+      return {
+        'existe': true,
+        'email': u.email,
+        'eh_admin': false,
+        'linhas': {'profiles': 1, 'obrigacoes': 11, 'rendimentos': 3, 'entradas': 8, 'saidas': 12, 'cofre_movimentos': 2},
+        'ficheiros_storage': 2,
+        'ficheiros_por_bucket': {'comprovativos': 2},
+      };
+    }
+    final r = await sb.rpc('admin_apagar_conta_simular', params: {'p_user_id': u.userId});
+    return Map<String, dynamic>.from(r as Map);
+  }
+
+  Future<Linha> apagarConta(UsuarioAdmin u, String motivo) async {
+    if (emTeste) {
+      _falhaSePedido();
+      _usuarios.removeWhere((x) => x.userId == u.userId);
+      await _registar('usuario_apagado', alvoTipo: 'auth.users', alvoId: u.userId, depois: {'motivo': motivo});
+      return {'ok': true, 'apagado': true};
+    }
+    final res = await sb.functions.invoke('admin-apagar-conta', body: {'user_id': u.userId, 'motivo': motivo});
+    final d = Map<String, dynamic>.from(res.data as Map);
+    if (d['ok'] != true) throw StateError(d['mensagem']?.toString() ?? d['erro']?.toString() ?? 'apagar falhou');
+    _usuarios.removeWhere((x) => x.userId == u.userId);
+    return d;
+  }
 
   String usuariosCsv(List<UsuarioAdmin> lista) {
     final linhas = <List<dynamic>>[
@@ -382,6 +419,38 @@ class AdminDados {
         ],
     ];
     return const ListToCsvConverter(fieldDelimiter: ';').convert(linhas);
+  }
+
+  // ---------------------------------------------------------------- assinaturas (B7)
+  Future<List<Linha>> assinaturas({String? estado, int limite = 500}) async {
+    if (emTeste) {
+      _falhaSePedido();
+      return _assinaturas.where((a) => estado == null || a['estado'] == estado).toList();
+    }
+    final r = await sb.rpc('admin_assinaturas', params: {'p_limite': limite});
+    final lista = _linhas(r);
+    return estado == null ? lista : lista.where((a) => a['estado'] == estado).toList();
+  }
+
+  String assinaturasCsv(List<Linha> lista) {
+    const c = ['id', 'user_id', 'email', 'produto_id', 'plataforma', 'estado', 'plano_efetivo', 'comecou_em', 'renova_em', 'terminou_em', 'criado_em'];
+    return const ListToCsvConverter(fieldDelimiter: ';').convert([c, for (final a in lista) [for (final k in c) a[k] ?? '']]);
+  }
+
+  // ---------------------------------------------------------------- erros de leitura/importação (B7)
+  Future<List<Linha>> erros({String? tipo, int limite = 300}) async {
+    if (emTeste) {
+      _falhaSePedido();
+      return _erros.where((e) => tipo == null || e['tipo'] == tipo).toList();
+    }
+    final r = await sb.rpc('admin_erros', params: {'p_limite': limite});
+    final lista = _linhas(r);
+    return tipo == null ? lista : lista.where((e) => e['tipo'] == tipo).toList();
+  }
+
+  String errosCsv(List<Linha> lista) {
+    const c = ['tipo', 'id', 'user_id', 'email', 'quando', 'resumo', 'erro', 'detalhe'];
+    return const ListToCsvConverter(fieldDelimiter: ';').convert([c, for (final e in lista) [for (final k in c) k == 'detalhe' ? jsonEncode(e[k] ?? {}) : (e[k] ?? '')]]);
   }
 
   // ---------------------------------------------------------------- regras legais

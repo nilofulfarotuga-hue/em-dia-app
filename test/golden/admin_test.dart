@@ -193,6 +193,21 @@ DadosTeste dadosExemplo({bool alarme = false}) {
       {'id': 57, 'admin_id': _adm, 'acao': 'flag_editar', 'alvo_tipo': 'feature_flags', 'alvo_id': 'ia_perguntas', 'antes': {'limite_free': 3}, 'depois': {'limite_free': 5}, 'criado_em': '2026-09-03T10:00:00Z'},
       {'id': 56, 'admin_id': _adm, 'acao': 'usuario_trial', 'alvo_tipo': 'profiles', 'alvo_id': _u1, 'antes': {'trial_ate': '2026-09-21T00:00:00Z'}, 'depois': {'trial_ate': '2026-09-28T00:00:00Z'}, 'criado_em': '2026-09-02T09:00:00Z'},
     ],
+    // B7: assinaturas de todos (admin_assinaturas) e erros de leitura (admin_erros)
+    assinaturas: [
+      {'id': 'a1b2c3d4-0001-4000-8000-000000000001', 'user_id': _u1, 'email': 'joao.tvde@gmail.com', 'nome': 'João Silva', 'produto_id': 'pro_mensal', 'plataforma': 'play', 'estado': 'ativa', 'plano_efetivo': 'pro', 'comecou_em': '2026-08-21T10:00:00Z', 'renova_em': '2026-09-21T10:00:00Z', 'terminou_em': null, 'criado_em': '2026-08-21T10:00:00Z', 'atualizado_em': '2026-09-06T03:00:00Z', 'tem_comprovativo': true},
+      {'id': 'a1b2c3d4-0002-4000-8000-000000000002', 'user_id': '22222222-2222-4222-8222-222222222222', 'email': 'ana.entregas@gmail.com', 'nome': 'Ana Costa', 'produto_id': 'familia_anual', 'plataforma': 'play', 'estado': 'ativa', 'plano_efetivo': 'familia', 'comecou_em': '2026-07-01T09:00:00Z', 'renova_em': '2027-07-01T09:00:00Z', 'terminou_em': null, 'criado_em': '2026-07-01T09:00:00Z', 'atualizado_em': '2026-07-01T09:00:00Z', 'tem_comprovativo': true},
+      {'id': 'a1b2c3d4-0003-4000-8000-000000000003', 'user_id': '33333333-3333-4333-8333-333333333333', 'email': 'pedro.pintor@hotmail.com', 'nome': 'Pedro Alves', 'produto_id': 'pro_mensal', 'plataforma': 'play', 'estado': 'expirada', 'plano_efetivo': 'free', 'comecou_em': '2026-05-10T12:00:00Z', 'renova_em': '2026-08-10T12:00:00Z', 'terminou_em': '2026-08-10T12:00:00Z', 'criado_em': '2026-05-10T12:00:00Z', 'atualizado_em': '2026-08-11T00:05:00Z', 'tem_comprovativo': true},
+      {'id': 'a1b2c3d4-0004-4000-8000-000000000004', 'user_id': '66666666-6666-4666-8666-666666666666', 'email': 'rui.carro@sapo.pt', 'nome': 'Rui Martins', 'produto_id': 'pro_anual', 'plataforma': 'play', 'estado': 'cancelada', 'plano_efetivo': 'trial', 'comecou_em': '2026-09-02T08:00:00Z', 'renova_em': null, 'terminou_em': '2026-09-04T18:30:00Z', 'criado_em': '2026-09-02T08:00:00Z', 'atualizado_em': '2026-09-04T18:30:00Z', 'tem_comprovativo': false},
+      {'id': 'a1b2c3d4-0005-4000-8000-000000000005', 'user_id': '55555555-5555-4555-8555-555555555555', 'email': 'spam.bot@mail.ru', 'nome': null, 'produto_id': 'pro_mensal', 'plataforma': 'play', 'estado': 'pendente', 'plano_efetivo': 'free', 'comecou_em': null, 'renova_em': null, 'terminou_em': null, 'criado_em': '2026-09-05T22:00:00Z', 'atualizado_em': '2026-09-05T22:00:00Z', 'tem_comprovativo': false},
+    ],
+    erros: [
+      {'tipo': 'ocr', 'id': 'e1e1e1e1-0001-4000-8000-000000000001', 'user_id': _u1, 'email': 'joao.tvde@gmail.com', 'quando': '2026-09-06T02:40:00Z', 'resumo': 'talao_combustivel · Galp Guarda · sem valor', 'erro': 'sem_valor', 'detalhe': {'origem': 'camara', 'confianca': 0.31, 'confirmado': false, 'corrigido': false, 'ficheiro_url': null}},
+      {'tipo': 'importacao', 'id': 'e1e1e1e1-0002-4000-8000-000000000002', 'user_id': '22222222-2222-4222-8222-222222222222', 'email': 'ana.entregas@gmail.com', 'quando': '2026-09-05T21:15:00Z', 'resumo': 'Millennium · xlsx · extrato-agosto.xlsx · 0 lidas', 'erro': 'coluna_data_nao_encontrada', 'detalhe': {'linhas_lidas': 0, 'linhas_novas': 0, 'linhas_repetidas': 0, 'linhas_ignoradas': 0}},
+      {'tipo': 'fatura', 'id': 'e1e1e1e1-0003-4000-8000-000000000003', 'user_id': '33333333-3333-4333-8333-333333333333', 'email': 'pedro.pintor@hotmail.com', 'quando': '2026-09-05T09:02:00Z', 'resumo': 'faturas@aguasdaguarda.pt · Aviso de pagamento da água', 'erro': 'sem_anexo', 'detalhe': {'estado': 'sem_anexo', 'anexo_bytes': null, 'leitura_ocr_id': null}},
+      {'tipo': 'recibo', 'id': 'e1e1e1e1-0004-4000-8000-000000000004', 'user_id': _u1, 'email': 'joao.tvde@gmail.com', 'quando': '2026-09-04T16:20:00Z', 'resumo': 'Bolt Operations OÜ · 812,40 € · Serviços TVDE agosto', 'erro': 'invoicexpress_recusou', 'detalhe': {'estado': 'erro', 'fornecedor': 'invoicexpress', 'numero': null}},
+      {'tipo': 'ocr', 'id': 'e1e1e1e1-0005-4000-8000-000000000005', 'user_id': '66666666-6666-4666-8666-666666666666', 'email': 'rui.carro@sapo.pt', 'quando': '2026-09-03T18:05:00Z', 'resumo': 'fatura_oficina · Auto Guarda · 240,00 €', 'erro': 'corrigido_pela_pessoa', 'detalhe': {'origem': 'galeria', 'confianca': 0.82, 'confirmado': true, 'corrigido': true, 'ficheiro_url': null}},
+    ],
     contactoParceiro: 'Contabilidade Guarda Lda · 271 000 000 · geral@contaguarda.pt',
   );
 }
@@ -239,7 +254,7 @@ void main() {
   });
 
   testWidgets('admin_regras: tabela editável', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_regras', tela: () => moldura(2));
+    await fotografaDesktop(tester, nome: 'admin_regras', tela: () => moldura(3));
     expect(find.text('ias'), findsOneWidget);
     expect(find.text('por_confirmar'), findsOneWidget);
   });
@@ -248,7 +263,7 @@ void main() {
     await fotografaDesktop(
       tester,
       nome: 'admin_regras_editar',
-      tela: () => moldura(2),
+      tela: () => moldura(3),
       antes: (t) async {
         await t.tap(find.text('ias'));
         await t.pump(const Duration(milliseconds: 400));
@@ -258,7 +273,7 @@ void main() {
   });
 
   testWidgets('admin_regras_flags: cadeados por plano', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_regras_flags', tela: () => moldura(2), antes: (t) async {
+    await fotografaDesktop(tester, nome: 'admin_regras_flags', tela: () => moldura(3), antes: (t) async {
       await t.tap(find.text('Cadeados por plano'));
       await t.pump(const Duration(milliseconds: 300));
     });
@@ -266,25 +281,94 @@ void main() {
   });
 
   testWidgets('admin_tickets: filtros, tabela e contato do parceiro', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_tickets', tela: () => moldura(3));
+    await fotografaDesktop(tester, nome: 'admin_tickets', tela: () => moldura(4));
     expect(find.text('A app fecha ao abrir o calendário'), findsOneWidget);
     expect(find.textContaining('contaguarda.pt'), findsOneWidget);
   });
 
   testWidgets('admin_ia: top perguntas, fora das regras, custo', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_ia', tela: () => moldura(4));
+    await fotografaDesktop(tester, nome: 'admin_ia', tela: () => moldura(6));
     expect(find.text('Perguntas mais feitas (top 30)'), findsOneWidget);
     expect(find.text('Criar guia'), findsWidgets);
   });
 
   testWidgets('admin_avisos: push, massa, e2e', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_avisos', tela: () => moldura(5));
+    await fotografaDesktop(tester, nome: 'admin_avisos', tela: () => moldura(7));
     expect(find.text('Avisos em massa'), findsOneWidget);
   });
 
   testWidgets('admin_auditoria: log com filtros', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_auditoria', tela: () => moldura(6));
+    await fotografaDesktop(tester, nome: 'admin_auditoria', tela: () => moldura(8));
     expect(find.text('usuario_banir'), findsOneWidget);
+  });
+
+  testWidgets('admin_assinaturas: tabela com filtro por estado e contagens (B7)', (tester) async {
+    await fotografaDesktop(tester, nome: 'admin_assinaturas', tela: () => moldura(2));
+    expect(find.text('5 assinaturas'), findsOneWidget);
+    expect(find.text('2 ativas · 1 expiradas · 1 canceladas · 1 pendentes'), findsOneWidget);
+    expect(find.text('familia_anual'), findsOneWidget);
+    expect(find.text('Baixar CSV'), findsOneWidget);
+  });
+
+  testWidgets('admin_assinatura_detalhe: folha lateral (B7)', (tester) async {
+    await fotografaDesktop(
+      tester,
+      nome: 'admin_assinatura_detalhe',
+      tela: () => moldura(2),
+      antes: (t) async {
+        await t.tap(find.text('familia_anual'));
+        await t.pump(const Duration(milliseconds: 400));
+      },
+    );
+    expect(find.text('Comprovante da Play guardado'), findsOneWidget);
+  });
+
+  testWidgets('admin_erros: OCR, importação, e-mail de fatura e recibo numa lista só (B7)', (tester) async {
+    await fotografaDesktop(tester, nome: 'admin_erros', tela: () => moldura(5));
+    expect(find.text('5 registros'), findsOneWidget);
+    expect(find.text('sem_valor'), findsOneWidget);
+    expect(find.text('coluna_data_nao_encontrada'), findsOneWidget);
+    expect(find.text('invoicexpress_recusou'), findsOneWidget);
+  });
+
+  testWidgets('admin_erro_detalhe: folha com o JSON do detalhe (B7)', (tester) async {
+    await fotografaDesktop(
+      tester,
+      nome: 'admin_erro_detalhe',
+      tela: () => moldura(5),
+      antes: (t) async {
+        await t.tap(find.text('coluna_data_nao_encontrada'));
+        await t.pump(const Duration(milliseconds: 400));
+      },
+    );
+    expect(find.textContaining('"linhas_lidas": 0'), findsOneWidget);
+  });
+
+  testWidgets('admin_usuario_apagar: simulação antes de apagar, com motivo obrigatório (B7)', (tester) async {
+    await fotografaDesktop(
+      tester,
+      nome: 'admin_usuario_apagar',
+      tela: () => moldura(1),
+      antes: (t) async {
+        // Cada folha/caixa precisa de DOIS pumps: o primeiro arranca a animação
+        // (a rota entra no frame seguinte ao toque), o segundo termina-a. Com um
+        // só, o botão ainda está fora do ecrã e o toque cai no vazio.
+        await t.tap(find.text('joao.tvde@gmail.com'));
+        await t.pump();
+        await t.pump(const Duration(milliseconds: 400));
+        await t.tap(find.text('Apagar conta'));
+        await t.pump();
+        await t.pump(const Duration(milliseconds: 400));
+        // 1.ª caixa: «Confirmar» → 2.ª caixa: a simulação com o motivo
+        await t.tap(find.text('Confirmar'));
+        await t.pump();
+        await t.pump(const Duration(milliseconds: 400));
+      },
+    );
+    expect(find.text('Apagar joao.tvde@gmail.com: o que vai embora'), findsOneWidget);
+    expect(find.text('obrigacoes: 11'), findsOneWidget);
+    expect(find.text('Arquivos no Storage: 2'), findsOneWidget);
+    expect(find.text('Apagar de vez'), findsOneWidget);
   });
 
   testWidgets('admin_erro: leitura falhada mostra Aviso vermelho', (tester) async {
@@ -294,7 +378,7 @@ void main() {
   });
 
   testWidgets('admin_vazio: sem tickets', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_vazio', tela: () => moldura(3, dados: DadosTeste()));
+    await fotografaDesktop(tester, nome: 'admin_vazio', tela: () => moldura(4, dados: DadosTeste()));
     expect(find.text('Nada por aqui ainda.'), findsOneWidget);
   });
 }

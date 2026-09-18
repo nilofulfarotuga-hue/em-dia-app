@@ -7,8 +7,10 @@ import '../screens/login/login_screen.dart';
 import '../services/arranque.dart';
 import '../stores/sessao_store.dart';
 import 'admin_dados.dart';
+import 'secoes/assinaturas.dart';
 import 'secoes/auditoria.dart';
 import 'secoes/avisos.dart';
+import 'secoes/erros.dart';
 import 'secoes/ia.dart';
 import 'secoes/regras_legais.dart';
 import 'secoes/tickets.dart';
@@ -112,8 +114,10 @@ class AdminMoldura extends StatelessWidget {
             destinations: [
               NavigationRailDestination(icon: const Icon(Icons.dashboard_rounded), label: Text(l.admNavVisaoGeral)),
               NavigationRailDestination(icon: const Icon(Icons.people_rounded), label: Text(l.admNavUsuarios)),
+              NavigationRailDestination(icon: const Icon(Icons.card_membership_rounded), label: Text(l.admNavAssinaturas)),
               NavigationRailDestination(icon: const Icon(Icons.gavel_rounded), label: Text(l.admNavRegras)),
               NavigationRailDestination(icon: const Icon(Icons.support_agent_rounded), label: Text(l.admNavTickets)),
+              NavigationRailDestination(icon: const Icon(Icons.report_problem_rounded), label: Text(l.admNavErros)),
               NavigationRailDestination(icon: const Icon(Icons.smart_toy_rounded), label: Text(l.admNavIa)),
               NavigationRailDestination(icon: const Icon(Icons.campaign_rounded), label: Text(l.admNavAvisos)),
               NavigationRailDestination(icon: const Icon(Icons.history_rounded), label: Text(l.admNavAuditoria)),
@@ -144,13 +148,17 @@ class AdminSeccao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Ordem do menu (B7): visão geral, usuários, assinaturas, regras, tickets,
+    // erros de leitura, IA, avisos, auditoria.
     return switch (indice) {
       0 => VisaoGeralSeccao(dados: dados),
       1 => UsuariosSeccao(dados: dados),
-      2 => RegrasLegaisSeccao(dados: dados),
-      3 => TicketsSeccao(dados: dados),
-      4 => IaSeccao(dados: dados),
-      5 => AvisosSeccao(dados: dados),
+      2 => AssinaturasSeccao(dados: dados),
+      3 => RegrasLegaisSeccao(dados: dados),
+      4 => TicketsSeccao(dados: dados),
+      5 => ErrosSeccao(dados: dados),
+      6 => IaSeccao(dados: dados),
+      7 => AvisosSeccao(dados: dados),
       _ => AuditoriaSeccao(dados: dados),
     };
   }

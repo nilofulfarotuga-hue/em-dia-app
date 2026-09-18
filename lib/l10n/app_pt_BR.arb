@@ -1236,7 +1236,7 @@
       }
     }
   },
-  "admUsCsvNota": "Copie e cole num arquivo .csv (separador ;). O download direto pelo navegador fica para uma próxima versão.",
+  "admUsCsvNota": "Copie e cole num arquivo .csv (separador ;). Na web o botão baixa o arquivo direto.",
   "admUsTabela": "{n} usuários",
   "@admUsTabela": {
     "placeholders": {
@@ -1290,8 +1290,8 @@
     }
   },
   "admUsApagar": "Apagar conta",
-  "admUsApagarNota": "Apagar do auth de verdade precisa da service role (servidor). Aqui só marca como banido e registra o pedido na auditoria — o servidor apaga depois.",
-  "admUsApagarConfirma": "Marcar {email} como banido e registrar o pedido de apagar a conta?",
+  "admUsApagarNota": "Apagar é definitivo: a conta em auth.users e tudo o que é dela (obrigações, dinheiro, carro, arquivos) vão embora; conversas com a IA e tickets ficam anônimos. Antes de apagar, mostramos o que vai embora e pedimos o motivo.",
+  "admUsApagarConfirma": "Apagar a conta {email} de vez? Primeiro mostramos o que vai embora.",
   "@admUsApagarConfirma": {
     "placeholders": {
       "email": {
@@ -1529,6 +1529,108 @@
   "admAuColAlvo": "Alvo",
   "admAuColAntes": "Antes",
   "admAuColDepois": "Depois",
+  "admNavAssinaturas": "Assinaturas",
+  "admNavErros": "Erros de leitura",
+  "admBaixarCsv": "Baixar CSV",
+  "admBaixado": "Arquivo {nome} baixado.",
+  "@admBaixado": {
+    "placeholders": {
+      "nome": {
+        "type": "String"
+      }
+    }
+  },
+  "admAsTitulo": "Assinaturas",
+  "admAsSub": "Todas as assinaturas (Play Billing): produto, estado, datas e o plano que a pessoa tem de fato. Baixe em CSV quando precisar.",
+  "admAsTabela": "{n} assinaturas",
+  "@admAsTabela": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "admAsColUsuario": "Usuário",
+  "admAsColProduto": "Produto",
+  "admAsColPlataforma": "Plataforma",
+  "admAsColEstado": "Estado",
+  "admAsColPlano": "Plano efetivo",
+  "admAsColComecou": "Começou",
+  "admAsColRenova": "Renova",
+  "admAsColTerminou": "Terminou",
+  "admAsEstadoAtiva": "ativa",
+  "admAsEstadoExpirada": "expirada",
+  "admAsEstadoCancelada": "cancelada",
+  "admAsEstadoPendente": "pendente",
+  "admAsResumo": "{ativas} ativas · {expiradas} expiradas · {canceladas} canceladas · {pendentes} pendentes",
+  "@admAsResumo": {
+    "placeholders": {
+      "ativas": {
+        "type": "int"
+      },
+      "expiradas": {
+        "type": "int"
+      },
+      "canceladas": {
+        "type": "int"
+      },
+      "pendentes": {
+        "type": "int"
+      }
+    }
+  },
+  "admAsDetalhe": "Assinatura {id}",
+  "@admAsDetalhe": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "admAsComprovativo": "Comprovante da Play guardado",
+  "admErTitulo": "Erros de leitura e importação",
+  "admErSub": "O que a máquina não conseguiu ler direito: OCR sem valor ou com pouca confiança (ou corrigido pela pessoa), extratos que não importaram, e-mails de fatura que não deram, recibos recusados. Serve para achar padrões e corrigir a leitura.",
+  "admErTabela": "{n} registros",
+  "@admErTabela": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "admErColTipo": "Tipo",
+  "admErColQuando": "Quando",
+  "admErColUsuario": "Usuário",
+  "admErColResumo": "O que era",
+  "admErColErro": "Erro",
+  "admErTipoOcr": "OCR",
+  "admErTipoImportacao": "Importação",
+  "admErTipoFatura": "E-mail de fatura",
+  "admErTipoRecibo": "Recibo",
+  "admErDetalhe": "Detalhe do erro",
+  "admUsApagarSimTitulo": "Apagar {email}: o que vai embora",
+  "@admUsApagarSimTitulo": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "admUsApagarSimLinhas": "Linhas nas tabelas (somem de vez)",
+  "admUsApagarSimAnonimos": "Conversas com a IA e tickets ficam, mas sem dono",
+  "admUsApagarSimFicheiros": "Arquivos no Storage: {n}",
+  "@admUsApagarSimFicheiros": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "admUsApagarMotivo": "Motivo (fica na auditoria)",
+  "admUsApagarDefinitivo": "Apagar de vez",
+  "admUsApagarFaltaMotivo": "Escreva o motivo antes de apagar.",
+  "admUsApagado": "Conta apagada. Ficou registrado na auditoria.",
+  "admUsApagarEhAdmin": "Esta conta é admin: tire-a de public.admins antes de apagar.",
   "caixaTitulo": "As faturas que me chegam",
   "caixaAtalho": "Faturas por e-mail",
   "caixaAtalhoAjuda": "Mande as faturas para o seu endereço e elas aparecem aqui.",

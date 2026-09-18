@@ -4515,7 +4515,7 @@ abstract class AppLocalizations {
   /// No description provided for @admUsCsvNota.
   ///
   /// In pt, this message translates to:
-  /// **'Copie e cole num arquivo .csv (separador ;). O download direto pelo navegador fica para uma próxima versão.'**
+  /// **'Copia e cola num ficheiro .csv (separador ;). Na web o botão descarrega o ficheiro diretamente.'**
   String get admUsCsvNota;
 
   /// No description provided for @admUsTabela.
@@ -4653,13 +4653,13 @@ abstract class AppLocalizations {
   /// No description provided for @admUsApagarNota.
   ///
   /// In pt, this message translates to:
-  /// **'Apagar do auth de verdade precisa da service role (servidor). Aqui só marca como banido e registra o pedido na auditoria — o servidor apaga depois.'**
+  /// **'Apagar é definitivo: a conta em auth.users e tudo o que é dela (obrigações, dinheiro, carro, ficheiros) vão embora; conversas com a IA e tickets ficam anónimos. Antes de apagar, mostramos o que vai embora e pedimos o motivo.'**
   String get admUsApagarNota;
 
   /// No description provided for @admUsApagarConfirma.
   ///
   /// In pt, this message translates to:
-  /// **'Marcar {email} como banido e registrar o pedido de apagar a conta?'**
+  /// **'Apagar a conta {email} de vez? Primeiro mostramos o que vai embora.'**
   String admUsApagarConfirma(String email);
 
   /// No description provided for @admUsFeito.
@@ -5477,6 +5477,270 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Depois'**
   String get admAuColDepois;
+
+  /// No description provided for @admNavAssinaturas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Assinaturas'**
+  String get admNavAssinaturas;
+
+  /// No description provided for @admNavErros.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erros de leitura'**
+  String get admNavErros;
+
+  /// No description provided for @admBaixarCsv.
+  ///
+  /// In pt, this message translates to:
+  /// **'Descarregar CSV'**
+  String get admBaixarCsv;
+
+  /// No description provided for @admBaixado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ficheiro {nome} descarregado.'**
+  String admBaixado(String nome);
+
+  /// No description provided for @admAsTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Assinaturas'**
+  String get admAsTitulo;
+
+  /// No description provided for @admAsSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Todas as assinaturas (Play Billing): produto, estado, datas e o plano que a pessoa tem de facto. Descarrega em CSV quando precisares.'**
+  String get admAsSub;
+
+  /// No description provided for @admAsTabela.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} assinaturas'**
+  String admAsTabela(int n);
+
+  /// No description provided for @admAsColUsuario.
+  ///
+  /// In pt, this message translates to:
+  /// **'Utilizador'**
+  String get admAsColUsuario;
+
+  /// No description provided for @admAsColProduto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Produto'**
+  String get admAsColProduto;
+
+  /// No description provided for @admAsColPlataforma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Plataforma'**
+  String get admAsColPlataforma;
+
+  /// No description provided for @admAsColEstado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estado'**
+  String get admAsColEstado;
+
+  /// No description provided for @admAsColPlano.
+  ///
+  /// In pt, this message translates to:
+  /// **'Plano efetivo'**
+  String get admAsColPlano;
+
+  /// No description provided for @admAsColComecou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Começou'**
+  String get admAsColComecou;
+
+  /// No description provided for @admAsColRenova.
+  ///
+  /// In pt, this message translates to:
+  /// **'Renova'**
+  String get admAsColRenova;
+
+  /// No description provided for @admAsColTerminou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Terminou'**
+  String get admAsColTerminou;
+
+  /// No description provided for @admAsEstadoAtiva.
+  ///
+  /// In pt, this message translates to:
+  /// **'ativa'**
+  String get admAsEstadoAtiva;
+
+  /// No description provided for @admAsEstadoExpirada.
+  ///
+  /// In pt, this message translates to:
+  /// **'expirada'**
+  String get admAsEstadoExpirada;
+
+  /// No description provided for @admAsEstadoCancelada.
+  ///
+  /// In pt, this message translates to:
+  /// **'cancelada'**
+  String get admAsEstadoCancelada;
+
+  /// No description provided for @admAsEstadoPendente.
+  ///
+  /// In pt, this message translates to:
+  /// **'pendente'**
+  String get admAsEstadoPendente;
+
+  /// No description provided for @admAsResumo.
+  ///
+  /// In pt, this message translates to:
+  /// **'{ativas} ativas · {expiradas} expiradas · {canceladas} canceladas · {pendentes} pendentes'**
+  String admAsResumo(int ativas, int expiradas, int canceladas, int pendentes);
+
+  /// No description provided for @admAsDetalhe.
+  ///
+  /// In pt, this message translates to:
+  /// **'Assinatura {id}'**
+  String admAsDetalhe(String id);
+
+  /// No description provided for @admAsComprovativo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Comprovativo da Play guardado'**
+  String get admAsComprovativo;
+
+  /// No description provided for @admErTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erros de leitura e importação'**
+  String get admErTitulo;
+
+  /// No description provided for @admErSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que a máquina não conseguiu ler bem: OCR sem valor ou com pouca confiança (ou corrigido pela pessoa), extratos que não importaram, e-mails de fatura que não deram, recibos recusados. Serve para achar padrões e corrigir a leitura.'**
+  String get admErSub;
+
+  /// No description provided for @admErTabela.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} registos'**
+  String admErTabela(int n);
+
+  /// No description provided for @admErColTipo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tipo'**
+  String get admErColTipo;
+
+  /// No description provided for @admErColQuando.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando'**
+  String get admErColQuando;
+
+  /// No description provided for @admErColUsuario.
+  ///
+  /// In pt, this message translates to:
+  /// **'Utilizador'**
+  String get admErColUsuario;
+
+  /// No description provided for @admErColResumo.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que era'**
+  String get admErColResumo;
+
+  /// No description provided for @admErColErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro'**
+  String get admErColErro;
+
+  /// No description provided for @admErTipoOcr.
+  ///
+  /// In pt, this message translates to:
+  /// **'OCR'**
+  String get admErTipoOcr;
+
+  /// No description provided for @admErTipoImportacao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Importação'**
+  String get admErTipoImportacao;
+
+  /// No description provided for @admErTipoFatura.
+  ///
+  /// In pt, this message translates to:
+  /// **'E-mail de fatura'**
+  String get admErTipoFatura;
+
+  /// No description provided for @admErTipoRecibo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Recibo'**
+  String get admErTipoRecibo;
+
+  /// No description provided for @admErDetalhe.
+  ///
+  /// In pt, this message translates to:
+  /// **'Detalhe do erro'**
+  String get admErDetalhe;
+
+  /// No description provided for @admUsApagarSimTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar {email}: o que vai embora'**
+  String admUsApagarSimTitulo(String email);
+
+  /// No description provided for @admUsApagarSimLinhas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Linhas nas tabelas (desaparecem de vez)'**
+  String get admUsApagarSimLinhas;
+
+  /// No description provided for @admUsApagarSimAnonimos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conversas com a IA e tickets ficam, mas sem dono'**
+  String get admUsApagarSimAnonimos;
+
+  /// No description provided for @admUsApagarSimFicheiros.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ficheiros no Storage: {n}'**
+  String admUsApagarSimFicheiros(int n);
+
+  /// No description provided for @admUsApagarMotivo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Motivo (fica na auditoria)'**
+  String get admUsApagarMotivo;
+
+  /// No description provided for @admUsApagarDefinitivo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Apagar de vez'**
+  String get admUsApagarDefinitivo;
+
+  /// No description provided for @admUsApagarFaltaMotivo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escreve o motivo antes de apagar.'**
+  String get admUsApagarFaltaMotivo;
+
+  /// No description provided for @admUsApagado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conta apagada. Ficou registado na auditoria.'**
+  String get admUsApagado;
+
+  /// No description provided for @admUsApagarEhAdmin.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esta conta é admin: tira-a de public.admins antes de apagar.'**
+  String get admUsApagarEhAdmin;
 
   /// No description provided for @caixaTitulo.
   ///

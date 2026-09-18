@@ -49,8 +49,18 @@ passou a descer os shadow roots; a app estava certa (a captura sem rede já most
   para a prova o poder ler. O CI compila do modelo.
 - `__VERSAO__` fica por carimbar na build local (o `sed` é do CI); o worker funciona na mesma, com a cache
   `em-dia-__VERSAO__`.
-- Prova na app publicada: depois do deploy, `python tool/provas/pwa_prova.py --url https://app.emdia.boraguarda.com`
-  (registada abaixo quando correr).
+- **Prova na app publicada (15:06, commit `3c07fb7` no ar — CI verde nos três workflows):**
+  `python tool/provas/pwa_prova.py --url https://app.emdia.boraguarda.com --saida provas/em-dia-tudo-2026-09-17/pwa-no-ar`
+
+  ```
+  - Primeiro ecrã COM rede: **6344 ms** (canvas = True)          ← arranque frio, Cloudflare + CanvasKit do CDN + Turnstile
+  - Semântica: **24 nós** `flt-semantics` (5 com rótulo/papel)
+  - Service worker a controlar a página aos 2 ms; respondeu «guardado» aos 4 ms: {"quantos": 7, "total": 9, "versao": "3c07fb71f0fc"}
+  - Cache `em-dia-3c07fb71f0fc`: **13 ficheiros** — main.dart.js, flutter_bootstrap.js, canvaskit, inter, 4 assets
+  - SEM rede: página abriu = True; primeiro ecrã **723 ms**; flutter-view = True, canvas = True
+  - Redimensionar 5×: 390x844 → ok em 0 ms; 1100x700 → 43 ms; 700x900 → 57 ms; 360x780 → 62 ms; 1280x800 → 74 ms
+  ```
+  A versão do worker é o commit carimbado pelo CI (`__VERSAO__` → `3c07fb71f0fc`): a cache muda a cada deploy.
 
 ## Limites honestos
 

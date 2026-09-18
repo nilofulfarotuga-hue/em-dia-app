@@ -8,6 +8,7 @@ import '../../l10n/app_localizations.dart';
 import '../../widgets/widgets.dart';
 import '../admin_dados.dart';
 import '../admin_widgets.dart';
+import '../util/descarregar.dart';
 
 class UsuariosSeccao extends StatefulWidget {
   final AdminDados dados;
@@ -45,7 +46,12 @@ class _UsuariosSeccaoState extends State<UsuariosSeccao> {
   Future<void> _exportar() async {
     final l = AppLocalizations.of(context);
     final csv = widget.dados.usuariosCsv(_ultima);
-    await mostrarTextoCopiavel(context, titulo: l.admUsCsvTitulo(_ultima.length), texto: csv, nota: l.admUsCsvNota);
+    // Na web descarrega o ficheiro; fora dela (testes) abre a caixa de copiar.
+    if (await descarregarTexto(nome: 'usuarios.csv', conteudo: csv)) {
+      if (mounted) avisar(context, l.admBaixado('usuarios.csv'));
+      return;
+    }
+    if (mounted) await mostrarTextoCopiavel(context, titulo: l.admUsCsvTitulo(_ultima.length), texto: csv, nota: l.admUsCsvNota);
   }
 
   void _abrir(UsuarioAdmin u) {
@@ -191,10 +197,42 @@ class _DetalheUsuarioState extends State<_DetalheUsuario> {
     await _executar(() => widget.dados.estenderTrial(widget.usuario, base.add(Duration(days: dias))));
   }
 
+  /// Apagar a sério (B7): 1) simulação — o que vai embora, por tabela e
+  /// ficheiros; 2) motivo obrigatório; 3) Edge Function admin-apagar-conta.
   Future<void> _apagar() async {
     final l = AppLocalizations.of(context);
-    final ok = await confirmar(context, titulo: l.admUsApagar, texto: l.admUsApagarConfirma(widget.usuario.email ?? widget.usuario.userId), perigo: true);
-    if (ok) await _executar(() => widget.dados.pedirApagarConta(widget.usuario));
+    final u = widget.usuario;
+    final ok = await confirmar(context, titulo: l.admUsApagar, texto: l.admUsApagarConfirma(u.email ?? u.userId), perigo: true);
+    if (!ok || !mounted) return;
+    Linha sim;
+    try {
+      sim = await widget.dados.simularApagarConta(u);
+    } catch (e) {
+      if (mounted) await mostrarErro(context, e);
+      return;
+    }
+    if (!mounted) return;
+    if (sim['eh_admin'] == true) {
+      await mostrarErro(context, l.admUsApagarEhAdmin);
+      return;
+    }
+    final motivo = await showDialog<String>(
+      context: context,
+      builder: (ctx) => DialogoApagarConta(email: u.email ?? u.userId, simulacao: sim),
+    );
+    if (motivo == null || !mounted) return;
+    setState(() => _aTrabalhar = true);
+    try {
+      await widget.dados.apagarConta(u, motivo);
+      widget.aoMudar();
+      if (!mounted) return;
+      avisar(context, l.admUsApagado);
+      Navigator.of(context).pop();
+    } catch (e) {
+      if (mounted) await mostrarErro(context, e);
+    } finally {
+      if (mounted) setState(() => _aTrabalhar = false);
+    }
   }
 
   @override
@@ -319,6 +357,76 @@ class _Linha extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3),
       child: Wrap(spacing: 10, runSpacing: 4, crossAxisAlignment: WrapCrossAlignment.center, children: filhos),
+    );
+  }
+}
+
+/// A caixa do «apagar de vez» (B7): mostra a simulação (linhas por tabela,
+/// ficheiros) e pede o motivo. Devolve o motivo, ou null se desistiu.
+class DialogoApagarConta extends StatefulWidget {
+  final String email;
+  final Linha simulacao;
+  const DialogoApagarConta({super.key, required this.email, required this.simulacao});
+
+  @override
+  State<DialogoApagarConta> createState() => _DialogoApagarContaState();
+}
+
+class _DialogoApagarContaState extends State<DialogoApagarConta> {
+  final _motivo = TextEditingController();
+
+  @override
+  void dispose() {
+    _motivo.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
+    final t = Theme.of(context).textTheme;
+    final linhas = Map<String, dynamic>.from((widget.simulacao['linhas'] as Map?) ?? {});
+    final comLinhas = linhas.entries.where((e) => ((e.value as num?) ?? 0) > 0).toList();
+    final anonimos = comLinhas.where((e) => e.key.contains('ficam')).toList();
+    final somem = comLinhas.where((e) => !e.key.contains('ficam')).toList();
+    final ficheiros = (widget.simulacao['ficheiros_storage'] as num?)?.toInt() ?? 0;
+    return AlertDialog(
+      title: Text(l.admUsApagarSimTitulo(widget.email)),
+      content: SizedBox(
+        width: 520,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(l.admUsApagarSimLinhas, style: t.titleSmall),
+              const SizedBox(height: 4),
+              if (somem.isEmpty) Text('—', style: t.bodyMedium),
+              for (final e in somem) Text('${e.key}: ${e.value}', style: t.bodyMedium),
+              if (anonimos.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                Text(l.admUsApagarSimAnonimos, style: t.titleSmall),
+                for (final e in anonimos)
+                  Text('${e.key.replaceAll('_ficam_anonimas', '').replaceAll('_ficam_anonimos', '')}: ${e.value}', style: t.bodyMedium),
+              ],
+              const SizedBox(height: 8),
+              Text(l.admUsApagarSimFicheiros(ficheiros), style: t.titleSmall),
+              const SizedBox(height: 12),
+              CampoAdmin(controlador: _motivo, rotulo: l.admUsApagarMotivo, linhas: 2),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l.cancelar)),
+        BotaoPequeno(l.admUsApagarDefinitivo, icone: Icons.delete_forever_rounded, perigo: true, aoTocar: () {
+          if (_motivo.text.trim().length < 3) {
+            avisar(context, l.admUsApagarFaltaMotivo);
+            return;
+          }
+          Navigator.of(context).pop(_motivo.text.trim());
+        }),
+      ],
     );
   }
 }

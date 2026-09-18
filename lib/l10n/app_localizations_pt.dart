@@ -2662,7 +2662,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get admUsCsvNota =>
-      'Copie e cole num arquivo .csv (separador ;). O download direto pelo navegador fica para uma próxima versão.';
+      'Copia e cola num ficheiro .csv (separador ;). Na web o botão descarrega o ficheiro diretamente.';
 
   @override
   String admUsTabela(int n) {
@@ -2741,11 +2741,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get admUsApagarNota =>
-      'Apagar do auth de verdade precisa da service role (servidor). Aqui só marca como banido e registra o pedido na auditoria — o servidor apaga depois.';
+      'Apagar é definitivo: a conta em auth.users e tudo o que é dela (obrigações, dinheiro, carro, ficheiros) vão embora; conversas com a IA e tickets ficam anónimos. Antes de apagar, mostramos o que vai embora e pedimos o motivo.';
 
   @override
   String admUsApagarConfirma(String email) {
-    return 'Marcar $email como banido e registrar o pedido de apagar a conta?';
+    return 'Apagar a conta $email de vez? Primeiro mostramos o que vai embora.';
   }
 
   @override
@@ -3195,6 +3195,156 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get admAuColDepois => 'Depois';
+
+  @override
+  String get admNavAssinaturas => 'Assinaturas';
+
+  @override
+  String get admNavErros => 'Erros de leitura';
+
+  @override
+  String get admBaixarCsv => 'Descarregar CSV';
+
+  @override
+  String admBaixado(String nome) {
+    return 'Ficheiro $nome descarregado.';
+  }
+
+  @override
+  String get admAsTitulo => 'Assinaturas';
+
+  @override
+  String get admAsSub =>
+      'Todas as assinaturas (Play Billing): produto, estado, datas e o plano que a pessoa tem de facto. Descarrega em CSV quando precisares.';
+
+  @override
+  String admAsTabela(int n) {
+    return '$n assinaturas';
+  }
+
+  @override
+  String get admAsColUsuario => 'Utilizador';
+
+  @override
+  String get admAsColProduto => 'Produto';
+
+  @override
+  String get admAsColPlataforma => 'Plataforma';
+
+  @override
+  String get admAsColEstado => 'Estado';
+
+  @override
+  String get admAsColPlano => 'Plano efetivo';
+
+  @override
+  String get admAsColComecou => 'Começou';
+
+  @override
+  String get admAsColRenova => 'Renova';
+
+  @override
+  String get admAsColTerminou => 'Terminou';
+
+  @override
+  String get admAsEstadoAtiva => 'ativa';
+
+  @override
+  String get admAsEstadoExpirada => 'expirada';
+
+  @override
+  String get admAsEstadoCancelada => 'cancelada';
+
+  @override
+  String get admAsEstadoPendente => 'pendente';
+
+  @override
+  String admAsResumo(int ativas, int expiradas, int canceladas, int pendentes) {
+    return '$ativas ativas · $expiradas expiradas · $canceladas canceladas · $pendentes pendentes';
+  }
+
+  @override
+  String admAsDetalhe(String id) {
+    return 'Assinatura $id';
+  }
+
+  @override
+  String get admAsComprovativo => 'Comprovativo da Play guardado';
+
+  @override
+  String get admErTitulo => 'Erros de leitura e importação';
+
+  @override
+  String get admErSub =>
+      'O que a máquina não conseguiu ler bem: OCR sem valor ou com pouca confiança (ou corrigido pela pessoa), extratos que não importaram, e-mails de fatura que não deram, recibos recusados. Serve para achar padrões e corrigir a leitura.';
+
+  @override
+  String admErTabela(int n) {
+    return '$n registos';
+  }
+
+  @override
+  String get admErColTipo => 'Tipo';
+
+  @override
+  String get admErColQuando => 'Quando';
+
+  @override
+  String get admErColUsuario => 'Utilizador';
+
+  @override
+  String get admErColResumo => 'O que era';
+
+  @override
+  String get admErColErro => 'Erro';
+
+  @override
+  String get admErTipoOcr => 'OCR';
+
+  @override
+  String get admErTipoImportacao => 'Importação';
+
+  @override
+  String get admErTipoFatura => 'E-mail de fatura';
+
+  @override
+  String get admErTipoRecibo => 'Recibo';
+
+  @override
+  String get admErDetalhe => 'Detalhe do erro';
+
+  @override
+  String admUsApagarSimTitulo(String email) {
+    return 'Apagar $email: o que vai embora';
+  }
+
+  @override
+  String get admUsApagarSimLinhas => 'Linhas nas tabelas (desaparecem de vez)';
+
+  @override
+  String get admUsApagarSimAnonimos =>
+      'Conversas com a IA e tickets ficam, mas sem dono';
+
+  @override
+  String admUsApagarSimFicheiros(int n) {
+    return 'Ficheiros no Storage: $n';
+  }
+
+  @override
+  String get admUsApagarMotivo => 'Motivo (fica na auditoria)';
+
+  @override
+  String get admUsApagarDefinitivo => 'Apagar de vez';
+
+  @override
+  String get admUsApagarFaltaMotivo => 'Escreve o motivo antes de apagar.';
+
+  @override
+  String get admUsApagado => 'Conta apagada. Ficou registado na auditoria.';
+
+  @override
+  String get admUsApagarEhAdmin =>
+      'Esta conta é admin: tira-a de public.admins antes de apagar.';
 
   @override
   String get caixaTitulo => 'As faturas que me chegam';
@@ -8852,7 +9002,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get admUsCsvNota =>
-      'Copie e cole num arquivo .csv (separador ;). O download direto pelo navegador fica para uma próxima versão.';
+      'Copie e cole num arquivo .csv (separador ;). Na web o botão baixa o arquivo direto.';
 
   @override
   String admUsTabela(int n) {
@@ -8931,11 +9081,11 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get admUsApagarNota =>
-      'Apagar do auth de verdade precisa da service role (servidor). Aqui só marca como banido e registra o pedido na auditoria — o servidor apaga depois.';
+      'Apagar é definitivo: a conta em auth.users e tudo o que é dela (obrigações, dinheiro, carro, arquivos) vão embora; conversas com a IA e tickets ficam anônimos. Antes de apagar, mostramos o que vai embora e pedimos o motivo.';
 
   @override
   String admUsApagarConfirma(String email) {
-    return 'Marcar $email como banido e registrar o pedido de apagar a conta?';
+    return 'Apagar a conta $email de vez? Primeiro mostramos o que vai embora.';
   }
 
   @override
@@ -9385,6 +9535,156 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get admAuColDepois => 'Depois';
+
+  @override
+  String get admNavAssinaturas => 'Assinaturas';
+
+  @override
+  String get admNavErros => 'Erros de leitura';
+
+  @override
+  String get admBaixarCsv => 'Baixar CSV';
+
+  @override
+  String admBaixado(String nome) {
+    return 'Arquivo $nome baixado.';
+  }
+
+  @override
+  String get admAsTitulo => 'Assinaturas';
+
+  @override
+  String get admAsSub =>
+      'Todas as assinaturas (Play Billing): produto, estado, datas e o plano que a pessoa tem de fato. Baixe em CSV quando precisar.';
+
+  @override
+  String admAsTabela(int n) {
+    return '$n assinaturas';
+  }
+
+  @override
+  String get admAsColUsuario => 'Usuário';
+
+  @override
+  String get admAsColProduto => 'Produto';
+
+  @override
+  String get admAsColPlataforma => 'Plataforma';
+
+  @override
+  String get admAsColEstado => 'Estado';
+
+  @override
+  String get admAsColPlano => 'Plano efetivo';
+
+  @override
+  String get admAsColComecou => 'Começou';
+
+  @override
+  String get admAsColRenova => 'Renova';
+
+  @override
+  String get admAsColTerminou => 'Terminou';
+
+  @override
+  String get admAsEstadoAtiva => 'ativa';
+
+  @override
+  String get admAsEstadoExpirada => 'expirada';
+
+  @override
+  String get admAsEstadoCancelada => 'cancelada';
+
+  @override
+  String get admAsEstadoPendente => 'pendente';
+
+  @override
+  String admAsResumo(int ativas, int expiradas, int canceladas, int pendentes) {
+    return '$ativas ativas · $expiradas expiradas · $canceladas canceladas · $pendentes pendentes';
+  }
+
+  @override
+  String admAsDetalhe(String id) {
+    return 'Assinatura $id';
+  }
+
+  @override
+  String get admAsComprovativo => 'Comprovante da Play guardado';
+
+  @override
+  String get admErTitulo => 'Erros de leitura e importação';
+
+  @override
+  String get admErSub =>
+      'O que a máquina não conseguiu ler direito: OCR sem valor ou com pouca confiança (ou corrigido pela pessoa), extratos que não importaram, e-mails de fatura que não deram, recibos recusados. Serve para achar padrões e corrigir a leitura.';
+
+  @override
+  String admErTabela(int n) {
+    return '$n registros';
+  }
+
+  @override
+  String get admErColTipo => 'Tipo';
+
+  @override
+  String get admErColQuando => 'Quando';
+
+  @override
+  String get admErColUsuario => 'Usuário';
+
+  @override
+  String get admErColResumo => 'O que era';
+
+  @override
+  String get admErColErro => 'Erro';
+
+  @override
+  String get admErTipoOcr => 'OCR';
+
+  @override
+  String get admErTipoImportacao => 'Importação';
+
+  @override
+  String get admErTipoFatura => 'E-mail de fatura';
+
+  @override
+  String get admErTipoRecibo => 'Recibo';
+
+  @override
+  String get admErDetalhe => 'Detalhe do erro';
+
+  @override
+  String admUsApagarSimTitulo(String email) {
+    return 'Apagar $email: o que vai embora';
+  }
+
+  @override
+  String get admUsApagarSimLinhas => 'Linhas nas tabelas (somem de vez)';
+
+  @override
+  String get admUsApagarSimAnonimos =>
+      'Conversas com a IA e tickets ficam, mas sem dono';
+
+  @override
+  String admUsApagarSimFicheiros(int n) {
+    return 'Arquivos no Storage: $n';
+  }
+
+  @override
+  String get admUsApagarMotivo => 'Motivo (fica na auditoria)';
+
+  @override
+  String get admUsApagarDefinitivo => 'Apagar de vez';
+
+  @override
+  String get admUsApagarFaltaMotivo => 'Escreva o motivo antes de apagar.';
+
+  @override
+  String get admUsApagado => 'Conta apagada. Ficou registrado na auditoria.';
+
+  @override
+  String get admUsApagarEhAdmin =>
+      'Esta conta é admin: tire-a de public.admins antes de apagar.';
 
   @override
   String get caixaTitulo => 'As faturas que me chegam';
