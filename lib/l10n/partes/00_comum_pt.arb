@@ -52,7 +52,7 @@
 
   "navPainel": "Painel",
   "navRecibos": "Recibos",
-  "navCalendario": "Calendário",
+  "navCalendario": "Agenda",
   "navCarro": "Carro",
   "navMais": "Mais",
 
@@ -176,7 +176,7 @@
   "rendGuardar": "Guardar",
   "rendSemDados": "Ainda não registaste nada. Começa pelo mês passado.",
 
-  "calTitulo": "Calendário",
+  "calTitulo": "Agenda",
   "calSemObrigacoes": "Nada marcado. Quando houver, aparece aqui.",
   "calValorEstimado": "Valor estimado",
   "calAte": "Até {data}",

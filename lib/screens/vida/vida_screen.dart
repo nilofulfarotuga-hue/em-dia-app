@@ -9,7 +9,7 @@ import 'nova_entrada.dart';
 import 'resumo_screen.dart';
 import 'saidas_screen.dart';
 
-/// Tela "A minha vida": **Entra, Sai, Sobra**.
+/// Tela «O meu dinheiro» (aba «Dinheiro»): **Entra, Sai, Sobra**.
 ///
 /// São três abas e não três ecrãs porque é a mesma pergunta feita em três
 /// pedaços: *o que ganhei*, *o que tenho de pagar* e *o que fica no fim*. Quem

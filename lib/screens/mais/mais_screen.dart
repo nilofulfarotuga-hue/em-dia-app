@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../config/app_colors.dart';
+import '../../exemplo/exemplo_screen.dart';
+import '../../exemplo/stores_exemplo.dart';
 import '../../l10n/app_localizations.dart';
+import '../../stores/sessao_store.dart';
 import '../../widgets/widgets.dart';
 import '../cofre/cofre_screen.dart';
 import '../fala/fala_screen.dart';
@@ -52,6 +56,9 @@ class MaisScreen extends StatelessWidget {
       _Acesso('ajuda', Icons.support_agent_rounded, l.maisAjuda, (_) => const SuporteScreen()),
       _Acesso('plano', Icons.workspace_premium_rounded, l.maisPlano, (_) => const PlanoScreen()),
       _Acesso('definicoes', Icons.settings_rounded, l.maisDefinicoes, (_) => const DefinicoesScreen()),
+      // «Ver um exemplo» (B2f) — escondido quando já se está dentro do exemplo.
+      if (context.read<SessaoStore>() is! SessaoExemplo)
+        _Acesso('exemplo', Icons.visibility_rounded, l.maisExemplo, (_) => const ExemploScreen()),
     ];
     return Scaffold(
       appBar: AppBar(title: Text(l.navMais)),

@@ -8,9 +8,13 @@ import '../painel/painel_screen.dart';
 import '../recibos/recibos_screen.dart';
 import '../vida/vida_screen.dart';
 
-/// As 6 abas: Painel · Recibos · A minha vida · Calendário · Carro · Mais.
+/// As 6 abas: Painel · Recibos · Dinheiro («O meu dinheiro») · Agenda · Carro · Mais.
 ///
-/// "A minha vida" fica a seguir aos Recibos de propósito: primeiro o que a
+/// Os rótulos são de UMA palavra de propósito (18/09/2026): «A minha vida» e
+/// «Calendário» partiam em duas linhas no telemóvel médio e o ícone dessa aba
+/// ficava mais alto do que os outros.
+///
+/// «Dinheiro» fica a seguir aos Recibos de propósito: primeiro o que a
 /// lei obriga, logo a seguir o dinheiro que entra e sai todos os dias.
 class ShellScreen extends StatefulWidget {
   const ShellScreen({super.key});

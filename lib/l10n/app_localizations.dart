@@ -321,7 +321,7 @@ abstract class AppLocalizations {
   /// No description provided for @navCalendario.
   ///
   /// In pt, this message translates to:
-  /// **'Calendário'**
+  /// **'Agenda'**
   String get navCalendario;
 
   /// No description provided for @navCarro.
@@ -957,7 +957,7 @@ abstract class AppLocalizations {
   /// No description provided for @calTitulo.
   ///
   /// In pt, this message translates to:
-  /// **'Calendário'**
+  /// **'Agenda'**
   String get calTitulo;
 
   /// No description provided for @calSemObrigacoes.
@@ -6120,6 +6120,42 @@ abstract class AppLocalizations {
   /// **'Pus de lado {valor} para o Estado (cofre).'**
   String cofreAutoGuardei(String valor);
 
+  /// No description provided for @exemploVerComoFica.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vê como fica, com um exemplo'**
+  String get exemploVerComoFica;
+
+  /// No description provided for @exemploFaixa.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto é um exemplo: a Maria, os números e as datas são inventados.'**
+  String get exemploFaixa;
+
+  /// No description provided for @exemploSair.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sair'**
+  String get exemploSair;
+
+  /// No description provided for @exemploNaoGrava.
+  ///
+  /// In pt, this message translates to:
+  /// **'Num exemplo nada fica guardado. Cria a tua conta para guardares as tuas coisas.'**
+  String get exemploNaoGrava;
+
+  /// No description provided for @exemploLoginAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não tens a certeza? Espreita a app cheia antes de criar conta.'**
+  String get exemploLoginAjuda;
+
+  /// No description provided for @maisExemplo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver um exemplo'**
+  String get maisExemplo;
+
   /// No description provided for @falaTitulo.
   ///
   /// In pt, this message translates to:
@@ -6686,7 +6722,7 @@ abstract class AppLocalizations {
   /// No description provided for @provaVazio.
   ///
   /// In pt, this message translates to:
-  /// **'Ainda não escreveste nada do que ganhaste. Vai a A minha vida, escreve uma vez, e eu começo a contar.'**
+  /// **'Ainda não escreveste nada do que ganhaste. Vai a Dinheiro, escreve uma vez, e eu começo a contar.'**
   String get provaVazio;
 
   /// No description provided for @provaCadeadoLinha.
@@ -7815,13 +7851,13 @@ abstract class AppLocalizations {
   /// No description provided for @vidaNav.
   ///
   /// In pt, this message translates to:
-  /// **'A minha vida'**
+  /// **'Dinheiro'**
   String get vidaNav;
 
   /// No description provided for @vidaTitulo.
   ///
   /// In pt, this message translates to:
-  /// **'A minha vida'**
+  /// **'O meu dinheiro'**
   String get vidaTitulo;
 
   /// No description provided for @vidaAbaEntra.

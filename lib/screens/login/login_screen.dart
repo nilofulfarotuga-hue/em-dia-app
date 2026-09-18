@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_theme.dart';
+import '../../exemplo/exemplo_screen.dart';
 import '../../l10n/app_localizations.dart';
 import '../../services/arranque.dart';
 import '../../stores/sessao_store.dart';
@@ -169,6 +170,15 @@ class _LoginScreenState extends State<LoginScreen> {
           icone: Icons.g_mobiledata_rounded,
           aoTocar: s.aTrabalhar ? null : s.entrarComGoogle,
         ),
+      ],
+      // «Vê como fica» (B2f): a app cheia com uma pessoa inventada, antes de
+      // criar conta. Quem não percebe nada disto vê primeiro, decide depois.
+      if (!widget.modoAdmin) ...[
+        const SizedBox(height: 24),
+        Text(l.exemploLoginAjuda,
+            textAlign: TextAlign.center,
+            style: t.bodySmall!.copyWith(color: AppColors.textSecondary)),
+        const Center(child: BotaoVerComoFica(discreto: true)),
       ],
     ];
   }

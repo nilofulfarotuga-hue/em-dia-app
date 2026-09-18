@@ -159,7 +159,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get navRecibos => 'Recibos';
 
   @override
-  String get navCalendario => 'Calendário';
+  String get navCalendario => 'Agenda';
 
   @override
   String get navCarro => 'Carro';
@@ -520,7 +520,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Ainda não registaste nada. Começa pelo mês passado.';
 
   @override
-  String get calTitulo => 'Calendário';
+  String get calTitulo => 'Agenda';
 
   @override
   String get calSemObrigacoes => 'Nada marcado. Quando houver, aparece aqui.';
@@ -3589,6 +3589,27 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get exemploVerComoFica => 'Vê como fica, com um exemplo';
+
+  @override
+  String get exemploFaixa =>
+      'Isto é um exemplo: a Maria, os números e as datas são inventados.';
+
+  @override
+  String get exemploSair => 'Sair';
+
+  @override
+  String get exemploNaoGrava =>
+      'Num exemplo nada fica guardado. Cria a tua conta para guardares as tuas coisas.';
+
+  @override
+  String get exemploLoginAjuda =>
+      'Ainda não tens a certeza? Espreita a app cheia antes de criar conta.';
+
+  @override
+  String get maisExemplo => 'Ver um exemplo';
+
+  @override
   String get falaTitulo => 'Fala comigo';
 
   @override
@@ -3925,7 +3946,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get provaVazio =>
-      'Ainda não escreveste nada do que ganhaste. Vai a A minha vida, escreve uma vez, e eu começo a contar.';
+      'Ainda não escreveste nada do que ganhaste. Vai a Dinheiro, escreve uma vez, e eu começo a contar.';
 
   @override
   String get provaCadeadoLinha =>
@@ -4640,10 +4661,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get sobraRecorrentesBotao => 'Coisas que se repetem';
 
   @override
-  String get vidaNav => 'A minha vida';
+  String get vidaNav => 'Dinheiro';
 
   @override
-  String get vidaTitulo => 'A minha vida';
+  String get vidaTitulo => 'O meu dinheiro';
 
   @override
   String get vidaAbaEntra => 'Entra';
@@ -5482,7 +5503,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get navRecibos => 'Recibos';
 
   @override
-  String get navCalendario => 'Calendário';
+  String get navCalendario => 'Agenda';
 
   @override
   String get navCarro => 'Carro';
@@ -5843,7 +5864,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
       'Você ainda não registrou nada. Comece pelo mês passado.';
 
   @override
-  String get calTitulo => 'Calendário';
+  String get calTitulo => 'Agenda';
 
   @override
   String get calSemObrigacoes => 'Nada marcado. Quando tiver, aparece aqui.';
@@ -8914,6 +8935,27 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   }
 
   @override
+  String get exemploVerComoFica => 'Veja como fica, com um exemplo';
+
+  @override
+  String get exemploFaixa =>
+      'Isto é um exemplo: a Maria, os números e as datas são inventados.';
+
+  @override
+  String get exemploSair => 'Sair';
+
+  @override
+  String get exemploNaoGrava =>
+      'Num exemplo nada fica salvo. Crie a sua conta para guardar as suas coisas.';
+
+  @override
+  String get exemploLoginAjuda =>
+      'Ainda não tem certeza? Dê uma olhada na app cheia antes de criar conta.';
+
+  @override
+  String get maisExemplo => 'Ver um exemplo';
+
+  @override
   String get falaTitulo => 'Fala comigo';
 
   @override
@@ -9250,7 +9292,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get provaVazio =>
-      'Você ainda não escreveu nada do que ganhou. Vá em Minha vida, escreva uma vez, e eu começo a contar.';
+      'Você ainda não escreveu nada do que ganhou. Vá em Dinheiro, escreva uma vez, e eu começo a contar.';
 
   @override
   String get provaCadeadoLinha =>
@@ -9965,10 +10007,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get sobraRecorrentesBotao => 'Coisas que se repetem';
 
   @override
-  String get vidaNav => 'Minha vida';
+  String get vidaNav => 'Dinheiro';
 
   @override
-  String get vidaTitulo => 'Minha vida';
+  String get vidaTitulo => 'Meu dinheiro';
 
   @override
   String get vidaAbaEntra => 'Entra';
