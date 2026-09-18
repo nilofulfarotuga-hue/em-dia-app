@@ -1,16 +1,21 @@
 # PENDENTE-DANILO — só o que precisa mesmo da pessoa
 
 ## 🔴 Missão em-dia-tudo (18/09/2026) — uma sentada só, no fim; cada linha é UM clique teu
-> Tudo o resto desta missão foi decidido e feito sem ti (docs/DECISOES.md D47–D57). Estas ficam porque a regra
-> diz que criar contas, assinar e declarar são actos teus. Nenhuma trava a app: sem elas o botão não aparece.
 
-- [ ] **InvoiceXpress (fatura-recibo de dentro da app):** cria a conta em `https://web.invoicexpress.com/signup` (grátis para começar), vai a *Conta → API* e copia o **nome da conta** e a **chave API**. Depois, no SQL do Supabase (projeto em-dia):
+Tudo o resto desta missão foi decidido e feito sem ti (docs/DECISOES.md, D47 a D73).
+Estas ficam porque a regra diz que criar contas, assinar e declarar são actos teus.
+Nenhuma trava a app: sem elas, o botão correspondente não aparece.
+
+- **Conta de teste na web (uma vez só):** corre `python tool/provas/web_percorrer.py --entrar` — abre um Chromium visível já na app; escreve o e-mail `boraappbora+teste@gmail.com`, marca a caixa «Confirme que é humano», envia, escreve o código (chega ao boraappbora) e faz o onboarding como tu (TVDE, janeiro de 2024, isento, sem carro, 1.200 €). A sessão fica em `C:\BoraLocal\_segredos\em-dia\sessao-teste.json` (fora do repo) e as corridas seguintes entram com a conta sem caixa. A tua conta real fica intocada.
+- **InvoiceXpress (fatura-recibo de dentro da app):** cria a conta em `https://web.invoicexpress.com/signup` (grátis para começar), vai a Conta → API e copia o **nome da conta** e a **chave API**. Depois, no SQL do Supabase (projeto em-dia):
   `select vault.create_secret('<NOME-DA-CONTA>', 'invoicexpress_account'); select vault.create_secret('<CHAVE>', 'invoicexpress_api_key');`
-  e liga o interruptor: `update feature_flags set pro = true, familia = true where chave = 'faturacao_certificada';` (ou no admin). A partir daí o cartão «Passar a fatura-recibo daqui» aparece em Recibos (plano Pro). Antes de ligar para clientes reais: uma fatura de 1 € a ti próprio, para ver o PDF.
-- [ ] **Play → Segurança dos Dados:** acrescentar **«Localização aproximada — recolhida, não partilhada, opcional, só em primeiro plano, para mostrar postos e centros perto»** (o «Perto de mim» pede a localização só quando tocas no botão e não a guarda). É uma declaração tua; a app já está assim.
-- [ ] **Conta de teste `boraappbora+teste@gmail.com` (Bloco 8):** o Turnstile só deixa passar uma pessoa (o invisível falha num browser automático e pede a caixa «Confirme que é humano», que eu não clico — regra). Corre `python tool/provas/web_percorrer.py --entrar`: abre um Chromium visível já na app; escreve o e-mail, marca a caixa, envia, escreve o código (chega ao boraappbora) e faz o onboarding como tu (TVDE, janeiro de 2024, isento, sem carro, 1.200 €). Quando chegar ao painel, o script guarda a sessão em `C:\BoraLocal\_segredos\em-dia\sessao-teste.json` (fora do repo) e a partir daí percorre a app com a conta sozinho, sem CAPTCHA. A tua conta real fica intocada.
-- [ ] **DGEG (continua da vez passada):** responder ao e-mail `1a0788f8fef674b2` com a minuta `docs/loja/dgeg/minuta-partilha-informacao-em-dia.docx` assinada. Os preços já estão ligados com a fonte à vista (D50); isto só regulariza.
+  e liga o interruptor: `update feature_flags set pro = true, familia = true where chave = 'faturacao_certificada';` (ou no painel admin). Antes de ligar para clientes reais: uma fatura de 1 € a ti próprio, para ver o PDF.
+- **Play, Segurança dos Dados:** acrescentar «Localização aproximada — recolhida, não partilhada, opcional, só em primeiro plano, para mostrar postos e centros perto» (o «Perto de mim» pede a localização só quando tocas no botão e não a guarda). É uma declaração tua; a app já está assim.
+- **DGEG (continua da vez passada):** responder ao e-mail `1a0788f8fef674b2` com a minuta `docs/loja/dgeg/minuta-partilha-informacao-em-dia.docx` assinada. Os preços já estão ligados com a fonte à vista; isto só regulariza.
 
+Se quiseres (não é obrigatório, nada disto trava):
+- Ver o «Apagar de vez» a funcionar até ao fim: no painel `https://admin.emdia.boraguarda.com`, com uma conta descartável (nunca a tua, nunca um admin).
+- Trocar o ícone da app: está na proposta 1; se preferires outra das 5, diz qual — trocar é um comando.
 
 ## ⚪ Sobre o "apagão de dados" das 13:56 — não foi apagão, não é preciso decidir nada
 Outra sessão (lançada pelo vigia) viu os dados de utilizador desaparecer e registou-o como incidente.
