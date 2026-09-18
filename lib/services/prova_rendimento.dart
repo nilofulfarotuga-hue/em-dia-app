@@ -277,15 +277,18 @@ class ProvaRendimento {
         pageFormat: PdfPageFormat.a4,
         margin: const pw.EdgeInsets.fromLTRB(42, 46, 42, 40),
         footer: (_) => _rodape(textos),
+        // Tudo tem de caber numa folha. Com 12 meses, os espaços de 18 pt e
+        // as linhas de 8 pt empurravam o «De onde vem» sozinho para uma
+        // segunda página quase vazia (provado a 18/09/2026, teste G02).
         build: (_) => [
           _cabecalho(textos),
-          pw.SizedBox(height: 18),
+          pw.SizedBox(height: 14),
           _quemEQuando(textos, pessoa),
-          pw.SizedBox(height: 18),
+          pw.SizedBox(height: 14),
           _destaqueDaMedia(textos, dados),
-          pw.SizedBox(height: 18),
+          pw.SizedBox(height: 14),
           _mapaDosMeses(textos, dados),
-          pw.SizedBox(height: 16),
+          pw.SizedBox(height: 12),
           _deOndeVem(textos),
         ],
       ),
@@ -422,7 +425,7 @@ class ProvaRendimento {
     bool direita = false,
   }) =>
       pw.Padding(
-        padding: const pw.EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        padding: const pw.EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         child: pw.Text(
           texto,
           textAlign: direita ? pw.TextAlign.right : pw.TextAlign.left,
