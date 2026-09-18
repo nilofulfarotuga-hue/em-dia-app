@@ -10,12 +10,12 @@
 $Repo       = 'C:\BoraLocal\projetosflutter\em_dia'
 $Tranca     = Join-Path $Repo 'docs\.sessao-viva'
 $Marcos     = Join-Path $Repo 'docs\MARCOS.md'
-$Transcript = 'C:\Users\danil\.claude\projects\C--BoraLocal-projetosflutter\c51cb931-0ec0-4bb4-bb6f-e956090318aa.jsonl'
+$Transcript = 'C:\Users\danil\.claude\projects\C--BoraLocal-projetosflutter-em-dia\49feae11-b667-4ea8-a84f-974f9550b989.jsonl'
 $LogB       = Join-Path $Repo 'docs\batimento.log'
 
 "[{0}] batimento arrancou pid={1}" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $PID | Out-File -Append -Encoding utf8 $LogB
 while ($true) {
-  if ((Test-Path $Marcos) -and (Select-String -Path $Marcos -Pattern '^MISSAO-CONCLUIDA' -Quiet)) {
+  if ((Test-Path $Marcos) -and (Select-String -Path $Marcos -Pattern '^MISSAO-CONCLUIDA em-dia-tudo-2026-09-17' -Quiet)) {
     "[{0}] MISSAO-CONCLUIDA: batimento termina" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') | Out-File -Append -Encoding utf8 $LogB
     break
   }

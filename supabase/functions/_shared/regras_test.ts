@@ -7,8 +7,8 @@
 //     ou: npx -y deno@2 test supabase/functions/_shared/regras_test.ts
 
 import {
+  RegrasLegais,
   adicionarMeses,
-  ehDiaIsoValido,
   avisoEm,
   calcularIrs,
   calcularSS,
@@ -17,7 +17,7 @@ import {
   dataIso,
   datasPagamentosPorConta,
   dia,
-  type EscalaoIrs,
+  ehDiaIsoValido,
   estimarIuc,
   fimIsencaoSS,
   gerarObrigacoes,
@@ -25,9 +25,11 @@ import {
   inicioEntregaIrs,
   mesesDeIsencaoRestantes,
   moeda,
+  obrigacaoParaLinha,
   paraLisboa,
   perfil,
   prazoDeclaracaoTrimestral,
+  prazoEfetivo,
   prazoEntregaIrs,
   prazoIuc,
   prazoPagamentoSS,
@@ -35,9 +37,9 @@ import {
   primeiraDeclaracaoTrimestral,
   proximaIpo,
   proximoIuc,
-  type RegraLegal,
-  RegrasLegais,
   somarDiasUteis,
+  type EscalaoIrs,
+  type RegraLegal,
   ultimoDiaIsencaoSS,
 } from './regras.ts';
 
@@ -76,7 +78,7 @@ function regrasDeTeste2026(): RegrasLegais {
     r('ias', 537.13),
     r('iva_taxa_normal', 23), r('iva_isencao_limite', 15000), r('iva_isencao_aviso', 12000), r('iva_isencao_perda_imediata', 18750),
     r('iva_isencao_comunicacao_dias_uteis', 15), t('iva_mencao_isencao', 'IVA - regime de isenção [artigo 53.º do CIVA] (M10)'),
-    r('iva_declaracao_trimestral_dia', 20), r('iva_pagamento_dia', 25),
+    r('iva_declaracao_trimestral_dia', 20), r('iva_pagamento_dia', 25), r('iva_trimestre2_mes', 9),
     r('retencao_padrao', 23), r('retencao_opcao', 25), r('retencao_dispensa_limite', 15000),
     r('ss_taxa', 21.4), r('ss_base_servicos', 70), r('ss_base_vendas', 20), r('ss_ajuste_max', 25), r('ss_minimo_mensal', 20),
     r('ss_base_maxima_ias', 12), r('ss_isencao_meses', 12), j('ss_declaracao_meses', [1, 4, 7, 10]),
@@ -86,7 +88,7 @@ function regrasDeTeste2026(): RegrasLegais {
     t('efatura_validar_ate', '02-25'), r('irs_despesas_justificar_limite', 27360, 'aproximado'), r('irs_despesas_justificar_pct', 15),
     r('recibos_comunicar_dia', 5),
     t('iuc_regra', 'mes_da_matricula'), j('iuc_tabela', iucTabela, 'aproximado'), j('ipo_ligeiros_anos', [4, 6, 8]),
-    t('ipo_apos_8_anos', 'anual'), t('ipo_tvde', 'anual', 'por_confirmar'), j('ipo_avisos_dias', [30, 7]), r('seguro_aviso_dias', 45),
+    t('ipo_apos_8_anos', 'anual'), t('ipo_tvde', 'anual'), j('ipo_avisos_dias', [30, 7]), r('seguro_aviso_dias', 45),
     j('carta_validade', { ate_60: 15, '60_a_70': 5, mais_70: 2 }), r('multa_pagamento_voluntario_dias_uteis', 15),
     r('troca_carta_estrangeira_prazo_anos', 2, 'por_confirmar'), r('tvde_certificado_validade_anos', 5),
   ];
@@ -229,9 +231,9 @@ Deno.test('C28 IPO ligeiro 2021: 4/6/8 anos e depois anual', () => {
 Deno.test('C29 IPO carro de 2015 com inspeção feita em junho de 2026 → junho de 2027', () => {
   eq(iso(proximaIpo(dia(2015, 6, 10), dia(2026, 6, 12), hoje, false, r)!), '2027-06-10');
 });
-Deno.test('C30 IPO TVDE: anual (POR CONFIRMAR)', () => {
+Deno.test('C30 IPO TVDE: anual (Lei 45/2018, art. 12.º n.º 5 — confirmado na fonte a 2026-09-18)', () => {
   eq(iso(proximaIpo(dia(2024, 2, 15), null, hoje, true, r)!), '2027-02-15');
-  eq(r.regra('ipo_tvde')!.confianca, 'por_confirmar');
+  eq(r.regra('ipo_tvde')!.confianca, 'oficial');
 });
 Deno.test('C33 IUC estimado: 1199 cc, 120 g CO2 (WLTP), 2021 → 111,48 €; elétrico → 0', () => {
   const e = estimarIuc(dia(2021, 2, 15), 'gasolina', 1199, 120, r)!;
@@ -310,8 +312,11 @@ Deno.test('C43 regime normal de IVA: declaração dia 20 e pagamento dia 25 do 2
     rendimentoMensalEstimado: 3000,
   });
   const obs = gerarObrigacoes(p, [], hoje, r);
-  eq(isos(obs.filter((o) => o.tipo === 'iva_declaracao').map((o) => o.dataLimite)), ['2026-11-20', '2027-02-20', '2027-05-20', '2027-08-20']);
-  eq(isos(obs.filter((o) => o.tipo === 'iva_pagamento').map((o) => o.dataLimite)), ['2026-11-25', '2027-02-25', '2027-05-25', '2027-08-25']);
+  // O 2.º trimestre vai para setembro (CIVA art. 41.º n.º 10); 20/9/2026 é domingo → prazo efetivo 21/9.
+  eq(isos(obs.filter((o) => o.tipo === 'iva_declaracao').map((o) => o.dataLimite)), ['2026-09-20', '2026-11-20', '2027-02-20', '2027-05-20']);
+  eq(isos(obs.filter((o) => o.tipo === 'iva_pagamento').map((o) => o.dataLimite)), ['2026-09-25', '2026-11-25', '2027-02-25', '2027-05-25']);
+  const t2 = obs.find((o) => o.tipo === 'iva_declaracao' && iso(o.dataLimite) === '2026-09-20')!;
+  eq(iso(t2.prazoEfetivo), '2026-09-21');
   eq(obs.filter((o) => o.tipo === 'ss_pagamento').length, 12);
   eq(obs.filter((o) => o.tipo === 'ss_declaracao').length, 4);
   eq(obs.filter((o) => o.tipo === 'fim_isencao_ss').length, 0);
@@ -352,6 +357,25 @@ Deno.test('C46 número em falta é erro, nunca um valor inventado', () => {
     lancou = true;
   }
   eq(lancou, true);
+});
+
+Deno.test('C49 prazo efetivo: dia legal a fim-de-semana/feriado passa ao dia útil seguinte (AT nota a); SS guia prático)', () => {
+  eq(iso(prazoEfetivo(dia(2026, 9, 20), r.feriados)), '2026-09-21'); // domingo → segunda
+  eq(iso(prazoEfetivo(dia(2026, 9, 19), r.feriados)), '2026-09-21'); // sábado → segunda
+  eq(iso(prazoEfetivo(dia(2026, 12, 25), r.feriados)), '2026-12-28'); // feriado à sexta → segunda
+  eq(iso(prazoEfetivo(dia(2026, 9, 21), r.feriados)), '2026-09-21'); // dia útil fica
+  const p = perfil({ tipoAtividade: 'tvde', dataAbertura: dia(2024, 1, 1), regimeIva: 'isento_53', rendimentoMensalEstimado: 1200 });
+  const obs = gerarObrigacoes(p, [], hoje, r);
+  const ss = obs.find((o) => o.tipo === 'ss_pagamento' && iso(o.dataLimite) === '2026-09-20')!;
+  eq(iso(ss.prazoEfetivo), '2026-09-21');
+  eq(iso(ss.avisoEm), '2026-09-18');
+  const linha = obrigacaoParaLinha(ss, 'u1');
+  eq(linha.data_limite, '2026-09-20');
+  eq(linha.prazo_efetivo, '2026-09-21');
+  // o seguro não é do Estado: fica no domingo
+  const carro = { id: 'c1', matricula: 'AA-11-BB', dataMatricula: dia(2021, 2, 28), seguroRenovaEm: dia(2026, 9, 20), ultimaIpo: null, cartaValidade: null, usoTvde: false, combustivel: 'gasolina', cilindradaCc: null, co2: null };
+  const seg = gerarObrigacoes(p, [carro as unknown as Parameters<typeof gerarObrigacoes>[1][number]], hoje, r).find((o) => o.tipo === 'seguro')!;
+  eq(iso(seg.prazoEfetivo), '2026-09-20');
 });
 
 Deno.test('C47 escalões: 2027 não existe → usa o ano mais recente (2026)', () => {

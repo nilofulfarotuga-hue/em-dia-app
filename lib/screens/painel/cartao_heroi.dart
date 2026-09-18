@@ -101,7 +101,7 @@ class CartaoHeroi extends StatelessWidget {
             const SizedBox(height: 2),
             // Data e valor em linhas separadas: numa só, o "€" caía sozinho
             // para a linha de baixo a 360 px.
-            Text(dataExtensoPt(o.dataLimite),
+            Text(dataExtensoPt(o.prazoEfetivo),
                 style: t.bodyLarge!.copyWith(color: branco92, fontFamily: AppTheme.fonte)),
             if (o.valorEstimado != null)
               Text(moeda(o.valorEstimado!),

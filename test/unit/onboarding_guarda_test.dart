@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:em_dia/config/app_theme.dart';
 import 'package:em_dia/l10n/app_localizations.dart';
@@ -9,6 +10,7 @@ import 'package:em_dia/models/perfil.dart';
 import 'package:em_dia/regras/regras.dart';
 import 'package:em_dia/screens/onboarding/onboarding_screen.dart';
 import 'package:em_dia/services/fala.dart';
+import 'package:em_dia/services/rascunho_onboarding.dart';
 import 'package:em_dia/stores/dados_store.dart';
 import 'package:em_dia/stores/perfil_store.dart';
 import 'package:em_dia/stores/regras_store.dart';
@@ -30,8 +32,8 @@ void main() {
         criadoEm: DateTime(2026, 9, 6),
       );
 
-  Future<PerfilStoreEspia> abre(WidgetTester tester) async {
-    final espia = PerfilStoreEspia(perfilVazio());
+  Future<PerfilStoreEspia> abre(WidgetTester tester, {PerfilStoreEspia? reabrir}) async {
+    final espia = reabrir ?? PerfilStoreEspia(perfilVazio());
     await tester.pumpWidget(
       MultiProvider(
         providers: [
@@ -130,6 +132,84 @@ void main() {
     expect(botao.onPressed, isNull,
         reason: 'com o botão activo dava para passar sem escolher, e o perfil ficava sem ofício');
   });
+
+  // Defeito 1 da missão em-dia-tudo-2026-09-17: responder a 4 perguntas,
+  // recarregar a página, voltar à pergunta 1. Agora cada resposta é guardada ao
+  // sair da pergunta (aparelho + servidor) e a app retoma onde ficou.
+  testWidgets('O03 responde a 3 perguntas, "recarrega" e está na 4.ª com as respostas guardadas', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final espia = await abre(tester);
+    await toca(tester, find.text('Começar'));
+    await toca(tester, find.text('Motorista TVDE (Uber, Bolt)'));          // 1.ª pergunta respondida
+    await toca(tester, find.text('Mês'));
+    await toca(tester, find.text('março').last);
+    await toca(tester, find.text('Ano'));
+    await toca(tester, find.text('2026').last);
+    await toca(tester, find.text('Continuar'));                             // 2.ª
+    await toca(tester, find.text('Não').first);
+    await toca(tester, find.text('Continuar'));                             // 3.ª → estamos na 4.ª (carro)
+    expect(find.text('Tens carro?'), findsOneWidget);
+
+    // O rascunho chegou aos dois sítios.
+    expect(espia.rascunhos, isNotEmpty, reason: 'cada resposta tem de ir para o servidor');
+    final servidor = espia.rascunhos.last!;
+    expect(servidor['passo'], 'carro');
+    expect(servidor['tipo'], 'tvde');
+    expect(servidor['mesAbertura'], 3);
+    expect(servidor['anoAbertura'], 2026);
+    expect(servidor['faturouMais15k'], false);
+    final aparelho = await RascunhoOnboarding.ler('u1');
+    expect(aparelho?['passo'], 'carro', reason: 'e para o aparelho (localStorage na web)');
+
+    // "Recarregar": um ecrã novo, com o mesmo perfil (que já traz o rascunho do servidor).
+    await tester.pumpWidget(const SizedBox());
+    await abre(tester, reabrir: espia);
+    expect(find.text('Tens carro?'), findsOneWidget, reason: 'tem de retomar na 4.ª pergunta');
+    expect(find.text('Pergunta 4 de 5'), findsOneWidget);
+    // E ao voltar atrás, as respostas estão lá.
+    await toca(tester, find.text('Voltar'));
+    expect(find.text('No ano passado faturaste mais de 15.000 €?'), findsOneWidget);
+  });
+
+  testWidgets('O04 a matrícula escrita a meio da pergunta também fica guardada', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final espia = await abre(tester);
+    await toca(tester, find.text('Começar'));
+    await toca(tester, find.text('Motorista TVDE (Uber, Bolt)'));
+    await toca(tester, find.text('Mês'));
+    await toca(tester, find.text('março').last);
+    await toca(tester, find.text('Ano'));
+    await toca(tester, find.text('2026').last);
+    await toca(tester, find.text('Continuar'));
+    await toca(tester, find.text('Não').first);
+    await toca(tester, find.text('Continuar'));
+    await toca(tester, find.text('Sim').first);                             // tem carro
+    await tester.enterText(find.byType(TextField).first, 'AA-12-BB');
+    await tester.pump(const Duration(seconds: 1));                          // o guardar de 800 ms
+    await tester.pumpAndSettle();
+    expect(espia.rascunhos.last!['matricula'], 'AA-12-BB');
+    expect(espia.rascunhos.last!['temCarro'], true);
+
+    await tester.pumpWidget(const SizedBox());
+    await abre(tester, reabrir: espia);
+    expect(find.text('Tens carro?'), findsOneWidget);
+    expect(find.text('AA-12-BB'), findsOneWidget, reason: 'a matrícula escrita antes de recarregar não se perde');
+  });
+
+  testWidgets('O05 ao acabar, o rascunho é apagado (o perfil a sério é o que manda)', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final espia = await abre(tester);
+    await toca(tester, find.text('Começar'));
+    // A última opção está fora do ecrã na lista: primeiro rola até ela.
+    await tester.scrollUntilVisible(find.text('Só quero o carro'), 200, scrollable: find.byType(Scrollable).first);
+    await tester.pumpAndSettle();
+    await toca(tester, find.text('Só quero o carro'));
+    await toca(tester, find.text('Não').first);
+    await toca(tester, find.text('Continuar'));
+    await toca(tester, find.text('Entrar na app'));
+    expect(espia.rascunhos.last, isNull);
+    expect(await RascunhoOnboarding.ler('u1'), isNull);
+  });
 }
 
 /// Guarda tudo o que lhe mandam gravar, e diz sempre que sim.
@@ -149,6 +229,15 @@ class PerfilStoreEspia extends PerfilStore {
     guardados.add(novo);
     _p = novo;
     notifyListeners();
+    return true;
+  }
+
+  /// O rascunho «no servidor»: fica no perfil, como a coluna `onboarding_rascunho`.
+  final List<Map<String, dynamic>?> rascunhos = [];
+  @override
+  Future<bool> guardarRascunhoOnboarding(Map<String, dynamic>? rascunho) async {
+    rascunhos.add(rascunho);
+    _p = rascunho == null ? _p.copyWith(limparRascunho: true) : _p.copyWith(onboardingRascunho: rascunho);
     return true;
   }
 }

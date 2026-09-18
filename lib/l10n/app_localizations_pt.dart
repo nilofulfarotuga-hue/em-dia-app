@@ -14,7 +14,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get boasVindas =>
-      'Olá! Eu sou o Em Dia. A partir de agora não te esqueces de nada: Segurança Social, IVA, IRS, carro. Vamos começar com 4 perguntas rápidas.';
+      'Olá! Eu sou o Em Dia. A partir de agora não te esqueces de nada: Segurança Social, IVA, IRS, carro. Vamos começar com umas perguntas rápidas: leva 2 minutos, e podes mudar tudo depois.';
 
   @override
   String fimOnboardingUma(
@@ -216,7 +216,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get onbMatriculaAjuda =>
-      'Pela matrícula eu descubro o mês do IUC (o imposto do carro) e quando é a inspeção.';
+      'A matrícula é só para eu saber de que carro falo. O IUC (o imposto do carro) paga-se todos os anos no mês da matrícula, e a inspeção depende da idade do carro — por isso peço-te o mês e o ano a seguir e faço as contas por ti.';
 
   @override
   String get onbDataMatricula => 'Mês e ano da matrícula';
@@ -851,6 +851,43 @@ class AppLocalizationsPt extends AppLocalizations {
   String get painelEtiquetaFamilia => 'Família';
 
   @override
+  String painelSemaforoAlemUma(int dias) {
+    return 'Além desta, tens mais 1 coisa a vencer em $dias dias';
+  }
+
+  @override
+  String painelSemaforoAlemVarias(int n, int dias) {
+    return 'Além desta, tens mais $n coisas a vencer em $dias dias';
+  }
+
+  @override
+  String get painelSemaforoAlemHojeUma =>
+      'Além desta, tens mais 1 coisa a vencer hoje';
+
+  @override
+  String painelSemaforoAlemHojeVarias(int n) {
+    return 'Além desta, tens mais $n coisas a vencer hoje';
+  }
+
+  @override
+  String get painelSemaforoAlemAmanhaUma =>
+      'Além desta, tens mais 1 coisa a vencer amanhã';
+
+  @override
+  String painelSemaforoAlemAmanhaVarias(int n) {
+    return 'Além desta, tens mais $n coisas a vencer amanhã';
+  }
+
+  @override
+  String get painelSemaforoAlemPassadaUma =>
+      'Além desta, tens mais 1 prazo passado';
+
+  @override
+  String painelSemaforoAlemPassadasVarias(int n) {
+    return 'Além desta, tens mais $n prazos passados';
+  }
+
+  @override
   String get painelSemaforoVerdeSub => 'Nada a vencer nos próximos 5 dias.';
 
   @override
@@ -1379,6 +1416,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get calDataLimite => 'Data limite';
+
+  @override
+  String calPrazoDiaNaoUtil(String data) {
+    return 'Esse dia é fim-de-semana ou feriado: tens até $data';
+  }
 
   @override
   String calAvisoEm(String data) {
@@ -3657,6 +3699,16 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String painelAcaoPrazoDiaNaoUtil(
+    int diaLegal,
+    String diaSemanaLegal,
+    String diaSemanaEfetivo,
+    int diaEfetivo,
+  ) {
+    return 'Dia $diaLegal é $diaSemanaLegal: tens até $diaSemanaEfetivo, dia $diaEfetivo';
+  }
+
+  @override
   String painelAcaoPrazoData(String data) {
     return 'Até $data';
   }
@@ -5004,7 +5056,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get boasVindas =>
-      'Oi! Eu sou o Em Dia. A partir de agora você não esquece de nada: Segurança Social, IVA, IRS, carro. Vamos começar com 4 perguntas rápidas.';
+      'Oi! Eu sou o Em Dia. A partir de agora você não esquece de nada: Segurança Social, IVA, IRS, carro. Vamos começar com umas perguntas rápidas: leva 2 minutos, e você pode mudar tudo depois.';
 
   @override
   String fimOnboardingUma(
@@ -5207,7 +5259,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get onbMatriculaAjuda =>
-      'Pela matrícula eu descubro o mês do IUC (o imposto do carro) e quando é a inspeção.';
+      'A placa é só para eu saber de que carro estou falando. O IUC (o imposto do carro) é pago todo ano no mês da matrícula, e a inspeção depende da idade do carro — por isso peço o mês e o ano em seguida e faço as contas para você.';
 
   @override
   String get onbDataMatricula => 'Mês e ano da matrícula';
@@ -5841,6 +5893,43 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get painelEtiquetaFamilia => 'Família';
 
   @override
+  String painelSemaforoAlemUma(int dias) {
+    return 'Além dessa, você tem mais 1 coisa vencendo em $dias dias';
+  }
+
+  @override
+  String painelSemaforoAlemVarias(int n, int dias) {
+    return 'Além dessa, você tem mais $n coisas vencendo em $dias dias';
+  }
+
+  @override
+  String get painelSemaforoAlemHojeUma =>
+      'Além dessa, você tem mais 1 coisa vencendo hoje';
+
+  @override
+  String painelSemaforoAlemHojeVarias(int n) {
+    return 'Além dessa, você tem mais $n coisas vencendo hoje';
+  }
+
+  @override
+  String get painelSemaforoAlemAmanhaUma =>
+      'Além dessa, você tem mais 1 coisa vencendo amanhã';
+
+  @override
+  String painelSemaforoAlemAmanhaVarias(int n) {
+    return 'Além dessa, você tem mais $n coisas vencendo amanhã';
+  }
+
+  @override
+  String get painelSemaforoAlemPassadaUma =>
+      'Além dessa, você tem mais 1 prazo vencido';
+
+  @override
+  String painelSemaforoAlemPassadasVarias(int n) {
+    return 'Além dessa, você tem mais $n prazos vencidos';
+  }
+
+  @override
   String get painelSemaforoVerdeSub => 'Nada vencendo nos próximos 5 dias.';
 
   @override
@@ -6369,6 +6458,11 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get calDataLimite => 'Data limite';
+
+  @override
+  String calPrazoDiaNaoUtil(String data) {
+    return 'Esse dia é fim de semana ou feriado: você tem até $data';
+  }
 
   @override
   String calAvisoEm(String data) {
@@ -8646,6 +8740,16 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String painelAcaoPrazoDiaSemana(String diaSemana, int dia) {
     return 'Até $diaSemana, dia $dia';
+  }
+
+  @override
+  String painelAcaoPrazoDiaNaoUtil(
+    int diaLegal,
+    String diaSemanaLegal,
+    String diaSemanaEfetivo,
+    int diaEfetivo,
+  ) {
+    return 'Dia $diaLegal é $diaSemanaLegal: você tem até $diaSemanaEfetivo, dia $diaEfetivo';
   }
 
   @override

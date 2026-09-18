@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +9,7 @@ import '../../l10n/app_localizations.dart';
 import '../../models/carro.dart';
 import '../../models/obrigacao.dart';
 import '../../regras/regras.dart';
+import '../../services/rascunho_onboarding.dart';
 import '../../stores/dados_store.dart';
 import '../../stores/perfil_store.dart';
 import '../../stores/regras_store.dart';
@@ -91,6 +94,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   bool _aTrabalhar = false;
   String? _erro;
 
+  /// Guardar o rascunho um bocadinho depois de a pessoa parar de escrever
+  /// (matrícula, rendimento) — sem isto, cada letra era um pedido ao servidor.
+  Timer? _guardarDepois;
+
   @override
   void initState() {
     super.initState();
@@ -112,13 +119,89 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (e.rendimentoMensal != null) _rendimento.text = moeda(e.rendimentoMensal!, comSimbolo: false, casas: 0);
     final i = widget.passoInicial.clamp(0, PassoOnboarding.values.length - 1);
     _passo = PassoOnboarding.values[i];
+    // Retomar onde ficou: primeiro o rascunho que o servidor já trouxe com o
+    // perfil (síncrono, sem esperar), depois o do aparelho se for mais novo.
+    if (widget.exemplo == null && widget.passoInicial == 0) {
+      final servidor = context.read<PerfilStore>().perfil?.onboardingRascunho;
+      if (servidor != null) _aplicarRascunho(servidor);
+      unawaited(_retomarDoAparelho(servidor));
+    }
   }
 
   @override
   void dispose() {
+    _guardarDepois?.cancel();
     _matricula.dispose();
     _rendimento.dispose();
     super.dispose();
+  }
+
+  // ---------------- rascunho (guardar ao sair de cada pergunta) ----------------
+
+  String? get _userId => context.read<SessaoStore>().userId ?? context.read<PerfilStore>().perfil?.userId;
+
+  Map<String, dynamic> _rascunho() => {
+        'passo': _passo.name,
+        'tipo': _tipo?.name,
+        'mesAbertura': _mesAbertura,
+        'anoAbertura': _anoAbertura,
+        'faturouMais15k': _faturouMais15k,
+        'temCarro': _temCarro,
+        'matricula': _matricula.text,
+        'mesMatricula': _mesMatricula,
+        'anoMatricula': _anoMatricula,
+        'mesSeguro': _mesSeguro,
+        'mesUltimaIpo': _mesUltimaIpo,
+        'anoUltimaIpo': _anoUltimaIpo,
+        'categoriaCarro': _categoriaCarro,
+        'rendimentoMensal': _rendimentoMensal,
+      };
+
+  void _aplicarRascunho(Map<String, dynamic> m) {
+    int? inteiro(dynamic v) => v == null ? null : int.tryParse(v.toString());
+    bool? logico(dynamic v) => v is bool ? v : null;
+    final tipo = m['tipo']?.toString();
+    _tipo = tipo == null ? null : TipoAtividade.values.where((t) => t.name == tipo).firstOrNull;
+    _mesAbertura = inteiro(m['mesAbertura']);
+    _anoAbertura = inteiro(m['anoAbertura']);
+    _faturouMais15k = logico(m['faturouMais15k']);
+    _temCarro = logico(m['temCarro']);
+    _matricula.text = (m['matricula'] ?? '').toString();
+    _mesMatricula = inteiro(m['mesMatricula']);
+    _anoMatricula = inteiro(m['anoMatricula']);
+    _mesSeguro = inteiro(m['mesSeguro']);
+    _mesUltimaIpo = inteiro(m['mesUltimaIpo']);
+    _anoUltimaIpo = inteiro(m['anoUltimaIpo']);
+    _categoriaCarro = (m['categoriaCarro'] ?? 'proprio').toString();
+    _rendimentoMensal = m['rendimentoMensal'] == null ? null : double.tryParse(m['rendimentoMensal'].toString());
+    _rendimento.text = _rendimentoMensal == null ? '' : moeda(_rendimentoMensal!, comSimbolo: false, casas: 0);
+    final passo = m['passo']?.toString();
+    final p = PassoOnboarding.values.where((x) => x.name == passo).firstOrNull;
+    // Nunca se retoma no "fim" nem em passo que este perfil não vê.
+    if (p != null && p != PassoOnboarding.fim && _visiveis.contains(p)) _passo = p;
+  }
+
+  Future<void> _retomarDoAparelho(Map<String, dynamic>? servidor) async {
+    final uid = _userId;
+    if (uid == null) return;
+    final local = await RascunhoOnboarding.ler(uid);
+    final melhor = RascunhoOnboarding.maisRecente(local, servidor);
+    if (!mounted || melhor == null || identical(melhor, servidor)) return;
+    setState(() => _aplicarRascunho(melhor));
+  }
+
+  Future<void> _guardarRascunho() async {
+    final uid = _userId;
+    if (uid == null) return;
+    final m = await RascunhoOnboarding.guardar(uid, _rascunho());
+    if (!mounted) return;
+    unawaited(context.read<PerfilStore>().guardarRascunhoOnboarding(m));
+  }
+
+  /// Para os campos de texto: guarda 800 ms depois da última tecla.
+  void _guardarRascunhoDepois() {
+    _guardarDepois?.cancel();
+    _guardarDepois = Timer(const Duration(milliseconds: 800), _guardarRascunho);
   }
 
   // ---------------- navegação ----------------
@@ -146,6 +229,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       _passo = v[i + 1];
       _erro = null;
     });
+    unawaited(_guardarRascunho());
   }
 
   void _voltar() {
@@ -156,6 +240,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       _passo = v[i - 1];
       _erro = null;
     });
+    unawaited(_guardarRascunho());
   }
 
   bool get _podeAvancar => switch (_passo) {
@@ -307,6 +392,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (!okCalendario) {
       mensageiro.showSnackBar(SnackBar(content: Text(l.onbCalendarioErro)));
     }
+    // O rascunho já não serve para nada: o perfil a sério é o que manda.
+    unawaited(RascunhoOnboarding.limpar(userId));
+    unawaited(perfilStore.guardarRascunhoOnboarding(null));
     if (mounted) setState(() => _aTrabalhar = false);
   }
 
@@ -602,7 +690,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ],
           style: t.titleLarge!.copyWith(letterSpacing: 1.5),
           decoration: InputDecoration(labelText: l.onbMatricula, prefixIcon: const Icon(Icons.pin_rounded)),
-          onChanged: (_) => setState(() {}),
+          onChanged: (_) {
+            setState(() {});
+            _guardarRascunhoDepois();
+          },
         ),
         const SizedBox(height: 6),
         Text(l.onbMatriculaAjuda, style: t.bodySmall),
@@ -728,7 +819,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           suffixText: '${l.euros} ${l.onbPorMes}',
           suffixStyle: t.titleMedium!.copyWith(color: AppColors.textSecondary),
         ),
-        onChanged: (s) => setState(() => _rendimentoMensal = lerNumero(s)),
+        onChanged: (s) {
+          setState(() => _rendimentoMensal = lerNumero(s));
+          _guardarRascunhoDepois();
+        },
       ),
       const SizedBox(height: 12),
       Row(

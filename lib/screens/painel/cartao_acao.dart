@@ -113,10 +113,23 @@ class CartaoAcao extends StatelessWidget {
   String _prazo(AppLocalizations l, ObrigacaoItem o) {
     final d = o.diasParaPrazo(hoje);
     if (d < 0) return l.painelAcaoPrazoPassou(-d);
+    // O dia legal caiu a sábado, domingo ou feriado: diz-se o que a pessoa
+    // precisa de ouvir — «dia 20 é domingo, tens até segunda 21». A 17 de
+    // setembro de 2026 o painel dizia «até domingo, dia 20» e estava errado:
+    // em Portugal o prazo passa para o dia útil seguinte (AT e Segurança
+    // Social dizem-no por escrito; ver `prazoEfetivo` em lib/regras/datas.dart).
+    if (o.prazoMudou && d <= 8) {
+      return l.painelAcaoPrazoDiaNaoUtil(
+        o.dataLimite.day,
+        _diaSemana(l, o.dataLimite.weekday),
+        _diaSemana(l, o.prazoEfetivo.weekday),
+        o.prazoEfetivo.day,
+      );
+    }
     if (d == 0) return l.painelAcaoPrazoHoje;
     if (d == 1) return l.painelAcaoPrazoAmanha;
-    if (d <= 6) return l.painelAcaoPrazoDiaSemana(_diaSemana(l, o.dataLimite.weekday), o.dataLimite.day);
-    return l.painelAcaoPrazoData(dataExtensoPt(o.dataLimite));
+    if (d <= 6) return l.painelAcaoPrazoDiaSemana(_diaSemana(l, o.prazoEfetivo.weekday), o.prazoEfetivo.day);
+    return l.painelAcaoPrazoData(dataExtensoPt(o.prazoEfetivo));
   }
 
   String _diaSemana(AppLocalizations l, int weekday) => switch (weekday) {

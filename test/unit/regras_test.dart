@@ -190,10 +190,10 @@ void main() {
       final m = DateTime(2015, 6, 10);
       expect(proximaIpo(matricula: m, ultimaIpo: DateTime(2026, 6, 12), hoje: hoje, r: r), DateTime(2027, 6, 10));
     });
-    test('C30 IPO TVDE: anual (POR CONFIRMAR)', () {
+    test('C30 IPO TVDE: anual (Lei 45/2018, art. 12.º n.º 5 — confirmado na fonte a 2026-09-18)', () {
       final m = DateTime(2024, 2, 15);
       expect(proximaIpo(matricula: m, hoje: hoje, tvde: true, r: r), DateTime(2027, 2, 15));
-      expect(r.regra('ipo_tvde')!.confirmada, isFalse);
+      expect(r.regra('ipo_tvde')!.confirmada, isTrue);
     });
     test('C31 carta: 15 anos até aos 60, 5 até aos 70, depois 2', () {
       expect(anosValidadeCarta(35, r), 15);
@@ -290,7 +290,7 @@ void main() {
       expect(obs, isSorted<Obrigacao>((a, b) => a.dataLimite.compareTo(b.dataLimite)));
     });
 
-    test('C43 regime normal de IVA: declaração dia 20 e pagamento dia 25 do 2.º mês após o trimestre', () {
+    test('C43 regime normal de IVA: declaração dia 20 e pagamento dia 25 do 2.º mês após o trimestre; o 2.º trimestre vai para setembro (CIVA 41.º n.º 10)', () {
       final perfil = PerfilObrigacoes(
         tipoAtividade: TipoAtividade.freelancer,
         dataAbertura: DateTime(2024, 1, 10),
@@ -299,9 +299,14 @@ void main() {
       );
       final obs = gerarObrigacoes(perfil: perfil, hoje: hoje, r: r);
       final decl = obs.where((o) => o.tipo == 'iva_declaracao').map((o) => o.dataLimite).toList();
-      expect(decl, [DateTime(2026, 11, 20), DateTime(2027, 2, 20), DateTime(2027, 5, 20), DateTime(2027, 8, 20)]);
+      // hoje = 6/9/2026: o T2 de 2026 (20/9) ainda está à frente; o T2 de 2027 (20/9/2027) já cai fora dos 12 meses.
+      expect(decl, [DateTime(2026, 9, 20), DateTime(2026, 11, 20), DateTime(2027, 2, 20), DateTime(2027, 5, 20)]);
       final pag = obs.where((o) => o.tipo == 'iva_pagamento').map((o) => o.dataLimite).toList();
-      expect(pag, [DateTime(2026, 11, 25), DateTime(2027, 2, 25), DateTime(2027, 5, 25), DateTime(2027, 8, 25)]);
+      expect(pag, [DateTime(2026, 9, 25), DateTime(2026, 11, 25), DateTime(2027, 2, 25), DateTime(2027, 5, 25)]);
+      // 20/9/2026 é domingo: o dia legal fica, mas o prazo efetivo passa para segunda, 21.
+      final t2 = obs.firstWhere((o) => o.tipo == 'iva_declaracao' && o.dataLimite == DateTime(2026, 9, 20));
+      expect(t2.prazoEfetivo, DateTime(2026, 9, 21));
+      expect(t2.prazoMudou, isTrue);
       // atividade antiga: já paga SS todos os meses e declara em out/jan/abr/jul
       expect(obs.where((o) => o.tipo == 'ss_pagamento').length, 12);
       expect(obs.where((o) => o.tipo == 'ss_declaracao').length, 4);
@@ -347,7 +352,7 @@ void main() {
   group('Regras legais (a tabela)', () {
     test('C46 número em falta é erro, nunca um valor inventado', () {
       expect(() => r.n('regra_que_nao_existe'), throwsStateError);
-      expect(r.regra('ipo_tvde')!.confirmada, isFalse);
+      expect(r.regra('troca_carta_estrangeira_prazo_anos')!.confirmada, isFalse);
       expect(r.regra('ias')!.confirmada, isTrue);
     });
     test('C47 escalões: 2027 não existe → usa o ano mais recente (2026)', () {

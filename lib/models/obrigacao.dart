@@ -7,7 +7,15 @@ class ObrigacaoItem {
   final String? carroId;
   final String tipo;
   final String descricao;
+
+  /// O dia legal («até dia 20»).
   final DateTime dataLimite;
+
+  /// Até quando se pode mesmo cumprir. Só difere de [dataLimite] quando o dia
+  /// legal cai a sábado, domingo ou feriado e o prazo é do Estado (Finanças,
+  /// Segurança Social): passa para o dia útil seguinte. Linhas antigas sem a
+  /// coluna ficam iguais ao dia legal.
+  final DateTime prazoEfetivo;
   final DateTime avisoEm;
   final double? valorEstimado;
   final String estado; // pendente | pago | passado
@@ -16,13 +24,14 @@ class ObrigacaoItem {
   final String? comoPagar;
   final DateTime? pagoEm;
 
-  const ObrigacaoItem({
+  ObrigacaoItem({
     required this.id,
     required this.userId,
     this.carroId,
     required this.tipo,
     required this.descricao,
     required this.dataLimite,
+    DateTime? prazoEfetivo,
     required this.avisoEm,
     this.valorEstimado,
     this.estado = 'pendente',
@@ -30,15 +39,18 @@ class ObrigacaoItem {
     this.origemRegra,
     this.comoPagar,
     this.pagoEm,
-  });
+  }) : prazoEfetivo = prazoEfetivo ?? dataLimite;
 
   bool get pago => estado == 'pago';
   bool get pendente => estado == 'pendente';
 
-  /// Passou o prazo e não foi marcado como pago.
-  bool passou(DateTime hoje) => !pago && dataLimite.isBefore(soDia(hoje));
+  /// O dia legal caiu a fim-de-semana/feriado: a pessoa tem até [prazoEfetivo].
+  bool get prazoMudou => prazoEfetivo != dataLimite;
 
-  int diasParaPrazo(DateTime hoje) => diasAte(dataLimite, hoje);
+  /// Passou o prazo (o efetivo, não o legal) e não foi marcado como pago.
+  bool passou(DateTime hoje) => !pago && prazoEfetivo.isBefore(soDia(hoje));
+
+  int diasParaPrazo(DateTime hoje) => diasAte(prazoEfetivo, hoje);
 
   /// Nome curto e humano do tipo.
   String get nomeCurto => switch (tipo) {
@@ -77,6 +89,7 @@ class ObrigacaoItem {
         tipo: m['tipo'] as String,
         descricao: m['descricao'] as String,
         dataLimite: DateTime.parse(m['data_limite'] as String),
+        prazoEfetivo: m['prazo_efetivo'] == null ? null : DateTime.parse(m['prazo_efetivo'] as String),
         avisoEm: DateTime.parse(m['aviso_em'] as String),
         valorEstimado: m['valor_estimado'] == null ? null : double.tryParse(m['valor_estimado'].toString()),
         estado: (m['estado'] as String?) ?? 'pendente',
@@ -94,6 +107,7 @@ class ObrigacaoItem {
         tipo: o.tipo,
         descricao: o.descricao,
         dataLimite: o.dataLimite,
+        prazoEfetivo: o.prazoEfetivo,
         avisoEm: o.avisoEm,
         valorEstimado: o.valorEstimado,
         origemRegra: o.origemRegra,

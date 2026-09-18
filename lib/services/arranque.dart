@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Arranque comum à app e ao painel admin: Supabase (chaves por
@@ -37,9 +39,20 @@ const int versionCodeCi = int.fromEnvironment('EMDIA_VERSION_CODE', defaultValue
 
 bool _arrancou = false;
 
+/// A árvore de acessibilidade, ligada de propósito e para sempre.
+///
+/// Na web o Flutter (CanvasKit) só constrói a semântica quando um leitor de
+/// ecrã carrega num botão invisível. A 17 de setembro de 2026 a árvore estava
+/// vazia (0 nós): leitores de ecrã cegos e testes automáticos sem nada a que se
+/// agarrar. Com isto ligada, cada botão, campo e texto existe também em HTML
+/// escondido (`flt-semantics`) — é o que os leitores de ecrã, o Playwright e o
+/// juiz de ecrãs leem. O custo é uma árvore de DOM paralela; medido no B1.2.
+SemanticsHandle? _semantica;
+
 Future<void> arrancar() async {
   if (_arrancou) return;
   WidgetsFlutterBinding.ensureInitialized();
+  if (kIsWeb) _semantica ??= SemanticsBinding.instance.ensureSemantics();
   if (supabaseUrl.isEmpty || supabaseAnonKey.isEmpty) {
     // Sem chaves a app não pode falar com o servidor. Falha alto e cedo —
     // a lição do Bora foi ficar presa no splash em silêncio.

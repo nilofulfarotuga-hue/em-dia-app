@@ -159,8 +159,8 @@ Future<void> mostrarComoPagar(BuildContext context, ObrigacaoItem obrigacao) {
               const SizedBox(height: 4),
               Text(
                 obrigacao.valorEstimado == null
-                    ? l.painelComoPagarAte(dataExtensoPt(obrigacao.dataLimite))
-                    : '${l.painelComoPagarAte(dataExtensoPt(obrigacao.dataLimite))} · ${moeda(obrigacao.valorEstimado!)}',
+                    ? l.painelComoPagarAte(dataExtensoPt(obrigacao.prazoEfetivo))
+                    : '${l.painelComoPagarAte(dataExtensoPt(obrigacao.prazoEfetivo))} · ${moeda(obrigacao.valorEstimado!)}',
                 style: t.bodyMedium!.copyWith(color: AppColors.textSecondary),
               ),
               const SizedBox(height: 16),

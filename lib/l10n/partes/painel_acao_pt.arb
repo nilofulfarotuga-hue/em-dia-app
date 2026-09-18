@@ -34,6 +34,8 @@
   "painelAcaoPrazoAmanha": "É amanhã",
   "painelAcaoPrazoDiaSemana": "Até {diaSemana}, dia {dia}",
   "@painelAcaoPrazoDiaSemana": {"placeholders": {"diaSemana": {"type": "String"}, "dia": {"type": "int"}}},
+  "painelAcaoPrazoDiaNaoUtil": "Dia {diaLegal} é {diaSemanaLegal}: tens até {diaSemanaEfetivo}, dia {diaEfetivo}",
+  "@painelAcaoPrazoDiaNaoUtil": {"description": "O dia legal caiu a fim-de-semana/feriado; o prazo passa para o dia útil seguinte (AT e Segurança Social).", "placeholders": {"diaLegal": {"type": "int"}, "diaSemanaLegal": {"type": "String"}, "diaSemanaEfetivo": {"type": "String"}, "diaEfetivo": {"type": "int"}}},
   "painelAcaoPrazoData": "Até {data}",
   "@painelAcaoPrazoData": {"placeholders": {"data": {"type": "String"}}},
 

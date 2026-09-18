@@ -7,7 +7,7 @@
 //
 // Regras do upsert:
 //  - linhas existentes mantêm estado, pago_em e comprovativo_url; só se atualizam
-//    descricao, data_limite, aviso_em, valor_estimado, como_pagar, origem_regra;
+//    descricao, data_limite, prazo_efetivo, aviso_em, valor_estimado, como_pagar, origem_regra;
 //  - linhas pendentes geradas que já não existam no novo conjunto são apagadas,
 //    EXCETO os tipos manuais ('multa', 'portagem', 'outro').
 //
@@ -54,21 +54,9 @@ Deno.serve(async (req: Request) => {
   const anon = Deno.env.get('SUPABASE_ANON_KEY')!;
   const service = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
-  // 1) Quem é o utilizador (401 se não houver JWT válido)
-  const auth = req.headers.get('Authorization') ?? '';
-  const supaUser = createClient(url, anon, { global: { headers: { Authorization: auth } } });
-  const { data: { user }, error: erroUser } = await supaUser.auth.getUser();
-  if (erroUser || !user) {
-    return json({ erro: 'nao_autenticado', mensagem: 'Precisas de iniciar sessão.' }, 401);
-  }
-
   const admin = createClient(url, service);
 
-  // 2) Corpo (opcional): "hoje" é SÓ para QA.
-  //    - só se aceita com o header x-cron-secret igual ao segredo 'cron_secret' (env/Vault): um
-  //      utilizador normal (ou um bug na app) nunca regenera a lista para outra janela;
-  //    - tem de ser um dia civil real em YYYY-MM-DD (2026-13-45 e 2026-02-30 → 400, sem overflow).
-  let hoje = hojeLisboa();
+  // Corpo (opcional). "hoje" e "user_id" são SÓ para QA e exigem o header x-cron-secret.
   let corpo: Record<string, unknown> = {};
   try {
     const lido = await req.json();
@@ -76,10 +64,33 @@ Deno.serve(async (req: Request) => {
   } catch {
     // corpo vazio ou não-JSON: ignora-se
   }
+  const segredoRecebido = req.headers.get('x-cron-secret') ?? '';
+  const segredoEsperado = segredoRecebido ? await lerSegredo('cron_secret', admin) : null;
+  const segredoValido = !!segredoEsperado && segredoRecebido === segredoEsperado;
+
+  // 1) Quem é o utilizador (401 se não houver JWT válido).
+  //    Porta de QA (2026-09-18): com o x-cron-secret válido aceita-se `user_id` no corpo em vez
+  //    do JWT — é assim que os testes de ponta a ponta regeneram o calendário de uma conta de
+  //    teste sem passar pelo e-mail nem pelo Turnstile. Regenerar é idempotente e nunca toca no
+  //    estado/pago_em/comprovativo; sem o segredo, `user_id` é ignorado e o JWT manda.
+  const auth = req.headers.get('Authorization') ?? '';
+  const supaUser = createClient(url, anon, { global: { headers: { Authorization: auth } } });
+  const { data: { user: userJwt }, error: erroUser } = await supaUser.auth.getUser();
+  let user: { id: string } | null = erroUser ? null : userJwt;
+  if (!user && segredoValido && typeof corpo.user_id === 'string' && /^[0-9a-f-]{36}$/i.test(corpo.user_id)) {
+    user = { id: corpo.user_id };
+  }
+  if (!user) {
+    return json({ erro: 'nao_autenticado', mensagem: 'Precisas de iniciar sessão.' }, 401);
+  }
+
+  // 2) "hoje" é SÓ para QA.
+  //    - só se aceita com o header x-cron-secret igual ao segredo 'cron_secret' (env/Vault): um
+  //      utilizador normal (ou um bug na app) nunca regenera a lista para outra janela;
+  //    - tem de ser um dia civil real em YYYY-MM-DD (2026-13-45 e 2026-02-30 → 400, sem overflow).
+  let hoje = hojeLisboa();
   if (corpo.hoje !== undefined && corpo.hoje !== null) {
-    const segredoRecebido = req.headers.get('x-cron-secret') ?? '';
-    const segredoEsperado = segredoRecebido ? await lerSegredo('cron_secret', admin) : null;
-    if (!segredoEsperado || segredoRecebido !== segredoEsperado) {
+    if (!segredoValido) {
       return json({
         erro: 'hoje_so_qa',
         mensagem: 'O campo "hoje" é só para testes: exige o header x-cron-secret válido. Sem ele, usa-se sempre o dia de hoje em Lisboa.',
@@ -160,6 +171,7 @@ Deno.serve(async (req: Request) => {
       tipo: o.tipo,
       descricao: o.descricao,
       data_limite: dataIso(o.dataLimite),
+      prazo_efetivo: dataIso(o.prazoEfetivo),
       aviso_em: dataIso(o.avisoEm),
       valor_estimado: o.valorEstimado,
       origem_regra: o.origemRegra,

@@ -25,6 +25,12 @@ class Perfil {
   final bool banido;
   final DateTime criadoEm;
 
+  /// O que a pessoa já respondeu no onboarding antes de o acabar (coluna
+  /// `onboarding_rascunho`, JSON com `passo` e as respostas). Lê-se aqui;
+  /// escreve-se só pelo `PerfilStore.guardarRascunhoOnboarding` — nunca pelo
+  /// `toUpdate`, para um guardar do perfil não apagar o rascunho.
+  final Map<String, dynamic>? onboardingRascunho;
+
   const Perfil({
     required this.userId,
     this.nome,
@@ -47,6 +53,7 @@ class Perfil {
     this.residenciaRenovaEm,
     this.banido = false,
     required this.criadoEm,
+    this.onboardingRascunho,
   });
 
   bool get emTrial => trialAte.isAfter(DateTime.now());
@@ -108,6 +115,7 @@ class Perfil {
         residenciaRenovaEm: _data(m['residencia_renova_em']),
         banido: (m['banido'] as bool?) ?? false,
         criadoEm: DateTime.parse(m['criado_em'] as String).toLocal(),
+        onboardingRascunho: m['onboarding_rascunho'] is Map ? Map<String, dynamic>.from(m['onboarding_rascunho'] as Map) : null,
       );
 
   /// Só os campos que o utilizador pode escrever.
@@ -146,6 +154,8 @@ class Perfil {
     bool? viuGuiaInicio,
     bool? imigrante,
     DateTime? residenciaRenovaEm,
+    Map<String, dynamic>? onboardingRascunho,
+    bool limparRascunho = false,
   }) =>
       Perfil(
         userId: userId,
@@ -169,6 +179,7 @@ class Perfil {
         residenciaRenovaEm: residenciaRenovaEm ?? this.residenciaRenovaEm,
         banido: banido,
         criadoEm: criadoEm,
+        onboardingRascunho: limparRascunho ? null : (onboardingRascunho ?? this.onboardingRascunho),
       );
 }
 

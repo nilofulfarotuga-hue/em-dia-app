@@ -117,7 +117,7 @@ class _LinhaObrigacao extends StatelessWidget {
                       ? l.painelPago
                       : passou
                           ? l.painelHeroiPassouHa(-item.diasParaPrazo(hoje))
-                          : l.painelAteDia(item.dataLimite.day),
+                          : l.painelAteDia(item.prazoEfetivo.day),
                   style: t.bodySmall!.copyWith(color: item.pago || passou ? cor : AppColors.textSecondary),
                 ),
               ],

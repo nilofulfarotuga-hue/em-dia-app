@@ -133,12 +133,20 @@ class _PainelScreenState extends State<PainelScreen> {
                           ? _abrirRecibos
                           : null,
                 ),
-                const SizedBox(height: 12),
-                SemaforoGrande(
-                  estado: estado.semaforo,
-                  titulo: estado.titulo(l),
-                  subtitulo: estado.subtitulo(l),
-                ),
+                // O semáforo só aparece quando diz alguma coisa que o cartão de
+                // ação ainda não disse: verde («está tudo em dia»), ou laranja/
+                // vermelho quando há uma SEGUNDA coisa além da principal. A 17 de
+                // setembro de 2026 o painel mostrava «Paga a Segurança Social» e,
+                // logo por baixo, «Tens 1 coisa a vencer em 3 dias» — a mesma
+                // obrigação, duas vezes. Fica uma (regra do Danilo).
+                if (estado.mostraSemaforo) ...[
+                  const SizedBox(height: 12),
+                  SemaforoGrande(
+                    estado: estado.semaforo,
+                    titulo: estado.titulo(l),
+                    subtitulo: estado.subtitulo(l),
+                  ),
+                ],
                 // O cartão do próximo prazo só aparece quando NÃO é a mesma
                 // coisa que o cartão de ação lá em cima. Com um prazo passado,
                 // o de cima mostra a dívida antiga e este mostra o que vem a
@@ -320,19 +328,41 @@ class _EstadoPainel {
           .toList()
         ..sort((a, b) => a.dataLimite.compareTo(b.dataLimite));
 
-  int get _diasMinimos => aVencer.map((o) => o.diasParaPrazo(hoje)).fold(999, (m, d) => d < m ? d : m);
+  /// As passadas e as a vencer que NÃO são a do cartão de ação.
+  List<ObrigacaoItem> get alemDoHeroi {
+    final id = heroi?.id;
+    return [...passadas, ...aVencer].where((o) => o.id != id).toList();
+  }
+
+  /// Verde mostra-se sempre (é o «estás em dia» da app). Laranja e vermelho só
+  /// quando há uma segunda coisa além da que já está no cartão de ação.
+  bool get mostraSemaforo => semaforo == Semaforo.verde || alemDoHeroi.isNotEmpty;
+
+  int get _diasMinimos => alemDoHeroi
+      .where((o) => !o.passou(hoje))
+      .map((o) => o.diasParaPrazo(hoje))
+      .fold(999, (m, d) => d < m ? d : m);
 
   String titulo(AppLocalizations l) {
+    final outras = alemDoHeroi;
     switch (semaforo) {
       case Semaforo.vermelho:
-        final n = passadas.length;
-        return n == 1 ? l.semaforoVermelhoUma : l.semaforoVermelhoVarias(n);
+        final n = outras.where((o) => o.passou(hoje)).length;
+        if (n == 0) {
+          // A dívida antiga já está no cartão de ação; o que resta são coisas a vencer.
+          final m = outras.length;
+          final dias = _diasMinimos;
+          if (dias <= 0) return m == 1 ? l.painelSemaforoAlemHojeUma : l.painelSemaforoAlemHojeVarias(m);
+          if (dias == 1) return m == 1 ? l.painelSemaforoAlemAmanhaUma : l.painelSemaforoAlemAmanhaVarias(m);
+          return m == 1 ? l.painelSemaforoAlemUma(dias) : l.painelSemaforoAlemVarias(m, dias);
+        }
+        return n == 1 ? l.painelSemaforoAlemPassadaUma : l.painelSemaforoAlemPassadasVarias(n);
       case Semaforo.amarelo:
-        final n = aVencer.length;
+        final n = outras.length;
         final dias = _diasMinimos;
-        if (dias <= 0) return n == 1 ? l.painelSemaforoAmareloHojeUma : l.painelSemaforoAmareloHojeVarias(n);
-        if (dias == 1) return n == 1 ? l.painelSemaforoAmareloAmanhaUma : l.painelSemaforoAmareloAmanhaVarias(n);
-        return n == 1 ? l.semaforoAmareloUma(dias) : l.semaforoAmareloVarias(n, dias);
+        if (dias <= 0) return n == 1 ? l.painelSemaforoAlemHojeUma : l.painelSemaforoAlemHojeVarias(n);
+        if (dias == 1) return n == 1 ? l.painelSemaforoAlemAmanhaUma : l.painelSemaforoAlemAmanhaVarias(n);
+        return n == 1 ? l.painelSemaforoAlemUma(dias) : l.painelSemaforoAlemVarias(n, dias);
       case Semaforo.verde:
         return l.semaforoVerde;
     }

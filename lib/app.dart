@@ -113,6 +113,8 @@ class _RaizNavegadorState extends State<RaizNavegador> {
       rend.carregar(userId),
       carros.carregar(userId),
     ]);
+    // Uma vez por dia, o calendário volta a ser gerado no servidor (regras da tabela).
+    if (perfil.perfil?.onboardingConcluido ?? false) unawaited(obrig.recalcularSeVelho(userId));
   }
 
   @override

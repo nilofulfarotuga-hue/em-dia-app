@@ -1,7 +1,7 @@
 {
   "@@locale": "pt",
   "appNome": "Em Dia",
-  "boasVindas": "Olá! Eu sou o Em Dia. A partir de agora não te esqueces de nada: Segurança Social, IVA, IRS, carro. Vamos começar com 4 perguntas rápidas.",
+  "boasVindas": "Olá! Eu sou o Em Dia. A partir de agora não te esqueces de nada: Segurança Social, IVA, IRS, carro. Vamos começar com umas perguntas rápidas: leva 2 minutos, e podes mudar tudo depois.",
   "fimOnboardingUma": "Pronto. Este mês só tens uma coisa: {obrigacao}, {valor}, até dia {dia}. Eu aviso-te no dia {diaAviso}.",
   "@fimOnboardingUma": {"placeholders": {"obrigacao": {"type": "String"}, "valor": {"type": "String"}, "dia": {"type": "String"}, "diaAviso": {"type": "String"}}},
   "fimOnboardingVarias": "Pronto. Este mês tens {n} coisas: {lista}. Eu aviso-te. Nos próximos 30 dias tens tudo aberto, sem cartão.",
@@ -71,7 +71,7 @@
   "onbNao": "Não",
   "onbTensCarro": "Tens carro?",
   "onbMatricula": "Matrícula",
-  "onbMatriculaAjuda": "Pela matrícula eu descubro o mês do IUC (o imposto do carro) e quando é a inspeção.",
+  "onbMatriculaAjuda": "A matrícula é só para eu saber de que carro falo. O IUC (o imposto do carro) paga-se todos os anos no mês da matrícula, e a inspeção depende da idade do carro — por isso peço-te o mês e o ano a seguir e faço as contas por ti.",
   "onbDataMatricula": "Mês e ano da matrícula",
   "onbSeguroMes": "Em que mês renova o seguro?",
   "onbUltimaIpo": "Quando foi a última inspeção?",

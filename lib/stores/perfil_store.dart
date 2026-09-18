@@ -59,6 +59,22 @@ class PerfilStore extends ChangeNotifier {
     }
   }
 
+  /// Guarda o rascunho do onboarding no servidor (`profiles.onboarding_rascunho`).
+  /// Não passa pelo `guardar`: é uma coluna à parte, e falhar aqui não pode
+  /// travar a pessoa — a cópia local (`RascunhoOnboarding`) continua a valer.
+  Future<bool> guardarRascunhoOnboarding(Map<String, dynamic>? rascunho) async {
+    final p = _perfil;
+    if (p == null) return false;
+    try {
+      await sb.from('profiles').update({'onboarding_rascunho': rascunho}).eq('user_id', p.userId);
+      _perfil = rascunho == null ? p.copyWith(limparRascunho: true) : p.copyWith(onboardingRascunho: rascunho);
+      return true;
+    } catch (e) {
+      debugPrint('rascunho onboarding: não guardou no servidor ($e)');
+      return false;
+    }
+  }
+
   void limpar() {
     _perfil = null;
     notifyListeners();

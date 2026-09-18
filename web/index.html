@@ -91,5 +91,46 @@
       document.head.appendChild(s);
     })();
   </script>
+  <!--
+    Vigia do tamanho da janela (2026-09-18, missão em-dia-tudo). A 17 de
+    setembro a app "encolheu para metade do ecrã" ao mudar o tamanho da janela
+    e só endireitou com F5. Reproduzido: o motor do Flutter (3.47, CanvasKit)
+    só ouve o evento `resize` do `visualViewport`; quando esse evento não chega
+    (janela escondida, emulação, alguns redimensionamentos do Windows) a
+    <flutter-view> fica com o tamanho antigo e o desenho não volta até um
+    clique. Um `visualViewport.dispatchEvent(new Event('resize'))` à mão faz o
+    motor acordar na hora — provado no navegador embutido do Claude.
+    Isto vigia a diferença entre a <flutter-view> e a janela (ResizeObserver
+    na raiz + uma olhadela de 700 em 700 ms) e, quando há diferença, dá esse
+    empurrão. Sem diferença, não faz nada.
+  -->
+  <script>
+    (function () {
+      if (window.__emDiaMudouDeMorada) return;
+      var ultimo = 0;
+      var corrigiu = 0;
+      function medir() {
+        var v = document.querySelector('flutter-view');
+        if (!v) return;
+        var r = v.getBoundingClientRect();
+        var w = window.innerWidth, h = window.innerHeight;
+        if (w > 0 && h > 0 && (Math.abs(r.width - w) > 1 || Math.abs(r.height - h) > 1)) {
+          corrigiu++;
+          (window.visualViewport || window).dispatchEvent(new Event('resize'));
+          window.__emDiaVigiaTamanho = { corrigiu: corrigiu, quando: Date.now() };
+        }
+      }
+      function agendar() { clearTimeout(ultimo); ultimo = setTimeout(medir, 120); }
+      if (window.ResizeObserver) {
+        new ResizeObserver(agendar).observe(document.documentElement);
+      }
+      window.addEventListener('resize', agendar);
+      window.addEventListener('orientationchange', agendar);
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') agendar();
+      });
+      setInterval(medir, 700);
+    })();
+  </script>
 </body>
 </html>

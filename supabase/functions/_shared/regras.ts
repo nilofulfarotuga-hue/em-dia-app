@@ -115,6 +115,31 @@ export function diaUtilAnteriorOuIgual(d: Date, feriados: Feriados): Date {
 /** Data em que se avisa um prazo: véspera útil se cair a fim-de-semana/feriado. */
 export const avisoEm = (prazo: Date, feriados: Feriados): Date => diaUtilAnteriorOuIgual(prazo, feriados);
 
+/** O próprio dia se for útil; senão o primeiro dia útil DEPOIS. */
+export function diaUtilSeguinteOuIgual(d: Date, feriados: Feriados): Date {
+  let x = soDia(d);
+  while (!ehDiaUtil(x, feriados)) x = somarDias(x, 1);
+  return x;
+}
+
+/**
+ * Até quando se pode MESMO cumprir um prazo do Estado: se o dia legal cai a
+ * sábado, domingo ou feriado, passa para o primeiro dia útil seguinte.
+ * Fontes (2026-09-18): AT, «Resumo anual — Obrigações de pagamento em 2026»,
+ * nota a) «Nos meses que terminam em fim de semana ou feriado, a obrigação pode
+ * ser cumprida até ao dia útil seguinte»; Segurança Social, Guia Prático
+ * «Pagamento de Contribuições»: «Se o último dia de pagamento coincidir com um
+ * sábado, domingo ou feriado, o pagamento poderá ser efetuado no dia útil seguinte.»
+ * Espelho de `prazoEfetivo` em lib/regras/datas.dart.
+ */
+export const prazoEfetivo = (prazo: Date, feriados: Feriados): Date => diaUtilSeguinteOuIgual(prazo, feriados);
+
+/** Tipos cujo prazo é do Estado (AT/SS) e por isso passa para o dia útil seguinte. */
+export const TIPOS_COM_PRAZO_DO_ESTADO = new Set([
+  'ss_declaracao', 'ss_pagamento', 'iva_declaracao', 'iva_pagamento', 'irs_entrega',
+  'irs_pagamento_conta', 'efatura_validar', 'recibos_comunicar', 'iuc',
+]);
+
 /** Soma N dias úteis (multas: 15 dias úteis de pagamento voluntário). */
 export function somarDiasUteis(d: Date, dias: number, feriados: Feriados): Date {
   let x = soDia(d);
@@ -671,7 +696,10 @@ export function carro(c: Partial<CarroObrigacoes> & { id: string; matricula: str
 export interface Obrigacao {
   tipo: string;
   descricao: string;
+  /** O dia legal («até dia 20»). */
   dataLimite: Date;
+  /** Até quando se pode mesmo cumprir (dia útil seguinte quando o dia legal cai a fim-de-semana/feriado e o prazo é do Estado). */
+  prazoEfetivo: Date;
   avisoEm: Date;
   valorEstimado: number | null;
   origemRegra: string;
@@ -688,6 +716,7 @@ export function obrigacaoParaLinha(o: Obrigacao, userId: string): Record<string,
     tipo: o.tipo,
     descricao: o.descricao,
     data_limite: dataIso(o.dataLimite),
+    prazo_efetivo: dataIso(o.prazoEfetivo),
     aviso_em: dataIso(o.avisoEm),
     valor_estimado: o.valorEstimado,
     origem_regra: o.origemRegra,
@@ -722,6 +751,7 @@ export function gerarObrigacoes(
     tipo: x.tipo,
     descricao: x.descricao,
     dataLimite: soDia(x.prazo),
+    prazoEfetivo: TIPOS_COM_PRAZO_DO_ESTADO.has(x.tipo) ? prazoEfetivo(x.prazo, feriados) : soDia(x.prazo),
     avisoEm: avisoEm(x.prazo, feriados),
     valorEstimado: x.valor ?? null,
     origemRegra: x.regra,
@@ -749,6 +779,7 @@ export function gerarObrigacoes(
         descricao:
           `Acaba a isenção de Segurança Social. A partir de ${nomeMes(mes(fimIsencao))} pagas cerca de ${estim === null ? '—' : moeda(estim.contribuicaoMensal)}/mês.`,
         dataLimite: fimIsencao,
+        prazoEfetivo: fimIsencao,
         avisoEm: avisoEm(antes(avisoFim, desde) ? fimIsencao : avisoFim, feriados),
         valorEstimado: estim === null ? null : estim.contribuicaoMensal,
         origemRegra: 'ss_isencao_meses',
@@ -786,7 +817,7 @@ export function gerarObrigacoes(
             prazo,
             valor: estim === null ? null : estim.contribuicaoMensal,
             regra: 'ss_pagamento_dia_fim',
-            comoPagar: 'Segurança Social Direta → Conta-corrente → Pagamentos → gera a referência Multibanco e paga na app do banco. Entre o dia 10 e o dia 20.',
+            comoPagar: 'Segurança Social Direta → Conta-corrente → Pagamentos → gera a referência Multibanco e paga na app do banco. Entre o dia 10 e o dia 20; se o dia 20 for sábado, domingo ou feriado, tens até ao dia útil seguinte.',
           }));
         }
       }
@@ -797,10 +828,14 @@ export function gerarObrigacoes(
     if (p.regimeIva === 'normal') {
       const diaDecl = Math.trunc(r.n('iva_declaracao_trimestral_dia'));
       const diaPag = Math.trunc(r.n('iva_pagamento_dia'));
-      // trimestres: T1 (jan–mar) → maio; T2 → agosto; T3 → novembro; T4 → fevereiro
+      // trimestres: T1 (jan–mar) → maio; T2 → SETEMBRO; T3 → novembro; T4 → fevereiro.
+      // O T2 não é agosto: CIVA art. 41.º n.º 10 (redação do DL 49/2025) manda entregar
+      // a declaração do 2.º trimestre «até 20 de setembro»; a AT põe o pagamento a 25 de
+      // setembro (quadro de pagamentos 2026). Regra `iva_trimestre2_mes` na tabela.
+      const mesT2 = Math.trunc(r.n('iva_trimestre2_mes'));
       for (let a = ano(desde) - 1; a <= ano(fim); a++) {
         for (const t of [1, 2, 3, 4]) {
-          const mesDecl = t * 3 + 2; // 5, 8, 11, 14→2 do ano seguinte
+          const mesDecl = t === 2 ? mesT2 : t * 3 + 2; // 5, 9, 11, 14→2 do ano seguinte
           const anoDecl = mesDecl > 12 ? a + 1 : a;
           const m = mesDecl > 12 ? mesDecl - 12 : mesDecl;
           const decl = dia(anoDecl, m, diaDecl);

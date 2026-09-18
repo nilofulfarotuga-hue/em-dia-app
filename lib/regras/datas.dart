@@ -66,6 +66,34 @@ DateTime diaUtilAnteriorOuIgual(DateTime d, Set<DateTime> feriados) {
 DateTime avisoEm(DateTime prazo, Set<DateTime> feriados) =>
     diaUtilAnteriorOuIgual(prazo, feriados);
 
+/// O próprio dia se for útil; senão o primeiro dia útil DEPOIS.
+DateTime diaUtilSeguinteOuIgual(DateTime d, Set<DateTime> feriados) {
+  var x = soDia(d);
+  while (!ehDiaUtil(x, feriados)) {
+    x = x.add(const Duration(days: 1));
+  }
+  return x;
+}
+
+/// Até quando se pode MESMO cumprir um prazo do Estado (Finanças, Segurança
+/// Social): se o dia legal cai a sábado, domingo ou feriado, passa para o
+/// primeiro dia útil seguinte.
+///
+/// Fontes (lidas a 2026-09-18):
+/// - AT, «Resumo anual — Obrigações de pagamento em 2026», nota a): «Nos meses
+///   que terminam em fim de semana ou feriado, a obrigação pode ser cumprida
+///   até ao dia útil seguinte.»
+///   https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/calendario_fiscal/Pages/Quadro_res_Pag_2026.aspx
+/// - Segurança Social, Guia Prático «Pagamento de Contribuições»: «Se o último
+///   dia de pagamento coincidir com um sábado, domingo ou feriado, o pagamento
+///   poderá ser efetuado no dia útil seguinte.»
+///
+/// O aviso (`avisoEm`) continua a sair na véspera útil do dia legal: avisar
+/// cedo nunca fez mal a ninguém; o que não pode acontecer é a app dizer
+/// «tens até domingo» quando a pessoa tem até segunda.
+DateTime prazoEfetivo(DateTime prazo, Set<DateTime> feriados) =>
+    diaUtilSeguinteOuIgual(prazo, feriados);
+
 /// Soma N dias úteis (multas: 15 dias úteis de pagamento voluntário).
 DateTime somarDiasUteis(DateTime d, int dias, Set<DateTime> feriados) {
   var x = soDia(d);

@@ -138,6 +138,10 @@ class _DetalheObrigacaoState extends State<DetalheObrigacao> {
             child: Column(
               children: [
                 _Linha(icone: Icons.event_rounded, rotulo: l.calDataLimite, texto: dataExtensoPt(o.dataLimite)),
+                // O dia legal caiu a fim-de-semana/feriado: o Estado deixa cumprir
+                // no dia útil seguinte, e a app diz-o na cara (defeito de 17/09/2026).
+                if (o.prazoMudou)
+                  _Linha(icone: Icons.event_available_rounded, texto: l.calPrazoDiaNaoUtil(dataExtensoPt(o.prazoEfetivo))),
                 _Linha(icone: Icons.notifications_active_outlined, texto: l.calAvisoEm(dataPt(o.avisoEm))),
                 if (valor != null)
                   Padding(

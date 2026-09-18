@@ -35,6 +35,8 @@
   "calSemSessao": "Entre no app para mexer no calendário.",
 
   "calDataLimite": "Data limite",
+  "calPrazoDiaNaoUtil": "Esse dia é fim de semana ou feriado: você tem até {data}",
+  "@calPrazoDiaNaoUtil": {"placeholders": {"data": {"type": "String"}}},
   "calAvisoEm": "Te aviso em {data}",
   "@calAvisoEm": {"placeholders": {"data": {"type": "String"}}},
   "calAproximado": "aproximado",

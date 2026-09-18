@@ -73,10 +73,26 @@ class CarroObrigacoes {
   });
 }
 
+/// Tipos cujo prazo é do Estado (Finanças ou Segurança Social): se o dia legal
+/// cai a fim-de-semana ou feriado, cumpre-se no dia útil seguinte (ver
+/// [prazoEfetivo]). Os outros (seguro, inspeção, carta, residência) ficam com
+/// a data tal como está — a seguradora e o centro de inspeção não esperam.
+const Set<String> tiposComPrazoDoEstado = {
+  'ss_declaracao', 'ss_pagamento', 'iva_declaracao', 'iva_pagamento', 'irs_entrega',
+  'irs_pagamento_conta', 'efatura_validar', 'recibos_comunicar', 'iuc',
+};
+
 class Obrigacao {
   final String tipo;
   final String descricao;
+
+  /// O dia legal (o que a lei ou o Estado escrevem: «até dia 20»).
   final DateTime dataLimite;
+
+  /// Até quando se pode mesmo cumprir: igual a [dataLimite], ou o dia útil
+  /// seguinte quando o dia legal cai a sábado, domingo ou feriado e o prazo é
+  /// do Estado. É por ESTE que se conta «passou» e «faltam N dias».
+  final DateTime prazoEfetivo;
   final DateTime avisoEm;
   final double? valorEstimado;
   final String origemRegra;
@@ -88,6 +104,7 @@ class Obrigacao {
     required this.tipo,
     required this.descricao,
     required this.dataLimite,
+    required this.prazoEfetivo,
     required this.avisoEm,
     this.valorEstimado,
     required this.origemRegra,
@@ -96,12 +113,16 @@ class Obrigacao {
     this.carroId,
   });
 
+  /// O dia legal caiu a fim-de-semana/feriado e passou para o dia útil seguinte.
+  bool get prazoMudou => prazoEfetivo != dataLimite;
+
   Map<String, dynamic> toMap(String userId) => {
         'user_id': userId,
         'carro_id': carroId,
         'tipo': tipo,
         'descricao': descricao,
         'data_limite': dataPtIso(dataLimite),
+        'prazo_efetivo': dataPtIso(prazoEfetivo),
         'aviso_em': dataPtIso(avisoEm),
         'valor_estimado': valorEstimado,
         'origem_regra': origemRegra,
@@ -140,6 +161,7 @@ List<Obrigacao> gerarObrigacoes({
         tipo: tipo,
         descricao: descricao,
         dataLimite: soDia(prazo),
+        prazoEfetivo: tiposComPrazoDoEstado.contains(tipo) ? prazoEfetivo(prazo, feriados) : soDia(prazo),
         avisoEm: avisoEm(prazo, feriados),
         valorEstimado: valor,
         origemRegra: regra,
@@ -172,6 +194,7 @@ List<Obrigacao> gerarObrigacoes({
         descricao:
             'Acaba a isenção de Segurança Social. A partir de ${nomeMes(fimIsencao.month)} pagas cerca de ${estim == null ? '—' : moeda(estim.contribuicaoMensal)}/mês.',
         dataLimite: fimIsencao,
+        prazoEfetivo: fimIsencao,
         avisoEm: avisoEm(avisoFim.isBefore(desde) ? fimIsencao : avisoFim, feriados),
         valorEstimado: estim?.contribuicaoMensal,
         origemRegra: 'ss_isencao_meses',
@@ -208,7 +231,7 @@ List<Obrigacao> gerarObrigacoes({
             prazo: prazo,
             valor: estim?.contribuicaoMensal,
             regra: 'ss_pagamento_dia_fim',
-            comoPagar: 'Segurança Social Direta → Conta-corrente → Pagamentos → gera a referência Multibanco e paga na app do banco. Entre o dia 10 e o dia 20.',
+            comoPagar: 'Segurança Social Direta → Conta-corrente → Pagamentos → gera a referência Multibanco e paga na app do banco. Entre o dia 10 e o dia 20; se o dia 20 for sábado, domingo ou feriado, tens até ao dia útil seguinte.',
           ));
         }
       }
@@ -219,10 +242,15 @@ List<Obrigacao> gerarObrigacoes({
     if (perfil.regimeIva == RegimeIva.normal) {
       final diaDecl = r.n('iva_declaracao_trimestral_dia').toInt();
       final diaPag = r.n('iva_pagamento_dia').toInt();
-      // trimestres: T1 (jan–mar) → maio; T2 → agosto; T3 → novembro; T4 → fevereiro
+      // trimestres: T1 (jan–mar) → maio; T2 → SETEMBRO; T3 → novembro; T4 → fevereiro.
+      // O T2 não é agosto: o CIVA, art. 41.º n.º 10 (redação do DL 49/2025), manda
+      // entregar a declaração do 2.º trimestre «até 20 de setembro», e a AT põe o
+      // pagamento a 25 de setembro (quadro de pagamentos 2026). Regra
+      // `iva_trimestre2_mes` na tabela.
+      final mesT2 = r.n('iva_trimestre2_mes').toInt();
       for (var ano = desde.year - 1; ano <= fim.year; ano++) {
         for (final t in [1, 2, 3, 4]) {
-          final mesDecl = t * 3 + 2; // 5, 8, 11, 14→2 do ano seguinte
+          final mesDecl = t == 2 ? mesT2 : t * 3 + 2; // 5, 9, 11, 14→2 do ano seguinte
           final anoDecl = mesDecl > 12 ? ano + 1 : ano;
           final m = mesDecl > 12 ? mesDecl - 12 : mesDecl;
           final decl = DateTime(anoDecl, m, diaDecl);

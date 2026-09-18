@@ -160,6 +160,10 @@ class RegrasLegais {
           'Menção no recibo'),
       r('iva_declaracao_trimestral_dia', 20, 'Declaração IVA', unidade: 'dia_do_mes'),
       r('iva_pagamento_dia', 25, 'Pagamento IVA', unidade: 'dia_do_mes'),
+      // CIVA art. 41.º n.º 10: a declaração do 2.º trimestre entrega-se até 20 de setembro (não em agosto).
+      r('iva_trimestre2_mes', 9, 'Mês da declaração do 2.º trimestre de IVA', unidade: 'mes'),
+      r('tvde_idade_max_anos', 7, 'Idade máxima do carro TVDE (Lei 45/2018, art. 12.º n.º 4)', unidade: 'anos'),
+      r('ss_empregador_pagamento_dia_fim', 25, 'Entidades empregadoras: contribuições até dia 25 (DL 127/2025)', unidade: 'dia_do_mes'),
       r('retencao_padrao', 23, 'Retenção padrão', unidade: 'pct'),
       r('retencao_opcao', 25, 'Retenção por opção', unidade: 'pct'),
       r('retencao_dispensa_limite', 15000, 'Dispensa de retenção'),
@@ -198,7 +202,7 @@ class RegrasLegais {
       j('iuc_tabela', _iucTabela2026, 'Tabela IUC aproximada', confianca: 'aproximado'),
       j('ipo_ligeiros_anos', [4, 6, 8], 'IPO aos 4/6/8 anos'),
       t('ipo_apos_8_anos', 'anual', 'IPO anual depois dos 8'),
-      t('ipo_tvde', 'anual', 'IPO TVDE anual', confianca: 'por_confirmar'),
+      t('ipo_tvde', 'anual', 'IPO TVDE anual (Lei 45/2018, art. 12.º n.º 5)'),
       j('ipo_avisos_dias', [30, 7], 'Avisos IPO'),
       r('seguro_aviso_dias', 45, 'Aviso seguro', unidade: 'dias'),
       // Espelho da migracao 0016. Faltava aqui, e por isso o radar da

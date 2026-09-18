@@ -106,7 +106,7 @@ abstract class AppLocalizations {
   /// No description provided for @boasVindas.
   ///
   /// In pt, this message translates to:
-  /// **'Olá! Eu sou o Em Dia. A partir de agora não te esqueces de nada: Segurança Social, IVA, IRS, carro. Vamos começar com 4 perguntas rápidas.'**
+  /// **'Olá! Eu sou o Em Dia. A partir de agora não te esqueces de nada: Segurança Social, IVA, IRS, carro. Vamos começar com umas perguntas rápidas: leva 2 minutos, e podes mudar tudo depois.'**
   String get boasVindas;
 
   /// No description provided for @fimOnboardingUma.
@@ -429,7 +429,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbMatriculaAjuda.
   ///
   /// In pt, this message translates to:
-  /// **'Pela matrícula eu descubro o mês do IUC (o imposto do carro) e quando é a inspeção.'**
+  /// **'A matrícula é só para eu saber de que carro falo. O IUC (o imposto do carro) paga-se todos os anos no mês da matrícula, e a inspeção depende da idade do carro — por isso peço-te o mês e o ano a seguir e faço as contas por ti.'**
   String get onbMatriculaAjuda;
 
   /// No description provided for @onbDataMatricula.
@@ -1512,6 +1512,54 @@ abstract class AppLocalizations {
   /// **'Família'**
   String get painelEtiquetaFamilia;
 
+  /// No description provided for @painelSemaforoAlemUma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Além desta, tens mais 1 coisa a vencer em {dias} dias'**
+  String painelSemaforoAlemUma(int dias);
+
+  /// No description provided for @painelSemaforoAlemVarias.
+  ///
+  /// In pt, this message translates to:
+  /// **'Além desta, tens mais {n} coisas a vencer em {dias} dias'**
+  String painelSemaforoAlemVarias(int n, int dias);
+
+  /// No description provided for @painelSemaforoAlemHojeUma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Além desta, tens mais 1 coisa a vencer hoje'**
+  String get painelSemaforoAlemHojeUma;
+
+  /// No description provided for @painelSemaforoAlemHojeVarias.
+  ///
+  /// In pt, this message translates to:
+  /// **'Além desta, tens mais {n} coisas a vencer hoje'**
+  String painelSemaforoAlemHojeVarias(int n);
+
+  /// No description provided for @painelSemaforoAlemAmanhaUma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Além desta, tens mais 1 coisa a vencer amanhã'**
+  String get painelSemaforoAlemAmanhaUma;
+
+  /// No description provided for @painelSemaforoAlemAmanhaVarias.
+  ///
+  /// In pt, this message translates to:
+  /// **'Além desta, tens mais {n} coisas a vencer amanhã'**
+  String painelSemaforoAlemAmanhaVarias(int n);
+
+  /// No description provided for @painelSemaforoAlemPassadaUma.
+  ///
+  /// In pt, this message translates to:
+  /// **'Além desta, tens mais 1 prazo passado'**
+  String get painelSemaforoAlemPassadaUma;
+
+  /// No description provided for @painelSemaforoAlemPassadasVarias.
+  ///
+  /// In pt, this message translates to:
+  /// **'Além desta, tens mais {n} prazos passados'**
+  String painelSemaforoAlemPassadasVarias(int n);
+
   /// No description provided for @painelSemaforoVerdeSub.
   ///
   /// In pt, this message translates to:
@@ -2315,6 +2363,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Data limite'**
   String get calDataLimite;
+
+  /// No description provided for @calPrazoDiaNaoUtil.
+  ///
+  /// In pt, this message translates to:
+  /// **'Esse dia é fim-de-semana ou feriado: tens até {data}'**
+  String calPrazoDiaNaoUtil(String data);
 
   /// No description provided for @calAvisoEm.
   ///
@@ -6263,6 +6317,17 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Até {diaSemana}, dia {dia}'**
   String painelAcaoPrazoDiaSemana(String diaSemana, int dia);
+
+  /// O dia legal caiu a fim-de-semana/feriado; o prazo passa para o dia útil seguinte (AT e Segurança Social).
+  ///
+  /// In pt, this message translates to:
+  /// **'Dia {diaLegal} é {diaSemanaLegal}: tens até {diaSemanaEfetivo}, dia {diaEfetivo}'**
+  String painelAcaoPrazoDiaNaoUtil(
+    int diaLegal,
+    String diaSemanaLegal,
+    String diaSemanaEfetivo,
+    int diaEfetivo,
+  );
 
   /// No description provided for @painelAcaoPrazoData.
   ///

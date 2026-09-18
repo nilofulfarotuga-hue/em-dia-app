@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/carro.dart';
 import '../models/obrigacao.dart';
@@ -57,6 +58,27 @@ class ObrigacoesStore extends ChangeNotifier {
     } finally {
       _aCarregar = false;
       notifyListeners();
+    }
+  }
+
+  /// Regenera o calendário no servidor no máximo uma vez por dia, ao abrir a
+  /// app. As regras vivem na tabela `regras_legais` e mudam sem app nova (é o
+  /// admin que as corrige); sem isto, um prazo corrigido só chegava a quem
+  /// refizesse o onboarding. A 18/09/2026 foi assim que o «dia útil seguinte»
+  /// (coluna `prazo_efetivo`) chegou às contas já existentes. Falhar aqui é
+  /// silencioso: a lista que já está carregada continua a valer.
+  Future<void> recalcularSeVelho(String userId, {DateTime? agora}) async {
+    if (!temChaves) return;
+    final hoje = dataPtIso(agora ?? hojeLisboa());
+    final chave = 'obrigacoes_recalculadas_em_$userId';
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      if (prefs.getString(chave) == hoje) return;
+      await sb.functions.invoke('calcular-obrigacoes');
+      await prefs.setString(chave, hoje);
+      await carregar(userId);
+    } catch (e) {
+      debugPrint('obrigacoes: recálculo diário falhou ($e)');
     }
   }
 
