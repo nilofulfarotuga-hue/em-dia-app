@@ -192,6 +192,7 @@ class DadosTeste {
   final List<Linha> auditoria;
   final List<Linha> assinaturas; // B7: admin_assinaturas
   final List<Linha> erros; // B7: admin_erros
+  final List<Linha> funil; // B7a: admin_funil (uma linha por semana, mais recente primeiro)
   final String? contactoParceiro;
   final String? erro;
 
@@ -212,6 +213,7 @@ class DadosTeste {
     this.auditoria = const [],
     this.assinaturas = const [],
     this.erros = const [],
+    this.funil = const [],
     this.contactoParceiro,
     this.erro,
   });
@@ -229,6 +231,7 @@ class AdminDados {
   late final List<Linha> _auditoria;
   late final List<Linha> _assinaturas;
   late final List<Linha> _erros;
+  late final List<Linha> _funil;
   String? _contactoParceiro;
 
   /// Modo real: fala com o Supabase.
@@ -246,6 +249,7 @@ class AdminDados {
     _auditoria = t.auditoria.map((m) => Map<String, dynamic>.from(m)).toList();
     _assinaturas = t.assinaturas.map((m) => Map<String, dynamic>.from(m)).toList();
     _erros = t.erros.map((m) => Map<String, dynamic>.from(m)).toList();
+    _funil = t.funil.map((m) => Map<String, dynamic>.from(m)).toList();
     _contactoParceiro = t.contactoParceiro;
   }
 
@@ -451,6 +455,22 @@ class AdminDados {
   String errosCsv(List<Linha> lista) {
     const c = ['tipo', 'id', 'user_id', 'email', 'quando', 'resumo', 'erro', 'detalhe'];
     return const ListToCsvConverter(fieldDelimiter: ';').convert([c, for (final e in lista) [for (final k in c) k == 'detalhe' ? jsonEncode(e[k] ?? {}) : (e[k] ?? '')]]);
+  }
+
+  // ---------------------------------------------------------------- funil (B7a)
+  /// Uma linha por semana (segunda-feira), a mais recente primeiro. Vem da RPC
+  /// admin_funil; os eventos só contam quem ligou as estatísticas de utilização.
+  Future<List<Linha>> funil({int semanas = 8}) async {
+    if (emTeste) {
+      _falhaSePedido();
+      return List.of(_funil);
+    }
+    return _linhas(await sb.rpc('admin_funil', params: {'p_semanas': semanas}));
+  }
+
+  String funilCsv(List<Linha> lista) {
+    const c = ['semana', 'contas_criadas', 'onboarding_concluido', 'abriram', 'em_trial', 'pagam', 'eventos_consentidos', 'consentiram'];
+    return const ListToCsvConverter(fieldDelimiter: ';').convert([c, for (final f in lista) [for (final k in c) f[k] ?? '']]);
   }
 
   // ---------------------------------------------------------------- regras legais

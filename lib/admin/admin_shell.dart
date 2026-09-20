@@ -11,6 +11,7 @@ import 'secoes/assinaturas.dart';
 import 'secoes/auditoria.dart';
 import 'secoes/avisos.dart';
 import 'secoes/erros.dart';
+import 'secoes/funil.dart';
 import 'secoes/ia.dart';
 import 'secoes/regras_legais.dart';
 import 'secoes/tickets.dart';
@@ -83,7 +84,7 @@ class _AdminShellState extends State<AdminShell> {
   }
 }
 
-/// A moldura do painel: NavigationRail com as 7 secções + a secção ativa.
+/// A moldura do painel: NavigationRail com as 10 secções + a secção ativa.
 /// Separada do shell para ser fotografável sem sessão (golden).
 class AdminMoldura extends StatelessWidget {
   final AdminDados dados;
@@ -115,6 +116,7 @@ class AdminMoldura extends StatelessWidget {
               NavigationRailDestination(icon: const Icon(Icons.dashboard_rounded), label: Text(l.admNavVisaoGeral)),
               NavigationRailDestination(icon: const Icon(Icons.people_rounded), label: Text(l.admNavUsuarios)),
               NavigationRailDestination(icon: const Icon(Icons.card_membership_rounded), label: Text(l.admNavAssinaturas)),
+              NavigationRailDestination(icon: const Icon(Icons.stacked_bar_chart_rounded), label: Text(l.admNavFunil)),
               NavigationRailDestination(icon: const Icon(Icons.gavel_rounded), label: Text(l.admNavRegras)),
               NavigationRailDestination(icon: const Icon(Icons.support_agent_rounded), label: Text(l.admNavTickets)),
               NavigationRailDestination(icon: const Icon(Icons.report_problem_rounded), label: Text(l.admNavErros)),
@@ -148,17 +150,18 @@ class AdminSeccao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Ordem do menu (B7): visão geral, usuários, assinaturas, regras, tickets,
-    // erros de leitura, IA, avisos, auditoria.
+    // Ordem do menu (B7a): visão geral, usuários, assinaturas, funil, regras,
+    // tickets, erros de leitura, IA, avisos, auditoria.
     return switch (indice) {
       0 => VisaoGeralSeccao(dados: dados),
       1 => UsuariosSeccao(dados: dados),
       2 => AssinaturasSeccao(dados: dados),
-      3 => RegrasLegaisSeccao(dados: dados),
-      4 => TicketsSeccao(dados: dados),
-      5 => ErrosSeccao(dados: dados),
-      6 => IaSeccao(dados: dados),
-      7 => AvisosSeccao(dados: dados),
+      3 => FunilSeccao(dados: dados),
+      4 => RegrasLegaisSeccao(dados: dados),
+      5 => TicketsSeccao(dados: dados),
+      6 => ErrosSeccao(dados: dados),
+      7 => IaSeccao(dados: dados),
+      8 => AvisosSeccao(dados: dados),
       _ => AuditoriaSeccao(dados: dados),
     };
   }

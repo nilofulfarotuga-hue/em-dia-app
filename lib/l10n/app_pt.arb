@@ -2091,6 +2091,26 @@
   "admUsApagarFaltaMotivo": "Escreve o motivo antes de apagar.",
   "admUsApagado": "Conta apagada. Ficou registado na auditoria.",
   "admUsApagarEhAdmin": "Esta conta é admin: tira-a de public.admins antes de apagar.",
+  "admNavFunil": "Funil",
+  "admFuTitulo": "Funil",
+  "admFuSub": "Semana a semana (segunda a domingo): quantas contas foram criadas, quantas acabaram o onboarding, quantas abriram a app, quantas estão no mês grátis, quantas pagam, quantas ligaram as estatísticas e quantos eventos foram contados.",
+  "admFuTabela": "{n} semanas",
+  "@admFuTabela": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "admFuColSemana": "Semana",
+  "admFuColContas": "Contas",
+  "admFuColOnboarding": "Onboarding",
+  "admFuColAbriram": "Abriram",
+  "admFuColTrial": "Em trial",
+  "admFuColPagam": "Pagam",
+  "admFuColConsentiram": "Consentiram",
+  "admFuColEventos": "Eventos",
+  "admFuNota": "Instalações vêm da Play Console (Estatísticas). Os eventos só contam quem ligou \"estatísticas de utilização\" nas Definições; os números das contas não precisam de consentimento porque são os dados da conta.",
   "caixaTitulo": "As faturas que me chegam",
   "caixaAtalho": "Faturas por e-mail",
   "caixaAtalhoAjuda": "Manda as faturas para o teu endereço e elas aparecem aqui.",

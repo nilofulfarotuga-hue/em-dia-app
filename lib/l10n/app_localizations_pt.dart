@@ -3347,6 +3347,49 @@ class AppLocalizationsPt extends AppLocalizations {
       'Esta conta é admin: tira-a de public.admins antes de apagar.';
 
   @override
+  String get admNavFunil => 'Funil';
+
+  @override
+  String get admFuTitulo => 'Funil';
+
+  @override
+  String get admFuSub =>
+      'Semana a semana (segunda a domingo): quantas contas foram criadas, quantas acabaram o onboarding, quantas abriram a app, quantas estão no mês grátis, quantas pagam, quantas ligaram as estatísticas e quantos eventos foram contados.';
+
+  @override
+  String admFuTabela(int n) {
+    return '$n semanas';
+  }
+
+  @override
+  String get admFuColSemana => 'Semana';
+
+  @override
+  String get admFuColContas => 'Contas';
+
+  @override
+  String get admFuColOnboarding => 'Onboarding';
+
+  @override
+  String get admFuColAbriram => 'Abriram';
+
+  @override
+  String get admFuColTrial => 'Em trial';
+
+  @override
+  String get admFuColPagam => 'Pagam';
+
+  @override
+  String get admFuColConsentiram => 'Consentiram';
+
+  @override
+  String get admFuColEventos => 'Eventos';
+
+  @override
+  String get admFuNota =>
+      'Instalações vêm da Play Console (Estatísticas). Os eventos só contam quem ligou \"estatísticas de utilização\" nas Definições; os números das contas não precisam de consentimento porque são os dados da conta.';
+
+  @override
   String get caixaTitulo => 'As faturas que me chegam';
 
   @override
@@ -9685,6 +9728,49 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get admUsApagarEhAdmin =>
       'Esta conta é admin: tire-a de public.admins antes de apagar.';
+
+  @override
+  String get admNavFunil => 'Funil';
+
+  @override
+  String get admFuTitulo => 'Funil';
+
+  @override
+  String get admFuSub =>
+      'Semana a semana (segunda a domingo): quantas contas foram criadas, quantas acabaram o onboarding, quantas abriram o app, quantas estão no mês grátis, quantas pagam, quantas ligaram as estatísticas e quantos eventos foram contados.';
+
+  @override
+  String admFuTabela(int n) {
+    return '$n semanas';
+  }
+
+  @override
+  String get admFuColSemana => 'Semana';
+
+  @override
+  String get admFuColContas => 'Contas';
+
+  @override
+  String get admFuColOnboarding => 'Onboarding';
+
+  @override
+  String get admFuColAbriram => 'Abriram';
+
+  @override
+  String get admFuColTrial => 'Em trial';
+
+  @override
+  String get admFuColPagam => 'Pagam';
+
+  @override
+  String get admFuColConsentiram => 'Consentiram';
+
+  @override
+  String get admFuColEventos => 'Eventos';
+
+  @override
+  String get admFuNota =>
+      'Instalações vêm da Play Console (Estatísticas). Os eventos só contam quem ligou \"estatísticas de uso\" nas Configurações; os números das contas não precisam de consentimento porque são os dados da conta.';
 
   @override
   String get caixaTitulo => 'As faturas que me chegam';

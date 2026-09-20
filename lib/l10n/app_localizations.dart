@@ -5742,6 +5742,84 @@ abstract class AppLocalizations {
   /// **'Esta conta é admin: tira-a de public.admins antes de apagar.'**
   String get admUsApagarEhAdmin;
 
+  /// No description provided for @admNavFunil.
+  ///
+  /// In pt, this message translates to:
+  /// **'Funil'**
+  String get admNavFunil;
+
+  /// No description provided for @admFuTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Funil'**
+  String get admFuTitulo;
+
+  /// No description provided for @admFuSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Semana a semana (segunda a domingo): quantas contas foram criadas, quantas acabaram o onboarding, quantas abriram a app, quantas estão no mês grátis, quantas pagam, quantas ligaram as estatísticas e quantos eventos foram contados.'**
+  String get admFuSub;
+
+  /// No description provided for @admFuTabela.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} semanas'**
+  String admFuTabela(int n);
+
+  /// No description provided for @admFuColSemana.
+  ///
+  /// In pt, this message translates to:
+  /// **'Semana'**
+  String get admFuColSemana;
+
+  /// No description provided for @admFuColContas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Contas'**
+  String get admFuColContas;
+
+  /// No description provided for @admFuColOnboarding.
+  ///
+  /// In pt, this message translates to:
+  /// **'Onboarding'**
+  String get admFuColOnboarding;
+
+  /// No description provided for @admFuColAbriram.
+  ///
+  /// In pt, this message translates to:
+  /// **'Abriram'**
+  String get admFuColAbriram;
+
+  /// No description provided for @admFuColTrial.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em trial'**
+  String get admFuColTrial;
+
+  /// No description provided for @admFuColPagam.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pagam'**
+  String get admFuColPagam;
+
+  /// No description provided for @admFuColConsentiram.
+  ///
+  /// In pt, this message translates to:
+  /// **'Consentiram'**
+  String get admFuColConsentiram;
+
+  /// No description provided for @admFuColEventos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Eventos'**
+  String get admFuColEventos;
+
+  /// No description provided for @admFuNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Instalações vêm da Play Console (Estatísticas). Os eventos só contam quem ligou \"estatísticas de utilização\" nas Definições; os números das contas não precisam de consentimento porque são os dados da conta.'**
+  String get admFuNota;
+
   /// No description provided for @caixaTitulo.
   ///
   /// In pt, this message translates to:

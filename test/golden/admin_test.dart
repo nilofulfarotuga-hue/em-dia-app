@@ -1,4 +1,4 @@
-// Painel admin (Flutter Web, PT-BR) — fotos de desktop 1280×800 das 7 secções,
+// Painel admin (Flutter Web, PT-BR) — fotos de desktop 1280×800 das 10 secções,
 // com dados de exemplo em memória (AdminDados.paraTeste), sem servidor.
 // Um overflow faz o teste FALHAR (regra "estouro = falha").
 import 'dart:io';
@@ -55,6 +55,13 @@ DadosTeste dadosExemplo({bool alarme = false}) {
   final hoje = DateTime(2026, 9, 6);
   String dia(int atras) {
     final d = hoje.subtract(Duration(days: atras));
+    return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+  }
+
+  // A segunda-feira da semana de `hoje`, e as anteriores (B7a: o funil é por
+  // semana, de segunda a domingo).
+  String segunda(int atras) {
+    final d = hoje.subtract(Duration(days: hoje.weekday - 1 + 7 * atras));
     return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
   }
 
@@ -208,6 +215,19 @@ DadosTeste dadosExemplo({bool alarme = false}) {
       {'tipo': 'recibo', 'id': 'e1e1e1e1-0004-4000-8000-000000000004', 'user_id': _u1, 'email': 'joao.tvde@gmail.com', 'quando': '2026-09-04T16:20:00Z', 'resumo': 'Bolt Operations OÜ · 812,40 € · Serviços TVDE agosto', 'erro': 'invoicexpress_recusou', 'detalhe': {'estado': 'erro', 'fornecedor': 'invoicexpress', 'numero': null}},
       {'tipo': 'ocr', 'id': 'e1e1e1e1-0005-4000-8000-000000000005', 'user_id': '66666666-6666-4666-8666-666666666666', 'email': 'rui.carro@sapo.pt', 'quando': '2026-09-03T18:05:00Z', 'resumo': 'fatura_oficina · Auto Guarda · 240,00 €', 'erro': 'corrigido_pela_pessoa', 'detalhe': {'origem': 'galeria', 'confianca': 0.82, 'confirmado': true, 'corrigido': true, 'ficheiro_url': null}},
     ],
+    // B7a: funil semanal (admin_funil) — 8 semanas, mais recente primeiro. Os
+    // números da semana mais recente batem com o resumo: 63 ativos, 41 em
+    // trial, 25 assinaturas ativas.
+    funil: [
+      {'semana': segunda(0), 'contas_criadas': 23, 'onboarding_concluido': 16, 'abriram': 63, 'em_trial': 41, 'pagam': 25, 'eventos_consentidos': 214, 'consentiram': 96},
+      {'semana': segunda(1), 'contas_criadas': 19, 'onboarding_concluido': 13, 'abriram': 58, 'em_trial': 38, 'pagam': 24, 'eventos_consentidos': 198, 'consentiram': 91},
+      {'semana': segunda(2), 'contas_criadas': 21, 'onboarding_concluido': 15, 'abriram': 52, 'em_trial': 35, 'pagam': 22, 'eventos_consentidos': 171, 'consentiram': 84},
+      {'semana': segunda(3), 'contas_criadas': 17, 'onboarding_concluido': 12, 'abriram': 47, 'em_trial': 33, 'pagam': 21, 'eventos_consentidos': 153, 'consentiram': 76},
+      {'semana': segunda(4), 'contas_criadas': 14, 'onboarding_concluido': 10, 'abriram': 41, 'em_trial': 31, 'pagam': 19, 'eventos_consentidos': 132, 'consentiram': 69},
+      {'semana': segunda(5), 'contas_criadas': 15, 'onboarding_concluido': 9, 'abriram': 36, 'em_trial': 29, 'pagam': 17, 'eventos_consentidos': 118, 'consentiram': 61},
+      {'semana': segunda(6), 'contas_criadas': 11, 'onboarding_concluido': 7, 'abriram': 31, 'em_trial': 27, 'pagam': 16, 'eventos_consentidos': 96, 'consentiram': 52},
+      {'semana': segunda(7), 'contas_criadas': 9, 'onboarding_concluido': 5, 'abriram': 26, 'em_trial': 24, 'pagam': 14, 'eventos_consentidos': 74, 'consentiram': 42},
+    ],
     contactoParceiro: 'Contabilidade Guarda Lda · 271 000 000 · geral@contaguarda.pt',
   );
 }
@@ -254,7 +274,7 @@ void main() {
   });
 
   testWidgets('admin_regras: tabela editável', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_regras', tela: () => moldura(3));
+    await fotografaDesktop(tester, nome: 'admin_regras', tela: () => moldura(4));
     expect(find.text('ias'), findsOneWidget);
     expect(find.text('por_confirmar'), findsOneWidget);
   });
@@ -263,7 +283,7 @@ void main() {
     await fotografaDesktop(
       tester,
       nome: 'admin_regras_editar',
-      tela: () => moldura(3),
+      tela: () => moldura(4),
       antes: (t) async {
         await t.tap(find.text('ias'));
         await t.pump(const Duration(milliseconds: 400));
@@ -273,7 +293,7 @@ void main() {
   });
 
   testWidgets('admin_regras_flags: cadeados por plano', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_regras_flags', tela: () => moldura(3), antes: (t) async {
+    await fotografaDesktop(tester, nome: 'admin_regras_flags', tela: () => moldura(4), antes: (t) async {
       await t.tap(find.text('Cadeados por plano'));
       await t.pump(const Duration(milliseconds: 300));
     });
@@ -281,24 +301,24 @@ void main() {
   });
 
   testWidgets('admin_tickets: filtros, tabela e contato do parceiro', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_tickets', tela: () => moldura(4));
+    await fotografaDesktop(tester, nome: 'admin_tickets', tela: () => moldura(5));
     expect(find.text('A app fecha ao abrir o calendário'), findsOneWidget);
     expect(find.textContaining('contaguarda.pt'), findsOneWidget);
   });
 
   testWidgets('admin_ia: top perguntas, fora das regras, custo', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_ia', tela: () => moldura(6));
+    await fotografaDesktop(tester, nome: 'admin_ia', tela: () => moldura(7));
     expect(find.text('Perguntas mais feitas (top 30)'), findsOneWidget);
     expect(find.text('Criar guia'), findsWidgets);
   });
 
   testWidgets('admin_avisos: push, massa, e2e', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_avisos', tela: () => moldura(7));
+    await fotografaDesktop(tester, nome: 'admin_avisos', tela: () => moldura(8));
     expect(find.text('Avisos em massa'), findsOneWidget);
   });
 
   testWidgets('admin_auditoria: log com filtros', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_auditoria', tela: () => moldura(8));
+    await fotografaDesktop(tester, nome: 'admin_auditoria', tela: () => moldura(9));
     expect(find.text('usuario_banir'), findsOneWidget);
   });
 
@@ -324,7 +344,7 @@ void main() {
   });
 
   testWidgets('admin_erros: OCR, importação, e-mail de fatura e recibo numa lista só (B7)', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_erros', tela: () => moldura(5));
+    await fotografaDesktop(tester, nome: 'admin_erros', tela: () => moldura(6));
     expect(find.text('5 registros'), findsOneWidget);
     expect(find.text('sem_valor'), findsOneWidget);
     expect(find.text('coluna_data_nao_encontrada'), findsOneWidget);
@@ -335,13 +355,20 @@ void main() {
     await fotografaDesktop(
       tester,
       nome: 'admin_erro_detalhe',
-      tela: () => moldura(5),
+      tela: () => moldura(6),
       antes: (t) async {
         await t.tap(find.text('coluna_data_nao_encontrada'));
         await t.pump(const Duration(milliseconds: 400));
       },
     );
     expect(find.textContaining('"linhas_lidas": 0'), findsOneWidget);
+  });
+
+  testWidgets('admin_funil: da conta criada ao pagamento, semana a semana (B7a)', (tester) async {
+    await fotografaDesktop(tester, nome: 'admin_funil', tela: () => moldura(3));
+    expect(find.text('Funil'), findsWidgets); // título + entrada do menu
+    expect(find.text('214'), findsOneWidget); // eventos da semana mais recente
+    expect(find.text('8 semanas'), findsOneWidget);
   });
 
   testWidgets('admin_usuario_apagar: simulação antes de apagar, com motivo obrigatório (B7)', (tester) async {
@@ -378,7 +405,7 @@ void main() {
   });
 
   testWidgets('admin_vazio: sem tickets', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_vazio', tela: () => moldura(4, dados: DadosTeste()));
+    await fotografaDesktop(tester, nome: 'admin_vazio', tela: () => moldura(5, dados: DadosTeste()));
     expect(find.text('Nada por aqui ainda.'), findsOneWidget);
   });
 }
