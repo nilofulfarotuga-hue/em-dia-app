@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +10,7 @@ import '../../config/app_theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../../regras/regras.dart';
 import '../../services/compras.dart';
+import '../../services/uso.dart';
 import '../../stores/perfil_store.dart';
 import '../../stores/regras_store.dart';
 import '../../stores/sessao_store.dart';
@@ -53,6 +56,7 @@ class _PlanoScreenState extends State<PlanoScreen> {
       _compras!.iniciar();
     }
     _compras?.addListener(_aoMudarCompra);
+    unawaited(Uso.registar(EventoUso.viuPlano, perfil: context.read<PerfilStore>().perfil));
   }
 
   @override
@@ -199,7 +203,7 @@ class _PlanoScreenState extends State<PlanoScreen> {
   Future<void> _comprar(String produtoId) async {
     final c = _compras;
     if (c == null || c.aTrabalhar) return;
-    await c.comprar(produtoId);
+    await c.comprar(produtoId, perfil: context.read<PerfilStore>().perfil);
   }
 
   Future<void> _abrir(String url) async {

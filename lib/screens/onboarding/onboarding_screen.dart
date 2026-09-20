@@ -10,6 +10,7 @@ import '../../models/carro.dart';
 import '../../models/obrigacao.dart';
 import '../../regras/regras.dart';
 import '../../services/rascunho_onboarding.dart';
+import '../../services/uso.dart';
 import '../../stores/dados_store.dart';
 import '../../stores/perfil_store.dart';
 import '../../stores/regras_store.dart';
@@ -486,6 +487,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       }
       return;
     }
+    unawaited(Uso.registar(EventoUso.concluiuOnboarding, perfil: perfilStore.perfil));
     if (!okCalendario) {
       mensageiro.showSnackBar(SnackBar(content: Text(l.onbCalendarioErro)));
     }

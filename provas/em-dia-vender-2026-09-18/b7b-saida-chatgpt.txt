@@ -1,0 +1,9 @@
+Vou ler a tarefa delegada e seguir exatamente as instruções dela antes de mexer em ficheiros.
+Encontrei `anti-mentira-ebffd267a4.txt`; vou manter essa linha exatamente no início da resposta final. Agora vou ler os ficheiros indicados e fazer a alteração mínima.
+Vou tocar apenas nos ficheiros da app/testes pedidos. Para compras, a opção menos invasiva é passar o `Perfil` para `Compras.comprar` e guardar esse perfil no serviço só para registar `comprou`/`cancelou` quando o stream da loja responde.
+Vou editar agora o modelo, criar `lib/services/uso.dart`, ligar os pontos de chamada e acrescentar o interruptor/textos/testes.
+O primeiro patch falhou por contexto estreito no ecrã de Definições; vou aplicar em blocos menores para evitar tocar no que não é necessário.
+Modelo e serviço base ficaram aplicados. Vou ligar os eventos em arranque, onboarding, plano e compras.
+As alterações principais estão aplicadas. Vou gerar as traduções antes de analisar, porque os novos getters de l10n ainda não existem.
+O merge l10n correu; só mostrou avisos pré-existentes de chaves repetidas. Vou correr `flutter gen-l10n`.
+Traduções geradas. Vou correr análise e testes pedidos; se aparecer erro real, corrijo antes de fechar.

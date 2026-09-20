@@ -77,6 +77,7 @@ Perfil perfilTeste({
   String plano = 'free',
   DateTime? trialAte,
   DateTime? dataAbertura,
+  bool consentiuEstatisticas = false,
 }) =>
     Perfil(
       userId: userIdTeste,
@@ -88,6 +89,7 @@ Perfil perfilTeste({
       plano: plano,
       trialAte: trialAte ?? DateTime(2026, 9, 30),
       onboardingConcluido: true,
+      consentiuEstatisticas: consentiuEstatisticas,
       criadoEm: DateTime(2026, 8, 31),
     );
 

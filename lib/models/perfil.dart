@@ -20,6 +20,7 @@ class Perfil {
   final DateTime trialAte; // servidor
   final bool onboardingConcluido;
   final bool viuGuiaInicio;
+  final bool consentiuEstatisticas;
   final bool imigrante;
   final DateTime? residenciaRenovaEm;
   final bool banido;
@@ -62,6 +63,7 @@ class Perfil {
     required this.trialAte,
     this.onboardingConcluido = false,
     this.viuGuiaInicio = false,
+    this.consentiuEstatisticas = false,
     this.imigrante = false,
     this.residenciaRenovaEm,
     this.banido = false,
@@ -147,6 +149,7 @@ class Perfil {
         trialAte: DateTime.parse(m['trial_ate'] as String).toLocal(),
         onboardingConcluido: (m['onboarding_concluido'] as bool?) ?? false,
         viuGuiaInicio: (m['viu_guia_inicio'] as bool?) ?? false,
+        consentiuEstatisticas: (m['consentiu_estatisticas'] as bool?) ?? false,
         imigrante: (m['imigrante'] as bool?) ?? false,
         residenciaRenovaEm: _data(m['residencia_renova_em']),
         banido: (m['banido'] as bool?) ?? false,
@@ -177,6 +180,7 @@ class Perfil {
         'variante_pt': variantePt,
         'onboarding_concluido': onboardingConcluido,
         'viu_guia_inicio': viuGuiaInicio,
+        'consentiu_estatisticas': consentiuEstatisticas,
         'imigrante': imigrante,
         'residencia_renova_em': residenciaRenovaEm == null ? null : dataPtIso(residenciaRenovaEm!),
         'cofre_automatico': cofreAutomatico,
@@ -204,6 +208,7 @@ class Perfil {
     String? variantePt,
     bool? onboardingConcluido,
     bool? viuGuiaInicio,
+    bool? consentiuEstatisticas,
     bool? imigrante,
     DateTime? residenciaRenovaEm,
     Map<String, dynamic>? onboardingRascunho,
@@ -236,6 +241,7 @@ class Perfil {
         trialAte: trialAte,
         onboardingConcluido: onboardingConcluido ?? this.onboardingConcluido,
         viuGuiaInicio: viuGuiaInicio ?? this.viuGuiaInicio,
+        consentiuEstatisticas: consentiuEstatisticas ?? this.consentiuEstatisticas,
         imigrante: imigrante ?? this.imigrante,
         residenciaRenovaEm: residenciaRenovaEm ?? this.residenciaRenovaEm,
         banido: banido,

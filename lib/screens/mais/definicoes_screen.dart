@@ -81,6 +81,22 @@ class _DefinicoesScreenState extends State<DefinicoesScreen> {
             const SizedBox(height: 10),
             Aviso(l.erroRede, tom: Semaforo.vermelho),
           ],
+          if (perfil != null) ...[
+            const SizedBox(height: 20),
+            TituloSeccao(
+              l.defsEstatisticas,
+              acao: BotaoOuvir(etiqueta: 'definicoes-estatisticas', texto: l.defsEstatisticasAjuda, soIcone: true),
+            ),
+            SwitchListTile.adaptive(
+              key: const Key('defs_estatisticas'),
+              value: perfil.consentiuEstatisticas,
+              onChanged: _aGuardar ? null : _mudarEstatisticas,
+              title: Text(perfil.consentiuEstatisticas ? l.defsEstatisticasLigadas : l.defsEstatisticasDesligadas),
+              subtitle: Text(l.defsEstatisticasAjuda),
+              secondary: const Icon(Icons.insights_rounded, color: AppColors.primaryDark),
+              contentPadding: EdgeInsets.zero,
+            ),
+          ],
           const SizedBox(height: 20),
           // Apagar a conta não tem volta: quem não lê tem de poder ouvir o
           // aviso ANTES de tocar no botão, não só dentro da janela que abre.
@@ -148,6 +164,22 @@ class _DefinicoesScreenState extends State<DefinicoesScreen> {
       _erro = !ok;
     });
     if (ok) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l.defsGuardado)));
+  }
+
+  Future<void> _mudarEstatisticas(bool valor) async {
+    final perfilStore = context.read<PerfilStore>();
+    final perfil = perfilStore.perfil;
+    if (perfil == null || perfil.consentiuEstatisticas == valor || _aGuardar) return;
+    setState(() {
+      _aGuardar = true;
+      _erro = false;
+    });
+    final ok = await perfilStore.guardar(perfil.copyWith(consentiuEstatisticas: valor));
+    if (!mounted) return;
+    setState(() {
+      _aGuardar = false;
+      _erro = !ok;
+    });
   }
 
   Future<void> _sair() async {

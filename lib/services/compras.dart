@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
+import '../models/perfil.dart';
 import 'arranque.dart';
+import 'uso.dart';
 
 /// Estado de uma compra na Google Play, do ponto de vista do ecrã.
 enum EstadoCompra { parado, aComprar, aValidar, feita, erro, cancelada, lojaIndisponivel }
@@ -27,6 +29,7 @@ class Compras extends ChangeNotifier {
   EstadoCompra _estado = EstadoCompra.parado;
   String? _erro;
   String? _produtoFeito;
+  Perfil? _perfilUso;
 
   /// A loja real (só faz sentido em Android).
   Compras() : _iap = InAppPurchase.instance, _precosTeste = const {};
@@ -79,7 +82,7 @@ class Compras extends ChangeNotifier {
   }
 
   /// Abre a folha de pagamento da Play. Devolve false se não deu para abrir.
-  Future<bool> comprar(String produtoId) async {
+  Future<bool> comprar(String produtoId, {Perfil? perfil}) async {
     final iap = _iap;
     _erro = null;
     if (iap == null || !_disponivel) {
@@ -94,6 +97,8 @@ class Compras extends ChangeNotifier {
       notifyListeners();
       return false;
     }
+    _perfilUso = perfil;
+    unawaited(Uso.registar(EventoUso.iniciouCompra, perfil: perfil));
     _estado = EstadoCompra.aComprar;
     notifyListeners();
     try {
@@ -121,6 +126,7 @@ class Compras extends ChangeNotifier {
           _estado = EstadoCompra.erro;
           _erro = p.error?.message;
         case PurchaseStatus.canceled:
+          unawaited(Uso.registar(EventoUso.cancelou, perfil: _perfilUso));
           _estado = EstadoCompra.cancelada;
       }
       if (p.pendingCompletePurchase) {
@@ -142,6 +148,7 @@ class Compras extends ChangeNotifier {
       });
       _estado = EstadoCompra.feita;
       _produtoFeito = p.productID;
+      unawaited(Uso.registar(EventoUso.comprou, perfil: _perfilUso));
     } catch (e) {
       _estado = EstadoCompra.erro;
       _erro = e.toString();

@@ -3492,6 +3492,30 @@ abstract class AppLocalizations {
   /// **'Guardado.'**
   String get defsGuardado;
 
+  /// No description provided for @defsEstatisticas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estatísticas de utilização'**
+  String get defsEstatisticas;
+
+  /// No description provided for @defsEstatisticasAjuda.
+  ///
+  /// In pt, this message translates to:
+  /// **'Se ligares isto, contamos só quando abres a app, acabas o início, vês o plano e compras. Nada do que escreves, nem valores, nem faturas. Serve para percebermos onde as pessoas desistem. Podes desligar quando quiseres.'**
+  String get defsEstatisticasAjuda;
+
+  /// No description provided for @defsEstatisticasLigadas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ligadas. Obrigado por ajudares.'**
+  String get defsEstatisticasLigadas;
+
+  /// No description provided for @defsEstatisticasDesligadas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Desligadas. Não contamos nada.'**
+  String get defsEstatisticasDesligadas;
+
   /// No description provided for @defsConta.
   ///
   /// In pt, this message translates to:

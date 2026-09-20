@@ -32,4 +32,13 @@ void main() {
     expect(find.byKey(const Key('defs_sair')), findsOneWidget);
     expect(find.byKey(const Key('defs_apagar')), findsOneWidget);
   });
+
+  testWidgets('mais: definições estatísticas (PT/BR)', (tester) async {
+    await fotografaSuite(
+      tester,
+      nome: 'mais_definicoes_estatisticas',
+      tela: () => comStores(const DefinicoesScreen(), perfil: perfilTeste(consentiuEstatisticas: true)),
+    );
+    expect(find.byKey(const Key('defs_estatisticas')), findsOneWidget);
+  });
 }

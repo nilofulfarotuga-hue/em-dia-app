@@ -2062,6 +2062,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String get defsGuardado => 'Guardado.';
 
   @override
+  String get defsEstatisticas => 'Estatísticas de utilização';
+
+  @override
+  String get defsEstatisticasAjuda =>
+      'Se ligares isto, contamos só quando abres a app, acabas o início, vês o plano e compras. Nada do que escreves, nem valores, nem faturas. Serve para percebermos onde as pessoas desistem. Podes desligar quando quiseres.';
+
+  @override
+  String get defsEstatisticasLigadas => 'Ligadas. Obrigado por ajudares.';
+
+  @override
+  String get defsEstatisticasDesligadas => 'Desligadas. Não contamos nada.';
+
+  @override
   String get defsConta => 'A tua conta';
 
   @override
@@ -8441,6 +8454,19 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get defsGuardado => 'Salvo.';
+
+  @override
+  String get defsEstatisticas => 'Estatísticas de uso';
+
+  @override
+  String get defsEstatisticasAjuda =>
+      'Se você ligar isto, contamos só quando abre o app, acaba o início, vê o plano e compra. Nada do que escreve, nem valores, nem faturas. Serve para entendermos onde as pessoas desistem. Você pode desligar quando quiser.';
+
+  @override
+  String get defsEstatisticasLigadas => 'Ligadas. Obrigado por ajudar.';
+
+  @override
+  String get defsEstatisticasDesligadas => 'Desligadas. Não contamos nada.';
 
   @override
   String get defsConta => 'A sua conta';
