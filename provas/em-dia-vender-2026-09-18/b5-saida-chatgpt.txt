@@ -1,0 +1,53 @@
+Vou ler a tarefa delegada e seguir literalmente as instruções nela, antes de mexer em qualquer ficheiro.
+A tarefa exige primeiro listar a pasta para descobrir o ficheiro `anti-mentira-*`; vou fazer isso agora e manter esse nome para a primeira linha da resposta final.
+Vou ler em paralelo os ficheiros de referência para copiar os padrões existentes de cron, segredos, OAuth, RLS e RPC admin.
+Contexto lido. Vou implementar como ficheiros novos apenas, sem aplicar migração nem tocar em funções existentes proibidas.
+Vou criar a migração com bucket privado, tabela/RLS, RPC admin e cron usando o mesmo padrão de `em-dia-avisos-hora`.
+Notei um erro de cópia no JWT anon da migração; vou corrigir para ficar igual ao padrão existente antes de avançar.
+Vou criar a Edge Function e separar as funções puras num ficheiro `_core.ts` para poder testá-las com Deno sem arrancar `Deno.serve`.
+A função vai ser tolerante: se não houver bucket/ficheiro/colunas reconhecidas, grava um fecho claro (`sem_extrato` ou `por_rever`) em vez de inventar valores.
+Vou ajustar os metadados dos uploads para corresponderem exatamente aos MIME types permitidos no bucket e garantir que `resumo.json` já lista os ficheiros finais.
+Vou acrescentar os testes Deno pedidos e alinhar a formatação de moeda para o formato explícito `1.234,56 €`.
+Vou escrever o teste local com CSV de 8 linhas, incluindo aspas e vírgulas dentro de campos.
+Vou criar o README de estrutura do bucket, sem qualquer código do Bora.
+Vou correr as verificações pedidas (`deno test` e `deno check`) e guardar a saída literal para o relatório.
+`deno test` passou com 3 testes. Vou correr agora o `deno check` da função.
+Verificações concluídas sem erro. Vou listar os ficheiros alterados/criados e rever o diff final.
+`git status` mostra os ficheiros novos desta tarefa como não rastreados; `TAREFA-DELEGADA.md` e `anti-mentira-36c214fb61.txt` já estavam na pasta e não foram mexidos.
+Vou fazer um pequeno ajuste no cálculo para ignorar cabeçalhos repetidos quando a Google entregar mais de um CSV mensal.
+Vou repetir as duas verificações depois do ajuste.
+`deno test` continua verde. Vou repetir o `deno check`.
+ANTI-MENTIRA: anti-mentira-36c214fb61.txt
+
+Cumpri a tarefa nesta pasta. Não apliquei migrações, não fiz deploy, não fiz commit/push e não toquei no Bora.
+
+RESUMO:
+- `supabase/migrations/20260920_0041_fecho_mensal.sql`: migração criada com bucket privado, tabela `fechos_mensais`, RLS, RPC admin e cron mensal.
+- `supabase/functions/fecho-mensal/index.ts`: Edge Function criada para fechar o mês do `em-dia`.
+- `supabase/functions/fecho-mensal/_core.ts`: funções puras de CSV, cálculo, datas e folha de rosto.
+- `supabase/functions/fecho-mensal/fecho_test.ts`: testes Deno do parser, cálculo e moeda.
+- `fecho-mensal/README.md`: nota da estrutura `fecho-mensal/<app>/AAAA-MM/`.
+
+Verificações:
+```text
+deno test "supabase/functions/fecho-mensal/"
+ok | 3 passed | 0 failed (30ms)
+```
+
+```text
+deno check "supabase/functions/fecho-mensal/index.ts"
+Check supabase/functions/fecho-mensal/index.ts
+```
+
+Lista de ficheiros:
+```text
+supabase/migrations/20260920_0041_fecho_mensal.sql
+
+fecho-mensal:
+README.md
+
+supabase/functions/fecho-mensal:
+_core.ts
+fecho_test.ts
+index.ts
+```
