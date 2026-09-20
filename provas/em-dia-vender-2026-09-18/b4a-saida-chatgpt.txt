@@ -1,0 +1,44 @@
+Vou ler a tarefa delegada e seguir exatamente o que ela pedir, antes de mexer em qualquer ficheiro.
+Encontrei `anti-mentira-038520e348.txt`; vou manter essa linha exata no início da resposta final. Agora vou comparar o modelo `site/privacidade.html`, as páginas existentes, fontes e testes antes de editar.
+A tarefa é estática e não pede execução contra produção. Vou criar só ficheiros em `site/` e `docs/`, sem tocar em `lib/`, `supabase/`, git ou publicação.
+A pasta de fontes indicada (`provas/em-dia-vender-2026-09-18/fontes-b4/`) não existe nesta cópia; não vou inventar conteúdo além do que a própria tarefa já transcreve e dos factos fixos indicados nela.
+Vou aplicar uma alteração única: criar as três páginas legais, acrescentar o registo RGPD, pôr as regras legais do B4 no topo de `docs/REGRAS-PT-2026.md`, e ajustar privacidade, rodapé, sitemap e verificador.
+Alterações aplicadas. Vou verificar só o que a tarefa permite: sintaxe do verificador, estrutura básica dos HTML novos e buscas de termos proibidos/erros óbvios.
+A verificação permitida passou: `node --check site/testes/verifica.mjs` não devolveu erro. Vou só limpar dois termos técnicos em inglês que ficaram no novo registo RGPD.
+Vou fazer a verificação final e recolher a lista real de ficheiros tocados para o resumo.
+ANTI-MENTIRA: anti-mentira-038520e348.txt
+
+Cumpri a tarefa nesta pasta, sem correr o verificador contra o site no ar, sem git, sem publicar e sem tocar em `lib/` ou `supabase/`.
+
+RESUMO:
+- Criei `site/termos.html`: termos, assinatura, 14 dias, reembolsos, suporte, reclamações e dados pessoais.
+- Criei `site/reclamacoes.html`: apoio, Livro de Reclamações, CNIACC e CNPD.
+- Criei `site/apagar-conta.html`: passos para apagar conta, e aviso claro de que a assinatura cancela-se na Google Play.
+- Atualizei `site/privacidade.html`: e-mail correto, compras, estatísticas de utilização, direitos RGPD e link para apagar conta.
+- Atualizei `site/index.html`: links legais no rodapé.
+- Atualizei `site/sitemap.xml`: 3 páginas novas.
+- Atualizei `site/testes/verifica.mjs`: asserções para `/termos`, `/reclamacoes`, `/apagar-conta`.
+- Criei `docs/RGPD-REGISTO-TRATAMENTOS.md`: registo RGPD art. 30.º.
+- Atualizei `docs/REGRAS-PT-2026.md`: regras B4 no topo com fonte, data e confiança.
+
+Verificação:
+- `node --check site/testes/verifica.mjs` correu sem erros.
+- Confirmei que os 3 HTML novos têm `<title>`, `<h1>` e fecham `</html>`.
+- Confirmei que no `site/` não aparece `ODR`, `ec.europa.eu/odr`, `em breve` nem `boraappbora@gmail.com`.
+
+Nota: a pasta `provas/em-dia-vender-2026-09-18/fontes-b4/` não existe nesta cópia. Usei só o conteúdo e os factos transcritos em `TAREFA-DELEGADA.md`.
+
+Primeiras 10 linhas de `docs/REGRAS-PT-2026.md`:
+
+```md
+# REGRAS-PT-2026 — regras legais usadas nos papéis do site e na app
+
+## Papéis B4 — termos, reclamações, apagar conta, privacidade e RGPD
+
+Lido em 2026-09-20. Só entra aqui o que foi dado como fonte na tarefa B4. Quando a fonte nacional não foi lida, fica assinalado.
+
+| Regra | Onde se aplica | Fonte | Data em que foi lida | Confiança |
+|---|---|---|---|---|
+| Informação pré-contratual obrigatória em contratos à distância. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/dl-24-2014.md`, DL 24/2014, art. 4.º | 2026-09-20 | confirmada |
+| O consumidor tem 14 dias para a livre resolução. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/dl-24-2014.md`, DL 24/2014, art. 10.º; `diretiva-2011-83-consolidada.md`, arts. 9.º e 11.º | 2026-09-20 | confirmada |
+```

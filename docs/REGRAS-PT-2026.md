@@ -1,4 +1,34 @@
-# REGRAS-PT-2026 — as regras que a app usa, com fonte oficial e data em cada linha
+# REGRAS-PT-2026 — regras legais usadas nos papéis do site e na app
+
+## Papéis B4 — termos, reclamações, apagar conta, privacidade e RGPD
+
+Lido em 2026-09-20. Só entra aqui o que foi dado como fonte na tarefa B4. Quando a fonte nacional não foi lida, fica assinalado.
+
+| Regra | Onde se aplica | Fonte | Data em que foi lida | Confiança |
+|---|---|---|---|---|
+| Informação pré-contratual obrigatória em contratos à distância. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/dl-24-2014.md`, DL 24/2014, art. 4.º | 2026-09-20 | confirmada |
+| O consumidor tem 14 dias para a livre resolução. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/dl-24-2014.md`, DL 24/2014, art. 10.º; `diretiva-2011-83-consolidada.md`, arts. 9.º e 11.º | 2026-09-20 | confirmada |
+| A desistência pode ser comunicada por declaração clara. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/dl-24-2014.md`, DL 24/2014, art. 11.º; `diretiva-2011-83-consolidada.md`, art. 11.º | 2026-09-20 | confirmada |
+| O reembolso deve ser feito no máximo em 14 dias. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/dl-24-2014.md`, DL 24/2014, art. 12.º; `diretiva-2011-83-consolidada.md`, art. 14.º | 2026-09-20 | confirmada |
+| Serviço a começar dentro do prazo de livre resolução exige aceitação do consumidor. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/dl-24-2014.md`, DL 24/2014, art. 15.º | 2026-09-20 | confirmada |
+| Conteúdos digitais sem suporte material podem ter exceção à livre resolução com consentimento expresso; o Em Dia escolhe honrar a devolução total nos 14 dias. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/dl-24-2014.md`, DL 24/2014, art. 17.º-1-l; `diretiva-2011-83-consolidada.md`, art. 16.º | 2026-09-20 | confirmada |
+| As regras de proteção do consumidor são imperativas. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/dl-24-2014.md`, DL 24/2014, art. 29.º | 2026-09-20 | confirmada |
+| O comerciante deve informar a entidade de resolução alternativa de litígios no site e nas condições gerais. | Termos e reclamações | `provas/em-dia-vender-2026-09-18/fontes-b4/diretiva-2013-11-ral.md`, Diretiva 2013/11/UE, art. 13.º; Lei n.º 144/2015, de 8 de setembro | 2026-09-20 | confirmada na diretiva; por confirmar no artigo nacional |
+| Entidade indicada: CNIACC. A competência para a Guarda deve ficar marcada como POR CONFIRMAR até consulta da lista da Direção-Geral do Consumidor. | Termos e reclamações | Facto fixo da tarefa B4; https://www.cniacc.pt | 2026-09-20 | por confirmar |
+| Livro de reclamações eletrónico oficial. | Reclamações | Facto fixo da tarefa B4; https://www.livroreclamacoes.pt/ | 2026-09-20 | confirmada |
+| A plataforma europeia ODR foi encerrada pelo Regulamento (UE) 2024/3228 e não deve ser citada nas páginas. | Termos e reclamações | Facto fixo da tarefa B4; Regulamento (UE) 2024/3228 | 2026-09-20 | confirmada |
+| Tratamento de dados precisa de base legal. | Privacidade e RGPD | `provas/em-dia-vender-2026-09-18/fontes-b4/rgpd-2016-679.md`, RGPD art. 6.º | 2026-09-20 | confirmada |
+| Consentimento tem regras próprias e pode ser retirado. | Privacidade e RGPD | `provas/em-dia-vender-2026-09-18/fontes-b4/rgpd-2016-679.md`, RGPD art. 7.º | 2026-09-20 | confirmada |
+| Informação ao titular deve ser clara. | Privacidade e RGPD | `provas/em-dia-vender-2026-09-18/fontes-b4/rgpd-2016-679.md`, RGPD arts. 12.º e 13.º | 2026-09-20 | confirmada |
+| Direito de acesso. | Privacidade e RGPD | `provas/em-dia-vender-2026-09-18/fontes-b4/rgpd-2016-679.md`, RGPD art. 15.º | 2026-09-20 | confirmada |
+| Direito ao apagamento. | Privacidade, apagar conta e RGPD | `provas/em-dia-vender-2026-09-18/fontes-b4/rgpd-2016-679.md`, RGPD art. 17.º; `play-apagar-conta.md` | 2026-09-20 | confirmada |
+| Direito à portabilidade. | Privacidade e RGPD | `provas/em-dia-vender-2026-09-18/fontes-b4/rgpd-2016-679.md`, RGPD art. 20.º | 2026-09-20 | confirmada |
+| Registo das atividades de tratamento. | RGPD | `provas/em-dia-vender-2026-09-18/fontes-b4/rgpd-2016-679.md`, RGPD art. 30.º | 2026-09-20 | confirmada |
+| Cancelamento de assinatura feito na Google Play. | Termos e apagar conta | `provas/em-dia-vender-2026-09-18/fontes-b4/play-cancelar-subscricao.md` | 2026-09-20 | confirmada |
+| Pedidos de reembolso pela Google Play seguem as regras da Google. | Termos | `provas/em-dia-vender-2026-09-18/fontes-b4/play-reembolsos.md` | 2026-09-20 | confirmada |
+| A página externa de apagar conta deve explicar como pedir eliminação. | Apagar conta e privacidade | `provas/em-dia-vender-2026-09-18/fontes-b4/play-apagar-conta.md` | 2026-09-20 | confirmada |
+
+# Regras da app — fonte oficial e data em cada linha
 
 > Regra da casa: **nada entra sem fonte oficial**. Cada linha diz o valor, onde está na lei ou no site do Estado, e o dia em que foi verificada. A tabela viva é `public.regras_legais` (colunas `fonte_url`, `confianca`, `verificado_em`); o Dart lê-a por `RegrasLegais`, o servidor por `_shared/regras.ts`. O que não tem fonte fica `por_confirmar` e a IA responde «não tenho essa regra confirmada».
 > Quando o dia legal cai a fim-de-semana ou feriado, os prazos do Estado (AT/SS) passam ao dia útil seguinte (AT, nota a) das agendas 2026; SS, Guia Prático «Pagamento de Contribuições») — `prazo_efetivo`.
