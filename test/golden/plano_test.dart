@@ -30,6 +30,9 @@ void main() {
     expect(find.textContaining('25'), findsAtLeastNWidgets(1));
     expect(find.byKey(const Key('plano_ativar_pro')), findsOneWidget);
     expect(find.byKey(const Key('plano_ativar_familia')), findsOneWidget);
+    // A linha dos termos fica abaixo da dobra (ListView só constrói o visível): rola até ela.
+    await tester.scrollUntilVisible(find.byKey(const Key('plano_termos')), 300, scrollable: find.byType(Scrollable).first);
+    expect(find.byKey(const Key('plano_termos')), findsOneWidget);
     expect(find.text('3,49 €/mês'), findsOneWidget);
     expect(find.text('5,99 €/mês'), findsOneWidget);
   });

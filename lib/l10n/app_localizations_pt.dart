@@ -629,6 +629,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'Não tenho essa regra confirmada. Vou pedir um guia novo sobre isto.';
 
   @override
+  String get avisoNaoFiscal =>
+      'Isto é informação geral, não é aconselhamento fiscal. Os números vêm de fontes oficiais e podem mudar. Confirma com o teu contabilista, a Segurança Social ou as Finanças.';
+
+  @override
   String get suporteTitulo => 'Ajuda';
 
   @override
@@ -647,7 +651,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get suporteEnviar => 'Enviar';
 
   @override
-  String get suporteEnviado => 'Recebi. Respondo em breve.';
+  String get suporteEnviado => 'Recebi.';
 
   @override
   String get planoTitulo => 'O teu plano';
@@ -2348,6 +2352,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get planoCancelarQuando => 'Cancelas quando quiseres, na Google Play.';
 
   @override
+  String get planoAntesDeAssinar =>
+      'Ao assinares aceitas os termos. Cancelas quando quiseres na Google Play. Tens 14 dias para desistir e receber tudo de volta.';
+
+  @override
   String get iaSuporteTitulo => 'Tira a tua dúvida';
 
   @override
@@ -2389,6 +2397,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get suporteIntro => 'O que se passa?';
+
+  @override
+  String get suportePrazo =>
+      'Respondemos em 2 dias úteis. Se for urgente, escreve para emdia@boraguarda.com.';
 
   @override
   String get suporteDuvidaAjuda =>
@@ -2437,6 +2449,22 @@ class AppLocalizationsPt extends AppLocalizations {
   String get suporteFechar => 'Voltar à ajuda';
 
   @override
+  String get suporteEnviadoPrazo =>
+      'Recebemos. Respondemos em 2 dias úteis, aqui em «Os meus pedidos».';
+
+  @override
+  String get suportePapeis => 'Os nossos papéis';
+
+  @override
+  String get suporteTermos => 'Termos e condições';
+
+  @override
+  String get suportePrivacidade => 'Privacidade';
+
+  @override
+  String get suporteReclamacoes => 'Reclamações';
+
+  @override
   String get suporteReembolsoLinha1 =>
       'A assinatura do Em Dia é cobrada pela Google Play, não por nós.';
 
@@ -2449,7 +2477,14 @@ class AppLocalizationsPt extends AppLocalizations {
       'Continuas com o plano até ao fim do período já pago.';
 
   @override
+  String get suporteReembolsoLinha4 =>
+      'Assinaste há menos de 14 dias? Devolvemos tudo. Pede na Google Play ou escreve-nos para emdia@boraguarda.com.';
+
+  @override
   String get suporteAbrirSubscricoes => 'Abrir as minhas subscrições';
+
+  @override
+  String get suporteEscreverNos => 'Escrever-nos';
 
   @override
   String get suporteReembolsoDescricao =>
@@ -2467,13 +2502,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get suporteSemPedidos => 'Ainda não tens pedidos.';
 
   @override
-  String get suporteEstadoAberto => 'Aberto';
+  String get suporteEstadoAberto => 'Recebido';
 
   @override
-  String get suporteEstadoEmCurso => 'Em análise';
+  String get suporteEstadoEmCurso => 'A tratar';
 
   @override
-  String get suporteEstadoFechado => 'Resolvido';
+  String get suporteEstadoFechado => 'Respondido';
 
   @override
   String get suporteTipoDuvida => 'Dúvida';
@@ -7023,6 +7058,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
       'Não tenho essa regra confirmada. Vou pedir um guia novo sobre isso.';
 
   @override
+  String get avisoNaoFiscal =>
+      'Isto é informação geral, não é aconselhamento fiscal. Os números vêm de fontes oficiais e podem mudar. Confirme com seu contador, a Segurança Social ou as Finanças.';
+
+  @override
   String get suporteTitulo => 'Ajuda';
 
   @override
@@ -7041,7 +7080,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get suporteEnviar => 'Enviar';
 
   @override
-  String get suporteEnviado => 'Recebi. Respondo em breve.';
+  String get suporteEnviado => 'Recebi.';
 
   @override
   String get planoTitulo => 'O seu plano';
@@ -8744,6 +8783,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
       'Você cancela quando quiser, na Google Play.';
 
   @override
+  String get planoAntesDeAssinar =>
+      'Ao assinar você aceita os termos. Cancela quando quiser na Google Play. Tem 14 dias para desistir e receber tudo de volta.';
+
+  @override
   String get iaSuporteTitulo => 'Tire sua dúvida';
 
   @override
@@ -8785,6 +8828,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get suporteIntro => 'O que está acontecendo?';
+
+  @override
+  String get suportePrazo =>
+      'Respondemos em 2 dias úteis. Se for urgente, escreva para emdia@boraguarda.com.';
 
   @override
   String get suporteDuvidaAjuda =>
@@ -8833,6 +8880,22 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get suporteFechar => 'Voltar à ajuda';
 
   @override
+  String get suporteEnviadoPrazo =>
+      'Recebemos. Respondemos em 2 dias úteis, aqui em «Meus pedidos».';
+
+  @override
+  String get suportePapeis => 'Nossos papéis';
+
+  @override
+  String get suporteTermos => 'Termos e condições';
+
+  @override
+  String get suportePrivacidade => 'Privacidade';
+
+  @override
+  String get suporteReclamacoes => 'Reclamações';
+
+  @override
   String get suporteReembolsoLinha1 =>
       'A assinatura do Em Dia é cobrada pela Google Play, não por nós.';
 
@@ -8845,7 +8908,14 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
       'Você continua com o plano até o fim do período já pago.';
 
   @override
+  String get suporteReembolsoLinha4 =>
+      'Você assinou há menos de 14 dias? Devolvemos tudo. Peça na Google Play ou escreva para emdia@boraguarda.com.';
+
+  @override
   String get suporteAbrirSubscricoes => 'Abrir minhas assinaturas';
+
+  @override
+  String get suporteEscreverNos => 'Escrever para nós';
 
   @override
   String get suporteReembolsoDescricao =>
@@ -8863,13 +8933,13 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get suporteSemPedidos => 'Você ainda não tem pedidos.';
 
   @override
-  String get suporteEstadoAberto => 'Aberto';
+  String get suporteEstadoAberto => 'Recebido';
 
   @override
-  String get suporteEstadoEmCurso => 'Em análise';
+  String get suporteEstadoEmCurso => 'A tratar';
 
   @override
-  String get suporteEstadoFechado => 'Resolvido';
+  String get suporteEstadoFechado => 'Respondido';
 
   @override
   String get suporteTipoDuvida => 'Dúvida';

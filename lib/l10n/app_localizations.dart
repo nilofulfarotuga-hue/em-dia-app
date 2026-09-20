@@ -1146,6 +1146,12 @@ abstract class AppLocalizations {
   /// **'Não tenho essa regra confirmada. Vou pedir um guia novo sobre isto.'**
   String get iaSemRegra;
 
+  /// No description provided for @avisoNaoFiscal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Isto é informação geral, não é aconselhamento fiscal. Os números vêm de fontes oficiais e podem mudar. Confirma com o teu contabilista, a Segurança Social ou as Finanças.'**
+  String get avisoNaoFiscal;
+
   /// No description provided for @suporteTitulo.
   ///
   /// In pt, this message translates to:
@@ -1185,7 +1191,7 @@ abstract class AppLocalizations {
   /// No description provided for @suporteEnviado.
   ///
   /// In pt, this message translates to:
-  /// **'Recebi. Respondo em breve.'**
+  /// **'Recebi.'**
   String get suporteEnviado;
 
   /// No description provided for @planoTitulo.
@@ -3960,6 +3966,12 @@ abstract class AppLocalizations {
   /// **'Cancelas quando quiseres, na Google Play.'**
   String get planoCancelarQuando;
 
+  /// No description provided for @planoAntesDeAssinar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ao assinares aceitas os termos. Cancelas quando quiseres na Google Play. Tens 14 dias para desistir e receber tudo de volta.'**
+  String get planoAntesDeAssinar;
+
   /// No description provided for @iaSuporteTitulo.
   ///
   /// In pt, this message translates to:
@@ -4037,6 +4049,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'O que se passa?'**
   String get suporteIntro;
+
+  /// No description provided for @suportePrazo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Respondemos em 2 dias úteis. Se for urgente, escreve para emdia@boraguarda.com.'**
+  String get suportePrazo;
 
   /// No description provided for @suporteDuvidaAjuda.
   ///
@@ -4116,6 +4134,36 @@ abstract class AppLocalizations {
   /// **'Voltar à ajuda'**
   String get suporteFechar;
 
+  /// No description provided for @suporteEnviadoPrazo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Recebemos. Respondemos em 2 dias úteis, aqui em «Os meus pedidos».'**
+  String get suporteEnviadoPrazo;
+
+  /// No description provided for @suportePapeis.
+  ///
+  /// In pt, this message translates to:
+  /// **'Os nossos papéis'**
+  String get suportePapeis;
+
+  /// No description provided for @suporteTermos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Termos e condições'**
+  String get suporteTermos;
+
+  /// No description provided for @suportePrivacidade.
+  ///
+  /// In pt, this message translates to:
+  /// **'Privacidade'**
+  String get suportePrivacidade;
+
+  /// No description provided for @suporteReclamacoes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Reclamações'**
+  String get suporteReclamacoes;
+
   /// No description provided for @suporteReembolsoLinha1.
   ///
   /// In pt, this message translates to:
@@ -4134,11 +4182,23 @@ abstract class AppLocalizations {
   /// **'Continuas com o plano até ao fim do período já pago.'**
   String get suporteReembolsoLinha3;
 
+  /// No description provided for @suporteReembolsoLinha4.
+  ///
+  /// In pt, this message translates to:
+  /// **'Assinaste há menos de 14 dias? Devolvemos tudo. Pede na Google Play ou escreve-nos para emdia@boraguarda.com.'**
+  String get suporteReembolsoLinha4;
+
   /// No description provided for @suporteAbrirSubscricoes.
   ///
   /// In pt, this message translates to:
   /// **'Abrir as minhas subscrições'**
   String get suporteAbrirSubscricoes;
+
+  /// No description provided for @suporteEscreverNos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escrever-nos'**
+  String get suporteEscreverNos;
 
   /// No description provided for @suporteReembolsoDescricao.
   ///
@@ -4167,19 +4227,19 @@ abstract class AppLocalizations {
   /// No description provided for @suporteEstadoAberto.
   ///
   /// In pt, this message translates to:
-  /// **'Aberto'**
+  /// **'Recebido'**
   String get suporteEstadoAberto;
 
   /// No description provided for @suporteEstadoEmCurso.
   ///
   /// In pt, this message translates to:
-  /// **'Em análise'**
+  /// **'A tratar'**
   String get suporteEstadoEmCurso;
 
   /// No description provided for @suporteEstadoFechado.
   ///
   /// In pt, this message translates to:
-  /// **'Resolvido'**
+  /// **'Respondido'**
   String get suporteEstadoFechado;
 
   /// No description provided for @suporteTipoDuvida.

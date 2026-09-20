@@ -302,6 +302,8 @@ class _ValeAPenaScreenState extends State<ValeAPenaScreen> {
               ],
             ),
           ),
+          const SizedBox(height: 12),
+          const AvisoNaoFiscal(),
         ],
       ),
     );

@@ -43,7 +43,12 @@ void main() {
     expect(find.text('Tenho uma dúvida'), findsOneWidget);
     expect(find.text('Algo não funciona'), findsOneWidget);
     expect(find.text('Reembolso ou cancelar'), findsOneWidget);
-    expect(find.textContaining('emdia@boraguarda.com'), findsOneWidget);
+    expect(find.byKey(const Key('suporte_email')), findsOneWidget);
+    expect(find.textContaining('2 dias úteis'), findsOneWidget);
+    expect(find.byKey(const Key('suporte_termos')), findsOneWidget);
+    expect(find.byKey(const Key('suporte_privacidade')), findsOneWidget);
+    expect(find.byKey(const Key('suporte_reclamacoes')), findsOneWidget);
+    expect(find.textContaining('emdia@boraguarda.com'), findsAtLeastNWidgets(1)); // botão «escrever» + rodapé
   });
 
   testWidgets('suporte_vazio: sem pedidos ainda', (tester) async {
@@ -66,12 +71,13 @@ void main() {
     expect(find.byType(ElevatedButton), findsOneWidget);
   });
 
-  testWidgets('suporte_reembolso: 3 linhas + abrir subscrições', (tester) async {
+  testWidgets('suporte_reembolso: 4 linhas + abrir subscrições + email', (tester) async {
     await fotografaSuite(
       tester,
       nome: 'suporte_reembolso',
       tela: () => comStores(SuporteReembolsoScreen(store: SuporteStore.paraTeste(const []))),
     );
     expect(find.byIcon(Icons.open_in_new_rounded), findsOneWidget);
+    expect(find.byKey(const Key('suporte_reembolso_email')), findsOneWidget);
   });
 }

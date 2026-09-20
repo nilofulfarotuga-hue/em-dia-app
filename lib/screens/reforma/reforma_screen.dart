@@ -183,6 +183,8 @@ class _ReformaScreenState extends State<ReformaScreen> {
               ],
             ),
           ),
+          const SizedBox(height: 12),
+          const AvisoNaoFiscal(),
         ],
       ),
     );

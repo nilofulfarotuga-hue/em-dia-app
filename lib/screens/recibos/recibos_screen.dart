@@ -154,6 +154,7 @@ class RecibosScreen extends StatelessWidget {
               aoTocar: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const EmitirReciboScreen())),
             ),
           ],
+          const AvisoNaoFiscal(),
           const SizedBox(height: 16),
         ],
       ),

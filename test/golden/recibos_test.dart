@@ -65,6 +65,9 @@ void main() {
     expect(find.text('770,00 €'), findsNWidgets(2));
     expect(find.text('− 230,00 €'), findsOneWidget);
     expect(find.byType(SelectableText), findsOneWidget); // a frase M10 pronta a copiar
+    await tester.scrollUntilVisible(find.byKey(const Key('aviso_nao_fiscal')), 300,
+        scrollable: find.byType(Scrollable).first);
+    expect(find.byKey(const Key('aviso_nao_fiscal')), findsOneWidget);
   });
 
   testWidgets('recibos: Segurança Social em isenção (faltam 6 meses)', (tester) async {

@@ -9,6 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_theme.dart';
+import '../../config/ligacoes.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/ticket_suporte.dart';
 import '../../regras/regras.dart';
@@ -22,7 +23,23 @@ import '../../widgets/widgets.dart';
 import '../ia/ia_screen.dart';
 
 const String _urlSubscricoesPlay = 'https://play.google.com/store/account/subscriptions';
-const String _emailSuporte = 'emdia@boraguarda.com';
+
+Future<void> _abrirLigacao(BuildContext context, Uri uri) async {
+  final l = AppLocalizations.of(context);
+  final mensageiro = ScaffoldMessenger.of(context);
+  try {
+    final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    if (!ok) mensageiro.showSnackBar(SnackBar(content: Text(l.erroRede)));
+  } catch (_) {
+    mensageiro.showSnackBar(SnackBar(content: Text(l.erroRede)));
+  }
+}
+
+Uri _mailto(String assunto) => Uri(
+      scheme: 'mailto',
+      path: emailSuporte,
+      queryParameters: {'subject': assunto},
+    );
 
 /// Tela 8 — Ajuda. Três portas grandes ("Tenho uma dúvida" → IA em modo
 /// suporte · "Algo não funciona" → formulário com logs automáticos ·
@@ -80,6 +97,17 @@ class _SuporteScreenState extends State<SuporteScreen> {
             children: [
               Text(l.suporteIntro, style: Theme.of(context).textTheme.titleMedium),
               const SizedBox(height: 12),
+              Aviso(l.suportePrazo, tom: Semaforo.verde, icone: Icons.info_outline_rounded),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton.icon(
+                  key: const Key('suporte_email'),
+                  onPressed: () => _abrirLigacao(context, _mailto('Em Dia — preciso de ajuda')),
+                  icon: const Icon(Icons.mail_outline_rounded, size: 18),
+                  label: Text(emailSuporte),
+                ),
+              ),
+              const SizedBox(height: 8),
               BotaoEscolha(
                 texto: l.suporteDuvida,
                 ajuda: l.suporteDuvidaAjuda,
@@ -100,6 +128,19 @@ class _SuporteScreenState extends State<SuporteScreen> {
                 icone: Icons.credit_card_off_outlined,
                 aoTocar: () => _abrir(SuporteReembolsoScreen(store: _store)),
               ),
+              const SizedBox(height: 16),
+              Cartao(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l.suportePapeis, style: Theme.of(context).textTheme.titleMedium),
+                    const SizedBox(height: 6),
+                    _LinhaPapel(key: const Key('suporte_termos'), texto: l.suporteTermos, url: urlTermos),
+                    _LinhaPapel(key: const Key('suporte_privacidade'), texto: l.suportePrivacidade, url: urlPrivacidade),
+                    _LinhaPapel(key: const Key('suporte_reclamacoes'), texto: l.suporteReclamacoes, url: urlReclamacoes),
+                  ],
+                ),
+              ),
               const SizedBox(height: 24),
               TituloSeccao(l.suporteMeusPedidos),
               const SizedBox(height: 8),
@@ -119,10 +160,10 @@ class _SuporteScreenState extends State<SuporteScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.mail_outline_rounded, size: 16, color: AppColors.textSecondary),
+                    const Icon(Icons.mail_outline_rounded, size: 16, color: AppColors.textSecondary),
                   const SizedBox(width: 6),
                   Flexible(
-                    child: Text(l.suporteEmailRodape(_emailSuporte),
+                    child: Text(l.suporteEmailRodape(emailSuporte),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColors.textSecondary)),
                   ),
@@ -132,6 +173,29 @@ class _SuporteScreenState extends State<SuporteScreen> {
           ),
         );
       },
+    );
+  }
+}
+
+class _LinhaPapel extends StatelessWidget {
+  final String texto;
+  final String url;
+  const _LinhaPapel({super.key, required this.texto, required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    // O Cartao é um DecoratedBox com fundo: o ListTile precisa do seu próprio
+    // Material (transparente) para pintar o toque, senão o Flutter avisa.
+    return Material(
+      color: Colors.transparent,
+      child: ListTile(
+        dense: true,
+        visualDensity: VisualDensity.compact,
+        contentPadding: EdgeInsets.zero,
+        title: Text(texto),
+        trailing: const Icon(Icons.open_in_new_rounded, size: 18),
+        onTap: () => _abrirLigacao(context, Uri.parse(url)),
+      ),
     );
   }
 }
@@ -406,6 +470,8 @@ class _Enviado extends StatelessWidget {
         const Icon(Icons.check_circle_rounded, size: 64, color: AppColors.emDia),
         const SizedBox(height: 12),
         Text(l.suporteEnviado, textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleLarge),
+        const SizedBox(height: 6),
+        Text(l.suporteEnviadoPrazo, textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium),
         const SizedBox(height: 8),
         Center(
           child: Etiqueta(l.suporteTicket(resposta.idCurto), cor: AppColors.surface2, corTexto: AppColors.textSecondary),
@@ -454,7 +520,7 @@ class _SuporteReembolsoScreenState extends State<SuporteReembolsoScreen> {
   Future<void> _abrirSubscricoes() async {
     final l = AppLocalizations.of(context);
     final userId = context.read<SessaoStore>().userId;
-    unawaited(launchUrl(Uri.parse(_urlSubscricoesPlay), mode: LaunchMode.externalApplication));
+    unawaited(_abrirLigacao(context, Uri.parse(_urlSubscricoesPlay)));
     if (_registo != null || _aRegistar || userId == null) return;
     setState(() => _aRegistar = true);
     final r = await widget.store.enviar(
@@ -473,7 +539,7 @@ class _SuporteReembolsoScreenState extends State<SuporteReembolsoScreen> {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
-    final linhas = [l.suporteReembolsoLinha1, l.suporteReembolsoLinha2, l.suporteReembolsoLinha3];
+    final linhas = [l.suporteReembolsoLinha1, l.suporteReembolsoLinha2, l.suporteReembolsoLinha3, l.suporteReembolsoLinha4];
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(title: Text(l.suporteReembolso)),
@@ -519,6 +585,14 @@ class _SuporteReembolsoScreenState extends State<SuporteReembolsoScreen> {
             icone: Icons.open_in_new_rounded,
             aTrabalhar: _aRegistar,
             aoTocar: _abrirSubscricoes,
+          ),
+          const SizedBox(height: 10),
+          BotaoGrande(
+            key: const Key('suporte_reembolso_email'),
+            texto: l.suporteEscreverNos,
+            icone: Icons.mail_outline_rounded,
+            secundario: true,
+            aoTocar: () => _abrirLigacao(context, _mailto('Em Dia — reembolso')),
           ),
           if (_registo != null) ...[
             const SizedBox(height: 12),

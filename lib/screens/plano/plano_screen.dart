@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_theme.dart';
+import '../../config/ligacoes.dart';
 import '../../l10n/app_localizations.dart';
 import '../../regras/regras.dart';
 import '../../services/compras.dart';
@@ -169,6 +170,16 @@ class _PlanoScreenState extends State<PlanoScreen> {
               botao: l.planoAtivarFamilia,
               aTrabalhar: c?.aTrabalhar ?? false,
               aoTocar: semLoja ? null : () => _comprar(_anual ? 'familia_anual' : 'familia_mensal'),
+            ),
+            const SizedBox(height: 8),
+            Text(l.planoAntesDeAssinar, style: t.bodySmall, textAlign: TextAlign.center),
+            Align(
+              alignment: Alignment.center,
+              child: TextButton(
+                key: const Key('plano_termos'),
+                onPressed: () => _abrir(urlTermos),
+                child: Text(l.suporteTermos),
+              ),
             ),
             if (c != null) ..._mensagemCompra(l, c),
           ],

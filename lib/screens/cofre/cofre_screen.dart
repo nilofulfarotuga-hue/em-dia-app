@@ -280,6 +280,8 @@ class _CofreScreenState extends State<CofreScreen> {
                   ),
                   const SizedBox(height: 8),
                 ],
+              const SizedBox(height: 12),
+              const AvisoNaoFiscal(),
             ],
           ],
         ),

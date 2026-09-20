@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
+import '../l10n/app_localizations.dart';
 
 /// Estado do semáforo do painel.
 enum Semaforo { verde, amarelo, vermelho }
@@ -398,6 +399,29 @@ class Aviso extends StatelessWidget {
           Icon(icone ?? tom.icone, color: tom.cor, size: 22),
           const SizedBox(width: 10),
           Expanded(child: Text(texto, style: Theme.of(context).textTheme.bodyMedium)),
+        ],
+      ),
+    );
+  }
+}
+
+/// Nota curta que lembra que as contas da app não substituem um profissional.
+class AvisoNaoFiscal extends StatelessWidget {
+  const AvisoNaoFiscal({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
+    final t = Theme.of(context).textTheme;
+    return Semantics(
+      label: l.avisoNaoFiscal,
+      child: Row(
+        key: const Key('aviso_nao_fiscal'),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(Icons.info_outline_rounded, size: 16, color: AppColors.textSecondary),
+          const SizedBox(width: 6),
+          Expanded(child: Text(l.avisoNaoFiscal, style: t.bodySmall!.copyWith(color: AppColors.textSecondary))),
         ],
       ),
     );

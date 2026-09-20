@@ -189,6 +189,7 @@
   "iaRodape": "Informação geral, não substitui contador.",
   "iaLimiteFree": "No plano grátis você tem {n} perguntas por mês. Usou {usadas}.",
   "iaSemRegra": "Não tenho essa regra confirmada. Vou pedir um guia novo sobre isso.",
+  "avisoNaoFiscal": "Isto é informação geral, não é aconselhamento fiscal. Os números vêm de fontes oficiais e podem mudar. Confirme com seu contador, a Segurança Social ou as Finanças.",
 
   "suporteTitulo": "Ajuda",
   "suporteDuvida": "Tenho uma dúvida",
@@ -196,7 +197,7 @@
   "suporteReembolso": "Reembolso ou cancelar",
   "suporteDescreve": "Me conte o que aconteceu",
   "suporteEnviar": "Enviar",
-  "suporteEnviado": "Recebi. Respondo em breve.",
+  "suporteEnviado": "Recebi.",
 
   "planoTitulo": "O seu plano",
   "planoTrial": "Mês grátis — tudo aberto até {data}",

@@ -217,6 +217,7 @@
   "iaLimiteFree": "No plano grátis tens {n} perguntas por mês. Usaste {usadas}.",
   "@iaLimiteFree": {"placeholders": {"n": {"type": "int"}, "usadas": {"type": "int"}}},
   "iaSemRegra": "Não tenho essa regra confirmada. Vou pedir um guia novo sobre isto.",
+  "avisoNaoFiscal": "Isto é informação geral, não é aconselhamento fiscal. Os números vêm de fontes oficiais e podem mudar. Confirma com o teu contabilista, a Segurança Social ou as Finanças.",
 
   "suporteTitulo": "Ajuda",
   "suporteDuvida": "Tenho uma dúvida",
@@ -224,7 +225,7 @@
   "suporteReembolso": "Reembolso ou cancelar",
   "suporteDescreve": "Conta-me o que aconteceu",
   "suporteEnviar": "Enviar",
-  "suporteEnviado": "Recebi. Respondo em breve.",
+  "suporteEnviado": "Recebi.",
 
   "planoTitulo": "O teu plano",
   "planoTrial": "Mês grátis — tudo aberto até {data}",

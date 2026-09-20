@@ -110,5 +110,6 @@
   "planoCompraErro": "Não consegui fazer a compra. Não cobrei nada. Tente de novo daqui a pouco.",
   "planoCompraCancelada": "Você cancelou. Não cobrei nada.",
   "planoLojaIndisponivel": "A Google Play não está disponível neste celular. Veja se tem a Play Store instalada e com a sessão iniciada.",
-  "planoCancelarQuando": "Você cancela quando quiser, na Google Play."
+  "planoCancelarQuando": "Você cancela quando quiser, na Google Play.",
+  "planoAntesDeAssinar": "Ao assinar você aceita os termos. Cancela quando quiser na Google Play. Tem 14 dias para desistir e receber tudo de volta."
 }

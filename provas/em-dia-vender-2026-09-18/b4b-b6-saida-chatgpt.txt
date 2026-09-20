@@ -1,0 +1,16 @@
+ANTI-MENTIRA: vou ler o ficheiro antes de afirmar qualquer coisa sobre a tarefa.
+Vou cumprir a regra do ficheiro: listar a pasta para descobrir o nome `anti-mentira-*`, depois faço só alterações locais nesta cópia.
+Encontrei `anti-mentira-cab79065c3.txt`. O suporte já tinha estados simples; falta ligar os novos textos, links, aviso fiscal e testes.
+Vou editar de forma mínima: criar constantes de ligações, adicionar o widget partilhado, inserir os blocos nos ecrãs existentes e só depois ajustar testes/l10n.
+O texto antigo dizia “em breve” no suporte; vou substituí-lo por prazo concreto conforme a tarefa, para não violar a proibição.
+Vou pôr o aviso fiscal no fim visual de cada ecrã pedido, antes da folga final, para ficar uma vez por ecrã e sem mexer na lógica das contas.
+Vou também mudar os estados de pedidos de “Aberto/Em análise/Resolvido” para “Recebido/A tratar/Respondido”, porque o ecrã já mostrava estado, mas não nas palavras pedidas.
+Vou aplicar agora os patches principais nos ficheiros Dart e ARB; depois gero novamente o l10n para validar nomes e getters.
+Vou ligar o ecrã Plano aos termos usando o novo ficheiro de ligações; não mexo em `compras.dart`, como pedido.
+Vou remover o texto “Respondo em breve” do l10n comum e trocá-lo pelo prazo de 2 dias úteis exigido.
+Vou acrescentar agora as chaves específicas do suporte nas duas variantes.
+Vou atualizar os testes golden para procurarem as novas keys principais exigidas pela tarefa.
+Vou correr os comandos pedidos. Se algum falhar, uso a saída literal para corrigir em vez de declarar sucesso só pelo exit code.
+`merge.py` correu e só mostrou avisos de chaves repetidas já existentes em onboarding. Vou gerar o l10n e analisar.
+`flutter gen-l10n` terminou sem erro. Vou correr o analyze pedido.
+`flutter analyze` ficou só com o aviso pré-existente de `anonKey`, como a tarefa aceitava. Vou correr a suite golden pedida.

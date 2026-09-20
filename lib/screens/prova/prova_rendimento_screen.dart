@@ -166,6 +166,8 @@ class _ProvaRendimentoScreenState extends State<ProvaRendimentoScreen> {
           // propósito: quem faz a folha tem de saber o que está a entregar,
           // antes de a entregar.
           Text(l.provaPdfHonesto, style: t.bodySmall),
+          const SizedBox(height: 12),
+          const AvisoNaoFiscal(),
         ],
       ),
     );
