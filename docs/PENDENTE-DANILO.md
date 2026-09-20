@@ -1,5 +1,18 @@
 # PENDENTE-DANILO — só o que precisa mesmo da pessoa
 
+## 🔴 Missão em-dia-vender (18–21/09/2026) — UMA coisa só é tua
+1. **Aceitar o contrato de pagamentos da Google** (Play Console → Definições → Perfil de pagamentos → «Criar perfil de
+   pagamentos»; eu deixo o formulário preenchido — nome e morada como no CC/Finanças, código postal 6300-610 — e paro no
+   botão «Enviar»; se pedirem identidade, é o teu documento). Sem isto não há produtos de assinatura nem produção. Tudo o
+   resto (produtos, papéis, ficha, fecho de mês) já está feito ou fica pronto sem ti.
+
+### Não é teu — é da próxima sessão com o Chrome (fica aqui só para ninguém perguntar)
+- Ler o id do bucket dos relatórios financeiros na Play Console e guardá-lo no Vault (`play_relatorios_bucket`); pôr o
+  JSON da conta de serviço no Vault (`play_service_account`); dar-lhe «Ver dados financeiros». Sem isto o fecho de mês
+  escreve «sem extrato» — e está certo escrever isso.
+- Colar as respostas de `docs/PLAY-FICHA-RESPOSTAS.md` nas 6 tarefas da consola (classificação, público-alvo, etc.).
+
+
 ## 🔴 Missão em-dia-tudo (18/09/2026) — uma sentada só, no fim; cada linha é UM clique teu
 
 Tudo o resto desta missão foi decidido e feito sem ti (docs/DECISOES.md, D47 a D73).
