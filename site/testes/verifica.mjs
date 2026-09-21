@@ -115,6 +115,8 @@ const pv = await get('/privacidade');
 ok(pv.status === 200 && /Política de privacidade/.test(pv.texto), '/privacidade 200 com a política', `status ${pv.status}`);
 const termos = await get('/termos');
 ok(termos.status === 200 && /<title>Termos de utilização/.test(termos.texto) && /14 dias/.test(termos.texto), '/termos 200 com título e 14 dias', `status ${termos.status}`);
+const precos = await get('/precos');
+ok(precos.status === 200 && /<title>Preços/.test(precos.texto) && /Google Play/.test(precos.texto) && /14 dias/.test(precos.texto), '/precos 200 com título, Google Play e 14 dias', `status ${precos.status}`);
 const reclamacoes = await get('/reclamacoes');
 ok(reclamacoes.status === 200 && /<title>Reclamações/.test(reclamacoes.texto) && /livroreclamacoes\.pt/.test(reclamacoes.texto), '/reclamacoes 200 com título e livroreclamacoes.pt', `status ${reclamacoes.status}`);
 const apagarConta = await get('/apagar-conta');

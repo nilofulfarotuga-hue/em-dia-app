@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Mudança de morada (2026-09-07): o site vive em emdia.boraguarda.com. O
+     em-dia-site.pages.dev continua a ser o projeto da Cloudflare Pages, mas quem
+     lá chegar é levado para o endereço novo, com caminho, pesquisa e #âncora. -->
+<script>
+(function(){if(location.hostname==='em-dia-site.pages.dev'){location.replace('https://emdia.boraguarda.com'+location.pathname+location.search+location.hash);}})();
+</script>
+<title>Preços — Em Dia</title>
+<meta name="description" content="Preços da app Em Dia. Grátis 30 dias; depois escolhes o plano que faz sentido para ti.">
+<link rel="canonical" href="https://emdia.boraguarda.com/precos.html">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<style>
+@font-face{font-family:Inter;src:url(/assets/fonts/Inter.woff2) format("woff2"),url(/assets/fonts/Inter-VariableFont.ttf) format("truetype");font-weight:100 900;font-display:swap}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;font-size:19px;line-height:1.55;color:#111827;background:#F6F7F4}
+.topo{border-bottom:1px solid #E5E7EB;background:#fff}
+.topo .c{display:flex;align-items:center;justify-content:space-between;min-height:68px}
+.c{width:min(1080px,100% - 40px);margin-inline:auto}
+.marca{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:22px;text-decoration:none;color:#111827}
+.marca img{width:36px;height:36px;border-radius:10px}
+.topo a.volta{color:#15803D;font-weight:700;text-decoration:none;min-height:48px;display:inline-flex;align-items:center}
+main{padding:48px 0 80px}
+h1{font-size:clamp(36px,6vw,58px);font-weight:900;letter-spacing:-.035em;line-height:1.05;margin:0 0 8px}
+h2{font-size:28px;font-weight:800;letter-spacing:-.02em;margin:44px 0 12px}
+h3{font-size:24px;font-weight:800;margin:0}
+p,li{margin:0 0 12px;color:#1F2937}
+a{color:#15803D}
+:focus-visible{outline:3px solid #111827;outline-offset:3px;border-radius:6px}
+.lead{font-size:clamp(22px,3vw,30px);font-weight:800;color:#065F46;margin-bottom:28px}
+.cartoes{display:grid;gap:18px;margin:28px 0 36px}
+@media(min-width:900px){.cartoes{grid-template-columns:repeat(3,1fr);align-items:stretch}}
+.cartao{background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:26px;box-shadow:0 2px 8px rgba(15,23,42,.08);display:flex;flex-direction:column;gap:14px}
+.cartao.destaque{border:2px solid #16A34A;box-shadow:0 8px 24px rgba(15,23,42,.12)}
+.selo{align-self:flex-start;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:#DCFCE7;color:#065F46}
+.preco{font-size:clamp(34px,4vw,46px);font-weight:900;letter-spacing:-.04em;line-height:1;color:#111827}
+.preco small{font-size:17px;font-weight:700;color:#6B7280;letter-spacing:0}
+.anual{color:#4B5563;font-size:17px}
+.poupas{font-weight:800;color:#15803D}
+ul{padding-left:22px;margin:0;display:grid;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:12px 22px;border-radius:16px;font-weight:800;text-decoration:none;margin-top:auto;border:2px solid #16A34A;color:#15803D;background:#fff}
+.btn.verde{background:#16A34A;color:#fff}
+.caixa{background:#DCFCE7;color:#065F46;border-radius:16px;padding:16px 18px;margin:24px 0}
+.sec{max-width:820px}
+.faq details{border-bottom:1px solid #E5E7EB;background:#fff;padding:0 18px}
+.faq details:first-child{border-radius:16px 16px 0 0}
+.faq details:last-child{border-radius:0 0 16px 16px;border-bottom:0}
+.faq summary{list-style:none;cursor:pointer;padding:18px 0;font-weight:800;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:28px;color:#16A34A}
+.faq details[open] summary::after{content:"−"}
+.faq .resposta{padding:0 0 18px;color:#4B5563}
+</style>
+</head>
+<body>
+<header class="topo"><div class="c"><a class="marca" href="/"><img src="/assets/img/apple-touch-icon.png" alt="" width="36" height="36">Em Dia</a><a class="volta" href="/">← Voltar ao site</a></div></header>
+<main><div class="c">
+<h1>Preços</h1>
+<p class="lead">Grátis 30 dias. Depois escolhes.</p>
+
+<section class="cartoes" aria-label="Planos">
+  <article class="cartao">
+    <span class="selo">Grátis</span>
+    <h3>Para começar sem pagar</h3>
+    <p class="anual">Depois do mês grátis, continuas com o básico.</p>
+    <ul>
+      <li>Calculadora de recibo verde.</li>
+      <li>Agenda com 3 avisos por mês.</li>
+      <li>1 carro.</li>
+      <li>5 perguntas ao Em Dia por mês.</li>
+      <li>O resto aparece com cadeado.</li>
+    </ul>
+    <a class="btn" href="https://app.emdia.boraguarda.com">Usar grátis no iPhone ou computador</a>
+  </article>
+
+  <article class="cartao destaque">
+    <span class="selo">Pro</span>
+    <h3>Tudo aberto para ti</h3>
+    <p class="preco"><span id="preco-pro-mensal">—</span> <small>/mês</small></p>
+    <p class="anual"><span id="preco-pro-anual">—</span> /ano <span class="poupas" id="poupas-pro"></span></p>
+    <ul>
+      <li>Avisos sem limite.</li>
+      <li>Carros sem limite.</li>
+      <li>Perguntas à IA sem limite.</li>
+      <li>Fotos de faturas e comprovativos.</li>
+      <li>Exportar para o contabilista.</li>
+      <li>Prova de rendimento.</li>
+      <li>Reforma e direitos.</li>
+    </ul>
+    <p>1.º mês grátis na Google Play.</p>
+    <a class="btn verde" href="https://play.google.com/store/apps/details?id=pt.emdia.app">Assinar na app</a>
+  </article>
+
+  <article class="cartao">
+    <span class="selo">Família / Frota</span>
+    <h3>Pro para a tua casa ou pequena frota</h3>
+    <p class="preco"><span id="preco-familia-mensal">—</span> <small>/mês</small></p>
+    <p class="anual"><span id="preco-familia-anual">—</span> /ano <span class="poupas" id="poupas-familia"></span></p>
+    <ul>
+      <li>Tudo o que o Pro tem.</li>
+      <li>Até 5 pessoas ou carros.</li>
+      <li>Feito para casais, famílias e pequenas frotas TVDE.</li>
+    </ul>
+    <p>1.º mês grátis na Google Play.</p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=pt.emdia.app">Assinar na app</a>
+  </article>
+</section>
+
+<section class="sec" aria-labelledby="cancelar">
+  <h2 id="cancelar">Como cancelar</h2>
+  <p>Na Google Play: Pagamentos e subscrições → Subscrições. Cancelas quando quiseres e ficas com o plano até ao fim do período pago.</p>
+
+  <h2>Desistir em 14 dias</h2>
+  <p>Podes ler a regra nos <a href="/termos">Termos</a>.</p>
+
+  <h2>No iPhone ou computador</h2>
+  <p>No iPhone ou computador usas o grátis em <a href="https://app.emdia.boraguarda.com">app.emdia.boraguarda.com</a>. A assinatura compra-se num Android, pela Google Play. Não prometemos app iOS.</p>
+</section>
+
+<section class="faq sec" aria-labelledby="faq">
+  <h2 id="faq">Perguntas frequentes</h2>
+  <details><summary>É seguro?</summary><div class="resposta">Sim. Os dados ficam num servidor na União Europeia. Só tu vês os teus dados. A Google Play trata o pagamento; não vemos o teu cartão.</div></details>
+  <details><summary>Posso mudar de plano?</summary><div class="resposta">Sim. Fazes a mudança pela Google Play. A app atualiza o teu plano quando a Google confirmar.</div></details>
+  <details><summary>O que acontece se não pagar?</summary><div class="resposta">Deixas de ter as funções pagas e voltas ao Grátis. Os teus dados continuam na tua conta.</div></details>
+  <details><summary>Tenho fatura?</summary><div class="resposta">A compra é feita pela Google Play. A Google mostra-te o recibo da compra e as opções fiscais que existirem na tua conta Google.</div></details>
+</section>
+</div></main>
+<script>
+(function () {
+  'use strict';
+  var SUPABASE_URL = 'https://tgdmgtmknbwhcqoxtjbs.supabase.co';
+  // Chave ANÓNIMA, pública por desenho (RLS protege os dados; a tabela regras_legais é de leitura pública).
+  var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnZG1ndG1rbmJ3aGNxb3h0amJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2MTkyOTIsImV4cCI6MjEwNDE5NTI5Mn0.XFzQgX1jj6sVhAQNDPLtwJze61WxnEWkN56hYwD5wCM';
+  var CHAVES = ['preco_pro_mensal', 'preco_pro_anual', 'preco_familia_mensal', 'preco_familia_anual'];
+  var ids = {
+    preco_pro_mensal: 'preco-pro-mensal',
+    preco_pro_anual: 'preco-pro-anual',
+    preco_familia_mensal: 'preco-familia-mensal',
+    preco_familia_anual: 'preco-familia-anual'
+  };
+  function euro(v) { return Number(v).toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+  function textoFalha() { CHAVES.forEach(function (c) { document.getElementById(ids[c]).textContent = 'preço na app'; }); }
+  function poupas(prefixo, regras) {
+    var mensal = regras['preco_' + prefixo + '_mensal'];
+    var anual = regras['preco_' + prefixo + '_anual'];
+    var el = document.getElementById('poupas-' + prefixo);
+    if (mensal == null || anual == null || Number(mensal) <= 0) return;
+    var pct = Math.round((1 - (Number(anual) / (Number(mensal) * 12))) * 100);
+    el.textContent = pct > 0 ? '(poupas ' + pct + ' %)' : '';
+  }
+  function carregarPrecos() {
+    var cab = { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON, Accept: 'application/json' };
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 6000);
+    var opts = { headers: cab, signal: ctl ? ctl.signal : undefined };
+    fetch(SUPABASE_URL + '/rest/v1/regras_legais?select=chave,valor_num&chave=in.(' + CHAVES.join(',') + ')', opts).then(function (r) {
+      if (!r.ok) throw new Error('regras ' + r.status);
+      return r.json();
+    }).then(function (linhas) {
+      clearTimeout(timer);
+      if (!Array.isArray(linhas) || linhas.length < CHAVES.length) throw new Error('regras vazias');
+      var regras = {};
+      linhas.forEach(function (l) { regras[l.chave] = Number(l.valor_num); });
+      CHAVES.forEach(function (c) { document.getElementById(ids[c]).textContent = euro(regras[c]); });
+      poupas('pro', regras);
+      poupas('familia', regras);
+    }).catch(function () {
+      clearTimeout(timer);
+      textoFalha();
+    });
+  }
+  carregarPrecos();
+})();
+</script>
+</body>
+</html>

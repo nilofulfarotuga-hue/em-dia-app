@@ -1,0 +1,53 @@
+Vou ler a tarefa delegada e validar primeiro as regras locais antes de mexer em ficheiros.
+Encontrei o ficheiro anti-mentira: `anti-mentira-b920d27c45.txt`. Vou implementar só em `site/`, sem tocar em `lib/` nem `supabase/`, excepto leitura para confirmar textos/limites.
+A app confirma os limites base no ecrã do plano: 3 avisos, 1 carro e 5 perguntas por mês; os planos pagos leem os quatro preços em `regras_legais`. Vou copiar esse padrão para uma página estática nova.
+Vou editar `site/index.html`, criar `site/precos.html`, atualizar `site/sitemap.xml` e `site/testes/verifica.mjs`. Também vou remover os preços escritos à mão que já existiam no HTML da página inicial.
+Edição principal feita. Vou agora verificar se ainda ficaram preços escritos à mão em HTML e correr a validação pedida.
+A verificação apanhou ainda `0 €` no cartão grátis da página inicial. Vou trocar por texto sem valor numérico para cumprir a regra de não escrever preços à mão no HTML.
+ANTI-MENTIRA: anti-mentira-b920d27c45.txt
+
+Cumpri a tarefa sem mexer em `lib/`, `supabase/`, git, dinheiro, publicação ou zonas proibidas.
+
+Lista de ficheiros da pasta:
+```text
+AGENTS.md
+CLAUDE.md
+README.md
+RELATORIO-em-dia-tudo-2026-09-17.md
+TAREFA-DELEGADA.md
+analysis_options.yaml
+android
+anti-mentira-b920d27c45.txt
+assets
+cloudflare
+dart_test.yaml
+docs
+em_dia.iml
+fecho-mensal
+integration_test
+l10n.yaml
+lib
+pubspec.lock
+pubspec.yaml
+site
+supabase
+test
+tool
+web
+```
+
+RESUMO:
+- `site/precos.html`: criei a página de preços em PT-PT, com 3 cartões, FAQ, cancelamento, 14 dias, aviso iPhone/computador e botões para Google Play.
+- `site/index.html`: removi preços pagos escritos à mão da secção existente e do JSON-LD/FAQ; o rodapé agora aponta para `/precos`.
+- `site/sitemap.xml`: adicionei a página de preços.
+- `site/testes/verifica.mjs`: adicionei teste para `/precos` com 200, título, Google Play e 14 dias.
+
+Linhas onde os preços são lidos:
+- `site/precos.html:136-161`: URL Supabase, chave anónima, chaves de preço e `fetch` a `regras_legais`.
+- `site/precos.html:168-171`: escreve os preços no HTML e calcula a poupança.
+- `site/index.html:719-725`: página inicial continua a ler `regras_legais`.
+- `site/index.html:688-705`: página inicial calcula poupança e evita usar fallback hardcoded para preços.
+
+Provas:
+- `node --check site/testes/verifica.mjs` passou, saída: sem output.
+- Pesquisa por preços pagos escritos à mão em HTML (`3,49`, `29,90`, `5,99`, `49,90`, `price": "[0-9]`): `No files found`.

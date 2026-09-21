@@ -43,11 +43,9 @@
   "inLanguage": "pt-PT",
   "installUrl": "https://play.google.com/store/apps/details?id=pt.emdia.app",
   "offers": [
-    {"@type": "Offer", "name": "Grátis", "price": "0", "priceCurrency": "EUR"},
-    {"@type": "Offer", "name": "Pro mensal", "price": "3.49", "priceCurrency": "EUR"},
-    {"@type": "Offer", "name": "Pro anual", "price": "29.90", "priceCurrency": "EUR"},
-    {"@type": "Offer", "name": "Família mensal", "price": "5.99", "priceCurrency": "EUR"},
-    {"@type": "Offer", "name": "Família anual", "price": "49.90", "priceCurrency": "EUR"}
+    {"@type": "Offer", "name": "Grátis"},
+    {"@type": "Offer", "name": "Pro"},
+    {"@type": "Offer", "name": "Família"}
   ]
 }
 </script>
@@ -56,7 +54,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "A app Em Dia é grátis?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis (painel, calculadora e calendário) ou passar ao Pro por 3,49 € por mês ou 29,90 € por ano."}},
+    {"@type": "Question", "name": "A app Em Dia é grátis?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis ou passar a um plano pago. Os preços são lidos da app."}},
     {"@type": "Question", "name": "Tenho iPhone. Posso usar o Em Dia?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Abre app.emdia.boraguarda.com no Safari e toca em Partilhar e depois em Adicionar ao ecrã principal. Fica como uma app, com os mesmos dados que no Android e no computador."}},
     {"@type": "Question", "name": "A calculadora de recibo verde está certa?", "acceptedAnswer": {"@type": "Answer", "text": "Usa os números oficiais de 2026: retenção na fonte de 23% (ou 25% por opção, ou dispensa), IVA de 23% ou isenção do artigo 53.º do CIVA. Os valores vêm de uma tabela com a fonte oficial de cada número. É informação geral e não substitui o teu contabilista."}},
     {"@type": "Question", "name": "O que é a retenção na fonte?", "acceptedAnswer": {"@type": "Answer", "text": "É a parte do recibo (23% por norma) que o teu cliente entrega às Finanças por ti. Não é dinheiro perdido: é um adiantamento do teu IRS. Por isso no recibo de 1.000 € recebes 770 € na conta."}},
@@ -502,7 +500,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
     <div class="planos">
       <article class="plano revela">
         <span class="selo">Grátis</span>
-        <div class="preco">0 € <small>para sempre</small></div>
+        <div class="preco">Grátis <small>para sempre</small></div>
         <p class="anual">Depois do mês grátis</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Painel «estás em dia?» com semáforo</li>
@@ -514,8 +512,8 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
       </article>
       <article class="plano destaque revela">
         <span class="selo">Pro · o mais escolhido</span>
-        <div class="preco"><span data-regra="preco_pro_mensal" data-formato="moeda">3,49 €</span> <small>por mês</small></div>
-        <p class="anual">ou <span data-regra="preco_pro_anual" data-formato="moeda">29,90 €</span> por ano (poupas 2 meses)</p>
+        <div class="preco"><span data-regra="preco_pro_mensal" data-formato="moeda" data-preco="mensal">preço na app</span> <small>por mês</small></div>
+        <p class="anual">ou <span data-regra="preco_pro_anual" data-formato="moeda" data-preco="anual">preço na app</span> por ano <span data-poupas="pro"></span></p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tudo do Grátis, sem limites de avisos e perguntas</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lê o extrato da Uber, Bolt ou Glovo por foto</li>
@@ -526,8 +524,8 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
       </article>
       <article class="plano revela">
         <span class="selo">Família / Frota</span>
-        <div class="preco"><span data-regra="preco_familia_mensal" data-formato="moeda">5,99 €</span> <small>por mês</small></div>
-        <p class="anual">ou <span data-regra="preco_familia_anual" data-formato="moeda">49,90 €</span> por ano</p>
+        <div class="preco"><span data-regra="preco_familia_mensal" data-formato="moeda" data-preco="mensal">preço na app</span> <small>por mês</small></div>
+        <p class="anual">ou <span data-regra="preco_familia_anual" data-formato="moeda" data-preco="anual">preço na app</span> por ano <span data-poupas="familia"></span></p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tudo do Pro</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Até 5 pessoas na mesma conta</li>
@@ -548,7 +546,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
       <h2 id="t-faq">O que as pessoas perguntam antes de instalar.</h2>
     </div>
     <div class="revela">
-      <details><summary>A app Em Dia é grátis?</summary><div class="resposta">Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis (painel, calculadora e calendário) ou passar ao Pro por 3,49 € por mês ou 29,90 € por ano.</div></details>
+      <details><summary>A app Em Dia é grátis?</summary><div class="resposta">Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis ou passar ao Pro. Os preços pagos vêm da tabela da app e aparecem em <a href="/precos">Preços</a>.</div></details>
       <details><summary>Tenho iPhone. Posso usar o Em Dia?</summary><div class="resposta">Sim. Abre <a href="https://app.emdia.boraguarda.com">app.emdia.boraguarda.com</a> no Safari e toca em «Partilhar» e depois em «Adicionar ao ecrã principal». Fica como uma app, com os mesmos dados que no Android e no computador.</div></details>
       <details><summary>A calculadora de recibo verde está certa?</summary><div class="resposta">Usa os números oficiais de 2026: retenção na fonte de 23% (ou 25% por opção, ou dispensa), IVA de 23% ou isenção do artigo 53.º do CIVA. Os valores vêm de uma tabela com a fonte oficial de cada número. É informação geral e não substitui o teu contabilista.</div></details>
       <details><summary>O que é a retenção na fonte?</summary><div class="resposta">É a parte do recibo (23% por norma) que o teu cliente entrega às Finanças por ti. Não é dinheiro perdido: é um adiantamento do teu IRS. Por isso no recibo de 1.000 € recebes 770 € na conta.</div></details>
@@ -591,7 +589,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
       <h3>A app</h3>
       <ul>
         <li><a href="#calculadora">Calculadora de recibo verde</a></li>
-        <li><a href="#precos">Preços</a></li>
+        <li><a href="/precos">Preços</a></li>
         <li><a href="#faq">Perguntas frequentes</a></li>
         <li><a href="https://app.emdia.boraguarda.com">Abrir a app no browser</a></li>
       </ul>
@@ -687,12 +685,24 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
     else if (f === 'num2') el.textContent = Number(valor).toFixed(2).replace('.', ',');
     else el.textContent = String(valor);
   }
+  function atualizarPoupas(prefixo) {
+    var mensal = regras['preco_' + prefixo + '_mensal'];
+    var anual = regras['preco_' + prefixo + '_anual'];
+    var el = document.querySelector('[data-poupas="' + prefixo + '"]');
+    if (!el) return;
+    if (mensal == null || anual == null || Number(mensal) <= 0) { el.textContent = ''; return; }
+    var poupas = Math.round((1 - (Number(anual) / (Number(mensal) * 12))) * 100);
+    el.textContent = poupas > 0 ? '(poupas ' + poupas + ' %)' : '';
+  }
   function aplicarRegrasNoTexto() {
     document.querySelectorAll('[data-regra]').forEach(function (el) {
       var chave = el.getAttribute('data-regra');
+      if (el.hasAttribute('data-preco') && regras[chave] === undefined) { el.textContent = 'preço na app'; return; }
       var v = regras[chave]; if (v === undefined) v = window.EmDiaCalc.REGRAS_SEED[chave];
       formatar(el, v);
     });
+    atualizarPoupas('pro');
+    atualizarPoupas('familia');
   }
   function dataPt(iso) {
     if (!iso) return null;
