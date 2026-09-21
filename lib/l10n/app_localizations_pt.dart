@@ -2470,7 +2470,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get suporteReembolsoLinha2 =>
-      'Para cancelar ou pedir reembolso, vai às subscrições da tua conta Google.';
+      'Para cancelar ou pedir reembolso, vai a «Subscrições» (as tuas assinaturas) na tua conta Google.';
 
   @override
   String get suporteReembolsoLinha3 =>

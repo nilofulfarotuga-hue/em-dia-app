@@ -1,0 +1,21 @@
+{
+  "data": "20260921-024157",
+  "modo": "visao",
+  "modelo": "gemini-flash-latest",
+  "fotos": 1,
+  "contagem": {
+    "verde": 1,
+    "amarelo": 0,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma excelente legibilidade, boa hierarquia visual e explica claramente os passos para o utilizador.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash",
+      "foto": "suporte_reembolso_medio_pt.png"
+    }
+  ]
+}

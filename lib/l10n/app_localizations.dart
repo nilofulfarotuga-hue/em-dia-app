@@ -4173,7 +4173,7 @@ abstract class AppLocalizations {
   /// No description provided for @suporteReembolsoLinha2.
   ///
   /// In pt, this message translates to:
-  /// **'Para cancelar ou pedir reembolso, vai às subscrições da tua conta Google.'**
+  /// **'Para cancelar ou pedir reembolso, vai a «Subscrições» (as tuas assinaturas) na tua conta Google.'**
   String get suporteReembolsoLinha2;
 
   /// No description provided for @suporteReembolsoLinha3.

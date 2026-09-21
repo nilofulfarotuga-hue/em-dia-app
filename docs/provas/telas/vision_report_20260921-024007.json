@@ -1,0 +1,35 @@
+{
+  "data": "20260921-024007",
+  "modo": "visao",
+  "modelo": "gemini-flash-latest",
+  "fotos": 3,
+  "contagem": {
+    "verde": 3,
+    "amarelo": 0,
+    "vermelho": 0,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma organização clara, bom contraste e linguagem adaptada ao utilizador.",
+      "jargao": [],
+      "modelo": "gemini-flash-latest",
+      "foto": "mais_definicoes_estatisticas_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã apresenta uma estrutura clara, elementos bem espaçados e linguagem acessível.",
+      "jargao": [],
+      "modelo": "gemini-3.7-flash",
+      "foto": "plano_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está todo bonitinho e pronto a usar sem problemas.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "recibos_medio_pt.png"
+    }
+  ]
+}
