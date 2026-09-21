@@ -1,0 +1,40 @@
+Vou ler a tarefa delegada e seguir exatamente o que ela exigir antes de mexer em ficheiros.
+A tarefa exige primeiro listar a pasta e identificar o ficheiro `anti-mentira-*`; vou fazer isso antes de qualquer escrita.
+Encontrei `anti-mentira-f6401ef68a.txt`. Agora vou cruzar as provas com ficheiros do repo e só depois escrever os quatro ficheiros pedidos.
+Já tenho o material principal. Vou ler as restantes provas e depois verificar amostras objetivas no repo, sem rede.
+Vou verificar agora os pontos que a própria tarefa destacou: ficheiros citados, chaves de localização, migrações, textos públicos, ODR, “em breve”, inglês, emojis e padrões de segredo.
+As provas e os ficheiros principais existem na cópia. Vou recolher referências de linha suficientes para a revisão, sem executar publicação nem tocar em produção.
+Encontrei uma ressalva objetiva: a pesquisa mostra `em breve` em textos de suporte já existentes, o que a prova B4b afirma ter substituído num caso específico, mas o critério final pede que os ficheiros novos não tenham essa expressão. Vou evitar usá-la nos ficheiros novos e registar a limitação na revisão.
+Vou criar agora só os quatro ficheiros novos pedidos. Não vou alterar código, material de origem, git, publicação nem produção.
+Ficheiros criados. Vou validar os critérios mecânicos: existência, 10 linhas de blocos, ausência da expressão proibida nos ficheiros novos e ausência de tabelas fora da revisão.
+A validação achou 10 linhas de bloco no relatório novo; a pesquisa também mostrou um relatório antigo porque o filtro por vários nomes não limitou como eu queria. Vou fazer a contagem dirigida só nos ficheiros novos.
+A ferramenta de pesquisa voltou a varrer a árvore em alguns pedidos por caminho; vou usar `rg` dirigido aos quatro ficheiros novos para fechar a validação literal.
+ANTI-MENTIRA: anti-mentira-f6401ef68a.txt
+
+RESUMO:
+
+Criei os 4 ficheiros pedidos:
+
+- `docs/_material-vender/b9-revisao-cruzada.md`: revisão cruzada por bloco, com tabela interna e limites do que não consegui verificar sem rede.
+- `RELATORIO-em-dia-vender-2026-09-18.md`: relatório em PT-PT simples, com 10 linhas `Bloco 0` a `Bloco 9`.
+- `docs/DIGEST-em-dia-vender-2026-09-18.md`: digest curto para outros motores.
+- `docs/_material-vender/PENDENTE-DANILO-b9.md`: pendente reescrito, deixando para o Danilo só o contrato de pagamentos.
+
+Validação literal feita:
+
+- `rg -n "^Bloco [0-9]" "RELATORIO-em-dia-vender-2026-09-18.md"` mostrou exatamente `Bloco 0` até `Bloco 9`.
+- `rg -n "em breve|😀|✅|🔴|✨|🚀|🎉|\|---\|" ...` nos 4 ficheiros novos só encontrou a tabela permitida da revisão cruzada.
+
+Tabela de veredictos resumida:
+
+| bloco | confirmados | não confirmados | contradiz |
+|---|---:|---:|---:|
+| B0 | 1 | 2 | 0 |
+| B2 | 2 | 1 | 0 |
+| B3 | 2 | 0 | 0 |
+| B4 | 4 | 0 | 1 parcial |
+| B5 | 2 | 1 parcial | 0 |
+| B6 | 1 | 0 | 0 |
+| B7 | 3 | 0 | 0 |
+| B8 | 2 | 1 parcial | 0 |
+| geral | 0 | 1 | 1 parcial |

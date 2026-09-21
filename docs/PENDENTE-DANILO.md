@@ -11,6 +11,8 @@
   JSON da conta de serviço no Vault (`play_service_account`); dar-lhe «Ver dados financeiros». Sem isto o fecho de mês
   escreve «sem extrato» — e está certo escrever isso.
 - Colar as respostas de `docs/PLAY-FICHA-RESPOSTAS.md` nas 6 tarefas da consola (classificação, público-alvo, etc.).
+- Atualizar a Segurança dos dados com o que está no mesmo ficheiro; criar os 4 produtos e a prova de compra DEPOIS do contrato.
+- B1 (marca: logo, capturas com moldura, vídeo, INPI até ao botão de pagar) — precisa do Gemini no Chrome, não foi feito nesta missão.
 
 
 ## 🔴 Missão em-dia-tudo (18/09/2026) — uma sentada só, no fim; cada linha é UM clique teu
