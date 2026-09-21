@@ -357,6 +357,8 @@ void definirTestes() {
       ]) {
         await rolaAte(t, na(MaisScreen, find.byKey(Key('mais_$chave'))), lista: na(MaisScreen, find.byType(Scrollable)).first);
         await toca(t, na(MaisScreen, find.byKey(Key('mais_$chave'))));
+        // Definições: a secção «estatísticas de utilização» (B7b) empurrou o «Sair» para baixo da dobra.
+        if (chave == 'definicoes') await rolaAte(t, find.byKey(const Key('defs_sair')), lista: find.byType(Scrollable).last);
         await ecra(t, 'mais/$chave', prova);
         if (chave == 'guias') {
           final primeiro = find.byWidgetPredicate((w) => w.key is ValueKey<String> && (w.key as ValueKey<String>).value.startsWith('guia_'));
