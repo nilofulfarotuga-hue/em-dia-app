@@ -1,0 +1,36 @@
+Vou ler a tarefa delegada e seguir as instruções do próprio ficheiro antes de mexer em qualquer coisa.
+Encontrei `anti-mentira-a61ddac820.txt`; vou levantar só as provas locais pedidas e escrever apenas os dois markdowns permitidos.
+Três caminhos citados no ficheiro não existem exatamente nesta cópia; vou procurar pelos nomes equivalentes dentro da pasta antes de marcar algo como por confirmar.
+Vou confirmar no código os envios externos e permissões relevantes antes de escrever a Play Console.
+Confirmei que existe modo de exemplo sem conta e que o e-mail de revisor tem caminho especial por palavra-passe se `EMAIL_REVISOR` estiver configurado; vou deixar isso como resposta pronta sem inventar a palavra-passe.
+Vou criar os dois ficheiros novos em `docs/`, sem tocar em `lib/`, `site/`, `supabase/` ou git.
+Vou fazer uma verificacao curta dos criterios: ficheiros criados, ausencia de precos em euros nos novos textos e pontos `POR CONFIRMAR`.
+A verificacao nao encontrou valores em euros ou precos escritos nos dois ficheiros; deixei pontos incertos marcados com `POR CONFIRMAR`.
+`git diff` nao mostra ficheiros novos nao staged; vou confirmar pelo estado do git sem adicionar nada.
+ANTI-MENTIRA: anti-mentira-a61ddac820.txt
+
+Criei os dois ficheiros pedidos:
+
+- `docs/PLAY-FICHA-RESPOSTAS.md`
+- `docs/KIT-DIVULGACAO.md`
+
+Lista de secções do primeiro ficheiro:
+
+- Ficha da loja principal
+- Categoria e etiquetas
+- Detalhes de contacto
+- Politica de privacidade
+- Acesso a app
+- Anuncios
+- Classificacao de conteudo
+- Publico-alvo e conteudo
+- Noticias, COVID e apps governamentais
+- Funcionalidades financeiras
+- Saude
+- Seguranca dos dados
+- Notas para a revisao
+- Produtos de subscricao
+
+RESUMO:
+
+Escrevi as respostas prontas para colar na Play Console e o kit de divulgação, sem publicar nada e sem mexer em `lib/`, `site/`, `supabase/` ou git. Confirmei no código local localização em primeiro plano, Photo Picker, Firebase Messaging, Supabase, Edge Functions, Google Play Billing e modo “Vê como fica”. Onde os ficheiros de prova citados não existiam ou a consola precisava de confirmação, deixei `POR CONFIRMAR`.
