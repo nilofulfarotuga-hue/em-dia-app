@@ -6,6 +6,14 @@ on:
 jobs:
   build-ios:
     runs-on: macos-latest
+    # O contexto `secrets` NÃO existe no `if:` de um passo (o GitHub recusa o ficheiro todo,
+    # startup_failure sem job nenhum). Passam por aqui, porque `env` é conhecido no `if:`.
+    env:
+      IOS_CERTIFICATE_P12_B64: ${{ secrets.IOS_CERTIFICATE_P12_B64 }}
+      IOS_PROVISIONING_PROFILE_B64: ${{ secrets.IOS_PROVISIONING_PROFILE_B64 }}
+      APPSTORE_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+      APPSTORE_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+      APPSTORE_PRIVATE_KEY: ${{ secrets.APPSTORE_PRIVATE_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -48,14 +56,14 @@ jobs:
           pod install
 
       - name: Import signing certificate
-        if: ${{ secrets.IOS_CERTIFICATE_P12_B64 != '' }}
+        if: ${{ env.IOS_CERTIFICATE_P12_B64 != '' }}
         uses: apple-actions/import-codesign-certs@v3
         with:
           p12-file-base64: ${{ secrets.IOS_CERTIFICATE_P12_B64 }}
           p12-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
 
       - name: Restore provisioning profile
-        if: ${{ secrets.IOS_PROVISIONING_PROFILE_B64 != '' }}
+        if: ${{ env.IOS_PROVISIONING_PROFILE_B64 != '' }}
         shell: bash
         env:
           IOS_PROVISIONING_PROFILE_B64: ${{ secrets.IOS_PROVISIONING_PROFILE_B64 }}
@@ -87,7 +95,7 @@ jobs:
           path: build/ios/ipa/*.ipa
 
       - name: Upload to TestFlight
-        if: ${{ secrets.APPSTORE_ISSUER_ID != '' && secrets.APPSTORE_KEY_ID != '' && secrets.APPSTORE_PRIVATE_KEY != '' }}
+        if: ${{ env.APPSTORE_ISSUER_ID != '' && env.APPSTORE_KEY_ID != '' && env.APPSTORE_PRIVATE_KEY != '' }}
         uses: apple-actions/upload-testflight-build@v1
         with:
           app-path: build/ios/ipa/*.ipa
