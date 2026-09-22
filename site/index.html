@@ -10,14 +10,14 @@
 (function(){if(location.hostname==='em-dia-site.pages.dev'){location.replace('https://emdia.boraguarda.com'+location.pathname+location.search+location.hash);}})();
 </script>
 <title>Em Dia — Calculadora de recibo verde grátis e avisos de Segurança Social, IVA, IRS e carro</title>
-<meta name="description" content="Calcula o teu recibo verde em segundos (retenção 23%, IVA 23% ou isento) e sabe quanto guardar para a Segurança Social e o IRS. A app Em Dia avisa-te antes de cada prazo. Grátis 30 dias, sem cartão.">
+<meta name="description" content="Calcula o teu recibo verde em segundos e sabe quanto guardar para a Segurança Social e o IRS. Por agora está tudo aberto e não se paga nada.">
 <link rel="canonical" href="https://emdia.boraguarda.com/">
 <meta name="theme-color" content="#16A34A">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:site_name" content="Em Dia">
 <meta property="og:title" content="Nunca mais levas multa da Segurança Social.">
-<meta property="og:description" content="Calculadora de recibo verde grátis + avisos de Segurança Social, IVA, IRS e do carro. Grátis 30 dias, sem cartão.">
+<meta property="og:description" content="Calculadora de recibo verde grátis + avisos de Segurança Social, IVA, IRS e do carro. Por agora está tudo aberto e não se paga nada.">
 <meta property="og:url" content="https://emdia.boraguarda.com/">
 <meta property="og:image" content="https://emdia.boraguarda.com/assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -39,9 +39,9 @@
   "image": "https://emdia.boraguarda.com/assets/img/og.jpg",
   "description": "Assistente do trabalhador independente a recibos verdes em Portugal: calculadora de recibo verde, avisos de Segurança Social, IVA e IRS, e lembretes do carro (inspeção, IUC, seguro).",
   "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Android, Web",
+  "operatingSystem": "Web, Android, iOS",
   "inLanguage": "pt-PT",
-  "installUrl": "https://play.google.com/store/apps/details?id=pt.emdia.app",
+  "installUrl": "https://app.emdia.boraguarda.com",
   "offers": [
     {"@type": "Offer", "name": "Grátis"},
     {"@type": "Offer", "name": "Pro"},
@@ -54,7 +54,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "A app Em Dia é grátis?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis ou passar a um plano pago. Os preços são lidos da app."}},
+    {"@type": "Question", "name": "A app Em Dia é grátis?", "acceptedAnswer": {"@type": "Answer", "text": "Por agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim."}},
     {"@type": "Question", "name": "Tenho iPhone. Posso usar o Em Dia?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Abre app.emdia.boraguarda.com no Safari e toca em Partilhar e depois em Adicionar ao ecrã principal. Fica como uma app, com os mesmos dados que no Android e no computador."}},
     {"@type": "Question", "name": "A calculadora de recibo verde está certa?", "acceptedAnswer": {"@type": "Answer", "text": "Usa os números oficiais de 2026: retenção na fonte de 23% (ou 25% por opção, ou dispensa), IVA de 23% ou isenção do artigo 53.º do CIVA. Os valores vêm de uma tabela com a fonte oficial de cada número. É informação geral e não substitui o teu contabilista."}},
     {"@type": "Question", "name": "O que é a retenção na fonte?", "acceptedAnswer": {"@type": "Answer", "text": "É a parte do recibo (23% por norma) que o teu cliente entrega às Finanças por ti. Não é dinheiro perdido: é um adiantamento do teu IRS. Por isso no recibo de 1.000 € recebes 770 € na conta."}},
@@ -220,6 +220,12 @@ fieldset{border:0;padding:0;margin:0}
 .plano li{display:flex;gap:10px;align-items:flex-start}
 .plano li svg{width:22px;height:22px;flex:none;color:var(--verde)}
 .plano .btn{margin-top:auto;width:100%}
+.promessa-gratis{background:var(--verde-claro);border:2px solid var(--verde);color:var(--verde-noite);border-radius:var(--raio);padding:18px 20px;font-weight:800;margin:0 0 26px}
+.instalar-passos{display:grid;gap:16px;margin-top:24px;text-align:left}
+@media(min-width:760px){.instalar-passos{grid-template-columns:1fr 1fr}}
+.instalar-passos article{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:var(--raio);padding:18px}
+.instalar-passos h3{color:#fff;margin-bottom:8px}
+.instalar-passos ol{margin:0;padding-left:22px;color:#D1FAE5}
 
 /* faq */
 .faq{background:var(--superficie)}
@@ -290,16 +296,16 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
     <h1 id="titulo">Nunca mais levas multa da <em>Segurança Social.</em></h1>
     <p class="sub">A app que te avisa antes de cada prazo: Segurança Social, IVA, IRS e o carro. Em português simples, sem letras miúdas.</p>
     <div class="botoes">
-      <a class="btn btn-branco" href="https://play.google.com/store/apps/details?id=pt.emdia.app" data-cta="play">
+      <a class="btn btn-branco" href="https://app.emdia.boraguarda.com" data-cta="web">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16A34A" d="M3.6 2.4c-.4.4-.6 1-.6 1.7v15.8c0 .7.2 1.3.6 1.7l.1.1 8.9-8.9v-.2L3.7 2.3l-.1.1z"/><path fill="#F97316" d="M15.5 15.8l-3-3v-.2l3-3 .1.1 3.5 2c1 .6 1 1.5 0 2.1l-3.5 2-.1 0z"/><path fill="#DC2626" d="M15.6 15.7L12.6 12.7 3.6 21.7c.3.3.9.4 1.5 0l10.5-6z"/><path fill="#15803D" d="M15.6 9.6L5.1 3.6c-.6-.4-1.2-.3-1.5 0l9 9 3-3z"/></svg>
-        Descarregar na Play Store
+        Abrir a app web
       </a>
       <a class="btn btn-branco" href="https://app.emdia.boraguarda.com" data-cta="web">
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
         Usar no iPhone/computador
       </a>
     </div>
-    <p class="nota"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Grátis 30 dias com tudo aberto. Sem cartão.</p>
+    <p class="nota"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Por agora está tudo aberto e não se paga nada.</p>
   </div>
   <a class="desce" href="#calculadora">Calcula o teu recibo ↓</a>
 </section>
@@ -494,14 +500,15 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
   <div class="container">
     <div class="intro revela">
       <span class="etiqueta">Preços</span>
-      <h2 id="t-precos">Começa com tudo aberto durante <span data-regra="trial_dias">30</span> dias. Sem cartão.</h2>
-      <p>Depois escolhes. Menos do que um café por mês para não levares um susto de centenas de euros.</p>
+        <h2 id="t-precos">Por agora está tudo aberto.</h2>
+        <p id="promessa-gratis" class="promessa-gratis">Por agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.</p>
+        <p>Os preços ficam guardados para o dia em que as assinaturas abrirem.</p>
     </div>
     <div class="planos">
       <article class="plano revela">
         <span class="selo">Grátis</span>
         <div class="preco">Grátis <small>para sempre</small></div>
-        <p class="anual">Depois do mês grátis</p>
+        <p class="anual">O básico continua a existir quando as assinaturas abrirem.</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Painel «estás em dia?» com semáforo</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calculadora de recibo verde</li>
@@ -520,7 +527,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Guarda as fotos dos comprovativos</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Exporta PDF/CSV para o contabilista · Reforma e direitos</li>
         </ul>
-        <a class="btn btn-verde" href="#descarregar">Experimentar o Pro grátis</a>
+        <a class="btn btn-verde" data-compra hidden href="#descarregar">Experimentar o Pro grátis</a>
       </article>
       <article class="plano revela">
         <span class="selo">Família / Frota</span>
@@ -532,7 +539,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Até 5 carros com lembretes</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Para casais, famílias e pequenas frotas TVDE</li>
         </ul>
-        <a class="btn btn-contorno" href="#descarregar">Começar grátis</a>
+        <a class="btn btn-contorno" data-compra hidden href="#descarregar">Começar grátis</a>
       </article>
     </div>
   </div>
@@ -546,7 +553,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
       <h2 id="t-faq">O que as pessoas perguntam antes de instalar.</h2>
     </div>
     <div class="revela">
-      <details><summary>A app Em Dia é grátis?</summary><div class="resposta">Sim. Tens 30 dias com tudo aberto, sem cartão. Depois podes continuar no plano Grátis ou passar ao Pro. Os preços pagos vêm da tabela da app e aparecem em <a href="/precos">Preços</a>.</div></details>
+      <details><summary>A app Em Dia é grátis?</summary><div class="resposta">Por agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.</div></details>
       <details><summary>Tenho iPhone. Posso usar o Em Dia?</summary><div class="resposta">Sim. Abre <a href="https://app.emdia.boraguarda.com">app.emdia.boraguarda.com</a> no Safari e toca em «Partilhar» e depois em «Adicionar ao ecrã principal». Fica como uma app, com os mesmos dados que no Android e no computador.</div></details>
       <details><summary>A calculadora de recibo verde está certa?</summary><div class="resposta">Usa os números oficiais de 2026: retenção na fonte de 23% (ou 25% por opção, ou dispensa), IVA de 23% ou isenção do artigo 53.º do CIVA. Os valores vêm de uma tabela com a fonte oficial de cada número. É informação geral e não substitui o teu contabilista.</div></details>
       <details><summary>O que é a retenção na fonte?</summary><div class="resposta">É a parte do recibo (23% por norma) que o teu cliente entrega às Finanças por ti. Não é dinheiro perdido: é um adiantamento do teu IRS. Por isso no recibo de 1.000 € recebes 770 € na conta.</div></details>
@@ -561,18 +568,22 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
   <div class="container">
     <span class="etiqueta" style="color:#A7F3D0">Instala em 1 minuto</span>
     <h2 id="t-desc">Confirma se estás em dia. Hoje.</h2>
-    <p>Android pela Play Store. iPhone e computador pelo browser, sem instalar nada. É a mesma conta nos dois.</p>
+    <p>Usa pela web em qualquer telemóvel. Podes pôr no ecrã inicial para abrir como uma app.</p>
     <div class="botoes">
-      <a class="btn btn-branco" href="https://play.google.com/store/apps/details?id=pt.emdia.app" data-cta="play">
+      <a class="btn btn-branco" href="https://app.emdia.boraguarda.com" data-cta="web">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16A34A" d="M3.6 2.4c-.4.4-.6 1-.6 1.7v15.8c0 .7.2 1.3.6 1.7l.1.1 8.9-8.9v-.2L3.7 2.3l-.1.1z"/><path fill="#F97316" d="M15.5 15.8l-3-3v-.2l3-3 .1.1 3.5 2c1 .6 1 1.5 0 2.1l-3.5 2-.1 0z"/><path fill="#DC2626" d="M15.6 15.7L12.6 12.7 3.6 21.7c.3.3.9.4 1.5 0l10.5-6z"/><path fill="#15803D" d="M15.6 9.6L5.1 3.6c-.6-.4-1.2-.3-1.5 0l9 9 3-3z"/></svg>
-        Descarregar na Play Store
+        Abrir a app web
       </a>
       <a class="btn btn-branco" href="https://app.emdia.boraguarda.com" data-cta="web">
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
         Usar no iPhone/computador
       </a>
     </div>
-    <p class="nota">Grátis 30 dias com tudo aberto · sem cartão · feito em Portugal, em português simples.</p>
+    <div class="instalar-passos" aria-label="Como pôr no ecrã inicial">
+      <article><h3>iPhone</h3><ol><li>Abre app.emdia.boraguarda.com no Safari.</li><li>Toca em Partilhar.</li><li>Escolhe «Adicionar ao ecrã principal».</li></ol></article>
+      <article><h3>Android</h3><ol><li>Abre app.emdia.boraguarda.com no Chrome.</li><li>Toca nos três pontos.</li><li>Escolhe «Adicionar ao ecrã inicial».</li></ol></article>
+    </div>
+    <p class="nota">Por agora está tudo aberto e não se paga nada · feito em Portugal, em português simples.</p>
   </div>
 </section>
 
@@ -622,6 +633,7 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
   // Chave ANÓNIMA, pública por desenho (RLS protege os dados; a tabela regras_legais é de leitura pública).
   var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnZG1ndG1rbmJ3aGNxb3h0amJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2MTkyOTIsImV4cCI6MjEwNDE5NTI5Mn0.XFzQgX1jj6sVhAQNDPLtwJze61WxnEWkN56hYwD5wCM';
   var ANO = 2026;
+  var PROMESSA = 'Por agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.';
 
   var regras = {};        // chave → valor (num, txt ou json)
   var escaloes = null;    // null = usa o seed embebido no calc.js
@@ -703,6 +715,14 @@ footer .fim{grid-column:1/-1;border-top:1px solid var(--linha);padding-top:18px;
     });
     atualizarPoupas('pro');
     atualizarPoupas('familia');
+    aplicarVenda();
+  }
+  function aplicarVenda() {
+    var vende = String(regras.planos_a_venda || 'nao').trim().toLowerCase() === 'sim';
+    var promessa = regras.promessa_gratis_texto || PROMESSA;
+    var el = $('promessa-gratis');
+    if (el) el.textContent = promessa;
+    document.querySelectorAll('[data-compra]').forEach(function (botao) { botao.hidden = !vende; });
   }
   function dataPt(iso) {
     if (!iso) return null;

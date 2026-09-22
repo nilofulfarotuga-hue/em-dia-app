@@ -400,3 +400,8 @@
 - **O quê (2026-09-21):** a app vai para a loja grátis, com os planos pagos desligados por interruptor. Enquanto não existirem produtos publicados na Google Play, o botão de comprar não aparece e a ficha da loja não declara compras dentro da app. A página dos planos pode explicar o que existe no grátis e o que fica fechado, mas sem prometer "em breve".
 - **Porquê:** o perfil de pagamentos ainda depende de aceite do Danilo e a criação dos produtos depende desse contrato. Submeter agora como grátis evita botão morto, evita declaração errada na Play e deixa a revisão avaliar a app real.
 - **Como se desfaz:** depois de o perfil de pagamentos estar aceite, criar os quatro produtos pela Play, provar `validar-compra-play`, ligar o interruptor de planos pagos e publicar uma atualização declarando compras dentro da app.
+
+## D77 — iPhone entra por e-mail, sem Google enquanto não houver Apple
+- **O quê (2026-09-22):** na build iOS o botão "Entrar com Google" fica desligado. O iPhone usa e-mail + código, que já é o caminho principal da app. Não implementamos "Entrar com a Apple" nesta missão.
+- **Porquê:** a regra 4.8 da Apple obriga "Entrar com a Apple" quando há outro login social ativo. Desligar Google no iOS é menor, evita chumbo e não bloqueia a entrada.
+- **Como se desfaz:** implementar Sign in with Apple, provar no iPhone/TestFlight, atualizar a ficha de privacidade e só depois reativar Google no iOS.

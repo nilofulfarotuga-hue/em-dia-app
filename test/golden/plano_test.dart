@@ -28,11 +28,9 @@ void main() {
     await fotografaSuite(tester, nome: 'plano', tela: () => tela('trial'));
     expect(find.byKey(const Key('plano_estado_trial')), findsOneWidget);
     expect(find.textContaining('25'), findsAtLeastNWidgets(1));
-    expect(find.byKey(const Key('plano_ativar_pro')), findsOneWidget);
-    expect(find.byKey(const Key('plano_ativar_familia')), findsOneWidget);
-    // A linha dos termos fica abaixo da dobra (ListView só constrói o visível): rola até ela.
-    await tester.scrollUntilVisible(find.byKey(const Key('plano_termos')), 300, scrollable: find.byType(Scrollable).first);
-    expect(find.byKey(const Key('plano_termos')), findsOneWidget);
+    expect(find.byKey(const Key('plano_ativar_pro')), findsNothing);
+    expect(find.byKey(const Key('plano_ativar_familia')), findsNothing);
+    expect(find.byKey(const Key('plano_termos')), findsNothing);
     expect(find.text('3,49 €/mês'), findsOneWidget);
     expect(find.text('5,99 €/mês'), findsOneWidget);
   });
@@ -43,10 +41,7 @@ void main() {
     expect(find.textContaining('3 avisos'), findsOneWidget);
     expect(find.textContaining('1 carro'), findsOneWidget);
     expect(find.textContaining('5 perguntas'), findsOneWidget);
-    // O botão "gerir" está no fim da lista: fora do ecrã não é construído.
-    await tester.scrollUntilVisible(find.byKey(const Key('plano_gerir')), 300,
-        scrollable: find.byType(Scrollable).first);
-    expect(find.byKey(const Key('plano_gerir')), findsOneWidget);
+    expect(find.byKey(const Key('plano_gerir')), findsNothing);
   });
 
   testWidgets('plano: por ano mostra 29,90 € e 49,90 € e a poupança', (tester) async {
@@ -62,7 +57,7 @@ void main() {
     expect(find.text('49,90 €/ano'), findsOneWidget);
   });
 
-  testWidgets('plano: sem loja (web/desktop) mostra a mensagem e não deixa comprar', (tester) async {
+  testWidgets('plano: venda fechada não mostra loja nem compra', (tester) async {
     // Nos testes a plataforma por omissão é Android (e aí a tela cria a loja
     // real). Aqui finge-se um computador: sem loja → mensagem da web.
     // (o flutter_test exige que a variável volte a null ANTES de o teste acabar)
@@ -73,11 +68,9 @@ void main() {
         const Locale('pt'),
       ));
       await tester.pump();
-      expect(find.textContaining('telemóvel Android'), findsOneWidget);
-      final botao = tester.widget<ElevatedButton>(
-        find.descendant(of: find.byKey(const Key('plano_ativar_pro')), matching: find.byType(ElevatedButton)),
-      );
-      expect(botao.onPressed, isNull);
+      expect(find.textContaining('telemóvel Android'), findsNothing);
+      expect(find.byKey(const Key('plano_ativar_pro')), findsNothing);
+      expect(find.byKey(const Key('plano_gerir')), findsNothing);
     } finally {
       debugDefaultTargetPlatformOverride = null;
     }

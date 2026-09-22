@@ -3840,6 +3840,12 @@ abstract class AppLocalizations {
   /// **'Escolhe como pagar'**
   String get planoEscolhe;
 
+  /// No description provided for @planoPrecosQuandoAbrir.
+  ///
+  /// In pt, this message translates to:
+  /// **'O que vai custar quando as assinaturas abrirem'**
+  String get planoPrecosQuandoAbrir;
+
   /// No description provided for @planoPorMes.
   ///
   /// In pt, this message translates to:

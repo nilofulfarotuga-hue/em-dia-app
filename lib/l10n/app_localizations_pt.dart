@@ -2278,6 +2278,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get planoEscolhe => 'Escolhe como pagar';
 
   @override
+  String get planoPrecosQuandoAbrir =>
+      'O que vai custar quando as assinaturas abrirem';
+
+  @override
   String get planoPorMes => 'Por mês';
 
   @override
@@ -8707,6 +8711,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get planoEscolhe => 'Escolha como pagar';
+
+  @override
+  String get planoPrecosQuandoAbrir =>
+      'O que vai custar quando as assinaturas abrirem';
 
   @override
   String get planoPorMes => 'Por mês';

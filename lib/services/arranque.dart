@@ -61,7 +61,7 @@ Future<void> arrancar() async {
   }
   await Supabase.initialize(
     url: supabaseUrl.isEmpty ? 'https://invalido.supabase.co' : supabaseUrl,
-    anonKey: supabaseAnonKey.isEmpty ? 'sem-chave' : supabaseAnonKey,
+    publishableKey: supabaseAnonKey.isEmpty ? 'sem-chave' : supabaseAnonKey,
     authOptions: const FlutterAuthClientOptions(
       authFlowType: AuthFlowType.pkce,
     ),

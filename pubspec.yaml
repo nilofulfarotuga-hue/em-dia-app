@@ -107,7 +107,7 @@ flutter:
 # pelo desenhar.py (o gerador apagava o nome, a língua e a descrição do manifest).
 flutter_launcher_icons:
   android: true
-  ios: false
+  ios: true
   image_path: "assets/branding/icon.png"
   adaptive_icon_background: "#FFFFFF"
   adaptive_icon_foreground: "assets/branding/icon_foreground.png"

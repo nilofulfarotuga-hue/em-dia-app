@@ -102,6 +102,9 @@ class _IaScreenState extends State<IaScreen> {
       return;
     }
     final l = AppLocalizations.of(context);
+    final regras = context.read<RegrasStore>().regras;
+    final planosAVenda = (regras.regra('planos_a_venda')?.valorTxt ?? 'nao').trim().toLowerCase() == 'sim';
+    final promessaGratis = regras.txt('promessa_gratis_texto');
     showModalBottomSheet<void>(
       context: context,
       backgroundColor: AppColors.surface,
@@ -135,16 +138,20 @@ class _IaScreenState extends State<IaScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
-              BotaoGrande(
-                texto: l.planoGerir,
-                icone: Icons.open_in_new_rounded,
-                cor: AppColors.cadeado,
-                aoTocar: () {
-                  Navigator.of(ctx).pop();
-                  launchUrl(Uri.parse(_urlSubscricoesPlay), mode: LaunchMode.externalApplication);
-                },
-              ),
+              const SizedBox(height: 12),
+              Aviso(promessaGratis, tom: Semaforo.verde, icone: Icons.verified_user_rounded),
+              if (planosAVenda) ...[
+                const SizedBox(height: 16),
+                BotaoGrande(
+                  texto: l.planoGerir,
+                  icone: Icons.open_in_new_rounded,
+                  cor: AppColors.cadeado,
+                  aoTocar: () {
+                    Navigator.of(ctx).pop();
+                    launchUrl(Uri.parse(_urlSubscricoesPlay), mode: LaunchMode.externalApplication);
+                  },
+                ),
+              ],
             ],
           ),
         ),

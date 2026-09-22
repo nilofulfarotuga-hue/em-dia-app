@@ -90,6 +90,8 @@ class _PlanoScreenState extends State<PlanoScreen> {
     final hoje = widget.hoje ?? hojeLisboa();
     final efetivo = plano.planoEfetivo;
     final c = _compras;
+    final planosAVenda = (regras.regra('planos_a_venda')?.valorTxt ?? 'nao').trim().toLowerCase() == 'sim';
+    final promessaGratis = regras.txt('promessa_gratis_texto');
     final semLoja = c == null;
     final lojaIndisponivel = c != null && c.iniciado && !c.disponivel;
 
@@ -105,15 +107,17 @@ class _PlanoScreenState extends State<PlanoScreen> {
         children: [
           Text(l.planoSubtitulo, style: t.bodyMedium!.copyWith(color: AppColors.textSecondary)),
           const SizedBox(height: 12),
+          Aviso(promessaGratis, tom: Semaforo.verde, icone: Icons.verified_user_rounded),
+          const SizedBox(height: 12),
           _EstadoAtual(plano: plano, trialAte: perfil?.trialAte, hoje: hoje),
           if (efetivo != 'familia') ...[
             const SizedBox(height: 16),
-            if (semLoja)
+            if (planosAVenda && semLoja)
               Aviso(l.planoWeb, icone: Icons.phone_android_rounded)
-            else if (lojaIndisponivel)
+            else if (planosAVenda && lojaIndisponivel)
               Aviso(l.planoLojaIndisponivel, tom: Semaforo.vermelho),
-            if (semLoja || lojaIndisponivel) const SizedBox(height: 12),
-            TituloSeccao(l.planoEscolhe),
+            if (planosAVenda && (semLoja || lojaIndisponivel)) const SizedBox(height: 12),
+            TituloSeccao(planosAVenda ? l.planoEscolhe : l.planoPrecosQuandoAbrir),
             Row(
               children: [
                 Expanded(
@@ -154,6 +158,7 @@ class _PlanoScreenState extends State<PlanoScreen> {
                   l.planoAbreReforma,
                 ],
                 botao: l.planoAtivarPro,
+                mostrarBotao: planosAVenda && !semLoja,
                 aTrabalhar: c?.aTrabalhar ?? false,
                 aoTocar: semLoja ? null : () => _comprar(_anual ? 'pro_anual' : 'pro_mensal'),
               ),
@@ -168,31 +173,36 @@ class _PlanoScreenState extends State<PlanoScreen> {
               destaque: false,
               linhas: [l.planoFamiliaAbre(plano.limite('membros') ?? _membrosFamiliaPadrao)],
               botao: l.planoAtivarFamilia,
+              mostrarBotao: planosAVenda && !semLoja,
               aTrabalhar: c?.aTrabalhar ?? false,
               aoTocar: semLoja ? null : () => _comprar(_anual ? 'familia_anual' : 'familia_mensal'),
             ),
-            const SizedBox(height: 8),
-            Text(l.planoAntesDeAssinar, style: t.bodySmall, textAlign: TextAlign.center),
-            Align(
-              alignment: Alignment.center,
-              child: TextButton(
-                key: const Key('plano_termos'),
-                onPressed: () => _abrir(urlTermos),
-                child: Text(l.suporteTermos),
+            if (planosAVenda) ...[
+              const SizedBox(height: 8),
+              Text(l.planoAntesDeAssinar, style: t.bodySmall, textAlign: TextAlign.center),
+              Align(
+                alignment: Alignment.center,
+                child: TextButton(
+                  key: const Key('plano_termos'),
+                  onPressed: () => _abrir(urlTermos),
+                  child: Text(l.suporteTermos),
+                ),
               ),
-            ),
-            if (c != null) ..._mensagemCompra(l, c),
+              if (c != null) ..._mensagemCompra(l, c),
+            ],
           ],
           const SizedBox(height: 16),
-          BotaoGrande(
-            key: const Key('plano_gerir'),
-            texto: l.planoGerir,
-            secundario: true,
-            icone: Icons.open_in_new_rounded,
-            aoTocar: () => _abrir(_urlAssinaturasPlay),
-          ),
-          const SizedBox(height: 6),
-          Text(l.planoCancelarQuando, style: t.bodySmall, textAlign: TextAlign.center),
+          if (planosAVenda) ...[
+            BotaoGrande(
+              key: const Key('plano_gerir'),
+              texto: l.planoGerir,
+              secundario: true,
+              icone: Icons.open_in_new_rounded,
+              aoTocar: () => _abrir(_urlAssinaturasPlay),
+            ),
+            const SizedBox(height: 6),
+            Text(l.planoCancelarQuando, style: t.bodySmall, textAlign: TextAlign.center),
+          ],
         ],
       ),
     );
@@ -355,6 +365,7 @@ class _Oferta extends StatelessWidget {
   final bool destaque;
   final List<String> linhas;
   final String botao;
+  final bool mostrarBotao;
   final bool aTrabalhar;
   final VoidCallback? aoTocar;
   const _Oferta({
@@ -366,6 +377,7 @@ class _Oferta extends StatelessWidget {
     required this.destaque,
     required this.linhas,
     required this.botao,
+    required this.mostrarBotao,
     required this.aTrabalhar,
     required this.aoTocar,
   });
@@ -406,14 +418,16 @@ class _Oferta extends StatelessWidget {
                 ],
               ),
             ),
-          const SizedBox(height: 14),
-          BotaoGrande(
-            key: Key('plano_ativar_$chave'),
-            texto: botao,
-            secundario: !destaque,
-            aTrabalhar: aTrabalhar,
-            aoTocar: aoTocar,
-          ),
+          if (mostrarBotao) ...[
+            const SizedBox(height: 14),
+            BotaoGrande(
+              key: Key('plano_ativar_$chave'),
+              texto: botao,
+              secundario: !destaque,
+              aTrabalhar: aTrabalhar,
+              aoTocar: aoTocar,
+            ),
+          ],
         ],
       ),
     );

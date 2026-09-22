@@ -144,7 +144,10 @@ class SessaoStore extends ChangeNotifier {
   /// Segundos que faltam para poder pedir outro código. 0 = já pode.
   int get reenviarEm => _reenviarEm;
   bool get podeReenviar => _reenviarEm == 0 && !_aTrabalhar;
-  bool get googleDisponivel => googleWebClientId.isNotEmpty;
+  // Apple regra 4.8: se Google estiver ativo no iOS, tambem teria de existir
+  // Entrar com a Apple. A missao escolheu o caminho simples: no iPhone fica
+  // e-mail + codigo, sem Google.
+  bool get googleDisponivel => googleWebClientId.isNotEmpty && (kIsWeb || defaultTargetPlatform != TargetPlatform.iOS);
 
   /// Há chave do Turnstile nesta build. Sem ela não há captcha nenhum: os
   /// testes, as fotos e as builds antigas continuam a funcionar.

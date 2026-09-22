@@ -71,13 +71,13 @@ void main() {
     expect(find.byType(ElevatedButton), findsOneWidget);
   });
 
-  testWidgets('suporte_reembolso: 4 linhas + abrir subscrições + email', (tester) async {
+  testWidgets('suporte_reembolso: 4 linhas + email, sem subscrições quando a venda está fechada', (tester) async {
     await fotografaSuite(
       tester,
       nome: 'suporte_reembolso',
       tela: () => comStores(SuporteReembolsoScreen(store: SuporteStore.paraTeste(const []))),
     );
-    expect(find.byIcon(Icons.open_in_new_rounded), findsOneWidget);
+    expect(find.byIcon(Icons.open_in_new_rounded), findsNothing);
     expect(find.byKey(const Key('suporte_reembolso_email')), findsOneWidget);
   });
 }

@@ -1065,6 +1065,7 @@
   "planoTensPro": "Você tem o Pro. Está tudo aberto.",
   "planoTensFamilia": "Você tem o Família / Frota. Está tudo aberto, para até {n} pessoas ou carros.",
   "planoEscolhe": "Escolha como pagar",
+  "planoPrecosQuandoAbrir": "O que vai custar quando as assinaturas abrirem",
   "planoPorMes": "Por mês",
   "planoPorAno": "Por ano",
   "planoPrecoMes": "{valor}/mês",

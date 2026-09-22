@@ -579,13 +579,15 @@ class _SuporteReembolsoScreenState extends State<SuporteReembolsoScreen> {
           ),
           // As três linhas são UMA explicação: um só botão para as ouvir.
           BotaoOuvir(etiqueta: 'suporte-reembolso', texto: linhas.join('. ')),
-          const SizedBox(height: 12),
-          BotaoGrande(
-            texto: l.suporteAbrirSubscricoes,
-            icone: Icons.open_in_new_rounded,
-            aTrabalhar: _aRegistar,
-            aoTocar: _abrirSubscricoes,
-          ),
+          if ((context.watch<RegrasStore>().regras.regra('planos_a_venda')?.valorTxt ?? 'nao').trim().toLowerCase() == 'sim') ...[
+            const SizedBox(height: 12),
+            BotaoGrande(
+              texto: l.suporteAbrirSubscricoes,
+              icone: Icons.open_in_new_rounded,
+              aTrabalhar: _aRegistar,
+              aoTocar: _abrirSubscricoes,
+            ),
+          ],
           const SizedBox(height: 10),
           BotaoGrande(
             key: const Key('suporte_reembolso_email'),
