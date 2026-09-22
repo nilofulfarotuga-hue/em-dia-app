@@ -61,12 +61,12 @@ O que podes fazer:
 
 O Em Dia não é banco, não faz empréstimos, não faz transferências entre pessoas e não substitui o teu contabilista. Dá informação geral e ajuda-te a chegar aos prazos com calma.
 
-Tens 30 dias grátis. Depois podes continuar com o plano grátis ou escolher uma assinatura pela Google Play.
+Nesta primeira versão, a app é grátis. Os planos pagos ficam desligados até existirem produtos publicados na Google Play.
 ```
 
 Texto sobre preço:
 ```text
-30 dias grátis. Depois, plano grátis com limites ou assinatura pela Google Play.
+Grátis nesta primeira versão. Os planos pagos ficam desligados até publicação futura dos produtos na Google Play.
 ```
 
 ### pt-BR
@@ -103,12 +103,12 @@ O que você pode fazer:
 
 O Em Dia não é banco, não faz empréstimos, não faz transferências entre pessoas e não substitui o seu contador. Ele dá informação geral e ajuda você a chegar aos prazos com calma.
 
-Você tem 30 dias grátis. Depois pode continuar no plano grátis ou escolher uma assinatura pela Google Play.
+Nesta primeira versão, o app é grátis. Os planos pagos ficam desligados até existirem produtos publicados na Google Play.
 ```
 
 Texto sobre preço:
 ```text
-30 dias grátis. Depois, plano grátis com limites ou assinatura pela Google Play.
+Grátis nesta primeira versão. Os planos pagos ficam desligados até publicação futura dos produtos na Google Play.
 ```
 
 Porquê: os textos seguem a função real vista no site e no código, sem prometer números de utilizadores, prémios ou substituição de contabilista.
@@ -221,12 +221,12 @@ Linguagem ofensiva: Não
 Drogas, álcool ou tabaco: Não
 Jogo: Não
 Conteúdo gerado por utilizadores: Sim, a pessoa escreve perguntas ao assistente e pedidos de ajuda, mas não há publicação pública nem rede social.
-Compras digitais: Sim, assinaturas pela Google Play.
+Compras digitais: Não nesta primeira submissão. Os planos pagos estão desligados e não há produtos publicados na Google Play.
 Partilha localização: Sim. A app pede localização em primeiro plano para mostrar combustível e centros de inspeção perto de mim. Não guarda a localização e também permite escrever o concelho.
 Resultado esperado: PEGI 3.
 ```
 
-Porquê: a app tem compras digitais e usa localização aproximada em primeiro plano; não tem violência, sexo, jogo ou drogas.
+Porquê: nesta primeira submissão a app é grátis e não mostra compra dentro da app; usa localização aproximada em primeiro plano; não tem violência, sexo, jogo ou drogas.
 
 ## Público-alvo e conteúdo
 
@@ -276,10 +276,10 @@ Não dá crédito nem empréstimos.
 Não faz pagamentos entre pessoas.
 Não compra nem vende produtos financeiros.
 Não gere investimentos.
-A única compra dentro da app é a assinatura pela Google Play.
+Nesta submissão não há compras dentro da app; os planos pagos estão desligados.
 ```
 
-Porquê: o código de compras usa Google Play Billing para assinaturas; não há serviços bancários ou crédito.
+Porquê: nesta submissão a app é gratuita e sem produtos Play publicados; não há serviços bancários ou crédito.
 
 ## Saúde
 
@@ -351,10 +351,7 @@ Finalidade: funcionalidade da app.
 
 Histórico de compras:
 ```text
-Recolhido: Sim, comprovativo técnico da assinatura e estado do plano.
-Obrigatório: Sim para planos pagos.
-Partilhado: A compra é tratada pela Google Play. A app não vê cartão.
-Finalidade: funcionalidade da app e gestão da conta.
+Não declarar nesta submissão: não há compras dentro da app nem produtos Play publicados.
 ```
 
 Outras informações financeiras:
@@ -459,7 +456,7 @@ Mudanças a rever na consola:
 ```text
 Adicionar Localização aproximada: o código confirma uso em primeiro plano para "perto de mim".
 Garantir Fotos: já estava no CSV atual e está confirmado no código.
-Garantir Histórico de compras: já está no CSV atual e está confirmado pelo Google Play Billing.
+Não declarar compras nesta submissão: os produtos pagos ficam desligados enquanto não existirem produtos publicados na Google Play.
 Garantir Outras informações financeiras: já está no CSV atual e é central para a app.
 Adicionar ou confirmar Outras mensagens na app: perguntas ao assistente e pedidos de suporte ficam em tabelas do servidor.
 Adicionar ou confirmar Ficheiros e documentos: a app pode ler documentos/fotos e guardar comprovativos.
@@ -480,12 +477,14 @@ Para rever sem email, toque em "Vê como fica, com um exemplo" no ecrã de entra
 Conta de teste sugerida: boraappbora+teste@gmail.com.
 POR CONFIRMAR na build enviada: se `EMAIL_REVISOR` estiver configurado para essa conta, o ecrã mostra palavra-passe em vez de código; a credencial deve ser criada na Play Console.
 A app usa localização só em primeiro plano para mostrar combustível e centros de inspeção perto, e também permite escrever o concelho.
-As compras são apenas assinaturas pela Google Play.
+Nesta primeira versão não há compras dentro da app; os planos pagos ficam desligados até uma atualização futura com produtos publicados na Google Play.
 ```
 
-## Produtos de subscrição
+## Produtos de subscrição (não declarar nesta submissão)
 
-Caminho na consola: Monetização > Produtos > Subscrições.
+Caminho futuro na consola: Monetização > Produtos > Subscrições.
+
+Nesta submissão, não declarar compras dentro da app e não criar produtos: a decisão D76 diz que a app vai grátis para a loja, com planos pagos desligados por interruptor. Estes textos ficam guardados para o dia em que existir perfil de pagamentos e o Danilo der o vai.
 
 Produto `pro_mensal`:
 ```text

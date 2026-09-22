@@ -1,0 +1,778 @@
+{
+  "data": "20260921-231526",
+  "modo": "visao",
+  "modelo": "gemini-flash-latest",
+  "fotos": 80,
+  "contagem": {
+    "verde": 38,
+    "amarelo": 41,
+    "vermelho": 1,
+    "erro": 0
+  },
+  "resultados": [
+    {
+      "severity": "verde",
+      "finding": "O ecrã e o painel lateral de detalhes apresentam formatação correta e dados perfeitamente legíveis.",
+      "jargao": [],
+      "modelo": "gemini-flash-latest",
+      "foto": "admin_assinatura_detalhe_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel de administração apresenta uma disposição limpa, legível e sem quaisquer defeitos visuais de layout.",
+      "jargao": [],
+      "modelo": "gemini-3.6-flash",
+      "foto": "admin_assinaturas_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel de administração de auditoria apresenta-se limpo, legível e sem qualquer erro de interface ou sobreposição.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash",
+      "foto": "admin_auditoria_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel de administração apresenta uma interface limpa, com excelente legibilidade, contraste adequado e sem qualquer erro de renderização.",
+      "jargao": [],
+      "modelo": "gemini-3.5-flash",
+      "foto": "admin_avisos_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O estado de erro está claramente explicado com uma mensagem técnica compreensível e inclui um botão funcional para tentar novamente.",
+      "jargao": [
+        "RPC",
+        "admin_resumo",
+        "PostgresException"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_erro_desktop_br.png"
+    },
+    {
+      "severity": "vermelho",
+      "finding": "O painel de detalhe do erro apresenta blocos pretos que cobrem a informação técnica.",
+      "jargao": [
+        "id",
+        "xlsx",
+        "OCR",
+        "Importação",
+        "coluna_data_nao_encontrada"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_erro_detalhe_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface apresenta os registos de erro de forma clara, com filtros funcionais e botões de ação visíveis.",
+      "jargao": [
+        "OCR",
+        "CSV",
+        "TVDE"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_erros_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel administrativo apresenta uma interface limpa, legível e totalmente funcional.",
+      "jargao": [
+        "onboarding",
+        "trial",
+        "CSV"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_funil_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface apresenta-se limpa, legível e sem defeitos visuais críticos.",
+      "jargao": [
+        "RPC",
+        "admin_ia_top_perguntas",
+        "v_custo_ia_diario",
+        "PT-BR"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_ia_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface do painel administrativo apresenta um espaçamento adequado, legibilidade correta e sem sobreposições de elementos.",
+      "jargao": [
+        "ias",
+        "iva_isencao_limite",
+        "ss_taxa_independente",
+        "eur",
+        "pct"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_regras_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Painel de administração funcional com campos e modais bem estruturados.",
+      "jargao": [
+        "ias",
+        "valor_num",
+        "valor_txt",
+        "valor_json",
+        "eur",
+        "por_confirmar"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_regras_editar_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Interface administrativa limpa e funcional, sem sobreposição de elementos ou problemas de legibilidade.",
+      "jargao": [
+        "Chave",
+        "Free",
+        "Pro",
+        "Família",
+        "Limite free",
+        "Limite pro",
+        "Limite família"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_regras_flags_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel administrativo apresenta uma interface limpa e perfeitamente legível, sem sobreposição de elementos ou erros visuais.",
+      "jargao": [
+        "tickets_suporte",
+        "contacto_parceiro_contabilista",
+        "em_curso",
+        "bug",
+        "guia_novo"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_tickets_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface apresenta uma modal de confirmação bem estruturada sem problemas visuais evidentes.",
+      "jargao": [
+        "modal",
+        "storage"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_usuario_apagar_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A interface administrativa apresenta uma listagem de usuários e um painel lateral detalhado sem falhas visuais graves.",
+      "jargao": [
+        "auth.users",
+        "view v_admin_usuarios",
+        "user_id",
+        "regime_iva",
+        "retencao_opcao",
+        "variante_pt"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_usuario_detalhe_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel administrativo apresenta uma interface limpa, legível e sem sobreposições visuais.",
+      "jargao": [
+        "profiles",
+        "view",
+        "v_admin_usuarios",
+        "trial",
+        "pro",
+        "free",
+        "familia",
+        "CSV"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_usuarios_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O estado vazio está devidamente indicado com mensagem explicativa e controlos acessíveis.",
+      "jargao": [
+        "tickets_suporte",
+        "regras_legais",
+        "contacto_parceiro_contabilista"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_vazio_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel administrativo apresenta todas as métricas legíveis e bem estruturadas sem defeitos visuais.",
+      "jargao": [
+        "RPC",
+        "ia_custo_alarme_dia_eur",
+        "regras_legais",
+        "sem_token"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_visao_geral_alarme_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O painel administrativo apresenta uma interface limpa, alinhada e perfeitamente legível.",
+      "jargao": [
+        "RPC admin_resumo",
+        "regras_legais"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "admin_visao_geral_desktop_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está direitinho e mostra que ainda não tens faturas por aqui.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "caixa_desligada_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem pouco contraste com o fundo e a instrução usa termos técnicos.",
+      "jargao": [
+        "endereço"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "caixa_desligada_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O estado vazio tem contraste fraco e usa termos técnicos como 'endereço' que podem confundir.",
+      "jargao": [
+        "endereço"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "caixa_desligada_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O estado vazio é confuso porque apresenta duas mensagens diferentes sobre o mesmo assunto.",
+      "jargao": [
+        "fatura"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_desligada_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã mostra que ainda não tens faturas, mas explica de forma simples o que deves fazer.",
+      "jargao": [
+        "fatura"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_desligada_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página explica de forma simples que ainda não tens faturas e o que deves fazer.",
+      "jargao": [
+        "fatura"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_desligada_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo 'despesa' é usado sem explicação para alguém que não percebe de contabilidade.",
+      "jargao": [
+        "despesa"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_faturas_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A lista de faturas está organizada e fácil de entender.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_faturas_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto de introdução está cortado e ilegível no topo do ecrã.",
+      "jargao": [
+        "despesa"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_faturas_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto de introdução está cortado e ilegível no topo do ecrã.",
+      "jargao": [
+        "PDF"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_faturas_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A lista tem demasiados botões e cores diferentes que podem confundir quem a usa.",
+      "jargao": [
+        "fatura",
+        "despesa",
+        "PDF"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_faturas_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A lista de faturas está organizada e fácil de ler.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_faturas_pequeno_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender para ver as contas.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_ligada_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está organizada e fácil de entender para ver as faturas.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_ligada_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo 'despesa' é usado sem explicar que se trata de um gasto para o teu negócio.",
+      "jargao": [
+        "despesa"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_ligada_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender para o utilizador.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_ligada_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está organizada e fácil de entender para ver as faturas.",
+      "jargao": [
+        "fatura"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_ligada_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e fácil de entender para quem não percebe muito de tecnologia.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_ligada_pequeno_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A tela está organizada e explica claramente como receber as faturas.",
+      "jargao": [],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "caixa_vazia_grande_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está arrumado e explica muito bem o que tens de fazer com as faturas.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "caixa_vazia_grande_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está direitinho e percebe-se tudo muito bem.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "caixa_vazia_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "A página está limpa e explica bem como mandar as faturas para aqui.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "caixa_vazia_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está limpo e fácil de perceber.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "caixa_vazia_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Está tudo direitinho e limpo, podes copiar o teu endereço à vontade.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "caixa_vazia_pequeno_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Esta tela está toda certinha e muito limpa.",
+      "jargao": [
+        "Segurança Social",
+        "Multibanco"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras difíceis e há demasiados botões juntos.",
+      "jargao": [
+        "Segurança Social",
+        "multibanco"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Tem palavras difíceis sem explicação e números pequenos.",
+      "jargao": [
+        "referência Multibanco"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_medio_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está limpo, legível e pronto a usar.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto sobre como pagar tem palavras difíceis e confusas para quem não percebe.",
+      "jargao": [
+        "referência Multibanco",
+        "Conta-corrente"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto sobre como pagar usa termos difíceis e tem contraste fraco.",
+      "jargao": [
+        "Conta-corrente",
+        "referência Multibanco"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_detalhe_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O botão 'Adicionar' está demasiado colado à margem direita.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto dos botões de filtro em baixo está muito perto das margens.",
+      "jargao": [
+        "Segurança Social",
+        "IVA",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã tem dois avisos importantes ao mesmo tempo a vermelho e a laranja.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem dois avisos com cores diferentes ao mesmo tempo.",
+      "jargao": [
+        "Contribuição"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_medio_pt.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "Esta página está muito boa e clara para ver as contas.",
+      "jargao": [],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto da descrição está cortado e a lista fica escondida em baixo.",
+      "jargao": [
+        "Segurança Social"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "calendario_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto tem palavras técnicas que podem ser difíceis de entender.",
+      "jargao": [
+        "TVDE",
+        "NIF",
+        "IRS"
+      ],
+      "modelo": "gemini-flash-lite-latest",
+      "foto": "carro_abastecimentos_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo técnico NIF aparece várias vezes sem uma explicação simples para quem não percebe de impostos.",
+      "jargao": [
+        "NIF",
+        "TVDE",
+        "IRS"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo TVDE é usado sem explicação para alguém que não percebe nada de carros.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "A sigla TVDE aparece sem explicação para o utilizador.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo TVDE é usado sem explicação para quem não conhece.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo TVDE aparece sem explicação para o utilizador.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_abastecimentos_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo TVDE aparece sem explicação e o bloqueio do plano não tem um botão direto para a subscrição.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã contém termos técnicos complexos sem explicação simples para o utilizador.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo TVDE aparece sem explicação e o aviso de limite do plano não tem um botão direto para a subscrição.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo TVDE não está explicado para um utilizador que não conhece o jargão.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo TVDE não está explicado para o utilizador e o botão de adicionar carro não é claro.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo TVDE não está explicado para um utilizador comum e o ecrã apresenta demasiada informação técnica acumulada.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_cadeado_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem siglas técnicas que podem confundir quem não percebe de impostos.",
+      "jargao": [
+        "NIF",
+        "IRS",
+        "DGEG",
+        "IMT"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_despesas_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O uso de siglas técnicas sem explicação pode confundir quem não conhece os termos.",
+      "jargao": [
+        "NIF",
+        "IRS",
+        "DGEG",
+        "IMT"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_despesas_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã usa termos técnicos como NIF, DGEG e IMT sem explicar o que significam para quem não sabe.",
+      "jargao": [
+        "NIF",
+        "DGEG",
+        "IMT"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_despesas_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto usa palavras difíceis como NIF, IRS, DGEG e IMT sem explicar o que são para quem não percebe nada disto.",
+      "jargao": [
+        "NIF",
+        "IRS",
+        "DGEG",
+        "IMT"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_despesas_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo NIF aparece sem explicação do que significa para o utilizador.",
+      "jargao": [
+        "NIF"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_despesas_pequeno_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O termo DGEG aparece sem explicação para o que significa.",
+      "jargao": [
+        "DGEG"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_despesas_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem termos técnicos que podem ser difíceis de entender para quem não é da área.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_grande_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem termos técnicos complexos sem explicação simples para o utilizador.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_grande_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "Existem termos técnicos que podem ser difíceis de entender para quem não é da área.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3.1-flash-lite",
+      "foto": "carro_medio_br.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã está bem estruturado, mas a sigla TVDE é jargão técnico que não é explicado ao utilizador.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3-flash-preview",
+      "foto": "carro_medio_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O ecrã apresenta a sigla TVDE sem qualquer explicação e utiliza múltiplos elementos cor de laranja no cartão do seguro.",
+      "jargao": [
+        "TVDE"
+      ],
+      "modelo": "gemini-3-flash-preview",
+      "foto": "carro_pequeno_br.png"
+    },
+    {
+      "severity": "verde",
+      "finding": "O ecrã está limpo e bem organizado, seguindo as regras de cores e cantos arredondados da marca.",
+      "jargao": [
+        "TVDE",
+        "IUC"
+      ],
+      "modelo": "gemini-3-flash-preview",
+      "foto": "carro_pequeno_pt.png"
+    },
+    {
+      "severity": "amarelo",
+      "finding": "O texto utiliza português do Brasil e apresenta a sigla técnica DGEG sem explicar o seu significado.",
+      "jargao": [
+        "DGEG"
+      ],
+      "modelo": "gemini-3-flash-preview",
+      "foto": "carro_perto_grande_br.png"
+    }
+  ]
+}

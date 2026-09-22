@@ -44,9 +44,9 @@ A informação está espalhada por dez sítios — Segurança Social Direta, Por
 
 Não substitui o teu contabilista — ajuda-te a chegar a ele já organizado, ou a perceber sozinho os prazos mais simples.
 
-30 dias grátis, sem cartão de crédito.
+Grátis nesta primeira versão.
 ```
-**Contagem: 1753/4000 caracteres.**
+**Contagem: 1762/4000 caracteres.**
 
 ## PT-BR
 
@@ -87,9 +87,9 @@ A informação está espalhada em dez lugares — Segurança Social Direta, Port
 
 Não substitui o seu contador — ajuda você a chegar até ele já organizado, ou a entender sozinho os prazos mais simples.
 
-30 dias grátis, sem cartão de crédito.
+Grátis nesta primeira versão.
 ```
-**Contagem: 1794/4000 caracteres.**
+**Contagem: 1803/4000 caracteres.**
 
 ## Frases para as capturas de ecrã (8, PT-PT)
 
@@ -112,19 +112,19 @@ As 4 primeiras vêm da missão (`docs/PROMPT_MISSAO_2026-09-05.md`, secção 5);
 
 ```
 <pt-PT>
-Primeira versão do Em Dia! Já podes: calcular o teu recibo verde (retenção, IVA, quanto fica para ti); ver o calendário de obrigações da Segurança Social, IVA e IRS; guardar os dados do teu carro (IUC, inspeção, seguro, carta); e perguntar o que quiseres ao assistente de Inteligência Artificial, em português. 30 dias grátis, sem cartão. Obrigado por testares o Em Dia — o teu feedback ajuda-nos a melhorar.
+Primeira versão do Em Dia! Já podes: calcular o teu recibo verde (retenção, IVA, quanto fica para ti); ver o calendário de obrigações da Segurança Social, IVA e IRS; guardar os dados do teu carro (IUC, inspeção, seguro, carta); e perguntar o que quiseres ao assistente de Inteligência Artificial, em português. Grátis nesta primeira versão. Obrigado por testares o Em Dia.
 </pt-PT>
 ```
-**Contagem (só o texto, sem as etiquetas): 408/500 caracteres.**
+**Contagem (só o texto, sem as etiquetas): 372/500 caracteres.**
 
 ### `<pt-BR>` (limite 500 caracteres)
 
 ```
 <pt-BR>
-Primeira versão do Em Dia! Agora você pode: calcular seu recibo verde (retenção, IVA, quanto fica pra você); ver o calendário de obrigações da Segurança Social, IVA e IRS de Portugal; guardar os dados do seu carro (IUC, inspeção, seguro, carteira); e perguntar o que quiser ao assistente de Inteligência Artificial, em português. 30 dias grátis, sem cartão. Obrigado por testar o Em Dia — seu feedback nos ajuda a melhorar.
+Primeira versão do Em Dia! Agora você pode: calcular seu recibo verde (retenção, IVA, quanto fica pra você); ver o calendário de obrigações da Segurança Social, IVA e IRS de Portugal; guardar os dados do seu carro (IUC, inspeção, seguro, carteira); e perguntar o que quiser ao assistente de Inteligência Artificial, em português. Grátis nesta primeira versão. Obrigado por testar o Em Dia.
 </pt-BR>
 ```
-**Contagem (só o texto, sem as etiquetas): 423/500 caracteres.**
+**Contagem (só o texto, sem as etiquetas): 389/500 caracteres.**
 
 ## Categoria e metadados
 

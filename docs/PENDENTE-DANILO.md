@@ -1,5 +1,9 @@
 # PENDENTE-DANILO — só o que precisa mesmo da pessoa
 
+## 🔴 Missão em-dia-publicar (21/09/2026) — bloqueio provado no primeiro minuto
+
+1. **Play Console no Chrome real:** a cópia do perfil Bora não entrou na consola autenticada e o CDP não abriu (`cdp_failed Não é possível estabelecer ligação com o servidor remoto`). Provas: `docs/provas/em-dia-publicar-2026-09-21/b-1-play-console-smoke.png`, `docs/provas/em-dia-publicar-2026-09-21/b-1-play-console-smoke.json` e `docs/provas/em-dia-publicar-2026-09-21/b-1-arranque.md`. Sem esta janela, não dá para clicar/submeter na Play Console nesta sessão; sigo com tudo o que não precisa de navegador.
+
 ## 🔴 Missão em-dia-vender (18–21/09/2026) — UMA coisa só é tua
 1. **Aceitar o contrato de pagamentos da Google** (Play Console → Definições → Perfil de pagamentos → «Criar perfil de
    pagamentos»; eu deixo o formulário preenchido — nome e morada como no CC/Finanças, código postal 6300-610 — e paro no
