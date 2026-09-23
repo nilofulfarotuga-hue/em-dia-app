@@ -84,6 +84,8 @@ dependency_overrides:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_driver: # capturas da App Store: test_driver/capturas_driver.dart
+    sdk: flutter
   integration_test: # B8: integration_test/todos_os_ecras_test.dart (VM e AVD emdia)
     sdk: flutter
   flutter_lints: ^5.0.0
