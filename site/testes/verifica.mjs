@@ -35,14 +35,20 @@ ok(/rel="icon"/.test(html) && /apple-touch-icon/.test(html), 'favicon + apple-to
 ok(!/fonts\.googleapis\.com|fonts\.gstatic\.com|cdn\.jsdelivr|unpkg\.com|cdnjs/.test(html), 'sem Google Fonts nem CDN externa');
 ok(/@font-face\{font-family:Inter;src:url\(\/assets\/fonts\/Inter\.woff2\)/.test(html) && /font-display:swap/.test(html), 'Inter local com font-display: swap');
 
-// 2. Dois botões com o MESMO texto/peso
-const play = html.match(/<a class="([^"]+)" href="https:\/\/play\.google\.com\/store\/apps\/details\?id=pt\.emdia\.app"[^>]*>[\s\S]*?Descarregar na Play Store[\s\S]*?<\/a>/g) || [];
-const web = html.match(/<a class="([^"]+)" href="https:\/\/app\.emdia\.boraguarda\.com"[^>]*>[\s\S]*?Usar no iPhone\/computador[\s\S]*?<\/a>/g) || [];
-ok(play.length >= 1 && web.length >= 1, 'botões «Descarregar na Play Store» e «Usar no iPhone/computador» existem', `${play.length} + ${web.length}`);
+// 2. Os botões de entrada: mesmo peso, e a Play só quando existir na Play
+// (22/09/2026: a app sai primeiro na web e no iPhone; enquanto não houver ficha na Play
+// não há botão para lá — mas se voltar, tem de ter o mesmo peso que o da web.)
+const play = html.match(/<a class="([^"]+)" href="https:\/\/play\.google\.com\/store\/apps\/details\?id=pt\.emdia\.app"[^>]*>[\s\S]*?<\/a>/g) || [];
+const web = html.match(/<a class="([^"]+)" href="https:\/\/app\.emdia\.boraguarda\.com"[^>]*>[\s\S]*?<\/a>/g) || [];
+ok(web.length >= 2, 'o botão de usar na web aparece no herói e no bloco final', `${web.length} vezes`);
+const classesWeb = web.map((a) => a.match(/class="([^"]+)"/)?.[1]);
+ok(classesWeb.every((c) => c && c === classesWeb[0]), 'os botões da web têm todos a mesma classe (mesmo peso)', classesWeb.join(' | '));
 const classePlay = (play[0] || '').match(/class="([^"]+)"/)?.[1];
-const classeWeb = (web[0] || '').match(/class="([^"]+)"/)?.[1];
-ok(classePlay && classePlay === classeWeb, 'os dois botões têm exatamente a mesma classe (mesmo peso)', `${classePlay} = ${classeWeb}`);
-ok(play.length === web.length, 'aparecem o mesmo número de vezes (herói + bloco final)', `${play.length} = ${web.length}`);
+ok(play.length === 0 || classePlay === classesWeb[0], 'se houver botão da Play, tem o mesmo peso que o da web', `${play.length} da Play = ${classePlay || 'nenhum'}`);
+
+// 2b. Interruptor dos planos: com planos_a_venda = nao, nenhum botão de compra aparece
+const compras = html.match(/<a [^>]*data-compra[^>]*>/g) || [];
+ok(compras.length === 0 || compras.every((a) => / hidden[ >]/.test(a)), 'nenhum botão de compra visível por omissão (data-compra nasce hidden)', `${compras.length} marcados, ${compras.filter((a) => / hidden[ >]/.test(a)).length} escondidos`);
 
 // 3. Vídeo de herói
 const video = (html.match(/<video[^>]*>/) || [])[0] || '';
@@ -116,7 +122,7 @@ ok(pv.status === 200 && /Política de privacidade/.test(pv.texto), '/privacidade
 const termos = await get('/termos');
 ok(termos.status === 200 && /<title>Termos de utilização/.test(termos.texto) && /14 dias/.test(termos.texto), '/termos 200 com título e 14 dias', `status ${termos.status}`);
 const precos = await get('/precos');
-ok(precos.status === 200 && /<title>Preços/.test(precos.texto) && /Google Play/.test(precos.texto) && /14 dias/.test(precos.texto), '/precos 200 com título, Google Play e 14 dias', `status ${precos.status}`);
+ok(precos.status === 200 && /<title>Preços/.test(precos.texto) && /planos_a_venda/.test(precos.texto) && /14 dias/.test(precos.texto), '/precos 200 com título, interruptor dos planos e 14 dias', `status ${precos.status}`);
 const reclamacoes = await get('/reclamacoes');
 ok(reclamacoes.status === 200 && /<title>Reclamações/.test(reclamacoes.texto) && /livroreclamacoes\.pt/.test(reclamacoes.texto), '/reclamacoes 200 com título e livroreclamacoes.pt', `status ${reclamacoes.status}`);
 const apagarConta = await get('/apagar-conta');
