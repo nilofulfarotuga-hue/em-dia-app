@@ -22,7 +22,7 @@ Portão (Flutter 3.47.2, Linux):
 1. **Os 7 segredos da Apple** no GitHub do `em-dia-app`: `IOS_DIST_CERT_P12_B64`, `IOS_DIST_CERT_PASSWORD`, `IOS_PROVISIONING_PROFILE_B64`, `ASC_KEY_P8_B64`, `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_TEAM_ID`. Os ficheiros estão no PC; o perfil App Store de `com.boraguarda.emdia` ainda tem de ser criado no portal. Detalhe em `docs/SECRETS-IOS.md`.
 2. **`GOOGLE_SERVICE_INFO_PLIST_B64`** (app iOS no Firebase do Em Dia) e chave APNs — sem isto o IPA sai sem push (funciona na mesma).
 3. **Palavra-passe do revisor** (`revisor.google@boraguarda.com`) para colar no App Store Connect, e confirmar que o `DART_DEFINES_FILE_B64` traz `EMAIL_REVISOR` com esse e-mail.
-4. **Correr o job A** (Actions → build-ios → Run workflow, `enviar` desligado) para ter as capturas; depois o job B com `enviar` ligado. Nunca correu nesta sessão (não há macOS aqui, e disparar exige o ramo em `main` ou escolher este ramo — decisão do Danilo).
+4. **Job B** (Actions → build-ios → Run workflow com `enviar` ligado) depois dos segredos. O job A **já correu verde** neste ramo (corrida 35891779298): capturas 6,9" 1320×2868 e 6,5" 1284×2778, 6 de cada, no artefacto `ios-capturas-2` — prova em `provas/em-dia-ios-2026-09-22/b3-capturas-ci.md`. Falta descarregá-las e carregá-las no App Store Connect (conferir primeiro a `06-assistente`, ver fora-de-scope 3).
 5. **Imagens de divulgação**: gerar no Gemini/ChatGPT a partir de `prompts-imagem.md` (sem ferramenta de imagem autenticada na nuvem).
 6. **Depois da aprovação da Apple**: `insert into regras_legais (chave, valor_txt, …) values ('ios_na_app_store','sim', …)` e republicar nada — o site lê a tabela.
 
@@ -30,7 +30,8 @@ Portão (Flutter 3.47.2, Linux):
 
 1. **Site: botões de compra visíveis com `planos_a_venda='nao'`.** Os `data-compra` («Experimentar o Pro grátis», «Começar grátis» no início; «Assinar na app» ×2 em `/precos`) têm `hidden`, mas `.btn{display:inline-flex}` ganha ao `[hidden]` do browser → aparecem. Medido no Chromium (`display=flex`, visível). O verificador só lê o atributo e dava 62/62. Correção proposta: `[data-compra][hidden]{display:none}` em `index.html` e `precos.html`, e o verificador passar a medir no browser.
 2. **`ios/Runner/Info.plist`: textos das permissões sem acentos** (`camara`, `localizacao`, `inspecao`, `sessao`) — é o que o iPhone mostra na janela de permissão. Correção proposta: `câmara`, `localização`, `inspeção`, `sessão`.
-3. O `docs/DIVULGACAO-WEB-IPHONE-2026-09-22.md` antigo fica como estava (substituído pelo `posts.md` novo).
+3. **Modo exemplo → assistente chama o Supabase.** Na corrida do 6,5" do job A, abrir «Pergunta o que quiseres» no modo exemplo deu `conversas_ia: … You must initialize the supabase instance`. Não parte o teste, mas o modo exemplo devia ficar sem servidor; conferir a foto `06-assistente` antes de a usar.
+4. O `docs/DIVULGACAO-WEB-IPHONE-2026-09-22.md` antigo fica como estava (substituído pelo `posts.md` novo).
 
 ## Para a Claude.ai
 
