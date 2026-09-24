@@ -468,6 +468,23 @@ class AdminDados {
     return _linhas(await sb.rpc('admin_funil', params: {'p_semanas': semanas}));
   }
 
+  // ---------------------------------------------------------------- convida um amigo
+  Future<List<Linha>> convites({int limite = 300}) async {
+    if (emTeste) {
+      _falhaSePedido();
+      return const [];
+    }
+    return _linhas(await sb.rpc('admin_convites', params: {'p_limite': limite}));
+  }
+
+  Future<List<Linha>> convitesTop({int limite = 20}) async {
+    if (emTeste) {
+      _falhaSePedido();
+      return const [];
+    }
+    return _linhas(await sb.rpc('admin_convites_top', params: {'p_limite': limite}));
+  }
+
   // ---------------------------------------------------------------- redes do Em Dia
   /// O que o robô das redes publicou / agendou / falhou (RPC admin_redes, só admin).
   Future<List<Linha>> redes({int limite = 200}) async {

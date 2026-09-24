@@ -1287,6 +1287,57 @@
   "carroFaltaMesMatricula": "Escolhe o mês da matrícula.",
   "carroFaltaAnoMatricula": "Escreve o ano da matrícula (4 dígitos).",
   "maisSubtitulo": "Tudo o resto está aqui.",
+  "maisConvida": "Convida e ganha",
+  "maisSubConvida": "1 mês grátis para ti e para o teu amigo.",
+  "convTitulo": "Convida e ganha",
+  "convLead": "Convida um amigo. Ganham os dois.",
+  "convComoFunciona": "Manda-lhe o teu link. Quando ele se registar e usar a app (um recibo ou um prazo registado), tu e ele ganham 1 mês do plano pago, grátis.",
+  "convOTeuLink": "O teu link",
+  "convCodigo": "Código: {codigo}",
+  "@convCodigo": {
+    "placeholders": {
+      "codigo": {
+        "type": "String"
+      }
+    }
+  },
+  "convWhatsapp": "Mandar pelo WhatsApp",
+  "convInstaFace": "Instagram, Facebook ou outra app",
+  "convCopiar": "Copiar o link",
+  "convCopiado": "Link copiado.",
+  "convAssunto": "Em Dia — nunca mais levas multa da Segurança Social",
+  "convTextoPartilha": "Uso o Em Dia para não falhar prazos da Segurança Social, IVA e IRS a recibos verdes. É grátis e diz-te o que fazer em português simples. Regista-te com o meu link e ganhamos os dois 1 mês do plano pago: {link}",
+  "@convTextoPartilha": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "convJaConvidaste": "Já convidaste {n}",
+  "@convJaConvidaste": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "convGanhos": "{premiados} já usaram a app · ganhaste {meses} de {maximo} meses possíveis",
+  "@convGanhos": {
+    "placeholders": {
+      "premiados": {
+        "type": "int"
+      },
+      "meses": {
+        "type": "int"
+      },
+      "maximo": {
+        "type": "int"
+      }
+    }
+  },
+  "convRegras": "Regras simples: 1 prémio por pessoa real (email confirmado, conta nova), no máximo 12 meses acumulados. O mês é dado pelo servidor quando o teu amigo regista o primeiro recibo ou prazo.",
+  "convErro": "Não consegui carregar o teu link. Verifica a ligação e tenta outra vez.",
   "maisReforma": "Reforma e direitos",
   "maisGuias": "Guias de 1 minuto",
   "maisPergunta": "Pergunta ao Em Dia",
@@ -2107,6 +2158,37 @@
   "admUsApagado": "Conta apagada. Ficou registado na auditoria.",
   "admUsApagarEhAdmin": "Esta conta é admin: tira-a de public.admins antes de apagar.",
   "admNavRedes": "Redes Em Dia",
+  "admNavConvites": "Convites",
+  "admCvTitulo": "Convida um amigo",
+  "admCvSub": "Quem convidou quem, os prêmios dados (30 dias do plano pago para cada um, automático quando o convidado registra o 1.º recibo ou prazo) e os melhores convidadores. Regras: 1 prêmio por pessoa convidada (email confirmado, conta nova), no máximo 12 meses por convidador.",
+  "admCvTop": "Melhores convidadores",
+  "admCvTabela": "{n} convites",
+  "@admCvTabela": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "admCvCardConvites": "Convites",
+  "admCvCardPremiados": "Premiados",
+  "admCvCardPendentes": "À espera (ainda não usaram)",
+  "admCvColQuando": "Quando",
+  "admCvColConvidador": "Convidador",
+  "admCvColConvidado": "Convidado",
+  "admCvColCodigo": "Código",
+  "admCvColConvidados": "Convidados",
+  "admCvColPremiados": "Premiados",
+  "admCvColMeses": "Meses ganhos",
+  "admCvColEstado": "Estado",
+  "admCvColPremio": "Prêmio",
+  "admCvColMotivo": "Motivo",
+  "admCvEstPremiado": "Premiado",
+  "admCvEstPendente": "À espera",
+  "admCvEstAnulado": "Anulado",
+  "admCvPremioAmbos": "os dois (30 dias cada)",
+  "admCvPremioSoConvidado": "só o convidado (convidador no máximo)",
+  "admCvNota": "O prêmio é dado pelo servidor (trial_ate + 30 dias). Ninguém escreve aqui à mão; para anular um convite abusivo, usa o SQL com auditoria.",
   "admRdTitulo": "Redes Em Dia",
   "admRdSub": "Instagram @em_dia_app e Facebook «Em Dia: Recibos e Impostos», separado do Bora. O robô da VPS publica uma peça por dia (só depois do fiscal de vídeo dar 90 ou mais) e regista aqui o que saiu, o que está agendado e o que falhou.",
   "admRdPub7": "Publicadas (7 dias)",

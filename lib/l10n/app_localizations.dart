@@ -3342,6 +3342,108 @@ abstract class AppLocalizations {
   /// **'Tudo o resto está aqui.'**
   String get maisSubtitulo;
 
+  /// No description provided for @maisConvida.
+  ///
+  /// In pt, this message translates to:
+  /// **'Convida e ganha'**
+  String get maisConvida;
+
+  /// No description provided for @maisSubConvida.
+  ///
+  /// In pt, this message translates to:
+  /// **'1 mês grátis para ti e para o teu amigo.'**
+  String get maisSubConvida;
+
+  /// No description provided for @convTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Convida e ganha'**
+  String get convTitulo;
+
+  /// No description provided for @convLead.
+  ///
+  /// In pt, this message translates to:
+  /// **'Convida um amigo. Ganham os dois.'**
+  String get convLead;
+
+  /// No description provided for @convComoFunciona.
+  ///
+  /// In pt, this message translates to:
+  /// **'Manda-lhe o teu link. Quando ele se registar e usar a app (um recibo ou um prazo registado), tu e ele ganham 1 mês do plano pago, grátis.'**
+  String get convComoFunciona;
+
+  /// No description provided for @convOTeuLink.
+  ///
+  /// In pt, this message translates to:
+  /// **'O teu link'**
+  String get convOTeuLink;
+
+  /// No description provided for @convCodigo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Código: {codigo}'**
+  String convCodigo(String codigo);
+
+  /// No description provided for @convWhatsapp.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mandar pelo WhatsApp'**
+  String get convWhatsapp;
+
+  /// No description provided for @convInstaFace.
+  ///
+  /// In pt, this message translates to:
+  /// **'Instagram, Facebook ou outra app'**
+  String get convInstaFace;
+
+  /// No description provided for @convCopiar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Copiar o link'**
+  String get convCopiar;
+
+  /// No description provided for @convCopiado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Link copiado.'**
+  String get convCopiado;
+
+  /// No description provided for @convAssunto.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em Dia — nunca mais levas multa da Segurança Social'**
+  String get convAssunto;
+
+  /// No description provided for @convTextoPartilha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Uso o Em Dia para não falhar prazos da Segurança Social, IVA e IRS a recibos verdes. É grátis e diz-te o que fazer em português simples. Regista-te com o meu link e ganhamos os dois 1 mês do plano pago: {link}'**
+  String convTextoPartilha(String link);
+
+  /// No description provided for @convJaConvidaste.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já convidaste {n}'**
+  String convJaConvidaste(int n);
+
+  /// No description provided for @convGanhos.
+  ///
+  /// In pt, this message translates to:
+  /// **'{premiados} já usaram a app · ganhaste {meses} de {maximo} meses possíveis'**
+  String convGanhos(int premiados, int meses, int maximo);
+
+  /// No description provided for @convRegras.
+  ///
+  /// In pt, this message translates to:
+  /// **'Regras simples: 1 prémio por pessoa real (email confirmado, conta nova), no máximo 12 meses acumulados. O mês é dado pelo servidor quando o teu amigo regista o primeiro recibo ou prazo.'**
+  String get convRegras;
+
+  /// No description provided for @convErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não consegui carregar o teu link. Verifica a ligação e tenta outra vez.'**
+  String get convErro;
+
   /// No description provided for @maisReforma.
   ///
   /// In pt, this message translates to:
@@ -5837,6 +5939,150 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Redes Em Dia'**
   String get admNavRedes;
+
+  /// No description provided for @admNavConvites.
+  ///
+  /// In pt, this message translates to:
+  /// **'Convites'**
+  String get admNavConvites;
+
+  /// No description provided for @admCvTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Convida um amigo'**
+  String get admCvTitulo;
+
+  /// No description provided for @admCvSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quem convidou quem, os prêmios dados (30 dias do plano pago para cada um, automático quando o convidado registra o 1.º recibo ou prazo) e os melhores convidadores. Regras: 1 prêmio por pessoa convidada (email confirmado, conta nova), no máximo 12 meses por convidador.'**
+  String get admCvSub;
+
+  /// No description provided for @admCvTop.
+  ///
+  /// In pt, this message translates to:
+  /// **'Melhores convidadores'**
+  String get admCvTop;
+
+  /// No description provided for @admCvTabela.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} convites'**
+  String admCvTabela(int n);
+
+  /// No description provided for @admCvCardConvites.
+  ///
+  /// In pt, this message translates to:
+  /// **'Convites'**
+  String get admCvCardConvites;
+
+  /// No description provided for @admCvCardPremiados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Premiados'**
+  String get admCvCardPremiados;
+
+  /// No description provided for @admCvCardPendentes.
+  ///
+  /// In pt, this message translates to:
+  /// **'À espera (ainda não usaram)'**
+  String get admCvCardPendentes;
+
+  /// No description provided for @admCvColQuando.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando'**
+  String get admCvColQuando;
+
+  /// No description provided for @admCvColConvidador.
+  ///
+  /// In pt, this message translates to:
+  /// **'Convidador'**
+  String get admCvColConvidador;
+
+  /// No description provided for @admCvColConvidado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Convidado'**
+  String get admCvColConvidado;
+
+  /// No description provided for @admCvColCodigo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Código'**
+  String get admCvColCodigo;
+
+  /// No description provided for @admCvColConvidados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Convidados'**
+  String get admCvColConvidados;
+
+  /// No description provided for @admCvColPremiados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Premiados'**
+  String get admCvColPremiados;
+
+  /// No description provided for @admCvColMeses.
+  ///
+  /// In pt, this message translates to:
+  /// **'Meses ganhos'**
+  String get admCvColMeses;
+
+  /// No description provided for @admCvColEstado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estado'**
+  String get admCvColEstado;
+
+  /// No description provided for @admCvColPremio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Prêmio'**
+  String get admCvColPremio;
+
+  /// No description provided for @admCvColMotivo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Motivo'**
+  String get admCvColMotivo;
+
+  /// No description provided for @admCvEstPremiado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Premiado'**
+  String get admCvEstPremiado;
+
+  /// No description provided for @admCvEstPendente.
+  ///
+  /// In pt, this message translates to:
+  /// **'À espera'**
+  String get admCvEstPendente;
+
+  /// No description provided for @admCvEstAnulado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Anulado'**
+  String get admCvEstAnulado;
+
+  /// No description provided for @admCvPremioAmbos.
+  ///
+  /// In pt, this message translates to:
+  /// **'os dois (30 dias cada)'**
+  String get admCvPremioAmbos;
+
+  /// No description provided for @admCvPremioSoConvidado.
+  ///
+  /// In pt, this message translates to:
+  /// **'só o convidado (convidador no máximo)'**
+  String get admCvPremioSoConvidado;
+
+  /// No description provided for @admCvNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'O prêmio é dado pelo servidor (trial_ate + 30 dias). Ninguém escreve aqui à mão; para anular um convite abusivo, usa o SQL com auditoria.'**
+  String get admCvNota;
 
   /// No description provided for @admRdTitulo.
   ///

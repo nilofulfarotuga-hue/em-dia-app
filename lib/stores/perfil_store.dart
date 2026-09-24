@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import '../models/perfil.dart';
 import '../services/arranque.dart';
+import '../services/convites.dart';
 import '../services/uso.dart';
 
 /// O perfil do utilizador autenticado.
@@ -46,6 +47,8 @@ class PerfilStore extends ChangeNotifier {
     // último acesso (para a mensagem de reativação aos 7 dias)
     await sb.from('profiles').update({'ultimo_acesso': DateTime.now().toUtc().toIso8601String()}).eq('user_id', userId);
     unawaited(Uso.registar(EventoUso.abriuApp, perfil: _perfil));
+    // convida um amigo: se veio com ?c=CODIGO, liga-se agora ao convidador (uma vez)
+    unawaited(Convites.aplicarPendente());
   }
 
   Future<bool> guardar(Perfil novo) async {

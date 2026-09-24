@@ -9,6 +9,7 @@ import '../stores/sessao_store.dart';
 import 'admin_dados.dart';
 import 'secoes/assinaturas.dart';
 import 'secoes/auditoria.dart';
+import 'secoes/convites.dart';
 import 'secoes/avisos.dart';
 import 'secoes/erros.dart';
 import 'secoes/funil.dart';
@@ -124,6 +125,7 @@ class AdminMoldura extends StatelessWidget {
               NavigationRailDestination(icon: const Icon(Icons.smart_toy_rounded), label: Text(l.admNavIa)),
               NavigationRailDestination(icon: const Icon(Icons.campaign_rounded), label: Text(l.admNavAvisos)),
               NavigationRailDestination(icon: const Icon(Icons.share_rounded), label: Text(l.admNavRedes)),
+              NavigationRailDestination(icon: const Icon(Icons.card_giftcard_rounded), label: Text(l.admNavConvites)),
               NavigationRailDestination(icon: const Icon(Icons.history_rounded), label: Text(l.admNavAuditoria)),
             ],
             trailing: Expanded(
@@ -165,6 +167,7 @@ class AdminSeccao extends StatelessWidget {
       7 => IaSeccao(dados: dados),
       8 => AvisosSeccao(dados: dados),
       9 => RedesSeccao(dados: dados),
+      10 => ConvitesSeccao(dados: dados),
       _ => AuditoriaSeccao(dados: dados),
     };
   }

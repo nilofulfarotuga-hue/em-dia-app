@@ -18,6 +18,7 @@ import '../reforma/reforma_screen.dart';
 import '../suporte/suporte_screen.dart';
 import '../vale_a_pena/vale_a_pena_screen.dart';
 import 'definicoes_screen.dart';
+import 'convida_screen.dart';
 
 /// Mais — a grelha 2×N de acessos rápidos (estrutura do MaisMei).
 ///
@@ -46,6 +47,7 @@ class MaisScreen extends StatelessWidget {
       _Acesso('radar', Icons.link_off_rounded, l.radarAtalho, l.maisSubRadar, (_) => const RadarScreen()),
       _Acesso('reforma', Icons.savings_rounded, l.maisReforma, l.maisSubReforma, (_) => const ReformaScreen()),
       _Acesso('guias', Icons.menu_book_rounded, l.maisGuias, l.maisSubGuias, (_) => const GuiasScreen()),
+      _Acesso('convida', Icons.card_giftcard_rounded, l.maisConvida, l.maisSubConvida, (_) => const ConvidaScreen()),
       _Acesso(
         'ia',
         Icons.chat_bubble_rounded,
