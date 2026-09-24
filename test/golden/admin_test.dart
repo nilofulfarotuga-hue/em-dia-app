@@ -317,9 +317,18 @@ void main() {
     expect(find.text('Avisos em massa'), findsOneWidget);
   });
 
+  // A auditoria era a secção 9; com «Redes» (9) e «Convites» (10) passou a ser a 11.
   testWidgets('admin_auditoria: log com filtros', (tester) async {
-    await fotografaDesktop(tester, nome: 'admin_auditoria', tela: () => moldura(9));
+    await fotografaDesktop(tester, nome: 'admin_auditoria', tela: () => moldura(11));
     expect(find.text('usuario_banir'), findsOneWidget);
+  });
+
+  testWidgets('admin_redes: o que o robo das redes publicou', (tester) async {
+    await fotografaDesktop(tester, nome: 'admin_redes', tela: () => moldura(9));
+  });
+
+  testWidgets('admin_convites: quem convidou quem', (tester) async {
+    await fotografaDesktop(tester, nome: 'admin_convites', tela: () => moldura(10));
   });
 
   testWidgets('admin_assinaturas: tabela com filtro por estado e contagens (B7)', (tester) async {

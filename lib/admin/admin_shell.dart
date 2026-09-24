@@ -86,8 +86,14 @@ class _AdminShellState extends State<AdminShell> {
   }
 }
 
-/// A moldura do painel: NavigationRail com as 10 secções + a secção ativa.
+/// A moldura do painel: NavigationRail com as 12 secções + a secção ativa.
 /// Separada do shell para ser fotografável sem sessão (golden).
+///
+/// A barra da esquerda DESLIZA (2026-09-24). Com 10 secções cabia a 1280×800; ao entrar
+/// «Redes» e «Convites» passou a transbordar 56 píxeis e os 20 testes do painel falhavam
+/// pela regra «estouro = falha» — e num ecrã baixo o Danilo deixava de ver a última secção.
+/// A receita é a do Flutter: SingleChildScrollView + altura mínima igual à do ecrã, para o
+/// `trailing: Expanded` (o botão de sair, colado em baixo) continuar a ter altura definida.
 class AdminMoldura extends StatelessWidget {
   final AdminDados dados;
   final int seccao;
@@ -101,45 +107,78 @@ class AdminMoldura extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          NavigationRail(
-            selectedIndex: seccao,
-            onDestinationSelected: aoEscolher,
-            labelType: NavigationRailLabelType.all,
-            backgroundColor: AppColors.surface,
-            indicatorColor: AppColors.primaryLight,
-            selectedIconTheme: const IconThemeData(color: AppColors.primaryDark),
-            selectedLabelTextStyle: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColors.primaryDark),
-            unselectedLabelTextStyle: Theme.of(context).textTheme.labelSmall,
-            leading: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 12),
-              child: Icon(Icons.check_circle_rounded, color: AppColors.emDia, size: 36),
-            ),
-            destinations: [
-              NavigationRailDestination(icon: const Icon(Icons.dashboard_rounded), label: Text(l.admNavVisaoGeral)),
-              NavigationRailDestination(icon: const Icon(Icons.people_rounded), label: Text(l.admNavUsuarios)),
-              NavigationRailDestination(icon: const Icon(Icons.card_membership_rounded), label: Text(l.admNavAssinaturas)),
-              NavigationRailDestination(icon: const Icon(Icons.stacked_bar_chart_rounded), label: Text(l.admNavFunil)),
-              NavigationRailDestination(icon: const Icon(Icons.gavel_rounded), label: Text(l.admNavRegras)),
-              NavigationRailDestination(icon: const Icon(Icons.support_agent_rounded), label: Text(l.admNavTickets)),
-              NavigationRailDestination(icon: const Icon(Icons.report_problem_rounded), label: Text(l.admNavErros)),
-              NavigationRailDestination(icon: const Icon(Icons.smart_toy_rounded), label: Text(l.admNavIa)),
-              NavigationRailDestination(icon: const Icon(Icons.campaign_rounded), label: Text(l.admNavAvisos)),
-              NavigationRailDestination(icon: const Icon(Icons.share_rounded), label: Text(l.admNavRedes)),
-              NavigationRailDestination(icon: const Icon(Icons.card_giftcard_rounded), label: Text(l.admNavConvites)),
-              NavigationRailDestination(icon: const Icon(Icons.history_rounded), label: Text(l.admNavAuditoria)),
-            ],
-            trailing: Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: IconButton(onPressed: aoSair, icon: const Icon(Icons.logout_rounded), tooltip: l.sair),
+          LayoutBuilder(
+            builder: (context, limites) => SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: limites.maxHeight),
+                child: IntrinsicHeight(
+                  child: NavigationRail(
+                    selectedIndex: seccao,
+                    onDestinationSelected: aoEscolher,
+                    labelType: NavigationRailLabelType.all,
+                    backgroundColor: AppColors.surface,
+                    indicatorColor: AppColors.primaryLight,
+                    selectedIconTheme: const IconThemeData(color: AppColors.primaryDark),
+                    selectedLabelTextStyle: Theme.of(context).textTheme.labelSmall!
+                        .copyWith(color: AppColors.primaryDark),
+                    unselectedLabelTextStyle: Theme.of(context).textTheme.labelSmall,
+                    leading: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Icon(Icons.check_circle_rounded, color: AppColors.emDia, size: 36),
+                    ),
+                    destinations: [
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.dashboard_rounded),
+                        label: Text(l.admNavVisaoGeral),
+                      ),
+                      NavigationRailDestination(icon: const Icon(Icons.people_rounded), label: Text(l.admNavUsuarios)),
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.card_membership_rounded),
+                        label: Text(l.admNavAssinaturas),
+                      ),
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.stacked_bar_chart_rounded),
+                        label: Text(l.admNavFunil),
+                      ),
+                      NavigationRailDestination(icon: const Icon(Icons.gavel_rounded), label: Text(l.admNavRegras)),
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.support_agent_rounded),
+                        label: Text(l.admNavTickets),
+                      ),
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.report_problem_rounded),
+                        label: Text(l.admNavErros),
+                      ),
+                      NavigationRailDestination(icon: const Icon(Icons.smart_toy_rounded), label: Text(l.admNavIa)),
+                      NavigationRailDestination(icon: const Icon(Icons.campaign_rounded), label: Text(l.admNavAvisos)),
+                      NavigationRailDestination(icon: const Icon(Icons.share_rounded), label: Text(l.admNavRedes)),
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.card_giftcard_rounded),
+                        label: Text(l.admNavConvites),
+                      ),
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.history_rounded),
+                        label: Text(l.admNavAuditoria),
+                      ),
+                    ],
+                    trailing: Expanded(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: IconButton(onPressed: aoSair, icon: const Icon(Icons.logout_rounded), tooltip: l.sair),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
           const VerticalDivider(width: 1),
-          Expanded(child: AdminSeccao(indice: seccao, dados: dados)),
+          Expanded(
+            child: AdminSeccao(indice: seccao, dados: dados),
+          ),
         ],
       ),
     );
@@ -154,8 +193,9 @@ class AdminSeccao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Ordem do menu (B7a): visão geral, usuários, assinaturas, funil, regras,
-    // tickets, erros de leitura, IA, avisos, auditoria.
+    // Ordem do menu: visão geral, usuários, assinaturas, funil, regras, tickets,
+    // erros de leitura, IA, avisos, redes, convites, auditoria. Quem acrescentar uma
+    // secção no meio mexe nos índices — os testes do painel fotografam por número.
     return switch (indice) {
       0 => VisaoGeralSeccao(dados: dados),
       1 => UsuariosSeccao(dados: dados),
