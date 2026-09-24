@@ -188,11 +188,22 @@ def publicadas_hoje(reg, rede):
             and str(v.get("publicada_em", "")).startswith(hoje)]
 
 
+def chumbou_fiscal(reg, pid):
+    """True se o fiscal já deu nota abaixo do mínimo a esta peça (não se volta a tentar)."""
+    for r in ("instagram", "facebook"):
+        n = reg.get("%s|%s" % (pid, r), {}).get("nota_fiscal")
+        if n is not None and n < NOTA_MINIMA:
+            return True
+    return False
+
+
 def por_publicar(reg):
-    """Peças do calendário ainda sem publicação em nenhuma rede, por ordem."""
+    """Peças do calendário ainda sem publicação em nenhuma rede e não chumbadas no fiscal, por ordem."""
     out = []
     for p in calendario():
         if any(reg.get("%s|%s" % (p["id"], r), {}).get("estado") == "publicada" for r in ("instagram", "facebook")):
+            continue
+        if chumbou_fiscal(reg, p["id"]):
             continue
         if all(os.path.exists(f) for f in ficheiros(p)):
             out.append(p)
@@ -373,7 +384,13 @@ def modo_hoje():
     if not fila:
         avisar("sem pecas prontas para publicar hoje (fila vazia)")
         return
-    publicar_peca(fila[0], reg)
+    # vídeo chumbado no fiscal → passa à peça seguinte; falha da Meta/rede → pára (não publica outra)
+    for p in fila:
+        if publicar_peca(p, reg):
+            return
+        if not chumbou_fiscal(reg, p["id"]):
+            return
+    avisar("nenhuma peca passou hoje (todas chumbadas no fiscal)")
 
 
 def modo_stock():
