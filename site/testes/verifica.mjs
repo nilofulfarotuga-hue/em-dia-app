@@ -50,6 +50,12 @@ ok(play.length === 0 || classePlay === classesWeb[0], 'se houver botão da Play,
 const compras = html.match(/<a [^>]*data-compra[^>]*>/g) || [];
 ok(compras.length === 0 || compras.every((a) => / hidden[ >]/.test(a)), 'nenhum botão de compra visível por omissão (data-compra nasce hidden)', `${compras.length} marcados, ${compras.filter((a) => / hidden[ >]/.test(a)).length} escondidos`);
 
+// 2c. Interruptor da App Store: o botão nasce escondido e só o regras_legais.ios_na_app_store = 'sim' o mostra
+const appstore = html.match(/<a [^>]*data-appstore[^>]*>/g) || [];
+ok(/id="iphone"/.test(html) && /Também no iPhone — grátis por agora/.test(html), 'secção «Também no iPhone — grátis por agora»');
+ok(appstore.length >= 1 && appstore.every((a) => / hidden[ >]/.test(a) && /apps\.apple\.com\/pt\/app\/id6814807320/.test(a)), 'botão da App Store (id6814807320) nasce hidden', `${appstore.length} botões`);
+ok(/ios_na_app_store/.test(html), 'o botão da App Store obedece a regras_legais.ios_na_app_store');
+
 // 3. Vídeo de herói
 const video = (html.match(/<video[^>]*>/) || [])[0] || '';
 ok(video !== '', 'existe <video> no herói');

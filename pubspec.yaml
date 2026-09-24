@@ -4,7 +4,7 @@ publish_to: 'none'
 
 # O número depois do "+" (versionCode) é incrementado SÓ pelo CI (build_android.yml).
 # NUNCA mexer à mão — regra herdada do Bora.
-version: 1.0.0+43
+version: 1.0.0+44
 
 environment:
   sdk: ^3.13.0
@@ -83,6 +83,8 @@ dependency_overrides:
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_driver: # capturas da App Store: test_driver/capturas_driver.dart
     sdk: flutter
   integration_test: # B8: integration_test/todos_os_ecras_test.dart (VM e AVD emdia)
     sdk: flutter
