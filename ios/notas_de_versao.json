@@ -1,0 +1,8 @@
+{
+  "_leia": "Textos do «O que há de novo» da App Store, usados pelo .github/scripts/ios_publicar.py em cada envio. A chave é o código do idioma da ficha (hoje só pt-PT). 'padrao' é a rede: 'pt' serve qualquer pt-*, 'en' os outros. {versao} é trocado pelo número da versão. App = PT-PT, tratamento por tu, máximo 4000 caracteres.",
+
+  "padrao": {
+    "pt": "Versão {versao}: melhorias de estabilidade e correções em toda a app.\n\nO Em Dia junta num só sítio os teus recibos verdes, os prazos da Segurança Social, do IVA e do IRS, e os lembretes do carro. Por agora está tudo aberto e não se paga nada.\n\nSe alguma coisa não estiver bem, fala connosco pela Ajuda dentro da app.",
+    "en": "Version {versao}: stability improvements and fixes across the app.\n\nEm Dia keeps your green receipts, Social Security, VAT and income tax deadlines, and car reminders in one place. For now everything is open and free.\n\nIf something is not right, reach us through Help inside the app."
+  }
+}

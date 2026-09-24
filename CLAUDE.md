@@ -13,6 +13,7 @@ serviços, freelancers, imigrantes brasileiros). Clone melhorado do MEI Fácil/M
 | Repo | `nilofulfarotuga-hue/em-dia-app`, branch `main` (push = CI: Android internal+alpha, web app + admin) |
 | Supabase | `tgdmgtmknbwhcqoxtjbs` (em-dia, eu-west-3). NUNCA tocar no do Bora (`ojykpzwqrtusfeakzrna`). |
 | Package Android | `pt.emdia.app` |
+| iOS | bundle `com.boraguarda.emdia` (a Apple recusou `pt.emdia.app`) · App Store Connect apple_id `6814807320`, SKU `emdia-ios-001`, nome «Em Dia: Recibos e Impostos», idioma PT-PT. O Android continua `pt.emdia.app`. |
 | Web | `app.emdia.boraguarda.com` (a app; caminho do iPhone/computador) · `admin.emdia.boraguarda.com` (painel) · `emdia.boraguarda.com` (site). Subdomínios de `boraguarda.com` — decisão do Danilo a 2026-09-07: sem domínio próprio. Os `*.pages.dev` continuam a existir (são os projetos Pages) e redirecionam para estes. Remetente de e-mail: `emdia@boraguarda.com`. |
 | Google Cloud / Gemini | projeto `em-dia` (em-dia-507723); chave em `C:\BoraLocal\_segredos\em-dia\gemini.env` e no Vault (`gemini_api_key`); modelo `gemini-flash-latest` |
 | Segredos locais | `C:\BoraLocal\_segredos\em-dia\` (keystore, teste.env, gemini.env) — intocável, nunca no repo |

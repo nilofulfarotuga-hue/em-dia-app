@@ -27,11 +27,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Usamos a camara para tirares foto a uma fatura ou comprovativo que queres guardar.</string>
+	<string>Usamos a câmara para tirares foto a uma fatura ou comprovativo que queres guardar.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Usamos o Face ID se escolheres proteger a tua sessao neste iPhone.</string>
+	<string>Usamos o Face ID se escolheres proteger a tua sessão neste iPhone.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Usamos a tua localizacao enquanto tens a app aberta para mostrar postos e centros de inspecao perto de ti.</string>
+	<string>Usamos a tua localização enquanto tens a app aberta para mostrar postos e centros de inspeção perto de ti.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Usamos o microfone quando tocas em falar para ditar uma pergunta ao Em Dia.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
