@@ -24,4 +24,5 @@ flutter: conversas_ia: 'package:supabase_flutter/src/supabase.dart': Failed asse
 
 - Tamanhos exatamente os da tabela da Apple (6,9" = 1320×2868; 6,5" = 1284×2778).
 - O erro `NSPOSIXErrorDomain code=1 … Failed to set access` é o `simctl privacy grant notifications` (tem `|| true`, não afeta nada).
-- **A conferir antes de carregar:** na corrida do 6,5", ao abrir «Pergunta o que quiseres» (`06-assistente`) no modo exemplo, a app tentou ler o histórico de conversas no Supabase (não inicializado no teste). O teste passou e a foto foi tirada; ver se o ecrã mostra algum aviso de erro. Reportado como fora-de-scope (o modo exemplo não devia chamar o Supabase no assistente).
+- **Conferido no código (24/09):** `lib/stores/ia_store.dart:120` — a falha a ler o histórico só faz `debugPrint` e **não** mexe em `_erro`, por isso o ecrã não mostra aviso nenhum: a `06-assistente` mostra o assistente vazio, pronto a perguntar. Pode usar-se.
+- Contexto original: na corrida do 6,5", ao abrir «Pergunta o que quiseres» (`06-assistente`) no modo exemplo, a app tentou ler o histórico de conversas no Supabase (não inicializado no teste). O teste passou e a foto foi tirada; ver se o ecrã mostra algum aviso de erro. Reportado como fora-de-scope (o modo exemplo não devia chamar o Supabase no assistente).

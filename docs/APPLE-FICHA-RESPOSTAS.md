@@ -74,7 +74,7 @@ O log do passo imprime a largura e a altura de cada PNG (`sips`) — conferir an
 
 A faixa laranja do modo exemplo aparece nas capturas — é de propósito: mostra que os dados são de exemplo (a Maria) e não de uma pessoa real (diretriz 2.3.3).
 
-Estado: **geradas** — corrida https://github.com/nilofulfarotuga-hue/em-dia-app/actions/runs/35891779298, artefacto `ios-capturas-2`: 6,9" = 1320×2868 (iPhone 17 Pro Max, iOS 26.5) e 6,5" = 1284×2778 (iPhone 14 Plus), 6 de cada. Conferir a `06-assistente` antes de carregar (ver `provas/em-dia-ios-2026-09-22/b3-capturas-ci.md`).
+Estado: **geradas** — corrida https://github.com/nilofulfarotuga-hue/em-dia-app/actions/runs/35891779298, artefacto `ios-capturas-2`: 6,9" = 1320×2868 (iPhone 17 Pro Max, iOS 26.5) e 6,5" = 1284×2778 (iPhone 14 Plus), 6 de cada. A `06-assistente` foi conferida no código: não mostra erro (ver `provas/em-dia-ios-2026-09-22/b3-capturas-ci.md`). Prontas a carregar.
 
 ## Privacidade da app (App Privacy)
 
