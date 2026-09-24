@@ -200,12 +200,12 @@ code{background:#F3F4F6;padding:2px 6px;border-radius:6px;font-size:15px}
 
 
 def pagina(f):
-    url = "%s/ferramentas/%s.html" % (DOM, f["slug"])
+    url = "%s/ferramentas/%s" % (DOM, f["slug"])
     og = "%s/assets/img/og-%s.jpg" % (DOM, f["slug"])
     faq_json = ",".join(
         '{"@type":"Question","name":%s,"acceptedAnswer":{"@type":"Answer","text":%s}}' % (j(q), j(a)) for q, a in f["faq"])
     faq_html = "".join('<details><summary>%s</summary><div class="resposta">%s</div></details>' % (q, a) for q, a in f["faq"])
-    outras = "".join('<a href="/ferramentas/%s.html">%s →</a>' % (o["slug"], o["titulo"]) for o in FERRAMENTAS if o["slug"] != f["slug"])
+    outras = "".join('<a href="/ferramentas/%s">%s →</a>' % (o["slug"], o["titulo"]) for o in FERRAMENTAS if o["slug"] != f["slug"])
     txt_partilha = "%s Vê aqui, é grátis e sem registo: %s" % (f["titulo"], url)
     return """<!DOCTYPE html>
 <html lang="pt-PT">
@@ -324,7 +324,7 @@ def main():
         print("ferramenta", f["slug"])
     # índice das ferramentas
     with open(os.path.join(FER, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-        lista = "".join('<a href="/ferramentas/%s.html">%s →</a>' % (f["slug"], f["titulo"]) for f in FERRAMENTAS)
+        lista = "".join('<a href="/ferramentas/%s">%s →</a>' % (f["slug"], f["titulo"]) for f in FERRAMENTAS)
         fh.write("""<!DOCTYPE html><html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ferramentas grátis para recibos verdes: recibo, IRS e Segurança Social — Em Dia</title>
 <meta name="description" content="Três contas rápidas, grátis e sem registo, para quem trabalha a recibos verdes em Portugal: quanto fica do recibo, quanto guardar para o IRS e quanto pagar à Segurança Social.">
