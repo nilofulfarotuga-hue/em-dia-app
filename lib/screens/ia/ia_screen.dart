@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_theme.dart';
+import '../../exemplo/stores_exemplo.dart' show SessaoExemplo;
 import '../../l10n/app_localizations.dart';
 import '../../models/mensagem_ia.dart';
 import '../../stores/ia_store.dart';
@@ -53,8 +54,10 @@ class _IaScreenState extends State<IaScreen> {
     _store.addListener(_aoMudar);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      final userId = context.read<SessaoStore>().userId;
-      if (_minha && userId != null) _store.carregarHistorico(userId);
+      final sessao = context.read<SessaoStore>();
+      final userId = sessao.userId;
+      // No modo exemplo não há conta a sério: o histórico não se vai buscar ao servidor.
+      if (_minha && userId != null && sessao is! SessaoExemplo) _store.carregarHistorico(userId);
       _irParaOFim(animado: false);
     });
   }
