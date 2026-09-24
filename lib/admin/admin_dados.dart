@@ -468,6 +468,25 @@ class AdminDados {
     return _linhas(await sb.rpc('admin_funil', params: {'p_semanas': semanas}));
   }
 
+  // ---------------------------------------------------------------- redes do Em Dia
+  /// O que o robô das redes publicou / agendou / falhou (RPC admin_redes, só admin).
+  Future<List<Linha>> redes({int limite = 200}) async {
+    if (emTeste) {
+      _falhaSePedido();
+      return const [];
+    }
+    return _linhas(await sb.rpc('admin_redes', params: {'p_limite': limite}));
+  }
+
+  Future<Linha?> redesResumo() async {
+    if (emTeste) {
+      _falhaSePedido();
+      return const {'publicadas_7d': 0, 'agendadas': 0, 'falhadas_7d': 0};
+    }
+    final r = await sb.rpc('admin_redes_resumo');
+    return r == null ? null : Map<String, dynamic>.from(r as Map);
+  }
+
   String funilCsv(List<Linha> lista) {
     const c = ['semana', 'contas_criadas', 'onboarding_concluido', 'abriram', 'em_trial', 'pagam', 'eventos_consentidos', 'consentiram'];
     return const ListToCsvConverter(fieldDelimiter: ';').convert([c, for (final f in lista) [for (final k in c) f[k] ?? '']]);

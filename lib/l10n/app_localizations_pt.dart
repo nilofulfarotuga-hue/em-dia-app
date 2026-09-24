@@ -3399,6 +3399,76 @@ class AppLocalizationsPt extends AppLocalizations {
       'Esta conta é admin: tira-a de public.admins antes de apagar.';
 
   @override
+  String get admNavRedes => 'Redes Em Dia';
+
+  @override
+  String get admRdTitulo => 'Redes Em Dia';
+
+  @override
+  String get admRdSub =>
+      'Instagram @em_dia_app e Facebook «Em Dia: Recibos e Impostos», separado do Bora. O robô da VPS publica uma peça por dia (só depois do fiscal de vídeo dar 90 ou mais) e regista aqui o que saiu, o que está agendado e o que falhou.';
+
+  @override
+  String get admRdPub7 => 'Publicadas (7 dias)';
+
+  @override
+  String get admRdAgend => 'Agendadas';
+
+  @override
+  String get admRdFalh7 => 'Falhadas (7 dias)';
+
+  @override
+  String get admRdTodas => 'Todas';
+
+  @override
+  String admRdTabela(int n) {
+    return '$n publicações';
+  }
+
+  @override
+  String get admRdColQuando => 'Quando';
+
+  @override
+  String get admRdColPeca => 'Peça';
+
+  @override
+  String get admRdColFormato => 'Formato';
+
+  @override
+  String get admRdColRede => 'Rede';
+
+  @override
+  String get admRdColEstado => 'Estado';
+
+  @override
+  String get admRdColFiscal => 'Fiscal';
+
+  @override
+  String get admRdColLink => 'Link';
+
+  @override
+  String get admRdColErro => 'Erro';
+
+  @override
+  String get admRdEstPublicada => 'Publicada';
+
+  @override
+  String get admRdEstAgendada => 'Agendada';
+
+  @override
+  String get admRdEstFalhou => 'Falhou';
+
+  @override
+  String get admRdEstSaltada => 'Saltada';
+
+  @override
+  String get admRdVazio => 'Ainda não há publicações registadas.';
+
+  @override
+  String get admRdNota =>
+      'Fiscal = nota do fiscal de vídeo (0-100; só vídeos). Uma peça só sai com 90 ou mais; abaixo disso fica «Falhou» e o Danilo recebe aviso no Telegram. O robô também avisa quando ficam menos de 7 dias de peças prontas.';
+
+  @override
   String get admNavFunil => 'Funil';
 
   @override
@@ -9832,6 +9902,76 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get admUsApagarEhAdmin =>
       'Esta conta é admin: tire-a de public.admins antes de apagar.';
+
+  @override
+  String get admNavRedes => 'Redes Em Dia';
+
+  @override
+  String get admRdTitulo => 'Redes Em Dia';
+
+  @override
+  String get admRdSub =>
+      'Instagram @em_dia_app e Facebook «Em Dia: Recibos e Impostos», separado do Bora. O robô da VPS publica uma peça por dia (só depois do fiscal de vídeo dar 90 ou mais) e registra aqui o que saiu, o que está agendado e o que falhou.';
+
+  @override
+  String get admRdPub7 => 'Publicadas (7 dias)';
+
+  @override
+  String get admRdAgend => 'Agendadas';
+
+  @override
+  String get admRdFalh7 => 'Falhadas (7 dias)';
+
+  @override
+  String get admRdTodas => 'Todas';
+
+  @override
+  String admRdTabela(int n) {
+    return '$n publicações';
+  }
+
+  @override
+  String get admRdColQuando => 'Quando';
+
+  @override
+  String get admRdColPeca => 'Peça';
+
+  @override
+  String get admRdColFormato => 'Formato';
+
+  @override
+  String get admRdColRede => 'Rede';
+
+  @override
+  String get admRdColEstado => 'Estado';
+
+  @override
+  String get admRdColFiscal => 'Fiscal';
+
+  @override
+  String get admRdColLink => 'Link';
+
+  @override
+  String get admRdColErro => 'Erro';
+
+  @override
+  String get admRdEstPublicada => 'Publicada';
+
+  @override
+  String get admRdEstAgendada => 'Agendada';
+
+  @override
+  String get admRdEstFalhou => 'Falhou';
+
+  @override
+  String get admRdEstSaltada => 'Pulada';
+
+  @override
+  String get admRdVazio => 'Ainda não há publicações registradas.';
+
+  @override
+  String get admRdNota =>
+      'Fiscal = nota do fiscal de vídeo (0-100; só vídeos). Uma peça só sai com 90 ou mais; abaixo disso fica «Falhou» e o Danilo recebe aviso no Telegram. O robô também avisa quando ficam menos de 7 dias de peças prontas.';
 
   @override
   String get admNavFunil => 'Funil';

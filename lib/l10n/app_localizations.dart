@@ -5832,6 +5832,138 @@ abstract class AppLocalizations {
   /// **'Esta conta é admin: tira-a de public.admins antes de apagar.'**
   String get admUsApagarEhAdmin;
 
+  /// No description provided for @admNavRedes.
+  ///
+  /// In pt, this message translates to:
+  /// **'Redes Em Dia'**
+  String get admNavRedes;
+
+  /// No description provided for @admRdTitulo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Redes Em Dia'**
+  String get admRdTitulo;
+
+  /// No description provided for @admRdSub.
+  ///
+  /// In pt, this message translates to:
+  /// **'Instagram @em_dia_app e Facebook «Em Dia: Recibos e Impostos», separado do Bora. O robô da VPS publica uma peça por dia (só depois do fiscal de vídeo dar 90 ou mais) e regista aqui o que saiu, o que está agendado e o que falhou.'**
+  String get admRdSub;
+
+  /// No description provided for @admRdPub7.
+  ///
+  /// In pt, this message translates to:
+  /// **'Publicadas (7 dias)'**
+  String get admRdPub7;
+
+  /// No description provided for @admRdAgend.
+  ///
+  /// In pt, this message translates to:
+  /// **'Agendadas'**
+  String get admRdAgend;
+
+  /// No description provided for @admRdFalh7.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falhadas (7 dias)'**
+  String get admRdFalh7;
+
+  /// No description provided for @admRdTodas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Todas'**
+  String get admRdTodas;
+
+  /// No description provided for @admRdTabela.
+  ///
+  /// In pt, this message translates to:
+  /// **'{n} publicações'**
+  String admRdTabela(int n);
+
+  /// No description provided for @admRdColQuando.
+  ///
+  /// In pt, this message translates to:
+  /// **'Quando'**
+  String get admRdColQuando;
+
+  /// No description provided for @admRdColPeca.
+  ///
+  /// In pt, this message translates to:
+  /// **'Peça'**
+  String get admRdColPeca;
+
+  /// No description provided for @admRdColFormato.
+  ///
+  /// In pt, this message translates to:
+  /// **'Formato'**
+  String get admRdColFormato;
+
+  /// No description provided for @admRdColRede.
+  ///
+  /// In pt, this message translates to:
+  /// **'Rede'**
+  String get admRdColRede;
+
+  /// No description provided for @admRdColEstado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Estado'**
+  String get admRdColEstado;
+
+  /// No description provided for @admRdColFiscal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fiscal'**
+  String get admRdColFiscal;
+
+  /// No description provided for @admRdColLink.
+  ///
+  /// In pt, this message translates to:
+  /// **'Link'**
+  String get admRdColLink;
+
+  /// No description provided for @admRdColErro.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro'**
+  String get admRdColErro;
+
+  /// No description provided for @admRdEstPublicada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Publicada'**
+  String get admRdEstPublicada;
+
+  /// No description provided for @admRdEstAgendada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Agendada'**
+  String get admRdEstAgendada;
+
+  /// No description provided for @admRdEstFalhou.
+  ///
+  /// In pt, this message translates to:
+  /// **'Falhou'**
+  String get admRdEstFalhou;
+
+  /// No description provided for @admRdEstSaltada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Saltada'**
+  String get admRdEstSaltada;
+
+  /// No description provided for @admRdVazio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não há publicações registadas.'**
+  String get admRdVazio;
+
+  /// No description provided for @admRdNota.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fiscal = nota do fiscal de vídeo (0-100; só vídeos). Uma peça só sai com 90 ou mais; abaixo disso fica «Falhou» e o Danilo recebe aviso no Telegram. O robô também avisa quando ficam menos de 7 dias de peças prontas.'**
+  String get admRdNota;
+
   /// No description provided for @admNavFunil.
   ///
   /// In pt, this message translates to:
