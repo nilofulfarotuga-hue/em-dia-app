@@ -1,0 +1,1097 @@
+[
+ {
+  "id": "S01",
+  "data": "2026-09-28",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Somos o Em Dia.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S01.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R01",
+  "data": "2026-09-28",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes",
+  "gancho": "Trabalhas a recibos verdes? Estás em dia?",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Trabalhas a recibos verdes e nunca sabes se estás em dia? O Em Dia diz-te o que fazer agora, quanto guardar e que prazo vem a seguir. Em português simples.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R01.mp4"
+  ],
+  "capa": "pecas/reels/R01-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S02",
+  "data": "2026-09-29",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16 — pôr o autocolante Sondagem: «Sei» / «Nem ideia» no espaço do meio",
+  "publico": "Todos",
+  "gancho": "Sabes quanto guardar para a Segurança Social?",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S02.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C01",
+  "data": "2026-09-29",
+  "hora": "13:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (8 lâminas)",
+  "publico": "Recibos verdes",
+  "gancho": "Recibos verdes explicados como se tivesses 5 anos",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Recibos verdes explicados como se tivesses 5 anos 👇\n\nPassas um recibo. Nem tudo é teu: parte vai para a Segurança Social, parte para o IRS e, às vezes, parte para o IVA.\n\nGuarda este post para quando tiveres dúvidas. E manda a quem acabou de abrir atividade.\n\n📚 Fonte: Código Contributivo (art. 155.º, 162.º, 168.º); Código do IRS (art. 101.º); Código do IVA (art. 53.º).\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C01/01.png",
+   "pecas/carrosseis/C01/02.png",
+   "pecas/carrosseis/C01/03.png",
+   "pecas/carrosseis/C01/04.png",
+   "pecas/carrosseis/C01/05.png",
+   "pecas/carrosseis/C01/06.png",
+   "pecas/carrosseis/C01/07.png",
+   "pecas/carrosseis/C01/08.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "S03",
+  "data": "2026-09-30",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Se o teu cliente é uma empresa, pode reter 23 % do recibo.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S03.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R02",
+  "data": "2026-09-30",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes",
+  "gancho": "Ganhas 1.200 € por mês a recibos verdes?",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Ganhas 1.200 € por mês a recibos verdes (serviços)? A Segurança Social é 21,4 % sobre 70 % do que ganhas: 179,76 € por mês. Paga-se entre o dia 10 e o dia 20.\n\n📚 Fonte: Código Contributivo (Lei 110/2009), art. 162.º e 168.º — seg-social.pt\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R02.mp4"
+  ],
+  "capa": "pecas/reels/R02-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S04",
+  "data": "2026-10-01",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Outubro: 2 prazos da Segurança Social.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S04.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C02",
+  "data": "2026-10-01",
+  "hora": "14:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (7 lâminas)",
+  "publico": "Recibos verdes + pequenos empresários",
+  "gancho": "Outubro: os prazos que não podes falhar",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Outubro começou. Estes são os prazos do mês 📅\n\n• 6/10 — comunicação das faturas de setembro (quem usa programa de faturação)\n• 12/10 — DMR, para quem tem trabalhadores\n• 10 a 20/10 — pagar a Segurança Social\n• 31/10 — declaração trimestral da Segurança Social (calha a um sábado: trata até sexta, 30)\n\nGuarda para não te esqueceres.\n\n📚 Fonte: AT, agenda fiscal 2026; Código Contributivo, art. 151.º-A e 155.º\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C02/01.png",
+   "pecas/carrosseis/C02/02.png",
+   "pecas/carrosseis/C02/03.png",
+   "pecas/carrosseis/C02/04.png",
+   "pecas/carrosseis/C02/05.png",
+   "pecas/carrosseis/C02/06.png",
+   "pecas/carrosseis/C02/07.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "R03",
+  "data": "2026-10-01",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes",
+  "gancho": "Outubro tem 2 prazos da Segurança Social",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Outubro tem 2 prazos da Segurança Social para quem está a recibos verdes: pagar entre 10 e 20 e declarar o trimestre até 31 (sábado — trata até sexta, 30).\n\n📚 Fonte: AT, agenda fiscal 2026; Código Contributivo, art. 151.º-A e 155.º\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R03.mp4"
+  ],
+  "capa": "pecas/reels/R03-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S05",
+  "data": "2026-10-02",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16 — pôr o autocolante Sondagem: «Sim» / «Não» no espaço do meio",
+  "publico": "Todos",
+  "gancho": "Você abriu atividade em Portugal há menos de 1 ano?",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S05.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C03",
+  "data": "2026-10-02",
+  "hora": "16:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (8 lâminas)",
+  "publico": "Brasileiros em Portugal",
+  "gancho": "Abriu atividade em Portugal? 7 palavras que você precisa conhecer",
+  "hashtags": "#brasileirosemportugal #brasileirosemlisboa #morarememportugal #recibosverdes #portugal",
+  "texto": "Chegou em Portugal, abriu atividade e ficou perdido com tanta sigla? 🇧🇷🇵🇹\n\nEstas são as 7 palavras que você vai ouvir o tempo todo: NIF, NISS, recibo verde, Portal das Finanças, Segurança Social Direta, IRS e IVA.\n\nSalve este post e mande para quem acabou de chegar.\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimente grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor enquanto está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C03/01.png",
+   "pecas/carrosseis/C03/02.png",
+   "pecas/carrosseis/C03/03.png",
+   "pecas/carrosseis/C03/04.png",
+   "pecas/carrosseis/C03/05.png",
+   "pecas/carrosseis/C03/06.png",
+   "pecas/carrosseis/C03/07.png",
+   "pecas/carrosseis/C03/08.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "R04",
+  "data": "2026-10-02",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "TVDE",
+  "gancho": "Fim do turno. Quanto fica mesmo para ti?",
+  "hashtags": "#tvde #motoristastvde #recibosverdes #carro #portugal",
+  "texto": "Fim do turno. Entrou dinheiro, mas quanto fica mesmo para ti? No Em Dia escreves o que ganhaste e ele aponta a fatia do imposto no cofre. É um caderno: não mexe no teu dinheiro.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R04.mp4"
+  ],
+  "capa": "pecas/reels/R04-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S06",
+  "data": "2026-10-03",
+  "hora": "10:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Escreves o que ganhaste. O Em Dia faz as contas.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S06.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C04",
+  "data": "2026-10-03",
+  "hora": "11:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (7 lâminas)",
+  "publico": "Freelancers e recibos verdes",
+  "gancho": "Recibo de 1.000 €: quanto chega à tua conta?",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Passas um recibo de 1.000 € a uma empresa. Quanto chega à tua conta? 🤔\n\nSe o cliente fizer retenção na fonte de 23 %, recebes 770 €. Os outros 230 € vão para as Finanças em teu nome e contam no acerto do IRS.\n\nDesliza para ver a conta toda (com a Segurança Social incluída).\n\n📚 Fonte: Código do IRS, art. 101.º — portaldasfinancas.gov.pt; Código Contributivo (Lei 110/2009), art. 162.º e 168.º — seg-social.pt\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C04/01.png",
+   "pecas/carrosseis/C04/02.png",
+   "pecas/carrosseis/C04/03.png",
+   "pecas/carrosseis/C04/04.png",
+   "pecas/carrosseis/C04/05.png",
+   "pecas/carrosseis/C04/06.png",
+   "pecas/carrosseis/C04/07.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "S07",
+  "data": "2026-10-04",
+  "hora": "10:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16 — pôr o autocolante «Perguntas» no espaço do meio",
+  "publico": "Todos",
+  "gancho": "Tens uma dúvida sobre recibos verdes?",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S07.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R05",
+  "data": "2026-10-04",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Brasileiros em Portugal",
+  "gancho": "Chegou em Portugal e virou recibo verde?",
+  "hashtags": "#brasileirosemportugal #brasileirosemlisboa #morarememportugal #recibosverdes #portugal",
+  "texto": "Chegou em Portugal e virou recibo verde? Segurança Social, IRS, IVA... O Em Dia explica tudo em português simples, fala do jeito brasileiro e avisa antes de cada prazo.\n\n👉 Experimente grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor enquanto está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R05.mp4"
+  ],
+  "capa": "pecas/reels/R05-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S08",
+  "data": "2026-10-05",
+  "hora": "10:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Prazo a calhar num feriado? Passa para o dia útil seguinte.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S08.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R06",
+  "data": "2026-10-05",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes + empresários",
+  "gancho": "Hoje é feriado. E os prazos?",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Hoje é feriado (5 de Outubro). Quando um prazo do Estado calha num feriado ou fim de semana, passa para o dia útil seguinte: este mês, a comunicação das faturas de setembro vai até dia 6. O Em Dia avisa-te na véspera útil.\n\n📚 Fonte: AT, agenda fiscal 2026 (nota a); Código do Trabalho, art. 234.º\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R06.mp4"
+  ],
+  "capa": "pecas/reels/R06-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S09",
+  "data": "2026-10-06",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "para o fim do prazo de pagamento de outubro.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S09.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C05",
+  "data": "2026-10-06",
+  "hora": "13:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (7 lâminas)",
+  "publico": "Quem abriu atividade há pouco",
+  "gancho": "1.º ano a recibos verdes: o que muda no 13.º mês",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Abriste atividade há menos de um ano? Lê isto antes do 13.º mês 👇\n\nNos primeiros 12 meses estás isento de pagar Segurança Social. Quando a isenção acaba, começam os dois prazos: pagar todos os meses e declarar de 3 em 3 meses.\n\nMarca na agenda o dia em que abriste atividade.\n\n📚 Fonte: Código Contributivo, art. 145.º — seg-social.pt\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C05/01.png",
+   "pecas/carrosseis/C05/02.png",
+   "pecas/carrosseis/C05/03.png",
+   "pecas/carrosseis/C05/04.png",
+   "pecas/carrosseis/C05/05.png",
+   "pecas/carrosseis/C05/06.png",
+   "pecas/carrosseis/C05/07.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "S10",
+  "data": "2026-10-07",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Vale a pena esta corrida?",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S10.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R07",
+  "data": "2026-10-07",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "TVDE",
+  "gancho": "Vale a pena esta corrida?",
+  "hashtags": "#tvde #motoristastvde #recibosverdes #carro #portugal",
+  "texto": "Vale a pena esta corrida? Escreve quanto te pagam e quantos quilómetros são. O Em Dia diz-te o que fica mesmo para ti, com o gasto do teu carro.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R07.mp4"
+  ],
+  "capa": "pecas/reels/R07-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S11",
+  "data": "2026-10-08",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "A partir de sábado, dia 10, já podes pagar a Segurança Social de outubro.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S11.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C06",
+  "data": "2026-10-08",
+  "hora": "14:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (7 lâminas)",
+  "publico": "Recibos verdes",
+  "gancho": "Segurança Social: como se faz a conta (com exemplo)",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Quanto pagas à Segurança Social a recibos verdes? A conta em 3 passos 🧮\n\n1. Média do que ganhaste por mês no trimestre\n2. × 70 % (serviços) ou × 20 % (vendas)\n3. × 21,4 %\n\nExemplo: 1.200 € por mês → 179,76 €. Paga-se entre o dia 10 e o dia 20.\n\n📚 Fonte: Código Contributivo (Lei 110/2009), art. 162.º e 168.º — seg-social.pt; art. 155.º\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C06/01.png",
+   "pecas/carrosseis/C06/02.png",
+   "pecas/carrosseis/C06/03.png",
+   "pecas/carrosseis/C06/04.png",
+   "pecas/carrosseis/C06/05.png",
+   "pecas/carrosseis/C06/06.png",
+   "pecas/carrosseis/C06/07.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "R08",
+  "data": "2026-10-08",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes",
+  "gancho": "A Segurança Social paga-se entre o dia 10 e o dia 20",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Lembrete: a contribuição da Segurança Social paga-se entre o dia 10 e o dia 20 de cada mês. Em outubro, o último dia é terça, 20. No Em Dia tens o valor e o botão «Ver como pagar».\n\n📚 Fonte: Código Contributivo, art. 155.º n.º 2 — seg-social.pt\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R08.mp4"
+  ],
+  "capa": "pecas/reels/R08-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S12",
+  "data": "2026-10-09",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16 — pôr o autocolante Sondagem: «Contrato» / «Recibos verdes» no espaço do meio",
+  "publico": "Todos",
+  "gancho": "Trabalhas por conta de outrem ou a recibos verdes?",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S12.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R09",
+  "data": "2026-10-09",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Trabalhadores por conta de outrem",
+  "gancho": "Tens contrato? 11 % do teu salário vai para a Segurança Social",
+  "hashtags": "#irs #salario #direitosdotrabalhador #financaspessoais #portugal",
+  "texto": "Tens contrato de trabalho? 11 % do teu salário bruto vai para a Segurança Social. E a empresa paga, por cima, mais 23,75 %. É isto que te dá direito a subsídio de desemprego, baixa e reforma.\n\n📚 Fonte: ISS, «Taxas contributivas» (Código Contributivo, art. 53.º)\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R09.mp4"
+  ],
+  "capa": "pecas/reels/R09-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S13",
+  "data": "2026-10-10",
+  "hora": "10:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Segurança Social: paga entre hoje e dia 20.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S13.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C07",
+  "data": "2026-10-10",
+  "hora": "11:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (7 lâminas)",
+  "publico": "Trabalhadores por conta de outrem",
+  "gancho": "O teu recibo de vencimento, linha a linha",
+  "hashtags": "#irs #salario #direitosdotrabalhador #financaspessoais #portugal",
+  "texto": "Trabalhas por conta de outrem? O teu recibo de vencimento explicado, linha a linha 🧾\n\n• 11 % do teu salário vai para a Segurança Social (a empresa paga mais 23,75 %)\n• O IRS retido depende das tabelas de retenção da AT\n• Subsídio de Natal: até 15 de dezembro\n• Horas extra: +25 % na 1.ª hora, +37,5 % nas seguintes (até 100 h por ano)\n\nGuarda e confere o teu próximo recibo.\n\n📚 Fonte: Código do Trabalho, art. 238.º, 263.º, 264.º e 268.º; ISS, «Taxas contributivas»\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C07/01.png",
+   "pecas/carrosseis/C07/02.png",
+   "pecas/carrosseis/C07/03.png",
+   "pecas/carrosseis/C07/04.png",
+   "pecas/carrosseis/C07/05.png",
+   "pecas/carrosseis/C07/06.png",
+   "pecas/carrosseis/C07/07.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "S14",
+  "data": "2026-10-11",
+  "hora": "10:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Contrato da internet a acabar? O Em Dia avisa.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S14.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R10",
+  "data": "2026-10-11",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Toda a gente",
+  "gancho": "O teu contrato da internet está a acabar?",
+  "hashtags": "#poupar #financaspessoais #fidelizacao #contas #portugal",
+  "texto": "Quando a fidelização acaba, a operadora renova sozinha e o preço pode subir. O Em Dia avisa-te umas semanas antes, a tempo de pedires um preço melhor ou mudares sem multa.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R10.mp4"
+  ],
+  "capa": "pecas/reels/R10-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S15",
+  "data": "2026-10-12",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Tens trabalhadores? A DMR de setembro é até hoje.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S15.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R11",
+  "data": "2026-10-12",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes + imigrantes",
+  "gancho": "O senhorio pediu prova de rendimento?",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "O senhorio ou o banco pediu prova de quanto ganhas? No Em Dia fazes uma folha com os últimos 3, 6 ou 12 meses, a partir do que registaste. Não substitui a declaração de IRS nem uma certidão das Finanças.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R11.mp4"
+  ],
+  "capa": "pecas/reels/R11-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S16",
+  "data": "2026-10-13",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "para pagar a Segurança Social de outubro.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S16.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C08",
+  "data": "2026-10-13",
+  "hora": "13:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (6 lâminas)",
+  "publico": "Recibos verdes (IVA)",
+  "gancho": "Isenção de IVA: o limite dos 15.000 €",
+  "hashtags": "#iva #recibosverdes #freelancerportugal #trabalhadorindependente #portugal",
+  "texto": "Estás isento de IVA? Então este número é para ti: 15.000 € 👀\n\nÉ o limite anual da isenção do artigo 53.º. Se passares, tens 15 dias úteis para avisar as Finanças. Se passares 18.750 € (mais 25 %), perdes a isenção logo nesse recibo.\n\nSabes quanto já faturaste este ano?\n\n📚 Fonte: Código do IVA, art. 53.º e 58.º (DL 35/2025) — portaldasfinancas.gov.pt\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C08/01.png",
+   "pecas/carrosseis/C08/02.png",
+   "pecas/carrosseis/C08/03.png",
+   "pecas/carrosseis/C08/04.png",
+   "pecas/carrosseis/C08/05.png",
+   "pecas/carrosseis/C08/06.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "S17",
+  "data": "2026-10-14",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Isento de IVA? O limite é 15.000 €.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S17.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R12",
+  "data": "2026-10-14",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes (IVA)",
+  "gancho": "Isento de IVA? Sabes quanto falta para os 15.000 €?",
+  "hashtags": "#iva #recibosverdes #freelancerportugal #trabalhadorindependente #portugal",
+  "texto": "Estás isento de IVA pelo artigo 53.º? O limite é 15.000 € por ano. A Vigia do IVA do Em Dia mostra quanto já faturaste e avisa-te antes de chegares lá.\n\n📚 Fonte: Código do IVA, art. 53.º e 58.º (DL 35/2025) — portaldasfinancas.gov.pt\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R12.mp4"
+  ],
+  "capa": "pecas/reels/R12-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S18",
+  "data": "2026-10-15",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16 — pôr o autocolante Sondagem: «Já» / «Ainda não» no espaço do meio",
+  "publico": "Todos",
+  "gancho": "Já pagaste a Segurança Social deste mês?",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S18.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C09",
+  "data": "2026-10-15",
+  "hora": "14:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (6 lâminas)",
+  "publico": "TVDE e estafetas com carro",
+  "gancho": "O carro também tem prazos",
+  "hashtags": "#tvde #motoristastvde #recibosverdes #carro #portugal",
+  "texto": "Quem trabalha com o carro tem mais prazos do que pensa 🚗\n\n• IUC: paga-se até ao fim do mês da matrícula\n• Inspeção: nos ligeiros, aos 4, 6 e 8 anos e depois todos os anos\n• Seguro: compara antes de renovar\n\nO Em Dia junta os lembretes do carro aos prazos dos recibos verdes.\n\n📚 Fonte: Portal das Finanças (IUC); IMT (inspeções)\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C09/01.png",
+   "pecas/carrosseis/C09/02.png",
+   "pecas/carrosseis/C09/03.png",
+   "pecas/carrosseis/C09/04.png",
+   "pecas/carrosseis/C09/05.png",
+   "pecas/carrosseis/C09/06.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "R13",
+  "data": "2026-10-15",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "TVDE e estafetas",
+  "gancho": "IUC: paga-se no mês da matrícula",
+  "hashtags": "#tvde #motoristastvde #recibosverdes #carro #portugal",
+  "texto": "O IUC paga-se até ao fim do mês da matrícula do carro. O Em Dia junta o IUC, a inspeção e o seguro aos prazos dos recibos verdes, com aviso antes.\n\n📚 Fonte: Portal das Finanças → IUC\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R13.mp4"
+  ],
+  "capa": "pecas/reels/R13-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S19",
+  "data": "2026-10-16",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "para pagar a Segurança Social.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S19.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C10",
+  "data": "2026-10-16",
+  "hora": "16:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (6 lâminas)",
+  "publico": "Pequenos empresários",
+  "gancho": "ENI ou sociedade? A diferença em 5 lâminas",
+  "hashtags": "#pequenasempresas #empreendedorismo #empresarios #contabilidade #portugal",
+  "texto": "Vais crescer e perguntas-te: continuo em nome individual ou abro uma sociedade? 🏢\n\nENI é a própria pessoa: paga IRS e responde com o seu património. A sociedade é uma pessoa coletiva: paga IRC, o gerente desconta 34,75 % para a Segurança Social e é obrigatório ter contabilista certificado.\n\nA escolha certa depende de muitos números: fala com um contabilista.\n\n📚 Fonte: Código do IRC; Código Contributivo (MOE 34,75 %). Explicação geral.\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C10/01.png",
+   "pecas/carrosseis/C10/02.png",
+   "pecas/carrosseis/C10/03.png",
+   "pecas/carrosseis/C10/04.png",
+   "pecas/carrosseis/C10/05.png",
+   "pecas/carrosseis/C10/06.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "R14",
+  "data": "2026-10-16",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes",
+  "gancho": "Faltam 4 dias para pagar a Segurança Social",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Faltam 4 dias: a contribuição da Segurança Social de outubro paga-se até terça, 20. Já trataste?\n\n📚 Fonte: Código Contributivo, art. 155.º n.º 2 — seg-social.pt\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R14.mp4"
+  ],
+  "capa": "pecas/reels/R14-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S20",
+  "data": "2026-10-17",
+  "hora": "10:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Seguro, IUC, inspeção: o carro também tem prazos.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S20.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C11",
+  "data": "2026-10-17",
+  "hora": "11:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (7 lâminas)",
+  "publico": "Recibos verdes",
+  "gancho": "5 erros que custam dinheiro a quem está a recibos verdes",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "5 erros que custam dinheiro a quem está a recibos verdes ❌\n\n1. Gastar tudo o que entra\n2. Esquecer a declaração trimestral\n3. Passar os 15.000 € sem avisar\n4. Não pedir fatura com NIF\n5. Não saber se estás dispensado de retenção\n\nQual destes já te aconteceu? Conta nos comentários.\n\n📚 Fonte: Código Contributivo, art. 151.º-A e 155.º; Código do IVA, art. 53.º; Código do IRS, art. 78.º-A a 78.º-F e 101.º.\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C11/01.png",
+   "pecas/carrosseis/C11/02.png",
+   "pecas/carrosseis/C11/03.png",
+   "pecas/carrosseis/C11/04.png",
+   "pecas/carrosseis/C11/05.png",
+   "pecas/carrosseis/C11/06.png",
+   "pecas/carrosseis/C11/07.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "S21",
+  "data": "2026-10-18",
+  "hora": "10:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16 — pôr o autocolante «Perguntas» no espaço do meio",
+  "publico": "Todos",
+  "gancho": "Qual é a tua maior dúvida sobre IRS?",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S21.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R15",
+  "data": "2026-10-18",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes",
+  "gancho": "O que descontas hoje vale dinheiro amanhã",
+  "hashtags": "#reforma #segurancasocial #recibosverdes #financaspessoais #portugal",
+  "texto": "O que descontas hoje para a Segurança Social vale reforma amanhã — e também baixa por doença e parentalidade. O Em Dia faz uma estimativa simples. A conta certa, com toda a tua carreira, é a da Segurança Social.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R15.mp4"
+  ],
+  "capa": "pecas/reels/R15-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S22",
+  "data": "2026-10-19",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Amanhã é o último dia para pagar.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S22.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R16",
+  "data": "2026-10-19",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes",
+  "gancho": "Amanhã é o último dia",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Amanhã, terça 20, é o último dia para pagar a contribuição da Segurança Social deste mês. Se já pagaste, marca «Já paguei» no Em Dia.\n\n📚 Fonte: Código Contributivo, art. 155.º n.º 2 — seg-social.pt\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R16.mp4"
+  ],
+  "capa": "pecas/reels/R16-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S23",
+  "data": "2026-10-20",
+  "hora": "08:30",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Último dia para pagar a Segurança Social de outubro.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S23.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C12",
+  "data": "2026-10-20",
+  "hora": "13:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (6 lâminas)",
+  "publico": "Toda a gente (IRS)",
+  "gancho": "IRS: as faturas que te baixam o imposto",
+  "hashtags": "#irs #deducoes #efatura #financaspessoais #portugal",
+  "texto": "Ainda faltam meses para o IRS, mas as faturas contam desde janeiro 🧾\n\n• Saúde: 15 %, até 1.000 €\n• Educação: 30 %, até 800 €\n• Renda da casa: 15 %, até 800 €\n• IVA de restaurantes, oficinas, cabeleireiros, ginásios e veterinários: 15 %, até 250 €\n• Despesas gerais familiares: 35 %, até 250 €\n\nPede sempre fatura com NIF. E valida-as no e-Fatura até 25 de fevereiro.\n\n📚 Fonte: Código do IRS, art. 78.º-A a 78.º-F — portaldasfinancas.gov.pt\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C12/01.png",
+   "pecas/carrosseis/C12/02.png",
+   "pecas/carrosseis/C12/03.png",
+   "pecas/carrosseis/C12/04.png",
+   "pecas/carrosseis/C12/05.png",
+   "pecas/carrosseis/C12/06.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "S24",
+  "data": "2026-10-21",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "para declarar julho, agosto e setembro.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S24.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R17",
+  "data": "2026-10-21",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes",
+  "gancho": "Declaração trimestral: faltam 10 dias",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Faltam 10 dias para a declaração trimestral da Segurança Social: declaras o que ganhaste em julho, agosto e setembro. O prazo é 31 de outubro, um sábado — trata até sexta, 30.\n\n📚 Fonte: Código Contributivo, art. 151.º-A n.º 3 — seg-social.pt\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R17.mp4"
+  ],
+  "capa": "pecas/reels/R17-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S25",
+  "data": "2026-10-22",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Todos os teus prazos num calendário.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S25.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C13",
+  "data": "2026-10-22",
+  "hora": "14:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (7 lâminas)",
+  "publico": "Recibos verdes",
+  "gancho": "Declaração trimestral: faltam 9 dias",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Faltam 9 dias para a declaração trimestral da Segurança Social ⏳\n\nDeclaras o que ganhaste em julho, agosto e setembro, na Segurança Social Direta. O prazo é 31 de outubro — que este ano é um sábado. Trata até sexta, 30.\n\nMarca alguém que precisa de ler isto.\n\n📚 Fonte: Código Contributivo, art. 151.º-A n.º 3 — seg-social.pt\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C13/01.png",
+   "pecas/carrosseis/C13/02.png",
+   "pecas/carrosseis/C13/03.png",
+   "pecas/carrosseis/C13/04.png",
+   "pecas/carrosseis/C13/05.png",
+   "pecas/carrosseis/C13/06.png",
+   "pecas/carrosseis/C13/07.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "R18",
+  "data": "2026-10-22",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Estafetas",
+  "gancho": "Estafeta: cada entrega conta",
+  "hashtags": "#estafetas #entregas #recibosverdes #trabalhadorindependente #portugal",
+  "texto": "Fazes entregas e o que ganhas muda todas as semanas? Escreve cada dia no Em Dia: ele soma o mês e aponta a fatia do imposto no cofre. No fim do mês não há sustos.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R18.mp4"
+  ],
+  "capa": "pecas/reels/R18-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S26",
+  "data": "2026-10-23",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Na declaração trimestral declaras o que ganhaste nos 3 meses anteriores.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S26.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R19",
+  "data": "2026-10-23",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Freelancers",
+  "gancho": "Recibo de 1.000 €? Faz a conta antes de o passar",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Vais passar um recibo de 1.000 € a uma empresa? Com retenção de 23 %, recebes 770 €. A calculadora de recibo do Em Dia mostra-te o que recebes e o que é mesmo teu, antes de o emitires.\n\n📚 Fonte: Código do IRS, art. 101.º — portaldasfinancas.gov.pt\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R19.mp4"
+  ],
+  "capa": "pecas/reels/R19-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S27",
+  "data": "2026-10-24",
+  "hora": "10:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16 — pôr o autocolante Sondagem: «Já» / «Ainda não» no espaço do meio",
+  "publico": "Todos",
+  "gancho": "Já fizeste a declaração trimestral?",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S27.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C14",
+  "data": "2026-10-24",
+  "hora": "11:00",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (5 lâminas)",
+  "publico": "Jovens até 35 anos",
+  "gancho": "IRS Jovem: tens até 35 anos?",
+  "hashtags": "#irsjovem #irs #jovens #financaspessoais #portugal",
+  "texto": "Tens até 35 anos? O IRS Jovem pode tirar-te imposto dos primeiros 10 anos de rendimentos 🎓\n\n• 1.º ano: 100 % isento\n• 2.º ao 4.º: 75 %\n• 5.º ao 7.º: 50 %\n• 8.º ao 10.º: 25 %\n\nCom um limite de 29.542,15 € por ano. Serve para quem trabalha por conta de outrem e para recibos verdes. Escolhe-se na declaração de IRS.\n\n📚 Fonte: Código do IRS, art. 12.º-B (Lei 45-A/2024); FAQ da AT\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C14/01.png",
+   "pecas/carrosseis/C14/02.png",
+   "pecas/carrosseis/C14/03.png",
+   "pecas/carrosseis/C14/04.png",
+   "pecas/carrosseis/C14/05.png"
+  ],
+  "tipo_meta": "Carrossel"
+ },
+ {
+  "id": "S28",
+  "data": "2026-10-25",
+  "hora": "10:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Esta madrugada os relógios atrasaram uma hora.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S28.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R20",
+  "data": "2026-10-25",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Brasileiros em Portugal",
+  "gancho": "Você sabia? Em Portugal o cliente pode reter 23 % do recibo",
+  "hashtags": "#brasileirosemportugal #brasileirosemlisboa #morarememportugal #recibosverdes #portugal",
+  "texto": "Você sabia? Em Portugal, quando você passa um recibo verde para uma empresa, ela pode reter 23 % para o IRS. Não é dinheiro perdido: conta no acerto do ano. O Em Dia faz a conta antes de você emitir.\n\n📚 Fonte: Código do IRS, art. 101.º — portaldasfinancas.gov.pt\n\n👉 Experimente grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor enquanto está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R20.mp4"
+  ],
+  "capa": "pecas/reels/R20-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S29",
+  "data": "2026-10-26",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "O dia 31 é sábado: trata até sexta, 30.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S29.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "R21",
+  "data": "2026-10-26",
+  "hora": "20:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Reel 9:16 com som",
+  "publico": "Recibos verdes",
+  "gancho": "Faltam 5 dias: declaração trimestral",
+  "hashtags": "#recibosverdes #trabalhadorindependente #segurancasocial #financaspessoais #portugal",
+  "texto": "Faltam 5 dias para a declaração trimestral da Segurança Social. O dia 31 é sábado: não deixes para o fim. Declaras o que ganhaste em julho, agosto e setembro, na Segurança Social Direta.\n\n📚 Fonte: Código Contributivo, art. 151.º-A n.º 3 — seg-social.pt\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/reels/R21.mp4"
+  ],
+  "capa": "pecas/reels/R21-capa.jpg",
+  "tipo_meta": "Reel"
+ },
+ {
+  "id": "S30",
+  "data": "2026-10-27",
+  "hora": "09:00",
+  "rede": "Instagram + Facebook (story)",
+  "formato": "Story 9:16",
+  "publico": "Todos",
+  "gancho": "Novembro: IVA trimestral até 20/11, pagamento até 25/11.",
+  "hashtags": "",
+  "texto": "(story — sem legenda; pôr o autocolante de link para app.emdia.boraguarda.com)",
+  "ficheiros": [
+   "pecas/stories/S30.png"
+  ],
+  "tipo_meta": "Story"
+ },
+ {
+  "id": "C15",
+  "data": "2026-10-27",
+  "hora": "13:30",
+  "rede": "Instagram + Facebook",
+  "formato": "Carrossel (5 lâminas)",
+  "publico": "Recibos verdes (IVA) + conta de outrem",
+  "gancho": "Novembro está aí: o que vence",
+  "hashtags": "#iva #recibosverdes #freelancerportugal #trabalhadorindependente #portugal",
+  "texto": "Novembro está quase aí. O que vence 📅\n\n• 20/11 — declaração do IVA do 3.º trimestre (julho a setembro)\n• 25/11 — pagamento desse IVA\n• 10 a 20/11 — Segurança Social do mês\n\nE para quem tem contrato: o subsídio de Natal tem de ser pago até 15 de dezembro.\n\n📚 Fonte: Código do IVA, art. 27.º e 41.º; agenda fiscal AT 2026; Código Contributivo, art. 155.º; Código do Trabalho, art. 263.º\n\nInformação geral. Não substitui um contabilista.\n\n👉 Experimenta grátis, sem cartão: app.emdia.boraguarda.com (link na bio)\n\nPor agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.",
+  "ficheiros": [
+   "pecas/carrosseis/C15/01.png",
+   "pecas/carrosseis/C15/02.png",
+   "pecas/carrosseis/C15/03.png",
+   "pecas/carrosseis/C15/04.png",
+   "pecas/carrosseis/C15/05.png"
+  ],
+  "tipo_meta": "Carrossel"
+ }
+]

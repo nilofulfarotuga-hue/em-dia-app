@@ -975,6 +975,57 @@
   "carroFaltaMesMatricula": "Escolha o mês da matrícula.",
   "carroFaltaAnoMatricula": "Escreva o ano da matrícula (4 dígitos).",
   "maisSubtitulo": "Todo o resto está aqui.",
+  "maisConvida": "Convida e ganha",
+  "maisSubConvida": "1 mês grátis para você e para o seu amigo.",
+  "convTitulo": "Convida e ganha",
+  "convLead": "Convida um amigo. Ganham os dois.",
+  "convComoFunciona": "Manda o seu link para ele. Quando ele se registrar e usar o app (um recibo ou um prazo registado), você e ele ganham 1 mês do plano pago, grátis.",
+  "convOTeuLink": "O seu link",
+  "convCodigo": "Código: {codigo}",
+  "@convCodigo": {
+    "placeholders": {
+      "codigo": {
+        "type": "String"
+      }
+    }
+  },
+  "convWhatsapp": "Mandar pelo WhatsApp",
+  "convInstaFace": "Instagram, Facebook ou outro app",
+  "convCopiar": "Copiar o link",
+  "convCopiado": "Link copiado.",
+  "convAssunto": "Em Dia — nunca mais leva multa da Segurança Social",
+  "convTextoPartilha": "Uso o Em Dia para não perder prazos da Segurança Social, IVA e IRS nos recibos verdes. É grátis e diz o que fazer em português simples. Registre-se com o meu link e ganhamos os dois 1 mês do plano pago: {link}",
+  "@convTextoPartilha": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "convJaConvidaste": "Você já convidou {n}",
+  "@convJaConvidaste": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "convGanhos": "{premiados} já usaram o app · você ganhou {meses} de {maximo} meses possíveis",
+  "@convGanhos": {
+    "placeholders": {
+      "premiados": {
+        "type": "int"
+      },
+      "meses": {
+        "type": "int"
+      },
+      "maximo": {
+        "type": "int"
+      }
+    }
+  },
+  "convRegras": "Regras simples: 1 prémio por pessoa real (email confirmado, conta nova), no máximo 12 meses acumulados. O mês é dado pelo servidor quando o seu amigo registra o primeiro recibo ou prazo.",
+  "convErro": "Não consegui carregar o seu link. Verifica a ligação e tenta outra vez.",
   "maisReforma": "Aposentadoria e direitos",
   "maisGuias": "Guias de 1 minuto",
   "maisPergunta": "Pergunte ao Em Dia",
@@ -1646,6 +1697,66 @@
   "admUsApagarFaltaMotivo": "Escreva o motivo antes de apagar.",
   "admUsApagado": "Conta apagada. Ficou registrado na auditoria.",
   "admUsApagarEhAdmin": "Esta conta é admin: tire-a de public.admins antes de apagar.",
+  "admNavRedes": "Redes Em Dia",
+  "admNavConvites": "Convites",
+  "admCvTitulo": "Convida um amigo",
+  "admCvSub": "Quem convidou quem, os prêmios dados (30 dias do plano pago para cada um, automático quando o convidado registra o 1.º recibo ou prazo) e os melhores convidadores. Regras: 1 prêmio por pessoa convidada (email confirmado, conta nova), no máximo 12 meses por convidador.",
+  "admCvTop": "Melhores convidadores",
+  "admCvTabela": "{n} convites",
+  "@admCvTabela": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "admCvCardConvites": "Convites",
+  "admCvCardPremiados": "Premiados",
+  "admCvCardPendentes": "À espera (ainda não usaram)",
+  "admCvColQuando": "Quando",
+  "admCvColConvidador": "Convidador",
+  "admCvColConvidado": "Convidado",
+  "admCvColCodigo": "Código",
+  "admCvColConvidados": "Convidados",
+  "admCvColPremiados": "Premiados",
+  "admCvColMeses": "Meses ganhos",
+  "admCvColEstado": "Estado",
+  "admCvColPremio": "Prêmio",
+  "admCvColMotivo": "Motivo",
+  "admCvEstPremiado": "Premiado",
+  "admCvEstPendente": "À espera",
+  "admCvEstAnulado": "Anulado",
+  "admCvPremioAmbos": "os dois (30 dias cada)",
+  "admCvPremioSoConvidado": "só o convidado (convidador no máximo)",
+  "admCvNota": "O prêmio é dado pelo servidor (trial_ate + 30 dias). Ninguém escreve aqui à mão; para anular um convite abusivo, usa o SQL com auditoria.",
+  "admRdTitulo": "Redes Em Dia",
+  "admRdSub": "Instagram @em_dia_app e Facebook «Em Dia: Recibos e Impostos», separado do Bora. O robô da VPS publica uma peça por dia (só depois do fiscal de vídeo dar 90 ou mais) e registra aqui o que saiu, o que está agendado e o que falhou.",
+  "admRdPub7": "Publicadas (7 dias)",
+  "admRdAgend": "Agendadas",
+  "admRdFalh7": "Falhadas (7 dias)",
+  "admRdTodas": "Todas",
+  "admRdTabela": "{n} publicações",
+  "@admRdTabela": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "admRdColQuando": "Quando",
+  "admRdColPeca": "Peça",
+  "admRdColFormato": "Formato",
+  "admRdColRede": "Rede",
+  "admRdColEstado": "Estado",
+  "admRdColFiscal": "Fiscal",
+  "admRdColLink": "Link",
+  "admRdColErro": "Erro",
+  "admRdEstPublicada": "Publicada",
+  "admRdEstAgendada": "Agendada",
+  "admRdEstFalhou": "Falhou",
+  "admRdEstSaltada": "Pulada",
+  "admRdVazio": "Ainda não há publicações registradas.",
+  "admRdNota": "Fiscal = nota do fiscal de vídeo (0-100; só vídeos). Uma peça só sai com 90 ou mais; abaixo disso fica «Falhou» e o Danilo recebe aviso no Telegram. O robô também avisa quando ficam menos de 7 dias de peças prontas.",
   "admNavFunil": "Funil",
   "admFuTitulo": "Funil",
   "admFuSub": "Semana a semana (segunda a domingo): quantas contas foram criadas, quantas acabaram o onboarding, quantas abriram o app, quantas estão no mês grátis, quantas pagam, quantas ligaram as estatísticas e quantos eventos foram contados.",

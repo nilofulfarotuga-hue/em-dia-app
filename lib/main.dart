@@ -8,6 +8,7 @@ import 'app.dart';
 import 'config/app_colors.dart';
 import 'config/app_theme.dart';
 import 'services/arranque.dart';
+import 'services/convites.dart';
 
 Future<void> main() async {
   // NUNCA MAIS UM ECRÃ CINZENTO.
@@ -29,6 +30,7 @@ Future<void> main() async {
 
   await runZonedGuarded(() async {
     await arrancar();
+    await Convites.capturarDoEndereco(); // ?c=CODIGO do link «convida um amigo»
     runApp(const EmDiaApp());
   }, (erro, pilha) {
     debugPrint('Em Dia: erro fora do Flutter — $erro\n$pilha');

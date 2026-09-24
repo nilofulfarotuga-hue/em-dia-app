@@ -1987,6 +1987,69 @@ class AppLocalizationsPt extends AppLocalizations {
   String get maisSubtitulo => 'Tudo o resto está aqui.';
 
   @override
+  String get maisConvida => 'Convida e ganha';
+
+  @override
+  String get maisSubConvida => '1 mês grátis para ti e para o teu amigo.';
+
+  @override
+  String get convTitulo => 'Convida e ganha';
+
+  @override
+  String get convLead => 'Convida um amigo. Ganham os dois.';
+
+  @override
+  String get convComoFunciona =>
+      'Manda-lhe o teu link. Quando ele se registar e usar a app (um recibo ou um prazo registado), tu e ele ganham 1 mês do plano pago, grátis.';
+
+  @override
+  String get convOTeuLink => 'O teu link';
+
+  @override
+  String convCodigo(String codigo) {
+    return 'Código: $codigo';
+  }
+
+  @override
+  String get convWhatsapp => 'Mandar pelo WhatsApp';
+
+  @override
+  String get convInstaFace => 'Instagram, Facebook ou outra app';
+
+  @override
+  String get convCopiar => 'Copiar o link';
+
+  @override
+  String get convCopiado => 'Link copiado.';
+
+  @override
+  String get convAssunto =>
+      'Em Dia — nunca mais levas multa da Segurança Social';
+
+  @override
+  String convTextoPartilha(String link) {
+    return 'Uso o Em Dia para não falhar prazos da Segurança Social, IVA e IRS a recibos verdes. É grátis e diz-te o que fazer em português simples. Regista-te com o meu link e ganhamos os dois 1 mês do plano pago: $link';
+  }
+
+  @override
+  String convJaConvidaste(int n) {
+    return 'Já convidaste $n';
+  }
+
+  @override
+  String convGanhos(int premiados, int meses, int maximo) {
+    return '$premiados já usaram a app · ganhaste $meses de $maximo meses possíveis';
+  }
+
+  @override
+  String get convRegras =>
+      'Regras simples: 1 prémio por pessoa real (email confirmado, conta nova), no máximo 12 meses acumulados. O mês é dado pelo servidor quando o teu amigo regista o primeiro recibo ou prazo.';
+
+  @override
+  String get convErro =>
+      'Não consegui carregar o teu link. Verifica a ligação e tenta outra vez.';
+
+  @override
   String get maisReforma => 'Reforma e direitos';
 
   @override
@@ -3397,6 +3460,152 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get admUsApagarEhAdmin =>
       'Esta conta é admin: tira-a de public.admins antes de apagar.';
+
+  @override
+  String get admNavRedes => 'Redes Em Dia';
+
+  @override
+  String get admNavConvites => 'Convites';
+
+  @override
+  String get admCvTitulo => 'Convida um amigo';
+
+  @override
+  String get admCvSub =>
+      'Quem convidou quem, os prêmios dados (30 dias do plano pago para cada um, automático quando o convidado registra o 1.º recibo ou prazo) e os melhores convidadores. Regras: 1 prêmio por pessoa convidada (email confirmado, conta nova), no máximo 12 meses por convidador.';
+
+  @override
+  String get admCvTop => 'Melhores convidadores';
+
+  @override
+  String admCvTabela(int n) {
+    return '$n convites';
+  }
+
+  @override
+  String get admCvCardConvites => 'Convites';
+
+  @override
+  String get admCvCardPremiados => 'Premiados';
+
+  @override
+  String get admCvCardPendentes => 'À espera (ainda não usaram)';
+
+  @override
+  String get admCvColQuando => 'Quando';
+
+  @override
+  String get admCvColConvidador => 'Convidador';
+
+  @override
+  String get admCvColConvidado => 'Convidado';
+
+  @override
+  String get admCvColCodigo => 'Código';
+
+  @override
+  String get admCvColConvidados => 'Convidados';
+
+  @override
+  String get admCvColPremiados => 'Premiados';
+
+  @override
+  String get admCvColMeses => 'Meses ganhos';
+
+  @override
+  String get admCvColEstado => 'Estado';
+
+  @override
+  String get admCvColPremio => 'Prêmio';
+
+  @override
+  String get admCvColMotivo => 'Motivo';
+
+  @override
+  String get admCvEstPremiado => 'Premiado';
+
+  @override
+  String get admCvEstPendente => 'À espera';
+
+  @override
+  String get admCvEstAnulado => 'Anulado';
+
+  @override
+  String get admCvPremioAmbos => 'os dois (30 dias cada)';
+
+  @override
+  String get admCvPremioSoConvidado => 'só o convidado (convidador no máximo)';
+
+  @override
+  String get admCvNota =>
+      'O prêmio é dado pelo servidor (trial_ate + 30 dias). Ninguém escreve aqui à mão; para anular um convite abusivo, usa o SQL com auditoria.';
+
+  @override
+  String get admRdTitulo => 'Redes Em Dia';
+
+  @override
+  String get admRdSub =>
+      'Instagram @em_dia_app e Facebook «Em Dia: Recibos e Impostos», separado do Bora. O robô da VPS publica uma peça por dia (só depois do fiscal de vídeo dar 90 ou mais) e regista aqui o que saiu, o que está agendado e o que falhou.';
+
+  @override
+  String get admRdPub7 => 'Publicadas (7 dias)';
+
+  @override
+  String get admRdAgend => 'Agendadas';
+
+  @override
+  String get admRdFalh7 => 'Falhadas (7 dias)';
+
+  @override
+  String get admRdTodas => 'Todas';
+
+  @override
+  String admRdTabela(int n) {
+    return '$n publicações';
+  }
+
+  @override
+  String get admRdColQuando => 'Quando';
+
+  @override
+  String get admRdColPeca => 'Peça';
+
+  @override
+  String get admRdColFormato => 'Formato';
+
+  @override
+  String get admRdColRede => 'Rede';
+
+  @override
+  String get admRdColEstado => 'Estado';
+
+  @override
+  String get admRdColFiscal => 'Fiscal';
+
+  @override
+  String get admRdColLink => 'Link';
+
+  @override
+  String get admRdColErro => 'Erro';
+
+  @override
+  String get admRdEstPublicada => 'Publicada';
+
+  @override
+  String get admRdEstAgendada => 'Agendada';
+
+  @override
+  String get admRdEstFalhou => 'Falhou';
+
+  @override
+  String get admRdEstSaltada => 'Saltada';
+
+  @override
+  String get admRdVazio => 'Ainda não há publicações registadas.';
+
+  @override
+  String get admRdNota =>
+      'Fiscal = nota do fiscal de vídeo (0-100; só vídeos). Uma peça só sai com 90 ou mais; abaixo disso fica «Falhou» e o Danilo recebe aviso no Telegram. O robô também avisa quando ficam menos de 7 dias de peças prontas.';
 
   @override
   String get admNavFunil => 'Funil';
@@ -8420,6 +8629,69 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get maisSubtitulo => 'Todo o resto está aqui.';
 
   @override
+  String get maisConvida => 'Convida e ganha';
+
+  @override
+  String get maisSubConvida => '1 mês grátis para você e para o seu amigo.';
+
+  @override
+  String get convTitulo => 'Convida e ganha';
+
+  @override
+  String get convLead => 'Convida um amigo. Ganham os dois.';
+
+  @override
+  String get convComoFunciona =>
+      'Manda o seu link para ele. Quando ele se registrar e usar o app (um recibo ou um prazo registado), você e ele ganham 1 mês do plano pago, grátis.';
+
+  @override
+  String get convOTeuLink => 'O seu link';
+
+  @override
+  String convCodigo(String codigo) {
+    return 'Código: $codigo';
+  }
+
+  @override
+  String get convWhatsapp => 'Mandar pelo WhatsApp';
+
+  @override
+  String get convInstaFace => 'Instagram, Facebook ou outro app';
+
+  @override
+  String get convCopiar => 'Copiar o link';
+
+  @override
+  String get convCopiado => 'Link copiado.';
+
+  @override
+  String get convAssunto =>
+      'Em Dia — nunca mais leva multa da Segurança Social';
+
+  @override
+  String convTextoPartilha(String link) {
+    return 'Uso o Em Dia para não perder prazos da Segurança Social, IVA e IRS nos recibos verdes. É grátis e diz o que fazer em português simples. Registre-se com o meu link e ganhamos os dois 1 mês do plano pago: $link';
+  }
+
+  @override
+  String convJaConvidaste(int n) {
+    return 'Você já convidou $n';
+  }
+
+  @override
+  String convGanhos(int premiados, int meses, int maximo) {
+    return '$premiados já usaram o app · você ganhou $meses de $maximo meses possíveis';
+  }
+
+  @override
+  String get convRegras =>
+      'Regras simples: 1 prémio por pessoa real (email confirmado, conta nova), no máximo 12 meses acumulados. O mês é dado pelo servidor quando o seu amigo registra o primeiro recibo ou prazo.';
+
+  @override
+  String get convErro =>
+      'Não consegui carregar o seu link. Verifica a ligação e tenta outra vez.';
+
+  @override
   String get maisReforma => 'Aposentadoria e direitos';
 
   @override
@@ -9832,6 +10104,152 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get admUsApagarEhAdmin =>
       'Esta conta é admin: tire-a de public.admins antes de apagar.';
+
+  @override
+  String get admNavRedes => 'Redes Em Dia';
+
+  @override
+  String get admNavConvites => 'Convites';
+
+  @override
+  String get admCvTitulo => 'Convida um amigo';
+
+  @override
+  String get admCvSub =>
+      'Quem convidou quem, os prêmios dados (30 dias do plano pago para cada um, automático quando o convidado registra o 1.º recibo ou prazo) e os melhores convidadores. Regras: 1 prêmio por pessoa convidada (email confirmado, conta nova), no máximo 12 meses por convidador.';
+
+  @override
+  String get admCvTop => 'Melhores convidadores';
+
+  @override
+  String admCvTabela(int n) {
+    return '$n convites';
+  }
+
+  @override
+  String get admCvCardConvites => 'Convites';
+
+  @override
+  String get admCvCardPremiados => 'Premiados';
+
+  @override
+  String get admCvCardPendentes => 'À espera (ainda não usaram)';
+
+  @override
+  String get admCvColQuando => 'Quando';
+
+  @override
+  String get admCvColConvidador => 'Convidador';
+
+  @override
+  String get admCvColConvidado => 'Convidado';
+
+  @override
+  String get admCvColCodigo => 'Código';
+
+  @override
+  String get admCvColConvidados => 'Convidados';
+
+  @override
+  String get admCvColPremiados => 'Premiados';
+
+  @override
+  String get admCvColMeses => 'Meses ganhos';
+
+  @override
+  String get admCvColEstado => 'Estado';
+
+  @override
+  String get admCvColPremio => 'Prêmio';
+
+  @override
+  String get admCvColMotivo => 'Motivo';
+
+  @override
+  String get admCvEstPremiado => 'Premiado';
+
+  @override
+  String get admCvEstPendente => 'À espera';
+
+  @override
+  String get admCvEstAnulado => 'Anulado';
+
+  @override
+  String get admCvPremioAmbos => 'os dois (30 dias cada)';
+
+  @override
+  String get admCvPremioSoConvidado => 'só o convidado (convidador no máximo)';
+
+  @override
+  String get admCvNota =>
+      'O prêmio é dado pelo servidor (trial_ate + 30 dias). Ninguém escreve aqui à mão; para anular um convite abusivo, usa o SQL com auditoria.';
+
+  @override
+  String get admRdTitulo => 'Redes Em Dia';
+
+  @override
+  String get admRdSub =>
+      'Instagram @em_dia_app e Facebook «Em Dia: Recibos e Impostos», separado do Bora. O robô da VPS publica uma peça por dia (só depois do fiscal de vídeo dar 90 ou mais) e registra aqui o que saiu, o que está agendado e o que falhou.';
+
+  @override
+  String get admRdPub7 => 'Publicadas (7 dias)';
+
+  @override
+  String get admRdAgend => 'Agendadas';
+
+  @override
+  String get admRdFalh7 => 'Falhadas (7 dias)';
+
+  @override
+  String get admRdTodas => 'Todas';
+
+  @override
+  String admRdTabela(int n) {
+    return '$n publicações';
+  }
+
+  @override
+  String get admRdColQuando => 'Quando';
+
+  @override
+  String get admRdColPeca => 'Peça';
+
+  @override
+  String get admRdColFormato => 'Formato';
+
+  @override
+  String get admRdColRede => 'Rede';
+
+  @override
+  String get admRdColEstado => 'Estado';
+
+  @override
+  String get admRdColFiscal => 'Fiscal';
+
+  @override
+  String get admRdColLink => 'Link';
+
+  @override
+  String get admRdColErro => 'Erro';
+
+  @override
+  String get admRdEstPublicada => 'Publicada';
+
+  @override
+  String get admRdEstAgendada => 'Agendada';
+
+  @override
+  String get admRdEstFalhou => 'Falhou';
+
+  @override
+  String get admRdEstSaltada => 'Pulada';
+
+  @override
+  String get admRdVazio => 'Ainda não há publicações registradas.';
+
+  @override
+  String get admRdNota =>
+      'Fiscal = nota do fiscal de vídeo (0-100; só vídeos). Uma peça só sai com 90 ou mais; abaixo disso fica «Falhou» e o Danilo recebe aviso no Telegram. O robô também avisa quando ficam menos de 7 dias de peças prontas.';
 
   @override
   String get admNavFunil => 'Funil';
