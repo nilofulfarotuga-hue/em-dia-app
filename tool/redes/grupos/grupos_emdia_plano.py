@@ -324,7 +324,7 @@ def main():
         log("plano de %s ja saiu as %s -- nao repito (usa --forcar)" % (hoje, ja.get("em")))
         return 0
 
-    cab = "PLANO DOS GRUPOS DO EM DIA -- %s\nA maquina so escolhe e escreve. Aderir e Publicar carregas tu." % hoje.strftime("%d/%m/%Y")
+    cab = "PLANO DOS GRUPOS DO EM DIA -- %s\nA maquina so escolhe e escreve. As 18:30 o Claude junta isto e pede o teu SIM, um por um; so depois adere/publica, um a um." % hoje.strftime("%d/%m/%Y")
 
     # d) travao do dia
     av = avisos_do_dia(est, hoje)
@@ -362,7 +362,7 @@ def main():
 
     rnd = random.Random(hoje.toordinal())
     horas = horas_do_dia(len(pub), hoje.toordinal())
-    blocos_pub, textos_hoje = [], []
+    blocos_pub, textos_hoje, itens_pub = [], [], []
     for i, (k, g) in enumerate(pub):
         angulo = angulo_para(g, hoje.toordinal() + i * 3)
         accao = ACCOES[rnd.randrange(len(ACCOES))]
@@ -372,6 +372,8 @@ def main():
         if regras_g != "sim":
             cabeca += ("Regras por confirmar: abre as regras fixadas primeiro; se proibir divulgacao, "
                        "nao publiques e marca: grupos_emdia_registar.py regras %s nao\n" % g.get("link"))
+        itens_pub.append({"link": g.get("link"), "nome": g.get("nome"), "hora": horas[i], "texto": t,
+                          "comentario": LINK_APP % g.get("slug"), "regras": regras_g, "erro": None if t else erro})
         if t:
             textos_hoje.append(t)
             corpo = "TEXTO (so para este grupo; le antes de colar, o motor gratis as vezes acrescenta frases fora dos factos):\n%s\n\n1.o comentario, logo a seguir a publicar:\n%s" % (
@@ -419,7 +421,7 @@ def main():
     est["planos"][hoje.isoformat()] = {
         "em": iso(), "enviado": all(oks), "partes": len(oks),
         "adesao": [g.get("link") for _, g in adesao], "publicar": [g.get("link") for _, g in pub],
-        "textos": textos_hoje, "tecto": tecto,
+        "textos": textos_hoje, "itens_pub": itens_pub, "tecto": tecto,
     }
     gravar_json(ESTADO, est)
     log("plano %s: adesao=%d publicar=%d tecto=%d candidatos=%d telegram=%s" % (
