@@ -233,6 +233,13 @@ class AdminDados {
   late final List<Linha> _erros;
   late final List<Linha> _funil;
   String? _contactoParceiro;
+  // Modo de teste dos grupos do Facebook: 3 grupos fixos (fotos do painel).
+  final List<Linha> _grupos = [
+    {'link': 'https://www.facebook.com/groups/260976004763276/', 'nome': 'Motoristas Profissionais', 'segmento': 'tvde', 'distrito': 'nacional', 'membros': 63000, 'encaixe': 10, 'estado': 'aceite', 'permite_publicidade': 'sim', 'aceite_em': '2026-09-20T10:00:00Z', 'publicacoes': 0, 'pausado': false},
+    {'link': 'https://www.facebook.com/groups/1712177222549071/', 'nome': 'Freelance in Portugal', 'segmento': 'recibos-verdes', 'distrito': 'nacional', 'membros': 14000, 'encaixe': 10, 'estado': 'pedido', 'permite_publicidade': 'por_confirmar', 'pedido_adesao_em': '2026-09-27T18:40:00Z', 'publicacoes': 0, 'pausado': false},
+    {'link': 'https://www.facebook.com/groups/561966794471617/', 'nome': 'BOLT FOOD ESTAFETAS - PORTO', 'segmento': 'estafetas', 'distrito': 'porto', 'membros': 7800, 'encaixe': 9, 'estado': 'candidato', 'permite_publicidade': 'nao', 'publicacoes': 0, 'pausado': true},
+  ];
+  bool _gruposTudoPausado = false;
 
   /// Modo real: fala com o Supabase.
   AdminDados() : _t = null;
@@ -466,6 +473,59 @@ class AdminDados {
       return List.of(_funil);
     }
     return _linhas(await sb.rpc('admin_funil', params: {'p_semanas': semanas}));
+  }
+
+  // ---------------------------------------------------------------- redes do Em Dia
+  /// O que o robô das redes publicou / agendou / falhou (RPC admin_redes, só admin).
+  Future<List<Linha>> redes({int limite = 200}) async {
+    if (emTeste) {
+      _falhaSePedido();
+      return const [];
+    }
+    return _linhas(await sb.rpc('admin_redes', params: {'p_limite': limite}));
+  }
+
+  Future<Linha?> redesResumo() async {
+    if (emTeste) {
+      _falhaSePedido();
+      return const {'publicadas_7d': 0, 'agendadas': 0, 'falhadas_7d': 0};
+    }
+    final r = await sb.rpc('admin_redes_resumo');
+    return r == null ? null : Map<String, dynamic>.from(r as Map);
+  }
+
+  // ---------------------------------------------------------------- grupos do Facebook (Em Dia)
+  /// Lista dos grupos (espelhada da VPS pelo grupos_emdia_sync.py; RPC admin_grupos, só admin).
+  Future<List<Linha>> grupos({int limite = 500}) async {
+    if (emTeste) {
+      _falhaSePedido();
+      return _grupos;
+    }
+    return _linhas(await sb.rpc('admin_grupos', params: {'p_limite': limite}));
+  }
+
+  Future<Linha?> gruposResumo() async {
+    if (emTeste) {
+      _falhaSePedido();
+      return {'total': _grupos.length, 'pedidos': 1, 'aceites': 1, 'publicacoes_7d': 0, 'pausados': _grupos.where((g) => g['pausado'] == true).length, 'pausado_tudo': _gruposTudoPausado, 'tecto_hoje': 3, 'dias_limpos': 0};
+    }
+    final r = await sb.rpc('admin_grupos_resumo');
+    return r == null ? null : Map<String, dynamic>.from(r as Map);
+  }
+
+  /// Pausa/retoma um grupo ([link]) ou tudo ([link] null). A VPS lê isto antes de cada plano.
+  /// O servidor regista no admin_audit_log.
+  Future<void> pausarGrupos(String? link, bool pausado) async {
+    if (emTeste) {
+      if (link == null) {
+        _gruposTudoPausado = pausado;
+      } else {
+        final i = _grupos.indexWhere((g) => g['link'] == link);
+        if (i >= 0) _grupos[i] = {..._grupos[i], 'pausado': pausado};
+      }
+      return;
+    }
+    await sb.rpc('admin_grupos_pausar', params: {'p_link': link, 'p_pausado': pausado});
   }
 
   String funilCsv(List<Linha> lista) {
