@@ -10,6 +10,7 @@ import '../../l10n/app_localizations.dart';
 import '../../widgets/widgets.dart';
 import '../admin_dados.dart';
 import '../admin_widgets.dart';
+import 'grupos.dart';
 
 class RedesSeccao extends StatefulWidget {
   final AdminDados dados;
@@ -71,6 +72,8 @@ class _RedesSeccaoState extends State<RedesSeccao> {
         ),
         const SizedBox(height: 12),
         Aviso(l.admRdNota, tom: Semaforo.amarelo),
+        const SizedBox(height: 32),
+        GruposBloco(dados: widget.dados),
       ],
     );
   }

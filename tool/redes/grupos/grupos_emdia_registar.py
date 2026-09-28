@@ -125,5 +125,17 @@ def main(argv):
     return 0
 
 
+def _sync_painel():
+    """Depois de cada registo, o painel admin fica igual ao estado (falhar aqui nao estraga o registo)."""
+    try:
+        from grupos_emdia_sync import sincronizar
+        sincronizar()
+    except Exception as ex:
+        print("aviso: painel nao sincronizado (%s)" % ex)
+
+
+import atexit  # noqa: E402
+atexit.register(_sync_painel)
+
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))

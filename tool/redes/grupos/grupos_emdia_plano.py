@@ -120,9 +120,13 @@ def carregar_playbook():
     return modelos, regras
 
 
+PAUSADOS = set()  # links pausados no painel admin (grupos_emdia_sync.py -> pausas.json)
+
+
 def escolher_adesao(est):
     livres = [(k, g) for k, g in est["grupos"].items()
-              if not g.get("pedido_adesao_em") and not g.get("aceite_em") and not g.get("saiu")]
+              if not g.get("pedido_adesao_em") and not g.get("aceite_em") and not g.get("saiu")
+              and g.get("link") not in PAUSADOS]
     livres.sort(key=lambda kg: (-kg[1].get("encaixe", 0), -kg[1].get("membros", 0)))
     escolha, segs, dists = [], set(), set()
     for rigor in (2, 1, 0):  # 2 = segmento E distrito novos; 1 = so segmento; 0 = qualquer
@@ -143,8 +147,11 @@ def escolher_adesao(est):
 
 
 def escolher_publicacao(est, tecto, hoje_dt):
-    aptos, saltados = [], {"sem_aceite": 0, "menos_72h": 0, "publicado_semana": 0, "proibe": 0}
+    aptos, saltados = [], {"sem_aceite": 0, "menos_72h": 0, "publicado_semana": 0, "proibe": 0, "pausado": 0}
     for k, g in est["grupos"].items():
+        if g.get("link") in PAUSADOS:
+            saltados["pausado"] += 1
+            continue
         ac = ler_dt(g.get("aceite_em"))
         if not ac:
             saltados["sem_aceite"] += 1
@@ -298,6 +305,20 @@ def main():
         hoje_dt = datetime.fromisoformat(a.data).replace(hour=8, minute=40, tzinfo=agora_dt.tzinfo)
     hoje = hoje_dt.date()
     est = carregar_estado()
+    # pausas do painel admin (Redes > Grupos do Facebook): sincroniza antes de escolher;
+    # sem rede segue com a ultima copia das pausas (pausas.json).
+    from grupos_emdia_sync import sincronizar, ler_pausas
+    try:
+        if not a.ensaio:
+            sincronizar(est)
+    except Exception as ex:
+        log("sync painel falhou antes do plano: %s" % ex)
+    pz = ler_pausas()
+    PAUSADOS.update(pz.get("pausados") or [])
+    if pz.get("pausado_tudo"):
+        log("grupos PAUSADOS no painel admin -- sem plano hoje")
+        avisar("PLANO DOS GRUPOS DO EM DIA -- %s\nPausado no painel admin (Redes > Grupos do Facebook). Hoje nao ha adesoes nem publicacoes." % hoje.strftime("%d/%m/%Y"), a.ensaio)
+        return 0
     ja = est.setdefault("planos", {}).get(hoje.isoformat())
     if ja and ja.get("enviado") and not a.forcar and not a.ensaio:
         log("plano de %s ja saiu as %s -- nao repito (usa --forcar)" % (hoje, ja.get("em")))

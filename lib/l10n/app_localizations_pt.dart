@@ -3651,6 +3651,121 @@ class AppLocalizationsPt extends AppLocalizations {
       'Instalações vêm da Play Console (Estatísticas). Os eventos só contam quem ligou \"estatísticas de utilização\" nas Definições; os números das contas não precisam de consentimento porque são os dados da conta.';
 
   @override
+  String get admGrTitulo => 'Grupos do Facebook';
+
+  @override
+  String get admGrSub =>
+      'Grupos públicos de Portugal onde está o público do Em Dia. A máquina da VPS escolhe e escreve; cada adesão e cada publicação só acontece depois do teu «sim», uma a uma, com 30 a 60 minutos entre publicações. Pausar aqui vale para o plano do dia seguinte e para o pedido de «sim» do fim da tarde.';
+
+  @override
+  String get admGrTotal => 'Grupos na lista';
+
+  @override
+  String get admGrPedidos => 'Pedidos de adesão';
+
+  @override
+  String get admGrAceites => 'Aceites';
+
+  @override
+  String get admGrPub7 => 'Publicações (7 dias)';
+
+  @override
+  String admGrTecto(String n, String d) {
+    return 'Limite de hoje: $n · $d dias sem aviso do Facebook';
+  }
+
+  @override
+  String get admGrPausarTudo => 'Pausar tudo';
+
+  @override
+  String get admGrRetomarTudo => 'Retomar tudo';
+
+  @override
+  String get admGrTudoPausado =>
+      'Tudo pausado: não sai nenhum plano nem pedido de «sim» até retomares.';
+
+  @override
+  String admGrUltimoAviso(String texto) {
+    return 'Último aviso do Facebook: $texto';
+  }
+
+  @override
+  String get admGrTodos => 'Todos';
+
+  @override
+  String admGrTabela(int n) {
+    return '$n grupos';
+  }
+
+  @override
+  String get admGrColNome => 'Grupo';
+
+  @override
+  String get admGrColSegmento => 'Público';
+
+  @override
+  String get admGrColDistrito => 'Distrito';
+
+  @override
+  String get admGrColMembros => 'Membros';
+
+  @override
+  String get admGrColEstado => 'Estado';
+
+  @override
+  String get admGrColPromo => 'Deixa promoção';
+
+  @override
+  String get admGrColUltima => 'Última publicação';
+
+  @override
+  String get admGrColAcao => '';
+
+  @override
+  String get admGrEstCandidato => 'Candidato';
+
+  @override
+  String get admGrEstPedido => 'Pedido enviado';
+
+  @override
+  String get admGrEstAceite => 'Aceite';
+
+  @override
+  String get admGrEstPublicado => 'Já publicado';
+
+  @override
+  String get admGrEstProibe => 'Não deixa';
+
+  @override
+  String get admGrPromoSim => 'Sim';
+
+  @override
+  String get admGrPromoNao => 'Não';
+
+  @override
+  String get admGrPromoPorConfirmar => 'Por confirmar';
+
+  @override
+  String get admGrPausar => 'Pausar';
+
+  @override
+  String get admGrRetomar => 'Retomar';
+
+  @override
+  String get admGrPausadoEtiqueta => 'Pausado';
+
+  @override
+  String get admGrConfirmarTudo =>
+      'Pausar todos os grupos? O plano de amanhã e o pedido de «sim» do fim da tarde param até retomares.';
+
+  @override
+  String get admGrFeito => 'Guardado. A VPS lê isto antes do próximo plano.';
+
+  @override
+  String get admGrVazio =>
+      'Ainda não há grupos. A lista chega da VPS na próxima sincronização.';
+
+  @override
   String get caixaTitulo => 'As faturas que me chegam';
 
   @override
@@ -10293,6 +10408,121 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   @override
   String get admFuNota =>
       'Instalações vêm da Play Console (Estatísticas). Os eventos só contam quem ligou \"estatísticas de uso\" nas Configurações; os números das contas não precisam de consentimento porque são os dados da conta.';
+
+  @override
+  String get admGrTitulo => 'Grupos do Facebook';
+
+  @override
+  String get admGrSub =>
+      'Grupos públicos de Portugal onde está o público do Em Dia. A máquina da VPS escolhe e escreve; cada adesão e cada publicação só acontece depois do seu «sim», uma a uma, com 30 a 60 minutos entre publicações. Pausar aqui vale para o plano do dia seguinte e para o pedido de «sim» do fim da tarde.';
+
+  @override
+  String get admGrTotal => 'Grupos na lista';
+
+  @override
+  String get admGrPedidos => 'Pedidos de adesão';
+
+  @override
+  String get admGrAceites => 'Aceitos';
+
+  @override
+  String get admGrPub7 => 'Publicações (7 dias)';
+
+  @override
+  String admGrTecto(String n, String d) {
+    return 'Limite de hoje: $n · $d dias sem aviso do Facebook';
+  }
+
+  @override
+  String get admGrPausarTudo => 'Pausar tudo';
+
+  @override
+  String get admGrRetomarTudo => 'Retomar tudo';
+
+  @override
+  String get admGrTudoPausado =>
+      'Tudo pausado: não sai nenhum plano nem pedido de «sim» até você retomar.';
+
+  @override
+  String admGrUltimoAviso(String texto) {
+    return 'Último aviso do Facebook: $texto';
+  }
+
+  @override
+  String get admGrTodos => 'Todos';
+
+  @override
+  String admGrTabela(int n) {
+    return '$n grupos';
+  }
+
+  @override
+  String get admGrColNome => 'Grupo';
+
+  @override
+  String get admGrColSegmento => 'Público';
+
+  @override
+  String get admGrColDistrito => 'Distrito';
+
+  @override
+  String get admGrColMembros => 'Membros';
+
+  @override
+  String get admGrColEstado => 'Estado';
+
+  @override
+  String get admGrColPromo => 'Deixa promoção';
+
+  @override
+  String get admGrColUltima => 'Última publicação';
+
+  @override
+  String get admGrColAcao => '';
+
+  @override
+  String get admGrEstCandidato => 'Candidato';
+
+  @override
+  String get admGrEstPedido => 'Pedido enviado';
+
+  @override
+  String get admGrEstAceite => 'Aceito';
+
+  @override
+  String get admGrEstPublicado => 'Já publicado';
+
+  @override
+  String get admGrEstProibe => 'Não deixa';
+
+  @override
+  String get admGrPromoSim => 'Sim';
+
+  @override
+  String get admGrPromoNao => 'Não';
+
+  @override
+  String get admGrPromoPorConfirmar => 'Por confirmar';
+
+  @override
+  String get admGrPausar => 'Pausar';
+
+  @override
+  String get admGrRetomar => 'Retomar';
+
+  @override
+  String get admGrPausadoEtiqueta => 'Pausado';
+
+  @override
+  String get admGrConfirmarTudo =>
+      'Pausar todos os grupos? O plano de amanhã e o pedido de «sim» do fim da tarde param até você retomar.';
+
+  @override
+  String get admGrFeito => 'Guardado. A VPS lê isto antes do próximo plano.';
+
+  @override
+  String get admGrVazio =>
+      'Ainda não há grupos. A lista chega da VPS na próxima sincronização.';
 
   @override
   String get caixaTitulo => 'As faturas que me chegam';

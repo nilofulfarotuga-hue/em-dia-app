@@ -327,6 +327,24 @@ void main() {
     await fotografaDesktop(tester, nome: 'admin_redes', tela: () => moldura(9));
   });
 
+  // Missão emdia-redes-2026-09-28 (E2): bloco «Grupos do Facebook» por baixo das Redes,
+  // com lista, estado e pausar (um grupo ou tudo).
+  testWidgets('admin_redes_grupos: grupos do Facebook com estado e pausar', (tester) async {
+    await fotografaDesktop(
+      tester,
+      nome: 'admin_redes_grupos',
+      tela: () => moldura(9),
+      antes: (t) async {
+        await t.scrollUntilVisible(find.text('Grupos do Facebook'), 400, scrollable: find.byWidgetPredicate((w) => w is Scrollable && w.axisDirection == AxisDirection.down).last);
+        await t.pump(const Duration(milliseconds: 300));
+      },
+    );
+    expect(find.text('Motoristas Profissionais'), findsOneWidget);
+    expect(find.text('Pedido enviado'), findsWidgets);
+    expect(find.text('Pausado'), findsOneWidget);
+    expect(find.text('Pausar tudo'), findsOneWidget);
+  });
+
   testWidgets('admin_convites: quem convidou quem', (tester) async {
     await fotografaDesktop(tester, nome: 'admin_convites', tela: () => moldura(10));
   });
