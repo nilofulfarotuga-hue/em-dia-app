@@ -1,0 +1,532 @@
+{
+  "versao": "20260928",
+  "regras": [
+    {
+      "id": "R01",
+      "texto": "O que mais pesa é o tempo visto, depois os envios, e só depois os gostos.",
+      "fonte": "COMO-VIRALIZA.md §2.1 · dataslayer.ai/blog/instagram-algorithm-2025-complete-guide-for-marketers · radar gUnQ4Xui_zo",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "sinais",
+      "como_reels": "Reels de 7 a 15 s, sem plano parado mais de 4 s; o último plano liga ao primeiro para a pessoa rever sem dar por isso.",
+      "como_grupos": "Nos grupos o sinal equivalente são comentários de pessoas diferentes: o texto tem de acabar numa pergunta que qualquer um responde."
+    },
+    {
+      "id": "R02",
+      "texto": "Pede-se um envio, não um gosto: um envio por mensagem vale 3 a 5 gostos.",
+      "fonte": "socialchamp.com/blog/instagram-trial-reels · dataslayer.ai (sinais confirmados por Mosseri) · COMO-VIRALIZA.md §2.1",
+      "aplica_reels": true,
+      "aplica_grupos": false,
+      "bloco": "sinais",
+      "como_reels": "Fecho do reel e 1.ª linha da legenda: «Manda a quem faz TVDE», «Manda a quem abriu atividade este mês».",
+      "como_grupos": "Não se aplica: nos grupos não se pede partilha; pede-se resposta (ver regra 34)."
+    },
+    {
+      "id": "R03",
+      "texto": "Uma publicação, um só pedido. Nunca «gosta, comenta, partilha e segue» ao mesmo tempo.",
+      "fonte": "COMO-VIRALIZA.md §2.3",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "sinais",
+      "como_reels": "Escolher um: enviar (peças de TVDE/estafetas), guardar (peças de prazos) ou comentar (peças de dúvida).",
+      "como_grupos": "Nos grupos o único pedido é a pergunta final. Sem «sigam a página»."
+    },
+    {
+      "id": "R04",
+      "texto": "A primeira hora é trabalho: responder a todos os comentários, com uma pergunta de volta.",
+      "fonte": "COMO-VIRALIZA.md §2.2 · multiplegroupposter.com/blog/facebook-group-engagement-tactics · radar LHjZWNuPslI",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "sinais",
+      "como_reels": "Depois das 20:30, alguém fica a responder até às 21:30. Resposta curta + pergunta («Em que mês abriste atividade?»).",
+      "como_grupos": "Um post de grupo sem resposta 12 horas morre. Responder no próprio dia a todos, com a regra e a fonte oficial."
+    },
+    {
+      "id": "R05",
+      "texto": "Conteúdo sempre original: nada republicado de outras contas, nem vídeos de terceiros.",
+      "fonte": "COMO-VIRALIZA.md §2.1 (original leva 40-60% mais distribuição) · radar ptKSin2gMzY",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "sinais",
+      "como_reels": "Cada reel sai do nosso gerador, com ecrãs reais da app no modo exemplo. Nada de áudios virais de terceiros.",
+      "como_grupos": "Nos grupos só vão peças nossas da pasta pecas/. Nunca partilhar publicações de outras páginas."
+    },
+    {
+      "id": "R06",
+      "texto": "A 1.ª frase chama o público pelo nome: «Trabalhas a recibos verdes?», «Fazes entregas?».",
+      "fonte": "LIVRO-DE-REGRAS-REDES.md §3 (MaisMei) · radar MDG0VE76DUw",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "gancho",
+      "como_reels": "Texto no ecrã no 1.º fotograma com o nome do público. Sem logótipo e sem «olá pessoal» a abrir.",
+      "como_grupos": "A 1.ª linha do texto do grupo é a pergunta ao público. É a que aparece antes do «Ver mais»."
+    },
+    {
+      "id": "R07",
+      "texto": "O gancho é quem escolhe o público: um gancho por segmento, nunca um genérico para todos.",
+      "fonte": "radar MDG0VE76DUw · radar Cwf-7WBhgao",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "gancho",
+      "como_reels": "Rodar os segmentos ao longo da semana: TVDE, estafetas, freelancers, quem tem contrato e passa recibos, brasileiros.",
+      "como_grupos": "O gancho do texto casa com o grupo: nos grupos de TVDE fala-se do carro; nos de brasileiros, com «você»."
+    },
+    {
+      "id": "R08",
+      "texto": "Nomear a dor antes de mostrar a app. A app só aparece depois de a pessoa se reconhecer no problema.",
+      "fonte": "COMO-VIRALIZA.md §2.5",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "gancho",
+      "como_reels": "Estrutura: problema (0-3 s) → explicação (3-10 s) → ecrã real da app a resolver (10-15 s) → pedido.",
+      "como_grupos": "O texto resolve a dúvida por inteiro; a app só entra na última frase ou no comentário."
+    },
+    {
+      "id": "R09",
+      "texto": "Números só com fonte oficial. Sem «médias», sem «poupa X €», sem medo («vais ser multado»).",
+      "fonte": "LIVRO-DE-REGRAS-REDES.md §3 e §7 · docs/REGRAS-PT-2026.md",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "gancho",
+      "como_reels": "Cada número no ecrã leva a fonte no rodapé e na legenda. Os já aprovados: 179,76 € (21,4% × 70% × 1.200 €), recibo de 1.000 €, 15.000 €.",
+      "como_grupos": "Número no texto de grupo só com a fonte ao lado (Segurança Social, Portal das Finanças, artigo da lei)."
+    },
+    {
+      "id": "R10",
+      "texto": "Reel para chegar a quem não conhece; carrossel para aprofundar com quem já segue.",
+      "fonte": "COMO-VIRALIZA.md §2.4 · radar Cwf-7WBhgao",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "formato",
+      "como_reels": "Conta nova: o reel diário é o motor de alcance. Carrosséis 3 a 4 por semana para guardar.",
+      "como_grupos": "Grupo novo: primeiro vídeo curto ou imagem única; grupos onde já publicámos: carrossel."
+    },
+    {
+      "id": "R11",
+      "texto": "Carrossel de 7 a 10 lâminas, uma ideia por lâmina, feito para guardar.",
+      "fonte": "sebraepr.com.br/comunidade/artigo/estrategia-de-crescimento-organico-no-instagram-o-guia-de-2026 · LIVRO-DE-REGRAS-REDES.md §2",
+      "aplica_reels": false,
+      "aplica_grupos": true,
+      "bloco": "formato",
+      "como_reels": "Não se aplica aos reels.",
+      "como_grupos": "Nos grupos o carrossel vai como álbum de imagens, com o texto curto em cima."
+    },
+    {
+      "id": "R12",
+      "texto": "A 2.ª lâmina do carrossel tem de valer sozinha: o Instagram volta a mostrar o post a partir dela.",
+      "fonte": "radar gUnQ4Xui_zo",
+      "aplica_reels": false,
+      "aplica_grupos": true,
+      "bloco": "formato",
+      "como_reels": "Não se aplica aos reels.",
+      "como_grupos": "Nos grupos a 2.ª imagem do álbum também tem de se perceber sem a capa."
+    },
+    {
+      "id": "R13",
+      "texto": "Série fixa e numerada: «Recibos verdes 101 · n.º X». Cria hábito e dá vontade de ver as outras.",
+      "fonte": "LIVRO-DE-REGRAS-REDES.md §1 (Holded) · radar ptKSin2gMzY",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "formato",
+      "como_reels": "Um dia da semana fixo para a série (por exemplo 2.ª feira = «101»), com o número no canto do ecrã.",
+      "como_grupos": "Nos grupos, no máximo uma peça da série por semana e por grupo, com texto reescrito."
+    },
+    {
+      "id": "R14",
+      "texto": "Quatro formatos que funcionam neste tema: «Erro comum», «Sabias que», «Calendário do mês», «Passo a passo».",
+      "fonte": "keepertax.com (desmontar mitos do TikTok) · doutorfinancas.pt (calendário fiscal) · LIVRO-DE-REGRAS-REDES.md §1",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "formato",
+      "como_reels": "Rodar os quatro durante a semana; nunca dois iguais seguidos.",
+      "como_grupos": "«Calendário do mês» e «Passo a passo» são os que os grupos aceitam melhor como ajuda."
+    },
+    {
+      "id": "R15",
+      "texto": "Desmontar mitos que circulam é gancho forte: «Ouviste que…? Não é bem assim.»",
+      "fonte": "keepertax.com (conteúdo a desmontar mitos de impostos do TikTok) · tiktok.com/discover/keeper-tax-review",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "formato",
+      "como_reels": "Pegar numa frase que circula nos grupos e mostrar a regra oficial ao lado. A fonte no ecrã.",
+      "como_grupos": "Quando aparece um mito num grupo, responder com a regra e o link oficial (Segurança Social ou Portal das Finanças), sem link da app."
+    },
+    {
+      "id": "R16",
+      "texto": "Contagem regressiva para o prazo real: «Faltam 7 dias», «Faltam 4 dias», «Amanhã».",
+      "fonte": "LIVRO-DE-REGRAS-REDES.md §1 (MEI Fácil) · COMO-VIRALIZA.md §2.3",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "formato",
+      "como_reels": "Na semana de um prazo, o reel e o story do dia contam os dias. Laranja só aqui (urgência).",
+      "como_grupos": "Um único post de lembrete por grupo por prazo, 3 a 5 dias antes, com a data exata."
+    },
+    {
+      "id": "R17",
+      "texto": "Simples e real ganha a produção cara: fundo liso, letra grande, ecrã verdadeiro.",
+      "fonte": "radar ScFGyQmaIYk · LIVRO-DE-REGRAS-REDES.md §4",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "formato",
+      "como_reels": "Texto grande sobre fundo da marca + ecrã real no modo exemplo. Nunca pessoas geradas por IA.",
+      "como_grupos": "Nos grupos, imagens com cara de anúncio são apagadas mais depressa: preferir a lâmina de conteúdo à capa com logótipo."
+    },
+    {
+      "id": "R18",
+      "texto": "Tem de se perceber sem som: legendas no ecrã em todos os reels.",
+      "fonte": "later.com/blog/instagram-seo · outfame.com/blog/instagram-seo-2026-how-to-rank-in-search-keywords-captions-alt-text",
+      "aplica_reels": true,
+      "aplica_grupos": false,
+      "bloco": "formato",
+      "como_reels": "Cada frase dita aparece escrita, dentro da zona segura (y 250 a 1480).",
+      "como_grupos": "Não se aplica."
+    },
+    {
+      "id": "R19",
+      "texto": "A mesma palavra-chave no ecrã, na voz e na legenda: «recibos verdes», «Segurança Social», «IVA», «IRS».",
+      "fonte": "later.com/blog/instagram-seo · outfame.com (o Instagram lê voz, texto no ecrã e legenda)",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "pesquisa",
+      "como_reels": "Cada reel escolhe uma palavra-chave e repete-a nos três sítios.",
+      "como_grupos": "A palavra-chave na 1.ª linha do texto: é por ela que os membros pesquisam dentro do grupo."
+    },
+    {
+      "id": "R20",
+      "texto": "Legenda escrita como resposta a uma pergunta que se pesquisa; hashtags no máximo 3.",
+      "fonte": "lamplightcreatives.com/captions-vs-hashtags-instagram-2026 · sebraepr.com.br (guia 2026) · radar ptKSin2gMzY",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "pesquisa",
+      "como_reels": "1.ª linha da legenda = a pergunta («Quando se paga a Segurança Social a recibos verdes?»); 2.ª = a resposta curta.",
+      "como_grupos": "Nos grupos, zero hashtags."
+    },
+    {
+      "id": "R21",
+      "texto": "Posts públicos de contas profissionais aparecem no Google: cada legenda é uma pequena página de ajuda.",
+      "fonte": "toptal.com/creator/post/instagram-seo · getinfluo.com/blog/instagram-seo-search-optimization.html",
+      "aplica_reels": true,
+      "aplica_grupos": false,
+      "bloco": "pesquisa",
+      "como_reels": "Legenda com a pergunta, a resposta e a fonte oficial por extenso. Texto alternativo preenchido nos carrosséis.",
+      "como_grupos": "Não se aplica (os grupos não são indexados da mesma forma)."
+    },
+    {
+      "id": "R22",
+      "texto": "O nome do perfil leva a palavra-chave, não só a marca.",
+      "fonte": "toptal.com/creator/post/instagram-seo · radar S8FbRtQew-E",
+      "aplica_reels": true,
+      "aplica_grupos": false,
+      "bloco": "pesquisa",
+      "como_reels": "Nome visível: «Em Dia · Recibos verdes». A bio diz para quem é na 1.ª linha.",
+      "como_grupos": "Não se aplica."
+    },
+    {
+      "id": "R23",
+      "texto": "Um reel por dia, sempre às 20:30. Constância à mesma hora vale mais do que picos.",
+      "fonte": "LIVRO-DE-REGRAS-REDES.md §5 · COMO-VIRALIZA.md §3 · sebraepr.com.br (Reels recentes têm prioridade) · radar LHjZWNuPslI",
+      "aplica_reels": true,
+      "aplica_grupos": false,
+      "bloco": "ritmo",
+      "como_reels": "Nunca faltar um dia; se uma peça cair, sai uma da série «Sabias que» de reserva.",
+      "como_grupos": "Não se aplica."
+    },
+    {
+      "id": "R24",
+      "texto": "Horas: reels 20:30; grupos só nas janelas 09:00-11:30, 13:00-15:30 e 19:00-22:00. Nunca de madrugada.",
+      "fonte": "COMO-VIRALIZA.md §3 · blog.swonkie.com (83 mil posts em PT)",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "ritmo",
+      "como_reels": "Não mudar as 20:30. Carrosséis nas horas do Livro (3.ª 13:30, 5.ª 14:00, 6.ª 16:00, sáb. 11:00).",
+      "como_grupos": "Peças que pedem conversa vão na janela da noite (19:00-22:00)."
+    },
+    {
+      "id": "R25",
+      "texto": "Espaçar as publicações de feed: um carrossel e um reel nunca saem colados.",
+      "fonte": "radar gUnQ4Xui_zo (canibalização entre posts)",
+      "aplica_reels": true,
+      "aplica_grupos": false,
+      "bloco": "ritmo",
+      "como_reels": "Pelo menos 4 horas entre um carrossel e o reel das 20:30.",
+      "como_grupos": "Não se aplica."
+    },
+    {
+      "id": "R26",
+      "texto": "Ganchos novos experimentam-se primeiro como reels experimentais (Trial Reels, só para quem não segue).",
+      "fonte": "creators.instagram.com/blog/instagram-trial-reels · socialchamp.com/blog/instagram-trial-reels",
+      "aplica_reels": true,
+      "aplica_grupos": false,
+      "bloco": "ritmo",
+      "como_reels": "Quando houver dois ganchos para a mesma peça, um vai como reel experimental. Passa ao perfil se ganhar em 2 de 3: vistos até ao fim, guardados, envios.",
+      "como_grupos": "Não se aplica."
+    },
+    {
+      "id": "R27",
+      "texto": "A cada 7 dias: ver guardados e envios por peça e refazer a vencedora mudando só o gancho.",
+      "fonte": "LIVRO-DE-REGRAS-REDES.md §6 · radar ka3gqzmUuvc · radar _5rfcq__6u0",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "ritmo",
+      "como_reels": "A peça com mais envios da semana volta 2 a 3 semanas depois com gancho novo. Nunca a mesma peça igual.",
+      "como_grupos": "O tema que gerou mais comentários num grupo volta, reescrito de raiz, noutro grupo do mesmo público."
+    },
+    {
+      "id": "R28",
+      "texto": "As perguntas que chegam (stories, comentários, grupos) são a lista de reels seguintes.",
+      "fonte": "radar gUnQ4Xui_zo (caixas de perguntas nos stories) · radar LHjZWNuPslI",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "ritmo",
+      "como_reels": "Uma sondagem ou caixa de perguntas por semana nos stories; a pergunta mais repetida vira reel.",
+      "como_grupos": "Anotar as dúvidas repetidas nos grupos; viram «Passo a passo». Nunca citar o nome de quem perguntou."
+    },
+    {
+      "id": "R29",
+      "texto": "Sem testemunhos inventados, sem pessoas de IA a fingir clientes. Conteúdo de utilizadores só se for real e autorizado.",
+      "fonte": "LIVRO-DE-REGRAS-REDES.md §3, §4 e §7 · radar lBHrvjPXbyg e Al-Ncm9B26I (o conteúdo de utilizadores funciona, mas tem de ser verdadeiro)",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "honestidade",
+      "como_reels": "Ecrãs reais no modo exemplo (a Maria), com a etiqueta visível. Nunca dados de pessoas reais.",
+      "como_grupos": "Nunca escrever «um amigo usou e adorou». Fala a página Em Dia, na 1.ª pessoa do plural."
+    },
+    {
+      "id": "R30",
+      "texto": "«Não substitui um contabilista» onde se explica imposto; regras por confirmar não entram.",
+      "fonte": "LIVRO-DE-REGRAS-REDES.md §7",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "honestidade",
+      "como_reels": "Rodapé do último plano e última linha da legenda.",
+      "como_grupos": "Última linha do texto, antes da pergunta."
+    },
+    {
+      "id": "R31",
+      "texto": "Ler as regras fixadas antes de tudo. Promoção só onde e quando o grupo deixa.",
+      "fonte": "multiplegroupposter.com/blog/facebook-group-promotion-rules · GRUPOS-PORTUGAL.md",
+      "aplica_reels": false,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "Não se aplica.",
+      "como_grupos": "Anotar as regras na coluna «Regras (confirmadas)» do GRUPOS-PORTUGAL.md antes do 1.º post."
+    },
+    {
+      "id": "R32",
+      "texto": "Depois de aceite, esperar 48 a 72 h e ajudar primeiro (2 a 3 respostas sem link).",
+      "fonte": "COMO-VIRALIZA.md §1.1 · GRUPOS-PORTUGAL.md",
+      "aplica_reels": false,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "Não se aplica.",
+      "como_grupos": "Só grupos com data_aceite de há 3 dias ou mais podem receber post próprio."
+    },
+    {
+      "id": "R33",
+      "texto": "O post resolve a dúvida inteira sem precisar do link. Se só funciona com o link, é anúncio.",
+      "fonte": "eofire.com/what-no-self-promotion-means-facebook-group-guidelines · lilachbullock.com/facebook-group-rules-examples-that-actually-work",
+      "aplica_reels": false,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "Não se aplica.",
+      "como_grupos": "Prova antes de publicar: apagar a última frase (a da app). O texto continua útil? Então pode sair."
+    },
+    {
+      "id": "R34",
+      "texto": "Acabar com uma pergunta concreta ou de escolha entre duas opções.",
+      "fonte": "multiplegroupposter.com/blog/facebook-group-engagement-tactics (perguntas binárias dão 2 a 3 vezes mais comentários)",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "No reel, a pergunta do fim é o pedido de comentário quando a peça não é de envio.",
+      "como_grupos": "Ex.: «Guardam o dinheiro dos impostos numa conta à parte ou fica tudo junto?»"
+    },
+    {
+      "id": "R35",
+      "texto": "Link nunca no corpo do texto: vai no 1.º comentário, e só se o grupo deixar.",
+      "fonte": "COMO-VIRALIZA.md §5 · multiplegroupposter.com (link no corpo custa cerca de 30% de alcance)",
+      "aplica_reels": false,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "Não se aplica (no Instagram o link está na bio).",
+      "como_grupos": "Sem link no corpo. Se o grupo proíbe links, só se responde por mensagem a quem pedir."
+    },
+    {
+      "id": "R36",
+      "texto": "Cada texto é reescrito de raiz em cada grupo: gancho, exemplo e pergunta diferentes.",
+      "fonte": "COMO-VIRALIZA.md §1.2",
+      "aplica_reels": false,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "Não se aplica.",
+      "como_grupos": "Os 8 modelos abaixo são esqueletos, não textos para colar iguais."
+    },
+    {
+      "id": "R37",
+      "texto": "Ritmo humano: um grupo por dia, no máximo; nunca o mesmo texto em dois grupos no mesmo dia.",
+      "fonte": "COMO-VIRALIZA.md §1.3 · GRUPOS-PORTUGAL.md",
+      "aplica_reels": false,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "Não se aplica.",
+      "como_grupos": "Se um administrador pedir para tirar: tira-se logo e agradece-se."
+    },
+    {
+      "id": "R38",
+      "texto": "Falar da app só quando alguém pergunta por uma ferramenta, e dizer que é nossa.",
+      "fonte": "eofire.com/what-no-self-promotion-means-facebook-group-guidelines (menção contextual a responder a uma pergunta)",
+      "aplica_reels": false,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "Não se aplica.",
+      "como_grupos": "Resposta: primeiro a regra e a fonte; depois «Nós fizemos uma app para isto, o Em Dia. O link fica no comentário se quiseres.»"
+    },
+    {
+      "id": "R39",
+      "texto": "Vídeo vai carregado no próprio post, nunca como link do Instagram ou do YouTube.",
+      "fonte": "COMO-VIRALIZA.md §2.4",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "Os reels das 20:30 são o material dos grupos na semana seguinte.",
+      "como_grupos": "Carregar o ficheiro de vídeo diretamente no post do grupo."
+    },
+    {
+      "id": "R40",
+      "texto": "Brasileiros em Portugal: falar com «você» e explicar as palavras de cá (NIF, NISS, recibo verde) à primeira vez.",
+      "fonte": "LIVRO-DE-REGRAS-REDES.md §7 · GRUPOS-PORTUGAL.md",
+      "aplica_reels": true,
+      "aplica_grupos": true,
+      "bloco": "grupos",
+      "como_reels": "Versão BR dos reels (peças R05 e R20 do calendário) com «você» e a palavra portuguesa explicada no ecrã.",
+      "como_grupos": "Nos grupos de brasileiros, «você» e «contador» em vez de «contabilista»."
+    }
+  ],
+  "ganchos": [
+    {
+      "id": "G01",
+      "publico": "todos",
+      "texto": "Trabalhas a recibos verdes? Isto é para ti."
+    },
+    {
+      "id": "G02",
+      "publico": "recibos verdes",
+      "texto": "Passaste um recibo de 1.000 €. Não são 1.000 € teus."
+    },
+    {
+      "id": "G03",
+      "publico": "prazos",
+      "texto": "Dia 20 é o último dia. Muita gente descobre no dia 21."
+    },
+    {
+      "id": "G04",
+      "publico": "início de atividade",
+      "texto": "Abriste atividade este mês? Guarda isto antes do primeiro recibo."
+    },
+    {
+      "id": "G05",
+      "publico": "erro comum",
+      "texto": "Erro comum de quem começa a recibos verdes: gastar o recibo todo."
+    },
+    {
+      "id": "G06",
+      "publico": "TVDE",
+      "texto": "Fazes TVDE? O carro também tem prazos."
+    },
+    {
+      "id": "G07",
+      "publico": "estafetas",
+      "texto": "Fazes entregas? Quanto fica mesmo para ti no fim do mês?"
+    },
+    {
+      "id": "G08",
+      "publico": "todos",
+      "texto": "3 caixinhas, 2 prazos, 1 regra de ouro."
+    },
+    {
+      "id": "G09",
+      "publico": "prazos",
+      "texto": "Faltam {dias} dias para {prazo}. Já sabes quanto vais pagar?"
+    },
+    {
+      "id": "G10",
+      "publico": "brasileiros",
+      "texto": "Chegou em Portugal e começou a passar recibos verdes? Veja isto antes do dia 20."
+    },
+    {
+      "id": "G11",
+      "publico": "contrato + recibos",
+      "texto": "Tens contrato e passas recibos ao fim de semana? As contas mudam."
+    },
+    {
+      "id": "G12",
+      "publico": "IVA",
+      "texto": "IVA: tens de cobrar ou não? A resposta em 3 perguntas."
+    },
+    {
+      "id": "G13",
+      "publico": "Segurança Social",
+      "texto": "Não guardaste nada para a Segurança Social este mês? Eu explico o que aí vem."
+    },
+    {
+      "id": "G14",
+      "publico": "mitos",
+      "texto": "Ouviste uma regra de impostos num grupo? Antes de confiar, vê a fonte."
+    },
+    {
+      "id": "G15",
+      "publico": "guardar",
+      "texto": "Guarda este vídeo. Vais precisar dele no dia 20."
+    }
+  ],
+  "modelos_grupos": [
+    {
+      "id": "M01",
+      "nome": "Calendário do mês",
+      "publico": "recibos verdes / freelancers / empresários",
+      "texto": "Para quem trabalha a recibos verdes, as datas de {mes}:\nSegurança Social: quem já paga, paga entre dia 10 e dia 20.\n{outro_prazo_com_data}\nSe o último dia calhar ao fim de semana, tratem na sexta antes.\nFonte: Segurança Social e Portal das Finanças.\nAlguém já tratou do de {mes} ou fica sempre para o último dia?"
+    },
+    {
+      "id": "M02",
+      "nome": "Resposta a uma dúvida (sem link)",
+      "publico": "qualquer grupo, fase de ajudar",
+      "texto": "Boa pergunta, muita gente fica nessa.\nA regra é esta: {regra_em_uma_frase}.\nEstá no {fonte_oficial}, {artigo_ou_pagina}.\nNo teu caso, o que muda é {detalhe}. Se disseres em que mês abriste atividade, ajudo a ver o resto."
+    },
+    {
+      "id": "M03",
+      "nome": "Erro comum",
+      "publico": "recibos verdes / freelancers",
+      "texto": "Erro que vemos muito em quem começa a recibos verdes: passar o recibo e gastar o valor todo.\nParte desse dinheiro é da Segurança Social e do IRS, e a conta chega meses depois.\nO que ajuda: no dia em que recebes, pôr logo de lado uma parte numa conta à parte.\nNão substitui um contabilista, mas evita o susto.\nVocês guardam à parte ou fica tudo na mesma conta?"
+    },
+    {
+      "id": "M04",
+      "nome": "Pergunta de escolha",
+      "publico": "qualquer grupo",
+      "texto": "Pergunta rápida para quem passa recibos verdes:\nPreferem tratar da Segurança Social logo no dia 10 ou deixam para perto do dia 20?\nEstamos a juntar as dúvidas mais comuns para fazer um guia simples para o grupo."
+    },
+    {
+      "id": "M05",
+      "nome": "TVDE: o carro também tem prazos",
+      "publico": "TVDE",
+      "texto": "Para quem faz TVDE: além da Segurança Social e do IRS, o carro também tem datas que não podem falhar.\n{prazo_do_carro_com_fonte}\nFizemos uma imagem com tudo junto, está aqui em baixo.\nQual é o prazo que mais vos escapa?"
+    },
+    {
+      "id": "M06",
+      "nome": "Estafetas: quanto fica",
+      "publico": "estafetas",
+      "texto": "Para quem faz entregas a recibos verdes: o valor que entra na app não é o valor que fica.\nSai uma parte para a Segurança Social, outra para o IRS, e há o gasto com a mota ou o carro.\nContas feitas com a regra oficial, sem inventar: {exemplo_com_fonte}.\nQuem aqui faz as contas por semana e quem faz por mês?"
+    },
+    {
+      "id": "M07",
+      "nome": "Brasileiros (você)",
+      "publico": "brasileiros em Portugal",
+      "texto": "Para quem chegou em Portugal e começou a trabalhar com recibos verdes:\nRecibo verde é a nota que você emite no Portal das Finanças quando presta um serviço.\nQuem já paga Segurança Social paga entre dia 10 e dia 20 de cada mês.\nFonte: Segurança Social. Não substitui um contador.\nQual foi a sua maior dúvida no primeiro mês?"
+    },
+    {
+      "id": "M08",
+      "nome": "Quando alguém pede uma ferramenta",
+      "publico": "qualquer grupo (resposta em comentário)",
+      "texto": "Dá para fazer à mão: {como_fazer_a_mao}.\nSe preferires, nós fizemos uma app para isto, o Em Dia. Diz quanto guardar e avisa antes de cada prazo.\nDeixo o link no comentário a seguir, se o grupo deixar."
+    }
+  ]
+}

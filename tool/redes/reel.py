@@ -37,9 +37,27 @@ FFMPEG = None
 def _ffmpeg():
     global FFMPEG
     if FFMPEG is None:
-        import imageio_ffmpeg
-        FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
+        try:
+            import imageio_ffmpeg
+            FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
+        except ImportError:  # contentor da VPS: só o ffmpeg do sistema
+            import shutil
+            FFMPEG = shutil.which('ffmpeg') or 'ffmpeg'
     return FFMPEG
+
+
+def _camara(img, t, dur, zoom, deriva):
+    """Aproximação lenta e contínua (1 → 1+zoom) com deslocação lateral, ao longo do plano.
+
+    Porquê (28/09/2026): o fiscal de vídeo do Bora mede o movimento como a diferença
+    média de brilho entre fotogramas (fps=5) e pede >= 12. Os reels do Em Dia, só com
+    texto a entrar, davam 7,5 a 8,8 e eram todos chumbados. Com zoom 0,18 e deriva 0,5
+    o R16 passa de 8,84 para 12,41 sem cortar texto (a zona segura tem 80 px de margem).
+    """
+    k = 1 + zoom * (t / dur)
+    cw, ch = W / k, H / k
+    cx = W / 2 + deriva * (t / dur) * (W - cw) / 2
+    return img.resize((W, H), Image.BILINEAR, box=(cx - cw / 2, H / 2 - ch / 2, cx + cw / 2, H / 2 + ch / 2))
 
 
 def _ease(x):
@@ -299,7 +317,7 @@ def _conta(alvo: str, p: float) -> str:
     return alvo[:m.start()] + s + alvo[m.end():]
 
 
-def monta(planos: list[dict], saida: str, semente=0, br=False, capa=None):
+def monta(planos: list[dict], saida: str, semente=0, br=False, capa=None, camara=0.0, deriva=0.0):
     ps = [Plano(s, br) for s in planos]
     total = sum(p.dur for p in ps)
     assert 7 <= total <= 20.5, f'reel com {total:.1f} s (tem de ser 7 a 20 s)'
@@ -316,10 +334,13 @@ def monta(planos: list[dict], saida: str, semente=0, br=False, capa=None):
            '-profile:v', 'high', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', saida]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     primeiro = None
-    for p in ps:
+    for k_plano, p in enumerate(ps):
         n = int(round(p.dur * FPS))
+        d = deriva if k_plano % 2 == 0 else -deriva
         for i in range(n):
             q = p.quadro(i / FPS).convert('RGB')
+            if camara:
+                q = _camara(q, i / FPS, p.dur, camara, d)
             if primeiro is None and i == n - 1:
                 primeiro = q
             proc.stdin.write(q.tobytes())
