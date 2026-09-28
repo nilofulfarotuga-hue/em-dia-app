@@ -78,6 +78,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Usamos a tua localização só enquanto tens a app aberta, para mostrar postos e centros de inspeção perto de ti. Nunca em segundo plano.</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>
