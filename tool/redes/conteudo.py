@@ -42,10 +42,10 @@ def legenda(corpo: str, br=False, fonte=None, contabilista=False) -> str:
     if contabilista:
         partes.append('Informação geral. ' + NAO_SUBSTITUI)
     if br:
-        partes.append(f'👉 Experimente grátis, sem cartão: {LINK} (link na bio)')
+        partes.append(f'👉 Grátis, sem cartão: {LINK} (link na bio)')
         partes.append(PROMESSA_BR)
     else:
-        partes.append(f'👉 Experimenta grátis, sem cartão: {LINK} (link na bio)')
+        partes.append(f'👉 Grátis, sem cartão: {LINK} (link na bio)')
         partes.append(PROMESSA)
     return '\n\n'.join(partes)
 
