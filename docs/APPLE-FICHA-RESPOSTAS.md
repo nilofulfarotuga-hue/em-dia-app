@@ -26,7 +26,9 @@
 
 ## Texto promocional (máx. 170)
 
-Por agora está tudo aberto e não se paga nada. Recibos verdes, prazos da Segurança Social, IVA e IRS, e lembretes do carro, em português simples.
+Recibos verdes, prazos das Finanças e da Segurança Social e o carro, tudo num só sítio. Grátis, sem compras dentro da app.
+
+> Entra quando a Apple aprovar a 1.0.0 (506): o workflow `ios-ficha` verifica de 6 em 6 h e troca sozinho (ordem do Danilo 28/09/2026, missão emdia-redes-2026-09-28 E0). Texto que está na loja até lá: «Por agora está tudo aberto e não se paga nada. Recibos verdes, prazos da Segurança Social, IVA e IRS, e lembretes do carro, em português simples.»
 
 ## Descrição (pt-PT)
 
@@ -40,7 +42,7 @@ O que podes fazer:
 • Perguntar ao assistente em português simples, com a fonte de cada regra.
 • Ver como fica sem criar conta, com um exemplo já preenchido.
 
-Por agora está tudo aberto e não se paga nada. Quando as assinaturas abrirem, avisamos com 30 dias de antecedência e ninguém é cobrado sem dizer que sim.
+Por agora está tudo aberto e não se paga nada.  <!-- 28/09: frase das assinaturas tirada a partir da próxima versão (o workflow ios-ficha tira-a sozinho da versão em preparação) -->
 
 O Em Dia não substitui o contabilista, a Autoridade Tributária nem a Segurança Social. Dá informação geral, com linguagem simples, para chegares aos prazos mais organizado.
 
