@@ -79,9 +79,9 @@ Deno.serve(async (req: Request) => {
 
   // ---------- regras legais (a única fonte de números) ----------
   const { data: regras, error: erroRegras } = await admin
-    .from('regras_legais').select('chave, valor_num, valor_json')
+    .from('regras_legais').select('chave, valor_num, valor_txt, valor_json')
     .in('chave', ['push_hora_lisboa', 'iva_isencao_aviso', 'ipo_avisos_dias',
-                  'aviso_debito_direto_dias', 'aviso_referencia_dias'])
+                  'aviso_debito_direto_dias', 'aviso_referencia_dias', 'planos_a_venda'])
   if (erroRegras) return json({ erro: 'regras_legais', detalhe: erroRegras.message }, 500)
   const regra = (chave: string) => regras?.find((r) => r.chave === chave)
   const pushHora = Number(regra('push_hora_lisboa')?.valor_num)
@@ -93,6 +93,9 @@ Deno.serve(async (req: Request) => {
   const ipoDias: number[] = Array.isArray(regra('ipo_avisos_dias')?.valor_json)
     ? (regra('ipo_avisos_dias')!.valor_json as number[]).map(Number) : []
   if (!Number.isFinite(pushHora)) return json({ erro: 'sem_regra_push_hora_lisboa' }, 500)
+  // Interruptor comercial (decisão do Danilo, 28/09): enquanto não for «sim», não há mês
+  // grátis a acabar nem preços a anunciar — os avisos trial_25 e trial_31 não saem.
+  const planosAVenda = String(regra('planos_a_venda')?.valor_txt ?? 'nao').trim().toLowerCase() === 'sim'
 
   // ---------- (2) hora de Lisboa ----------
   const { hora, data: hoje } = agoraLisboa()
@@ -245,8 +248,9 @@ Deno.serve(async (req: Request) => {
       avisos.push({ tipo: 'vigia_iva', obrigacao_id: null, titulo: T.titulos.vigia_iva, corpo: T.pushVigiaIva(formatarMoeda(soma)!) })
     }
 
-    // trial: 5 dias antes de acabar; e uma única vez depois de acabar (se não tiver plano pago)
-    if (p.trial_ate) {
+    // trial: 5 dias antes de acabar; e uma única vez depois de acabar (se não tiver plano pago).
+    // Só com planos à venda: sem eles está tudo aberto e não há nada para anunciar.
+    if (planosAVenda && p.trial_ate) {
       const trialAte = new Date(p.trial_ate)
       const diaAviso = dataLisboaDe(new Date(trialAte.getTime() - DIAS_TRIAL_AVISO * 86400_000).toISOString())
       if (diaAviso === hoje && !jaHoje('trial_25')) {
