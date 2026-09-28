@@ -1168,9 +1168,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final itens = _obrigacoesDoMes(r, userId);
     String dia(DateTime d) =>
         d.month == _hoje.month ? '${d.day}' : '${d.day} de ${nomeMes(d.month)}';
+    // Sem planos à venda, a frase final não fala dos «30 dias».
+    final aVenda = context.read<RegrasStore>().planosAVenda;
     final String mensagem;
     if (itens.isEmpty) {
-      mensagem = l.fimOnboardingNada;
+      mensagem = aVenda ? l.fimOnboardingNada : l.fimOnboardingNadaGratis;
     } else if (itens.length == 1) {
       final o = itens.first;
       mensagem = l.fimOnboardingUma(
@@ -1185,7 +1187,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ? l.onbItemListaSemValor(o.nomeCurto, dia(o.dataLimite))
               : l.onbItemLista(o.nomeCurto, moeda(o.valorEstimado!), dia(o.dataLimite)))
           .join(', ');
-      mensagem = l.fimOnboardingVarias(itens.length, lista);
+      mensagem = aVenda ? l.fimOnboardingVarias(itens.length, lista) : l.fimOnboardingVariasGratis(itens.length, lista);
     }
     return [
       const SizedBox(height: 8),

@@ -18,34 +18,44 @@ void main() {
 
   final hoje = DateTime(2026, 9, 6);
 
-  Widget tela(String plano) => embrulhaStores(
+  Widget tela(String plano, {bool planosAVenda = false}) => embrulhaStores(
         tela: PlanoScreen(hoje: hoje, compras: Compras.paraTeste()),
         perfil: perfilTeste(trialAte: DateTime(2026, 9, 30)),
         plano: plano,
+        planosAVenda: planosAVenda,
       );
 
-  testWidgets('plano: em trial (faltam 25 dias), 3 tamanhos, PT e BR', (tester) async {
+  testWidgets('plano: sem planos à venda só mostra a promessa (nem dias de teste nem preços)', (tester) async {
     await fotografaSuite(tester, nome: 'plano', tela: () => tela('trial'));
-    expect(find.byKey(const Key('plano_estado_trial')), findsOneWidget);
-    expect(find.textContaining('25'), findsAtLeastNWidgets(1));
+    expect(find.textContaining('não se paga nada'), findsOneWidget);
+    expect(find.byKey(const Key('plano_estado_trial')), findsNothing);
+    expect(find.textContaining('25'), findsNothing);
     expect(find.byKey(const Key('plano_ativar_pro')), findsNothing);
     expect(find.byKey(const Key('plano_ativar_familia')), findsNothing);
     expect(find.byKey(const Key('plano_termos')), findsNothing);
+    expect(find.byKey(const Key('plano_gerir')), findsNothing);
+    expect(find.text('3,49 €/mês'), findsNothing);
+    expect(find.text('5,99 €/mês'), findsNothing);
+  });
+
+  testWidgets('plano à venda: em trial (faltam 25 dias) com os preços', (tester) async {
+    await fotografaSuite(tester, nome: 'plano_a_venda', tela: () => tela('trial', planosAVenda: true));
+    expect(find.byKey(const Key('plano_estado_trial')), findsOneWidget);
+    expect(find.textContaining('25'), findsAtLeastNWidgets(1));
     expect(find.text('3,49 €/mês'), findsOneWidget);
     expect(find.text('5,99 €/mês'), findsOneWidget);
   });
 
-  testWidgets('plano: grátis com limites (3 avisos, 1 carro, 5 perguntas)', (tester) async {
-    await fotografaSuite(tester, nome: 'plano_gratis', tela: () => tela('free'));
+  testWidgets('plano à venda: grátis com limites (3 avisos, 1 carro, 5 perguntas)', (tester) async {
+    await fotografaSuite(tester, nome: 'plano_gratis', tela: () => tela('free', planosAVenda: true));
     expect(find.byKey(const Key('plano_estado_free')), findsOneWidget);
     expect(find.textContaining('3 avisos'), findsOneWidget);
     expect(find.textContaining('1 carro'), findsOneWidget);
     expect(find.textContaining('5 perguntas'), findsOneWidget);
-    expect(find.byKey(const Key('plano_gerir')), findsNothing);
   });
 
-  testWidgets('plano: por ano mostra 29,90 € e 49,90 € e a poupança', (tester) async {
-    await tester.pumpWidget(embrulha(tela('free'), const Locale('pt')));
+  testWidgets('plano à venda: por ano mostra 29,90 € e 49,90 € e a poupança', (tester) async {
+    await tester.pumpWidget(embrulha(tela('free', planosAVenda: true), const Locale('pt')));
     await tester.pump();
     await tester.tap(find.byKey(const Key('plano_ano')));
     await tester.pump();

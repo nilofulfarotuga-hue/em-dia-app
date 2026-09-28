@@ -36,6 +36,15 @@ class AppLocalizationsPt extends AppLocalizations {
       'Pronto. Este mês não tens nada a pagar. Eu aviso-te quando houver. Nos próximos 30 dias tens tudo aberto, sem cartão.';
 
   @override
+  String fimOnboardingVariasGratis(int n, String lista) {
+    return 'Pronto. Este mês tens $n coisas: $lista. Eu aviso-te. Está tudo aberto e é grátis.';
+  }
+
+  @override
+  String get fimOnboardingNadaGratis =>
+      'Pronto. Este mês não tens nada a pagar. Eu aviso-te quando houver. Está tudo aberto e é grátis.';
+
+  @override
   String push5Dias(String obrigacao, String valor) {
     return 'Faltam 5 dias para $obrigacao ($valor). Toca aqui para ver como pagar.';
   }
@@ -851,6 +860,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get painelEtiquetaFree => 'Plano grátis';
+
+  @override
+  String get painelEtiquetaGratis => 'Grátis';
 
   @override
   String get painelEtiquetaPro => 'Pro';
@@ -6469,6 +6481,15 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
       'Pronto. Este mês você não tem nada para pagar. Eu te aviso quando tiver. Nos próximos 30 dias você tem tudo aberto, sem cartão.';
 
   @override
+  String fimOnboardingVariasGratis(int n, String lista) {
+    return 'Pronto. Este mês você tem $n coisas: $lista. Eu te aviso. Está tudo aberto e é grátis.';
+  }
+
+  @override
+  String get fimOnboardingNadaGratis =>
+      'Pronto. Este mês você não tem nada para pagar. Eu te aviso quando tiver. Está tudo aberto e é grátis.';
+
+  @override
   String push5Dias(String obrigacao, String valor) {
     return 'Faltam 5 dias para $obrigacao ($valor). Toque aqui para ver como pagar.';
   }
@@ -7283,6 +7304,9 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get painelEtiquetaFree => 'Plano grátis';
+
+  @override
+  String get painelEtiquetaGratis => 'Grátis';
 
   @override
   String get painelEtiquetaPro => 'Pro';

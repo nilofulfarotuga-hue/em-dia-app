@@ -242,6 +242,12 @@ def escrever_notas(vid, nome):
         c, r = patch("/v1/appStoreVersionLocalizations/" + d["id"],
                      {"type": "appStoreVersionLocalizations", "id": d["id"],
                       "attributes": {"whatsNew": texto}})
+        if c == 409 and "whatsNew" in json.dumps(r):
+            # 1.a versao de uma app: a Apple nao aceita «O que ha de novo»
+            # (corrida 36398228465 do bora-app-cloud, 28/09). Nao e erro.
+            print("::warning::a Apple nao deixa escrever notas nesta versao (%s) - sigo sem elas."
+                  % loc)
+            return
         if c >= 300:
             morre("nao consegui escrever as notas em %s (%s): %s"
                   % (loc, c, erro_apple(r)))

@@ -5,6 +5,8 @@
   "fimOnboardingUma": "Pronto. Este mês você só tem uma coisa: {obrigacao}, {valor}, até o dia {dia}. Eu te aviso no dia {diaAviso}.",
   "fimOnboardingVarias": "Pronto. Este mês você tem {n} coisas: {lista}. Eu te aviso. Nos próximos 30 dias você tem tudo aberto, sem cartão.",
   "fimOnboardingNada": "Pronto. Este mês você não tem nada para pagar. Eu te aviso quando tiver. Nos próximos 30 dias você tem tudo aberto, sem cartão.",
+  "fimOnboardingVariasGratis": "Pronto. Este mês você tem {n} coisas: {lista}. Eu te aviso. Está tudo aberto e é grátis.",
+  "fimOnboardingNadaGratis": "Pronto. Este mês você não tem nada para pagar. Eu te aviso quando tiver. Está tudo aberto e é grátis.",
   "push5Dias": "Faltam 5 dias para {obrigacao} ({valor}). Toque aqui para ver como pagar.",
   "pushDia": "É hoje. {obrigacao}, {valor}, até meia-noite. Já pagou? Toque em Já paguei.",
   "pushPassado": "Passou o dia {dia} e você não marcou como pago. Não é o fim do mundo: pague hoje, os juros são pequenos. Se já pagou, toque aqui.",

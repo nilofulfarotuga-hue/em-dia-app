@@ -352,7 +352,7 @@ void definirTestes() {
         ('guias', find.text(l.guiasTitulo)),
         ('ia', find.text(l.iaTitulo)),
         ('ajuda', find.byType(Scaffold)),
-        ('plano', find.text(l.planoTitulo)),
+        // «plano» só existe com regras_legais.planos_a_venda = «sim» (ver o assert a seguir ao ciclo).
         ('definicoes', find.byKey(const Key('defs_sair'))),
       ]) {
         await rolaAte(t, na(MaisScreen, find.byKey(Key('mais_$chave'))), lista: na(MaisScreen, find.byType(Scrollable)).first);
@@ -370,6 +370,8 @@ void definirTestes() {
         }
         await recua(t);
       }
+      // Sem planos à venda (o espelho de regras_legais diz «nao»), o Mais não mostra o «Plano».
+      expect(find.byKey(const Key('mais_plano')), findsNothing);
     });
 
     testWidgets('os ecrãs que a Maria não tem: contrato, empresa, entrada e admin', (t) async {

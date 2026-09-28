@@ -93,6 +93,16 @@ class RegrasLegais {
   RegraLegal? regra(String chave) => _regras[chave];
   bool tem(String chave) => _regras.containsKey(chave);
 
+  /// Cópia com uma regra de texto trocada (testes: ex. `planos_a_venda`).
+  RegrasLegais comTexto(String chave, String valor) => RegrasLegais(
+        regras: [
+          ..._regras.values.where((r) => r.chave != chave),
+          RegraLegal(chave: chave, valorTxt: valor, descricao: _regras[chave]?.descricao ?? ''),
+        ],
+        escaloes: escaloes,
+        feriados: feriados,
+      );
+
   /// Número da regra. Lança se não existir — um número legal em falta é um
   /// erro de dados, nunca se inventa um valor por omissão.
   double n(String chave) {

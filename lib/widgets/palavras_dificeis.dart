@@ -6,6 +6,7 @@ import '../config/app_theme.dart';
 import '../l10n/app_localizations.dart';
 import '../services/fala.dart';
 import '../stores/perfil_store.dart';
+import '../stores/regras_store.dart';
 import 'botao_ouvir.dart';
 import 'widgets.dart' show BotaoGrande;
 
@@ -36,7 +37,15 @@ class BotaoPalavras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
-    final existem = termos.where((t) => glossario(l).containsKey(t)).toList();
+    // Sem planos à venda (regras_legais.planos_a_venda), a palavra «Pro» — «a
+    // parte paga da app» — não se explica em lado nenhum.
+    bool aVenda;
+    try {
+      aVenda = context.watch<RegrasStore>().planosAVenda;
+    } on ProviderNotFoundException {
+      aVenda = false;
+    }
+    final existem = termos.where((t) => glossario(l).containsKey(t) && (aVenda || t != 'pro')).toList();
     if (existem.isEmpty) return const SizedBox.shrink();
     void abrir() => mostrarPalavrasDificeis(context, existem);
     if (comTexto) {

@@ -11,9 +11,23 @@ class RegrasStore extends ChangeNotifier {
   bool _doServidor = false;
   DateTime? _atualizadoEm;
 
+  RegrasStore();
+
+  /// Espelho local com o interruptor comercial escolhido pelo teste.
+  @visibleForTesting
+  RegrasStore.paraTeste({bool planosAVenda = false}) {
+    _regras = _regras.comTexto('planos_a_venda', planosAVenda ? 'sim' : 'nao');
+  }
+
   RegrasLegais get regras => _regras;
   bool get doServidor => _doServidor;
   DateTime? get atualizadoEm => _atualizadoEm;
+
+  /// Interruptor comercial (`regras_legais.planos_a_venda`). Enquanto não for
+  /// «sim», nenhum ecrã fala de mês grátis, datas de fim nem planos — só
+  /// «Grátis» (diretriz 3.1 da Apple: sem compra na app, sem falar de teste).
+  bool get planosAVenda =>
+      (_regras.regra('planos_a_venda')?.valorTxt ?? 'nao').trim().toLowerCase() == 'sim';
 
   Future<void> carregar() async {
     if (!temChaves) return;

@@ -30,7 +30,19 @@ void main() {
       },
     );
     expect(find.byKey(const Key('palavras_folha')), findsOneWidget);
-    // As cinco palavras do Mais, cada uma com o seu botão de ouvir.
+    // As palavras do Mais, cada uma com o seu botão de ouvir — menos «Pro»:
+    // com regras_legais.planos_a_venda = «nao» não se explica a parte paga.
+    for (final termo in PalavrasDoEcra.mais.where((t) => t != 'pro')) {
+      expect(find.byKey(Key('ouvir_palavra-$termo')), findsOneWidget, reason: termo);
+    }
+    expect(find.byKey(const Key('ouvir_palavra-pro')), findsNothing);
+  });
+
+  testWidgets('palavras difíceis: com planos à venda o Mais explica o «Pro»', (tester) async {
+    await tester.pumpWidget(embrulha(comStores(const MaisScreen(), perfil: perfilTeste(), planosAVenda: true), const Locale('pt')));
+    await tester.pump();
+    await tester.tap(find.byKey(const Key('palavras_cofre')));
+    await tester.pumpAndSettle();
     for (final termo in PalavrasDoEcra.mais) {
       expect(find.byKey(Key('ouvir_palavra-$termo')), findsOneWidget, reason: termo);
     }

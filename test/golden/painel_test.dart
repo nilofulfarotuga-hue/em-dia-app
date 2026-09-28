@@ -52,6 +52,10 @@ void main() {
     );
     expect(find.byType(SemaforoGrande), findsOneWidget);
     expect(find.text('Está tudo em dia'), findsOneWidget);
+    // regras_legais.planos_a_venda = «nao»: a etiqueta diz só «Grátis» — nada de
+    // «mês grátis até dd/mm» (diretriz 3.1 da Apple).
+    expect(find.text('Grátis'), findsOneWidget);
+    expect(find.textContaining('Mês grátis'), findsNothing);
     // Sem obrigações nenhumas não há "próximo prazo" para mostrar, e um cartão
     // vazio a dizer que está vazio só ocupa ecrã. O cartão de ação em cima já
     // diz que está tudo tratado.

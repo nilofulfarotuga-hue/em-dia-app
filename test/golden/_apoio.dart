@@ -123,11 +123,13 @@ Rendimento rendimentoTeste({required DateTime mes, required double valor}) => Re
 
 /// Atalho usado pelas telas que não precisam de dados (onboarding, login):
 /// todas as stores falsas, perfil vazio, plano em trial.
-Widget comStores(Widget tela, {Perfil? perfil, String plano = 'trial'}) => embrulhaStores(
+Widget comStores(Widget tela, {Perfil? perfil, String plano = 'trial', bool planosAVenda = false}) =>
+    embrulhaStores(
       tela: tela,
       perfil: perfil ??
           perfilTeste(nome: null, rendimentoMensalEstimado: null, tipoAtividade: TipoAtividade.semAtividade),
       plano: plano,
+      planosAVenda: planosAVenda,
     );
 
 /// Embrulha a tela com todas as stores (falsas ou pré-carregadas).
@@ -160,13 +162,15 @@ Widget embrulhaStores({
   List<MovimentoBanco> movimentosBanco = const [],
   List<OperadorCancelar> operadores = const [],
   PertoStore? perto,
+  // regras_legais.planos_a_venda: por omissão «nao», como em produção.
+  bool planosAVenda = false,
 }) =>
     MultiProvider(
       providers: [
         ChangeNotifierProvider<SessaoStore>(create: (_) => SessaoStoreFalso()),
         // A voz: os botões de ouvir precisam dela para saber quem está a falar.
         ChangeNotifierProvider<Fala>.value(value: Fala.instancia),
-        ChangeNotifierProvider<RegrasStore>(create: (_) => RegrasStore()),
+        ChangeNotifierProvider<RegrasStore>(create: (_) => RegrasStore.paraTeste(planosAVenda: planosAVenda)),
         ChangeNotifierProvider<PlanoStore>(create: (_) => PlanoStoreFalso(plano, limites: limites)),
         ChangeNotifierProvider<PerfilStore>(create: (_) => PerfilStoreFalso(perfil)),
         ChangeNotifierProvider<ObrigacoesStore>(

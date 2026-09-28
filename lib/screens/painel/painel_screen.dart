@@ -222,8 +222,13 @@ class _Cabecalho extends StatelessWidget {
 
     final emTrial = plano.carregado ? plano.emTrial : (perfil?.emTrial ?? false);
     final planoNome = plano.carregado ? plano.planoEfetivo : (perfil?.plano ?? 'free');
+    final aVenda = context.watch<RegrasStore>().planosAVenda;
     final Widget etiqueta;
-    if (emTrial && perfil != null) {
+    if (!aVenda && planoNome != 'pro' && planoNome != 'familia') {
+      // Nada à venda: nem «mês grátis até dd/mm» nem «plano grátis».
+      etiqueta = Etiqueta(l.painelEtiquetaGratis,
+          cor: AppColors.emDiaClaro, corTexto: AppColors.primaryDark, icone: Icons.check_circle_rounded);
+    } else if (emTrial && perfil != null) {
       final d = perfil!.trialAte;
       final ddmm = '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}';
       etiqueta = Etiqueta(l.painelEtiquetaTrial(ddmm),

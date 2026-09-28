@@ -7,6 +7,7 @@
   "painelEtiquetaTrial": "Mês grátis até {data}",
   "@painelEtiquetaTrial": {"placeholders": {"data": {"type": "String"}}},
   "painelEtiquetaFree": "Plano grátis",
+  "painelEtiquetaGratis": "Grátis",
   "painelEtiquetaPro": "Pro",
   "painelEtiquetaFamilia": "Família",
   "painelSemaforoAlemUma": "Além desta, tens mais 1 coisa a vencer em {dias} dias",

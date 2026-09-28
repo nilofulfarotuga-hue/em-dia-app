@@ -132,6 +132,18 @@ abstract class AppLocalizations {
   /// **'Pronto. Este mês não tens nada a pagar. Eu aviso-te quando houver. Nos próximos 30 dias tens tudo aberto, sem cartão.'**
   String get fimOnboardingNada;
 
+  /// No description provided for @fimOnboardingVariasGratis.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pronto. Este mês tens {n} coisas: {lista}. Eu aviso-te. Está tudo aberto e é grátis.'**
+  String fimOnboardingVariasGratis(int n, String lista);
+
+  /// No description provided for @fimOnboardingNadaGratis.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pronto. Este mês não tens nada a pagar. Eu aviso-te quando houver. Está tudo aberto e é grátis.'**
+  String get fimOnboardingNadaGratis;
+
   /// No description provided for @push5Dias.
   ///
   /// In pt, this message translates to:
@@ -1511,6 +1523,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Plano grátis'**
   String get painelEtiquetaFree;
+
+  /// No description provided for @painelEtiquetaGratis.
+  ///
+  /// In pt, this message translates to:
+  /// **'Grátis'**
+  String get painelEtiquetaGratis;
 
   /// No description provided for @painelEtiquetaPro.
   ///

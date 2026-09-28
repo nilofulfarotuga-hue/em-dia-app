@@ -109,8 +109,9 @@ class _PlanoScreenState extends State<PlanoScreen> {
           const SizedBox(height: 12),
           Aviso(promessaGratis, tom: Semaforo.verde, icone: Icons.verified_user_rounded),
           const SizedBox(height: 12),
-          _EstadoAtual(plano: plano, trialAte: perfil?.trialAte, hoje: hoje),
-          if (efetivo != 'familia') ...[
+          // Sem planos à venda, o ecrã só mostra a promessa: nem dias de teste nem preços.
+          if (planosAVenda) _EstadoAtual(plano: plano, trialAte: perfil?.trialAte, hoje: hoje),
+          if (planosAVenda && efetivo != 'familia') ...[
             const SizedBox(height: 16),
             if (planosAVenda && semLoja)
               Aviso(l.planoWeb, icone: Icons.phone_android_rounded)
