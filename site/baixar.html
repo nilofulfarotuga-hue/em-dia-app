@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instalar o Em Dia — grátis</title>
+<meta name="description" content="Instala o Em Dia grátis: no iPhone pela App Store, nos outros telemóveis e no computador pela app web.">
+<meta name="robots" content="noindex">
+<!-- Pré-visualização nos grupos do Facebook/WhatsApp (04/10/2026): sem isto o link saía sem foto. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Em Dia">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:url" content="https://emdia.boraguarda.com/baixar">
+<meta property="og:title" content="Nunca mais levas multa da Segurança Social.">
+<meta property="og:description" content="App grátis para quem passa recibos verdes: avisa os prazos, calcula o que pagar e leva-te à página certa. iPhone, Android e computador.">
+<meta property="og:image" content="https://emdia.boraguarda.com/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nunca mais levas multa da Segurança Social.">
+<meta name="twitter:description" content="App grátis para quem passa recibos verdes: avisa os prazos, calcula o que pagar e leva-te à página certa.">
+<meta name="twitter:image" content="https://emdia.boraguarda.com/assets/img/og.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<script src="/assets/js/origem.js"></script>
+<script>
+// Um link só para tudo (bio, stories, comentários, QR). iPhone/iPad → App Store; resto → app web.
+// Mantém a origem (?de=...) para se saber de onde veio a instalação.
+(function () {
+  var q = new URLSearchParams(location.search);
+  var de = q.get('de') || 'baixar';
+  var ua = navigator.userAgent || '';
+  var ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+  var loja = 'https://apps.apple.com/pt/app/em-dia-recibos-e-impostos/id6814807320';
+  var web = 'https://app.emdia.boraguarda.com/?de=' + encodeURIComponent(de);
+  location.replace(ios ? loja : web);
+})();
+</script>
+<style>
+@font-face{font-family:Inter;src:url(/assets/fonts/Inter.woff2) format("woff2");font-weight:100 900;font-display:swap}
+body{margin:0;font-family:Inter,system-ui,sans-serif;font-size:19px;line-height:1.5;color:#111827;background:#F6F7F4;min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}
+h1{font-size:28px;font-weight:800;margin:0 0 8px}
+p{margin:0 0 24px;color:#4B5563}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 28px;border-radius:16px;background:#16A34A;color:#fff;font-weight:700;text-decoration:none;margin:0 auto 12px;max-width:320px}
+.sec{background:#fff;color:#16A34A;border:2px solid #16A34A}
+</style>
+</head>
+<body>
+<main>
+  <h1>Em Dia — grátis</h1>
+  <p>A abrir a instalação…</p>
+  <a class="btn" href="https://apps.apple.com/pt/app/em-dia-recibos-e-impostos/id6814807320">iPhone: App Store</a>
+  <a class="btn sec" href="https://app.emdia.boraguarda.com/?de=baixar">Android e computador: abrir a app</a>
+</main>
+</body>
+</html>
