@@ -178,8 +178,13 @@ class ObrigacoesStore extends ChangeNotifier {
   List<ObrigacaoItem> aVencer(DateTime hoje, {int dias = 5}) => _porData(
         _itens.where((o) => _conta(o) && o.pendente && !o.passou(hoje) && o.diasParaPrazo(hoje) <= dias),
       );
+  /// O que vence neste mês, contado pelo prazo EFETIVO (como «passou» e
+  /// «faltam N dias»). Defeito de 11/11/2026: o IUC com dia legal sábado
+  /// 31/10/2026 só se paga até segunda 02/11 (AT, «Resumo anual — Obrigações
+  /// de pagamento em 2026», nota a)), mas contava-se em outubro e sumia do
+  /// «Este mês pagas…» de novembro, no próprio dia do prazo.
   List<ObrigacaoItem> doMes(DateTime hoje) => _porData(
-        _itens.where((o) => o.dataLimite.year == hoje.year && o.dataLimite.month == hoje.month),
+        _itens.where((o) => o.prazoEfetivo.year == hoje.year && o.prazoEfetivo.month == hoje.month),
       );
 
   /// A que vence primeiro. Escolhe pela data, não pela posição na lista —

@@ -73,14 +73,17 @@ class _CalendarioScreenState extends State<CalendarioScreen> {
   }
 
   /// dia → cor do ponto (o pior estado do dia ganha: passou > a vencer > em dia).
+  /// O ponto fica no dia do prazo EFETIVO: um prazo do Estado de sábado
+  /// 31/10 mostra-se na segunda 02/11 (o detalhe continua a dizer o dia legal).
   Map<int, Color> _pontos(List<ObrigacaoItem> itens, DateTime hoje) {
     int peso(Color c) => c == AppColors.passou ? 3 : (c == AppColors.aVencer ? 2 : 1);
     final out = <int, Color>{};
     for (final o in itens) {
-      if (o.dataLimite.year != hoje.year || o.dataLimite.month != hoje.month) continue;
+      final p = o.prazoEfetivo;
+      if (p.year != hoje.year || p.month != hoje.month) continue;
       final c = corDaObrigacao(o, hoje);
-      final atual = out[o.dataLimite.day];
-      if (atual == null || peso(c) > peso(atual)) out[o.dataLimite.day] = c;
+      final atual = out[p.day];
+      if (atual == null || peso(c) > peso(atual)) out[p.day] = c;
     }
     return out;
   }
@@ -102,7 +105,7 @@ class _CalendarioScreenState extends State<CalendarioScreen> {
         hojeL.add(o);
       } else if (d <= 7) {
         semana.add(o);
-      } else if (o.dataLimite.year == hoje.year && o.dataLimite.month == hoje.month) {
+      } else if (o.prazoEfetivo.year == hoje.year && o.prazoEfetivo.month == hoje.month) {
         mes.add(o);
       } else {
         tarde.add(o);
@@ -146,7 +149,7 @@ class _CalendarioScreenState extends State<CalendarioScreen> {
     final pagamentosDoMes = store.doMes(hoje).where((o) => o.ehPagamento).toList();
     final totalMes = pagamentosDoMes.fold<double>(0, (s, o) => s + (o.valorEstimado ?? 0));
     final doGrupo = todos.where(_noGrupo).toList();
-    final visiveis = _dia == null ? doGrupo : doGrupo.where((o) => _mesmoDia(o.dataLimite, _dia!)).toList();
+    final visiveis = _dia == null ? doGrupo : doGrupo.where((o) => _mesmoDia(o.prazoEfetivo, _dia!)).toList();
     final seccoes = _seccoes(l, visiveis, hoje);
     final nomeMesTitulo = nomeMes(hoje.month);
     final tituloMes = '${nomeMesTitulo[0].toUpperCase()}${nomeMesTitulo.substring(1)} ${hoje.year}';
